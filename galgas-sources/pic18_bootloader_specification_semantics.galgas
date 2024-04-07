@@ -61,7 +61,7 @@ proc pic18BootloaderSpecificationAnalysis
   outListFileContents += "*" + ["BOOTLOADER ROUTINES" stringByLeftAndRightPadding !117 !' '] + "*\n"
   outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   outListFileContents += ["Routine" stringByLeftPadding !40 !' '] + " Entry point address\n"
-  var routineNameSet =@stringset.emptySet{}
+  var routineNameSet =@stringset §[]
   var @uint entryPointAddress = 0x4
   for (mRoutineName * * * *) in  inBootloaderRoutineDeclarationList do
     if [routineNameSet hasKey !mRoutineName.string] then
@@ -97,7 +97,7 @@ proc pic18BootloaderSpecificationAnalysis
   analyze_ram_sections (
     !"SHARED VARIABLES"
     !inSharedRamDefinitionList
-    !{}
+    !§[]
     !?*
     !?outRamBank
     !outPiccoloDeviceModel.mRegisterTable

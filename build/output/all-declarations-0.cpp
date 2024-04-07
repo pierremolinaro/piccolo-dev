@@ -4373,17 +4373,6 @@ GALGAS_immediatExpression::GALGAS_immediatExpression (void) :
 AC_GALGAS_reference_class () {
 }
 
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_immediatExpression GALGAS_immediatExpression::init_28__29_ (Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  cPtr_immediatExpression * object = nullptr ;
-  macroMyNew (object, cPtr_immediatExpression (inCompiler COMMA_THERE)) ;
-  const GALGAS_immediatExpression result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_immediatExpression::GALGAS_immediatExpression (const cPtr_immediatExpression * inSourcePtr) :
@@ -4592,17 +4581,6 @@ ComparisonResult GALGAS_declarationInRam::objectCompare (const GALGAS_declaratio
 GALGAS_declarationInRam::GALGAS_declarationInRam (void) :
 AC_GALGAS_reference_class () {
 }
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_declarationInRam GALGAS_declarationInRam::init_28__29_ (Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) {
-  cPtr_declarationInRam * object = nullptr ;
-  macroMyNew (object, cPtr_declarationInRam (inCompiler COMMA_THERE)) ;
-  const GALGAS_declarationInRam result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7722,18 +7700,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatAdd GALGAS_immediatAdd::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                            const GALGAS_immediatExpression & in_mRightExpression,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+GALGAS_immediatAdd GALGAS_immediatAdd::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatAdd * object = nullptr ;
   macroMyNew (object, cPtr_immediatAdd (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatAdd_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatAdd result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatAdd::
+immediatAdd_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                          const GALGAS_immediatExpression & in_mRightExpression,
+                          Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7743,36 +7731,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatAdd GALGAS_immediatAdd::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                       const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatAdd GALGAS_immediatAdd::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                       const GALGAS_immediatExpression & in_mRightExpression
                                                        COMMA_LOCATION_ARGS) {
   GALGAS_immediatAdd result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatAdd (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatAdd (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatAdd::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatAdd * p = (cPtr_immediatAdd *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatAdd) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatAdd::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatAdd * p = (cPtr_immediatAdd *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatAdd) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7789,6 +7753,16 @@ GALGAS_immediatExpression GALGAS_immediatAdd::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatAdd::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatAdd * p = (cPtr_immediatAdd *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatAdd) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatAdd::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -7800,6 +7774,16 @@ GALGAS_immediatExpression GALGAS_immediatAdd::readProperty_mRightExpression (voi
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatAdd::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatAdd * p = (cPtr_immediatAdd *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatAdd) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatAdd class
 //--------------------------------------------------------------------------------------------------
 
@@ -7807,8 +7791,10 @@ cPtr_immediatAdd::cPtr_immediatAdd (const GALGAS_immediatExpression & in_mLeftEx
                                     const GALGAS_immediatExpression & in_mRightExpression
                                     COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8049,18 +8035,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatSub GALGAS_immediatSub::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                            const GALGAS_immediatExpression & in_mRightExpression,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+GALGAS_immediatSub GALGAS_immediatSub::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatSub * object = nullptr ;
   macroMyNew (object, cPtr_immediatSub (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatSub_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatSub result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatSub::
+immediatSub_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                          const GALGAS_immediatExpression & in_mRightExpression,
+                          Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8070,36 +8066,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatSub GALGAS_immediatSub::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                       const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatSub GALGAS_immediatSub::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                       const GALGAS_immediatExpression & in_mRightExpression
                                                        COMMA_LOCATION_ARGS) {
   GALGAS_immediatSub result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatSub (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatSub (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatSub::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatSub * p = (cPtr_immediatSub *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatSub) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatSub::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatSub * p = (cPtr_immediatSub *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatSub) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8116,6 +8088,16 @@ GALGAS_immediatExpression GALGAS_immediatSub::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatSub::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatSub * p = (cPtr_immediatSub *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatSub) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatSub::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -8127,6 +8109,16 @@ GALGAS_immediatExpression GALGAS_immediatSub::readProperty_mRightExpression (voi
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatSub::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatSub * p = (cPtr_immediatSub *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatSub) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatSub class
 //--------------------------------------------------------------------------------------------------
 
@@ -8134,8 +8126,10 @@ cPtr_immediatSub::cPtr_immediatSub (const GALGAS_immediatExpression & in_mLeftEx
                                     const GALGAS_immediatExpression & in_mRightExpression
                                     COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8376,18 +8370,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatMul GALGAS_immediatMul::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                            const GALGAS_immediatExpression & in_mRightExpression,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+GALGAS_immediatMul GALGAS_immediatMul::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatMul * object = nullptr ;
   macroMyNew (object, cPtr_immediatMul (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatMul_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatMul result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatMul::
+immediatMul_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                          const GALGAS_immediatExpression & in_mRightExpression,
+                          Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8397,36 +8401,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatMul GALGAS_immediatMul::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                       const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatMul GALGAS_immediatMul::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                       const GALGAS_immediatExpression & in_mRightExpression
                                                        COMMA_LOCATION_ARGS) {
   GALGAS_immediatMul result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatMul (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatMul (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatMul::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatMul * p = (cPtr_immediatMul *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatMul) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatMul::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatMul * p = (cPtr_immediatMul *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatMul) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8443,6 +8423,16 @@ GALGAS_immediatExpression GALGAS_immediatMul::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatMul::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatMul * p = (cPtr_immediatMul *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatMul) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatMul::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -8454,6 +8444,16 @@ GALGAS_immediatExpression GALGAS_immediatMul::readProperty_mRightExpression (voi
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatMul::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatMul * p = (cPtr_immediatMul *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatMul) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatMul class
 //--------------------------------------------------------------------------------------------------
 
@@ -8461,8 +8461,10 @@ cPtr_immediatMul::cPtr_immediatMul (const GALGAS_immediatExpression & in_mLeftEx
                                     const GALGAS_immediatExpression & in_mRightExpression
                                     COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8703,18 +8705,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatDiv GALGAS_immediatDiv::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                            const GALGAS_immediatExpression & in_mRightExpression,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+GALGAS_immediatDiv GALGAS_immediatDiv::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatDiv * object = nullptr ;
   macroMyNew (object, cPtr_immediatDiv (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatDiv_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatDiv result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatDiv::
+immediatDiv_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                          const GALGAS_immediatExpression & in_mRightExpression,
+                          Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8724,36 +8736,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatDiv GALGAS_immediatDiv::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                       const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatDiv GALGAS_immediatDiv::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                       const GALGAS_immediatExpression & in_mRightExpression
                                                        COMMA_LOCATION_ARGS) {
   GALGAS_immediatDiv result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatDiv (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatDiv (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatDiv::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatDiv * p = (cPtr_immediatDiv *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatDiv) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatDiv::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatDiv * p = (cPtr_immediatDiv *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatDiv) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8770,6 +8758,16 @@ GALGAS_immediatExpression GALGAS_immediatDiv::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatDiv::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatDiv * p = (cPtr_immediatDiv *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatDiv) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatDiv::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -8781,6 +8779,16 @@ GALGAS_immediatExpression GALGAS_immediatDiv::readProperty_mRightExpression (voi
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatDiv::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatDiv * p = (cPtr_immediatDiv *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatDiv) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatDiv class
 //--------------------------------------------------------------------------------------------------
 
@@ -8788,8 +8796,10 @@ cPtr_immediatDiv::cPtr_immediatDiv (const GALGAS_immediatExpression & in_mLeftEx
                                     const GALGAS_immediatExpression & in_mRightExpression
                                     COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9030,18 +9040,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatMod GALGAS_immediatMod::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                            const GALGAS_immediatExpression & in_mRightExpression,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+GALGAS_immediatMod GALGAS_immediatMod::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatMod * object = nullptr ;
   macroMyNew (object, cPtr_immediatMod (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatMod_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatMod result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatMod::
+immediatMod_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                          const GALGAS_immediatExpression & in_mRightExpression,
+                          Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9051,36 +9071,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatMod GALGAS_immediatMod::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                       const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatMod GALGAS_immediatMod::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                       const GALGAS_immediatExpression & in_mRightExpression
                                                        COMMA_LOCATION_ARGS) {
   GALGAS_immediatMod result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatMod (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatMod (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatMod::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatMod * p = (cPtr_immediatMod *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatMod) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatMod::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatMod * p = (cPtr_immediatMod *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatMod) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9097,6 +9093,16 @@ GALGAS_immediatExpression GALGAS_immediatMod::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatMod::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatMod * p = (cPtr_immediatMod *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatMod) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatMod::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -9108,6 +9114,16 @@ GALGAS_immediatExpression GALGAS_immediatMod::readProperty_mRightExpression (voi
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatMod::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatMod * p = (cPtr_immediatMod *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatMod) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatMod class
 //--------------------------------------------------------------------------------------------------
 
@@ -9115,8 +9131,10 @@ cPtr_immediatMod::cPtr_immediatMod (const GALGAS_immediatExpression & in_mLeftEx
                                     const GALGAS_immediatExpression & in_mRightExpression
                                     COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9357,18 +9375,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatOr GALGAS_immediatOr::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                          const GALGAS_immediatExpression & in_mRightExpression,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
+GALGAS_immediatOr GALGAS_immediatOr::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatOr * object = nullptr ;
   macroMyNew (object, cPtr_immediatOr (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatOr_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatOr result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatOr::
+immediatOr_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                         const GALGAS_immediatExpression & in_mRightExpression,
+                         Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9378,36 +9406,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatOr GALGAS_immediatOr::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                     const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatOr GALGAS_immediatOr::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                     const GALGAS_immediatExpression & in_mRightExpression
                                                      COMMA_LOCATION_ARGS) {
   GALGAS_immediatOr result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatOr (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatOr (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatOr::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatOr * p = (cPtr_immediatOr *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatOr) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatOr::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatOr * p = (cPtr_immediatOr *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatOr) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9424,6 +9428,16 @@ GALGAS_immediatExpression GALGAS_immediatOr::readProperty_mLeftExpression (void)
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatOr::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatOr * p = (cPtr_immediatOr *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatOr) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatOr::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -9435,6 +9449,16 @@ GALGAS_immediatExpression GALGAS_immediatOr::readProperty_mRightExpression (void
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatOr::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatOr * p = (cPtr_immediatOr *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatOr) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatOr class
 //--------------------------------------------------------------------------------------------------
 
@@ -9442,8 +9466,10 @@ cPtr_immediatOr::cPtr_immediatOr (const GALGAS_immediatExpression & in_mLeftExpr
                                   const GALGAS_immediatExpression & in_mRightExpression
                                   COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9684,18 +9710,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatAnd GALGAS_immediatAnd::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                            const GALGAS_immediatExpression & in_mRightExpression,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+GALGAS_immediatAnd GALGAS_immediatAnd::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatAnd * object = nullptr ;
   macroMyNew (object, cPtr_immediatAnd (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatAnd_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatAnd result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatAnd::
+immediatAnd_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                          const GALGAS_immediatExpression & in_mRightExpression,
+                          Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9705,36 +9741,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatAnd GALGAS_immediatAnd::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                       const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatAnd GALGAS_immediatAnd::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                       const GALGAS_immediatExpression & in_mRightExpression
                                                        COMMA_LOCATION_ARGS) {
   GALGAS_immediatAnd result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatAnd (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatAnd (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatAnd::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatAnd * p = (cPtr_immediatAnd *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatAnd) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatAnd::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatAnd * p = (cPtr_immediatAnd *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatAnd) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9751,6 +9763,16 @@ GALGAS_immediatExpression GALGAS_immediatAnd::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatAnd::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatAnd * p = (cPtr_immediatAnd *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatAnd) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatAnd::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -9762,6 +9784,16 @@ GALGAS_immediatExpression GALGAS_immediatAnd::readProperty_mRightExpression (voi
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatAnd::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatAnd * p = (cPtr_immediatAnd *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatAnd) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatAnd class
 //--------------------------------------------------------------------------------------------------
 
@@ -9769,8 +9801,10 @@ cPtr_immediatAnd::cPtr_immediatAnd (const GALGAS_immediatExpression & in_mLeftEx
                                     const GALGAS_immediatExpression & in_mRightExpression
                                     COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10011,18 +10045,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatXor GALGAS_immediatXor::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                            const GALGAS_immediatExpression & in_mRightExpression,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
+GALGAS_immediatXor GALGAS_immediatXor::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatXor * object = nullptr ;
   macroMyNew (object, cPtr_immediatXor (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatXor_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatXor result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatXor::
+immediatXor_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                          const GALGAS_immediatExpression & in_mRightExpression,
+                          Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10032,36 +10076,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatXor GALGAS_immediatXor::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                       const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatXor GALGAS_immediatXor::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                       const GALGAS_immediatExpression & in_mRightExpression
                                                        COMMA_LOCATION_ARGS) {
   GALGAS_immediatXor result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatXor (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatXor (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatXor::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatXor * p = (cPtr_immediatXor *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatXor) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatXor::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatXor * p = (cPtr_immediatXor *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatXor) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10078,6 +10098,16 @@ GALGAS_immediatExpression GALGAS_immediatXor::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatXor::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatXor * p = (cPtr_immediatXor *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatXor) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatXor::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -10089,6 +10119,16 @@ GALGAS_immediatExpression GALGAS_immediatXor::readProperty_mRightExpression (voi
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatXor::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatXor * p = (cPtr_immediatXor *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatXor) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatXor class
 //--------------------------------------------------------------------------------------------------
 
@@ -10096,8 +10136,10 @@ cPtr_immediatXor::cPtr_immediatXor (const GALGAS_immediatExpression & in_mLeftEx
                                     const GALGAS_immediatExpression & in_mRightExpression
                                     COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10338,18 +10380,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatLeftShift GALGAS_immediatLeftShift::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                                        const GALGAS_immediatExpression & in_mRightExpression,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_immediatLeftShift GALGAS_immediatLeftShift::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatLeftShift * object = nullptr ;
   macroMyNew (object, cPtr_immediatLeftShift (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatLeftShift_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatLeftShift result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatLeftShift::
+immediatLeftShift_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                const GALGAS_immediatExpression & in_mRightExpression,
+                                Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10359,36 +10411,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatLeftShift GALGAS_immediatLeftShift::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                                   const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatLeftShift GALGAS_immediatLeftShift::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                   const GALGAS_immediatExpression & in_mRightExpression
                                                                    COMMA_LOCATION_ARGS) {
   GALGAS_immediatLeftShift result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatLeftShift (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatLeftShift (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatLeftShift::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLeftShift * p = (cPtr_immediatLeftShift *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLeftShift) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatLeftShift::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLeftShift * p = (cPtr_immediatLeftShift *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLeftShift) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10405,6 +10433,16 @@ GALGAS_immediatExpression GALGAS_immediatLeftShift::readProperty_mLeftExpression
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatLeftShift::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatLeftShift * p = (cPtr_immediatLeftShift *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatLeftShift) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatLeftShift::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -10416,6 +10454,16 @@ GALGAS_immediatExpression GALGAS_immediatLeftShift::readProperty_mRightExpressio
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatLeftShift::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatLeftShift * p = (cPtr_immediatLeftShift *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatLeftShift) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatLeftShift class
 //--------------------------------------------------------------------------------------------------
 
@@ -10423,8 +10471,10 @@ cPtr_immediatLeftShift::cPtr_immediatLeftShift (const GALGAS_immediatExpression 
                                                 const GALGAS_immediatExpression & in_mRightExpression
                                                 COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10665,18 +10715,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatRightShift GALGAS_immediatRightShift::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                                          const GALGAS_immediatExpression & in_mRightExpression,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_immediatRightShift GALGAS_immediatRightShift::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatRightShift * object = nullptr ;
   macroMyNew (object, cPtr_immediatRightShift (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatRightShift_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatRightShift result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatRightShift::
+immediatRightShift_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                 const GALGAS_immediatExpression & in_mRightExpression,
+                                 Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10686,36 +10746,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatRightShift GALGAS_immediatRightShift::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                                     const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatRightShift GALGAS_immediatRightShift::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                     const GALGAS_immediatExpression & in_mRightExpression
                                                                      COMMA_LOCATION_ARGS) {
   GALGAS_immediatRightShift result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatRightShift (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatRightShift (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatRightShift::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatRightShift * p = (cPtr_immediatRightShift *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatRightShift) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatRightShift::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatRightShift * p = (cPtr_immediatRightShift *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatRightShift) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10732,6 +10768,16 @@ GALGAS_immediatExpression GALGAS_immediatRightShift::readProperty_mLeftExpressio
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatRightShift::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatRightShift * p = (cPtr_immediatRightShift *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatRightShift) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatRightShift::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -10743,6 +10789,16 @@ GALGAS_immediatExpression GALGAS_immediatRightShift::readProperty_mRightExpressi
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatRightShift::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatRightShift * p = (cPtr_immediatRightShift *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatRightShift) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatRightShift class
 //--------------------------------------------------------------------------------------------------
 
@@ -10750,8 +10806,10 @@ cPtr_immediatRightShift::cPtr_immediatRightShift (const GALGAS_immediatExpressio
                                                   const GALGAS_immediatExpression & in_mRightExpression
                                                   COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10992,18 +11050,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatEqualTest GALGAS_immediatEqualTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                                        const GALGAS_immediatExpression & in_mRightExpression,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_immediatEqualTest GALGAS_immediatEqualTest::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatEqualTest * object = nullptr ;
   macroMyNew (object, cPtr_immediatEqualTest (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatEqualTest_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatEqualTest result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatEqualTest::
+immediatEqualTest_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                const GALGAS_immediatExpression & in_mRightExpression,
+                                Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11013,36 +11081,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatEqualTest GALGAS_immediatEqualTest::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                                   const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatEqualTest GALGAS_immediatEqualTest::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                   const GALGAS_immediatExpression & in_mRightExpression
                                                                    COMMA_LOCATION_ARGS) {
   GALGAS_immediatEqualTest result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatEqualTest (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatEqualTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatEqualTest::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatEqualTest * p = (cPtr_immediatEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatEqualTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatEqualTest::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatEqualTest * p = (cPtr_immediatEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatEqualTest) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11059,6 +11103,16 @@ GALGAS_immediatExpression GALGAS_immediatEqualTest::readProperty_mLeftExpression
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatEqualTest::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatEqualTest * p = (cPtr_immediatEqualTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatEqualTest) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatEqualTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -11070,6 +11124,16 @@ GALGAS_immediatExpression GALGAS_immediatEqualTest::readProperty_mRightExpressio
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatEqualTest::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatEqualTest * p = (cPtr_immediatEqualTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatEqualTest) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatEqualTest class
 //--------------------------------------------------------------------------------------------------
 
@@ -11077,8 +11141,10 @@ cPtr_immediatEqualTest::cPtr_immediatEqualTest (const GALGAS_immediatExpression 
                                                 const GALGAS_immediatExpression & in_mRightExpression
                                                 COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11319,18 +11385,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatNotEqualTest GALGAS_immediatNotEqualTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                                              const GALGAS_immediatExpression & in_mRightExpression,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) {
+GALGAS_immediatNotEqualTest GALGAS_immediatNotEqualTest::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatNotEqualTest * object = nullptr ;
   macroMyNew (object, cPtr_immediatNotEqualTest (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatNotEqualTest_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatNotEqualTest result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatNotEqualTest::
+immediatNotEqualTest_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                   const GALGAS_immediatExpression & in_mRightExpression,
+                                   Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11340,36 +11416,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatNotEqualTest GALGAS_immediatNotEqualTest::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                                         const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatNotEqualTest GALGAS_immediatNotEqualTest::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                         const GALGAS_immediatExpression & in_mRightExpression
                                                                          COMMA_LOCATION_ARGS) {
   GALGAS_immediatNotEqualTest result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatNotEqualTest (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatNotEqualTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatNotEqualTest::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatNotEqualTest * p = (cPtr_immediatNotEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatNotEqualTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatNotEqualTest::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatNotEqualTest * p = (cPtr_immediatNotEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatNotEqualTest) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11386,6 +11438,16 @@ GALGAS_immediatExpression GALGAS_immediatNotEqualTest::readProperty_mLeftExpress
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatNotEqualTest::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatNotEqualTest * p = (cPtr_immediatNotEqualTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatNotEqualTest) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatNotEqualTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -11397,6 +11459,16 @@ GALGAS_immediatExpression GALGAS_immediatNotEqualTest::readProperty_mRightExpres
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatNotEqualTest::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatNotEqualTest * p = (cPtr_immediatNotEqualTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatNotEqualTest) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatNotEqualTest class
 //--------------------------------------------------------------------------------------------------
 
@@ -11404,8 +11476,10 @@ cPtr_immediatNotEqualTest::cPtr_immediatNotEqualTest (const GALGAS_immediatExpre
                                                       const GALGAS_immediatExpression & in_mRightExpression
                                                       COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11646,18 +11720,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatGreaterTest GALGAS_immediatGreaterTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                                            const GALGAS_immediatExpression & in_mRightExpression,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_immediatGreaterTest GALGAS_immediatGreaterTest::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatGreaterTest * object = nullptr ;
   macroMyNew (object, cPtr_immediatGreaterTest (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatGreaterTest_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatGreaterTest result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatGreaterTest::
+immediatGreaterTest_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                  const GALGAS_immediatExpression & in_mRightExpression,
+                                  Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11667,36 +11751,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatGreaterTest GALGAS_immediatGreaterTest::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                                       const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatGreaterTest GALGAS_immediatGreaterTest::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                       const GALGAS_immediatExpression & in_mRightExpression
                                                                        COMMA_LOCATION_ARGS) {
   GALGAS_immediatGreaterTest result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatGreaterTest (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatGreaterTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatGreaterTest::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatGreaterTest * p = (cPtr_immediatGreaterTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatGreaterTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatGreaterTest::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatGreaterTest * p = (cPtr_immediatGreaterTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatGreaterTest) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11713,6 +11773,16 @@ GALGAS_immediatExpression GALGAS_immediatGreaterTest::readProperty_mLeftExpressi
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatGreaterTest::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatGreaterTest * p = (cPtr_immediatGreaterTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatGreaterTest) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatGreaterTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -11724,6 +11794,16 @@ GALGAS_immediatExpression GALGAS_immediatGreaterTest::readProperty_mRightExpress
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatGreaterTest::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatGreaterTest * p = (cPtr_immediatGreaterTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatGreaterTest) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatGreaterTest class
 //--------------------------------------------------------------------------------------------------
 
@@ -11731,8 +11811,10 @@ cPtr_immediatGreaterTest::cPtr_immediatGreaterTest (const GALGAS_immediatExpress
                                                     const GALGAS_immediatExpression & in_mRightExpression
                                                     COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11973,18 +12055,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatGreaterOrEqualTest GALGAS_immediatGreaterOrEqualTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                                                          const GALGAS_immediatExpression & in_mRightExpression,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_immediatGreaterOrEqualTest GALGAS_immediatGreaterOrEqualTest::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatGreaterOrEqualTest * object = nullptr ;
   macroMyNew (object, cPtr_immediatGreaterOrEqualTest (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatGreaterOrEqualTest_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatGreaterOrEqualTest result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatGreaterOrEqualTest::
+immediatGreaterOrEqualTest_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                         const GALGAS_immediatExpression & in_mRightExpression,
+                                         Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11994,36 +12086,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatGreaterOrEqualTest GALGAS_immediatGreaterOrEqualTest::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                                                     const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatGreaterOrEqualTest GALGAS_immediatGreaterOrEqualTest::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                                     const GALGAS_immediatExpression & in_mRightExpression
                                                                                      COMMA_LOCATION_ARGS) {
   GALGAS_immediatGreaterOrEqualTest result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatGreaterOrEqualTest (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatGreaterOrEqualTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatGreaterOrEqualTest::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatGreaterOrEqualTest * p = (cPtr_immediatGreaterOrEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatGreaterOrEqualTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatGreaterOrEqualTest::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatGreaterOrEqualTest * p = (cPtr_immediatGreaterOrEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatGreaterOrEqualTest) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12040,6 +12108,16 @@ GALGAS_immediatExpression GALGAS_immediatGreaterOrEqualTest::readProperty_mLeftE
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatGreaterOrEqualTest::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatGreaterOrEqualTest * p = (cPtr_immediatGreaterOrEqualTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatGreaterOrEqualTest) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatGreaterOrEqualTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -12051,6 +12129,16 @@ GALGAS_immediatExpression GALGAS_immediatGreaterOrEqualTest::readProperty_mRight
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatGreaterOrEqualTest::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatGreaterOrEqualTest * p = (cPtr_immediatGreaterOrEqualTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatGreaterOrEqualTest) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatGreaterOrEqualTest class
 //--------------------------------------------------------------------------------------------------
 
@@ -12058,8 +12146,10 @@ cPtr_immediatGreaterOrEqualTest::cPtr_immediatGreaterOrEqualTest (const GALGAS_i
                                                                   const GALGAS_immediatExpression & in_mRightExpression
                                                                   COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12300,18 +12390,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatLowerTest GALGAS_immediatLowerTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                                        const GALGAS_immediatExpression & in_mRightExpression,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_immediatLowerTest GALGAS_immediatLowerTest::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatLowerTest * object = nullptr ;
   macroMyNew (object, cPtr_immediatLowerTest (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatLowerTest_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatLowerTest result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatLowerTest::
+immediatLowerTest_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                const GALGAS_immediatExpression & in_mRightExpression,
+                                Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12321,36 +12421,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatLowerTest GALGAS_immediatLowerTest::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                                   const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatLowerTest GALGAS_immediatLowerTest::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                   const GALGAS_immediatExpression & in_mRightExpression
                                                                    COMMA_LOCATION_ARGS) {
   GALGAS_immediatLowerTest result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatLowerTest (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatLowerTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatLowerTest::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLowerTest * p = (cPtr_immediatLowerTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLowerTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatLowerTest::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLowerTest * p = (cPtr_immediatLowerTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLowerTest) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12367,6 +12443,16 @@ GALGAS_immediatExpression GALGAS_immediatLowerTest::readProperty_mLeftExpression
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatLowerTest::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatLowerTest * p = (cPtr_immediatLowerTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatLowerTest) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatLowerTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -12378,6 +12464,16 @@ GALGAS_immediatExpression GALGAS_immediatLowerTest::readProperty_mRightExpressio
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatLowerTest::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatLowerTest * p = (cPtr_immediatLowerTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatLowerTest) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatLowerTest class
 //--------------------------------------------------------------------------------------------------
 
@@ -12385,8 +12481,10 @@ cPtr_immediatLowerTest::cPtr_immediatLowerTest (const GALGAS_immediatExpression 
                                                 const GALGAS_immediatExpression & in_mRightExpression
                                                 COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12627,18 +12725,28 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatLowerOrEqualTest GALGAS_immediatLowerOrEqualTest::init_28__2C__29_ (const GALGAS_immediatExpression & in_mLeftExpression,
-                                                                                      const GALGAS_immediatExpression & in_mRightExpression,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_immediatLowerOrEqualTest GALGAS_immediatLowerOrEqualTest::
+init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+              const GALGAS_immediatExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_immediatLowerOrEqualTest * object = nullptr ;
   macroMyNew (object, cPtr_immediatLowerOrEqualTest (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->immediatLowerOrEqualTest_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_immediatLowerOrEqualTest result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatLowerOrEqualTest::
+immediatLowerOrEqualTest_init_21__21_ (const GALGAS_immediatExpression & in_mLeftExpression,
+                                       const GALGAS_immediatExpression & in_mRightExpression,
+                                       Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12648,36 +12756,12 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatLowerOrEqualTest GALGAS_immediatLowerOrEqualTest::class_func_new (const GALGAS_immediatExpression & inAttribute_mLeftExpression,
-                                                                                 const GALGAS_immediatExpression & inAttribute_mRightExpression
+GALGAS_immediatLowerOrEqualTest GALGAS_immediatLowerOrEqualTest::class_func_new (const GALGAS_immediatExpression & in_mLeftExpression,
+                                                                                 const GALGAS_immediatExpression & in_mRightExpression
                                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_immediatLowerOrEqualTest result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatLowerOrEqualTest (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatLowerOrEqualTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatLowerOrEqualTest::setter_setMLeftExpression (GALGAS_immediatExpression inValue
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLowerOrEqualTest * p = (cPtr_immediatLowerOrEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLowerOrEqualTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatLowerOrEqualTest::setter_setMRightExpression (GALGAS_immediatExpression inValue
-                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLowerOrEqualTest * p = (cPtr_immediatLowerOrEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLowerOrEqualTest) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12694,6 +12778,16 @@ GALGAS_immediatExpression GALGAS_immediatLowerOrEqualTest::readProperty_mLeftExp
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_immediatLowerOrEqualTest::setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatLowerOrEqualTest * p = (cPtr_immediatLowerOrEqualTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatLowerOrEqualTest) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_immediatLowerOrEqualTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -12705,6 +12799,16 @@ GALGAS_immediatExpression GALGAS_immediatLowerOrEqualTest::readProperty_mRightEx
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatLowerOrEqualTest::setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatLowerOrEqualTest * p = (cPtr_immediatLowerOrEqualTest *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatLowerOrEqualTest) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatLowerOrEqualTest class
 //--------------------------------------------------------------------------------------------------
 
@@ -12712,8 +12816,10 @@ cPtr_immediatLowerOrEqualTest::cPtr_immediatLowerOrEqualTest (const GALGAS_immed
                                                               const GALGAS_immediatExpression & in_mRightExpression
                                                               COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12949,16 +13055,25 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatNegate GALGAS_immediatNegate::init_28__29_ (const GALGAS_immediatExpression & in_mExpression,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
+GALGAS_immediatNegate GALGAS_immediatNegate::
+init_21_ (const GALGAS_immediatExpression & in_mExpression,
+          Compiler * inCompiler
+          COMMA_LOCATION_ARGS) {
   cPtr_immediatNegate * object = nullptr ;
   macroMyNew (object, cPtr_immediatNegate (inCompiler COMMA_THERE)) ;
-  object->mProperty_mExpression = in_mExpression ;
+  object->immediatNegate_init_21_ (in_mExpression, inCompiler) ;
   const GALGAS_immediatNegate result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatNegate::
+immediatNegate_init_21_ (const GALGAS_immediatExpression & in_mExpression,
+                         Compiler * /* inCompiler */) {
+  mProperty_mExpression = in_mExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12968,24 +13083,11 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatNegate GALGAS_immediatNegate::class_func_new (const GALGAS_immediatExpression & inAttribute_mExpression
+GALGAS_immediatNegate GALGAS_immediatNegate::class_func_new (const GALGAS_immediatExpression & in_mExpression
                                                              COMMA_LOCATION_ARGS) {
   GALGAS_immediatNegate result ;
-  if (inAttribute_mExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatNegate (inAttribute_mExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatNegate (in_mExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatNegate::setter_setMExpression (GALGAS_immediatExpression inValue
-                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatNegate * p = (cPtr_immediatNegate *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatNegate) ;
-    p->mProperty_mExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13001,13 +13103,24 @@ GALGAS_immediatExpression GALGAS_immediatNegate::readProperty_mExpression (void)
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatNegate::setProperty_mExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatNegate * p = (cPtr_immediatNegate *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatNegate) ;
+    p->mProperty_mExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatNegate class
 //--------------------------------------------------------------------------------------------------
 
 cPtr_immediatNegate::cPtr_immediatNegate (const GALGAS_immediatExpression & in_mExpression
                                           COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mExpression (in_mExpression) {
+mProperty_mExpression () {
+  mProperty_mExpression = in_mExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13241,16 +13354,25 @@ GALGAS_immediatExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_immediatComplement GALGAS_immediatComplement::init_28__29_ (const GALGAS_immediatExpression & in_mExpression,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_immediatComplement GALGAS_immediatComplement::
+init_21_ (const GALGAS_immediatExpression & in_mExpression,
+          Compiler * inCompiler
+          COMMA_LOCATION_ARGS) {
   cPtr_immediatComplement * object = nullptr ;
   macroMyNew (object, cPtr_immediatComplement (inCompiler COMMA_THERE)) ;
-  object->mProperty_mExpression = in_mExpression ;
+  object->immediatComplement_init_21_ (in_mExpression, inCompiler) ;
   const GALGAS_immediatComplement result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatComplement::
+immediatComplement_init_21_ (const GALGAS_immediatExpression & in_mExpression,
+                             Compiler * /* inCompiler */) {
+  mProperty_mExpression = in_mExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13260,24 +13382,11 @@ GALGAS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_immediatComplement GALGAS_immediatComplement::class_func_new (const GALGAS_immediatExpression & inAttribute_mExpression
+GALGAS_immediatComplement GALGAS_immediatComplement::class_func_new (const GALGAS_immediatExpression & in_mExpression
                                                                      COMMA_LOCATION_ARGS) {
   GALGAS_immediatComplement result ;
-  if (inAttribute_mExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_immediatComplement (inAttribute_mExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_immediatComplement (in_mExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_immediatComplement::setter_setMExpression (GALGAS_immediatExpression inValue
-                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatComplement * p = (cPtr_immediatComplement *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatComplement) ;
-    p->mProperty_mExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13293,13 +13402,24 @@ GALGAS_immediatExpression GALGAS_immediatComplement::readProperty_mExpression (v
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_immediatComplement::setProperty_mExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_immediatComplement * p = (cPtr_immediatComplement *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_immediatComplement) ;
+    p->mProperty_mExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatComplement class
 //--------------------------------------------------------------------------------------------------
 
 cPtr_immediatComplement::cPtr_immediatComplement (const GALGAS_immediatExpression & in_mExpression
                                                   COMMA_LOCATION_ARGS) :
 cPtr_immediatExpression (THERE),
-mProperty_mExpression (in_mExpression) {
+mProperty_mExpression () {
+  mProperty_mExpression = in_mExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14914,17 +15034,6 @@ GALGAS_bitNumberExpression::GALGAS_bitNumberExpression (void) :
 AC_GALGAS_reference_class () {
 }
 
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_bitNumberExpression GALGAS_bitNumberExpression::init_28__29_ (Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  cPtr_bitNumberExpression * object = nullptr ;
-  macroMyNew (object, cPtr_bitNumberExpression (inCompiler COMMA_THERE)) ;
-  const GALGAS_bitNumberExpression result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_bitNumberExpression::GALGAS_bitNumberExpression (const cPtr_bitNumberExpression * inSourcePtr) :
@@ -15154,18 +15263,28 @@ GALGAS_bitNumberExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_bitNumberLiteralExpression GALGAS_bitNumberLiteralExpression::init_28__2C__29_ (const GALGAS_immediatExpression & in_mBitNumberLiteralExpression,
-                                                                                          const GALGAS_location & in_mEndOfExpression,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_bitNumberLiteralExpression GALGAS_bitNumberLiteralExpression::
+init_21__21_ (const GALGAS_immediatExpression & in_mBitNumberLiteralExpression,
+              const GALGAS_location & in_mEndOfExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_bitNumberLiteralExpression * object = nullptr ;
   macroMyNew (object, cPtr_bitNumberLiteralExpression (inCompiler COMMA_THERE)) ;
-  object->mProperty_mBitNumberLiteralExpression = in_mBitNumberLiteralExpression ;
-  object->mProperty_mEndOfExpression = in_mEndOfExpression ;
+  object->bitNumberLiteralExpression_init_21__21_ (in_mBitNumberLiteralExpression, in_mEndOfExpression, inCompiler) ;
   const GALGAS_bitNumberLiteralExpression result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_bitNumberLiteralExpression::
+bitNumberLiteralExpression_init_21__21_ (const GALGAS_immediatExpression & in_mBitNumberLiteralExpression,
+                                         const GALGAS_location & in_mEndOfExpression,
+                                         Compiler * /* inCompiler */) {
+  mProperty_mBitNumberLiteralExpression = in_mBitNumberLiteralExpression ;
+  mProperty_mEndOfExpression = in_mEndOfExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -15175,36 +15294,12 @@ GALGAS_bitNumberExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bitNumberLiteralExpression GALGAS_bitNumberLiteralExpression::class_func_new (const GALGAS_immediatExpression & inAttribute_mBitNumberLiteralExpression,
-                                                                                     const GALGAS_location & inAttribute_mEndOfExpression
+GALGAS_bitNumberLiteralExpression GALGAS_bitNumberLiteralExpression::class_func_new (const GALGAS_immediatExpression & in_mBitNumberLiteralExpression,
+                                                                                     const GALGAS_location & in_mEndOfExpression
                                                                                      COMMA_LOCATION_ARGS) {
   GALGAS_bitNumberLiteralExpression result ;
-  if (inAttribute_mBitNumberLiteralExpression.isValid () && inAttribute_mEndOfExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_bitNumberLiteralExpression (inAttribute_mBitNumberLiteralExpression, inAttribute_mEndOfExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_bitNumberLiteralExpression (in_mBitNumberLiteralExpression, in_mEndOfExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_bitNumberLiteralExpression::setter_setMBitNumberLiteralExpression (GALGAS_immediatExpression inValue
-                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_bitNumberLiteralExpression * p = (cPtr_bitNumberLiteralExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
-    p->mProperty_mBitNumberLiteralExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_bitNumberLiteralExpression::setter_setMEndOfExpression (GALGAS_location inValue
-                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_bitNumberLiteralExpression * p = (cPtr_bitNumberLiteralExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
-    p->mProperty_mEndOfExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15221,6 +15316,16 @@ GALGAS_immediatExpression GALGAS_bitNumberLiteralExpression::readProperty_mBitNu
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_bitNumberLiteralExpression::setProperty_mBitNumberLiteralExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_bitNumberLiteralExpression * p = (cPtr_bitNumberLiteralExpression *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
+    p->mProperty_mBitNumberLiteralExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_location GALGAS_bitNumberLiteralExpression::readProperty_mEndOfExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
@@ -15232,6 +15337,16 @@ GALGAS_location GALGAS_bitNumberLiteralExpression::readProperty_mEndOfExpression
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_bitNumberLiteralExpression::setProperty_mEndOfExpression (const GALGAS_location & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_bitNumberLiteralExpression * p = (cPtr_bitNumberLiteralExpression *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
+    p->mProperty_mEndOfExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @bitNumberLiteralExpression class
 //--------------------------------------------------------------------------------------------------
 
@@ -15239,8 +15354,10 @@ cPtr_bitNumberLiteralExpression::cPtr_bitNumberLiteralExpression (const GALGAS_i
                                                                   const GALGAS_location & in_mEndOfExpression
                                                                   COMMA_LOCATION_ARGS) :
 cPtr_bitNumberExpression (THERE),
-mProperty_mBitNumberLiteralExpression (in_mBitNumberLiteralExpression),
-mProperty_mEndOfExpression (in_mEndOfExpression) {
+mProperty_mBitNumberLiteralExpression (),
+mProperty_mEndOfExpression () {
+  mProperty_mBitNumberLiteralExpression = in_mBitNumberLiteralExpression ;
+  mProperty_mEndOfExpression = in_mEndOfExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15476,16 +15593,25 @@ GALGAS_bitNumberExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_bitNumberLiteralValue GALGAS_bitNumberLiteralValue::init_28__29_ (const GALGAS_luint & in_mBitNumberLiteralValue,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) {
+GALGAS_bitNumberLiteralValue GALGAS_bitNumberLiteralValue::
+init_21_ (const GALGAS_luint & in_mBitNumberLiteralValue,
+          Compiler * inCompiler
+          COMMA_LOCATION_ARGS) {
   cPtr_bitNumberLiteralValue * object = nullptr ;
   macroMyNew (object, cPtr_bitNumberLiteralValue (inCompiler COMMA_THERE)) ;
-  object->mProperty_mBitNumberLiteralValue = in_mBitNumberLiteralValue ;
+  object->bitNumberLiteralValue_init_21_ (in_mBitNumberLiteralValue, inCompiler) ;
   const GALGAS_bitNumberLiteralValue result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_bitNumberLiteralValue::
+bitNumberLiteralValue_init_21_ (const GALGAS_luint & in_mBitNumberLiteralValue,
+                                Compiler * /* inCompiler */) {
+  mProperty_mBitNumberLiteralValue = in_mBitNumberLiteralValue ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -15495,24 +15621,11 @@ GALGAS_bitNumberExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bitNumberLiteralValue GALGAS_bitNumberLiteralValue::class_func_new (const GALGAS_luint & inAttribute_mBitNumberLiteralValue
+GALGAS_bitNumberLiteralValue GALGAS_bitNumberLiteralValue::class_func_new (const GALGAS_luint & in_mBitNumberLiteralValue
                                                                            COMMA_LOCATION_ARGS) {
   GALGAS_bitNumberLiteralValue result ;
-  if (inAttribute_mBitNumberLiteralValue.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_bitNumberLiteralValue (inAttribute_mBitNumberLiteralValue COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_bitNumberLiteralValue (in_mBitNumberLiteralValue COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_bitNumberLiteralValue::setter_setMBitNumberLiteralValue (GALGAS_luint inValue
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_bitNumberLiteralValue * p = (cPtr_bitNumberLiteralValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLiteralValue) ;
-    p->mProperty_mBitNumberLiteralValue = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15528,13 +15641,24 @@ GALGAS_luint GALGAS_bitNumberLiteralValue::readProperty_mBitNumberLiteralValue (
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_bitNumberLiteralValue::setProperty_mBitNumberLiteralValue (const GALGAS_luint & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_bitNumberLiteralValue * p = (cPtr_bitNumberLiteralValue *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_bitNumberLiteralValue) ;
+    p->mProperty_mBitNumberLiteralValue = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @bitNumberLiteralValue class
 //--------------------------------------------------------------------------------------------------
 
 cPtr_bitNumberLiteralValue::cPtr_bitNumberLiteralValue (const GALGAS_luint & in_mBitNumberLiteralValue
                                                         COMMA_LOCATION_ARGS) :
 cPtr_bitNumberExpression (THERE),
-mProperty_mBitNumberLiteralValue (in_mBitNumberLiteralValue) {
+mProperty_mBitNumberLiteralValue () {
+  mProperty_mBitNumberLiteralValue = in_mBitNumberLiteralValue ;
 }
 
 //--------------------------------------------------------------------------------------------------

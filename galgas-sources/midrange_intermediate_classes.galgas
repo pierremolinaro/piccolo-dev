@@ -40,7 +40,7 @@ method @registerExpression resolveMidrangeAccess
     error self.mEndOfOffsetExpression: "maximum index value is " + (size - 1)
   end
 #--- Find acceptable bank settings
-  var acceptableBanks =@uintlist.emptyList{}
+  var acceptableBanks =@uintlist §[]
   for (mValue) in  registerAddressList do
     acceptableBanks += !mValue >> 7
   end
@@ -82,7 +82,7 @@ method @registerExpression resolveMidrangeAccess
     end
   end
 #---
-  outIPICregisterDescription = @midrange_intermediate_registerExpression. new {
+  outIPICregisterDescription = @midrange_intermediate_registerExpression.init {
     !assemblyString
     !registerAddress + [offset uint]}
 }

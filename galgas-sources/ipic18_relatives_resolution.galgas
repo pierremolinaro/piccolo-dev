@@ -11,7 +11,7 @@ method @ipic18Block performRelativesResolution
   !@ipic18Block outModifiedBlock
 {
 #--- Instruction
-  var modifiedInstructionList =@ipic18SequentialInstructionList.emptyList{}
+  var modifiedInstructionList =@ipic18SequentialInstructionList §[]
   var @uint address = inBlockStartAddress
   for (mInstruction * *) in  self.mInstructionList do
     [mInstruction performInstructionRelativeBranchResolution
@@ -36,7 +36,7 @@ method @ipic18Block performRelativesResolution
     ?let @ipic18AbstractBlockTerminator modifiedTerminator
   ]
 #---
-  outModifiedBlock = @ipic18Block. new {
+  outModifiedBlock = @ipic18Block.init {
     !self.mAddress
     !self.mLabel
     !modifiedInstructionList
@@ -53,11 +53,11 @@ proc performRelativesResolution
   ?!@ipic18BlockList ioBlockList
   ?!@uint ioConversionCount
   ?!@string ioListFileContents {
-  var modifiedBlockList =@ipic18BlockList.emptyList{}
+  var modifiedBlockList =@ipic18BlockList §[]
   var @uint blockStartAddress = 0
   for (mBlock) in  ioBlockList do(blockIndex)
     let @string nextBlockLabel
-    if (blockIndex+1) < [ioBlockList length] then
+    if (blockIndex+1) < [ioBlockList count] then
       nextBlockLabel = [ioBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
       nextBlockLabel = ""
@@ -102,13 +102,13 @@ proc computeLabelAbsoluteAddressMap
   ?let @ipic18BlockList inInitialBlockList # for entering absolute labels
   !@symbolTableForRelativesResolution outSymbolTable
   !@uint outFreeAddress {
-  outSymbolTable = @symbolTableForRelativesResolution. emptyMap
+  outSymbolTable = @symbolTableForRelativesResolution §[]
   outFreeAddress = @uint. max
 #--- Pass first absolute blocks
   var @uint blockStartAddress = 0
   for (mBlock) in  inGeneratedBlockList do(blockIndex)
     let @string nextBlockLabel
-    if (blockIndex+1) < [inGeneratedBlockList length] then
+    if (blockIndex+1) < [inGeneratedBlockList count] then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
       nextBlockLabel = ""
@@ -148,12 +148,12 @@ proc ipic18RelativesResolution
 #---
   var @bool resolutionDone = false
   var @uint pass = 0
-  loop( [ioGeneratedBlockList length] + 1)
+  loop( [ioGeneratedBlockList count] + 1)
   while (not resolutionDone) & (@uint. errorCount == 0) do
     pass += 1
     computeLabelAbsoluteAddressMap (
       !ioGeneratedBlockList
-      !@ipic18BlockList. emptyList
+      !@ipic18BlockList §[]
       ?let @symbolTableForRelativesResolution symbolTable
       ?*
     )
@@ -230,11 +230,11 @@ proc ipic18RelativeBranchOverflow
     ?*
   )
 #---
-  outOverflowMap = @branchOverflowMap. emptyMap
+  outOverflowMap = @branchOverflowMap §[]
   var @uint blockStartAddress = 0
   for (mBlock) in  inBlockList do(blockIndex)
     let @string nextBlockLabel
-    if (blockIndex+1) < [inBlockList length] then
+    if (blockIndex+1) < [inBlockList count] then
       nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
       nextBlockLabel = ""

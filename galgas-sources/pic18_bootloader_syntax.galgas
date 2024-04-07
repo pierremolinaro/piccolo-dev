@@ -40,9 +40,9 @@ rule <parse_bootloader>
   $literal_string$ ? outDeviceName
 #--- First part
   ${$
-  outBootloaderRoutineDeclarationList = @routineDeclarationList. emptyList
-  outBootloaderReservedRAMmap = @bootloaderReservedRAMmap. emptyMap
-  outReservedRomSize = @luint. new { !0 !@location.here}
+  outBootloaderRoutineDeclarationList = @routineDeclarationList §[]
+  outBootloaderReservedRAMmap = @bootloaderReservedRAMmap §[]
+  outReservedRomSize = @luint.init { !0 !@location.here}
   repeat
   while
     <routine_declaration> !?outBootloaderRoutineDeclarationList
@@ -75,14 +75,14 @@ rule <parse_bootloader>
   $}$
 #--- Second part
   ${$
-  outUserRoutineDeclarationList = @routineDeclarationList. emptyList
+  outUserRoutineDeclarationList = @routineDeclarationList §[]
   repeat
   while
     <routine_declaration> !? outUserRoutineDeclarationList
   end
   $}$
 #--- Third part
-  outSharedRamDefinitionList = @ramDefinitionList. emptyList
+  outSharedRamDefinitionList = @ramDefinitionList §[]
   ${$
   repeat
   while
@@ -175,8 +175,8 @@ rule <routine_declaration>
   let @luint returnedBank
   let @bool preservesBank
   select
-    requiredBank = @luint. new { !@uint. max !@location.here}
-    returnedBank = @luint. new { !@uint. max !@location.here}
+    requiredBank = @luint.init { !@uint. max !@location.here}
+    returnedBank = @luint.init { !@uint. max !@location.here}
     preservesBank = false
   or
     $bank$
@@ -187,14 +187,14 @@ rule <routine_declaration>
         error @location.here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting"
       end
       preservesBank = true
-      requiredBank = @luint. new { !@uint. max !@location.here}
-      returnedBank = @luint. new { !@uint. max !@location.here}
+      requiredBank = @luint.init { !@uint. max !@location.here}
+      returnedBank = @luint.init { !@uint. max !@location.here}
     or
       $requires$
       $integer$ ? requiredBank
       preservesBank = false
       select
-        returnedBank = @luint. new { !@uint. max !@location.here}
+        returnedBank = @luint.init { !@uint. max !@location.here}
       or
         $ensures$
         $integer$ ? returnedBank
@@ -209,7 +209,7 @@ rule <routine_declaration>
         error @location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting"
       end
       preservesBank = false
-      requiredBank = @luint. new { !@uint. max !@location.here}
+      requiredBank = @luint.init { !@uint. max !@location.here}
     end
   end
 #---

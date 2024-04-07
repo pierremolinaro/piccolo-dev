@@ -68,7 +68,7 @@ rule <baseline_instruction_list>
   !@baseline_instructionList outInstructionList
   ?!@labelMap ioLabelMap
 {
-  outInstructionList = @baseline_instructionList. emptyList
+  outInstructionList = @baseline_instructionList §[]
   repeat
   while
     <baseline_simple_instruction> ?let instruction
@@ -97,14 +97,14 @@ rule <baseline_routine_definition>
 #--- Page
   let @luint page
   select
-    page = @luint. new { !0 !@location.here}
+    page = @luint.init { !0 !@location.here}
   or
     $page$
     $integer$ ? page
   end
 #---
   ${$
-  var @labelMap labelMap = {}
+  var @labelMap labelMap = §[]
   <baseline_instruction_list>
     ?let instructionList
     !?labelMap
@@ -127,7 +127,7 @@ rule <baseline_structured_instruction>
     $do$
     let @lstring doLabel
     select
-      doLabel = .new {!"" !.here}
+      doLabel = .init {!"" !.here}
     or
       $label$ ?doLabel
       [!?ioLabelMap insertKey !doLabel]
@@ -141,7 +141,7 @@ rule <baseline_structured_instruction>
     <immediate_expression> ?let @immediatExpression highBoundExpression
     $)$
     <baseline_instruction_list> ?let @baseline_instructionList instructionList !?ioLabelMap
-    outInstruction = @baseline_instruction_STATIC_REPEAT. new {
+    outInstruction = @baseline_instruction_STATIC_REPEAT.init {
       !instructionLocation
       !constantName
       !lowBoundExpression
@@ -152,7 +152,7 @@ rule <baseline_structured_instruction>
     $end$
     let @lstring endDoLabel
     select
-      endDoLabel = .new {!"" !.here}
+      endDoLabel = .init {!"" !.here}
     or
       $label$ ?endDoLabel
     end
@@ -164,21 +164,21 @@ rule <baseline_structured_instruction>
     $jump$
     let @location instructionLocation = @location.here
     $identifier$ ?let @lstring targetLabelName
-    outInstruction = @baseline_instruction_JUMP. new {
+    outInstruction = @baseline_instruction_JUMP.init {
       !instructionLocation
       !targetLabelName}
   or
     $jsr$
     let @location instructionLocation = @location.here
     $identifier$ ?let @lstring targetLabelName
-    outInstruction = @baseline_instruction_JSR. new {
+    outInstruction = @baseline_instruction_JSR.init {
       !instructionLocation
       !targetLabelName}
   or
     $forever$
     let @lstring foreverLabel
     select
-      foreverLabel = .new {!"" !.here}
+      foreverLabel = .init {!"" !.here}
     or
       $label$ ?foreverLabel
       [!?ioLabelMap insertKey !foreverLabel]
@@ -188,7 +188,7 @@ rule <baseline_structured_instruction>
     $end$
     let @lstring endForeverLabel
     select
-      endForeverLabel = .new {!"" !.here}
+      endForeverLabel = .init {!"" !.here}
     or
       $label$ ?endForeverLabel
     end
@@ -196,7 +196,7 @@ rule <baseline_structured_instruction>
       error endForeverLabel : "'end' label does not match 'fovever' label, it should be "
          + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
     end 
-    outInstruction = @baseline_instruction_FOREVER. new {
+    outInstruction = @baseline_instruction_FOREVER.init {
       !instructionLocation
       !instructionList
       !@location.here
@@ -221,7 +221,7 @@ rule <baseline_structured_instruction>
     end
     $:$
     <baseline_simple_instruction> ?let instruction
-    outInstruction = @baseline_instruction_IF_BitTest. new {
+    outInstruction = @baseline_instruction_IF_BitTest.init {
       !instructionLocation
       !instruction
       !skipIfSet
@@ -250,7 +250,7 @@ rule <baseline_structured_instruction>
     end
     $:$
     <baseline_simple_instruction> ?let instruction
-    outInstruction = @baseline_instruction_IF_IncDec. new {
+    outInstruction = @baseline_instruction_IF_IncDec.init {
       !instructionLocation
       !instruction
       !increment
@@ -261,7 +261,7 @@ rule <baseline_structured_instruction>
     $if$
     let @lstring ifLabel
     select
-      ifLabel = .new {!"" !.here}
+      ifLabel = .init {!"" !.here}
     or
       $label$ ?ifLabel
       [!?ioLabelMap insertKey !ifLabel]
@@ -270,7 +270,7 @@ rule <baseline_structured_instruction>
     $end$
     let @lstring endIfLabel
     select
-      endIfLabel = .new {!"" !.here}
+      endIfLabel = .init {!"" !.here}
     or
       $label$ ?endIfLabel
     end
@@ -282,7 +282,7 @@ rule <baseline_structured_instruction>
     $do$
     let @lstring doLabel
     select
-      doLabel = .new {!"" !.here}
+      doLabel = .init {!"" !.here}
     or
       $label$ ?doLabel
       [!?ioLabelMap insertKey !doLabel]
@@ -290,12 +290,12 @@ rule <baseline_structured_instruction>
     let instructionLocation = @location.here
     <baseline_instruction_list> ?let repeatedInstructionList !?ioLabelMap
     let endOfRepeatedInstructionList = @location.here
-    var whilePartList = @baseline_partList.emptyList{}
+    var whilePartList = @baseline_partList §[]
     repeat
       $while$
       let @lstring whileLabel
       select
-        whileLabel = .new {!"" !.here}
+        whileLabel = .init {!"" !.here}
       or
         $label$ ?whileLabel
       end
@@ -311,7 +311,7 @@ rule <baseline_structured_instruction>
     $end$
     let @lstring endDoLabel
     select
-      endDoLabel = .new {!"" !.here}
+      endDoLabel = .init {!"" !.here}
     or
       $label$ ?endDoLabel
     end
@@ -319,7 +319,7 @@ rule <baseline_structured_instruction>
       error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
     end 
-    outInstruction = @baseline_instruction_do_while. new {
+    outInstruction = @baseline_instruction_do_while.init {
       !instructionLocation
       !repeatedInstructionList
       !endOfRepeatedInstructionList
@@ -328,7 +328,7 @@ rule <baseline_structured_instruction>
     $mnop$
     let @location instructionLocation = @location.here
     $integer$ ?let @luint occurrenceFactor
-    outInstruction = @baseline_instruction_MNOP. new { !instructionLocation !occurrenceFactor}
+    outInstruction = @baseline_instruction_MNOP.init { !instructionLocation !occurrenceFactor}
   end
 }
 
@@ -344,12 +344,12 @@ rule <baseline_structured_if_instruction>
   <baseline_instruction_list> ?let thenInstructionList !?ioLabelMap
   var @baseline_instructionList elseInstructionList
   select
-    elseInstructionList = @baseline_instructionList. emptyList
+    elseInstructionList = @baseline_instructionList §[]
   or
     $elsif$
     let @lstring elsifIfLabel
     select
-      elsifIfLabel = .new {!"" !.here}
+      elsifIfLabel = .init {!"" !.here}
     or
       $label$ ?elsifIfLabel
     end
@@ -358,13 +358,13 @@ rule <baseline_structured_if_instruction>
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
     <baseline_structured_if_instruction> !ifLabel ?let elsifPartInstruction !?ioLabelMap
-    elseInstructionList = @baseline_instructionList. emptyList
+    elseInstructionList = @baseline_instructionList §[]
     elseInstructionList += !elsifPartInstruction
   or
     $else$
     let @lstring elseLabel
     select
-      elseLabel = .new {!"" !.here}
+      elseLabel = .init {!"" !.here}
     or
       $label$ ?elseLabel
     end
@@ -375,7 +375,7 @@ rule <baseline_structured_if_instruction>
     <baseline_instruction_list> ?elseInstructionList !?ioLabelMap
   end
   let @location endOfElsePartLocation = @location.here
-  outInstruction = @baseline_instruction_structured_if. new {
+  outInstruction = @baseline_instruction_structured_if.init {
     !instructionLocation
     !structured_if_condition
     !thenInstructionList
@@ -428,7 +428,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
     let instructionLocation = @location.here
     <register_parsing> ?let registerExpression
     <optional_w_as_dest> ?let W_isDestination
-    outInstruction = @baseline_instruction_FD.new {
+    outInstruction = @baseline_instruction_FD.init {
       !instructionLocation
       !baseCode
       !registerExpression
@@ -445,7 +445,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
     $*$
     $,$
     <register_parsing> ?let registerName
-    outInstruction = @baseline_instruction_FD.new {
+    outInstruction = @baseline_instruction_FD.init {
       !instructionLocation
       !.MOVF
       !registerName
@@ -462,7 +462,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
     end
     let @location instructionLocation = @location.here
     <register_parsing> ?let registerExpression
-    outInstruction = @baseline_instruction_F. new {
+    outInstruction = @baseline_instruction_F.init {
       !instructionLocation
       !FAinstruction
       !registerExpression}
@@ -477,7 +477,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
     <register_parsing> ?let registerExpression
     $.$
     <bit_number_parsing> ?let bitNumberExpression
-    outInstruction = @baseline_instruction_FB. new {
+    outInstruction = @baseline_instruction_FB.init {
       !instructionLocation
       !bitOrientedOp
       !registerExpression
@@ -486,35 +486,35 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
     $goto$
     let @location instructionLocation = @location.here
     $identifier$ ?let @lstring targetLabelName indexing routineCall
-    outInstruction = @baseline_instruction_GOTO. new {
+    outInstruction = @baseline_instruction_GOTO.init {
       !instructionLocation
       !targetLabelName}
   or
     $call$
     let @location instructionLocation = @location.here
     $identifier$ ?let @lstring targetLabelName indexing routineCall
-    outInstruction = @baseline_instruction_CALL. new {
+    outInstruction = @baseline_instruction_CALL.init {
       !instructionLocation
       !targetLabelName}
   or
     $clrw$
-    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. CLRW}
+    outInstruction = @baseline_instruction_WO_OPERAND.init { !@location.here !@baseline_WO_OPERAND_group. CLRW}
   or
     $clrwdt$
-    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. CLRWDT}
+    outInstruction = @baseline_instruction_WO_OPERAND.init { !@location.here !@baseline_WO_OPERAND_group. CLRWDT}
   or
     $nop$
-    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. NOP}
+    outInstruction = @baseline_instruction_WO_OPERAND.init { !@location.here !@baseline_WO_OPERAND_group. NOP}
   or
     $option$
-    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. OPTION_}
+    outInstruction = @baseline_instruction_WO_OPERAND.init { !@location.here !@baseline_WO_OPERAND_group. OPTION_}
   or
     $sleep$
-    outInstruction = @baseline_instruction_WO_OPERAND. new { !@location.here !@baseline_WO_OPERAND_group. SLEEP}
+    outInstruction = @baseline_instruction_WO_OPERAND.init { !@location.here !@baseline_WO_OPERAND_group. SLEEP}
   or
     $tris$
     $identifier$ ?let @lstring operand
-    outInstruction = @baseline_instruction_TRIS. new { !@location.here !operand}
+    outInstruction = @baseline_instruction_TRIS.init { !@location.here !operand}
   or
     let @baseline_literal_instruction_opcode literalInstruction
     select
@@ -528,7 +528,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
     end
     let @location instructionLocation = @location.here
     <immediate_expression> ?let expression
-    outInstruction = @baseline_instruction_literalOperation. new {
+    outInstruction = @baseline_instruction_literalOperation.init {
       !instructionLocation
       !literalInstruction
       !expression}
@@ -541,7 +541,7 @@ rule <baseline_condition_factor>
   !@baseline_conditionExpression outCondition {
   $!$
   <baseline_condition_factor> ?let condition
-  outCondition = @baseline_negateCondition. new { !condition}
+  outCondition = @baseline_negateCondition.init { !condition}
 }
 
 #----------------------------------------------------*
@@ -581,7 +581,7 @@ rule <baseline_condition_factor>
       + "' condition; valid ones are: 'z' and 'nz'"
       : branchIfZero
     end
-    outCondition = @baseline_incDecRegisterInCondition. new {
+    outCondition = @baseline_incDecRegisterInCondition.init {
       !registerExpression
       !isIncrement
       !W_isDestination
@@ -590,7 +590,7 @@ rule <baseline_condition_factor>
     <register_parsing> ?let registerExpression
     $.$
     <bit_number_parsing> ?let bitNumberExpression
-    outCondition = @baseline_bitTest_in_structured_if_condition. new {
+    outCondition = @baseline_bitTest_in_structured_if_condition.init {
       !registerExpression
       !bitNumberExpression
     }
@@ -607,9 +607,9 @@ rule <baseline_condition_expression>
   while
     $|$
     <baseline_condition_term> ?let c
-    let @baseline_conditionExpression rc = @baseline_negateCondition. new { !c}
-    let @baseline_conditionExpression lc = @baseline_negateCondition. new { !outCondition}
-    outCondition = @baseline_negateCondition. new { !@baseline_andCondition. new { !lc !rc}}
+    let @baseline_conditionExpression rc = @baseline_negateCondition.init { !c}
+    let @baseline_conditionExpression lc = @baseline_negateCondition.init { !outCondition}
+    outCondition = @baseline_negateCondition.init { !@baseline_andCondition.init { !lc !rc}}
   end
   $)$
 }
@@ -623,7 +623,7 @@ rule <baseline_condition_term>
   while
     $&$
     <baseline_condition_factor> ?let c
-    outCondition = @baseline_andCondition. new { !outCondition !c}
+    outCondition = @baseline_andCondition.init { !outCondition !c}
   end
 }
 

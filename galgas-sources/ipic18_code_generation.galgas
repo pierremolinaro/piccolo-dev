@@ -38,8 +38,8 @@ proc generateLineWithCode
  {
 #--- Complete text with empty lines
   var @stringlist ipicText = inIpicText
-  loop( [inCode length] + 1)
-  while [ipicText length] < [inCode length] do
+  loop( [inCode count] + 1)
+  while [ipicText count] < [inCode count] do
     ipicText += !""
   end
 #---
@@ -47,7 +47,7 @@ proc generateLineWithCode
   var first = true
   for (mValue) in  ipicText, (mAssemblyCode mBinaryCode) in  inCode do
     ioListFileContents += [address x6string]
-    address = address + 2 * [mBinaryCode length]
+    address = address + 2 * [mBinaryCode count]
     var @string s = " "
     for (bin_mValue) in  mBinaryCode do
       s += " " + [bin_mValue x4string]
@@ -76,7 +76,7 @@ proc generateLineWithCode
     first = false 
   end
 #--- Display supplementary text
-  for (mValue) in  [ipicText subListFromIndex ![inCode length]] do
+  for (mValue) in  [ipicText subListFromIndex ![inCode count]] do
     ioListFileContents += [address x6string]
     ioListFileContents += ["" stringByRightPadding !76 !' ']
     ioListFileContents += mValue
@@ -100,21 +100,21 @@ method @ipic18Block generateCodeForBlock
   if self.mAddress == .max then # Relocatable
     generateLineWithCode (
       !inBlockAddress
-      !{!self.mLabel.string + ":" !{}}
-      !{!"LABEL " + self.mLabel}
+      !§[!self.mLabel.string + ":" !§[]]
+      !§[!"LABEL " + self.mLabel]
       !@uint.max
       !0
       !?ioListFileContents
     )
     ioAssemblyString += self.mLabel.string + ":\n"
   else
-    var @codeList cd = {}
-    cd += !"ORG " + [inBlockAddress hexString] !{}
-    cd += !self.mLabel.string + ":" !{}
+    var @codeList cd = §[]
+    cd += !"ORG " + [inBlockAddress hexString] !§[]
+    cd += !self.mLabel.string + ":" !§[]
     generateLineWithCode (
       !inBlockAddress
       !cd
-      !{!"LABEL " + self.mLabel + ", ORG "+ [inBlockAddress hexString]}
+      !§[!"LABEL " + self.mLabel + ", ORG "+ [inBlockAddress hexString]]
       !@uint.max
       !0
       !?ioListFileContents
@@ -150,7 +150,7 @@ method @ipic18Block generateCodeForBlock
   #--- Check instruction size corresponds generated code size
     var @uint generatedCodeSize = 0
     for (* mBinaryCode) in code do
-      generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
+      generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode count]
     end
     if generatedCodeSize != [mInstruction instructionSize] then
       let s = "*** INTERNAL ERROR ** generated code size ("
@@ -169,7 +169,7 @@ method @ipic18Block generateCodeForBlock
   generateLineWithCode (
     !address
     !code
-    !{![self.mTerminator terminatorDisplay !inNextBlockLabel]}
+    !§[![self.mTerminator terminatorDisplay !inNextBlockLabel]]
     !self.mTerminatorMin
     !self.mTerminatorMax
     !?ioListFileContents
@@ -183,7 +183,7 @@ method @ipic18Block generateCodeForBlock
   #--- Check terminator size corresponds generated code size
     var generatedCodeSize = 0
     for (* mBinaryCode) in code do
-      generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode length]
+      generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode count]
     end
     if generatedCodeSize != [self.mTerminator terminatorSize !inNextBlockLabel] then
       let s = "*** INTERNAL ERROR ** generated code size ("
@@ -225,26 +225,26 @@ proc ipic18GenerateCode
 #--- Build address map
   computeLabelAbsoluteAddressMap (
     !inGeneratedBlockList
-    !{}
+    !§[]
     ?let @symbolTableForRelativesResolution symbolTable
     ?let @uint firstDataAddress
   )
 #--------------------------------- Build Data Address Map
   var @uint dataAddress = firstDataAddress
-  var @pic18_dataAddressMap dataAddressMap = {}
+  var @pic18_dataAddressMap dataAddressMap = §[]
   for (lkey mData *) in  inDataMap do
     [!?dataAddressMap insertKey !lkey !dataAddress]
-    dataAddress = dataAddress + [mData length] * 2
+    dataAddress = dataAddress + [mData count] * 2
   end 
 #---------------------------------- Generate code
   initCodeGenerator ( )
   var assemblyString = ""
   var relocatableCodeSize = 0
   var blockStartAddress = 0
-  outGeneratedCodeMap = {}
+  outGeneratedCodeMap = §[]
   for (mBlock) in  inGeneratedBlockList do(blockIndex)
     let @string nextBlockLabel
-    if (blockIndex+1) < [inGeneratedBlockList length] then
+    if (blockIndex+1) < [inGeneratedBlockList count] then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
       nextBlockLabel = ""
@@ -275,8 +275,8 @@ proc ipic18GenerateCode
     setEmitAddress (!dataAddress )
     generateLineWithCode (
       !dataAddress
-      !{!"    ORG " + [dataAddress hexString] !{}}
-      !{!"    ORG " + [dataAddress hexString]}
+      !§[!"    ORG " + [dataAddress hexString] !§[]]
+      !§[!"    ORG " + [dataAddress hexString]]
       !@uint.max
       !0
       !?ioListFileContents
@@ -285,8 +285,8 @@ proc ipic18GenerateCode
   do
     generateLineWithCode (
       !dataAddress
-      !{!"_data_" + dataName + ":" !{}}
-      !{!"_data_" + dataName + ":"}
+      !§[!"_data_" + dataName + ":" !§[]]
+      !§[!"_data_" + dataName + ":"]
       !@uint.max
       !0
       !?ioListFileContents
@@ -297,8 +297,8 @@ proc ipic18GenerateCode
       emitCode (!data)
       generateLineWithCode (
         !dataAddress
-        !{!"    DW " + [data hexString] !{!data}}
-        !{!"    DW " + [data hexString]}
+        !§[!"    DW " + [data hexString] !§[!data]]
+        !§[!"    DW " + [data hexString]]
         !@uint.max
         !0
         !?ioListFileContents

@@ -155,9 +155,9 @@ class GALGAS_pic_31__38_CaseExpressionList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_pic_31__38_CaseExpressionList_2D_element init_28__29_ (const class GALGAS_pic_31__38_AbstractCaseItem & inOperand0,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_pic_31__38_CaseExpressionList_2D_element init_21_ (const class GALGAS_pic_31__38_AbstractCaseItem & inOperand0,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -254,11 +254,11 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element : public AC_GALGAS_
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                              const class GALGAS_pic_31__38_CaseExpressionList & inOperand1,
-                                                                                              const class GALGAS_pic_31__38_InstructionList & inOperand2,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_pic_31__38_CaseExpressionList & inOperand1,
+                                                                                          const class GALGAS_pic_31__38_InstructionList & inOperand2,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -512,9 +512,9 @@ class GALGAS_caseConstantMap_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_caseConstantMap_2D_element init_28__29_ (const class GALGAS_lstring & inOperand0,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_caseConstantMap_2D_element init_21_ (const class GALGAS_lstring & inOperand0,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1103,11 +1103,11 @@ class GALGAS_pic_31__38__5F_dataMap_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_pic_31__38__5F_dataMap_2D_element init_28__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                const class GALGAS_uintlist & inOperand1,
-                                                                                const class GALGAS_bool & inOperand2,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_pic_31__38__5F_dataMap_2D_element init_21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                            const class GALGAS_uintlist & inOperand1,
+                                                                            const class GALGAS_bool & inOperand2,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1162,15 +1162,16 @@ class GALGAS_ipic_31__38_SequentialInstruction : public AC_GALGAS_reference_clas
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_SequentialInstruction (const class cPtr_ipic_31__38_SequentialInstruction * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_location readProperty_mInstructionLocation (void) const ;
+  public: void setProperty_mInstructionLocation (const GALGAS_location & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_SequentialInstruction init_28__29_ (const class GALGAS_location & inOperand0,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_SequentialInstruction init_21_ (const class GALGAS_location & inOperand0,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1184,9 +1185,6 @@ class GALGAS_ipic_31__38_SequentialInstruction : public AC_GALGAS_reference_clas
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_SequentialInstruction & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMInstructionLocation (class GALGAS_location inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1216,6 +1214,12 @@ class cPtr_ipic_31__38_SequentialInstruction : public acStrongPtr_class {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_SequentialInstruction_init_21_ (const class GALGAS_location & inOperand0,
+                                                           Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 
@@ -1411,11 +1415,11 @@ class GALGAS_ipic_31__38_SequentialInstructionList_2D_element : public AC_GALGAS
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_SequentialInstructionList_2D_element init_28__2C__2C__29_ (const class GALGAS_ipic_31__38_SequentialInstruction & inOperand0,
-                                                                                               const class GALGAS_uint & inOperand1,
-                                                                                               const class GALGAS_uint & inOperand2,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_SequentialInstructionList_2D_element init_21__21__21_ (const class GALGAS_ipic_31__38_SequentialInstruction & inOperand0,
+                                                                                           const class GALGAS_uint & inOperand1,
+                                                                                           const class GALGAS_uint & inOperand2,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1470,15 +1474,16 @@ class GALGAS_ipic_31__38_AbstractBlockTerminator : public AC_GALGAS_reference_cl
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_AbstractBlockTerminator (const class cPtr_ipic_31__38_AbstractBlockTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_location readProperty_mInstructionLocation (void) const ;
+  public: void setProperty_mInstructionLocation (const GALGAS_location & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_AbstractBlockTerminator init_28__29_ (const class GALGAS_location & inOperand0,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_AbstractBlockTerminator init_21_ (const class GALGAS_location & inOperand0,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1492,9 +1497,6 @@ class GALGAS_ipic_31__38_AbstractBlockTerminator : public AC_GALGAS_reference_cl
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_AbstractBlockTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMInstructionLocation (class GALGAS_location inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1524,6 +1526,12 @@ class cPtr_ipic_31__38_AbstractBlockTerminator : public acStrongPtr_class {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_AbstractBlockTerminator_init_21_ (const class GALGAS_location & inOperand0,
+                                                             Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const = 0 ;
@@ -1769,14 +1777,14 @@ class GALGAS_ipic_31__38_Block : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_Block init_28__2C__2C__2C__2C__2C__29_ (const class GALGAS_uint & inOperand0,
-                                                                            const class GALGAS_lstring & inOperand1,
-                                                                            const class GALGAS_ipic_31__38_SequentialInstructionList & inOperand2,
-                                                                            const class GALGAS_ipic_31__38_AbstractBlockTerminator & inOperand3,
-                                                                            const class GALGAS_uint & inOperand4,
-                                                                            const class GALGAS_uint & inOperand5,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_Block init_21__21__21__21__21__21_ (const class GALGAS_uint & inOperand0,
+                                                                        const class GALGAS_lstring & inOperand1,
+                                                                        const class GALGAS_ipic_31__38_SequentialInstructionList & inOperand2,
+                                                                        const class GALGAS_ipic_31__38_AbstractBlockTerminator & inOperand3,
+                                                                        const class GALGAS_uint & inOperand4,
+                                                                        const class GALGAS_uint & inOperand5,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1858,9 +1866,9 @@ class GALGAS_ipic_31__38_BlockList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_BlockList_2D_element init_28__29_ (const class GALGAS_ipic_31__38_Block & inOperand0,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_BlockList_2D_element init_21_ (const class GALGAS_ipic_31__38_Block & inOperand0,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1913,13 +1921,13 @@ class GALGAS_ipic_31__38_SingleInstructionTerminator : public GALGAS_ipic_31__38
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_SingleInstructionTerminator (const class cPtr_ipic_31__38_SingleInstructionTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_SingleInstructionTerminator init_28__29_ (const class GALGAS_location & inOperand0,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_SingleInstructionTerminator init_21_ (const class GALGAS_location & inOperand0,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1962,6 +1970,12 @@ class cPtr_ipic_31__38_SingleInstructionTerminator : public cPtr_ipic_31__38_Abs
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_SingleInstructionTerminator_init_21_ (const class GALGAS_location & inOperand0,
+                                                                 Compiler * inCompiler) ;
+
+
 //--- Extension method duration
   public: virtual void method_duration (const class GALGAS_blockDurationMap arg_inExploredBlockMap,
            const class GALGAS_string arg_inNextLabel,
@@ -2064,13 +2078,13 @@ class GALGAS_ipic_31__38_ReturnTerminator : public GALGAS_ipic_31__38_SingleInst
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_ReturnTerminator (const class cPtr_ipic_31__38_ReturnTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_ReturnTerminator init_28__29_ (const class GALGAS_location & inOperand0,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_ReturnTerminator init_21_ (const class GALGAS_location & inOperand0,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2117,6 +2131,12 @@ class cPtr_ipic_31__38_ReturnTerminator : public cPtr_ipic_31__38_SingleInstruct
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_ReturnTerminator_init_21_ (const class GALGAS_location & inOperand0,
+                                                      Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -2268,16 +2288,17 @@ class GALGAS_ipic_31__38_RetlwTerminator : public GALGAS_ipic_31__38_SingleInstr
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_RetlwTerminator (const class cPtr_ipic_31__38_RetlwTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_uint readProperty_mLiteralValue (void) const ;
+  public: void setProperty_mLiteralValue (const GALGAS_uint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_RetlwTerminator init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                      const class GALGAS_uint & inOperand1,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_RetlwTerminator init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                  const class GALGAS_uint & inOperand1,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2296,9 +2317,6 @@ class GALGAS_ipic_31__38_RetlwTerminator : public GALGAS_ipic_31__38_SingleInstr
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_RetlwTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLiteralValue (class GALGAS_uint inArgument0
-                                                         COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2328,6 +2346,13 @@ class cPtr_ipic_31__38_RetlwTerminator : public cPtr_ipic_31__38_SingleInstructi
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_RetlwTerminator_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                         const class GALGAS_uint & inOperand1,
+                                                         Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -2481,16 +2506,17 @@ class GALGAS_ipic_31__38_RetfieTerminator : public GALGAS_ipic_31__38_SingleInst
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_RetfieTerminator (const class cPtr_ipic_31__38_RetfieTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_bool readProperty_mFastReturn (void) const ;
+  public: void setProperty_mFastReturn (const GALGAS_bool & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_RetfieTerminator init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                       const class GALGAS_bool & inOperand1,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_RetfieTerminator init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                   const class GALGAS_bool & inOperand1,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2509,9 +2535,6 @@ class GALGAS_ipic_31__38_RetfieTerminator : public GALGAS_ipic_31__38_SingleInst
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_RetfieTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMFastReturn (class GALGAS_bool inArgument0
-                                                       COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2541,6 +2564,13 @@ class cPtr_ipic_31__38_RetfieTerminator : public cPtr_ipic_31__38_SingleInstruct
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_RetfieTerminator_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                          const class GALGAS_bool & inOperand1,
+                                                          Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -2694,19 +2724,21 @@ class GALGAS_ipic_31__38_JumpTerminator : public GALGAS_ipic_31__38_SingleInstru
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_JumpTerminator (const class cPtr_ipic_31__38_JumpTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mLabel (void) const ;
+  public: void setProperty_mLabel (const GALGAS_lstring & inValue) ;
 
   public: class GALGAS_jumpInstructionKind readProperty_mKind (void) const ;
+  public: void setProperty_mKind (const GALGAS_jumpInstructionKind & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_JumpTerminator init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                         const class GALGAS_lstring & inOperand1,
-                                                                         const class GALGAS_jumpInstructionKind & inOperand2,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_JumpTerminator init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                     const class GALGAS_lstring & inOperand1,
+                                                                     const class GALGAS_jumpInstructionKind & inOperand2,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2726,12 +2758,6 @@ class GALGAS_ipic_31__38_JumpTerminator : public GALGAS_ipic_31__38_SingleInstru
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_JumpTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMKind (class GALGAS_jumpInstructionKind inArgument0
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMLabel (class GALGAS_lstring inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2761,6 +2787,14 @@ class cPtr_ipic_31__38_JumpTerminator : public cPtr_ipic_31__38_SingleInstructio
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_JumpTerminator_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                            const class GALGAS_lstring & inOperand1,
+                                                            const class GALGAS_jumpInstructionKind & inOperand2,
+                                                            Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -2945,19 +2979,21 @@ class GALGAS_ipic_31__38_ComputedGotoTerminator : public GALGAS_ipic_31__38_Abst
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_ComputedGotoTerminator (const class cPtr_ipic_31__38_ComputedGotoTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstringlist readProperty_mTargetLabels (void) const ;
+  public: void setProperty_mTargetLabels (const GALGAS_lstringlist & inValue) ;
 
   public: class GALGAS_bool readProperty_mUsesRCALL (void) const ;
+  public: void setProperty_mUsesRCALL (const GALGAS_bool & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_ComputedGotoTerminator init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                 const class GALGAS_lstringlist & inOperand1,
-                                                                                 const class GALGAS_bool & inOperand2,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_ComputedGotoTerminator init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                             const class GALGAS_lstringlist & inOperand1,
+                                                                             const class GALGAS_bool & inOperand2,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2977,12 +3013,6 @@ class GALGAS_ipic_31__38_ComputedGotoTerminator : public GALGAS_ipic_31__38_Abst
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_ComputedGotoTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabels (class GALGAS_lstringlist inArgument0
-                                                         COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (class GALGAS_bool inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3012,6 +3042,14 @@ class cPtr_ipic_31__38_ComputedGotoTerminator : public cPtr_ipic_31__38_Abstract
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_ComputedGotoTerminator_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                    const class GALGAS_lstringlist & inOperand1,
+                                                                    const class GALGAS_bool & inOperand2,
+                                                                    Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -3184,19 +3222,21 @@ class GALGAS_ipic_31__38_ComputedRETLWTerminator : public GALGAS_ipic_31__38_Abs
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_ComputedRETLWTerminator (const class cPtr_ipic_31__38_ComputedRETLWTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_uintlist readProperty_mLiteralValues (void) const ;
+  public: void setProperty_mLiteralValues (const GALGAS_uintlist & inValue) ;
 
   public: class GALGAS_bool readProperty_mUsesRCALL (void) const ;
+  public: void setProperty_mUsesRCALL (const GALGAS_bool & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_ComputedRETLWTerminator init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                  const class GALGAS_uintlist & inOperand1,
-                                                                                  const class GALGAS_bool & inOperand2,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_ComputedRETLWTerminator init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                              const class GALGAS_uintlist & inOperand1,
+                                                                              const class GALGAS_bool & inOperand2,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3216,12 +3256,6 @@ class GALGAS_ipic_31__38_ComputedRETLWTerminator : public GALGAS_ipic_31__38_Abs
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_ComputedRETLWTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLiteralValues (class GALGAS_uintlist inArgument0
-                                                          COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (class GALGAS_bool inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3251,6 +3285,14 @@ class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_Abstrac
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_ComputedRETLWTerminator_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                     const class GALGAS_uintlist & inOperand1,
+                                                                     const class GALGAS_bool & inOperand2,
+                                                                     Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -3505,28 +3547,33 @@ class GALGAS_ipic_31__38_ConditionalJumpTerminator : public GALGAS_ipic_31__38_A
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_ConditionalJumpTerminator (const class cPtr_ipic_31__38_ConditionalJumpTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_conditional_5F_branch readProperty_mConditionalBranch (void) const ;
+  public: void setProperty_mConditionalBranch (const GALGAS_conditional_5F_branch & inValue) ;
 
   public: class GALGAS_lstring readProperty_mTargetLabelWhenTrue (void) const ;
+  public: void setProperty_mTargetLabelWhenTrue (const GALGAS_lstring & inValue) ;
 
   public: class GALGAS_conditionalBranchMode readProperty_mBranchModeOnTrueLabel (void) const ;
+  public: void setProperty_mBranchModeOnTrueLabel (const GALGAS_conditionalBranchMode & inValue) ;
 
   public: class GALGAS_lstring readProperty_mTargetLabelWhenFalse (void) const ;
+  public: void setProperty_mTargetLabelWhenFalse (const GALGAS_lstring & inValue) ;
 
   public: class GALGAS_conditionalBranchMode readProperty_mBranchModeOnFalseLabel (void) const ;
+  public: void setProperty_mBranchModeOnFalseLabel (const GALGAS_conditionalBranchMode & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_ConditionalJumpTerminator init_28__2C__2C__2C__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                const class GALGAS_conditional_5F_branch & inOperand1,
-                                                                                                const class GALGAS_lstring & inOperand2,
-                                                                                                const class GALGAS_conditionalBranchMode & inOperand3,
-                                                                                                const class GALGAS_lstring & inOperand4,
-                                                                                                const class GALGAS_conditionalBranchMode & inOperand5,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_ConditionalJumpTerminator init_21__21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                            const class GALGAS_conditional_5F_branch & inOperand1,
+                                                                                            const class GALGAS_lstring & inOperand2,
+                                                                                            const class GALGAS_conditionalBranchMode & inOperand3,
+                                                                                            const class GALGAS_lstring & inOperand4,
+                                                                                            const class GALGAS_conditionalBranchMode & inOperand5,
+                                                                                            Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3549,21 +3596,6 @@ class GALGAS_ipic_31__38_ConditionalJumpTerminator : public GALGAS_ipic_31__38_A
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_ConditionalJumpTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBranchModeOnFalseLabel (class GALGAS_conditionalBranchMode inArgument0
-                                                                   COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMBranchModeOnTrueLabel (class GALGAS_conditionalBranchMode inArgument0
-                                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMConditionalBranch (class GALGAS_conditional_5F_branch inArgument0
-                                                              COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenFalse (class GALGAS_lstring inArgument0
-                                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabelWhenTrue (class GALGAS_lstring inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3593,6 +3625,17 @@ class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_Abstr
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_ConditionalJumpTerminator_init_21__21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                   const class GALGAS_conditional_5F_branch & inOperand1,
+                                                                                   const class GALGAS_lstring & inOperand2,
+                                                                                   const class GALGAS_conditionalBranchMode & inOperand3,
+                                                                                   const class GALGAS_lstring & inOperand4,
+                                                                                   const class GALGAS_conditionalBranchMode & inOperand5,
+                                                                                   Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -3776,19 +3819,21 @@ class GALGAS_ipic_31__38_ComputedBraTerminator : public GALGAS_ipic_31__38_Abstr
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_ComputedBraTerminator (const class cPtr_ipic_31__38_ComputedBraTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstringlist readProperty_mTargetLabels (void) const ;
+  public: void setProperty_mTargetLabels (const GALGAS_lstringlist & inValue) ;
 
   public: class GALGAS_bool readProperty_mUsesRCALL (void) const ;
+  public: void setProperty_mUsesRCALL (const GALGAS_bool & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_ComputedBraTerminator init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                const class GALGAS_lstringlist & inOperand1,
-                                                                                const class GALGAS_bool & inOperand2,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_ComputedBraTerminator init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                            const class GALGAS_lstringlist & inOperand1,
+                                                                            const class GALGAS_bool & inOperand2,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3808,12 +3853,6 @@ class GALGAS_ipic_31__38_ComputedBraTerminator : public GALGAS_ipic_31__38_Abstr
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_ComputedBraTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabels (class GALGAS_lstringlist inArgument0
-                                                         COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (class GALGAS_bool inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3843,6 +3882,14 @@ class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractB
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_ComputedBraTerminator_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                   const class GALGAS_lstringlist & inOperand1,
+                                                                   const class GALGAS_bool & inOperand2,
+                                                                   Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -4097,19 +4144,21 @@ class GALGAS_ipic_31__38_AbstractConditionTerminator : public GALGAS_ipic_31__38
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_AbstractConditionTerminator (const class cPtr_ipic_31__38_AbstractConditionTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_ipic_31__38_SingleInstructionTerminator readProperty_mSingleInstructionTerminatorIfConditionTrue (void) const ;
+  public: void setProperty_mSingleInstructionTerminatorIfConditionTrue (const GALGAS_ipic_31__38_SingleInstructionTerminator & inValue) ;
 
   public: class GALGAS_ipic_31__38_SingleInstructionTerminator readProperty_mSingleInstructionTerminatorIfConditionFalse (void) const ;
+  public: void setProperty_mSingleInstructionTerminatorIfConditionFalse (const GALGAS_ipic_31__38_SingleInstructionTerminator & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_AbstractConditionTerminator init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                      const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                      const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_AbstractConditionTerminator init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                  const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                                  const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4123,12 +4172,6 @@ class GALGAS_ipic_31__38_AbstractConditionTerminator : public GALGAS_ipic_31__38
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_AbstractConditionTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMSingleInstructionTerminatorIfConditionFalse (class GALGAS_ipic_31__38_SingleInstructionTerminator inArgument0
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMSingleInstructionTerminatorIfConditionTrue (class GALGAS_ipic_31__38_SingleInstructionTerminator inArgument0
-                                                                                       COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4158,6 +4201,14 @@ class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_Abs
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_AbstractConditionTerminator_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                         const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                         const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                         Compiler * inCompiler) ;
+
+
 //--- Extension getter needToInsertJumpInstruction
   public: virtual class GALGAS_bool getter_needToInsertJumpInstruction (const class GALGAS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -4341,11 +4392,11 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression : public AC_GALG
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression init_28__2C__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                                                 const class GALGAS_uint & inOperand1,
-                                                                                                 const class GALGAS_bool & inOperand2,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression init_21__21__21_ (const class GALGAS_string & inOperand0,
+                                                                                             const class GALGAS_uint & inOperand1,
+                                                                                             const class GALGAS_bool & inOperand2,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4400,21 +4451,23 @@ class GALGAS_pic_31__38_RegisterComparisonTerminator : public GALGAS_ipic_31__38
 //--------------------------------- Constructor from pointer
   public: GALGAS_pic_31__38_RegisterComparisonTerminator (const class cPtr_pic_31__38_RegisterComparisonTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
+  public: void setProperty_mRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GALGAS_ipic_31__38_RegisterComparison readProperty_mComparison (void) const ;
+  public: void setProperty_mComparison (const GALGAS_ipic_31__38_RegisterComparison & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_pic_31__38_RegisterComparisonTerminator init_28__2C__2C__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                              const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                              const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                              const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                              const class GALGAS_ipic_31__38_RegisterComparison & inOperand4,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_pic_31__38_RegisterComparisonTerminator init_21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                                          const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                                          const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                          const class GALGAS_ipic_31__38_RegisterComparison & inOperand4,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4436,12 +4489,6 @@ class GALGAS_pic_31__38_RegisterComparisonTerminator : public GALGAS_ipic_31__38
   public: ComparisonResult objectCompare (const GALGAS_pic_31__38_RegisterComparisonTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMComparison (class GALGAS_ipic_31__38_RegisterComparison inArgument0
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4471,6 +4518,16 @@ class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_Abs
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void pic_31__38_RegisterComparisonTerminator_init_21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                 const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                                 const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                                 const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                 const class GALGAS_ipic_31__38_RegisterComparison & inOperand4,
+                                                                                 Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -4630,24 +4687,27 @@ class GALGAS_ipic_31__38_IncDecRegisterTerminator : public GALGAS_ipic_31__38_Ab
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_IncDecRegisterTerminator (const class cPtr_ipic_31__38_IncDecRegisterTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
+  public: void setProperty_mRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GALGAS_bool readProperty_mIncrement (void) const ;
+  public: void setProperty_mIncrement (const GALGAS_bool & inValue) ;
 
   public: class GALGAS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
+  public: void setProperty_m_5F_W_5F_isDestination (const GALGAS_bool & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_IncDecRegisterTerminator init_28__2C__2C__2C__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                               const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                               const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                               const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                               const class GALGAS_bool & inOperand4,
-                                                                                               const class GALGAS_bool & inOperand5,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_IncDecRegisterTerminator init_21__21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                           const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                                           const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                                           const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                           const class GALGAS_bool & inOperand4,
+                                                                                           const class GALGAS_bool & inOperand5,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4670,15 +4730,6 @@ class GALGAS_ipic_31__38_IncDecRegisterTerminator : public GALGAS_ipic_31__38_Ab
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_IncDecRegisterTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMIncrement (class GALGAS_bool inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setM_5F_W_5F_isDestination (class GALGAS_bool inArgument0
-                                                                   COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4708,6 +4759,17 @@ class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_Abstra
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_IncDecRegisterTerminator_init_21__21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                  const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                                  const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                                  const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                  const class GALGAS_bool & inOperand4,
+                                                                                  const class GALGAS_bool & inOperand5,
+                                                                                  Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -4855,18 +4917,19 @@ class GALGAS_pic_31__38_TestRegisterTerminator : public GALGAS_ipic_31__38_Abstr
 //--------------------------------- Constructor from pointer
   public: GALGAS_pic_31__38_TestRegisterTerminator (const class cPtr_pic_31__38_TestRegisterTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
+  public: void setProperty_mRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_pic_31__38_TestRegisterTerminator init_28__2C__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                    const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                    const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                    const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_pic_31__38_TestRegisterTerminator init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                                const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                                const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4887,9 +4950,6 @@ class GALGAS_pic_31__38_TestRegisterTerminator : public GALGAS_ipic_31__38_Abstr
   public: ComparisonResult objectCompare (const GALGAS_pic_31__38_TestRegisterTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4919,6 +4979,15 @@ class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractC
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void pic_31__38_TestRegisterTerminator_init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                       const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                       const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                       const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                       Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -5076,21 +5145,23 @@ class GALGAS_pic_31__38_BitTestTerminator : public GALGAS_ipic_31__38_AbstractCo
 //--------------------------------- Constructor from pointer
   public: GALGAS_pic_31__38_BitTestTerminator (const class cPtr_pic_31__38_BitTestTerminator * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
+  public: void setProperty_mRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GALGAS_uint readProperty_mBitNumber (void) const ;
+  public: void setProperty_mBitNumber (const GALGAS_uint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_pic_31__38_BitTestTerminator init_28__2C__2C__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                   const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                   const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                   const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                   const class GALGAS_uint & inOperand4,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_pic_31__38_BitTestTerminator init_21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                               const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                               const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                               const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                               const class GALGAS_uint & inOperand4,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5112,12 +5183,6 @@ class GALGAS_pic_31__38_BitTestTerminator : public GALGAS_ipic_31__38_AbstractCo
   public: ComparisonResult objectCompare (const GALGAS_pic_31__38_BitTestTerminator & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBitNumber (class GALGAS_uint inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5147,6 +5212,16 @@ class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractCondit
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void pic_31__38_BitTestTerminator_init_21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                      const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand1,
+                                                                      const class GALGAS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+                                                                      const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                      const class GALGAS_uint & inOperand4,
+                                                                      Compiler * inCompiler) ;
+
+
 //--- Extension getter isEqualToTerminator
   public: virtual class GALGAS_bool getter_isEqualToTerminator (const class GALGAS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
@@ -5292,16 +5367,17 @@ class GALGAS_ipic_31__38_InstructionWithNoOperand : public GALGAS_ipic_31__38_Se
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38_InstructionWithNoOperand (const class cPtr_ipic_31__38_InstructionWithNoOperand * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_pic_31__38_InstructionWithNoOperandKind readProperty_mKind (void) const ;
+  public: void setProperty_mKind (const GALGAS_pic_31__38_InstructionWithNoOperandKind & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38_InstructionWithNoOperand init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                               const class GALGAS_pic_31__38_InstructionWithNoOperandKind & inOperand1,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38_InstructionWithNoOperand init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                           const class GALGAS_pic_31__38_InstructionWithNoOperandKind & inOperand1,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5320,9 +5396,6 @@ class GALGAS_ipic_31__38_InstructionWithNoOperand : public GALGAS_ipic_31__38_Se
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38_InstructionWithNoOperand & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMKind (class GALGAS_pic_31__38_InstructionWithNoOperandKind inArgument0
-                                                 COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5352,6 +5425,13 @@ class cPtr_ipic_31__38_InstructionWithNoOperand : public cPtr_ipic_31__38_Sequen
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38_InstructionWithNoOperand_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                  const class GALGAS_pic_31__38_InstructionWithNoOperandKind & inOperand1,
+                                                                  Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -5467,22 +5547,25 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public GALGAS_
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const ;
+  public: void setProperty_mInstruction_5F_FDA_5F_base_5F_code (const GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inValue) ;
 
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
+  public: void setProperty_mRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GALGAS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
+  public: void setProperty_m_5F_W_5F_isDestination (const GALGAS_bool & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA init_28__2C__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                     const class GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inOperand1,
-                                                                                                     const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                                     const class GALGAS_bool & inOperand3,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                                 const class GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inOperand1,
+                                                                                                 const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                                 const class GALGAS_bool & inOperand3,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5503,15 +5586,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public GALGAS_
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMInstruction_5F_FDA_5F_base_5F_code (class GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST inArgument0
-                                                                               COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setM_5F_W_5F_isDestination (class GALGAS_bool inArgument0
-                                                                   COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5541,6 +5615,15 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public cPtr_ipic
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                        const class GALGAS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inOperand1,
+                                                                                        const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                        const class GALGAS_bool & inOperand3,
+                                                                                        Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -5745,19 +5828,21 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public GALGAS_i
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code readProperty_mFAinstruction (void) const ;
+  public: void setProperty_mFAinstruction (const GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inValue) ;
 
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
+  public: void setProperty_mRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                const class GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                                                const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                            const class GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inOperand1,
+                                                                                            const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                            Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5777,12 +5862,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public GALGAS_i
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMFAinstruction (class GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code inArgument0
-                                                          COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5812,6 +5891,14 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_FA_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                   const class GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inOperand1,
+                                                                                   const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                   Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -5952,10 +6039,10 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndicat
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication init_28__2C__29_ (const class GALGAS_string & inOperand0,
-                                                                                                                 const class GALGAS_uint & inOperand1,
-                                                                                                                 Compiler * inCompiler
-                                                                                                                 COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication init_21__21_ (const class GALGAS_string & inOperand0,
+                                                                                                             const class GALGAS_uint & inOperand1,
+                                                                                                             Compiler * inCompiler
+                                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6009,19 +6096,21 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public GALGA
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication readProperty_mSourceRegisterDescription (void) const ;
+  public: void setProperty_mSourceRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inValue) ;
 
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication readProperty_mDestinationRegisterDescription (void) const ;
+  public: void setProperty_mDestinationRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                   const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand1,
-                                                                                                   const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand2,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                               const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand1,
+                                                                                               const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand2,
+                                                                                               Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6041,12 +6130,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public GALGA
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMDestinationRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inArgument0
-                                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMSourceRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication inArgument0
-                                                                      COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -6076,6 +6159,14 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ip
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                      const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand1,
+                                                                                      const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand2,
+                                                                                      Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -6191,19 +6282,21 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : p
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_literal_5F_instruction_5F_opcode readProperty_mLiteralInstruction (void) const ;
+  public: void setProperty_mLiteralInstruction (const GALGAS_literal_5F_instruction_5F_opcode & inValue) ;
 
   public: class GALGAS_uint readProperty_mLiteralValue (void) const ;
+  public: void setProperty_mLiteralValue (const GALGAS_uint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                              const class GALGAS_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                                              const class GALGAS_uint & inOperand2,
-                                                                                                              Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                                          const class GALGAS_literal_5F_instruction_5F_opcode & inOperand1,
+                                                                                                          const class GALGAS_uint & inOperand2,
+                                                                                                          Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6223,12 +6316,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : p
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLiteralInstruction (class GALGAS_literal_5F_instruction_5F_opcode inArgument0
-                                                               COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMLiteralValue (class GALGAS_uint inArgument0
-                                                         COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -6258,6 +6345,14 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : pub
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                                 const class GALGAS_literal_5F_instruction_5F_opcode & inOperand1,
+                                                                                                 const class GALGAS_uint & inOperand2,
+                                                                                                 Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -6364,19 +6459,21 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public GALGAS
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_luint readProperty_mFSRindex (void) const ;
+  public: void setProperty_mFSRindex (const GALGAS_luint & inValue) ;
 
   public: class GALGAS_uint readProperty_mValue (void) const ;
+  public: void setProperty_mValue (const GALGAS_uint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                  const class GALGAS_luint & inOperand1,
-                                                                                                  const class GALGAS_uint & inOperand2,
-                                                                                                  Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                              const class GALGAS_luint & inOperand1,
+                                                                                              const class GALGAS_uint & inOperand2,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6396,12 +6493,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public GALGAS
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMFSRindex (class GALGAS_luint inArgument0
-                                                     COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_uint inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -6431,6 +6522,14 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipi
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                     const class GALGAS_luint & inOperand1,
+                                                                                     const class GALGAS_uint & inOperand2,
+                                                                                     Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -6546,22 +6645,25 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public GALGAS_
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_bit_5F_oriented_5F_op readProperty_mBitOrientedOp (void) const ;
+  public: void setProperty_mBitOrientedOp (const GALGAS_bit_5F_oriented_5F_op & inValue) ;
 
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
+  public: void setProperty_mRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GALGAS_uint readProperty_mBitNumber (void) const ;
+  public: void setProperty_mBitNumber (const GALGAS_uint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA init_28__2C__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                     const class GALGAS_bit_5F_oriented_5F_op & inOperand1,
-                                                                                                     const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                                     const class GALGAS_uint & inOperand3,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                                 const class GALGAS_bit_5F_oriented_5F_op & inOperand1,
+                                                                                                 const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                                 const class GALGAS_uint & inOperand3,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6582,15 +6684,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public GALGAS_
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBitNumber (class GALGAS_uint inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMBitOrientedOp (class GALGAS_bit_5F_oriented_5F_op inArgument0
-                                                          COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -6620,6 +6713,15 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public cPtr_ipic
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                        const class GALGAS_bit_5F_oriented_5F_op & inOperand1,
+                                                                                        const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                        const class GALGAS_uint & inOperand3,
+                                                                                        Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -6728,19 +6830,21 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_JSR : public GALGAS_ipic_31__38_Seq
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_JSR (const class cPtr_ipic_31__38__5F_intermediate_5F_JSR * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mTargetLabel (void) const ;
+  public: void setProperty_mTargetLabel (const GALGAS_lstring & inValue) ;
 
   public: class GALGAS_jumpInstructionKind readProperty_mKind (void) const ;
+  public: void setProperty_mKind (const GALGAS_jumpInstructionKind & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_JSR init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                  const class GALGAS_lstring & inOperand1,
-                                                                                  const class GALGAS_jumpInstructionKind & inOperand2,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_JSR init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                              const class GALGAS_lstring & inOperand1,
+                                                                              const class GALGAS_jumpInstructionKind & inOperand2,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6760,12 +6864,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_JSR : public GALGAS_ipic_31__38_Seq
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_JSR & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMKind (class GALGAS_jumpInstructionKind inArgument0
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMTargetLabel (class GALGAS_lstring inArgument0
-                                                        COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -6795,6 +6893,14 @@ class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_Sequent
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_JSR_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                     const class GALGAS_lstring & inOperand1,
+                                                                     const class GALGAS_jumpInstructionKind & inOperand2,
+                                                                     Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -6952,16 +7058,17 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public GALGA
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_luint readProperty_mBankIndex (void) const ;
+  public: void setProperty_mBankIndex (const GALGAS_luint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                               const class GALGAS_luint & inOperand1,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                           const class GALGAS_luint & inOperand1,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6980,9 +7087,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public GALGA
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBankIndex (class GALGAS_luint inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -7012,6 +7116,13 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public cPtr_ip
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                  const class GALGAS_luint & inOperand1,
+                                                                                  Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -7116,16 +7227,17 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public GALGAS
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_uint readProperty_mBlankValue (void) const ;
+  public: void setProperty_mBlankValue (const GALGAS_uint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                              const class GALGAS_uint & inOperand1,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_uint & inOperand1,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7144,9 +7256,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public GALGAS
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBlankValue (class GALGAS_uint inArgument0
-                                                       COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -7176,6 +7285,13 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public cPtr_ipi
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                 const class GALGAS_uint & inOperand1,
+                                                                                 Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -7280,16 +7396,17 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public GALGA
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_uint readProperty_mBlankValue (void) const ;
+  public: void setProperty_mBlankValue (const GALGAS_uint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                               const class GALGAS_uint & inOperand1,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                           const class GALGAS_uint & inOperand1,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7308,9 +7425,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public GALGA
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBlankValue (class GALGAS_uint inArgument0
-                                                       COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -7340,6 +7454,13 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public cPtr_ip
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                  const class GALGAS_uint & inOperand1,
+                                                                                  Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -7444,16 +7565,17 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public GALGA
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_tableAccessOption readProperty_mOption (void) const ;
+  public: void setProperty_mOption (const GALGAS_tableAccessOption & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                               const class GALGAS_tableAccessOption & inOperand1,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                           const class GALGAS_tableAccessOption & inOperand1,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7472,9 +7594,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public GALGA
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMOption (class GALGAS_tableAccessOption inArgument0
-                                                   COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -7504,6 +7623,13 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ip
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                  const class GALGAS_tableAccessOption & inOperand1,
+                                                                                  Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -7614,16 +7740,17 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public GALGA
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_tableAccessOption readProperty_mOption (void) const ;
+  public: void setProperty_mOption (const GALGAS_tableAccessOption & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                               const class GALGAS_tableAccessOption & inOperand1,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                           const class GALGAS_tableAccessOption & inOperand1,
+                                                                                           Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7642,9 +7769,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public GALGA
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMOption (class GALGAS_tableAccessOption inArgument0
-                                                   COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -7674,6 +7798,13 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ip
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                  const class GALGAS_tableAccessOption & inOperand1,
+                                                                                  Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -7784,16 +7915,17 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public GALGAS
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_luint readProperty_mOccurrenceFactor (void) const ;
+  public: void setProperty_mOccurrenceFactor (const GALGAS_luint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                              const class GALGAS_luint & inOperand1,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                          const class GALGAS_luint & inOperand1,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7812,9 +7944,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public GALGAS
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (class GALGAS_luint inArgument0
-                                                             COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -7844,6 +7973,13 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipi
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                 const class GALGAS_luint & inOperand1,
+                                                                                 Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -7957,16 +8093,17 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public GALG
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_luint readProperty_mOccurrenceFactor (void) const ;
+  public: void setProperty_mOccurrenceFactor (const GALGAS_luint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                const class GALGAS_luint & inOperand1,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                            const class GALGAS_luint & inOperand1,
+                                                                                            Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7985,9 +8122,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public GALG
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMOccurrenceFactor (class GALGAS_luint inArgument0
-                                                             COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -8017,6 +8151,13 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_i
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                   const class GALGAS_luint & inOperand1,
+                                                                                   Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -8130,22 +8271,25 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public GALGAS_i
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (const class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mLabel (void) const ;
+  public: void setProperty_mLabel (const GALGAS_lstring & inValue) ;
 
   public: class GALGAS_uint readProperty_mOffset (void) const ;
+  public: void setProperty_mOffset (const GALGAS_uint & inValue) ;
 
   public: class GALGAS_uint readProperty_mRightShift (void) const ;
+  public: void setProperty_mRightShift (const GALGAS_uint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W init_28__2C__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                    const class GALGAS_lstring & inOperand1,
-                                                                                                    const class GALGAS_uint & inOperand2,
-                                                                                                    const class GALGAS_uint & inOperand3,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                                const class GALGAS_lstring & inOperand1,
+                                                                                                const class GALGAS_uint & inOperand2,
+                                                                                                const class GALGAS_uint & inOperand3,
+                                                                                                Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8166,15 +8310,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public GALGAS_i
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLabel (class GALGAS_lstring inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMOffset (class GALGAS_uint inArgument0
-                                                   COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightShift (class GALGAS_uint inArgument0
-                                                       COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -8204,6 +8339,15 @@ class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public cPtr_ipic_
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                       const class GALGAS_lstring & inOperand1,
+                                                                                       const class GALGAS_uint & inOperand2,
+                                                                                       const class GALGAS_uint & inOperand3,
+                                                                                       Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -8312,19 +8456,21 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : 
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_ipic_31__38_SequentialInstructionList readProperty_mTargetInstructions (void) const ;
+  public: void setProperty_mTargetInstructions (const GALGAS_ipic_31__38_SequentialInstructionList & inValue) ;
 
   public: class GALGAS_bool readProperty_mUsesRCALL (void) const ;
+  public: void setProperty_mUsesRCALL (const GALGAS_bool & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall init_28__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                               const class GALGAS_ipic_31__38_SequentialInstructionList & inOperand1,
-                                                                                                               const class GALGAS_bool & inOperand2,
-                                                                                                               Compiler * inCompiler
-                                                                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                                           const class GALGAS_ipic_31__38_SequentialInstructionList & inOperand1,
+                                                                                                           const class GALGAS_bool & inOperand2,
+                                                                                                           Compiler * inCompiler
+                                                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8344,12 +8490,6 @@ class GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : 
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMTargetInstructions (class GALGAS_ipic_31__38_SequentialInstructionList inArgument0
-                                                               COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMUsesRCALL (class GALGAS_bool inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -8379,6 +8519,14 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : pu
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_init_21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                                  const class GALGAS_ipic_31__38_SequentialInstructionList & inOperand1,
+                                                                                                  const class GALGAS_bool & inOperand2,
+                                                                                                  Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -8536,16 +8684,17 @@ class GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction : public GALGAS_ip
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (const class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_ipic_31__38_SequentialInstruction readProperty_mEmbeddedInstruction (void) const ;
+  public: void setProperty_mEmbeddedInstruction (const GALGAS_ipic_31__38_SequentialInstruction & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                           const class GALGAS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                                       const class GALGAS_ipic_31__38_SequentialInstruction & inOperand1,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8559,9 +8708,6 @@ class GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction : public GALGAS_ip
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMEmbeddedInstruction (class GALGAS_ipic_31__38_SequentialInstruction inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -8591,6 +8737,13 @@ class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_3
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_condition_5F_skip_5F_instruction_init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                              const class GALGAS_ipic_31__38_SequentialInstruction & inOperand1,
+                                                                              Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionSize
   public: virtual class GALGAS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -8713,23 +8866,26 @@ class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public GALGAS_
 //--------------------------------- Constructor from pointer
   public: GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (const class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_bool readProperty_mSkipIfSet (void) const ;
+  public: void setProperty_mSkipIfSet (const GALGAS_bool & inValue) ;
 
   public: class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
+  public: void setProperty_mRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GALGAS_uint readProperty_mBitNumber (void) const ;
+  public: void setProperty_mBitNumber (const GALGAS_uint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip init_28__2C__2C__2C__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                                                         const class GALGAS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                                         const class GALGAS_bool & inOperand2,
-                                                                                                         const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                                         const class GALGAS_uint & inOperand4,
-                                                                                                         Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip init_21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                                     const class GALGAS_ipic_31__38_SequentialInstruction & inOperand1,
+                                                                                                     const class GALGAS_bool & inOperand2,
+                                                                                                     const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                                     const class GALGAS_uint & inOperand4,
+                                                                                                     Compiler * inCompiler
+                                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8751,15 +8907,6 @@ class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public GALGAS_
   public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBitNumber (class GALGAS_uint inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterDescription (class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMSkipIfSet (class GALGAS_bool inArgument0
-                                                      COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -8789,6 +8936,16 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_init_21__21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                                            const class GALGAS_ipic_31__38_SequentialInstruction & inOperand1,
+                                                                                            const class GALGAS_bool & inOperand2,
+                                                                                            const class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                            const class GALGAS_uint & inOperand4,
+                                                                                            Compiler * inCompiler) ;
+
+
 //--- Extension getter instructionDisplay
   public: virtual class GALGAS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
@@ -8904,4 +9061,93 @@ class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak : public
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//                  Phase 1: @ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code enum                  *
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public: GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code (void) ;
+
+//--------------------------------- Enumeration
+  public: typedef enum {
+    kNotBuilt,
+    kEnum_CPFSEQ,
+    kEnum_CPFSGT,
+    kEnum_CPFSLT,
+    kEnum_TSTFSZ
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private: enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
+  public: inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code extractObject (const GALGAS_object & inObject,
+                                                                                                          Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSEQ (LOCATION_ARGS) ;
+
+  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSGT (LOCATION_ARGS) ;
+
+  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSLT (LOCATION_ARGS) ;
+
+  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_TSTFSZ (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCPFSEQ (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCPFSGT (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCPFSLT (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTSTFSZ (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+  public: VIRTUAL_IN_DEBUG bool optional_CPFSEQ () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_CPFSGT () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_CPFSLT () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_TSTFSZ () const ;
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ;
 

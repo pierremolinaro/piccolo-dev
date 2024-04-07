@@ -381,12 +381,12 @@ proc buildOrderedGraph
     print (!"Block ordering optimization... ")
   end
 #-------------------------------- Build label map
-  var symbolTable =@symbolTableForBlockOptimization.emptyMap{}
+  var symbolTable =@symbolTableForBlockOptimization §[]
   for (mBlock) in  ioBlockList do(blockIndex)
     [!?symbolTable insertKey !mBlock.mLabel !blockIndex]
   end
 #---
-  var g =@blockInvocationGraph.emptyGraph{}
+  var g = @blockInvocationGraph.emptyGraph {}
   for (mBlock) in  ioBlockList do
     if mBlock.mAddress == @uint. max then # Only relocatable block
       [!?g addNode !mBlock.mLabel !mBlock.mLabel.string]
@@ -395,9 +395,9 @@ proc buildOrderedGraph
   end
 #----
   [g nodesWithNoPredecessor ?* ?let @lstringlist nodeList]
-  var newOrderedLabelList =@stringlist.emptyList{}
-  var visitedNodeSet =@stringset.emptySet{}
-  var clusterList =@clusterList.emptyList{}
+  var newOrderedLabelList =@stringlist §[]
+  var visitedNodeSet =@stringset §[]
+  var clusterList =@clusterList §[]
   for (mValue) in  nodeList do
     var @blockInvocationGraph gg = [g subgraphFromNodes
       !@lstringlist. listWithValue { !mValue}
@@ -412,7 +412,7 @@ proc buildOrderedGraph
       ?3*
     ]
     newOrderedLabelList += partialOrderedLabelList
-    var cluster =@ipic18BlockList.emptyList{}
+    var cluster =@ipic18BlockList §[]
     for (mValue) in  partialOrderedLabelList do
       [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
       let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
@@ -438,7 +438,7 @@ proc buildOrderedGraph
         ?3*
       ]
       newOrderedLabelList += partialOrderedLabelList
-      var cluster =@ipic18BlockList.emptyList{}
+      var cluster =@ipic18BlockList §[]
       for (mValue) in  partialOrderedLabelList do
         [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
         let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
@@ -448,7 +448,7 @@ proc buildOrderedGraph
     end
   end
 #----------------------- Build sorted block list
-  var orderedBlockList =@ipic18BlockList.emptyList{}
+  var orderedBlockList =@ipic18BlockList §[]
 #--- First insert absolute blocks from 0
   var @bool continue = true
   for (mBlock) in  ioBlockList while continue do
@@ -464,7 +464,7 @@ proc buildOrderedGraph
     orderedBlockList += !b
   end
 #--- First insert absolute blocks from the end
-  let @uint insertionIndex = [orderedBlockList length]
+  let @uint insertionIndex = [orderedBlockList count]
   continue = true
   for > (mBlock) in  ioBlockList while continue do
     continue = mBlock.mAddress != @uint. max
@@ -483,7 +483,7 @@ proc buildOrderedGraph
     [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName+ ".blockOrderingConstraints.dot" ?*]
   end
 #--- Check block definition
-  var newSymbolSet =@stringset.emptySet{}
+  var newSymbolSet =@stringset §[]
   var @bool ok = true
   for (mBlock) in  orderedBlockList do
     if [newSymbolSet hasKey !mBlock.mLabel.string] then
@@ -551,7 +551,7 @@ func blockDiscontinuityCount ?let @ipic18BlockList inBlockList -> @uint outResul
   for (mBlock) in  inBlockList do(blockIndex)
     if mBlock.mAddress == @uint. max then # Only relocatable block
       let @string nextBlockLabel
-      if (blockIndex+1) < [inBlockList length] then
+      if (blockIndex+1) < [inBlockList count] then
         nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
       else
         nextBlockLabel = ""

@@ -198,8 +198,8 @@ proc ipic18StackComputations
   ioListFileContents += "*" + ["STACK COMPUTATIONS" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
 #--- Find all absolute blocks
-  var startLabelsToExplore =@stringset.emptySet{}
-  var blockMapForStackComputation =@blockMapForStackComputation.emptyMap{}
+  var startLabelsToExplore =@stringset §[]
+  var blockMapForStackComputation =@blockMapForStackComputation §[]
   for (mBlock) in  inBlockList do
     if mBlock.mAddress != @uint. max then # Absolute block
       startLabelsToExplore += !mBlock.mLabel.string    
@@ -207,19 +207,19 @@ proc ipic18StackComputations
     [!?blockMapForStackComputation insertKey !mBlock.mLabel !mBlock]
   end
 #--- Explore all blocks to find called routines
-  var @routineCallMap routineCallMap = {}
-  loop( [inBlockList length] + 1)
+  var @routineCallMap routineCallMap = §[]
+  loop( [inBlockList count] + 1)
   while [startLabelsToExplore count] > 0
   do
     let startLabel = [startLabelsToExplore anyString]
     [!?startLabelsToExplore removeKey !startLabel]
   #--- Explore accessible blocks
-    var blockToExploreSet =@stringset.emptySet{}
+    var blockToExploreSet =@stringset §[]
     blockToExploreSet += !startLabel
-    var @stringset exploredBlockSet = {}
-    var @stringset calledRoutineSet = {}
+    var @stringset exploredBlockSet = §[]
+    var @stringset calledRoutineSet = §[]
     var @uint terminatorStackNeeds = 0
-    loop( [inBlockList length] + 1)
+    loop( [inBlockList count] + 1)
     while [blockToExploreSet count] > 0
     do
       let @string b = [blockToExploreSet anyString]
@@ -247,14 +247,14 @@ proc ipic18StackComputations
   end
 #  log routineCallMap ;
 #--- Compute stack requirement of every routine
-  var @routineStackRequirementMap routineStackRequirementMap = {}
+  var @routineStackRequirementMap routineStackRequirementMap = §[]
   var progress = true
   loop( [routineCallMap count] + 1)
   while progress
   do
     progress = false
     let @routineCallMap tempRoutineCallMap = routineCallMap
-    routineCallMap = {}
+    routineCallMap = §[]
     for (lkey mCalledRoutineSet mTerminatorStackNeeds) in  tempRoutineCallMap do
       var @uint levels = mTerminatorStackNeeds
       var @bool solved = true

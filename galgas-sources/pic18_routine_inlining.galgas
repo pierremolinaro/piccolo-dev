@@ -30,7 +30,7 @@ override method @pic18Instruction_block performInlining
   ?let @stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 {
-  var @pic18BlockInstructionBlockList inlinedBlockList = {}
+  var @pic18BlockInstructionBlockList inlinedBlockList = §[]
   for (mBlockName mInstructionList mBlockTerminaisonForBlockInstruction mEndOfBlock) in self.mBlockList do
     performInlineFromInstructionList (
       !mInstructionList
@@ -45,7 +45,7 @@ override method @pic18Instruction_block performInlining
       !mBlockTerminaisonForBlockInstruction
       !mEndOfBlock
   end
-  ioInstructionList += !@pic18Instruction_block.new {
+  ioInstructionList += !@pic18Instruction_block.init {
     !self.mInstructionLocation
     !self.mStartBlockName
     !inlinedBlockList
@@ -68,7 +68,7 @@ override method @pic18Instruction_FOREVER performInlining
     !inCurrentlyInlinedRoutineSet
     ?let @pic18InstructionList instructionList
   )
-  ioInstructionList += !@pic18Instruction_FOREVER. new {
+  ioInstructionList += !@pic18Instruction_FOREVER.init {
     !self.mInstructionLocation
     !instructionList
     !self.mEndOfInstructionList}
@@ -88,7 +88,7 @@ override method @pic18Instruction_do_while performInlining
     !inCurrentlyInlinedRoutineSet
     ?let @pic18InstructionList repeatedInstructionList
   )
-  var whilePartList =@pic18DoWhilePartList.emptyList{}
+  var whilePartList =@pic18DoWhilePartList §[]
   for (mCondition mInstructionList mEndOfPartLocation) in  self.mWhilePartList do
     performInlineFromInstructionList (
       !mInstructionList
@@ -99,7 +99,7 @@ override method @pic18Instruction_do_while performInlining
     )
     whilePartList += !mCondition !instructionList !mEndOfPartLocation
   end
-  ioInstructionList += !@pic18Instruction_do_while. new {
+  ioInstructionList += !@pic18Instruction_do_while.init {
     !self.mInstructionLocation
     !repeatedInstructionList
     !self.mEndOfRepeatedInstructionList
@@ -120,7 +120,7 @@ override method @pic18Instruction_savebank performInlining
     !inCurrentlyInlinedRoutineSet
     ?let @pic18InstructionList instructionList
   )
-  ioInstructionList += !@pic18Instruction_savebank. new {
+  ioInstructionList += !@pic18Instruction_savebank.init {
     !self.mInstructionLocation
     !self.mRegister
     !instructionList
@@ -148,7 +148,7 @@ override method @pic18Instruction_structured_if performInlining
     !inCurrentlyInlinedRoutineSet
     ?let @pic18InstructionList elseInstructionList
   )
-  ioInstructionList += !@pic18Instruction_structured_if. new {
+  ioInstructionList += !@pic18Instruction_structured_if.init {
     !self.mInstructionLocation
     !self.mIfCondition
     !thenInstructionList
@@ -179,7 +179,7 @@ override method @pic18Instruction_JSR performInlining
       error self.mTargetLabel: "a \"noreturn\" routine cannot be inlined" : inlineDone
     else
       if requiredBank.uint != @uint. max then
-        ioInstructionList += !@pic18Instruction_checkbank. new { !self.mInstructionLocation !requiredBank.uint}
+        ioInstructionList += !@pic18Instruction_checkbank.init { !self.mInstructionLocation !requiredBank.uint}
       end
       var @stringset currentlyInlinedRoutineSet = inCurrentlyInlinedRoutineSet
       currentlyInlinedRoutineSet += !self.mTargetLabel.string
@@ -210,7 +210,7 @@ proc performInlineFromInstructionList
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?let @stringset inCurrentlyInlinedRoutineSet
   !@pic18InstructionList outInstructionList {
-  outInstructionList = @pic18InstructionList. emptyList
+  outInstructionList = @pic18InstructionList §[]
   for (mInstruction) in  inInstructionList do
     [mInstruction performInlining
       !inInlinedRoutineSet
@@ -230,7 +230,7 @@ proc pic18PerformRoutineInline
   ?!@pic18RoutineDefinitionList ioRoutineDefinitionList
 {
 #--- Interrupt routines
-  var interruptDefinitionList =@pic18InterruptDefinitionList.emptyList{}
+  var interruptDefinitionList =@pic18InterruptDefinitionList §[]
   for (mInterruptName mFastReturn mInstructionList mEndOfInterruptLocation) in  ioInterruptDefinitionList do
     performInlineFromInstructionList (
       !mInstructionList
@@ -247,7 +247,7 @@ proc pic18PerformRoutineInline
   end
   ioInterruptDefinitionList = interruptDefinitionList
 #--- Regular routines
-  var routineDefinitionList =@pic18RoutineDefinitionList.emptyList{}
+  var routineDefinitionList =@pic18RoutineDefinitionList §[]
   for (mRoutineName mRequiredBank mReturnedBank mPreservesBank mIsNoReturn mInstructionList mEndOfRoutineLocation) in  ioRoutineDefinitionList do
     performInlineFromInstructionList (
       !mInstructionList

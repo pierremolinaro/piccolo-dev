@@ -16,7 +16,7 @@
 
 class cParser_pic_31__38__5F_start_5F_symbol {
 //--- Virtual destructor
-  public: virtual ~ cParser_pic_31__38__5F_start_5F_symbol (void) {}
+  public: virtual ~ cParser_pic_31__38__5F_start_5F_symbol (void) { }
 
 //--- Non terminal declarations
   protected: virtual void nt_body_ (class GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
@@ -482,25 +482,25 @@ class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_pic_31__38_AST init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                                                     const class GALGAS_programKind & inOperand1,
-                                                                                                                     const class GALGAS_lstring & inOperand2,
-                                                                                                                     const class GALGAS_configDefinitionList & inOperand3,
-                                                                                                                     const class GALGAS_ramDefinitionList & inOperand4,
-                                                                                                                     const class GALGAS_lstringlist & inOperand5,
-                                                                                                                     const class GALGAS_checkpicList & inOperand6,
-                                                                                                                     const class GALGAS_dataList & inOperand7,
-                                                                                                                     const class GALGAS_pic_31__38_InterruptDefinitionList & inOperand8,
-                                                                                                                     const class GALGAS_constantDefinitionList & inOperand9,
-                                                                                                                     const class GALGAS_pic_31__38_RoutineDefinitionList & inOperand10,
-                                                                                                                     const class GALGAS_pic_31__38_MacroDefinitionList & inOperand11,
-                                                                                                                     const class GALGAS_lstringlist & inOperand12,
-                                                                                                                     const class GALGAS_lstringlist & inOperand13,
-                                                                                                                     const class GALGAS_bool & inOperand14,
-                                                                                                                     const class GALGAS_bool & inOperand15,
-                                                                                                                     const class GALGAS_location & inOperand16,
-                                                                                                                     Compiler * inCompiler
-                                                                                                                     COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_pic_31__38_AST init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                                                                 const class GALGAS_programKind & inOperand1,
+                                                                                                                 const class GALGAS_lstring & inOperand2,
+                                                                                                                 const class GALGAS_configDefinitionList & inOperand3,
+                                                                                                                 const class GALGAS_ramDefinitionList & inOperand4,
+                                                                                                                 const class GALGAS_lstringlist & inOperand5,
+                                                                                                                 const class GALGAS_checkpicList & inOperand6,
+                                                                                                                 const class GALGAS_dataList & inOperand7,
+                                                                                                                 const class GALGAS_pic_31__38_InterruptDefinitionList & inOperand8,
+                                                                                                                 const class GALGAS_constantDefinitionList & inOperand9,
+                                                                                                                 const class GALGAS_pic_31__38_RoutineDefinitionList & inOperand10,
+                                                                                                                 const class GALGAS_pic_31__38_MacroDefinitionList & inOperand11,
+                                                                                                                 const class GALGAS_lstringlist & inOperand12,
+                                                                                                                 const class GALGAS_lstringlist & inOperand13,
+                                                                                                                 const class GALGAS_bool & inOperand14,
+                                                                                                                 const class GALGAS_bool & inOperand15,
+                                                                                                                 const class GALGAS_location & inOperand16,
+                                                                                                                 Compiler * inCompiler
+                                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -930,18 +930,18 @@ class GALGAS_piccoloDeviceModel : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_piccoloDeviceModel init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                             const class GALGAS_processorType & inOperand1,
-                                                                                             const class GALGAS_luint & inOperand2,
-                                                                                             const class GALGAS_luint & inOperand3,
-                                                                                             const class GALGAS_registerTable & inOperand4,
-                                                                                             const class GALGAS_ramBankTable & inOperand5,
-                                                                                             const class GALGAS_uint & inOperand6,
-                                                                                             const class GALGAS_uint & inOperand7,
-                                                                                             const class GALGAS_configRegisterMap & inOperand8,
-                                                                                             const class GALGAS_string & inOperand9,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_piccoloDeviceModel init_21__21__21__21__21__21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                                         const class GALGAS_processorType & inOperand1,
+                                                                                         const class GALGAS_luint & inOperand2,
+                                                                                         const class GALGAS_luint & inOperand3,
+                                                                                         const class GALGAS_registerTable & inOperand4,
+                                                                                         const class GALGAS_ramBankTable & inOperand5,
+                                                                                         const class GALGAS_uint & inOperand6,
+                                                                                         const class GALGAS_uint & inOperand7,
+                                                                                         const class GALGAS_configRegisterMap & inOperand8,
+                                                                                         const class GALGAS_string & inOperand9,
+                                                                                         Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -998,7 +998,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_piccoloDeviceModel 
 
 class cParser_midrange_5F_syntax {
 //--- Virtual destructor
-  public: virtual ~ cParser_midrange_5F_syntax (void) {}
+  public: virtual ~ cParser_midrange_5F_syntax (void) { }
 
 //--- Non terminal declarations
   protected: virtual void nt_bit_5F_number_5F_parsing_ (class GALGAS_bitNumberExpression & outArgument0,
@@ -1501,20 +1501,20 @@ class GALGAS_midrange_5F_model : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_midrange_5F_model init_28__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                                    const class GALGAS_lstring & inOperand1,
-                                                                                                    const class GALGAS_configDefinitionList & inOperand2,
-                                                                                                    const class GALGAS_ramDefinitionList & inOperand3,
-                                                                                                    const class GALGAS_lstringlist & inOperand4,
-                                                                                                    const class GALGAS_midrange_5F_interruptDefinitionList & inOperand5,
-                                                                                                    const class GALGAS_constantDefinitionList & inOperand6,
-                                                                                                    const class GALGAS_midrange_5F_routineDefinitionList & inOperand7,
-                                                                                                    const class GALGAS_lstringlist & inOperand8,
-                                                                                                    const class GALGAS_bool & inOperand9,
-                                                                                                    const class GALGAS_bool & inOperand10,
-                                                                                                    const class GALGAS_location & inOperand11,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_midrange_5F_model init_21__21__21__21__21__21__21__21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                                                const class GALGAS_lstring & inOperand1,
+                                                                                                const class GALGAS_configDefinitionList & inOperand2,
+                                                                                                const class GALGAS_ramDefinitionList & inOperand3,
+                                                                                                const class GALGAS_lstringlist & inOperand4,
+                                                                                                const class GALGAS_midrange_5F_interruptDefinitionList & inOperand5,
+                                                                                                const class GALGAS_constantDefinitionList & inOperand6,
+                                                                                                const class GALGAS_midrange_5F_routineDefinitionList & inOperand7,
+                                                                                                const class GALGAS_lstringlist & inOperand8,
+                                                                                                const class GALGAS_bool & inOperand9,
+                                                                                                const class GALGAS_bool & inOperand10,
+                                                                                                const class GALGAS_location & inOperand11,
+                                                                                                Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1573,7 +1573,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_model ;
 
 class cParser_baseline_5F_syntax {
 //--- Virtual destructor
-  public: virtual ~ cParser_baseline_5F_syntax (void) {}
+  public: virtual ~ cParser_baseline_5F_syntax (void) { }
 
 //--- Non terminal declarations
   protected: virtual void nt_baseline_5F_condition_5F_expression_ (class GALGAS_baseline_5F_conditionExpression & outArgument0,
@@ -1865,7 +1865,7 @@ class cParser_baseline_5F_syntax {
 
 class cParser_baseline_5F_program {
 //--- Virtual destructor
-  public: virtual ~ cParser_baseline_5F_program (void) {}
+  public: virtual ~ cParser_baseline_5F_program (void) { }
 
 //--- Non terminal declarations
   protected: virtual void nt_section_5F_list_ (class GALGAS_baseline_5F_routineDefinitionList & ioArgument0,
@@ -2050,17 +2050,17 @@ class GALGAS_baseline_5F_model : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_baseline_5F_model init_28__2C__2C__2C__2C__2C__2C__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                        const class GALGAS_lstring & inOperand1,
-                                                                                        const class GALGAS_configDefinitionList & inOperand2,
-                                                                                        const class GALGAS_ramDefinitionList & inOperand3,
-                                                                                        const class GALGAS_lstringlist & inOperand4,
-                                                                                        const class GALGAS_constantDefinitionList & inOperand5,
-                                                                                        const class GALGAS_baseline_5F_routineDefinitionList & inOperand6,
-                                                                                        const class GALGAS_lstringlist & inOperand7,
-                                                                                        const class GALGAS_location & inOperand8,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_baseline_5F_model init_21__21__21__21__21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                                    const class GALGAS_lstring & inOperand1,
+                                                                                    const class GALGAS_configDefinitionList & inOperand2,
+                                                                                    const class GALGAS_ramDefinitionList & inOperand3,
+                                                                                    const class GALGAS_lstringlist & inOperand4,
+                                                                                    const class GALGAS_constantDefinitionList & inOperand5,
+                                                                                    const class GALGAS_baseline_5F_routineDefinitionList & inOperand6,
+                                                                                    const class GALGAS_lstringlist & inOperand7,
+                                                                                    const class GALGAS_location & inOperand8,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2116,7 +2116,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_model ;
 
 class cParser_pic_31__38__5F_bootloader_5F_syntax {
 //--- Virtual destructor
-  public: virtual ~ cParser_pic_31__38__5F_bootloader_5F_syntax (void) {}
+  public: virtual ~ cParser_pic_31__38__5F_bootloader_5F_syntax (void) { }
 
 //--- Non terminal declarations
   protected: virtual void nt_parse_5F_bootloader_ (class GALGAS_lstring & outArgument0,

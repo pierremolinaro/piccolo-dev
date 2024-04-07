@@ -37,17 +37,17 @@ rule <start_symbol> {
   end
   $literal_string$ ? deviceNameOrBootloaderReference
   $:$
-  var interruptDefinitionList =@pic18InterruptDefinitionList.emptyList{}
-  var routineDefinitionList =@pic18RoutineDefinitionList.emptyList{}
-  var @pic18MacroDefinitionList macroDefinitionList = {}
-  var unusedRoutineList =@lstringlist.emptyList{}
-  var ramDefinitionList =@ramDefinitionList.emptyList{}
-  var unusedRegisterList =@lstringlist.emptyList{}
-  var configDefinitionList =@configDefinitionList.emptyList{}
-  var constantDefinitionList =@constantDefinitionList.emptyList{}
-  var dataList =@dataList.emptyList{}
-  var checkpicList =@checkpicList.emptyList{}
-  var inlinedRoutineList =@lstringlist.emptyList{}
+  var interruptDefinitionList =@pic18InterruptDefinitionList §[]
+  var routineDefinitionList =@pic18RoutineDefinitionList §[]
+  var @pic18MacroDefinitionList macroDefinitionList = §[]
+  var unusedRoutineList =@lstringlist §[]
+  var ramDefinitionList =@ramDefinitionList §[]
+  var unusedRegisterList =@lstringlist §[]
+  var configDefinitionList =@configDefinitionList §[]
+  var constantDefinitionList =@constantDefinitionList §[]
+  var dataList =@dataList §[]
+  var checkpicList =@checkpicList §[]
+  var inlinedRoutineList =@lstringlist §[]
   var @bool needsComputedGoto2 = false
   var @bool needsComputedGoto4 = false
   <body>
@@ -67,7 +67,7 @@ rule <start_symbol> {
   $end$
 #--- Semantic analysis
   if @uint. errorCount == 0 then
-    let piccoloModel = @pic18AST.new{
+    let piccoloModel = @pic18AST.init{
       !programName
       !programKind
       !deviceNameOrBootloaderReference

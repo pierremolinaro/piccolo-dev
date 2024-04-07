@@ -594,7 +594,7 @@ func pic18_CALL_instruction_code
   ?let @uint inTargetAddress
   ?let @lstring inTargetLabel
   ->@codeList outCode {
-  var binaryCode =@uintlist.emptyList{}
+  var binaryCode =@uintlist §[]
   binaryCode += !0xEC00 | ((inTargetAddress >> 1) & 255)
   binaryCode += !0xF000 | (inTargetAddress >> 9)
   outCode = @codeList. listWithValue {
@@ -608,7 +608,7 @@ func pic18_GOTO_instruction_code
   ?let @uint inTargetAddress
   ?let @lstring inTargetLabel
   ->@codeList outCode {
-  var binaryCode =@uintlist.emptyList{}
+  var binaryCode =@uintlist §[]
   binaryCode += !0xEF00 | ((inTargetAddress >> 1) & 255)
   binaryCode += !0xF000 | (inTargetAddress >> 9)
   outCode = @codeList. listWithValue {
@@ -623,7 +623,7 @@ func pic18_definition_label
   ->@codeList outCode {
   outCode = @codeList. listWithValue {
     !inTargetLabel.string + ":"
-    !@uintlist. emptyList}
+    !@uintlist §[]}
 }
 
 #----------------------------------------------------------------------------*

@@ -296,12 +296,12 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #---
-  var usedRegisters =@stringset.emptySet{}
+  var usedRegisters =@stringset §[]
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Get values for PCLATH register
-  let PCLATH_register = @registerExpression.new {
-    !@lstring. new {!"PCLATH" !.here}
-    !@immediatInteger.new {!.new {!0 !@location.here}}
+  let PCLATH_register = @registerExpression.init {
+    !@lstring.init {!"PCLATH" !.here}
+    !@immediatInteger.init {!.init {!0 !@location.here}}
     !.here
   }
   [PCLATH_register resolveMidrangeAccess
@@ -376,13 +376,13 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioAddress {
-  var usedRegisters =@stringset.emptySet{}
+  var usedRegisters =@stringset §[]
 #---
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Get values for PCLATH register
-  let PCLATH_register = @registerExpression.new{
-    !@lstring.new {!"PCLATH" !@location.here}
-    !@immediatInteger.new {!.new {!0 !@location.here}}
+  let PCLATH_register = @registerExpression.init{
+    !@lstring.init {!"PCLATH" !@location.here}
+    !@immediatInteger.init {!.init {!0 !@location.here}}
     !.here
   }
   [PCLATH_register resolveMidrangeAccess
@@ -508,7 +508,7 @@ override method @midrange_intermediate_incDecRegisterInCondition generateBinaryC
     emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !"$ + 2" !ioAddress + 2 !?ioListFileContents )
   end
 #--- Generate GOTO instruction
-  [inRoutineSymbolTable searchKey !@lstring. new { !self.mTargetLabel !@location.here} ?let targetAddress]
+  [inRoutineSymbolTable searchKey !@lstring.init { !self.mTargetLabel !@location.here} ?let targetAddress]
   emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !self.mTargetLabel !targetAddress !?ioListFileContents )
 }
 
@@ -668,7 +668,7 @@ proc build_midrange_ipic_binary_code
   ?!@string ioListFileContents
   !@uint outUsedROMsize {
 #-------------------------------- First pass: build label map
-  var symbolTable =@midrange_symbolTable.emptyMap{}
+  var symbolTable =@midrange_symbolTable §[]
   var @uint currentAddress = 0
   for (mInstruction) in  inGeneratedInstructionList do
     [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress]

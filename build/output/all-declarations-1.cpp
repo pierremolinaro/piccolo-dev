@@ -1650,36 +1650,12 @@ GALGAS_baseline_5F_instruction::GALGAS_baseline_5F_instruction (void) :
 AC_GALGAS_reference_class () {
 }
 
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instruction::init_28__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) {
-  cPtr_baseline_5F_instruction * object = nullptr ;
-  macroMyNew (object, cPtr_baseline_5F_instruction (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  const GALGAS_baseline_5F_instruction result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_instruction::GALGAS_baseline_5F_instruction (const cPtr_baseline_5F_instruction * inSourcePtr) :
 AC_GALGAS_reference_class (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_instruction) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction::setter_setMInstructionLocation (GALGAS_location inValue
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction * p = (cPtr_baseline_5F_instruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction) ;
-    p->mProperty_mInstructionLocation = inValue ;
-  }
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_baseline_5F_instruction::readProperty_mInstructionLocation (void) const {
@@ -1693,13 +1669,24 @@ GALGAS_location GALGAS_baseline_5F_instruction::readProperty_mInstructionLocatio
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction::setProperty_mInstructionLocation (const GALGAS_location & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction * p = (cPtr_baseline_5F_instruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction) ;
+    p->mProperty_mInstructionLocation = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_instruction class
 //--------------------------------------------------------------------------------------------------
 
 cPtr_baseline_5F_instruction::cPtr_baseline_5F_instruction (const GALGAS_location & in_mInstructionLocation
                                                             COMMA_LOCATION_ARGS) :
 acStrongPtr_class (THERE),
-mProperty_mInstructionLocation (in_mInstructionLocation) {
+mProperty_mInstructionLocation () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
 }
 
 
@@ -3093,18 +3080,28 @@ GALGAS_baseline_5F_instruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::init_28__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                      const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
-                                                                                                                      Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::
+init_21__21_ (const GALGAS_location & in_mInstructionLocation,
+              const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mInstruction = in_mInstruction ;
+  object->baseline_5F_instruction_5F_WO_5F_OPERAND_init_21__21_ (in_mInstructionLocation, in_mInstruction, inCompiler) ;
   const GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::
+baseline_5F_instruction_5F_WO_5F_OPERAND_init_21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                       const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+                                                       Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3114,25 +3111,12 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                 const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inAttribute_mInstruction
+GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                 const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
                                                                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (inAttribute_mInstructionLocation, inAttribute_mInstruction COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (in_mInstructionLocation, in_mInstruction COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::setter_setMInstruction (GALGAS_baseline_5F_WO_5F_OPERAND_5F_group inValue
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND) ;
-    p->mProperty_mInstruction = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3148,6 +3132,16 @@ GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_instruction_5F_WO_5
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND::setProperty_mInstruction (const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND) ;
+    p->mProperty_mInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_instruction_WO_OPERAND class
 //--------------------------------------------------------------------------------------------------
 
@@ -3155,7 +3149,9 @@ cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::cPtr_baseline_5F_instruction_5F_W
                                                                                               const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
                                                                                               COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mInstruction (in_mInstruction) {
+mProperty_mInstruction () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3509,20 +3505,31 @@ GALGAS_baseline_5F_instruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_instruction_5F_literalOperation GALGAS_baseline_5F_instruction_5F_literalOperation::init_28__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
-                                                                                                                                const GALGAS_immediatExpression & in_mImmediatExpression,
-                                                                                                                                Compiler * inCompiler
-                                                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_literalOperation GALGAS_baseline_5F_instruction_5F_literalOperation::
+init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                  const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
+                  const GALGAS_immediatExpression & in_mImmediatExpression,
+                  Compiler * inCompiler
+                  COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_instruction_5F_literalOperation * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_instruction_5F_literalOperation (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mLiteralInstruction = in_mLiteralInstruction ;
-  object->mProperty_mImmediatExpression = in_mImmediatExpression ;
+  object->baseline_5F_instruction_5F_literalOperation_init_21__21__21_ (in_mInstructionLocation, in_mLiteralInstruction, in_mImmediatExpression, inCompiler) ;
   const GALGAS_baseline_5F_instruction_5F_literalOperation result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_instruction_5F_literalOperation::
+baseline_5F_instruction_5F_literalOperation_init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                              const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
+                                                              const GALGAS_immediatExpression & in_mImmediatExpression,
+                                                              Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mLiteralInstruction = in_mLiteralInstruction ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3532,37 +3539,13 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_literalOperation GALGAS_baseline_5F_instruction_5F_literalOperation::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                       const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inAttribute_mLiteralInstruction,
-                                                                                                                       const GALGAS_immediatExpression & inAttribute_mImmediatExpression
+GALGAS_baseline_5F_instruction_5F_literalOperation GALGAS_baseline_5F_instruction_5F_literalOperation::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                       const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
+                                                                                                                       const GALGAS_immediatExpression & in_mImmediatExpression
                                                                                                                        COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_literalOperation result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mLiteralInstruction.isValid () && inAttribute_mImmediatExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_literalOperation (inAttribute_mInstructionLocation, inAttribute_mLiteralInstruction, inAttribute_mImmediatExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_literalOperation (in_mInstructionLocation, in_mLiteralInstruction, in_mImmediatExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_literalOperation::setter_setMLiteralInstruction (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode inValue
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mLiteralInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_literalOperation::setter_setMImmediatExpression (GALGAS_immediatExpression inValue
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mImmediatExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3579,6 +3562,16 @@ GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_instructi
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_instruction_5F_literalOperation::setProperty_mLiteralInstruction (const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_literalOperation) ;
+    p->mProperty_mLiteralInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_literalOperation::readProperty_mImmediatExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_immediatExpression () ;
@@ -3586,6 +3579,16 @@ GALGAS_immediatExpression GALGAS_baseline_5F_instruction_5F_literalOperation::re
     cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_literalOperation) ;
     return p->mProperty_mImmediatExpression ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_literalOperation::setProperty_mImmediatExpression (const GALGAS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_literalOperation) ;
+    p->mProperty_mImmediatExpression = inValue ;
   }
 }
 
@@ -3598,8 +3601,11 @@ cPtr_baseline_5F_instruction_5F_literalOperation::cPtr_baseline_5F_instruction_5
                                                                                                     const GALGAS_immediatExpression & in_mImmediatExpression
                                                                                                     COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mLiteralInstruction (in_mLiteralInstruction),
-mProperty_mImmediatExpression (in_mImmediatExpression) {
+mProperty_mLiteralInstruction (),
+mProperty_mImmediatExpression () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mLiteralInstruction = in_mLiteralInstruction ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3840,18 +3846,28 @@ GALGAS_baseline_5F_instruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_instruction_5F_MNOP GALGAS_baseline_5F_instruction_5F_MNOP::init_28__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                    const GALGAS_luint & in_mOccurrenceFactor,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_MNOP GALGAS_baseline_5F_instruction_5F_MNOP::
+init_21__21_ (const GALGAS_location & in_mInstructionLocation,
+              const GALGAS_luint & in_mOccurrenceFactor,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_instruction_5F_MNOP * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_instruction_5F_MNOP (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mOccurrenceFactor = in_mOccurrenceFactor ;
+  object->baseline_5F_instruction_5F_MNOP_init_21__21_ (in_mInstructionLocation, in_mOccurrenceFactor, inCompiler) ;
   const GALGAS_baseline_5F_instruction_5F_MNOP result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_instruction_5F_MNOP::
+baseline_5F_instruction_5F_MNOP_init_21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                              const GALGAS_luint & in_mOccurrenceFactor,
+                                              Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mOccurrenceFactor = in_mOccurrenceFactor ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -3861,25 +3877,12 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_MNOP GALGAS_baseline_5F_instruction_5F_MNOP::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                               const GALGAS_luint & inAttribute_mOccurrenceFactor
+GALGAS_baseline_5F_instruction_5F_MNOP GALGAS_baseline_5F_instruction_5F_MNOP::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                               const GALGAS_luint & in_mOccurrenceFactor
                                                                                                COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_MNOP result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mOccurrenceFactor.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_MNOP (inAttribute_mInstructionLocation, inAttribute_mOccurrenceFactor COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_MNOP (in_mInstructionLocation, in_mOccurrenceFactor COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_MNOP::setter_setMOccurrenceFactor (GALGAS_luint inValue
-                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_instruction_5F_MNOP *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_MNOP) ;
-    p->mProperty_mOccurrenceFactor = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3895,6 +3898,16 @@ GALGAS_luint GALGAS_baseline_5F_instruction_5F_MNOP::readProperty_mOccurrenceFac
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_MNOP::setProperty_mOccurrenceFactor (const GALGAS_luint & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_instruction_5F_MNOP *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_MNOP) ;
+    p->mProperty_mOccurrenceFactor = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_instruction_MNOP class
 //--------------------------------------------------------------------------------------------------
 
@@ -3902,7 +3915,9 @@ cPtr_baseline_5F_instruction_5F_MNOP::cPtr_baseline_5F_instruction_5F_MNOP (cons
                                                                             const GALGAS_luint & in_mOccurrenceFactor
                                                                             COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mOccurrenceFactor (in_mOccurrenceFactor) {
+mProperty_mOccurrenceFactor () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mOccurrenceFactor = in_mOccurrenceFactor ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4146,20 +4161,31 @@ GALGAS_baseline_5F_instruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_instruction_5F_FOREVER GALGAS_baseline_5F_instruction_5F_FOREVER::init_28__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                              const GALGAS_baseline_5F_instructionList & in_mInstructionList,
-                                                                                                              const GALGAS_location & in_mEndOfInstructionList,
-                                                                                                              Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_FOREVER GALGAS_baseline_5F_instruction_5F_FOREVER::
+init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                  const GALGAS_baseline_5F_instructionList & in_mInstructionList,
+                  const GALGAS_location & in_mEndOfInstructionList,
+                  Compiler * inCompiler
+                  COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_instruction_5F_FOREVER * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_instruction_5F_FOREVER (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mInstructionList = in_mInstructionList ;
-  object->mProperty_mEndOfInstructionList = in_mEndOfInstructionList ;
+  object->baseline_5F_instruction_5F_FOREVER_init_21__21__21_ (in_mInstructionLocation, in_mInstructionList, in_mEndOfInstructionList, inCompiler) ;
   const GALGAS_baseline_5F_instruction_5F_FOREVER result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_instruction_5F_FOREVER::
+baseline_5F_instruction_5F_FOREVER_init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                     const GALGAS_baseline_5F_instructionList & in_mInstructionList,
+                                                     const GALGAS_location & in_mEndOfInstructionList,
+                                                     Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mEndOfInstructionList = in_mEndOfInstructionList ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4169,37 +4195,13 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_FOREVER GALGAS_baseline_5F_instruction_5F_FOREVER::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                     const GALGAS_baseline_5F_instructionList & inAttribute_mInstructionList,
-                                                                                                     const GALGAS_location & inAttribute_mEndOfInstructionList
+GALGAS_baseline_5F_instruction_5F_FOREVER GALGAS_baseline_5F_instruction_5F_FOREVER::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                     const GALGAS_baseline_5F_instructionList & in_mInstructionList,
+                                                                                                     const GALGAS_location & in_mEndOfInstructionList
                                                                                                      COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_FOREVER result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstructionList.isValid () && inAttribute_mEndOfInstructionList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_FOREVER (inAttribute_mInstructionLocation, inAttribute_mInstructionList, inAttribute_mEndOfInstructionList COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_FOREVER (in_mInstructionLocation, in_mInstructionList, in_mEndOfInstructionList COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_FOREVER::setter_setMInstructionList (GALGAS_baseline_5F_instructionList inValue
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_FOREVER) ;
-    p->mProperty_mInstructionList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_FOREVER::setter_setMEndOfInstructionList (GALGAS_location inValue
-                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_FOREVER) ;
-    p->mProperty_mEndOfInstructionList = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4216,6 +4218,16 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_FOREVER::re
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_instruction_5F_FOREVER::setProperty_mInstructionList (const GALGAS_baseline_5F_instructionList & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_FOREVER) ;
+    p->mProperty_mInstructionList = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_location GALGAS_baseline_5F_instruction_5F_FOREVER::readProperty_mEndOfInstructionList (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_location () ;
@@ -4223,6 +4235,16 @@ GALGAS_location GALGAS_baseline_5F_instruction_5F_FOREVER::readProperty_mEndOfIn
     cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_FOREVER) ;
     return p->mProperty_mEndOfInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_FOREVER::setProperty_mEndOfInstructionList (const GALGAS_location & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_FOREVER) ;
+    p->mProperty_mEndOfInstructionList = inValue ;
   }
 }
 
@@ -4235,8 +4257,11 @@ cPtr_baseline_5F_instruction_5F_FOREVER::cPtr_baseline_5F_instruction_5F_FOREVER
                                                                                   const GALGAS_location & in_mEndOfInstructionList
                                                                                   COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mInstructionList (in_mInstructionList),
-mProperty_mEndOfInstructionList (in_mEndOfInstructionList) {
+mProperty_mInstructionList (),
+mProperty_mEndOfInstructionList () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mEndOfInstructionList = in_mEndOfInstructionList ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4571,38 +4596,12 @@ GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::GALGAS_baseline_5F_instru
 GALGAS_baseline_5F_instruction () {
 }
 
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::init_28__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                  const GALGAS_baseline_5F_instruction & in_mInstruction,
-                                                                                                                                  Compiler * inCompiler
-                                                                                                                                  COMMA_LOCATION_ARGS) {
-  cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * object = nullptr ;
-  macroMyNew (object, cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mInstruction = in_mInstruction ;
-  const GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (const cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * inSourcePtr) :
 GALGAS_baseline_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::setter_setMInstruction (GALGAS_baseline_5F_instruction inValue
-                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::readProperty_mInstruction (void) const {
@@ -4616,6 +4615,16 @@ GALGAS_baseline_5F_instruction GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_C
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::setProperty_mInstruction (const GALGAS_baseline_5F_instruction & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON) ;
+    p->mProperty_mInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_instruction_IF_SEMI_COLON class
 //--------------------------------------------------------------------------------------------------
 
@@ -4623,7 +4632,9 @@ cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::cPtr_baseline_5F_instructio
                                                                                                           const GALGAS_baseline_5F_instruction & in_mInstruction
                                                                                                           COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mInstruction (in_mInstruction) {
+mProperty_mInstruction () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
 }
 
 
@@ -5041,17 +5052,6 @@ GALGAS_baseline_5F_conditionExpression::GALGAS_baseline_5F_conditionExpression (
 AC_GALGAS_reference_class () {
 }
 
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_conditionExpression::init_28__29_ (Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) {
-  cPtr_baseline_5F_conditionExpression * object = nullptr ;
-  macroMyNew (object, cPtr_baseline_5F_conditionExpression (inCompiler COMMA_THERE)) ;
-  const GALGAS_baseline_5F_conditionExpression result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_conditionExpression::GALGAS_baseline_5F_conditionExpression (const cPtr_baseline_5F_conditionExpression * inSourcePtr) :
@@ -5386,16 +5386,25 @@ GALGAS_baseline_5F_conditionExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_negateCondition GALGAS_baseline_5F_negateCondition::init_28__29_ (const GALGAS_baseline_5F_conditionExpression & in_mCondition,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_negateCondition GALGAS_baseline_5F_negateCondition::
+init_21_ (const GALGAS_baseline_5F_conditionExpression & in_mCondition,
+          Compiler * inCompiler
+          COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_negateCondition * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_negateCondition (inCompiler COMMA_THERE)) ;
-  object->mProperty_mCondition = in_mCondition ;
+  object->baseline_5F_negateCondition_init_21_ (in_mCondition, inCompiler) ;
   const GALGAS_baseline_5F_negateCondition result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_negateCondition::
+baseline_5F_negateCondition_init_21_ (const GALGAS_baseline_5F_conditionExpression & in_mCondition,
+                                      Compiler * /* inCompiler */) {
+  mProperty_mCondition = in_mCondition ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5405,24 +5414,11 @@ GALGAS_baseline_5F_conditionExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_negateCondition GALGAS_baseline_5F_negateCondition::class_func_new (const GALGAS_baseline_5F_conditionExpression & inAttribute_mCondition
+GALGAS_baseline_5F_negateCondition GALGAS_baseline_5F_negateCondition::class_func_new (const GALGAS_baseline_5F_conditionExpression & in_mCondition
                                                                                        COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_negateCondition result ;
-  if (inAttribute_mCondition.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_negateCondition (inAttribute_mCondition COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_negateCondition (in_mCondition COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_negateCondition::setter_setMCondition (GALGAS_baseline_5F_conditionExpression inValue
-                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_negateCondition * p = (cPtr_baseline_5F_negateCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_negateCondition) ;
-    p->mProperty_mCondition = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5438,13 +5434,24 @@ GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_negateCondition::readP
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_negateCondition::setProperty_mCondition (const GALGAS_baseline_5F_conditionExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_negateCondition * p = (cPtr_baseline_5F_negateCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_negateCondition) ;
+    p->mProperty_mCondition = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_negateCondition class
 //--------------------------------------------------------------------------------------------------
 
 cPtr_baseline_5F_negateCondition::cPtr_baseline_5F_negateCondition (const GALGAS_baseline_5F_conditionExpression & in_mCondition
                                                                     COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_conditionExpression (THERE),
-mProperty_mCondition (in_mCondition) {
+mProperty_mCondition () {
+  mProperty_mCondition = in_mCondition ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5683,18 +5690,28 @@ GALGAS_baseline_5F_conditionExpression () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_andCondition GALGAS_baseline_5F_andCondition::init_28__2C__29_ (const GALGAS_baseline_5F_conditionExpression & in_mLeftExpression,
-                                                                                      const GALGAS_baseline_5F_conditionExpression & in_mRightExpression,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_andCondition GALGAS_baseline_5F_andCondition::
+init_21__21_ (const GALGAS_baseline_5F_conditionExpression & in_mLeftExpression,
+              const GALGAS_baseline_5F_conditionExpression & in_mRightExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_andCondition * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_andCondition (inCompiler COMMA_THERE)) ;
-  object->mProperty_mLeftExpression = in_mLeftExpression ;
-  object->mProperty_mRightExpression = in_mRightExpression ;
+  object->baseline_5F_andCondition_init_21__21_ (in_mLeftExpression, in_mRightExpression, inCompiler) ;
   const GALGAS_baseline_5F_andCondition result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_andCondition::
+baseline_5F_andCondition_init_21__21_ (const GALGAS_baseline_5F_conditionExpression & in_mLeftExpression,
+                                       const GALGAS_baseline_5F_conditionExpression & in_mRightExpression,
+                                       Compiler * /* inCompiler */) {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -5704,36 +5721,12 @@ GALGAS_baseline_5F_conditionExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_andCondition GALGAS_baseline_5F_andCondition::class_func_new (const GALGAS_baseline_5F_conditionExpression & inAttribute_mLeftExpression,
-                                                                                 const GALGAS_baseline_5F_conditionExpression & inAttribute_mRightExpression
+GALGAS_baseline_5F_andCondition GALGAS_baseline_5F_andCondition::class_func_new (const GALGAS_baseline_5F_conditionExpression & in_mLeftExpression,
+                                                                                 const GALGAS_baseline_5F_conditionExpression & in_mRightExpression
                                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_andCondition result ;
-  if (inAttribute_mLeftExpression.isValid () && inAttribute_mRightExpression.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_andCondition (inAttribute_mLeftExpression, inAttribute_mRightExpression COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_andCondition (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_andCondition::setter_setMLeftExpression (GALGAS_baseline_5F_conditionExpression inValue
-                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_andCondition * p = (cPtr_baseline_5F_andCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_andCondition::setter_setMRightExpression (GALGAS_baseline_5F_conditionExpression inValue
-                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_andCondition * p = (cPtr_baseline_5F_andCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
-    p->mProperty_mRightExpression = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5750,6 +5743,16 @@ GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::readProp
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_andCondition::setProperty_mLeftExpression (const GALGAS_baseline_5F_conditionExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_andCondition * p = (cPtr_baseline_5F_andCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
+    p->mProperty_mLeftExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_conditionExpression () ;
@@ -5761,6 +5764,16 @@ GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_andCondition::readProp
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_andCondition::setProperty_mRightExpression (const GALGAS_baseline_5F_conditionExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_andCondition * p = (cPtr_baseline_5F_andCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
+    p->mProperty_mRightExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_andCondition class
 //--------------------------------------------------------------------------------------------------
 
@@ -5768,8 +5781,10 @@ cPtr_baseline_5F_andCondition::cPtr_baseline_5F_andCondition (const GALGAS_basel
                                                               const GALGAS_baseline_5F_conditionExpression & in_mRightExpression
                                                               COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_conditionExpression (THERE),
-mProperty_mLeftExpression (in_mLeftExpression),
-mProperty_mRightExpression (in_mRightExpression) {
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+  mProperty_mLeftExpression = in_mLeftExpression ;
+  mProperty_mRightExpression = in_mRightExpression ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6133,24 +6148,37 @@ GALGAS_baseline_5F_instruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_instruction_5F_structured_5F_if GALGAS_baseline_5F_instruction_5F_structured_5F_if::init_28__2C__2C__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                        const GALGAS_baseline_5F_conditionExpression & in_mIfCondition,
-                                                                                                                                        const GALGAS_baseline_5F_instructionList & in_mThenInstructionList,
-                                                                                                                                        const GALGAS_baseline_5F_instructionList & in_mElseInstructionList,
-                                                                                                                                        const GALGAS_location & in_mEndOfElsePartLocation,
-                                                                                                                                        Compiler * inCompiler
-                                                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_structured_5F_if GALGAS_baseline_5F_instruction_5F_structured_5F_if::
+init_21__21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                          const GALGAS_baseline_5F_conditionExpression & in_mIfCondition,
+                          const GALGAS_baseline_5F_instructionList & in_mThenInstructionList,
+                          const GALGAS_baseline_5F_instructionList & in_mElseInstructionList,
+                          const GALGAS_location & in_mEndOfElsePartLocation,
+                          Compiler * inCompiler
+                          COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_instruction_5F_structured_5F_if * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_instruction_5F_structured_5F_if (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mIfCondition = in_mIfCondition ;
-  object->mProperty_mThenInstructionList = in_mThenInstructionList ;
-  object->mProperty_mElseInstructionList = in_mElseInstructionList ;
-  object->mProperty_mEndOfElsePartLocation = in_mEndOfElsePartLocation ;
+  object->baseline_5F_instruction_5F_structured_5F_if_init_21__21__21__21__21_ (in_mInstructionLocation, in_mIfCondition, in_mThenInstructionList, in_mElseInstructionList, in_mEndOfElsePartLocation, inCompiler) ;
   const GALGAS_baseline_5F_instruction_5F_structured_5F_if result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_instruction_5F_structured_5F_if::
+baseline_5F_instruction_5F_structured_5F_if_init_21__21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                                      const GALGAS_baseline_5F_conditionExpression & in_mIfCondition,
+                                                                      const GALGAS_baseline_5F_instructionList & in_mThenInstructionList,
+                                                                      const GALGAS_baseline_5F_instructionList & in_mElseInstructionList,
+                                                                      const GALGAS_location & in_mEndOfElsePartLocation,
+                                                                      Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mIfCondition = in_mIfCondition ;
+  mProperty_mThenInstructionList = in_mThenInstructionList ;
+  mProperty_mElseInstructionList = in_mElseInstructionList ;
+  mProperty_mEndOfElsePartLocation = in_mEndOfElsePartLocation ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6160,61 +6188,15 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_structured_5F_if GALGAS_baseline_5F_instruction_5F_structured_5F_if::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                       const GALGAS_baseline_5F_conditionExpression & inAttribute_mIfCondition,
-                                                                                                                       const GALGAS_baseline_5F_instructionList & inAttribute_mThenInstructionList,
-                                                                                                                       const GALGAS_baseline_5F_instructionList & inAttribute_mElseInstructionList,
-                                                                                                                       const GALGAS_location & inAttribute_mEndOfElsePartLocation
+GALGAS_baseline_5F_instruction_5F_structured_5F_if GALGAS_baseline_5F_instruction_5F_structured_5F_if::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                       const GALGAS_baseline_5F_conditionExpression & in_mIfCondition,
+                                                                                                                       const GALGAS_baseline_5F_instructionList & in_mThenInstructionList,
+                                                                                                                       const GALGAS_baseline_5F_instructionList & in_mElseInstructionList,
+                                                                                                                       const GALGAS_location & in_mEndOfElsePartLocation
                                                                                                                        COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_structured_5F_if result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mIfCondition.isValid () && inAttribute_mThenInstructionList.isValid () && inAttribute_mElseInstructionList.isValid () && inAttribute_mEndOfElsePartLocation.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_structured_5F_if (inAttribute_mInstructionLocation, inAttribute_mIfCondition, inAttribute_mThenInstructionList, inAttribute_mElseInstructionList, inAttribute_mEndOfElsePartLocation COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_structured_5F_if (in_mInstructionLocation, in_mIfCondition, in_mThenInstructionList, in_mElseInstructionList, in_mEndOfElsePartLocation COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_structured_5F_if::setter_setMIfCondition (GALGAS_baseline_5F_conditionExpression inValue
-                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
-    p->mProperty_mIfCondition = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_structured_5F_if::setter_setMThenInstructionList (GALGAS_baseline_5F_instructionList inValue
-                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
-    p->mProperty_mThenInstructionList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_structured_5F_if::setter_setMElseInstructionList (GALGAS_baseline_5F_instructionList inValue
-                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
-    p->mProperty_mElseInstructionList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_structured_5F_if::setter_setMEndOfElsePartLocation (GALGAS_location inValue
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
-    p->mProperty_mEndOfElsePartLocation = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6226,6 +6208,16 @@ GALGAS_baseline_5F_conditionExpression GALGAS_baseline_5F_instruction_5F_structu
     cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
     return p->mProperty_mIfCondition ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_structured_5F_if::setProperty_mIfCondition (const GALGAS_baseline_5F_conditionExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
+    p->mProperty_mIfCondition = inValue ;
   }
 }
 
@@ -6243,6 +6235,16 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_structured_
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_instruction_5F_structured_5F_if::setProperty_mThenInstructionList (const GALGAS_baseline_5F_instructionList & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
+    p->mProperty_mThenInstructionList = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_structured_5F_if::readProperty_mElseInstructionList (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_instructionList () ;
@@ -6250,6 +6252,16 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_structured_
     cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
     return p->mProperty_mElseInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_structured_5F_if::setProperty_mElseInstructionList (const GALGAS_baseline_5F_instructionList & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
+    p->mProperty_mElseInstructionList = inValue ;
   }
 }
 
@@ -6266,6 +6278,16 @@ GALGAS_location GALGAS_baseline_5F_instruction_5F_structured_5F_if::readProperty
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_structured_5F_if::setProperty_mEndOfElsePartLocation (const GALGAS_location & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
+    p->mProperty_mEndOfElsePartLocation = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_instruction_structured_if class
 //--------------------------------------------------------------------------------------------------
 
@@ -6276,10 +6298,15 @@ cPtr_baseline_5F_instruction_5F_structured_5F_if::cPtr_baseline_5F_instruction_5
                                                                                                     const GALGAS_location & in_mEndOfElsePartLocation
                                                                                                     COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mIfCondition (in_mIfCondition),
-mProperty_mThenInstructionList (in_mThenInstructionList),
-mProperty_mElseInstructionList (in_mElseInstructionList),
-mProperty_mEndOfElsePartLocation (in_mEndOfElsePartLocation) {
+mProperty_mIfCondition (),
+mProperty_mThenInstructionList (),
+mProperty_mElseInstructionList (),
+mProperty_mEndOfElsePartLocation () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mIfCondition = in_mIfCondition ;
+  mProperty_mThenInstructionList = in_mThenInstructionList ;
+  mProperty_mElseInstructionList = in_mElseInstructionList ;
+  mProperty_mEndOfElsePartLocation = in_mEndOfElsePartLocation ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7074,22 +7101,34 @@ GALGAS_baseline_5F_instruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_instruction_5F_do_5F_while GALGAS_baseline_5F_instruction_5F_do_5F_while::init_28__2C__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                          const GALGAS_baseline_5F_instructionList & in_mRepeatedInstructionList,
-                                                                                                                          const GALGAS_location & in_mEndOfRepeatedInstructionList,
-                                                                                                                          const GALGAS_baseline_5F_partList & in_mWhilePartList,
-                                                                                                                          Compiler * inCompiler
-                                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_instruction_5F_do_5F_while GALGAS_baseline_5F_instruction_5F_do_5F_while::
+init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                      const GALGAS_baseline_5F_instructionList & in_mRepeatedInstructionList,
+                      const GALGAS_location & in_mEndOfRepeatedInstructionList,
+                      const GALGAS_baseline_5F_partList & in_mWhilePartList,
+                      Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_instruction_5F_do_5F_while * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_instruction_5F_do_5F_while (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mRepeatedInstructionList = in_mRepeatedInstructionList ;
-  object->mProperty_mEndOfRepeatedInstructionList = in_mEndOfRepeatedInstructionList ;
-  object->mProperty_mWhilePartList = in_mWhilePartList ;
+  object->baseline_5F_instruction_5F_do_5F_while_init_21__21__21__21_ (in_mInstructionLocation, in_mRepeatedInstructionList, in_mEndOfRepeatedInstructionList, in_mWhilePartList, inCompiler) ;
   const GALGAS_baseline_5F_instruction_5F_do_5F_while result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_instruction_5F_do_5F_while::
+baseline_5F_instruction_5F_do_5F_while_init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                             const GALGAS_baseline_5F_instructionList & in_mRepeatedInstructionList,
+                                                             const GALGAS_location & in_mEndOfRepeatedInstructionList,
+                                                             const GALGAS_baseline_5F_partList & in_mWhilePartList,
+                                                             Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mRepeatedInstructionList = in_mRepeatedInstructionList ;
+  mProperty_mEndOfRepeatedInstructionList = in_mEndOfRepeatedInstructionList ;
+  mProperty_mWhilePartList = in_mWhilePartList ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7099,49 +7138,14 @@ GALGAS_baseline_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_instruction_5F_do_5F_while GALGAS_baseline_5F_instruction_5F_do_5F_while::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                             const GALGAS_baseline_5F_instructionList & inAttribute_mRepeatedInstructionList,
-                                                                                                             const GALGAS_location & inAttribute_mEndOfRepeatedInstructionList,
-                                                                                                             const GALGAS_baseline_5F_partList & inAttribute_mWhilePartList
+GALGAS_baseline_5F_instruction_5F_do_5F_while GALGAS_baseline_5F_instruction_5F_do_5F_while::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                             const GALGAS_baseline_5F_instructionList & in_mRepeatedInstructionList,
+                                                                                                             const GALGAS_location & in_mEndOfRepeatedInstructionList,
+                                                                                                             const GALGAS_baseline_5F_partList & in_mWhilePartList
                                                                                                              COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_instruction_5F_do_5F_while result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mRepeatedInstructionList.isValid () && inAttribute_mEndOfRepeatedInstructionList.isValid () && inAttribute_mWhilePartList.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_do_5F_while (inAttribute_mInstructionLocation, inAttribute_mRepeatedInstructionList, inAttribute_mEndOfRepeatedInstructionList, inAttribute_mWhilePartList COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_do_5F_while (in_mInstructionLocation, in_mRepeatedInstructionList, in_mEndOfRepeatedInstructionList, in_mWhilePartList COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_do_5F_while::setter_setMRepeatedInstructionList (GALGAS_baseline_5F_instructionList inValue
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
-    p->mProperty_mRepeatedInstructionList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_do_5F_while::setter_setMEndOfRepeatedInstructionList (GALGAS_location inValue
-                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
-    p->mProperty_mEndOfRepeatedInstructionList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_instruction_5F_do_5F_while::setter_setMWhilePartList (GALGAS_baseline_5F_partList inValue
-                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
-    p->mProperty_mWhilePartList = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7153,6 +7157,16 @@ GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instruction_5F_do_5F_while
     cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
     return p->mProperty_mRepeatedInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_do_5F_while::setProperty_mRepeatedInstructionList (const GALGAS_baseline_5F_instructionList & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
+    p->mProperty_mRepeatedInstructionList = inValue ;
   }
 }
 
@@ -7170,6 +7184,16 @@ GALGAS_location GALGAS_baseline_5F_instruction_5F_do_5F_while::readProperty_mEnd
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_instruction_5F_do_5F_while::setProperty_mEndOfRepeatedInstructionList (const GALGAS_location & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
+    p->mProperty_mEndOfRepeatedInstructionList = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baseline_5F_partList GALGAS_baseline_5F_instruction_5F_do_5F_while::readProperty_mWhilePartList (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_partList () ;
@@ -7177,6 +7201,16 @@ GALGAS_baseline_5F_partList GALGAS_baseline_5F_instruction_5F_do_5F_while::readP
     cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
     return p->mProperty_mWhilePartList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instruction_5F_do_5F_while::setProperty_mWhilePartList (const GALGAS_baseline_5F_partList & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
+    p->mProperty_mWhilePartList = inValue ;
   }
 }
 
@@ -7190,9 +7224,13 @@ cPtr_baseline_5F_instruction_5F_do_5F_while::cPtr_baseline_5F_instruction_5F_do_
                                                                                           const GALGAS_baseline_5F_partList & in_mWhilePartList
                                                                                           COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mRepeatedInstructionList (in_mRepeatedInstructionList),
-mProperty_mEndOfRepeatedInstructionList (in_mEndOfRepeatedInstructionList),
-mProperty_mWhilePartList (in_mWhilePartList) {
+mProperty_mRepeatedInstructionList (),
+mProperty_mEndOfRepeatedInstructionList (),
+mProperty_mWhilePartList () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mRepeatedInstructionList = in_mRepeatedInstructionList ;
+  mProperty_mEndOfRepeatedInstructionList = in_mEndOfRepeatedInstructionList ;
+  mProperty_mWhilePartList = in_mWhilePartList ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8358,10 +8396,10 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression::~ GALGAS_baseline_5F_inte
 
 //---Synthetized initializer -----------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_registerExpression::init_28__2C__29_ (const GALGAS_string & in_mAssemblyString,
-                                                                                                                               const GALGAS_uint & in_mRegisterAddress,
-                                                                                                                               Compiler * inCompiler
-                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_registerExpression::init_21__21_ (const GALGAS_string & in_mAssemblyString,
+                                                                                                                           const GALGAS_uint & in_mRegisterAddress,
+                                                                                                                           Compiler * inCompiler
+                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_registerExpression result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mAssemblyString = in_mAssemblyString ;
@@ -8519,17 +8557,6 @@ ComparisonResult GALGAS_baseline_5F_intermediate_5F_instruction::objectCompare (
 GALGAS_baseline_5F_intermediate_5F_instruction::GALGAS_baseline_5F_intermediate_5F_instruction (void) :
 AC_GALGAS_reference_class () {
 }
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_baseline_5F_intermediate_5F_instruction GALGAS_baseline_5F_intermediate_5F_instruction::init_28__29_ (Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) {
-  cPtr_baseline_5F_intermediate_5F_instruction * object = nullptr ;
-  macroMyNew (object, cPtr_baseline_5F_intermediate_5F_instruction (inCompiler COMMA_THERE)) ;
-  const GALGAS_baseline_5F_intermediate_5F_instruction result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9155,14 +9182,22 @@ GALGAS_baseline_5F_intermediate_5F_instruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_NULL GALGAS_baseline_5F_intermediate_5F_NULL::init_28__29_ (Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_NULL GALGAS_baseline_5F_intermediate_5F_NULL::
+init (Compiler * inCompiler
+          COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_NULL * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_NULL (inCompiler COMMA_THERE)) ;
+  object->baseline_5F_intermediate_5F_NULL_init (inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_NULL result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_NULL::
+baseline_5F_intermediate_5F_NULL_init (Compiler * /* inCompiler */) {
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9400,17 +9435,6 @@ GALGAS_baseline_5F_intermediate_5F_pseudo::GALGAS_baseline_5F_intermediate_5F_ps
 GALGAS_baseline_5F_intermediate_5F_instruction () {
 }
 
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_baseline_5F_intermediate_5F_pseudo GALGAS_baseline_5F_intermediate_5F_pseudo::init_28__29_ (Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) {
-  cPtr_baseline_5F_intermediate_5F_pseudo * object = nullptr ;
-  macroMyNew (object, cPtr_baseline_5F_intermediate_5F_pseudo (inCompiler COMMA_THERE)) ;
-  const GALGAS_baseline_5F_intermediate_5F_pseudo result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_intermediate_5F_pseudo::GALGAS_baseline_5F_intermediate_5F_pseudo (const cPtr_baseline_5F_intermediate_5F_pseudo * inSourcePtr) :
@@ -9635,16 +9659,25 @@ GALGAS_baseline_5F_intermediate_5F_pseudo () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::init_28__29_ (const GALGAS_uint & in_mPage,
-                                                                                                                      Compiler * inCompiler
-                                                                                                                      COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::
+init_21_ (const GALGAS_uint & in_mPage,
+          Compiler * inCompiler
+          COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (inCompiler COMMA_THERE)) ;
-  object->mProperty_mPage = in_mPage ;
+  object->baseline_5F_intermediate_5F_pseudo_5F_PAGE_init_21_ (in_mPage, inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::
+baseline_5F_intermediate_5F_pseudo_5F_PAGE_init_21_ (const GALGAS_uint & in_mPage,
+                                                     Compiler * /* inCompiler */) {
+  mProperty_mPage = in_mPage ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9654,24 +9687,11 @@ GALGAS_baseline_5F_intermediate_5F_pseudo (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::class_func_new (const GALGAS_uint & inAttribute_mPage
+GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::class_func_new (const GALGAS_uint & in_mPage
                                                                                                                      COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE result ;
-  if (inAttribute_mPage.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (inAttribute_mPage COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (in_mPage COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::setter_setMPage (GALGAS_uint inValue
-                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE) ;
-    p->mProperty_mPage = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9687,13 +9707,24 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::readProperty_mPag
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::setProperty_mPage (const GALGAS_uint & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE) ;
+    p->mProperty_mPage = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_intermediate_pseudo_PAGE class
 //--------------------------------------------------------------------------------------------------
 
 cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (const GALGAS_uint & in_mPage
                                                                                                   COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_pseudo (THERE),
-mProperty_mPage (in_mPage) {
+mProperty_mPage () {
+  mProperty_mPage = in_mPage ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10244,36 +10275,12 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction::GALGAS_baseline_5F_interme
 GALGAS_baseline_5F_intermediate_5F_instruction () {
 }
 
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-/* GALGAS_baseline_5F_intermediate_5F_actualInstruction GALGAS_baseline_5F_intermediate_5F_actualInstruction::init_28__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                            Compiler * inCompiler
-                                                                                                                            COMMA_LOCATION_ARGS) {
-  cPtr_baseline_5F_intermediate_5F_actualInstruction * object = nullptr ;
-  macroMyNew (object, cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  const GALGAS_baseline_5F_intermediate_5F_actualInstruction result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-} */
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_baseline_5F_intermediate_5F_actualInstruction::GALGAS_baseline_5F_intermediate_5F_actualInstruction (const cPtr_baseline_5F_intermediate_5F_actualInstruction * inSourcePtr) :
 GALGAS_baseline_5F_intermediate_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_actualInstruction) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_actualInstruction::setter_setMInstructionLocation (GALGAS_location inValue
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction * p = (cPtr_baseline_5F_intermediate_5F_actualInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_actualInstruction) ;
-    p->mProperty_mInstructionLocation = inValue ;
-  }
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_location GALGAS_baseline_5F_intermediate_5F_actualInstruction::readProperty_mInstructionLocation (void) const {
@@ -10287,13 +10294,24 @@ GALGAS_location GALGAS_baseline_5F_intermediate_5F_actualInstruction::readProper
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_actualInstruction::setProperty_mInstructionLocation (const GALGAS_location & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_actualInstruction * p = (cPtr_baseline_5F_intermediate_5F_actualInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_actualInstruction) ;
+    p->mProperty_mInstructionLocation = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_intermediate_actualInstruction class
 //--------------------------------------------------------------------------------------------------
 
 cPtr_baseline_5F_intermediate_5F_actualInstruction::cPtr_baseline_5F_intermediate_5F_actualInstruction (const GALGAS_location & in_mInstructionLocation
                                                                                                         COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_instruction (THERE),
-mProperty_mInstructionLocation (in_mInstructionLocation) {
+mProperty_mInstructionLocation () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
 }
 
 
@@ -10519,22 +10537,34 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::init_28__2C__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                        const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
-                                                                                                                                        const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                                        const GALGAS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                                                        Compiler * inCompiler
-                                                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::
+init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                      const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
+                      const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                      const GALGAS_bool & in_m_5F_W_5F_isDestination,
+                      Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mInstruction = in_mInstruction ;
-  object->mProperty_mRegisterDescription = in_mRegisterDescription ;
-  object->mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
+  object->baseline_5F_intermediate_5F_instruction_5F_FD_init_21__21__21__21_ (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_m_5F_W_5F_isDestination, inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::
+baseline_5F_intermediate_5F_instruction_5F_FD_init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                                    const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
+                                                                    const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                    const GALGAS_bool & in_m_5F_W_5F_isDestination,
+                                                                    Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10544,49 +10574,14 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                           const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inAttribute_mInstruction,
-                                                                                                                           const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                           const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                           const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
+                                                                                                                           const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                                           const GALGAS_bool & in_m_5F_W_5F_isDestination
                                                                                                                            COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (inAttribute_mInstructionLocation, inAttribute_mInstruction, inAttribute_mRegisterDescription, inAttribute_m_5F_W_5F_isDestination COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_m_5F_W_5F_isDestination COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::setter_setMInstruction (GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code inValue
-                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
-                                                                                              COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
-    p->mProperty_m_5F_W_5F_isDestination = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10598,6 +10593,16 @@ GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code GALGAS_baseline_5F_intermed
     cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
     return p->mProperty_mInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::setProperty_mInstruction (const GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
+    p->mProperty_mInstruction = inValue ;
   }
 }
 
@@ -10615,6 +10620,16 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::setProperty_mRegisterDescription (const GALGAS_baseline_5F_intermediate_5F_registerExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_bool GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::readProperty_m_5F_W_5F_isDestination (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
@@ -10622,6 +10637,16 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::readProperty_m
     cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
     return p->mProperty_m_5F_W_5F_isDestination ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD::setProperty_m_5F_W_5F_isDestination (const GALGAS_bool & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
+    p->mProperty_m_5F_W_5F_isDestination = inValue ;
   }
 }
 
@@ -10635,9 +10660,13 @@ cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::cPtr_baseline_5F_intermediat
                                                                                                         const GALGAS_bool & in_m_5F_W_5F_isDestination
                                                                                                         COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mInstruction (in_mInstruction),
-mProperty_mRegisterDescription (in_mRegisterDescription),
-mProperty_m_5F_W_5F_isDestination (in_m_5F_W_5F_isDestination) {
+mProperty_mInstruction (),
+mProperty_mRegisterDescription (),
+mProperty_m_5F_W_5F_isDestination () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10885,20 +10914,31 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_instruction_5F_F GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::init_28__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                  const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
-                                                                                                                                  const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                                  Compiler * inCompiler
-                                                                                                                                  COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_F GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::
+init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                  const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
+                  const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                  Compiler * inCompiler
+                  COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_instruction_5F_F * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_F (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mInstruction = in_mInstruction ;
-  object->mProperty_mRegisterDescription = in_mRegisterDescription ;
+  object->baseline_5F_intermediate_5F_instruction_5F_F_init_21__21__21_ (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_F result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_instruction_5F_F::
+baseline_5F_intermediate_5F_instruction_5F_F_init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                               const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
+                                                               const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                               Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10908,37 +10948,13 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_instruction_5F_F GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                         const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inAttribute_mInstruction,
-                                                                                                                         const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_F GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                         const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
+                                                                                                                         const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription
                                                                                                                          COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_instruction_5F_F result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid () && inAttribute_mRegisterDescription.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_F (inAttribute_mInstructionLocation, inAttribute_mInstruction, inAttribute_mRegisterDescription COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_F (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::setter_setMInstruction (GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code inValue
-                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_F) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_F) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10955,6 +10971,16 @@ GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code GALGAS_baseline_5F_intermedi
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::setProperty_mInstruction (const GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_F) ;
+    p->mProperty_mInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_baseline_5F_intermediate_5F_registerExpression () ;
@@ -10962,6 +10988,16 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
     cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_F) ;
     return p->mProperty_mRegisterDescription ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_F::setProperty_mRegisterDescription (const GALGAS_baseline_5F_intermediate_5F_registerExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_F) ;
+    p->mProperty_mRegisterDescription = inValue ;
   }
 }
 
@@ -10974,8 +11010,11 @@ cPtr_baseline_5F_intermediate_5F_instruction_5F_F::cPtr_baseline_5F_intermediate
                                                                                                       const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription
                                                                                                       COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mInstruction (in_mInstruction),
-mProperty_mRegisterDescription (in_mRegisterDescription) {
+mProperty_mInstruction (),
+mProperty_mRegisterDescription () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11226,22 +11265,34 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::init_28__2C__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                        const GALGAS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
-                                                                                                                                        const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                                        const GALGAS_uint & in_mBitNumber,
-                                                                                                                                        Compiler * inCompiler
-                                                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::
+init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                      const GALGAS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
+                      const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                      const GALGAS_uint & in_mBitNumber,
+                      Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mInstruction = in_mInstruction ;
-  object->mProperty_mRegisterDescription = in_mRegisterDescription ;
-  object->mProperty_mBitNumber = in_mBitNumber ;
+  object->baseline_5F_intermediate_5F_instruction_5F_FB_init_21__21__21__21_ (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_mBitNumber, inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::
+baseline_5F_intermediate_5F_instruction_5F_FB_init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                                    const GALGAS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
+                                                                    const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                    const GALGAS_uint & in_mBitNumber,
+                                                                    Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_mBitNumber = in_mBitNumber ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11251,49 +11302,14 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                           const GALGAS_baseline_5F_bit_5F_oriented_5F_op & inAttribute_mInstruction,
-                                                                                                                           const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                           const GALGAS_uint & inAttribute_mBitNumber
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                           const GALGAS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
+                                                                                                                           const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                                           const GALGAS_uint & in_mBitNumber
                                                                                                                            COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mBitNumber.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (inAttribute_mInstructionLocation, inAttribute_mInstruction, inAttribute_mRegisterDescription, inAttribute_mBitNumber COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_mBitNumber COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::setter_setMInstruction (GALGAS_baseline_5F_bit_5F_oriented_5F_op inValue
-                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::setter_setMBitNumber (GALGAS_uint inValue
-                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
-    p->mProperty_mBitNumber = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11305,6 +11321,16 @@ GALGAS_baseline_5F_bit_5F_oriented_5F_op GALGAS_baseline_5F_intermediate_5F_inst
     cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
     return p->mProperty_mInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::setProperty_mInstruction (const GALGAS_baseline_5F_bit_5F_oriented_5F_op & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
+    p->mProperty_mInstruction = inValue ;
   }
 }
 
@@ -11322,6 +11348,16 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::setProperty_mRegisterDescription (const GALGAS_baseline_5F_intermediate_5F_registerExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::readProperty_mBitNumber (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
@@ -11329,6 +11365,16 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::readProperty_m
     cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
     return p->mProperty_mBitNumber ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB::setProperty_mBitNumber (const GALGAS_uint & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
+    p->mProperty_mBitNumber = inValue ;
   }
 }
 
@@ -11342,9 +11388,13 @@ cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::cPtr_baseline_5F_intermediat
                                                                                                         const GALGAS_uint & in_mBitNumber
                                                                                                         COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mInstruction (in_mInstruction),
-mProperty_mRegisterDescription (in_mRegisterDescription),
-mProperty_mBitNumber (in_mBitNumber) {
+mProperty_mInstruction (),
+mProperty_mRegisterDescription (),
+mProperty_mBitNumber () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_mBitNumber = in_mBitNumber ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11597,22 +11647,34 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::init_28__2C__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                                          const GALGAS_bool & in_mSkipIfSet,
-                                                                                                                                                          const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                                                          const GALGAS_uint & in_mBitNumber,
-                                                                                                                                                          Compiler * inCompiler
-                                                                                                                                                          COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::
+init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                      const GALGAS_bool & in_mSkipIfSet,
+                      const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                      const GALGAS_uint & in_mBitNumber,
+                      Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mSkipIfSet = in_mSkipIfSet ;
-  object->mProperty_mRegisterDescription = in_mRegisterDescription ;
-  object->mProperty_mBitNumber = in_mBitNumber ;
+  object->baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_init_21__21__21__21_ (in_mInstructionLocation, in_mSkipIfSet, in_mRegisterDescription, in_mBitNumber, inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::
+baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                                             const GALGAS_bool & in_mSkipIfSet,
+                                                                             const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                             const GALGAS_uint & in_mBitNumber,
+                                                                             Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mSkipIfSet = in_mSkipIfSet ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_mBitNumber = in_mBitNumber ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11622,49 +11684,14 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                             const GALGAS_bool & inAttribute_mSkipIfSet,
-                                                                                                                                             const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                                             const GALGAS_uint & inAttribute_mBitNumber
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                                             const GALGAS_bool & in_mSkipIfSet,
+                                                                                                                                             const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                                                             const GALGAS_uint & in_mBitNumber
                                                                                                                                              COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mSkipIfSet.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mBitNumber.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (inAttribute_mInstructionLocation, inAttribute_mSkipIfSet, inAttribute_mRegisterDescription, inAttribute_mBitNumber COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (in_mInstructionLocation, in_mSkipIfSet, in_mRegisterDescription, in_mBitNumber COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setter_setMSkipIfSet (GALGAS_bool inValue
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
-    p->mProperty_mSkipIfSet = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
-                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setter_setMBitNumber (GALGAS_uint inValue
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
-    p->mProperty_mBitNumber = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11676,6 +11703,16 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::readP
     cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
     return p->mProperty_mSkipIfSet ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setProperty_mSkipIfSet (const GALGAS_bool & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
+    p->mProperty_mSkipIfSet = inValue ;
   }
 }
 
@@ -11693,6 +11730,16 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setProperty_mRegisterDescription (const GALGAS_baseline_5F_intermediate_5F_registerExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::readProperty_mBitNumber (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
@@ -11700,6 +11747,16 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::readP
     cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
     return p->mProperty_mBitNumber ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setProperty_mBitNumber (const GALGAS_uint & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
+    p->mProperty_mBitNumber = inValue ;
   }
 }
 
@@ -11713,9 +11770,13 @@ cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::cPtr_baseline_5F_in
                                                                                                                           const GALGAS_uint & in_mBitNumber
                                                                                                                           COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mSkipIfSet (in_mSkipIfSet),
-mProperty_mRegisterDescription (in_mRegisterDescription),
-mProperty_mBitNumber (in_mBitNumber) {
+mProperty_mSkipIfSet (),
+mProperty_mRegisterDescription (),
+mProperty_mBitNumber () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mSkipIfSet = in_mSkipIfSet ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_mBitNumber = in_mBitNumber ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12398,18 +12459,28 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::init_28__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                        const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
-                                                                                                                        Compiler * inCompiler
-                                                                                                                        COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::
+init_21__21_ (const GALGAS_location & in_mInstructionLocation,
+              const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mInstruction = in_mInstruction ;
+  object->baseline_5F_intermediate_5F_WO_5F_OPERAND_init_21__21_ (in_mInstructionLocation, in_mInstruction, inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::
+baseline_5F_intermediate_5F_WO_5F_OPERAND_init_21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                        const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+                                                        Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12419,25 +12490,12 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                   const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inAttribute_mInstruction
+GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                   const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
                                                                                                                    COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (inAttribute_mInstructionLocation, inAttribute_mInstruction COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (in_mInstructionLocation, in_mInstruction COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::setter_setMInstruction (GALGAS_baseline_5F_WO_5F_OPERAND_5F_group inValue
-                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND) ;
-    p->mProperty_mInstruction = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12453,6 +12511,16 @@ GALGAS_baseline_5F_WO_5F_OPERAND_5F_group GALGAS_baseline_5F_intermediate_5F_WO_
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND::setProperty_mInstruction (const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND) ;
+    p->mProperty_mInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_intermediate_WO_OPERAND class
 //--------------------------------------------------------------------------------------------------
 
@@ -12460,7 +12528,9 @@ cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::cPtr_baseline_5F_intermediate_5F
                                                                                                 const GALGAS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
                                                                                                 COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mInstruction (in_mInstruction) {
+mProperty_mInstruction () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12814,20 +12884,31 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::init_28__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                                                const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
-                                                                                                                                                                const GALGAS_uint & in_mLiteralValue,
-                                                                                                                                                                Compiler * inCompiler
-                                                                                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::
+init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                  const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
+                  const GALGAS_uint & in_mLiteralValue,
+                  Compiler * inCompiler
+                  COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mInstruction = in_mInstruction ;
-  object->mProperty_mLiteralValue = in_mLiteralValue ;
+  object->baseline_5F_intermediate_5F_instruction_5F_literalOperation_init_21__21__21_ (in_mInstructionLocation, in_mInstruction, in_mLiteralValue, inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::
+baseline_5F_intermediate_5F_instruction_5F_literalOperation_init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                                              const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
+                                                                              const GALGAS_uint & in_mLiteralValue,
+                                                                              Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+  mProperty_mLiteralValue = in_mLiteralValue ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12837,37 +12918,13 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                                       const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inAttribute_mInstruction,
-                                                                                                                                                       const GALGAS_uint & inAttribute_mLiteralValue
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                                                       const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
+                                                                                                                                                       const GALGAS_uint & in_mLiteralValue
                                                                                                                                                        COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mInstruction.isValid () && inAttribute_mLiteralValue.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (inAttribute_mInstructionLocation, inAttribute_mInstruction, inAttribute_mLiteralValue COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (in_mInstructionLocation, in_mInstruction, in_mLiteralValue COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::setter_setMInstruction (GALGAS_baseline_5F_literal_5F_instruction_5F_opcode inValue
-                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::setter_setMLiteralValue (GALGAS_uint inValue
-                                                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mLiteralValue = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12884,6 +12941,16 @@ GALGAS_baseline_5F_literal_5F_instruction_5F_opcode GALGAS_baseline_5F_intermedi
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::setProperty_mInstruction (const GALGAS_baseline_5F_literal_5F_instruction_5F_opcode & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation) ;
+    p->mProperty_mInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::readProperty_mLiteralValue (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_uint () ;
@@ -12891,6 +12958,16 @@ GALGAS_uint GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::
     cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation) ;
     return p->mProperty_mLiteralValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::setProperty_mLiteralValue (const GALGAS_uint & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation) ;
+    p->mProperty_mLiteralValue = inValue ;
   }
 }
 
@@ -12903,8 +12980,11 @@ cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::cPtr_baseline_
                                                                                                                                     const GALGAS_uint & in_mLiteralValue
                                                                                                                                     COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mInstruction (in_mInstruction),
-mProperty_mLiteralValue (in_mLiteralValue) {
+mProperty_mInstruction (),
+mProperty_mLiteralValue () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+  mProperty_mLiteralValue = in_mLiteralValue ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13145,18 +13225,28 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::init_28__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                    const GALGAS_luint & in_mOccurrenceFactor,
-                                                                                                                                    Compiler * inCompiler
-                                                                                                                                    COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::
+init_21__21_ (const GALGAS_location & in_mInstructionLocation,
+              const GALGAS_luint & in_mOccurrenceFactor,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mOccurrenceFactor = in_mOccurrenceFactor ;
+  object->baseline_5F_intermediate_5F_instruction_5F_MNOP_init_21__21_ (in_mInstructionLocation, in_mOccurrenceFactor, inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::
+baseline_5F_intermediate_5F_instruction_5F_MNOP_init_21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                              const GALGAS_luint & in_mOccurrenceFactor,
+                                                              Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mOccurrenceFactor = in_mOccurrenceFactor ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13166,25 +13256,12 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                               const GALGAS_luint & inAttribute_mOccurrenceFactor
+GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                               const GALGAS_luint & in_mOccurrenceFactor
                                                                                                                                COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mOccurrenceFactor.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (inAttribute_mInstructionLocation, inAttribute_mOccurrenceFactor COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (in_mInstructionLocation, in_mOccurrenceFactor COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::setter_setMOccurrenceFactor (GALGAS_luint inValue
-                                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP) ;
-    p->mProperty_mOccurrenceFactor = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13200,6 +13277,16 @@ GALGAS_luint GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::readPropert
 }
 
 //--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP::setProperty_mOccurrenceFactor (const GALGAS_luint & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP) ;
+    p->mProperty_mOccurrenceFactor = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_intermediate_instruction_MNOP class
 //--------------------------------------------------------------------------------------------------
 
@@ -13207,7 +13294,9 @@ cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::cPtr_baseline_5F_intermedi
                                                                                                             const GALGAS_luint & in_mOccurrenceFactor
                                                                                                             COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mOccurrenceFactor (in_mOccurrenceFactor) {
+mProperty_mOccurrenceFactor () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mOccurrenceFactor = in_mOccurrenceFactor ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13466,26 +13555,40 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction () {
 
 //--- Synthetized initializer ----------------------------------------------------------------------
 
-/* GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::init_28__2C__2C__2C__2C__2C__29_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                                                const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                                                                const GALGAS_string & in_mTargetLabel,
-                                                                                                                                                                const GALGAS_bool & in_mIncrement,
-                                                                                                                                                                const GALGAS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                                                                                const GALGAS_bool & in_mBranchIfZero,
-                                                                                                                                                                Compiler * inCompiler
-                                                                                                                                                                COMMA_LOCATION_ARGS) {
+GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::
+init_21__21__21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                              const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                              const GALGAS_string & in_mTargetLabel,
+                              const GALGAS_bool & in_mIncrement,
+                              const GALGAS_bool & in_m_5F_W_5F_isDestination,
+                              const GALGAS_bool & in_mBranchIfZero,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) {
   cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * object = nullptr ;
   macroMyNew (object, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (inCompiler COMMA_THERE)) ;
-  object->mProperty_mInstructionLocation = in_mInstructionLocation ;
-  object->mProperty_mRegisterDescription = in_mRegisterDescription ;
-  object->mProperty_mTargetLabel = in_mTargetLabel ;
-  object->mProperty_mIncrement = in_mIncrement ;
-  object->mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
-  object->mProperty_mBranchIfZero = in_mBranchIfZero ;
+  object->baseline_5F_intermediate_5F_incDecRegisterInCondition_init_21__21__21__21__21__21_ (in_mInstructionLocation, in_mRegisterDescription, in_mTargetLabel, in_mIncrement, in_m_5F_W_5F_isDestination, in_mBranchIfZero, inCompiler) ;
   const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition result (object) ;
   macroDetachSharedObject (object) ;
   return result ;
-} */
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::
+baseline_5F_intermediate_5F_incDecRegisterInCondition_init_21__21__21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
+                                                                                    const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                    const GALGAS_string & in_mTargetLabel,
+                                                                                    const GALGAS_bool & in_mIncrement,
+                                                                                    const GALGAS_bool & in_m_5F_W_5F_isDestination,
+                                                                                    const GALGAS_bool & in_mBranchIfZero,
+                                                                                    Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_mTargetLabel = in_mTargetLabel ;
+  mProperty_mIncrement = in_mIncrement ;
+  mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
+  mProperty_mBranchIfZero = in_mBranchIfZero ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13495,73 +13598,16 @@ GALGAS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::class_func_new (const GALGAS_location & inAttribute_mInstructionLocation,
-                                                                                                                                           const GALGAS_baseline_5F_intermediate_5F_registerExpression & inAttribute_mRegisterDescription,
-                                                                                                                                           const GALGAS_string & inAttribute_mTargetLabel,
-                                                                                                                                           const GALGAS_bool & inAttribute_mIncrement,
-                                                                                                                                           const GALGAS_bool & inAttribute_m_5F_W_5F_isDestination,
-                                                                                                                                           const GALGAS_bool & inAttribute_mBranchIfZero
+GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::class_func_new (const GALGAS_location & in_mInstructionLocation,
+                                                                                                                                           const GALGAS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                                                           const GALGAS_string & in_mTargetLabel,
+                                                                                                                                           const GALGAS_bool & in_mIncrement,
+                                                                                                                                           const GALGAS_bool & in_m_5F_W_5F_isDestination,
+                                                                                                                                           const GALGAS_bool & in_mBranchIfZero
                                                                                                                                            COMMA_LOCATION_ARGS) {
   GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition result ;
-  if (inAttribute_mInstructionLocation.isValid () && inAttribute_mRegisterDescription.isValid () && inAttribute_mTargetLabel.isValid () && inAttribute_mIncrement.isValid () && inAttribute_m_5F_W_5F_isDestination.isValid () && inAttribute_mBranchIfZero.isValid ()) {
-    macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (inAttribute_mInstructionLocation, inAttribute_mRegisterDescription, inAttribute_mTargetLabel, inAttribute_mIncrement, inAttribute_m_5F_W_5F_isDestination, inAttribute_mBranchIfZero COMMA_THERE)) ;
-  }
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (in_mInstructionLocation, in_mRegisterDescription, in_mTargetLabel, in_mIncrement, in_m_5F_W_5F_isDestination, in_mBranchIfZero COMMA_THERE)) ;
   return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setter_setMRegisterDescription (GALGAS_baseline_5F_intermediate_5F_registerExpression inValue
-                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setter_setMTargetLabel (GALGAS_string inValue
-                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_mTargetLabel = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setter_setMIncrement (GALGAS_bool inValue
-                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_mIncrement = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setter_setM_5F_W_5F_isDestination (GALGAS_bool inValue
-                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_m_5F_W_5F_isDestination = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setter_setMBranchIfZero (GALGAS_bool inValue
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_mBranchIfZero = inValue ;
-  }
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13573,6 +13619,16 @@ GALGAS_baseline_5F_intermediate_5F_registerExpression GALGAS_baseline_5F_interme
     cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
     return p->mProperty_mRegisterDescription ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_mRegisterDescription (const GALGAS_baseline_5F_intermediate_5F_registerExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
+    p->mProperty_mRegisterDescription = inValue ;
   }
 }
 
@@ -13590,6 +13646,16 @@ GALGAS_string GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::read
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_mTargetLabel (const GALGAS_string & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
+    p->mProperty_mTargetLabel = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProperty_mIncrement (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
@@ -13597,6 +13663,16 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readPr
     cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
     return p->mProperty_mIncrement ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_mIncrement (const GALGAS_bool & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
+    p->mProperty_mIncrement = inValue ;
   }
 }
 
@@ -13614,6 +13690,16 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readPr
 
 //--------------------------------------------------------------------------------------------------
 
+void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_m_5F_W_5F_isDestination (const GALGAS_bool & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
+    p->mProperty_m_5F_W_5F_isDestination = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProperty_mBranchIfZero (void) const {
   if (nullptr == mObjectPtr) {
     return GALGAS_bool () ;
@@ -13621,6 +13707,16 @@ GALGAS_bool GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readPr
     cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
     return p->mProperty_mBranchIfZero ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_mBranchIfZero (const GALGAS_bool & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
+    p->mProperty_mBranchIfZero = inValue ;
   }
 }
 
@@ -13636,11 +13732,17 @@ cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::cPtr_baseline_5F_int
                                                                                                                         const GALGAS_bool & in_mBranchIfZero
                                                                                                                         COMMA_LOCATION_ARGS) :
 cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mRegisterDescription (in_mRegisterDescription),
-mProperty_mTargetLabel (in_mTargetLabel),
-mProperty_mIncrement (in_mIncrement),
-mProperty_m_5F_W_5F_isDestination (in_m_5F_W_5F_isDestination),
-mProperty_mBranchIfZero (in_mBranchIfZero) {
+mProperty_mRegisterDescription (),
+mProperty_mTargetLabel (),
+mProperty_mIncrement (),
+mProperty_m_5F_W_5F_isDestination (),
+mProperty_mBranchIfZero () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_mTargetLabel = in_mTargetLabel ;
+  mProperty_mIncrement = in_mIncrement ;
+  mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
+  mProperty_mBranchIfZero = in_mBranchIfZero ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14747,17 +14849,17 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
                                                                                             GALGAS_bool & ioArgument_ioOptimizationsDone,
                                                                                             Compiler * inCompiler
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uint var_line_19689 ;
+  GALGAS_uint var_line_19685 ;
   const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_0 = this ;
-  constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::class_func_new (temp_0.readProperty_mTargetLabel (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)), var_line_19689, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)) ;
-  GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_19868 ;
+  constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::init_21__21_ (temp_0.readProperty_mTargetLabel (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)), inCompiler COMMA_HERE), var_line_19685, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)) ;
+  GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_19864 ;
   {
-  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_19689.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 483)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_19868, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 482)) ;
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_19685.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 483)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_19864, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 482)) ;
   }
   enumGalgasBool test_1 = kBoolTrue ;
   if (kBoolTrue == test_1) {
-    GALGAS_baseline_5F_intermediate_5F_GOTO var_goto_19945 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_19868.ptr ())) ;
-    if (nullptr == var_goto_19945.ptr ()) {
+    GALGAS_baseline_5F_intermediate_5F_GOTO var_goto_19941 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_19864.ptr ())) ;
+    if (nullptr == var_goto_19941.ptr ()) {
       test_1 = kBoolFalse ;
     }
     if (kBoolTrue == test_1) {
@@ -14767,7 +14869,7 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
       const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_4 = this ;
       const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_5 = this ;
       const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_6 = this ;
-      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::class_func_new (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_goto_19945.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero ()  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 492)), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_goto_19941.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
       }
       ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
       ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
@@ -14824,3 +14926,102 @@ void callExtensionMethod_optimizeTestDecInc (cPtr_baseline_5F_intermediate_5F_in
     inObject->method_optimizeTestDecInc  (constin_inSymbolTable, constin_inLineIndex, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioOptimizationsDone, inCompiler COMMA_THERE) ;
   }
 }
+//--------------------------------------------------------------------------------------------------
+// @baseline_5F_assembly_5F_instruction reference class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_instruction::cPtr_baseline_5F_assembly_5F_instruction (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+
+
+
+ComparisonResult GALGAS_baseline_5F_assembly_5F_instruction::objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction::GALGAS_baseline_5F_assembly_5F_instruction (void) :
+AC_GALGAS_reference_class () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction::GALGAS_baseline_5F_assembly_5F_instruction (const cPtr_baseline_5F_assembly_5F_instruction * inSourcePtr) :
+AC_GALGAS_reference_class (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_instruction) ;
+}
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @baseline_assembly_instruction class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_instruction::cPtr_baseline_5F_assembly_5F_instruction (LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @baseline_assembly_instruction generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction ("baseline_assembly_instruction",
+                                                                                           nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction GALGAS_baseline_5F_assembly_5F_instruction::extractObject (const GALGAS_object & inObject,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_assembly_5F_instruction result ;
+  const GALGAS_baseline_5F_assembly_5F_instruction * p = (const GALGAS_baseline_5F_assembly_5F_instruction *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_instruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+

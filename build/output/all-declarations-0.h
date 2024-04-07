@@ -210,10 +210,10 @@ class GALGAS__32_lstringlist_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS__32_lstringlist_2D_element init_28__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                     const class GALGAS_lstring & inOperand1,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
+  public: static GALGAS__32_lstringlist_2D_element init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                 const class GALGAS_lstring & inOperand1,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -305,7 +305,7 @@ class Lexique_piccolo_5F_lexique : public Lexique {
 //    an error if a direct delete is performed; only the static method
 //    SharedObject::detachPointer may invoke delete.
   #ifndef DO_NOT_GENERATE_CHECKINGS
-    protected: virtual ~ Lexique_piccolo_5F_lexique (void) {}
+    protected: virtual ~ Lexique_piccolo_5F_lexique (void) { }
   #endif
 
 
@@ -743,11 +743,11 @@ class GALGAS_bitSliceTable_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_bitSliceTable_2D_element init_28__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                       const class GALGAS_uint & inOperand1,
-                                                                       const class GALGAS_uint & inOperand2,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_bitSliceTable_2D_element init_21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                   const class GALGAS_uint & inOperand1,
+                                                                   const class GALGAS_uint & inOperand2,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -802,12 +802,12 @@ class GALGAS_immediatExpression : public AC_GALGAS_reference_class {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatExpression (const class cPtr_immediatExpression * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatExpression init_28__29_ (Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatExpression init (Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -850,6 +850,11 @@ class cPtr_immediatExpression : public acStrongPtr_class {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatExpression_init (Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -890,21 +895,24 @@ class GALGAS_registerExpression : public AC_GALGAS_reference_class {
 //--------------------------------- Constructor from pointer
   public: GALGAS_registerExpression (const class cPtr_registerExpression * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mRegisterName (void) const ;
+  public: void setProperty_mRegisterName (const GALGAS_lstring & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mOffset (void) const ;
+  public: void setProperty_mOffset (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_location readProperty_mEndOfOffsetExpression (void) const ;
+  public: void setProperty_mEndOfOffsetExpression (const GALGAS_location & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_registerExpression init_28__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                 const class GALGAS_immediatExpression & inOperand1,
-                                                                 const class GALGAS_location & inOperand2,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_registerExpression init_21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                             const class GALGAS_immediatExpression & inOperand1,
+                                                             const class GALGAS_location & inOperand2,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -924,15 +932,6 @@ class GALGAS_registerExpression : public AC_GALGAS_reference_class {
   public: ComparisonResult objectCompare (const GALGAS_registerExpression & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMEndOfOffsetExpression (class GALGAS_location inArgument0
-                                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMOffset (class GALGAS_immediatExpression inArgument0
-                                                   COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterName (class GALGAS_lstring inArgument0
-                                                         COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -962,6 +961,14 @@ class cPtr_registerExpression : public acStrongPtr_class {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void registerExpression_init_21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                    const class GALGAS_immediatExpression & inOperand1,
+                                                    const class GALGAS_location & inOperand2,
+                                                    Compiler * inCompiler) ;
+
+
 //--- Extension method analyzeRegisterExpression
   public: virtual void method_analyzeRegisterExpression (const class GALGAS_uint arg_inAccessBankSplitOffset,
            const class GALGAS_uint arg_inCurrentBank,
@@ -1104,12 +1111,12 @@ class GALGAS_declarationInRam : public AC_GALGAS_reference_class {
 //--------------------------------- Constructor from pointer
   public: GALGAS_declarationInRam (const class cPtr_declarationInRam * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_declarationInRam init_28__29_ (Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_declarationInRam init (Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1152,6 +1159,11 @@ class cPtr_declarationInRam : public acStrongPtr_class {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void declarationInRam_init (Compiler * inCompiler) ;
+
+
 //--- Extension method handleDeclaration
   public: virtual void method_handleDeclaration (const class GALGAS_constantMap arg_inConstantMap,
            class GALGAS_stringset & arg_ioUsedRegisters,
@@ -1331,27 +1343,32 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
 //--------------------------------- Constructor from pointer
   public: GALGAS_byteDeclarationInRam (const class cPtr_byteDeclarationInRam * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mName (void) const ;
+  public: void setProperty_mName (const GALGAS_lstring & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mSizeExpression (void) const ;
+  public: void setProperty_mSizeExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_bitSliceTable readProperty_mBitSliceTable (void) const ;
+  public: void setProperty_mBitSliceTable (const GALGAS_bitSliceTable & inValue) ;
 
   public: class GALGAS_string readProperty_mBitDefinitionString (void) const ;
+  public: void setProperty_mBitDefinitionString (const GALGAS_string & inValue) ;
 
   public: class GALGAS_registerProtection readProperty_mProtection (void) const ;
+  public: void setProperty_mProtection (const GALGAS_registerProtection & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_byteDeclarationInRam init_28__2C__2C__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                           const class GALGAS_immediatExpression & inOperand1,
-                                                                           const class GALGAS_bitSliceTable & inOperand2,
-                                                                           const class GALGAS_string & inOperand3,
-                                                                           const class GALGAS_registerProtection & inOperand4,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_byteDeclarationInRam init_21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                       const class GALGAS_immediatExpression & inOperand1,
+                                                                       const class GALGAS_bitSliceTable & inOperand2,
+                                                                       const class GALGAS_string & inOperand3,
+                                                                       const class GALGAS_registerProtection & inOperand4,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1373,21 +1390,6 @@ class GALGAS_byteDeclarationInRam : public GALGAS_declarationInRam {
   public: ComparisonResult objectCompare (const GALGAS_byteDeclarationInRam & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBitDefinitionString (class GALGAS_string inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMBitSliceTable (class GALGAS_bitSliceTable inArgument0
-                                                          COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMName (class GALGAS_lstring inArgument0
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMProtection (class GALGAS_registerProtection inArgument0
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMSizeExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -1417,6 +1419,16 @@ class cPtr_byteDeclarationInRam : public cPtr_declarationInRam {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void byteDeclarationInRam_init_21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                              const class GALGAS_immediatExpression & inOperand1,
+                                                              const class GALGAS_bitSliceTable & inOperand2,
+                                                              const class GALGAS_string & inOperand3,
+                                                              const class GALGAS_registerProtection & inOperand4,
+                                                              Compiler * inCompiler) ;
+
+
 //--- Extension method handleDeclaration
   public: virtual void method_handleDeclaration (const class GALGAS_constantMap arg_inConstantMap,
            class GALGAS_stringset & arg_ioUsedRegisters,
@@ -1687,9 +1699,9 @@ class GALGAS_declarationInRamList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_declarationInRamList_2D_element init_28__29_ (const class GALGAS_declarationInRam & inOperand0,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_declarationInRamList_2D_element init_21_ (const class GALGAS_declarationInRam & inOperand0,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1932,10 +1944,10 @@ class GALGAS_ramDefinitionList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_ramDefinitionList_2D_element init_28__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                       const class GALGAS_declarationInRamList & inOperand1,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_ramDefinitionList_2D_element init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                   const class GALGAS_declarationInRamList & inOperand1,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2179,10 +2191,10 @@ class GALGAS_configSettingList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_configSettingList_2D_element init_28__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                       const class GALGAS_lstring & inOperand1,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_configSettingList_2D_element init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                   const class GALGAS_lstring & inOperand1,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2426,10 +2438,10 @@ class GALGAS_configDefinitionList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_configDefinitionList_2D_element init_28__2C__29_ (const class GALGAS_location & inOperand0,
-                                                                          const class GALGAS_configSettingList & inOperand1,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_configDefinitionList_2D_element init_21__21_ (const class GALGAS_location & inOperand0,
+                                                                      const class GALGAS_configSettingList & inOperand1,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2728,10 +2740,10 @@ class GALGAS_immediatExpressionList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatExpressionList_2D_element init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                                            const class GALGAS_location & inOperand1,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatExpressionList_2D_element init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                                        const class GALGAS_location & inOperand1,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2785,15 +2797,16 @@ class GALGAS_immediatInteger : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatInteger (const class cPtr_immediatInteger * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_luint readProperty_mValue (void) const ;
+  public: void setProperty_mValue (const GALGAS_luint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatInteger init_28__29_ (const class GALGAS_luint & inOperand0,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatInteger init_21_ (const class GALGAS_luint & inOperand0,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2811,9 +2824,6 @@ class GALGAS_immediatInteger : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatInteger & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMValue (class GALGAS_luint inArgument0
-                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -2843,6 +2853,12 @@ class cPtr_immediatInteger : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatInteger_init_21_ (const class GALGAS_luint & inOperand0,
+                                         Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -2943,15 +2959,16 @@ class GALGAS_immediatRegister : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatRegister (const class cPtr_immediatRegister * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_registerExpression readProperty_mRegister (void) const ;
+  public: void setProperty_mRegister (const GALGAS_registerExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatRegister init_28__29_ (const class GALGAS_registerExpression & inOperand0,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatRegister init_21_ (const class GALGAS_registerExpression & inOperand0,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2969,9 +2986,6 @@ class GALGAS_immediatRegister : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatRegister & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMRegister (class GALGAS_registerExpression inArgument0
-                                                     COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3001,6 +3015,12 @@ class cPtr_immediatRegister : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatRegister_init_21_ (const class GALGAS_registerExpression & inOperand0,
+                                          Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -3101,18 +3121,20 @@ class GALGAS_immediatAdd : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatAdd (const class cPtr_immediatAdd * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatAdd init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                      const class GALGAS_immediatExpression & inOperand1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatAdd init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                  const class GALGAS_immediatExpression & inOperand1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3131,12 +3153,6 @@ class GALGAS_immediatAdd : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatAdd & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3166,6 +3182,13 @@ class cPtr_immediatAdd : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatAdd_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                         const class GALGAS_immediatExpression & inOperand1,
+                                         Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -3268,18 +3291,20 @@ class GALGAS_immediatSub : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatSub (const class cPtr_immediatSub * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatSub init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                      const class GALGAS_immediatExpression & inOperand1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatSub init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                  const class GALGAS_immediatExpression & inOperand1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3298,12 +3323,6 @@ class GALGAS_immediatSub : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatSub & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3333,6 +3352,13 @@ class cPtr_immediatSub : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatSub_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                         const class GALGAS_immediatExpression & inOperand1,
+                                         Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -3435,18 +3461,20 @@ class GALGAS_immediatMul : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatMul (const class cPtr_immediatMul * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatMul init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                      const class GALGAS_immediatExpression & inOperand1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatMul init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                  const class GALGAS_immediatExpression & inOperand1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3465,12 +3493,6 @@ class GALGAS_immediatMul : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatMul & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3500,6 +3522,13 @@ class cPtr_immediatMul : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatMul_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                         const class GALGAS_immediatExpression & inOperand1,
+                                         Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -3602,18 +3631,20 @@ class GALGAS_immediatDiv : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatDiv (const class cPtr_immediatDiv * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatDiv init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                      const class GALGAS_immediatExpression & inOperand1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatDiv init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                  const class GALGAS_immediatExpression & inOperand1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3632,12 +3663,6 @@ class GALGAS_immediatDiv : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatDiv & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3667,6 +3692,13 @@ class cPtr_immediatDiv : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatDiv_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                         const class GALGAS_immediatExpression & inOperand1,
+                                         Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -3769,18 +3801,20 @@ class GALGAS_immediatMod : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatMod (const class cPtr_immediatMod * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatMod init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                      const class GALGAS_immediatExpression & inOperand1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatMod init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                  const class GALGAS_immediatExpression & inOperand1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3799,12 +3833,6 @@ class GALGAS_immediatMod : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatMod & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -3834,6 +3862,13 @@ class cPtr_immediatMod : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatMod_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                         const class GALGAS_immediatExpression & inOperand1,
+                                         Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -3936,18 +3971,20 @@ class GALGAS_immediatOr : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatOr (const class cPtr_immediatOr * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatOr init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                     const class GALGAS_immediatExpression & inOperand1,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatOr init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                 const class GALGAS_immediatExpression & inOperand1,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3966,12 +4003,6 @@ class GALGAS_immediatOr : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatOr & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4001,6 +4032,13 @@ class cPtr_immediatOr : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatOr_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                        const class GALGAS_immediatExpression & inOperand1,
+                                        Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -4103,18 +4141,20 @@ class GALGAS_immediatAnd : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatAnd (const class cPtr_immediatAnd * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatAnd init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                      const class GALGAS_immediatExpression & inOperand1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatAnd init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                  const class GALGAS_immediatExpression & inOperand1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4133,12 +4173,6 @@ class GALGAS_immediatAnd : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatAnd & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4168,6 +4202,13 @@ class cPtr_immediatAnd : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatAnd_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                         const class GALGAS_immediatExpression & inOperand1,
+                                         Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -4270,18 +4311,20 @@ class GALGAS_immediatXor : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatXor (const class cPtr_immediatXor * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatXor init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                      const class GALGAS_immediatExpression & inOperand1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatXor init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                  const class GALGAS_immediatExpression & inOperand1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4300,12 +4343,6 @@ class GALGAS_immediatXor : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatXor & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4335,6 +4372,13 @@ class cPtr_immediatXor : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatXor_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                         const class GALGAS_immediatExpression & inOperand1,
+                                         Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -4437,18 +4481,20 @@ class GALGAS_immediatLeftShift : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatLeftShift (const class cPtr_immediatLeftShift * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatLeftShift init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                            const class GALGAS_immediatExpression & inOperand1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatLeftShift init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                        const class GALGAS_immediatExpression & inOperand1,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4467,12 +4513,6 @@ class GALGAS_immediatLeftShift : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatLeftShift & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4502,6 +4542,13 @@ class cPtr_immediatLeftShift : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatLeftShift_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                               const class GALGAS_immediatExpression & inOperand1,
+                                               Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -4604,18 +4651,20 @@ class GALGAS_immediatRightShift : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatRightShift (const class cPtr_immediatRightShift * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatRightShift init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                             const class GALGAS_immediatExpression & inOperand1,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatRightShift init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                         const class GALGAS_immediatExpression & inOperand1,
+                                                         Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4634,12 +4683,6 @@ class GALGAS_immediatRightShift : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatRightShift & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4669,6 +4712,13 @@ class cPtr_immediatRightShift : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatRightShift_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                const class GALGAS_immediatExpression & inOperand1,
+                                                Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -4771,18 +4821,20 @@ class GALGAS_immediatEqualTest : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatEqualTest (const class cPtr_immediatEqualTest * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatEqualTest init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                            const class GALGAS_immediatExpression & inOperand1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatEqualTest init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                        const class GALGAS_immediatExpression & inOperand1,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4801,12 +4853,6 @@ class GALGAS_immediatEqualTest : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatEqualTest & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -4836,6 +4882,13 @@ class cPtr_immediatEqualTest : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatEqualTest_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                               const class GALGAS_immediatExpression & inOperand1,
+                                               Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -4938,18 +4991,20 @@ class GALGAS_immediatNotEqualTest : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatNotEqualTest (const class cPtr_immediatNotEqualTest * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatNotEqualTest init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                               const class GALGAS_immediatExpression & inOperand1,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatNotEqualTest init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                           const class GALGAS_immediatExpression & inOperand1,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4968,12 +5023,6 @@ class GALGAS_immediatNotEqualTest : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatNotEqualTest & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5003,6 +5052,13 @@ class cPtr_immediatNotEqualTest : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatNotEqualTest_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                  const class GALGAS_immediatExpression & inOperand1,
+                                                  Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -5105,18 +5161,20 @@ class GALGAS_immediatGreaterTest : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatGreaterTest (const class cPtr_immediatGreaterTest * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatGreaterTest init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                              const class GALGAS_immediatExpression & inOperand1,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatGreaterTest init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                          const class GALGAS_immediatExpression & inOperand1,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5135,12 +5193,6 @@ class GALGAS_immediatGreaterTest : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatGreaterTest & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5170,6 +5222,13 @@ class cPtr_immediatGreaterTest : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatGreaterTest_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                 const class GALGAS_immediatExpression & inOperand1,
+                                                 Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -5272,18 +5331,20 @@ class GALGAS_immediatGreaterOrEqualTest : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatGreaterOrEqualTest (const class cPtr_immediatGreaterOrEqualTest * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatGreaterOrEqualTest init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                                     const class GALGAS_immediatExpression & inOperand1,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatGreaterOrEqualTest init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                                 const class GALGAS_immediatExpression & inOperand1,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5302,12 +5363,6 @@ class GALGAS_immediatGreaterOrEqualTest : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatGreaterOrEqualTest & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5337,6 +5392,13 @@ class cPtr_immediatGreaterOrEqualTest : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatGreaterOrEqualTest_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                        const class GALGAS_immediatExpression & inOperand1,
+                                                        Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -5439,18 +5501,20 @@ class GALGAS_immediatLowerTest : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatLowerTest (const class cPtr_immediatLowerTest * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatLowerTest init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                            const class GALGAS_immediatExpression & inOperand1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatLowerTest init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                        const class GALGAS_immediatExpression & inOperand1,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5469,12 +5533,6 @@ class GALGAS_immediatLowerTest : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatLowerTest & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5504,6 +5562,13 @@ class cPtr_immediatLowerTest : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatLowerTest_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                               const class GALGAS_immediatExpression & inOperand1,
+                                               Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -5606,18 +5671,20 @@ class GALGAS_immediatLowerOrEqualTest : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatLowerOrEqualTest (const class cPtr_immediatLowerOrEqualTest * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mLeftExpression (void) const ;
+  public: void setProperty_mLeftExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_immediatExpression readProperty_mRightExpression (void) const ;
+  public: void setProperty_mRightExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatLowerOrEqualTest init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                                   const class GALGAS_immediatExpression & inOperand1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatLowerOrEqualTest init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                               const class GALGAS_immediatExpression & inOperand1,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5636,12 +5703,6 @@ class GALGAS_immediatLowerOrEqualTest : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatLowerOrEqualTest & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMLeftExpression (class GALGAS_immediatExpression inArgument0
-                                                           COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMRightExpression (class GALGAS_immediatExpression inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5671,6 +5732,13 @@ class cPtr_immediatLowerOrEqualTest : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatLowerOrEqualTest_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                      const class GALGAS_immediatExpression & inOperand1,
+                                                      Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -5773,15 +5841,16 @@ class GALGAS_immediatNegate : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatNegate (const class cPtr_immediatNegate * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mExpression (void) const ;
+  public: void setProperty_mExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatNegate init_28__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatNegate init_21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5799,9 +5868,6 @@ class GALGAS_immediatNegate : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatNegate & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMExpression (class GALGAS_immediatExpression inArgument0
-                                                       COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5831,6 +5897,12 @@ class cPtr_immediatNegate : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatNegate_init_21_ (const class GALGAS_immediatExpression & inOperand0,
+                                        Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -5931,15 +6003,16 @@ class GALGAS_immediatComplement : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatComplement (const class cPtr_immediatComplement * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mExpression (void) const ;
+  public: void setProperty_mExpression (const GALGAS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatComplement init_28__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatComplement init_21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                     Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5957,9 +6030,6 @@ class GALGAS_immediatComplement : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatComplement & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMExpression (class GALGAS_immediatExpression inArgument0
-                                                       COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -5989,6 +6059,12 @@ class cPtr_immediatComplement : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatComplement_init_21_ (const class GALGAS_immediatExpression & inOperand0,
+                                            Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -6279,10 +6355,10 @@ class GALGAS_immediatSliceExpressionList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatSliceExpressionList_2D_element init_28__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                 const class GALGAS_immediatExpression & inOperand1,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatSliceExpressionList_2D_element init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                             const class GALGAS_immediatExpression & inOperand1,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6336,18 +6412,20 @@ class GALGAS_immediatSlice : public GALGAS_immediatExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_immediatSlice (const class cPtr_immediatSlice * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mRegisterName (void) const ;
+  public: void setProperty_mRegisterName (const GALGAS_lstring & inValue) ;
 
   public: class GALGAS_immediatSliceExpressionList readProperty_mSliceExpressionList (void) const ;
+  public: void setProperty_mSliceExpressionList (const GALGAS_immediatSliceExpressionList & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_immediatSlice init_28__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                        const class GALGAS_immediatSliceExpressionList & inOperand1,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_immediatSlice init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                    const class GALGAS_immediatSliceExpressionList & inOperand1,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6366,12 +6444,6 @@ class GALGAS_immediatSlice : public GALGAS_immediatExpression {
   public: ComparisonResult objectCompare (const GALGAS_immediatSlice & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMRegisterName (class GALGAS_lstring inArgument0
-                                                         COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMSliceExpressionList (class GALGAS_immediatSliceExpressionList inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -6401,6 +6473,13 @@ class cPtr_immediatSlice : public cPtr_immediatExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void immediatSlice_init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                           const class GALGAS_immediatSliceExpressionList & inOperand1,
+                                           Compiler * inCompiler) ;
+
+
 //--- Extension method eval
   public: virtual void method_eval (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -6693,10 +6772,10 @@ class GALGAS_constantDefinitionList_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_constantDefinitionList_2D_element init_28__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                            const class GALGAS_immediatExpression & inOperand1,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_constantDefinitionList_2D_element init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                        const class GALGAS_immediatExpression & inOperand1,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6954,11 +7033,11 @@ class GALGAS_actualConfigurationMap_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_actualConfigurationMap_2D_element init_28__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                const class GALGAS_uint & inOperand1,
-                                                                                const class GALGAS_uint & inOperand2,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_actualConfigurationMap_2D_element init_21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                            const class GALGAS_uint & inOperand1,
+                                                                            const class GALGAS_uint & inOperand2,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7013,12 +7092,12 @@ class GALGAS_bitNumberExpression : public AC_GALGAS_reference_class {
 //--------------------------------- Constructor from pointer
   public: GALGAS_bitNumberExpression (const class cPtr_bitNumberExpression * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_bitNumberExpression init_28__29_ (Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_bitNumberExpression init (Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7061,6 +7140,11 @@ class cPtr_bitNumberExpression : public acStrongPtr_class {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void bitNumberExpression_init (Compiler * inCompiler) ;
+
+
 //--- Extension method getBitNumber
   public: virtual void method_getBitNumber (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -7157,18 +7241,20 @@ class GALGAS_bitNumberLiteralExpression : public GALGAS_bitNumberExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_bitNumberLiteralExpression (const class cPtr_bitNumberLiteralExpression * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_immediatExpression readProperty_mBitNumberLiteralExpression (void) const ;
+  public: void setProperty_mBitNumberLiteralExpression (const GALGAS_immediatExpression & inValue) ;
 
   public: class GALGAS_location readProperty_mEndOfExpression (void) const ;
+  public: void setProperty_mEndOfExpression (const GALGAS_location & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_bitNumberLiteralExpression init_28__2C__29_ (const class GALGAS_immediatExpression & inOperand0,
-                                                                     const class GALGAS_location & inOperand1,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_bitNumberLiteralExpression init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                                 const class GALGAS_location & inOperand1,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7187,12 +7273,6 @@ class GALGAS_bitNumberLiteralExpression : public GALGAS_bitNumberExpression {
   public: ComparisonResult objectCompare (const GALGAS_bitNumberLiteralExpression & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBitNumberLiteralExpression (class GALGAS_immediatExpression inArgument0
-                                                                       COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMEndOfExpression (class GALGAS_location inArgument0
-                                                            COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -7222,6 +7302,13 @@ class cPtr_bitNumberLiteralExpression : public cPtr_bitNumberExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void bitNumberLiteralExpression_init_21__21_ (const class GALGAS_immediatExpression & inOperand0,
+                                                        const class GALGAS_location & inOperand1,
+                                                        Compiler * inCompiler) ;
+
+
 //--- Extension method getBitNumber
   public: virtual void method_getBitNumber (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -7325,15 +7412,16 @@ class GALGAS_bitNumberLiteralValue : public GALGAS_bitNumberExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_bitNumberLiteralValue (const class cPtr_bitNumberLiteralValue * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_luint readProperty_mBitNumberLiteralValue (void) const ;
+  public: void setProperty_mBitNumberLiteralValue (const GALGAS_luint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_bitNumberLiteralValue init_28__29_ (const class GALGAS_luint & inOperand0,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_bitNumberLiteralValue init_21_ (const class GALGAS_luint & inOperand0,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7351,9 +7439,6 @@ class GALGAS_bitNumberLiteralValue : public GALGAS_bitNumberExpression {
   public: ComparisonResult objectCompare (const GALGAS_bitNumberLiteralValue & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBitNumberLiteralValue (class GALGAS_luint inArgument0
-                                                                  COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -7383,6 +7468,12 @@ class cPtr_bitNumberLiteralValue : public cPtr_bitNumberExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void bitNumberLiteralValue_init_21_ (const class GALGAS_luint & inOperand0,
+                                               Compiler * inCompiler) ;
+
+
 //--- Extension method getBitNumber
   public: virtual void method_getBitNumber (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -7484,18 +7575,20 @@ class GALGAS_bitNumberLabelValue : public GALGAS_bitNumberExpression {
 //--------------------------------- Constructor from pointer
   public: GALGAS_bitNumberLabelValue (const class cPtr_bitNumberLabelValue * inSourcePtr) ;
 
-//--------------------------------- Property read access
+//--------------------------------- Property access
   public: class GALGAS_lstring readProperty_mBitNumberLabelValue (void) const ;
+  public: void setProperty_mBitNumberLabelValue (const GALGAS_lstring & inValue) ;
 
   public: class GALGAS_luint readProperty_mBitNumberIndexValue (void) const ;
+  public: void setProperty_mBitNumberIndexValue (const GALGAS_luint & inValue) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_bitNumberLabelValue init_28__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                              const class GALGAS_luint & inOperand1,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_bitNumberLabelValue init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                          const class GALGAS_luint & inOperand1,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7514,12 +7607,6 @@ class GALGAS_bitNumberLabelValue : public GALGAS_bitNumberExpression {
   public: ComparisonResult objectCompare (const GALGAS_bitNumberLabelValue & inOperand) const ;
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_setMBitNumberIndexValue (class GALGAS_luint inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMBitNumberLabelValue (class GALGAS_lstring inArgument0
-                                                                COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
 //--------------------------------- Class Methods
@@ -7549,6 +7636,13 @@ class cPtr_bitNumberLabelValue : public cPtr_bitNumberExpression {
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
   #endif
+
+//--------------------------------- Initializers
+  public: void bitNumberLabelValue_init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                 const class GALGAS_luint & inOperand1,
+                                                 Compiler * inCompiler) ;
+
+
 //--- Extension method getBitNumber
   public: virtual void method_getBitNumber (const class GALGAS_registerTable arg_inRegisterTable,
            const class GALGAS_constantMap arg_inConstantMap,
@@ -7796,9 +7890,9 @@ class GALGAS_labelMap_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_labelMap_2D_element init_28__29_ (const class GALGAS_lstring & inOperand0,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_labelMap_2D_element init_21_ (const class GALGAS_lstring & inOperand0,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8039,10 +8133,10 @@ class GALGAS_constantMap_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_constantMap_2D_element init_28__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                 const class GALGAS_sint_36__34_ & inOperand1,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_constantMap_2D_element init_21__21_ (const class GALGAS_lstring & inOperand0,
+                                                             const class GALGAS_sint_36__34_ & inOperand1,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8352,13 +8446,13 @@ class GALGAS_routineMap_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_routineMap_2D_element init_28__2C__2C__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                            const class GALGAS_bool & inOperand1,
-                                                                            const class GALGAS_uint & inOperand2,
-                                                                            const class GALGAS_uint & inOperand3,
-                                                                            const class GALGAS_bool & inOperand4,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_routineMap_2D_element init_21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                        const class GALGAS_bool & inOperand1,
+                                                                        const class GALGAS_uint & inOperand2,
+                                                                        const class GALGAS_uint & inOperand3,
+                                                                        const class GALGAS_bool & inOperand4,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8944,11 +9038,11 @@ class GALGAS_symbolTableForOptimizations_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_symbolTableForOptimizations_2D_element init_28__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                     const class GALGAS_uint & inOperand1,
-                                                                                     const class GALGAS_bool & inOperand2,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_symbolTableForOptimizations_2D_element init_21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                                 const class GALGAS_uint & inOperand1,
+                                                                                 const class GALGAS_bool & inOperand2,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -9389,13 +9483,13 @@ class GALGAS_configFieldMap_2D_element : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GALGAS_configFieldMap_2D_element init_28__2C__2C__2C__2C__29_ (const class GALGAS_lstring & inOperand0,
-                                                                                const class GALGAS_lstring & inOperand1,
-                                                                                const class GALGAS_luint & inOperand2,
-                                                                                const class GALGAS_lstring & inOperand3,
-                                                                                const class GALGAS_fieldSettingMap & inOperand4,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
+  public: static GALGAS_configFieldMap_2D_element init_21__21__21__21__21_ (const class GALGAS_lstring & inOperand0,
+                                                                            const class GALGAS_lstring & inOperand1,
+                                                                            const class GALGAS_luint & inOperand2,
+                                                                            const class GALGAS_lstring & inOperand3,
+                                                                            const class GALGAS_fieldSettingMap & inOperand4,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;

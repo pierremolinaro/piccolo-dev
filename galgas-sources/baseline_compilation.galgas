@@ -38,14 +38,14 @@ override method @baseline_instruction_CALL shouldTerminateWithMOVLW
 override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
   ?let @string unused inErrorMessage {
 #--- THEN branch
-  if [self.mThenInstructionList length] == 0 then
+  if [self.mThenInstructionList count] == 0 then
     error self.mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
    [self.mThenInstructionList last ?let @baseline_instruction lastInstruction]
    [lastInstruction shouldTerminateWithMOVLW !"the 'then' branch of this 'if' instruction must terminate with a MOVLW instruction"]
   end
 #--- ELSE branch
-  if [self.mElseInstructionList length] == 0 then
+  if [self.mElseInstructionList count] == 0 then
     error self.mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
    [self.mElseInstructionList last ?let @baseline_instruction lastInstruction]
@@ -112,13 +112,13 @@ proc baseline_analysis
     ?let actualConfigurationMap
   )
 #-------------------------------- Build constant map
-  var @constantMap constantMap = {}
+  var @constantMap constantMap = §[]
   var @registerTable registerTable = piccoloDeviceModel.mRegisterTable
 #--- Add "ROM_SIZE" constant
 #  @lstring romSizeString [new !"ROM_SIZE" !here] ;
 #  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
 #--- Add declared constants
-  var @stringset usedRegisters = {}
+  var @stringset usedRegisters = §[]
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
     if [registerTable hasKey !mConstantName.string] then
@@ -141,7 +141,7 @@ proc baseline_analysis
     ?let @declaredByteMap declaredByteMap
   )
 #-------------------------------- Build routine map
-  var routineMap =@baselineRoutineMap.emptyMap{}
+  var routineMap =@baselineRoutineMap §[]
   for (mRoutineName mPage mIsNoReturn * *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage]
   end
@@ -154,7 +154,7 @@ proc baseline_analysis
   end
 #-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
-    [routineMap searchKey !@lstring. new { !"main" !@location.here} ?let @bool isNoReturn ?let @luint page]
+    [routineMap searchKey !@lstring.init { !"main" !@location.here} ?let @bool isNoReturn ?let @luint page]
     if not isNoReturn then
       error [routineMap locationForKey !"main"] :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main page 0\""
     end
@@ -176,7 +176,7 @@ proc baseline_analysis
     end
   end
 #-------------------------------- Order routines to place "main" routine first
-  var sortedRoutineDefinitionList =@baseline_routineDefinitionList.emptyList{}
+  var sortedRoutineDefinitionList =@baseline_routineDefinitionList §[]
   for (mRoutineName mPage mIsNoReturn mInstructionList mEndOfRoutineLocation) in  inPiccoloModel.mRoutineDefinitionList do
     if mRoutineName.string == "main" then
       [!?sortedRoutineDefinitionList insertAtIndex 
@@ -197,7 +197,7 @@ proc baseline_analysis
     end
   end
 #-------------------------------- Check and translate routines
-  var intermediateInstructionList =@baseline_intermediate_instructionList.emptyList{}
+  var intermediateInstructionList =@baseline_intermediate_instructionList §[]
   if @uint. errorCount == 0 then
     var @uint currentPage = 0
     var @uint localLabelIndex = 0
@@ -208,14 +208,14 @@ proc baseline_analysis
         #---
           if not pseudo_PAGE_generated then
             pseudo_PAGE_generated = true
-            intermediateInstructionList += !@baseline_intermediate_pseudo_PAGE. new { !currentPage}
+            intermediateInstructionList += !@baseline_intermediate_pseudo_PAGE.init { !currentPage}
           end
         #---
           let @routineKind routineKind
           if mIsNoReturn then
             routineKind = @routineKind. noReturnRoutine
           #--- Check does not continue in sequence
-            if [mInstructionList length] == 0 then
+            if [mInstructionList count] == 0 then
               error mRoutineName : "a noreturn routine should terminate by a GOTO or a FOREVER loop"
             else
              [mInstructionList last ?let @baseline_instruction lastInstruction]
@@ -224,7 +224,7 @@ proc baseline_analysis
           else
             routineKind = @routineKind. regularRoutine
           #--- Check instruction list terminates by a MOVLW instruction
-            if [mInstructionList length] == 0 then
+            if [mInstructionList count] == 0 then
               error mRoutineName : "a baseline routine must end with a MOVLW instruction"
             else
              [mInstructionList last ?let @baseline_instruction lastInstruction]
@@ -233,8 +233,8 @@ proc baseline_analysis
           end
         #--- Check and translate instructions
           if mRoutineName.string != "main" then
-            intermediateInstructionList += !@baseline_intermediate_pseudo_BEGIN_ROUTINE. new { !mRoutineName !not mIsNoReturn}
-            intermediateInstructionList += !@baseline_intermediate_pseudo_LABEL. new { !mRoutineName}
+            intermediateInstructionList += !@baseline_intermediate_pseudo_BEGIN_ROUTINE.init { !mRoutineName !not mIsNoReturn}
+            intermediateInstructionList += !@baseline_intermediate_pseudo_LABEL.init { !mRoutineName}
           end
           handleBaselineInstructionList (
             !currentPage
@@ -250,7 +250,7 @@ proc baseline_analysis
             !not mIsNoReturn # Last instruction should be RETLW ?
             !?usedRegisters
           )
-          intermediateInstructionList += !@baseline_intermediate_pseudo_END_ROUTINE. new { !mRoutineName !currentPage}
+          intermediateInstructionList += !@baseline_intermediate_pseudo_END_ROUTINE.init { !mRoutineName !currentPage}
           if mIsNoReturn & continuesInSequence then
             error mRoutineName:"execution should not reach the end of a \"noreturn\" routine"
           end
@@ -263,12 +263,12 @@ proc baseline_analysis
   let @stringset usedRoutineSet = baseline_computeUsedRoutines (
     !inPiccoloModel.mRoutineDefinitionList
   )
-  var declaredRoutineMap =@baseline_declaredRoutineMap.emptyMap{}
+  var declaredRoutineMap =@baseline_declaredRoutineMap §[]
   for (mRoutineName * * * *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?declaredRoutineMap insertKey !mRoutineName]
   end
 #-------------------------------- Check used routines
-  var unusedRoutineDeclarationUnicity =@stringset.emptySet{}
+  var unusedRoutineDeclarationUnicity =@stringset §[]
   for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' routine is not declared"
@@ -285,7 +285,7 @@ proc baseline_analysis
     end
   end
 #----------------------------------------------------------- Check declared bytes are used
-  var unusedDeclarationUnicity =@stringset.emptySet{}
+  var unusedDeclarationUnicity =@stringset §[]
   for (mValue) in  inPiccoloModel.mUnusedRegisterList do
     if not [registerTable hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' byte is not declared"
@@ -325,9 +325,9 @@ proc baseline_analysis
   end
 #-------------------------------- Build assembly instruction list
   initCodeGenerator ()
-  let sr = @registerExpression.new {
-    !.new {!"STATUS" !.here}
-    !@immediatInteger.new {!.new {!0 !.here}}
+  let sr = @registerExpression.init {
+    !.init {!"STATUS" !.here}
+    !@immediatInteger.init {!.init {!0 !.here}}
     !.here
   }
   [sr resolveBaselineAccess
@@ -337,7 +337,7 @@ proc baseline_analysis
     ?let @bitSliceTable statusRegisterBitSliceTable
     !?usedRegisters
   ]
-  var assemblyInstructionList =@baseline_assembly_instructionList.emptyList{}
+  var assemblyInstructionList =@baseline_assembly_instructionList §[]
   if @uint.errorCount == 0 then
     build_baseline_assembly_code (
       !intermediateInstructionList

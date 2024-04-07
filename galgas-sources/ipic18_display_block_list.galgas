@@ -42,7 +42,7 @@ proc displayBlockList
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   for (mBlock) in  inGeneratedBlockList do(blockIndex)
     let @string nextBlockLabel
-    if (blockIndex+1) < [inGeneratedBlockList length] then
+    if (blockIndex+1) < [inGeneratedBlockList count] then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
       nextBlockLabel = ""

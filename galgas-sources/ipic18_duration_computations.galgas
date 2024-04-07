@@ -531,7 +531,7 @@ override method @ipic18_intermediate_instruction_computed_rcall minMaxDuration
     for (instr * *) in self.mTargetInstructions do (idx)
       [instr minMaxDuration !inExploredBlockMap ?@uint min ?@uint max]
     #--- For all branches (but the last one) add BRA execution (2 cycles)
-      if idx < ([self.mTargetInstructions length] - 1) then
+      if idx < ([self.mTargetInstructions count] - 1) then
         min = min + 2
         max = max + 2
       end
@@ -559,19 +559,19 @@ proc ipic18DurationComputations
   !@blockDurationMap outBlockDurationMap
 {
 #--- Next label list
-  var @stringlist nextLabelList = {}
+  var @stringlist nextLabelList = §[]
   for (mBlock) in ioBlockList do
     nextLabelList += !mBlock.mLabel.string
   end
   nextLabelList += !""
   [!?nextLabelList popFirst ?*]
 #--- Compute durations
-  outBlockDurationMap = {}
+  outBlockDurationMap = §[]
   var continue = true
-  loop ([ioBlockList length] + 1) while continue do
+  loop ([ioBlockList count] + 1) while continue do
     continue = false
     let tempBlockList = ioBlockList
-    ioBlockList = {}
+    ioBlockList = §[]
     for (aBlock) in tempBlockList, (nextLabel) in nextLabelList do
       [aBlock computeDuration !?outBlockDurationMap !nextLabel ?let newBlock !?continue]
       ioBlockList += !newBlock
@@ -593,7 +593,7 @@ method @ipic18Block computeDuration
     [self.mTerminator terminatorMinMaxDuration !ioExploredBlockMap !inNextLabel ?let terminatorMin ?let terminatorMax]
     var min = terminatorMin
     var max = terminatorMax
-    var @ipic18SequentialInstructionList computedInstructionList = {}
+    var @ipic18SequentialInstructionList computedInstructionList = §[]
     var ok = min <= max
     for > (instr * *) in self.mInstructionList  do
       [instr minMaxDuration
@@ -611,7 +611,7 @@ method @ipic18Block computeDuration
       end
     end
     if ok then # Solved
-      outNewBlock = @ipic18Block.new {
+      outNewBlock = @ipic18Block.init {
         !self.mAddress
         !self.mLabel
         !computedInstructionList

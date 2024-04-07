@@ -145,9 +145,9 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
   ?let @routineKind inRoutineKind
   ?!@stringset ioUsedRegisters {
 #--- Get values for STATUS register
-  let STATUS_register = @registerExpression.new {
-    !.new {!"STATUS" !.here}
-    !@immediatInteger.new {!.new {!0 !.here}}
+  let STATUS_register = @registerExpression.init {
+    !.init {!"STATUS" !.here}
+    !@immediatInteger.init {!.init {!0 !.here}}
     !.here
   }
   let @midrange_intermediate_registerExpression STATUS_IPICregisterDescription
@@ -172,13 +172,13 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
     !?ioUsedRegisters
   ]
 #--- Generate "SWAPF STATUS, W" instruction
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init {
     !self.mInstructionLocation
     !@midrange_instruction_FD_base_code. SWAPF
     !STATUS_IPICregisterDescription
     !true}
 #--- Generate "MOVWF SAVE_REG" instruction
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init {
     !self.mInstructionLocation
     !@midrange_F_instruction_base_code. MOVWF
     !save_IPICregisterDescription}
@@ -203,13 +203,13 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
     error self.mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list"
   end
 #--- Generate "SWAPF SAVE_REG, W" instruction
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init {
     !self.mInstructionLocation
     !@midrange_instruction_FD_base_code. SWAPF
     !save_IPICregisterDescription
     !true}
 #--- Generate "MOVWF STATUS" instruction
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init {
     !self.mInstructionLocation
     !@midrange_F_instruction_base_code. MOVWF
     !STATUS_IPICregisterDescription}
@@ -234,9 +234,9 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
     error self.mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)"
   end
 #---
-  let STATUS_register = @registerExpression.new {
-    !.new { !"STATUS" !.here}
-    !@immediatInteger.new {!.new {!0 !.here}}
+  let STATUS_register = @registerExpression.init {
+    !.init { !"STATUS" !.here}
+    !@immediatInteger.init {!.init {!0 !.here}}
     !.here
   }
   let @midrange_intermediate_registerExpression STATUS_IPICregisterDescription
@@ -250,7 +250,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
     ?bitSliceTable
     !?ioUsedRegisters
   ]
-  let RP = @lstring.new { !"RP" !self.mInstructionLocation}
+  let RP = @lstring.init { !"RP" !self.mInstructionLocation}
   [bitSliceTable searchKey !RP ?let @uint rpIndex ?let @uint sliceSize]
   if sliceSize < [inTotalBankCount - 1 significantBitCount] then
     error self.mInstructionLocation: "internal error: sliceSize == " + [sliceSize string] + ", total bank count == " + [inTotalBankCount string]
@@ -272,7 +272,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
       else
         op = @midrange_bit_oriented_op. BSF
       end
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB. new {
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB.init {
         !self.mInstructionLocation
         !op
         !STATUS_IPICregisterDescription
@@ -294,13 +294,13 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
         op = @midrange_bit_oriented_op. BSF
       end
       if ((shiftedXorBank & 1) != 0) | not optimize then
-        ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB. new {
+        ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB.init {
           !self.mInstructionLocation
           !op
           !STATUS_IPICregisterDescription
           !rpIndex + idx}
       else
-        ioListFileContents += "  line " + [[ioGeneratedInstructionList length] string]
+        ioListFileContents += "  line " + [[ioGeneratedInstructionList count] string]
         ioListFileContents += ": useless '" + [op mnemonic] + " STATUS, "
         ioListFileContents += [rpIndex + idx string] + "' not generated\n"
       end
@@ -331,9 +331,9 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
     error self.mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)"
   end
 #---
-  let STATUS_register = @registerExpression.new {
-    !.new { !"STATUS" !.here}
-    !@immediatInteger.new {!.new {!0 !.here}}
+  let STATUS_register = @registerExpression.init {
+    !.init { !"STATUS" !.here}
+    !@immediatInteger.init {!.init {!0 !.here}}
     !.here
   }
   [STATUS_register resolveMidrangeAccess
@@ -345,7 +345,7 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
     ?let @bitSliceTable bitSliceTable
     !?ioUsedRegisters
   ]
-  let RP = @lstring.new { !"RP" !self.mInstructionLocation}
+  let RP = @lstring.init { !"RP" !self.mInstructionLocation}
   [bitSliceTable searchKey !RP ?let @uint rpIndex ?let @uint sliceSize]
   if sliceSize < [inTotalBankCount - 1 significantBitCount] then
     error self.mInstructionLocation: "internal error: sliceSize == " + [sliceSize string] + ", total bank count == " + [inTotalBankCount string]
@@ -385,7 +385,7 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
       else
         op = @midrange_bit_oriented_op. BSF
       end
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB. new {
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB.init {
         !self.mInstructionLocation
         !op
         !STATUS_IPICregisterDescription
@@ -407,13 +407,13 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
         op = @midrange_bit_oriented_op. BSF
       end
       if ((shiftedXorBank & 1) != 0) | not optimize then
-        ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB. new {
+        ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB.init {
           !self.mInstructionLocation
           !op
           !STATUS_IPICregisterDescription
           !rpIndex + idx}
       else
-        ioListFileContents += "  line " + [[ioGeneratedInstructionList length] string]
+        ioListFileContents += "  line " + [[ioGeneratedInstructionList count] string]
         ioListFileContents += ": useless '" + [op mnemonic] + " STATUS, "
         ioListFileContents += [rpIndex + idx string] + "' not generated\n"
       end
@@ -449,7 +449,7 @@ override method @midrange_instruction_FD build_midrange_ipic_instructionList
     ?*
     !?ioUsedRegisters
   ]
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init {
     !self.mInstructionLocation
     !self.mInstruction_FD_base_code
     !IPICregisterDescription
@@ -482,7 +482,7 @@ override method @midrange_instruction_F build_midrange_ipic_instructionList
     ?*
     !?ioUsedRegisters
   ]
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init {
     !self.mInstructionLocation
     !self.mFAinstruction
     !IPICregisterDescription
@@ -521,7 +521,7 @@ override method @midrange_instruction_FB build_midrange_ipic_instructionList
     !bitSliceTable
     ?let bitNumber
   ]
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FB.init {
     !self.mInstructionLocation
     !self.mBitOrientedOp
     !IPICregisterDescription
@@ -563,7 +563,7 @@ override method @midrange_instruction_JSR build_midrange_ipic_instructionList
     ioCurrentBank = returnedBank
   end
 #---
-  ioGeneratedInstructionList += !@midrange_intermediate_JSR. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_JSR.init {
     !self.mInstructionLocation
     !self.mTargetLabel
     !@midrange_call_goto_bit. noChange
@@ -652,7 +652,7 @@ override method @midrange_instruction_CALL build_midrange_ipic_instructionList
     ioCurrentBank = returnedBank
   end
 #---
-  ioGeneratedInstructionList += !@midrange_intermediate_CALL. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_CALL.init {
     !self.mInstructionLocation
     !self.mTargetLabel}
 }
@@ -689,7 +689,7 @@ override method @midrange_instruction_JUMP build_midrange_ipic_instructionList
   end
   ioContinuesInSequence = false
 #---
-  ioGeneratedInstructionList += !@midrange_intermediate_JUMP. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_JUMP.init {
     !self.mInstructionLocation
     !self.mTargetLabel
     !@midrange_call_goto_bit. noChange
@@ -728,7 +728,7 @@ override method @midrange_instruction_GOTO build_midrange_ipic_instructionList
   end
   ioContinuesInSequence = false
 #---
-  ioGeneratedInstructionList += !@midrange_intermediate_GOTO. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_GOTO.init {
     !self.mInstructionLocation
     !self.mTargetLabel}
 }
@@ -748,7 +748,7 @@ override method @midrange_instruction_CLRWDT build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ?let @routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters {
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_CLRWDT. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_CLRWDT.init {
     !self.mInstructionLocation}
 }
 
@@ -767,7 +767,7 @@ override method @midrange_instruction_CLRW build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ?let @routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters {
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_CLRW. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_CLRW.init {
     !self.mInstructionLocation}
 }
 
@@ -786,7 +786,7 @@ override method @midrange_instruction_NOP build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ?let @routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters {
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_NOP. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_NOP.init {
     !self.mInstructionLocation}
 }
 
@@ -805,7 +805,7 @@ override method @midrange_instruction_SLEEP build_midrange_ipic_instructionList
   ?!@bool unused ioContinuesInSequence
   ?let @routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters {
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_SLEEP. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_SLEEP.init {
     !self.mInstructionLocation}
 }
 
@@ -830,7 +830,7 @@ override method @midrange_instruction_literalOperation build_midrange_ipic_instr
      error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be betwween -128 and 255)"
    end
 #---  
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_literalOperation. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_literalOperation.init {
     !self.mInstructionLocation
     !self.mLiteralInstruction
     ![result & 0x000000FF uint]}
@@ -856,7 +856,7 @@ override method @midrange_instruction_MNOP build_midrange_ipic_instructionList
     warning self.mOccurrenceFactor:"occurrence argument is zero: no generated code"
   end
 #---
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_MNOP. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_MNOP.init {
     !self.mInstructionLocation
     !self.mOccurrenceFactor}
 }
@@ -887,7 +887,7 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
   var @uint finalBank = ioCurrentBank
   let @string label0 = ".L" + [ioLocalLabelIndex string] 
   ioLocalLabelIndex += 1
-  ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !@lstring. new { !label0 !self.mInstructionLocation} !true}
+  ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL.init { !@lstring.init { !label0 !self.mInstructionLocation} !true}
   handleMidrangeInstructionList (
     !self.mInstructionList 
     !inRoutineMap
@@ -907,9 +907,9 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
     error self.mEndOfInstructionList:"instruction list does not leave bank selection unchanged"
   end
 #--- Generate JUMP to loop start
-  ioGeneratedInstructionList += !@midrange_intermediate_GOTO. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_GOTO.init {
     !self.mInstructionLocation
-    !@lstring. new { !label0 !self.mInstructionLocation}}
+    !@lstring.init { !label0 !self.mInstructionLocation}}
 #---
   ioContinuesInSequence = false
 }
@@ -1018,7 +1018,7 @@ override method @midrange_instruction_IF_BitTest build_midrange_ipic_instruction
     !bitSliceTable
     ?let bitNumber
   ]
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_BitTestSkip. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_BitTestSkip.init {
     !self.mInstructionLocation
     !self.mSkipIfSet
     !IPICregisterDescription
@@ -1088,7 +1088,7 @@ override method @midrange_incDecRegisterInCondition buildIPICinstructionForCondi
     !?ioUsedRegisters
   ]
 #---
-  ioGeneratedInstructionList += !@midrange_intermediate_incDecRegisterInCondition. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_incDecRegisterInCondition.init {
     !inInstructionLocation
     !IPICregisterDescription
     !inTargetLabel
@@ -1218,7 +1218,7 @@ override method @midrange_andCondition buildIPICinstructionForCondition
       !?ioListFileContents
       !?ioUsedRegisters
     ]
-    ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !@lstring. new { !label0 !inInstructionLocation} !true}
+    ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL.init { !@lstring.init { !label0 !inInstructionLocation} !true}
   end
 }
 
@@ -1268,15 +1268,15 @@ override method @midrange_bitTest_in_structured_if_condition buildIPICinstructio
     !bitSliceTable
     ?let bitNumber
   ]
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_BitTestSkip. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_BitTestSkip.init {
     !inInstructionLocation
     !inComplementaryBranch # mBTFSSinstruction ^ inComplementaryBranch
     !IPICregisterDescription
     !bitNumber
   }
-  ioGeneratedInstructionList += !@midrange_intermediate_JUMP. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_JUMP.init {
     !inInstructionLocation
-    !@lstring.new {!inTargetLabel !inInstructionLocation}
+    !@lstring.init {!inTargetLabel !inInstructionLocation}
     !@midrange_call_goto_bit.noChange
     !@midrange_call_goto_bit.noChange
   }
@@ -1309,16 +1309,16 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
 #--- Direct Test Instruction Count
   if [option piccolo_options.performOptimizations value] then
     var @uint directCount ; [self.mIfCondition computeInstructionCountForCondition !true ?directCount]
-    if [self.mElseInstructionList length] > 0 then
+    if [self.mElseInstructionList count] > 0 then
       directCount += 1
     end
     var @uint complementaryCount ; [self.mIfCondition computeInstructionCountForCondition !false ?complementaryCount]
-    if [self.mThenInstructionList length] > 0 then
+    if [self.mThenInstructionList count] > 0 then
       complementaryCount += 1
     end
     if (complementaryCount < directCount) then
       generateComplementaryCondition = true
-      ioListFileContents += "  line " + [[ioGeneratedInstructionList length] string] + ": generates complementary test (saves "
+      ioListFileContents += "  line " + [[ioGeneratedInstructionList count] string] + ": generates complementary test (saves "
       + [directCount - complementaryCount string] + " instruction"
       if (directCount - complementaryCount) > 1 then
         ioListFileContents += "s"
@@ -1365,10 +1365,10 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
       !?ioUsedRegisters
     )
   #--- 'then' instructions
-    if [self.mThenInstructionList length] > 0 then
-      ioGeneratedInstructionList += !@midrange_intermediate_GOTO. new { !self.mInstructionLocation !@lstring. new { !label_endOfIfinstruction !self.mInstructionLocation}}
+    if [self.mThenInstructionList count] > 0 then
+      ioGeneratedInstructionList += !@midrange_intermediate_GOTO.init { !self.mInstructionLocation !@lstring.init { !label_endOfIfinstruction !self.mInstructionLocation}}
     end
-    ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !@lstring. new { !label_nextCondition !self.mInstructionLocation} !true}
+    ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL.init { !@lstring.init { !label_nextCondition !self.mInstructionLocation} !true}
     handleMidrangeInstructionList ( 
       !self.mThenInstructionList
       !inRoutineMap
@@ -1384,8 +1384,8 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
       !inRoutineKind
       !?ioUsedRegisters
      )
-    if [self.mThenInstructionList length] > 0 then
-      ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !@lstring. new { !label_endOfIfinstruction !self.mInstructionLocation} !true}
+    if [self.mThenInstructionList count] > 0 then
+      ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL.init { !@lstring.init { !label_endOfIfinstruction !self.mInstructionLocation} !true}
     end
   else
   #---
@@ -1422,10 +1422,10 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
       !?ioUsedRegisters
     )
   #--- 'else' instructions
-    if [self.mElseInstructionList length] > 0 then
-      ioGeneratedInstructionList += !@midrange_intermediate_GOTO. new { !self.mInstructionLocation !@lstring. new { !label_endOfIfinstruction !self.mInstructionLocation}}
+    if [self.mElseInstructionList count] > 0 then
+      ioGeneratedInstructionList += !@midrange_intermediate_GOTO.init { !self.mInstructionLocation !@lstring.init { !label_endOfIfinstruction !self.mInstructionLocation}}
     end
-    ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !@lstring. new { !label_nextCondition !self.mInstructionLocation} !true}
+    ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL.init { !@lstring.init { !label_nextCondition !self.mInstructionLocation} !true}
     handleMidrangeInstructionList (
       !self.mElseInstructionList
       !inRoutineMap
@@ -1441,8 +1441,8 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
       !inRoutineKind
       !?ioUsedRegisters
     )
-    if [self.mElseInstructionList length] > 0 then
-      ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !@lstring. new { !label_endOfIfinstruction !self.mInstructionLocation} !true}
+    if [self.mElseInstructionList count] > 0 then
+      ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL.init { !@lstring.init { !label_endOfIfinstruction !self.mInstructionLocation} !true}
     end
   end
   if elseBranchFinalBank == thenBranchFinalBank then
@@ -1473,7 +1473,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
 #--- Generate label
   let @string labelInstructionBegin = ".L" + [ioLocalLabelIndex string] ; ioLocalLabelIndex += 1
 #--- Define label
-  ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !@lstring. new { !labelInstructionBegin !self.mInstructionLocation} !true}
+  ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL.init { !@lstring.init { !labelInstructionBegin !self.mInstructionLocation} !true}
 #--- Repeated instructions
   var @uint finalBank = ioCurrentBank
   handleMidrangeInstructionList (
@@ -1496,7 +1496,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
   end
 #--- while parts
   for (mCondition mInstructionList mEndOfPartLocation) in  self.mWhilePartList do
-    if [mInstructionList length] == 0 then
+    if [mInstructionList count] == 0 then
       [mCondition buildIPICinstructionForCondition
         !inTotalBankCount
         !ioCurrentBank
@@ -1544,8 +1544,8 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
       if ioCurrentBank != bank then
         error mEndOfPartLocation:"This branch does not leave bank selection value unchanged"
       end
-      ioGeneratedInstructionList += !@midrange_intermediate_GOTO. new { !self.mInstructionLocation !@lstring. new { !labelInstructionBegin !self.mInstructionLocation}}
-      ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !@lstring. new { !nextBranchLabel !self.mInstructionLocation} !true}
+      ioGeneratedInstructionList += !@midrange_intermediate_GOTO.init { !self.mInstructionLocation !@lstring.init { !labelInstructionBegin !self.mInstructionLocation}}
+      ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL.init { !@lstring.init { !nextBranchLabel !self.mInstructionLocation} !true}
     end
   end
 }
@@ -1583,7 +1583,7 @@ override method @midrange_instruction_IF_IncDec build_midrange_ipic_instructionL
     !?ioUsedRegisters
   ]
 #---
-  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new {
+  ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init {
     !self.mInstructionLocation
     !baseCode
     !IPICregisterDescription
@@ -1623,7 +1623,7 @@ proc build_midrange_assembly_instruction_list
   ?!@stringset ioUsedRegisters {
   var @string generationOptimizationMessages = ""
 #-------------------------------- Build routine map
-  var routineMap =@routineMap.emptyMap{}
+  var routineMap =@routineMap §[]
   for (mRoutineName * mRequiredBank mReturnedBank mPreservesBank mIsNoReturn * *) in  inPiccoloModel.mRoutineDefinitionList do
     if (mRequiredBank.uint != @uint. max) & (mRequiredBank.uint > 15) then
       error mRequiredBank:"the required bank value should be lower or equal to 15"
@@ -1634,7 +1634,7 @@ proc build_midrange_assembly_instruction_list
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mRequiredBank.uint !mReturnedBank.uint !mPreservesBank]
   end
 #-------------------------------- Build constant map
-#  var constantMap =@constantMap.emptyMap{}
+#  var constantMap =@constantMap §[]
 ##--- Add "ROM_SIZE" constant
 #  var romSizeString =@lstring.new{ !"ROM_SIZE" !@location.here}
 #  [!?constantMap insertKey !romSizeString ![inROMSize sint64]]
@@ -1656,7 +1656,7 @@ proc build_midrange_assembly_instruction_list
   end
 #-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
-    [routineMap searchKey !@lstring. new { !"main" !@location.here} ?let @bool isNoReturn ?let @uint requiredBank ?* ?*]
+    [routineMap searchKey !@lstring.init { !"main" !@location.here} ?let @bool isNoReturn ?let @uint requiredBank ?* ?*]
     let @location mainDeclarationLocation = [routineMap locationForKey!"main"]
     if not isNoReturn then
       error mainDeclarationLocation :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\""
@@ -1691,7 +1691,7 @@ proc build_midrange_assembly_instruction_list
     for (mRoutineName mPage mRequiredBank mReturnedBank mPreservesBank mIsNoReturn mInstructionList *) in  inPiccoloModel.mRoutineDefinitionList do
       if mPage.uint == currentPage then
         if not orgGenerated then
-          outGeneratedInstructionList += !@midrange_intermediate_pseudo_ORG. new { !currentPage * 2048}
+          outGeneratedInstructionList += !@midrange_intermediate_pseudo_ORG.init { !currentPage * 2048}
           orgGenerated = true
         end
         var @uint currentBank = mRequiredBank.uint
@@ -1701,7 +1701,7 @@ proc build_midrange_assembly_instruction_list
         else
           routineKind = @routineKind. regularRoutine
         end
-        outGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL. new { !mRoutineName !true}
+        outGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL.init { !mRoutineName !true}
         handleMidrangeInstructionList (
           !mInstructionList
           !routineMap
@@ -1725,7 +1725,7 @@ proc build_midrange_assembly_instruction_list
         end
       #--- Add a RETURN instruction (if it is a regular routine)
         if not mIsNoReturn then
-          outGeneratedInstructionList += !@midrange_intermediate_instruction_RETURN. new { !mRoutineName.location}
+          outGeneratedInstructionList += !@midrange_intermediate_instruction_RETURN.init { !mRoutineName.location}
         end
       end
     end
@@ -1810,11 +1810,11 @@ proc handleInterruptRoutine
   !@midrange_intermediate_instructionList outGeneratedInstructionList
   ?!@stringset ioUsedRegisters {
 #-------------------------------- Check and translate interrupt routine
-  outGeneratedInstructionList = @midrange_intermediate_instructionList. emptyList
+  outGeneratedInstructionList = @midrange_intermediate_instructionList §[]
 #--- At zero, generate 'jump main' instruction
-  outGeneratedInstructionList += !@midrange_intermediate_JUMP. new {
+  outGeneratedInstructionList += !@midrange_intermediate_JUMP.init {
     !@location.here
-    !@lstring. new { !"main" !@location.here}
+    !@lstring.init { !"main" !@location.here}
     !@midrange_call_goto_bit. noChange
     !@midrange_call_goto_bit. noChange}
 #---
@@ -1830,7 +1830,7 @@ proc handleInterruptRoutine
       ?let @bool shouldSavePCLATH
     )
   #---
-    outGeneratedInstructionList += !@midrange_intermediate_pseudo_ORG. new { !0x4}
+    outGeneratedInstructionList += !@midrange_intermediate_pseudo_ORG.init { !0x4}
     for (* mInstructionList mFirstSaveRegister mSecondSaveRegister mEndOfInterruptLocation) in  inPiccoloModel.mInterruptDefinitionList do
       if inSharedRAMBankName != "" then
         generateInterruptRoutineForControllerWithSharedRAM (
@@ -1915,9 +1915,9 @@ proc generateInterruptRoutineForControllerWithSharedRAM
   end
 #--- Generate save context instructions
   if @uint. errorCount == 0 then
-    let first_register = @registerExpression.new {
+    let first_register = @registerExpression.init {
       !inFirstSaveRegister
-      !@immediatInteger.new {!.new {!0 !.here}}
+      !@immediatInteger.init {!.init {!0 !.here}}
       !.here
     }
     [first_register resolveMidrangeAccess
@@ -1929,9 +1929,9 @@ proc generateInterruptRoutineForControllerWithSharedRAM
       ?*
       !?ioUsedRegisters
     ]
-    let second_register = @registerExpression.new {
+    let second_register = @registerExpression.init {
       !inSecondSaveRegister
-      !@immediatInteger.new {!.new {!0 !.here}}
+      !@immediatInteger.init {!.init {!0 !.here}}
       !.here
     }
     [second_register resolveMidrangeAccess
@@ -1944,9 +1944,9 @@ proc generateInterruptRoutineForControllerWithSharedRAM
       !?ioUsedRegisters
     ]
   #--- Get values for STATUS register
-    let STATUS_register = @registerExpression.new {
-      !@lstring.new { !"STATUS" !.here}
-      !@immediatInteger.new {!.new {!0 !.here}}
+    let STATUS_register = @registerExpression.init {
+      !@lstring.init { !"STATUS" !.here}
+      !@immediatInteger.init {!.init {!0 !.here}}
       !.here
     }
     [STATUS_register resolveMidrangeAccess
@@ -1958,14 +1958,14 @@ proc generateInterruptRoutineForControllerWithSharedRAM
       ?*
       !?ioUsedRegisters
     ]
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF !first_IPICregisterDescription}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. SWAPF !STATUS_IPICregisterDescription !true}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. CLRF !STATUS_IPICregisterDescription}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF !second_IPICregisterDescription}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF !first_IPICregisterDescription}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. SWAPF !STATUS_IPICregisterDescription !true}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. CLRF !STATUS_IPICregisterDescription}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF !second_IPICregisterDescription}
     if inNeedsToSavePCLATH then
-      let reg = @registerExpression.new {
+      let reg = @registerExpression.init {
         !inSecondSaveRegister
-        !@immediatInteger.new {!.new {!1 !.here}}
+        !@immediatInteger.init {!.init {!1 !.here}}
         !.here
        }
 #      [@registerExpression. new { !inSecondSaveRegister !@luint. new { !1 !@location.here}} resolveMidrangeAccess
@@ -1979,9 +1979,9 @@ proc generateInterruptRoutineForControllerWithSharedRAM
         !?ioUsedRegisters
       ]
     #--- Get values for PCLATH register
-      let PCLATH_register = @registerExpression.new {
-        !@lstring. new { !"PCLATH" !@location.here}
-        !@immediatInteger.new {!.new {!0 !.here}}
+      let PCLATH_register = @registerExpression.init {
+        !@lstring.init { !"PCLATH" !@location.here}
+        !@immediatInteger.init {!.init {!0 !.here}}
         !.here
        }
       [PCLATH_register resolveMidrangeAccess
@@ -1993,9 +1993,9 @@ proc generateInterruptRoutineForControllerWithSharedRAM
         ?*
         !?ioUsedRegisters
       ]
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. MOVF !PCLATH_IPICregisterDescription !true}
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF !register_for_saving_PCLATH_description}
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. CLRF !PCLATH_IPICregisterDescription}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. MOVF !PCLATH_IPICregisterDescription !true}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF !register_for_saving_PCLATH_description}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. CLRF !PCLATH_IPICregisterDescription}
     end
   #--- Parse instruction list
     var @uint currentBank = 0 # Bank 0 is selected
@@ -2018,9 +2018,9 @@ proc generateInterruptRoutineForControllerWithSharedRAM
       error inEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine"
     end
     if inNeedsToSavePCLATH then
-      let reg = @registerExpression. new {
+      let reg = @registerExpression.init {
         !inSecondSaveRegister
-        !@immediatInteger.new {!.new {!1 !.here}}
+        !@immediatInteger.init {!.init {!1 !.here}}
         !.here
        }
       [reg resolveMidrangeAccess
@@ -2033,9 +2033,9 @@ proc generateInterruptRoutineForControllerWithSharedRAM
         !?ioUsedRegisters
       ]
     #--- Get values for PCLATH register
-      let PCLATH_register = @registerExpression.new {
-        !@lstring. new { !"PCLATH" !@location.here}
-        !@immediatInteger.new {!.new {!0 !.here}}
+      let PCLATH_register = @registerExpression.init {
+        !@lstring.init { !"PCLATH" !@location.here}
+        !@immediatInteger.init {!.init {!0 !.here}}
         !.here
       }
       [PCLATH_register resolveMidrangeAccess
@@ -2047,16 +2047,16 @@ proc generateInterruptRoutineForControllerWithSharedRAM
         ?*
         !?ioUsedRegisters
       ]
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. MOVF !register_for_saving_PCLATH_description !true}
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF !PCLATH_IPICregisterDescription}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. MOVF !register_for_saving_PCLATH_description !true}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF !PCLATH_IPICregisterDescription}
     end
   #--- Restore context
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. SWAPF !second_IPICregisterDescription !true}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF !STATUS_IPICregisterDescription}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_IPICregisterDescription !false}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_IPICregisterDescription !true}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. SWAPF !second_IPICregisterDescription !true}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF !STATUS_IPICregisterDescription}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_IPICregisterDescription !false}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_IPICregisterDescription !true}
   #--- Add REFFIE
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_RETFIE. new { !@location.here}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_RETFIE.init { !@location.here}
   end
 }
 
@@ -2124,9 +2124,9 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
   end
 #--- Generate save context instructions
   if @uint. errorCount == 0 then
-    let first_register = @registerExpression.new {
+    let first_register = @registerExpression.init {
       !inFirstSaveRegister
-      !@immediatInteger.new {!.new {!0 !.here}}
+      !@immediatInteger.init {!.init {!0 !.here}}
       !.here
     }
     [first_register resolveMidrangeAccess
@@ -2138,9 +2138,9 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
       ?*
       !?ioUsedRegisters
     ]
-    let first_register_second_byte = @registerExpression.new {
+    let first_register_second_byte = @registerExpression.init {
       !inFirstSaveRegister
-      !@immediatInteger.new {!.new {!1 !@location.here}}
+      !@immediatInteger.init {!.init {!1 !@location.here}}
       !.here
     }
     [first_register_second_byte resolveMidrangeAccess
@@ -2153,9 +2153,9 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
       !?ioUsedRegisters
     ]
   #--- Get values for STATUS register
-    let STATUS_register = @registerExpression.new {
-      !@lstring. new { !"STATUS" !@location.here}
-      !@immediatInteger.new {!.new {!0 !@location.here}}
+    let STATUS_register = @registerExpression.init {
+      !@lstring.init { !"STATUS" !@location.here}
+      !@immediatInteger.init {!.init {!0 !@location.here}}
       !.here
     }
     [STATUS_register resolveMidrangeAccess
@@ -2167,14 +2167,14 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
       ?*
       !?ioUsedRegisters
     ]
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF ! first_IPICregisterDescription}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. SWAPF !STATUS_IPICregisterDescription !true}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. CLRF !STATUS_IPICregisterDescription}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF ! first_reg_second_byte_IPICregisterDescription}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF ! first_IPICregisterDescription}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. SWAPF !STATUS_IPICregisterDescription !true}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. CLRF !STATUS_IPICregisterDescription}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF ! first_reg_second_byte_IPICregisterDescription}
     if inNeedsToSavePCLATH then
-      let first_register_third_byte = @registerExpression.new{
+      let first_register_third_byte = @registerExpression.init{
         !inFirstSaveRegister
-        !@immediatInteger.new {!.new {!0 !@location.here}}
+        !@immediatInteger.init {!.init {!0 !@location.here}}
         !.here
       }
       [first_register_third_byte resolveMidrangeAccess
@@ -2187,9 +2187,9 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
         !?ioUsedRegisters
       ]
     #--- Get values for PCLATH register
-      let PCLATH_register =@registerExpression.new{
-        !@lstring. new { !"PCLATH" !@location.here}
-        !@immediatInteger.new {!.new {!0 !@location.here}}
+      let PCLATH_register =@registerExpression.init{
+        !@lstring.init { !"PCLATH" !@location.here}
+        !@immediatInteger.init {!.init {!0 !@location.here}}
         !.here
       }
       [PCLATH_register resolveMidrangeAccess
@@ -2201,9 +2201,9 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
         ?*
         !?ioUsedRegisters
       ]
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. MOVF !PCLATH_IPICregisterDescription !true}
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF !first_var_third_byte_IPICregisterDescription}
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. CLRF !PCLATH_IPICregisterDescription}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. MOVF !PCLATH_IPICregisterDescription !true}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF !first_var_third_byte_IPICregisterDescription}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. CLRF !PCLATH_IPICregisterDescription}
     end
   #--- Parse instruction list
     var @uint currentBank = 0 # Bank 0 is selected
@@ -2226,9 +2226,9 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
       error inEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine"
     end
     if inNeedsToSavePCLATH then
-      let first_register_third_byte = @registerExpression.new {
+      let first_register_third_byte = @registerExpression.init {
         !inFirstSaveRegister
-        !@immediatInteger.new {!.new {!2 !@location.here}}
+        !@immediatInteger.init {!.init {!2 !@location.here}}
         !.here
       }
       [first_register_third_byte resolveMidrangeAccess
@@ -2241,9 +2241,9 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
         !?ioUsedRegisters
       ]
     #--- Get values for PCLATH register
-      let PCLATH_register = @registerExpression.new {
-        !@lstring. new {!"PCLATH" !@location.here}
-        !@immediatInteger.new {!.new {!0 !@location.here}}
+      let PCLATH_register = @registerExpression.init {
+        !@lstring.init {!"PCLATH" !@location.here}
+        !@immediatInteger.init {!.init {!0 !@location.here}}
         !.here
       }
       let @midrange_intermediate_registerExpression PCLATH_IPICregisterDescription
@@ -2256,16 +2256,16 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
         ?*
         !?ioUsedRegisters
       ]
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. MOVF !first_var_second_byte_IPICregisterDescription !true}
-      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF !PCLATH_IPICregisterDescription}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. MOVF !first_var_second_byte_IPICregisterDescription !true}
+      ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF !PCLATH_IPICregisterDescription}
     end
   #--- Restore context
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_reg_second_byte_IPICregisterDescription !true}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F. new { !@location.here !@midrange_F_instruction_base_code. MOVWF !STATUS_IPICregisterDescription}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_IPICregisterDescription !false}
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD. new { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_IPICregisterDescription !true}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_reg_second_byte_IPICregisterDescription !true}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_F.init { !@location.here !@midrange_F_instruction_base_code. MOVWF !STATUS_IPICregisterDescription}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_IPICregisterDescription !false}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD.init { !@location.here !@midrange_instruction_FD_base_code. SWAPF !first_IPICregisterDescription !true}
   #--- Add REFFIE
-    ioGeneratedInstructionList += !@midrange_intermediate_instruction_RETFIE. new { !@location.here}
+    ioGeneratedInstructionList += !@midrange_intermediate_instruction_RETFIE.init { !@location.here}
   end
 }
 

@@ -57,7 +57,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     end
     $;$
   end
-  var ramBankTable =@ramBankTable.emptyMap{}
+  var ramBankTable =@ramBankTable §[]
   repeat
   while
     $ram$
@@ -66,7 +66,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     $integer$ ?let @luint ramStart
     $to$
     $integer$ ?let @luint ramEnd
-    var mirrorOffsetList =@uintlist.emptyList{}
+    var mirrorOffsetList =@uintlist §[]
     select
     or
       $mirrorat$
@@ -86,13 +86,13 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       !mirrorOffsetList
     ]
   end
-  var registerTable =@registerTable.emptyMap{}
+  var registerTable =@registerTable §[]
   repeat
   while
     $register$
     $identifier$ ?let @lstring registerName
     $at$
-    var registerAddressList =@uintlist.emptyList{}
+    var registerAddressList =@uintlist §[]
     repeat
       $integer$ ?let @luint registerAddress
       registerAddressList += !registerAddress.uint
@@ -101,7 +101,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     end
     $<$
     var @uint sliceIndex = 8
-    var bitSliceTable =@bitSliceTable.emptyMap{}
+    var bitSliceTable =@bitSliceTable §[]
     var @string bitDefinitionString = " <"
     repeat
       select
@@ -149,7 +149,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable !bitDefinitionString !.publicRegister]
     $;$
   end
-  var configRegisterMap =@configRegisterMap.emptyMap{}
+  var configRegisterMap =@configRegisterMap §[]
   repeat
   while
     $configuration$
@@ -158,7 +158,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     $integer$ ?let @luint configRegisterAddress
     $width$
     $integer$ ?let @luint configRegisterWidth
-    var illegalMaskList =@illegalMaskList.emptyList{}
+    var illegalMaskList =@illegalMaskList §[]
     repeat
     while
       $illegal$
@@ -170,8 +170,8 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       illegalMaskList += !illegalValue !illegalMask !illegalDescriptionString
     end
     ${$
-    var configRegisterMaskMap =@configRegisterMaskMap.emptyMap{}
-    var settingNameSet =@stringset.emptySet{}
+    var configRegisterMaskMap =@configRegisterMaskMap §[]
+    var settingNameSet =@stringset §[]
     repeat
     while
       $identifier$ ?let @lstring maskName
@@ -183,7 +183,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       $integer$ ?let @luint maskValue
       $description$
       $string$ ?let @lstring maskDescriptionString
-      var fieldSettingMap =@fieldSettingMap.emptyMap{}
+      var fieldSettingMap =@fieldSettingMap §[]
       repeat
         $setting$
         $integer$ ?let @luint value
@@ -208,10 +208,10 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   $}$
 #--- Check some registers are actual defined
   if (processorName.string == "pic18_60") | (processorName.string == "pic18_80") then
-    [registerTable searchKey !@lstring. new { !"BSR" !@location.here} ?5*]
-    [registerTable searchKey !@lstring. new { !"TOSL" !@location.here} ?5*]
-    [registerTable searchKey !@lstring. new { !"TOSH" !@location.here} ?5*]
-    [registerTable searchKey !@lstring. new { !"TOSU" !@location.here} ?5*]
+    [registerTable searchKey !@lstring.init { !"BSR" !@location.here} ?5*]
+    [registerTable searchKey !@lstring.init { !"TOSL" !@location.here} ?5*]
+    [registerTable searchKey !@lstring.init { !"TOSH" !@location.here} ?5*]
+    [registerTable searchKey !@lstring.init { !"TOSU" !@location.here} ?5*]
   end
 #--- Check if controller has a shared bank
   var @string sharedBankName = "" # No shared bank by default
@@ -227,7 +227,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     end
   end
 #---
-  outPiccoloDeviceModel = @piccoloDeviceModel.new {
+  outPiccoloDeviceModel = @piccoloDeviceModel.init {
     !deviceName
     !processorType
     !romSize

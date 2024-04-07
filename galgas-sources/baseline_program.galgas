@@ -17,12 +17,12 @@ rule <start_symbol> {
   $identifier$ ?let @lstring programName
   $literal_string$ ?let @lstring deviceName
   $:$
-  var routineDefinitionList =@baseline_routineDefinitionList.emptyList{}
-  var ramDefinitionList =@ramDefinitionList.emptyList{}
-  var unusedRegisterList =@lstringlist.emptyList{}
-  var unusedRoutineList =@lstringlist.emptyList{}
-  var configDefinitionList =@configDefinitionList.emptyList{}
-  var constantDefinitionList =@constantDefinitionList.emptyList{}
+  var routineDefinitionList =@baseline_routineDefinitionList §[]
+  var ramDefinitionList =@ramDefinitionList §[]
+  var unusedRegisterList =@lstringlist §[]
+  var unusedRoutineList =@lstringlist §[]
+  var configDefinitionList =@configDefinitionList §[]
+  var constantDefinitionList =@constantDefinitionList §[]
   <section_list>
     !?routineDefinitionList
     !?unusedRoutineList
@@ -33,7 +33,7 @@ rule <start_symbol> {
   $end$
 #--- Semantic analysis
   if @uint. errorCount == 0 then
-    let piccoloModel = @baseline_model.new{
+    let piccoloModel = @baseline_model.init{
       !programName
       !deviceName
       !configDefinitionList

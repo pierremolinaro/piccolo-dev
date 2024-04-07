@@ -38,7 +38,7 @@ proc perform_cluster_ordering
   if not optimize then
     ioListFileContents += "Option '--" + [option piccolo_options.doNotReorderCluster string] + "': this optimization is not performed.n\n"
   else
-    let @uint clusterCount = [inInitialClusterList length]
+    let @uint clusterCount = [inInitialClusterList count]
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     ioListFileContents += "*" + ["CLUSTER ORDERING OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
@@ -50,16 +50,16 @@ proc perform_cluster_ordering
     end
   #------------------- Optimization loop
     var @clusterList clusterList = inInitialClusterList
-    var neededConversionForClusterOrder =@neededConversionForClusterOrder.emptyMap{}
+    var neededConversionForClusterOrder =@neededConversionForClusterOrder §[]
     var @bool continue = true
     var @uint pass = 0
-    loop( [clusterList length] * [clusterList length])
+    loop( [clusterList count] * [clusterList count])
     while continue do
       pass += 1
       ioListFileContents += "Pass " + pass + ":\n"
     #--- Build working block list and symbol table
-      var workingBlockList =@ipic18BlockList.emptyList{}
-      var symbolTable =@symbolTableForClusterOrdering.emptyMap{}
+      var workingBlockList =@ipic18BlockList §[]
+      var symbolTable =@symbolTableForClusterOrdering §[]
       for (mBlockList) in  clusterList do(clusterIndex)
         workingBlockList += mBlockList
         for (mBlock) in  mBlockList do
@@ -67,7 +67,7 @@ proc perform_cluster_ordering
         end
       end
     #--- Add symbols from last relocatable blocks
-      let @uint insertionIdx = [workingBlockList length]
+      let @uint insertionIdx = [workingBlockList count]
       for > (mBlock) in  ioBlockList while continue do
         continue = mBlock.mAddress != @uint. max
         if continue then
@@ -175,7 +175,7 @@ proc perform_cluster_ordering
     end
     ioListFileContents += "\n"
   #---------------------------------- Build the new ordered block list
-    var newBlockList =@ipic18BlockList.emptyList{}
+    var newBlockList =@ipic18BlockList §[]
   #--- First insert absolute blocks from 0
     continue = true
     for (mBlock) in  ioBlockList while continue do
@@ -189,7 +189,7 @@ proc perform_cluster_ordering
       newBlockList += mBlockList
     end
   #--- Insert absolute blocks from the end
-    let @uint insertionIndex = [newBlockList length]
+    let @uint insertionIndex = [newBlockList count]
     continue = true
     for > (mBlock) in  ioBlockList while continue do
       continue = mBlock.mAddress != @uint. max

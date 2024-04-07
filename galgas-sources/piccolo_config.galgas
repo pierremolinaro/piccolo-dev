@@ -21,8 +21,8 @@ proc actualBuildConfig
 #--- From config description of device, build dictionary of all settings
 # This should succeed, since absence of potentiel setting name conflict has been
 # checked when parsing device definition string.
-  outActualConfigurationMap = @actualConfigurationMap. emptyMap
-  var configFieldMap =@configFieldMap.emptyMap{}
+  outActualConfigurationMap = @actualConfigurationMap §[]
+  var configFieldMap =@configFieldMap §[]
   for (lkey mRegisterAddress mRegisterWidth mConfigRegisterMaskMap *) in  inConfigRegisterMap do
     let @uint defaultValue = (1 << mRegisterWidth.uint) - 1
     [!? outActualConfigurationMap insertKey !lkey !mRegisterAddress.uint !defaultValue]
@@ -32,7 +32,7 @@ proc actualBuildConfig
     end
   end
 #--- Analyze config parts
-  var actualSettingNameSet =@stringset.emptySet{}
+  var actualSettingNameSet =@stringset §[]
   for (* mSettingList) in  inConfigDefinitionList do
     for (mSettingName mSettingValue) in  mSettingList do
       if [actualSettingNameSet hasKey !mSettingName.string] then
@@ -49,7 +49,7 @@ proc actualBuildConfig
       elsif [fieldSettingMap count] > 0 then
         let errorMessage = "the '" + mSettingValue + "' value is not defined for configuration setting '"
         + mSettingName + "'"
-        var @stringlist replacementSuggestions = {}
+        var @stringlist replacementSuggestions = §[]
         for (lkey * *) in  fieldSettingMap do
           replacementSuggestions += !"\"" + lkey + "\""
         end
@@ -105,7 +105,7 @@ proc buildConfig
   ioListFileContents += "*" + ["MICROCONTROLLER CONFIGURATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
 #--- 
-  if [inConfigDefinitionList length] > 0 then
+  if [inConfigDefinitionList count] > 0 then
     actualBuildConfig (
       !inConfigRegisterMap
       !inConfigDefinitionList
@@ -113,7 +113,7 @@ proc buildConfig
       ?outActualConfigurationMap
     )
   else
-    outActualConfigurationMap = @actualConfigurationMap. emptyMap
+    outActualConfigurationMap = @actualConfigurationMap §[]
     ioListFileContents += "No configuration.\n\n"
   end
 }

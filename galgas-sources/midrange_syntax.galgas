@@ -33,13 +33,13 @@ rule <start_symbol> {
   $identifier$ ?let @lstring programName
   $literal_string$ ?let @lstring deviceName
   $:$
-  var interruptDefinitionList =@midrange_interruptDefinitionList.emptyList{}
-  var routineDefinitionList =@midrange_routineDefinitionList.emptyList{}
-  var ramDefinitionList =@ramDefinitionList.emptyList{}
-  var unusedRegisterList =@lstringlist.emptyList{}
-  var unusedRoutineList =@lstringlist.emptyList{}
-  var configDefinitionList =@configDefinitionList.emptyList{}
-  var constantDefinitionList =@constantDefinitionList.emptyList{}
+  var interruptDefinitionList =@midrange_interruptDefinitionList §[]
+  var routineDefinitionList =@midrange_routineDefinitionList §[]
+  var ramDefinitionList =@ramDefinitionList §[]
+  var unusedRegisterList =@lstringlist §[]
+  var unusedRoutineList =@lstringlist §[]
+  var configDefinitionList =@configDefinitionList §[]
+  var constantDefinitionList =@constantDefinitionList §[]
   var @bool needsComputedGoto2 = false
   var @bool needsComputedGoto4 = false
   repeat
@@ -81,7 +81,7 @@ rule <start_symbol> {
   $end$
 #--- Semantic analysis
   if @uint. errorCount == 0 then
-    let piccoloModel = @midrange_model.new{
+    let piccoloModel = @midrange_model.init{
       !programName
       !deviceName
       !configDefinitionList
@@ -165,7 +165,7 @@ rule <midrange_instruction_list>
   ?!@bool ioNeedsComputedGoto4
   ?!@labelMap ioLabelMap
   {
-  outInstructionList = @midrange_instructionList. emptyList
+  outInstructionList = @midrange_instructionList §[]
   repeat
   while
     <midrange_simple_instruction> ?let instruction
@@ -193,7 +193,7 @@ rule <midrange_interrupt_definition>
   $,$
   $identifier$ ?let @lstring secondSaveRegister
   ${$
-  var @labelMap labelMap = {}
+  var @labelMap labelMap = §[]
   <midrange_instruction_list>
     ?let instructionList
     !?ioNeedsComputedGoto2
@@ -227,7 +227,7 @@ rule <midrange_routine_definition>
 #--- Page
   let @luint page
   select
-    page = @luint. new { !0 !@location.here}
+    page = @luint.init { !0 !@location.here}
   or
     $page$
     $integer$ ? page
@@ -237,8 +237,8 @@ rule <midrange_routine_definition>
   let @luint returnedBank
   let @bool preservesBank
   select
-    requiredBank = @luint. new { !@uint. max !@location.here}
-    returnedBank = @luint. new { !@uint. max !@location.here}
+    requiredBank = @luint.init { !@uint. max !@location.here}
+    returnedBank = @luint.init { !@uint. max !@location.here}
     preservesBank = false
   or
     $bank$
@@ -249,14 +249,14 @@ rule <midrange_routine_definition>
         error @location.here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting"
       end
       preservesBank = true
-      requiredBank = @luint. new { !@uint. max !@location.here}
-      returnedBank = @luint. new { !@uint. max !@location.here}
+      requiredBank = @luint.init { !@uint. max !@location.here}
+      returnedBank = @luint.init { !@uint. max !@location.here}
     or
       $requires$
       $integer$ ? requiredBank
       preservesBank = false
       select
-        returnedBank = @luint. new { !@uint. max !@location.here}
+        returnedBank = @luint.init { !@uint. max !@location.here}
       or
         $ensures$
         $integer$ ? returnedBank
@@ -271,11 +271,11 @@ rule <midrange_routine_definition>
         error @location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting"
       end
       preservesBank = false
-      requiredBank = @luint. new { !@uint. max !@location.here}
+      requiredBank = @luint.init { !@uint. max !@location.here}
     end
   end
   ${$
-  var @labelMap labelMap = {}
+  var @labelMap labelMap = §[]
   <midrange_instruction_list>
     ?let instructionList
     !?ioNeedsComputedGoto2
@@ -305,7 +305,7 @@ rule <midrange_structured_instruction>
     $do$
     let @lstring doLabel
     select
-      doLabel = .new {!"" !.here}
+      doLabel = .init {!"" !.here}
     or
       $label$ ?doLabel
       [!?ioLabelMap insertKey !doLabel]
@@ -323,7 +323,7 @@ rule <midrange_structured_instruction>
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
       !?ioLabelMap
-    outInstruction = @midrange_instruction_STATIC_REPEAT. new {
+    outInstruction = @midrange_instruction_STATIC_REPEAT.init {
       !instructionLocation
       !constantName
       !lowBoundExpression
@@ -333,7 +333,7 @@ rule <midrange_structured_instruction>
     $end$
     let @lstring endDoLabel
     select
-      endDoLabel = .new {!"" !.here}
+      endDoLabel = .init {!"" !.here}
     or
       $label$ ?endDoLabel
     end
@@ -344,10 +344,10 @@ rule <midrange_structured_instruction>
   or
     $checkbank$
     $integer$ ?let @luint bankIndex
-    outInstruction = @midrangeInstruction_checkbank. new { !bankIndex.location !bankIndex.uint}
+    outInstruction = @midrangeInstruction_checkbank.init { !bankIndex.location !bankIndex.uint}
   or
     $checknobank$
-    outInstruction = @midrangeInstruction_checknobank. new { !@location.here}
+    outInstruction = @midrangeInstruction_checknobank.init { !@location.here}
   or
     $banksel$
     let @location instructionLocation = @location.here
@@ -360,7 +360,7 @@ rule <midrange_structured_instruction>
       $*$
       warningOnUselessBanksel = false
     end
-    outInstruction = @midrange_instruction_banksel_register. new { !instructionLocation !register !warningOnUselessBanksel}
+    outInstruction = @midrange_instruction_banksel_register.init { !instructionLocation !register !warningOnUselessBanksel}
   or
     $banksel$
     let @location instructionLocation = @location.here
@@ -373,7 +373,7 @@ rule <midrange_structured_instruction>
       $*$
       warningOnUselessBanksel = false
     end
-    outInstruction = @midrange_instruction_banksel. new { !instructionLocation !bank !warningOnUselessBanksel}
+    outInstruction = @midrange_instruction_banksel.init { !instructionLocation !bank !warningOnUselessBanksel}
   or
     $banksave$
     let @location instructionLocation = @location.here
@@ -384,19 +384,19 @@ rule <midrange_structured_instruction>
       !?ioNeedsComputedGoto4
       !?ioLabelMap
     $end$
-    outInstruction = @midrange_instruction_savebank. new {
+    outInstruction = @midrange_instruction_savebank.init {
       !instructionLocation
       !register
       !instructionList
       !@location.here}
   or
     $nobank$
-    outInstruction = @midrange_instruction_nobanksel. new { !@location.here}
+    outInstruction = @midrange_instruction_nobanksel.init { !@location.here}
   or
     $forever$
     let @lstring foreverLabel
     select
-      foreverLabel = .new {!"" !.here}
+      foreverLabel = .init {!"" !.here}
     or
       $label$ ?foreverLabel
       [!?ioLabelMap insertKey !foreverLabel]
@@ -410,7 +410,7 @@ rule <midrange_structured_instruction>
     $end$
     let @lstring endForeverLabel
     select
-      endForeverLabel = .new {!"" !.here}
+      endForeverLabel = .init {!"" !.here}
     or
       $label$ ?endForeverLabel
     end
@@ -418,7 +418,7 @@ rule <midrange_structured_instruction>
       error endForeverLabel : "'end' label does not match 'fovever' label, it should be "
          + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
     end 
-    outInstruction = @midrange_instruction_FOREVER. new {
+    outInstruction = @midrange_instruction_FOREVER.init {
       !instructionLocation
       !instructionList
       !@location.here}
@@ -442,7 +442,7 @@ rule <midrange_structured_instruction>
     end
     $:$
     <midrange_simple_instruction> ?let instruction
-    outInstruction = @midrange_instruction_IF_BitTest. new {
+    outInstruction = @midrange_instruction_IF_BitTest.init {
       !instructionLocation
       !instruction
       !skipIfSet
@@ -471,7 +471,7 @@ rule <midrange_structured_instruction>
     end
     $:$
     <midrange_simple_instruction> ?let instruction
-    outInstruction = @midrange_instruction_IF_IncDec. new {
+    outInstruction = @midrange_instruction_IF_IncDec.init {
       !instructionLocation
       !instruction
       !increment
@@ -482,7 +482,7 @@ rule <midrange_structured_instruction>
     $if$
     let @lstring ifLabel
     select
-      ifLabel = .new {!"" !.here}
+      ifLabel = .init {!"" !.here}
     or
       $label$ ?ifLabel
       [!?ioLabelMap insertKey !ifLabel]
@@ -496,7 +496,7 @@ rule <midrange_structured_instruction>
     $end$
     let @lstring endIfLabel
     select
-      endIfLabel = .new {!"" !.here}
+      endIfLabel = .init {!"" !.here}
     or
       $label$ ?endIfLabel
     end
@@ -508,7 +508,7 @@ rule <midrange_structured_instruction>
     $do$
     let @lstring doLabel
     select
-      doLabel = .new {!"" !.here}
+      doLabel = .init {!"" !.here}
     or
       $label$ ?doLabel
       [!?ioLabelMap insertKey !doLabel]
@@ -520,12 +520,12 @@ rule <midrange_structured_instruction>
       !?ioNeedsComputedGoto4
       !?ioLabelMap
     let @location endOfRepeatedInstructionList = @location.here
-    var whilePartList =@midrange_partList.emptyList{}
+    var whilePartList =@midrange_partList §[]
     repeat
       $while$
       let @lstring whileLabel
       select
-        whileLabel = .new {!"" !.here}
+        whileLabel = .init {!"" !.here}
       or
         $label$ ?whileLabel
       end
@@ -545,7 +545,7 @@ rule <midrange_structured_instruction>
     $end$
     let @lstring endDoLabel
     select
-      endDoLabel = .new {!"" !.here}
+      endDoLabel = .init {!"" !.here}
     or
       $label$ ?endDoLabel
     end
@@ -553,7 +553,7 @@ rule <midrange_structured_instruction>
       error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
     end 
-    outInstruction = @midrange_instruction_do_while. new {
+    outInstruction = @midrange_instruction_do_while.init {
       !instructionLocation
       !repeatedInstructionList
       !endOfRepeatedInstructionList
@@ -562,19 +562,19 @@ rule <midrange_structured_instruction>
     $mnop$
     let @location instructionLocation = @location.here
     $integer$ ?let @luint occurrenceFactor
-    outInstruction = @midrange_instruction_MNOP. new { !instructionLocation !occurrenceFactor}
+    outInstruction = @midrange_instruction_MNOP.init { !instructionLocation !occurrenceFactor}
   or
     $jsr$
     let @location instructionLocation = @location.here
     $identifier$ ?let @lstring targetLabelName
-    outInstruction = @midrange_instruction_JSR. new {
+    outInstruction = @midrange_instruction_JSR.init {
       !instructionLocation
       !targetLabelName}
   or
     $jump$
     let @location instructionLocation = @location.here
     $identifier$ ?let @lstring targetLabelName
-    outInstruction = @midrange_instruction_JUMP. new {
+    outInstruction = @midrange_instruction_JUMP.init {
       !instructionLocation
       !targetLabelName}
   end
@@ -599,12 +599,12 @@ rule <midrange_structured_if_instruction>
     !?ioLabelMap
   var @midrange_instructionList elseInstructionList
   select
-    elseInstructionList = @midrange_instructionList. emptyList
+    elseInstructionList = @midrange_instructionList §[]
   or
     $elsif$
     let @lstring elsifIfLabel
     select
-      elsifIfLabel = .new {!"" !.here}
+      elsifIfLabel = .init {!"" !.here}
     or
       $label$ ?elsifIfLabel
     end
@@ -618,13 +618,13 @@ rule <midrange_structured_if_instruction>
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
       !?ioLabelMap
-    elseInstructionList = @midrange_instructionList. emptyList
+    elseInstructionList = @midrange_instructionList §[]
     elseInstructionList += !elsifPartInstruction
   or
     $else$
     let @lstring elseLabel
     select
-      elseLabel = .new {!"" !.here}
+      elseLabel = .init {!"" !.here}
     or
       $label$ ?elseLabel
     end
@@ -639,7 +639,7 @@ rule <midrange_structured_if_instruction>
       !?ioLabelMap
   end
   let @location endOfElsePartLocation = @location.here
-  outInstruction = @midrange_instruction_structured_if. new {
+  outInstruction = @midrange_instruction_structured_if.init {
     !instructionLocation
     !structured_if_condition
     !thenInstructionList
@@ -692,7 +692,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     let instructionLocation = @location.here
     <register_parsing> ?let registerExpression
     <optional_w_as_dest> ?let W_isDestination
-    outInstruction = @midrange_instruction_FD. new {
+    outInstruction = @midrange_instruction_FD.init {
       !instructionLocation
       !baseCode
       !registerExpression
@@ -709,7 +709,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     $*$
     $,$
     <register_parsing> ?let registerName
-    outInstruction = @midrange_instruction_FD.new {
+    outInstruction = @midrange_instruction_FD.init {
       !instructionLocation
       !.MOVF
       !registerName
@@ -726,7 +726,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     end
     let @location instructionLocation = @location.here
     <register_parsing> ?let registerExpression
-    outInstruction = @midrange_instruction_F. new {
+    outInstruction = @midrange_instruction_F.init {
       !instructionLocation
       !FAinstruction
       !registerExpression}
@@ -741,7 +741,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     <register_parsing> ?let registerExpression
     $.$
     <bit_number_parsing> ?let bitNumberExpression
-    outInstruction = @midrange_instruction_FB. new {
+    outInstruction = @midrange_instruction_FB.init {
       !instructionLocation
       !bitOrientedOp
       !registerExpression
@@ -750,28 +750,28 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     $goto$
     let @location instructionLocation = @location.here
     $identifier$ ?let @lstring targetLabelName indexing routineCall
-    outInstruction = @midrange_instruction_GOTO. new {
+    outInstruction = @midrange_instruction_GOTO.init {
       !instructionLocation
       !targetLabelName}
   or
     $call$
     let @location instructionLocation = @location.here
     $identifier$ ?let @lstring targetLabelName indexing routineCall
-    outInstruction = @midrange_instruction_CALL. new {
+    outInstruction = @midrange_instruction_CALL.init {
       !instructionLocation
       !targetLabelName}
   or
     $clrw$
-    outInstruction = @midrange_instruction_CLRW. new { !@location.here}
+    outInstruction = @midrange_instruction_CLRW.init { !@location.here}
   or
     $clrwdt$
-    outInstruction = @midrange_instruction_CLRWDT. new { !@location.here}
+    outInstruction = @midrange_instruction_CLRWDT.init { !@location.here}
   or
     $nop$
-    outInstruction = @midrange_instruction_NOP. new { !@location.here}
+    outInstruction = @midrange_instruction_NOP.init { !@location.here}
   or
     $sleep$
-    outInstruction = @midrange_instruction_SLEEP. new { !@location.here}
+    outInstruction = @midrange_instruction_SLEEP.init { !@location.here}
   or
     let @midrange_literal_instruction_opcode literalInstruction
     select
@@ -789,7 +789,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     end
     let @location instructionLocation = @location.here
     <immediate_expression> ?let expression
-    outInstruction = @midrange_instruction_literalOperation. new {
+    outInstruction = @midrange_instruction_literalOperation.init {
       !instructionLocation
       !literalInstruction
       !expression}
@@ -802,7 +802,7 @@ rule <midrange_condition_factor>
   !@midrange_conditionExpression outCondition {
   $!$
   <midrange_condition_factor> ?let condition
-  outCondition = @midrange_negateCondition. new { !condition}
+  outCondition = @midrange_negateCondition.init { !condition}
 }
 
 #----------------------------------------------------*
@@ -842,7 +842,7 @@ rule <midrange_condition_factor>
       + "' condition; valid ones are: 'z' and 'nz'"
       : branchIfZero
     end
-    outCondition = @midrange_incDecRegisterInCondition. new {
+    outCondition = @midrange_incDecRegisterInCondition.init {
       !registerExpression
       !isIncrement
       !W_isDestination
@@ -851,7 +851,7 @@ rule <midrange_condition_factor>
     <register_parsing> ?let registerExpression
     $.$
     <bit_number_parsing> ?let bitNumberExpression
-    outCondition = @midrange_bitTest_in_structured_if_condition. new {
+    outCondition = @midrange_bitTest_in_structured_if_condition.init {
       !registerExpression
       !bitNumberExpression
     }
@@ -868,9 +868,9 @@ rule <midrange_condition_expression>
   while
     $|$
     <midrange_condition_term> ?let c
-    let @midrange_conditionExpression rc = @midrange_negateCondition. new { !c}
-    let @midrange_conditionExpression lc = @midrange_negateCondition. new { !outCondition}
-    outCondition = @midrange_negateCondition. new { !@midrange_andCondition. new { !lc !rc}}
+    let @midrange_conditionExpression rc = @midrange_negateCondition.init { !c}
+    let @midrange_conditionExpression lc = @midrange_negateCondition.init { !outCondition}
+    outCondition = @midrange_negateCondition.init { !@midrange_andCondition.init { !lc !rc}}
   end
   $)$
 }
@@ -884,7 +884,7 @@ rule <midrange_condition_term>
   while
     $&$
     <midrange_condition_factor> ?let c
-    outCondition = @midrange_andCondition. new { !outCondition !c}
+    outCondition = @midrange_andCondition.init { !outCondition !c}
   end
 }
 
