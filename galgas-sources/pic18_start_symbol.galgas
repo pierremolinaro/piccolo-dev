@@ -37,17 +37,17 @@ rule <start_symbol> {
   end
   $literal_string$ ? deviceNameOrBootloaderReference
   $:$
-  var interruptDefinitionList =@pic18InterruptDefinitionList §[]
-  var routineDefinitionList =@pic18RoutineDefinitionList §[]
-  var @pic18MacroDefinitionList macroDefinitionList = §[]
-  var unusedRoutineList =@lstringlist §[]
-  var ramDefinitionList =@ramDefinitionList §[]
-  var unusedRegisterList =@lstringlist §[]
-  var configDefinitionList =@configDefinitionList §[]
-  var constantDefinitionList =@constantDefinitionList §[]
-  var dataList =@dataList §[]
-  var checkpicList =@checkpicList §[]
-  var inlinedRoutineList =@lstringlist §[]
+  var interruptDefinitionList =@pic18InterruptDefinitionList ()
+  var routineDefinitionList =@pic18RoutineDefinitionList ()
+  var @pic18MacroDefinitionList macroDefinitionList = ()
+  var unusedRoutineList =@lstringlist ()
+  var ramDefinitionList =@ramDefinitionList ()
+  var unusedRegisterList =@lstringlist ()
+  var configDefinitionList =@configDefinitionList ()
+  var constantDefinitionList =@constantDefinitionList ()
+  var dataList =@dataList ()
+  var checkpicList =@checkpicList ()
+  var inlinedRoutineList =@lstringlist ()
   var @bool needsComputedGoto2 = false
   var @bool needsComputedGoto4 = false
   <body>

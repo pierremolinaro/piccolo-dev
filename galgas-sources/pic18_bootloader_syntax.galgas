@@ -40,8 +40,8 @@ rule <parse_bootloader>
   $literal_string$ ? outDeviceName
 #--- First part
   ${$
-  outBootloaderRoutineDeclarationList = @routineDeclarationList §[]
-  outBootloaderReservedRAMmap = @bootloaderReservedRAMmap §[]
+  outBootloaderRoutineDeclarationList = @routineDeclarationList ()
+  outBootloaderReservedRAMmap = @bootloaderReservedRAMmap ()
   outReservedRomSize = @luint.init { !0 !@location.here}
   repeat
   while
@@ -75,14 +75,14 @@ rule <parse_bootloader>
   $}$
 #--- Second part
   ${$
-  outUserRoutineDeclarationList = @routineDeclarationList §[]
+  outUserRoutineDeclarationList = @routineDeclarationList ()
   repeat
   while
     <routine_declaration> !? outUserRoutineDeclarationList
   end
   $}$
 #--- Third part
-  outSharedRamDefinitionList = @ramDefinitionList §[]
+  outSharedRamDefinitionList = @ramDefinitionList ()
   ${$
   repeat
   while

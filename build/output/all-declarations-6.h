@@ -376,6 +376,8 @@ class GALGAS_caseConstantMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_caseConstantMap init (Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -425,8 +427,13 @@ class GALGAS_caseConstantMap : public AC_GALGAS_map {
                                                                                             const GALGAS_string & inKey
                                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_caseConstantMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_caseConstantMap ;
  
 } ; // End of GALGAS_caseConstantMap class
@@ -458,7 +465,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_caseConstantMap ;
 class cMapElement_caseConstantMap : public cMapElement {
 //--- Map attributes
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_caseConstantMap (const GALGAS_caseConstantMap_2D_element & inValue
+                                       COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_caseConstantMap (const GALGAS_lstring & inKey
                                        COMMA_LOCATION_ARGS) ;
 
@@ -595,6 +605,8 @@ class GALGAS_ipic_31__38_BlockList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_ipic_31__38_BlockList init (Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -686,8 +698,13 @@ class GALGAS_ipic_31__38_BlockList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_ipic_31__38_BlockList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_ipic_31__38_BlockList ;
  
 } ; // End of GALGAS_ipic_31__38_BlockList class
@@ -733,6 +750,8 @@ class GALGAS_ipic_31__38_SequentialInstructionList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_ipic_31__38_SequentialInstructionList init (Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -860,8 +879,13 @@ class GALGAS_ipic_31__38_SequentialInstructionList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_ipic_31__38_SequentialInstructionList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_ipic_31__38_SequentialInstructionList ;
  
 } ; // End of GALGAS_ipic_31__38_SequentialInstructionList class
@@ -911,6 +935,8 @@ class GALGAS_pic_31__38__5F_dataMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_pic_31__38__5F_dataMap init (Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -990,8 +1016,13 @@ class GALGAS_pic_31__38__5F_dataMap : public AC_GALGAS_map {
                                                                                                    const GALGAS_string & inKey
                                                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_pic_31__38__5F_dataMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_pic_31__38__5F_dataMap ;
  
 } ; // End of GALGAS_pic_31__38__5F_dataMap class
@@ -1027,7 +1058,10 @@ class cMapElement_pic_31__38__5F_dataMap : public cMapElement {
   public: GALGAS_uintlist mProperty_mData ;
   public: GALGAS_bool mProperty_mIsData_38_ ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_pic_31__38__5F_dataMap (const GALGAS_pic_31__38__5F_dataMap_2D_element & inValue
+                                              COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_pic_31__38__5F_dataMap (const GALGAS_lstring & inKey,
                                               const GALGAS_uintlist & in_mData,
                                               const GALGAS_bool & in_mIsData_38_
@@ -9061,93 +9095,4 @@ class GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak : public
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//                  Phase 1: @ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code enum                  *
-//
-//--------------------------------------------------------------------------------------------------
-
-class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code : public AC_GALGAS_root {
-//--------------------------------- Default constructor
-  public: GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code (void) ;
-
-//--------------------------------- Enumeration
-  public: typedef enum {
-    kNotBuilt,
-    kEnum_CPFSEQ,
-    kEnum_CPFSGT,
-    kEnum_CPFSLT,
-    kEnum_TSTFSZ
-  } enumeration ;
-  
-//--------------------------------- Private data member
-  private: enumeration mEnum ;
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
-  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
-  public: inline enumeration enumValue (void) const { return mEnum ; }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code extractObject (const GALGAS_object & inObject,
-                                                                                                          Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSEQ (LOCATION_ARGS) ;
-
-  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSGT (LOCATION_ARGS) ;
-
-  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSLT (LOCATION_ARGS) ;
-
-  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_TSTFSZ (LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCPFSEQ (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCPFSGT (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCPFSLT (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTSTFSZ (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Optional Methods
-  public: VIRTUAL_IN_DEBUG bool optional_CPFSEQ () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_CPFSGT () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_CPFSLT () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_TSTFSZ () const ;
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ;
 

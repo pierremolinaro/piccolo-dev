@@ -68,7 +68,7 @@ rule <baseline_instruction_list>
   !@baseline_instructionList outInstructionList
   ?!@labelMap ioLabelMap
 {
-  outInstructionList = @baseline_instructionList §[]
+  outInstructionList = @baseline_instructionList ()
   repeat
   while
     <baseline_simple_instruction> ?let instruction
@@ -104,7 +104,7 @@ rule <baseline_routine_definition>
   end
 #---
   ${$
-  var @labelMap labelMap = §[]
+  var @labelMap labelMap = ()
   <baseline_instruction_list>
     ?let instructionList
     !?labelMap
@@ -290,7 +290,7 @@ rule <baseline_structured_instruction>
     let instructionLocation = @location.here
     <baseline_instruction_list> ?let repeatedInstructionList !?ioLabelMap
     let endOfRepeatedInstructionList = @location.here
-    var whilePartList = @baseline_partList §[]
+    var whilePartList = @baseline_partList ()
     repeat
       $while$
       let @lstring whileLabel
@@ -344,7 +344,7 @@ rule <baseline_structured_if_instruction>
   <baseline_instruction_list> ?let thenInstructionList !?ioLabelMap
   var @baseline_instructionList elseInstructionList
   select
-    elseInstructionList = @baseline_instructionList §[]
+    elseInstructionList = @baseline_instructionList ()
   or
     $elsif$
     let @lstring elsifIfLabel
@@ -358,7 +358,7 @@ rule <baseline_structured_if_instruction>
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
     end 
     <baseline_structured_if_instruction> !ifLabel ?let elsifPartInstruction !?ioLabelMap
-    elseInstructionList = @baseline_instructionList §[]
+    elseInstructionList = @baseline_instructionList ()
     elseInstructionList += !elsifPartInstruction
   or
     $else$

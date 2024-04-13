@@ -743,7 +743,7 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
   outOptimizationDone = false
   outNOPsubstitution = false
 #---
-  var @ipic18SequentialInstructionList optimizedInstructionList = §[]
+  var @ipic18SequentialInstructionList optimizedInstructionList = ()
   for (mInstruction * *) in  self.mTargetInstructions do
     var @bool opt = false
     if (mInstruction is >= @ipic18_intermediate_JSR) then
@@ -908,7 +908,7 @@ proc instructionListOptimization
   ?!@string ioListFileContents
   !@ipic18SequentialInstructionList outOptimizedInstructionList {
   outOptimizationDone = false
-  outOptimizedInstructionList = @ipic18SequentialInstructionList §[]
+  outOptimizedInstructionList = @ipic18SequentialInstructionList ()
   for (mInstruction * *) in  inInstructionList do
     [mInstruction optimizeInstruction
       !inSymbolTable
@@ -1122,12 +1122,12 @@ proc ipic18OptimizeBlocks
       print (!"  Pass " + optimizationPass + " : " + blockCountBeforeOptimization + " blocks.\n")
     end
   #-------------------------------- Build label map
-    var symbolTable =@symbolTableForBlockOptimization §[]
+    var symbolTable =@symbolTableForBlockOptimization ()
     for (mBlock) in  ioGeneratedBlockList do(blockIndex)
       [!?symbolTable insertKey !mBlock.mLabel !blockIndex]
     end
   #-------------------------------- Build referenced label set
-    var referencedBlockSet =@stringset §[]
+    var referencedBlockSet =@stringset ()
     for (mBlock) in  ioGeneratedBlockList do
       if mBlock.mAddress != @uint. max then # Only absolute blocks
         [mBlock enterReferencedLabels
@@ -1138,7 +1138,7 @@ proc ipic18OptimizeBlocks
       end
     end
   #-------------------------------- Optimize blocks
-    var optimizedBlockList =@ipic18BlockList §[]
+    var optimizedBlockList =@ipic18BlockList ()
     for (mBlock) in  ioGeneratedBlockList do
       if [referencedBlockSet hasKey !mBlock.mLabel.string] | (mBlock.mAddress != @uint. max) then
         [mBlock optimize

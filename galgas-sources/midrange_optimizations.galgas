@@ -542,7 +542,7 @@ proc perform_midrange_optimizations
   ioListFileContents += "*" + ["CODE OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
 #-------------------------------- Build label map
-  var symbolTable =@symbolTableForOptimizations §[]
+  var symbolTable =@symbolTableForOptimizations ()
   for (mInstruction) in  ioGeneratedInstructionList do(lineIndex)
     [mInstruction defineLabel !?symbolTable !lineIndex]
   end
@@ -582,7 +582,7 @@ proc perform_midrange_optimizations
       idx = idx + 1
     end
   #--- Delete non referenced labels
-    var referencedLabels =@stringset §[]
+    var referencedLabels =@stringset ()
     for (mInstruction) in  ioGeneratedInstructionList do
       [mInstruction enterReferencedLabel !?referencedLabels]
     end

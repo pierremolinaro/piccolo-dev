@@ -37,49 +37,49 @@ void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol
   var_deviceNameOrBootloaderReference_784 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 38)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 39)) ;
-  GALGAS_pic_31__38_InterruptDefinitionList var_interruptDefinitionList_1140 = GALGAS_pic_31__38_InterruptDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 40)) ;
-  GALGAS_pic_31__38_RoutineDefinitionList var_routineDefinitionList_1205 = GALGAS_pic_31__38_RoutineDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 41)) ;
-  GALGAS_pic_31__38_MacroDefinitionList var_macroDefinitionList_1292 = GALGAS_pic_31__38_MacroDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 42)) ;
-  GALGAS_lstringlist var_unusedRoutineList_1324 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 43)) ;
-  GALGAS_ramDefinitionList var_ramDefinitionList_1366 = GALGAS_ramDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 44)) ;
-  GALGAS_lstringlist var_unusedRegisterList_1414 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 45)) ;
-  GALGAS_configDefinitionList var_configDefinitionList_1457 = GALGAS_configDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 46)) ;
-  GALGAS_constantDefinitionList var_constantDefinitionList_1511 = GALGAS_constantDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 47)) ;
-  GALGAS_dataList var_dataList_1569 = GALGAS_dataList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 48)) ;
-  GALGAS_checkpicList var_checkpicList_1599 = GALGAS_checkpicList::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 49)) ;
-  GALGAS_lstringlist var_inlinedRoutineList_1637 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("pic18_start_symbol.galgas", 50)) ;
-  GALGAS_bool var_needsComputedGoto_32__1686 = GALGAS_bool (false) ;
-  GALGAS_bool var_needsComputedGoto_34__1725 = GALGAS_bool (false) ;
-  nt_body_ (var_interruptDefinitionList_1140, var_routineDefinitionList_1205, var_macroDefinitionList_1292, var_unusedRoutineList_1324, var_inlinedRoutineList_1637, var_ramDefinitionList_1366, var_unusedRegisterList_1414, var_configDefinitionList_1457, var_constantDefinitionList_1511, var_checkpicList_1599, var_dataList_1569, var_needsComputedGoto_32__1686, var_needsComputedGoto_34__1725, inCompiler) ;
+  GALGAS_pic_31__38_InterruptDefinitionList var_interruptDefinitionList_1140 = GALGAS_pic_31__38_InterruptDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_pic_31__38_RoutineDefinitionList var_routineDefinitionList_1204 = GALGAS_pic_31__38_RoutineDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_pic_31__38_MacroDefinitionList var_macroDefinitionList_1290 = GALGAS_pic_31__38_MacroDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_lstringlist var_unusedRoutineList_1321 = GALGAS_lstringlist::init (inCompiler COMMA_HERE) ;
+  GALGAS_ramDefinitionList var_ramDefinitionList_1362 = GALGAS_ramDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_lstringlist var_unusedRegisterList_1409 = GALGAS_lstringlist::init (inCompiler COMMA_HERE) ;
+  GALGAS_configDefinitionList var_configDefinitionList_1451 = GALGAS_configDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_constantDefinitionList var_constantDefinitionList_1504 = GALGAS_constantDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_dataList var_dataList_1561 = GALGAS_dataList::init (inCompiler COMMA_HERE) ;
+  GALGAS_checkpicList var_checkpicList_1590 = GALGAS_checkpicList::init (inCompiler COMMA_HERE) ;
+  GALGAS_lstringlist var_inlinedRoutineList_1627 = GALGAS_lstringlist::init (inCompiler COMMA_HERE) ;
+  GALGAS_bool var_needsComputedGoto_32__1675 = GALGAS_bool (false) ;
+  GALGAS_bool var_needsComputedGoto_34__1714 = GALGAS_bool (false) ;
+  nt_body_ (var_interruptDefinitionList_1140, var_routineDefinitionList_1204, var_macroDefinitionList_1290, var_unusedRoutineList_1321, var_inlinedRoutineList_1627, var_ramDefinitionList_1362, var_unusedRegisterList_1409, var_configDefinitionList_1451, var_constantDefinitionList_1504, var_checkpicList_1590, var_dataList_1561, var_needsComputedGoto_32__1675, var_needsComputedGoto_34__1714, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 67)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (ComparisonKind::equal, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("pic18_start_symbol.galgas", 69)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_pic_31__38_AST var_piccoloModel_2155 = GALGAS_pic_31__38_AST::init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (var_programName_757, var_programKind_835, var_deviceNameOrBootloaderReference_784, var_configDefinitionList_1457, var_ramDefinitionList_1366, var_unusedRegisterList_1414, var_checkpicList_1599, var_dataList_1569, var_interruptDefinitionList_1140, var_constantDefinitionList_1511, var_routineDefinitionList_1205, var_macroDefinitionList_1292, var_unusedRoutineList_1324, var_inlinedRoutineList_1637, var_needsComputedGoto_32__1686, var_needsComputedGoto_34__1725, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 87)), inCompiler COMMA_HERE) ;
+      GALGAS_pic_31__38_AST var_piccoloModel_2144 = GALGAS_pic_31__38_AST::init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (var_programName_757, var_programKind_835, var_deviceNameOrBootloaderReference_784, var_configDefinitionList_1451, var_ramDefinitionList_1362, var_unusedRegisterList_1409, var_checkpicList_1590, var_dataList_1561, var_interruptDefinitionList_1140, var_constantDefinitionList_1504, var_routineDefinitionList_1204, var_macroDefinitionList_1290, var_unusedRoutineList_1321, var_inlinedRoutineList_1627, var_needsComputedGoto_32__1675, var_needsComputedGoto_34__1714, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 87)), inCompiler COMMA_HERE) ;
       {
-      routine_pic_31__38__5F_analyze_3F__3F_ (var_piccoloModel_2155, GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)), inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)) ;
+      routine_pic_31__38__5F_analyze_3F__3F_ (var_piccoloModel_2144, GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)), inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 89)) ;
       }
     }
   }
   if (kBoolFalse == test_0) {
-    GALGAS_string var_hexDestinationFile_2717 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 91)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_start_symbol.galgas", 91)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 91)) ;
+    GALGAS_string var_hexDestinationFile_2706 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 91)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_start_symbol.galgas", 91)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 91)) ;
     enumGalgasBool test_1 = kBoolTrue ;
     if (kBoolTrue == test_1) {
-      test_1 = var_hexDestinationFile_2717.getter_fileExists (SOURCE_FILE ("pic18_start_symbol.galgas", 92)).boolEnum () ;
+      test_1 = var_hexDestinationFile_2706.getter_fileExists (SOURCE_FILE ("pic18_start_symbol.galgas", 92)).boolEnum () ;
       if (kBoolTrue == test_1) {
         {
-        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_2717, inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 93)) ;
+        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_2706, inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 93)) ;
         }
       }
     }
-    GALGAS_string var_asmDestinationFile_2928 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 95)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_start_symbol.galgas", 95)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 95)) ;
+    GALGAS_string var_asmDestinationFile_2917 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 95)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_start_symbol.galgas", 95)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 95)) ;
     enumGalgasBool test_2 = kBoolTrue ;
     if (kBoolTrue == test_2) {
-      test_2 = var_asmDestinationFile_2928.getter_fileExists (SOURCE_FILE ("pic18_start_symbol.galgas", 96)).boolEnum () ;
+      test_2 = var_asmDestinationFile_2917.getter_fileExists (SOURCE_FILE ("pic18_start_symbol.galgas", 96)).boolEnum () ;
       if (kBoolTrue == test_2) {
         {
-        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_2928, inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 97)) ;
+        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_2917, inCompiler COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 97)) ;
         }
       }
     }
@@ -108,10 +108,10 @@ void cParser_pic_31__38__5F_start_5F_symbol::rule_pic_31__38__5F_start_5F_symbol
   outArgument_outUserRoutineDeclarationList.drop () ; // Release 'out' argument
   outArgument_outBootloaderReservedROMsize.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_pic_31__38_ COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 111)) ;
-  GALGAS_lstring var_programName_3591 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_programName_3580 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 112)) ;
   TC_Array <FixItDescription> fixItArray0 ;
-  inCompiler->emitSemanticError (var_programName_3591.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 113)) ;
+  inCompiler->emitSemanticError (var_programName_3580.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("pic18_start_symbol.galgas", 113)) ;
   outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
   outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
   outArgument_outRamBank.drop () ; // Release error dropped variable
@@ -203,15 +203,15 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (Le
   GALGAS_lstring var_deviceName_813 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("midrange_syntax.galgas", 34)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 35)) ;
-  GALGAS_midrange_5F_interruptDefinitionList var_interruptDefinitionList_836 = GALGAS_midrange_5F_interruptDefinitionList::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 36)) ;
-  GALGAS_midrange_5F_routineDefinitionList var_routineDefinitionList_905 = GALGAS_midrange_5F_routineDefinitionList::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 37)) ;
-  GALGAS_ramDefinitionList var_ramDefinitionList_970 = GALGAS_ramDefinitionList::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 38)) ;
-  GALGAS_lstringlist var_unusedRegisterList_1018 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 39)) ;
-  GALGAS_lstringlist var_unusedRoutineList_1061 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 40)) ;
-  GALGAS_configDefinitionList var_configDefinitionList_1103 = GALGAS_configDefinitionList::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 41)) ;
-  GALGAS_constantDefinitionList var_constantDefinitionList_1157 = GALGAS_constantDefinitionList::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 42)) ;
-  GALGAS_bool var_needsComputedGoto_32__1221 = GALGAS_bool (false) ;
-  GALGAS_bool var_needsComputedGoto_34__1260 = GALGAS_bool (false) ;
+  GALGAS_midrange_5F_interruptDefinitionList var_interruptDefinitionList_836 = GALGAS_midrange_5F_interruptDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_midrange_5F_routineDefinitionList var_routineDefinitionList_904 = GALGAS_midrange_5F_routineDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_ramDefinitionList var_ramDefinitionList_968 = GALGAS_ramDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_lstringlist var_unusedRegisterList_1015 = GALGAS_lstringlist::init (inCompiler COMMA_HERE) ;
+  GALGAS_lstringlist var_unusedRoutineList_1057 = GALGAS_lstringlist::init (inCompiler COMMA_HERE) ;
+  GALGAS_configDefinitionList var_configDefinitionList_1098 = GALGAS_configDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_constantDefinitionList var_constantDefinitionList_1151 = GALGAS_constantDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_bool var_needsComputedGoto_32__1214 = GALGAS_bool (false) ;
+  GALGAS_bool var_needsComputedGoto_34__1253 = GALGAS_bool (false) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_midrange_5F_syntax_0 (inCompiler)) {
@@ -220,9 +220,9 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (Le
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_byte COMMA_SOURCE_FILE ("midrange_syntax.galgas", 48)) ;
       bool repeatFlag_1 = true ;
       while (repeatFlag_1) {
-        GALGAS_lstring var_unusedRegister_1372 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_unusedRegister_1365 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 50)) ;
-        var_unusedRegisterList_1018.addAssign_operation (var_unusedRegister_1372  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 51)) ;
+        var_unusedRegisterList_1015.addAssign_operation (var_unusedRegister_1365  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 51)) ;
         if (select_midrange_5F_syntax_1 (inCompiler) == 2) {
           inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 53)) ;
         }else{
@@ -235,9 +235,9 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (Le
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("midrange_syntax.galgas", 57)) ;
       bool repeatFlag_2 = true ;
       while (repeatFlag_2) {
-        GALGAS_lstring var_unusedRoutine_1539 = inCompiler->synthetizedAttribute_tokenString () ;
+        GALGAS_lstring var_unusedRoutine_1532 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 59)) ;
-        var_unusedRoutineList_1061.addAssign_operation (var_unusedRoutine_1539  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 60)) ;
+        var_unusedRoutineList_1057.addAssign_operation (var_unusedRoutine_1532  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 60)) ;
         if (select_midrange_5F_syntax_2 (inCompiler) == 2) {
           inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 62)) ;
         }else{
@@ -246,19 +246,19 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (Le
       }
     } break ;
     case 4: {
-      nt_configuration_5F_definition_ (var_configDefinitionList_1103, inCompiler) ;
+      nt_configuration_5F_definition_ (var_configDefinitionList_1098, inCompiler) ;
     } break ;
     case 5: {
-      nt_ram_5F_definition_ (var_ramDefinitionList_970, inCompiler) ;
+      nt_ram_5F_definition_ (var_ramDefinitionList_968, inCompiler) ;
     } break ;
     case 6: {
-      nt_constant_5F_definition_ (var_constantDefinitionList_1157, inCompiler) ;
+      nt_constant_5F_definition_ (var_constantDefinitionList_1151, inCompiler) ;
     } break ;
     case 7: {
-      nt_midrange_5F_interrupt_5F_definition_ (var_interruptDefinitionList_836, var_needsComputedGoto_32__1221, var_needsComputedGoto_34__1260, inCompiler) ;
+      nt_midrange_5F_interrupt_5F_definition_ (var_interruptDefinitionList_836, var_needsComputedGoto_32__1214, var_needsComputedGoto_34__1253, inCompiler) ;
     } break ;
     case 8: {
-      nt_midrange_5F_routine_5F_definition_ (var_routineDefinitionList_905, var_needsComputedGoto_32__1221, var_needsComputedGoto_34__1260, inCompiler) ;
+      nt_midrange_5F_routine_5F_definition_ (var_routineDefinitionList_904, var_needsComputedGoto_32__1214, var_needsComputedGoto_34__1253, inCompiler) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -270,30 +270,30 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_ (Le
   if (kBoolTrue == test_3) {
     test_3 = GALGAS_bool (ComparisonKind::equal, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("midrange_syntax.galgas", 83)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_3) {
-      GALGAS_midrange_5F_model var_piccoloModel_2128 = GALGAS_midrange_5F_model::init_21__21__21__21__21__21__21__21__21__21__21__21_ (var_programName_768, var_deviceName_813, var_configDefinitionList_1103, var_ramDefinitionList_970, var_unusedRegisterList_1018, var_interruptDefinitionList_836, var_constantDefinitionList_1157, var_routineDefinitionList_905, var_unusedRoutineList_1061, var_needsComputedGoto_32__1221, var_needsComputedGoto_34__1260, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 96)), inCompiler COMMA_HERE) ;
+      GALGAS_midrange_5F_model var_piccoloModel_2121 = GALGAS_midrange_5F_model::init_21__21__21__21__21__21__21__21__21__21__21__21_ (var_programName_768, var_deviceName_813, var_configDefinitionList_1098, var_ramDefinitionList_968, var_unusedRegisterList_1015, var_interruptDefinitionList_836, var_constantDefinitionList_1151, var_routineDefinitionList_904, var_unusedRoutineList_1057, var_needsComputedGoto_32__1214, var_needsComputedGoto_34__1253, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 96)), inCompiler COMMA_HERE) ;
       {
-      routine_midrange_5F_analyze_3F__3F_ (var_piccoloModel_2128, GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 98)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 98)) ;
+      routine_midrange_5F_analyze_3F__3F_ (var_piccoloModel_2121, GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 98)), inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 98)) ;
       }
     }
   }
   if (kBoolFalse == test_3) {
-    GALGAS_string var_hexDestinationFile_2573 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 100)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_syntax.galgas", 100)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 100)) ;
+    GALGAS_string var_hexDestinationFile_2566 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 100)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_syntax.galgas", 100)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 100)) ;
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = var_hexDestinationFile_2573.getter_fileExists (SOURCE_FILE ("midrange_syntax.galgas", 101)).boolEnum () ;
+      test_4 = var_hexDestinationFile_2566.getter_fileExists (SOURCE_FILE ("midrange_syntax.galgas", 101)).boolEnum () ;
       if (kBoolTrue == test_4) {
         {
-        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_2573, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 102)) ;
+        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_2566, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 102)) ;
         }
       }
     }
-    GALGAS_string var_asmDestinationFile_2784 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 104)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_syntax.galgas", 104)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 104)) ;
+    GALGAS_string var_asmDestinationFile_2777 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 104)).getter_stringByDeletingPathExtension (SOURCE_FILE ("midrange_syntax.galgas", 104)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 104)) ;
     enumGalgasBool test_5 = kBoolTrue ;
     if (kBoolTrue == test_5) {
-      test_5 = var_asmDestinationFile_2784.getter_fileExists (SOURCE_FILE ("midrange_syntax.galgas", 105)).boolEnum () ;
+      test_5 = var_asmDestinationFile_2777.getter_fileExists (SOURCE_FILE ("midrange_syntax.galgas", 105)).boolEnum () ;
       if (kBoolTrue == test_5) {
         {
-        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_2784, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 106)) ;
+        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_2777, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 106)) ;
         }
       }
     }
@@ -322,10 +322,10 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_start_5F_symbol_i0_impo
   outArgument_outUserRoutineDeclarationList.drop () ; // Release 'out' argument
   outArgument_outBootloaderReservedROMsize.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_midrange COMMA_SOURCE_FILE ("midrange_syntax.galgas", 120)) ;
-  GALGAS_lstring var_programName_3450 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_programName_3443 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 121)) ;
   TC_Array <FixItDescription> fixItArray0 ;
-  inCompiler->emitSemanticError (var_programName_3450.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 122)) ;
+  inCompiler->emitSemanticError (var_programName_3443.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 122)) ;
   outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
   outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
   outArgument_outRamBank.drop () ; // Release error dropped variable
@@ -516,19 +516,19 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_instruction
                                                                                               GALGAS_labelMap & ioArgument_ioLabelMap,
                                                                                               Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outInstructionList.drop () ; // Release 'out' argument
-  outArgument_outInstructionList = GALGAS_midrange_5F_instructionList::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 168)) ;
+  outArgument_outInstructionList = GALGAS_midrange_5F_instructionList::init (inCompiler COMMA_HERE) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_midrange_5F_syntax_3 (inCompiler)) {
     case 2: {
-      GALGAS_midrange_5F_instruction var_instruction_4582 ;
-      nt_midrange_5F_simple_5F_instruction_ (var_instruction_4582, inCompiler) ;
-      outArgument_outInstructionList.addAssign_operation (var_instruction_4582  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 172)) ;
+      GALGAS_midrange_5F_instruction var_instruction_4574 ;
+      nt_midrange_5F_simple_5F_instruction_ (var_instruction_4574, inCompiler) ;
+      outArgument_outInstructionList.addAssign_operation (var_instruction_4574  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 172)) ;
     } break ;
     case 3: {
-      GALGAS_midrange_5F_instruction var_instruction_4690 ;
-      nt_midrange_5F_structured_5F_instruction_ (var_instruction_4690, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-      outArgument_outInstructionList.addAssign_operation (var_instruction_4690  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 179)) ;
+      GALGAS_midrange_5F_instruction var_instruction_4682 ;
+      nt_midrange_5F_structured_5F_instruction_ (var_instruction_4682, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+      outArgument_outInstructionList.addAssign_operation (var_instruction_4682  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 179)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -583,19 +583,19 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_interrupt_5
                                                                                                   GALGAS_bool & ioArgument_ioNeedsComputedGoto_34_,
                                                                                                   Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_interrupt COMMA_SOURCE_FILE ("midrange_syntax.galgas", 189)) ;
-  GALGAS_location var_interruptionLocation_5079 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 190)) ;
+  GALGAS_location var_interruptionLocation_5071 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 190)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_contextsave COMMA_SOURCE_FILE ("midrange_syntax.galgas", 191)) ;
-  GALGAS_lstring var_firstSaveRegister_5162 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_firstSaveRegister_5154 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 192)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 193)) ;
-  GALGAS_lstring var_secondSaveRegister_5215 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_secondSaveRegister_5207 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 194)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 195)) ;
-  GALGAS_labelMap var_labelMap_5256 = GALGAS_labelMap::class_func_emptyMap (SOURCE_FILE ("midrange_syntax.galgas", 196)) ;
-  GALGAS_midrange_5F_instructionList var_instructionList_5310 ;
-  nt_midrange_5F_instruction_5F_list_ (var_instructionList_5310, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, var_labelMap_5256, inCompiler) ;
+  GALGAS_labelMap var_labelMap_5248 = GALGAS_labelMap::init (inCompiler COMMA_HERE) ;
+  GALGAS_midrange_5F_instructionList var_instructionList_5301 ;
+  nt_midrange_5F_instruction_5F_list_ (var_instructionList_5301, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, var_labelMap_5248, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 202)) ;
-  ioArgument_ioInterruptDefinitionList.addAssign_operation (var_interruptionLocation_5079, var_instructionList_5310, var_firstSaveRegister_5162, var_secondSaveRegister_5215, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 208))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 203)) ;
+  ioArgument_ioInterruptDefinitionList.addAssign_operation (var_interruptionLocation_5071, var_instructionList_5301, var_firstSaveRegister_5154, var_secondSaveRegister_5207, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 208))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 203)) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -631,43 +631,43 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
                                                                                                 GALGAS_bool & ioArgument_ioNeedsComputedGoto_32_,
                                                                                                 GALGAS_bool & ioArgument_ioNeedsComputedGoto_34_,
                                                                                                 Lexique_piccolo_5F_lexique * inCompiler) {
-  GALGAS_bool var_noreturn_5763 ;
+  GALGAS_bool var_noreturn_5754 ;
   switch (select_midrange_5F_syntax_4 (inCompiler)) {
   case 1: {
-    var_noreturn_5763 = GALGAS_bool (false) ;
+    var_noreturn_5754 = GALGAS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_noreturn COMMA_SOURCE_FILE ("midrange_syntax.galgas", 222)) ;
-    var_noreturn_5763 = GALGAS_bool (true) ;
+    var_noreturn_5754 = GALGAS_bool (true) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("midrange_syntax.galgas", 225)) ;
-  GALGAS_lstring var_routineName_5889 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_routineName_5880 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_routineDefinition, "") ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 226)) ;
-  GALGAS_luint var_page_5951 ;
+  GALGAS_luint var_page_5942 ;
   switch (select_midrange_5F_syntax_5 (inCompiler)) {
   case 1: {
-    var_page_5951 = GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230)), inCompiler COMMA_HERE) ;
+    var_page_5942 = GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 230)), inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_page COMMA_SOURCE_FILE ("midrange_syntax.galgas", 232)) ;
-    var_page_5951 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    var_page_5942 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 233)) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_luint var_requiredBank_6076 ;
-  GALGAS_luint var_returnedBank_6102 ;
-  GALGAS_bool var_preservesBank_6127 ;
+  GALGAS_luint var_requiredBank_6067 ;
+  GALGAS_luint var_returnedBank_6093 ;
+  GALGAS_bool var_preservesBank_6118 ;
   switch (select_midrange_5F_syntax_6 (inCompiler)) {
   case 1: {
-    var_requiredBank_6076 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 240)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 240)), inCompiler COMMA_HERE) ;
-    var_returnedBank_6102 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 241)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 241)), inCompiler COMMA_HERE) ;
-    var_preservesBank_6127 = GALGAS_bool (false) ;
+    var_requiredBank_6067 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 240)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 240)), inCompiler COMMA_HERE) ;
+    var_returnedBank_6093 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 241)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 241)), inCompiler COMMA_HERE) ;
+    var_preservesBank_6118 = GALGAS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 244)) ;
@@ -677,32 +677,32 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_preserved COMMA_SOURCE_FILE ("midrange_syntax.galgas", 247)) ;
       enumGalgasBool test_0 = kBoolTrue ;
       if (kBoolTrue == test_0) {
-        test_0 = var_noreturn_5763.boolEnum () ;
+        test_0 = var_noreturn_5754.boolEnum () ;
         if (kBoolTrue == test_0) {
           TC_Array <FixItDescription> fixItArray1 ;
           inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 249)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:preserved\" setting"), fixItArray1  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 249)) ;
         }
       }
-      var_preservesBank_6127 = GALGAS_bool (true) ;
-      var_requiredBank_6076 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 252)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 252)), inCompiler COMMA_HERE) ;
-      var_returnedBank_6102 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 253)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 253)), inCompiler COMMA_HERE) ;
+      var_preservesBank_6118 = GALGAS_bool (true) ;
+      var_requiredBank_6067 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 252)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 252)), inCompiler COMMA_HERE) ;
+      var_returnedBank_6093 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 253)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 253)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_requires COMMA_SOURCE_FILE ("midrange_syntax.galgas", 255)) ;
-      var_requiredBank_6076 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      var_requiredBank_6067 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 256)) ;
-      var_preservesBank_6127 = GALGAS_bool (false) ;
+      var_preservesBank_6118 = GALGAS_bool (false) ;
       switch (select_midrange_5F_syntax_8 (inCompiler)) {
       case 1: {
-        var_returnedBank_6102 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 259)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 259)), inCompiler COMMA_HERE) ;
+        var_returnedBank_6093 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 259)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 259)), inCompiler COMMA_HERE) ;
       } break ;
       case 2: {
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("midrange_syntax.galgas", 261)) ;
-        var_returnedBank_6102 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        var_returnedBank_6093 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 262)) ;
         enumGalgasBool test_2 = kBoolTrue ;
         if (kBoolTrue == test_2) {
-          test_2 = var_noreturn_5763.boolEnum () ;
+          test_2 = var_noreturn_5754.boolEnum () ;
           if (kBoolTrue == test_2) {
             TC_Array <FixItDescription> fixItArray3 ;
             inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 264)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 264)) ;
@@ -715,18 +715,18 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("midrange_syntax.galgas", 268)) ;
-      var_returnedBank_6102 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      var_returnedBank_6093 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 269)) ;
       enumGalgasBool test_4 = kBoolTrue ;
       if (kBoolTrue == test_4) {
-        test_4 = var_noreturn_5763.boolEnum () ;
+        test_4 = var_noreturn_5754.boolEnum () ;
         if (kBoolTrue == test_4) {
           TC_Array <FixItDescription> fixItArray5 ;
           inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 271)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray5  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 271)) ;
         }
       }
-      var_preservesBank_6127 = GALGAS_bool (false) ;
-      var_requiredBank_6076 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 274)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 274)), inCompiler COMMA_HERE) ;
+      var_preservesBank_6118 = GALGAS_bool (false) ;
+      var_requiredBank_6067 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("midrange_syntax.galgas", 274)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 274)), inCompiler COMMA_HERE) ;
     } break ;
     default:
       break ;
@@ -736,11 +736,11 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_routine_5F_
     break ;
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 277)) ;
-  GALGAS_labelMap var_labelMap_7313 = GALGAS_labelMap::class_func_emptyMap (SOURCE_FILE ("midrange_syntax.galgas", 278)) ;
-  GALGAS_midrange_5F_instructionList var_instructionList_7367 ;
-  nt_midrange_5F_instruction_5F_list_ (var_instructionList_7367, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, var_labelMap_7313, inCompiler) ;
+  GALGAS_labelMap var_labelMap_7304 = GALGAS_labelMap::init (inCompiler COMMA_HERE) ;
+  GALGAS_midrange_5F_instructionList var_instructionList_7357 ;
+  nt_midrange_5F_instruction_5F_list_ (var_instructionList_7357, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, var_labelMap_7304, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 284)) ;
-  ioArgument_ioRoutineDefinitionList.addAssign_operation (var_routineName_5889, var_page_5951, var_requiredBank_6076, var_returnedBank_6102, var_preservesBank_6127, var_noreturn_5763, var_instructionList_7367, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 293))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 285)) ;
+  ioArgument_ioRoutineDefinitionList.addAssign_operation (var_routineName_5880, var_page_5942, var_requiredBank_6067, var_returnedBank_6093, var_preservesBank_6118, var_noreturn_5754, var_instructionList_7357, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 293))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 285)) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -885,43 +885,43 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
   switch (select_midrange_5F_syntax_9 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("midrange_syntax.galgas", 305)) ;
-    GALGAS_lstring var_doLabel_7887 ;
+    GALGAS_lstring var_doLabel_7877 ;
     switch (select_midrange_5F_syntax_10 (inCompiler)) {
     case 1: {
-      var_doLabel_7887 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 308)), inCompiler COMMA_HERE) ;
+      var_doLabel_7877 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 308)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_doLabel_7887 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_doLabel_7877 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 310)) ;
       {
-      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_7887, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 311)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_7877, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 311)) ;
       }
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_8027 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 313)) ;
+    GALGAS_location var_instructionLocation_8017 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 313)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 314)) ;
-    GALGAS_lstring var_constantName_8094 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_constantName_8084 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 315)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 316)) ;
-    GALGAS_immediatExpression var_lowBoundExpression_8167 ;
-    nt_immediate_5F_expression_ (var_lowBoundExpression_8167, inCompiler) ;
+    GALGAS_immediatExpression var_lowBoundExpression_8157 ;
+    nt_immediate_5F_expression_ (var_lowBoundExpression_8157, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 318)) ;
-    GALGAS_immediatExpression var_highBoundExpression_8248 ;
-    nt_immediate_5F_expression_ (var_highBoundExpression_8248, inCompiler) ;
+    GALGAS_immediatExpression var_highBoundExpression_8238 ;
+    nt_immediate_5F_expression_ (var_highBoundExpression_8238, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 320)) ;
-    GALGAS_midrange_5F_instructionList var_instructionList_8345 ;
-    nt_midrange_5F_instruction_5F_list_ (var_instructionList_8345, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::init_21__21__21__21__21__21_ (var_instructionLocation_8027, var_constantName_8094, var_lowBoundExpression_8167, var_highBoundExpression_8248, var_instructionList_8345, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 332)), inCompiler COMMA_HERE) ;
+    GALGAS_midrange_5F_instructionList var_instructionList_8335 ;
+    nt_midrange_5F_instruction_5F_list_ (var_instructionList_8335, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::init_21__21__21__21__21__21_ (var_instructionLocation_8017, var_constantName_8084, var_lowBoundExpression_8157, var_highBoundExpression_8238, var_instructionList_8335, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 332)), inCompiler COMMA_HERE) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 333)) ;
-    GALGAS_lstring var_endDoLabel_8675 ;
+    GALGAS_lstring var_endDoLabel_8665 ;
     switch (select_midrange_5F_syntax_11 (inCompiler)) {
     case 1: {
-      var_endDoLabel_8675 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 336)), inCompiler COMMA_HERE) ;
+      var_endDoLabel_8665 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 336)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_endDoLabel_8675 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_endDoLabel_8665 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 338)) ;
     } break ;
     default:
@@ -929,25 +929,25 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7887.readProperty_string ().objectCompare (var_endDoLabel_8675.readProperty_string ())).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7877.readProperty_string ().objectCompare (var_endDoLabel_8665.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_0) {
         GALGAS_string temp_1 ;
-        const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7887.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7877.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_2) {
-          temp_1 = var_doLabel_7887.readProperty_string () ;
+          temp_1 = var_doLabel_7877.readProperty_string () ;
         }else if (kBoolFalse == test_2) {
           temp_1 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (var_endDoLabel_8675.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 341)), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 341)) ;
+        inCompiler->emitSemanticError (var_endDoLabel_8665.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 341)), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 341)) ;
       }
     }
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_checkbank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 345)) ;
-    GALGAS_luint var_bankIndex_9034 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GALGAS_luint var_bankIndex_9024 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 346)) ;
-    outArgument_outInstruction = GALGAS_midrangeInstruction_5F_checkbank::init_21__21_ (var_bankIndex_9034.readProperty_location (), var_bankIndex_9034.readProperty_uint (), inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrangeInstruction_5F_checkbank::init_21__21_ (var_bankIndex_9024.readProperty_location (), var_bankIndex_9024.readProperty_uint (), inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_checknobank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 349)) ;
@@ -955,53 +955,53 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
   } break ;
   case 4: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_banksel COMMA_SOURCE_FILE ("midrange_syntax.galgas", 352)) ;
-    GALGAS_location var_instructionLocation_9278 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 353)) ;
-    GALGAS_registerExpression var_register_9363 ;
-    nt_register_5F_parsing_ (var_register_9363, inCompiler) ;
-    GALGAS_bool var_warningOnUselessBanksel_9386 ;
+    GALGAS_location var_instructionLocation_9268 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 353)) ;
+    GALGAS_registerExpression var_register_9353 ;
+    nt_register_5F_parsing_ (var_register_9353, inCompiler) ;
+    GALGAS_bool var_warningOnUselessBanksel_9376 ;
     switch (select_midrange_5F_syntax_12 (inCompiler)) {
     case 1: {
-      var_warningOnUselessBanksel_9386 = GALGAS_bool (true) ;
+      var_warningOnUselessBanksel_9376 = GALGAS_bool (true) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 359)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 360)) ;
-      var_warningOnUselessBanksel_9386 = GALGAS_bool (false) ;
+      var_warningOnUselessBanksel_9376 = GALGAS_bool (false) ;
     } break ;
     default:
       break ;
     }
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_banksel_5F_register::init_21__21__21_ (var_instructionLocation_9278, var_register_9363, var_warningOnUselessBanksel_9386, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_banksel_5F_register::init_21__21__21_ (var_instructionLocation_9268, var_register_9353, var_warningOnUselessBanksel_9376, inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_banksel COMMA_SOURCE_FILE ("midrange_syntax.galgas", 365)) ;
-    GALGAS_location var_instructionLocation_9692 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 366)) ;
-    GALGAS_luint var_bank_9755 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GALGAS_location var_instructionLocation_9682 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 366)) ;
+    GALGAS_luint var_bank_9745 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 367)) ;
-    GALGAS_bool var_warningOnUselessBanksel_9774 ;
+    GALGAS_bool var_warningOnUselessBanksel_9764 ;
     switch (select_midrange_5F_syntax_13 (inCompiler)) {
     case 1: {
-      var_warningOnUselessBanksel_9774 = GALGAS_bool (true) ;
+      var_warningOnUselessBanksel_9764 = GALGAS_bool (true) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 372)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 373)) ;
-      var_warningOnUselessBanksel_9774 = GALGAS_bool (false) ;
+      var_warningOnUselessBanksel_9764 = GALGAS_bool (false) ;
     } break ;
     default:
       break ;
     }
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_banksel::init_21__21__21_ (var_instructionLocation_9692, var_bank_9755, var_warningOnUselessBanksel_9774, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_banksel::init_21__21__21_ (var_instructionLocation_9682, var_bank_9745, var_warningOnUselessBanksel_9764, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_banksave COMMA_SOURCE_FILE ("midrange_syntax.galgas", 378)) ;
-    GALGAS_location var_instructionLocation_10068 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 379)) ;
-    GALGAS_registerExpression var_register_10153 ;
-    nt_register_5F_parsing_ (var_register_10153, inCompiler) ;
-    GALGAS_midrange_5F_instructionList var_instructionList_10205 ;
-    nt_midrange_5F_instruction_5F_list_ (var_instructionList_10205, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+    GALGAS_location var_instructionLocation_10058 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 379)) ;
+    GALGAS_registerExpression var_register_10143 ;
+    nt_register_5F_parsing_ (var_register_10143, inCompiler) ;
+    GALGAS_midrange_5F_instructionList var_instructionList_10195 ;
+    nt_midrange_5F_instruction_5F_list_ (var_instructionList_10195, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 386)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_savebank::init_21__21__21__21_ (var_instructionLocation_10068, var_register_10153, var_instructionList_10205, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 391)), inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_savebank::init_21__21__21__21_ (var_instructionLocation_10058, var_register_10143, var_instructionList_10195, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 391)), inCompiler COMMA_HERE) ;
   } break ;
   case 7: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_nobank COMMA_SOURCE_FILE ("midrange_syntax.galgas", 393)) ;
@@ -1009,32 +1009,32 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
   } break ;
   case 8: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_forever COMMA_SOURCE_FILE ("midrange_syntax.galgas", 396)) ;
-    GALGAS_lstring var_foreverLabel_10587 ;
+    GALGAS_lstring var_foreverLabel_10577 ;
     switch (select_midrange_5F_syntax_14 (inCompiler)) {
     case 1: {
-      var_foreverLabel_10587 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 399)), inCompiler COMMA_HERE) ;
+      var_foreverLabel_10577 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 399)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_foreverLabel_10587 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_foreverLabel_10577 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 401)) ;
       {
-      ioArgument_ioLabelMap.setter_insertKey (var_foreverLabel_10587, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 402)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_foreverLabel_10577, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 402)) ;
       }
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_10757 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 404)) ;
-    GALGAS_midrange_5F_instructionList var_instructionList_10837 ;
-    nt_midrange_5F_instruction_5F_list_ (var_instructionList_10837, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+    GALGAS_location var_instructionLocation_10747 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 404)) ;
+    GALGAS_midrange_5F_instructionList var_instructionList_10827 ;
+    nt_midrange_5F_instruction_5F_list_ (var_instructionList_10827, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 410)) ;
-    GALGAS_lstring var_endForeverLabel_10957 ;
+    GALGAS_lstring var_endForeverLabel_10947 ;
     switch (select_midrange_5F_syntax_15 (inCompiler)) {
     case 1: {
-      var_endForeverLabel_10957 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 413)), inCompiler COMMA_HERE) ;
+      var_endForeverLabel_10947 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 413)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_endForeverLabel_10957 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_endForeverLabel_10947 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 415)) ;
     } break ;
     default:
@@ -1042,122 +1042,122 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_10587.readProperty_string ().objectCompare (var_endForeverLabel_10957.readProperty_string ())).boolEnum () ;
+      test_4 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_10577.readProperty_string ().objectCompare (var_endForeverLabel_10947.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         GALGAS_string temp_5 ;
-        const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_10587.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_10577.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_6) {
-          temp_5 = var_foreverLabel_10587.readProperty_string () ;
+          temp_5 = var_foreverLabel_10577.readProperty_string () ;
         }else if (kBoolFalse == test_6) {
           temp_5 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (var_endForeverLabel_10957.readProperty_location (), GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 418)), fixItArray7  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 418)) ;
+        inCompiler->emitSemanticError (var_endForeverLabel_10947.readProperty_location (), GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 418)), fixItArray7  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 418)) ;
       }
     }
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FOREVER::init_21__21__21_ (var_instructionLocation_10757, var_instructionList_10837, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 424)), inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FOREVER::init_21__21__21_ (var_instructionLocation_10747, var_instructionList_10827, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 424)), inCompiler COMMA_HERE) ;
   } break ;
   case 9: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 426)) ;
-    GALGAS_location var_instructionLocation_11477 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 427)) ;
-    GALGAS_registerExpression var_registerExpression_11542 ;
-    GALGAS_bitNumberExpression var_bitNumberExpression_11590 ;
-    GALGAS_bool var_skipIfSet_11624 ;
+    GALGAS_location var_instructionLocation_11467 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 427)) ;
+    GALGAS_registerExpression var_registerExpression_11532 ;
+    GALGAS_bitNumberExpression var_bitNumberExpression_11580 ;
+    GALGAS_bool var_skipIfSet_11614 ;
     switch (select_midrange_5F_syntax_16 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 432)) ;
-      nt_register_5F_parsing_ (var_registerExpression_11542, inCompiler) ;
+      nt_register_5F_parsing_ (var_registerExpression_11532, inCompiler) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 434)) ;
-      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_11590, inCompiler) ;
-      var_skipIfSet_11624 = GALGAS_bool (true) ;
+      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_11580, inCompiler) ;
+      var_skipIfSet_11614 = GALGAS_bool (true) ;
     } break ;
     case 2: {
-      nt_register_5F_parsing_ (var_registerExpression_11542, inCompiler) ;
+      nt_register_5F_parsing_ (var_registerExpression_11532, inCompiler) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 439)) ;
-      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_11590, inCompiler) ;
-      var_skipIfSet_11624 = GALGAS_bool (false) ;
+      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_11580, inCompiler) ;
+      var_skipIfSet_11614 = GALGAS_bool (false) ;
     } break ;
     default:
       break ;
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 443)) ;
-    GALGAS_midrange_5F_instruction var_instruction_11974 ;
-    nt_midrange_5F_simple_5F_instruction_ (var_instruction_11974, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest::init_21__21__21__21__21_ (var_instructionLocation_11477, var_instruction_11974, var_skipIfSet_11624, var_registerExpression_11542, var_bitNumberExpression_11590, inCompiler COMMA_HERE) ;
+    GALGAS_midrange_5F_instruction var_instruction_11964 ;
+    nt_midrange_5F_simple_5F_instruction_ (var_instruction_11964, inCompiler) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_IF_5F_BitTest::init_21__21__21__21__21_ (var_instructionLocation_11467, var_instruction_11964, var_skipIfSet_11614, var_registerExpression_11532, var_bitNumberExpression_11580, inCompiler COMMA_HERE) ;
   } break ;
   case 10: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 452)) ;
-    GALGAS_location var_instructionLocation_12196 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 453)) ;
-    GALGAS_bool var_increment_12247 ;
+    GALGAS_location var_instructionLocation_12186 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 453)) ;
+    GALGAS_bool var_increment_12237 ;
     switch (select_midrange_5F_syntax_17 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 456)) ;
-      var_increment_12247 = GALGAS_bool (false) ;
+      var_increment_12237 = GALGAS_bool (false) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 458)) ;
-      var_increment_12247 = GALGAS_bool (true) ;
+      var_increment_12237 = GALGAS_bool (true) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_registerExpression var_registerExpression_12376 ;
-    nt_register_5F_parsing_ (var_registerExpression_12376, inCompiler) ;
-    GALGAS_bool var_w_5F_isTarget_12409 ;
+    GALGAS_registerExpression var_registerExpression_12366 ;
+    nt_register_5F_parsing_ (var_registerExpression_12366, inCompiler) ;
+    GALGAS_bool var_w_5F_isTarget_12399 ;
     switch (select_midrange_5F_syntax_18 (inCompiler)) {
     case 1: {
-      var_w_5F_isTarget_12409 = GALGAS_bool (false) ;
+      var_w_5F_isTarget_12399 = GALGAS_bool (false) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 465)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("midrange_syntax.galgas", 465)) ;
-      var_w_5F_isTarget_12409 = GALGAS_bool (true) ;
+      var_w_5F_isTarget_12399 = GALGAS_bool (true) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_lstring var_conditionString_12538 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_conditionString_12528 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 467)) ;
-    GALGAS_string var_condition_12570 = var_conditionString_12538.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("midrange_syntax.galgas", 468)) ;
+    GALGAS_string var_condition_12560 = var_conditionString_12528.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("midrange_syntax.galgas", 468)) ;
     enumGalgasBool test_8 = kBoolTrue ;
     if (kBoolTrue == test_8) {
-      test_8 = GALGAS_bool (ComparisonKind::notEqual, var_condition_12570.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
+      test_8 = GALGAS_bool (ComparisonKind::notEqual, var_condition_12560.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
       if (kBoolTrue == test_8) {
         TC_Array <FixItDescription> fixItArray9 ;
-        inCompiler->emitSemanticError (var_conditionString_12538.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_condition_12570, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)), fixItArray9  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)) ;
+        inCompiler->emitSemanticError (var_conditionString_12528.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_condition_12560, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)), fixItArray9  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 470)) ;
       }
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 472)) ;
-    GALGAS_midrange_5F_instruction var_instruction_12795 ;
-    nt_midrange_5F_simple_5F_instruction_ (var_instruction_12795, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec::init_21__21__21__21__21_ (var_instructionLocation_12196, var_instruction_12795, var_increment_12247, var_registerExpression_12376, var_w_5F_isTarget_12409, inCompiler COMMA_HERE) ;
+    GALGAS_midrange_5F_instruction var_instruction_12785 ;
+    nt_midrange_5F_simple_5F_instruction_ (var_instruction_12785, inCompiler) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_IF_5F_IncDec::init_21__21__21__21__21_ (var_instructionLocation_12186, var_instruction_12785, var_increment_12237, var_registerExpression_12366, var_w_5F_isTarget_12399, inCompiler COMMA_HERE) ;
   } break ;
   case 11: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("midrange_syntax.galgas", 482)) ;
-    GALGAS_lstring var_ifLabel_13011 ;
+    GALGAS_lstring var_ifLabel_13001 ;
     switch (select_midrange_5F_syntax_19 (inCompiler)) {
     case 1: {
-      var_ifLabel_13011 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 485)), inCompiler COMMA_HERE) ;
+      var_ifLabel_13001 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 485)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_ifLabel_13011 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_ifLabel_13001 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 487)) ;
       {
-      ioArgument_ioLabelMap.setter_insertKey (var_ifLabel_13011, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 488)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_ifLabel_13001, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 488)) ;
       }
     } break ;
     default:
       break ;
     }
-    nt_midrange_5F_structured_5F_if_5F_instruction_ (var_ifLabel_13011, outArgument_outInstruction, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+    nt_midrange_5F_structured_5F_if_5F_instruction_ (var_ifLabel_13001, outArgument_outInstruction, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 496)) ;
-    GALGAS_lstring var_endIfLabel_13325 ;
+    GALGAS_lstring var_endIfLabel_13315 ;
     switch (select_midrange_5F_syntax_20 (inCompiler)) {
     case 1: {
-      var_endIfLabel_13325 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 499)), inCompiler COMMA_HERE) ;
+      var_endIfLabel_13315 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 499)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_endIfLabel_13325 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_endIfLabel_13315 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 501)) ;
     } break ;
     default:
@@ -1165,52 +1165,52 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
-      test_10 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_13011.readProperty_string ().objectCompare (var_endIfLabel_13325.readProperty_string ())).boolEnum () ;
+      test_10 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_13001.readProperty_string ().objectCompare (var_endIfLabel_13315.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_10) {
         GALGAS_string temp_11 ;
-        const enumGalgasBool test_12 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_13011.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_12 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_13001.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_12) {
-          temp_11 = var_ifLabel_13011.readProperty_string () ;
+          temp_11 = var_ifLabel_13001.readProperty_string () ;
         }else if (kBoolFalse == test_12) {
           temp_11 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray13 ;
-        inCompiler->emitSemanticError (var_endIfLabel_13325.readProperty_location (), GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 504)), fixItArray13  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 504)) ;
+        inCompiler->emitSemanticError (var_endIfLabel_13315.readProperty_location (), GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 504)), fixItArray13  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 504)) ;
       }
     }
   } break ;
   case 12: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("midrange_syntax.galgas", 508)) ;
-    GALGAS_lstring var_doLabel_13668 ;
+    GALGAS_lstring var_doLabel_13658 ;
     switch (select_midrange_5F_syntax_21 (inCompiler)) {
     case 1: {
-      var_doLabel_13668 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 511)), inCompiler COMMA_HERE) ;
+      var_doLabel_13658 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 511)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_doLabel_13668 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_doLabel_13658 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 513)) ;
       {
-      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_13668, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 514)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_13658, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 514)) ;
       }
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_13818 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 516)) ;
-    GALGAS_midrange_5F_instructionList var_repeatedInstructionList_13898 ;
-    nt_midrange_5F_instruction_5F_list_ (var_repeatedInstructionList_13898, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-    GALGAS_location var_endOfRepeatedInstructionList_14017 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 522)) ;
-    GALGAS_midrange_5F_partList var_whilePartList_14071 = GALGAS_midrange_5F_partList::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 523)) ;
+    GALGAS_location var_instructionLocation_13808 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 516)) ;
+    GALGAS_midrange_5F_instructionList var_repeatedInstructionList_13888 ;
+    nt_midrange_5F_instruction_5F_list_ (var_repeatedInstructionList_13888, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+    GALGAS_location var_endOfRepeatedInstructionList_14007 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 522)) ;
+    GALGAS_midrange_5F_partList var_whilePartList_14061 = GALGAS_midrange_5F_partList::init (inCompiler COMMA_HERE) ;
     bool repeatFlag_14 = true ;
     while (repeatFlag_14) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_while COMMA_SOURCE_FILE ("midrange_syntax.galgas", 525)) ;
-      GALGAS_lstring var_whileLabel_14153 ;
+      GALGAS_lstring var_whileLabel_14142 ;
       switch (select_midrange_5F_syntax_23 (inCompiler)) {
       case 1: {
-        var_whileLabel_14153 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 528)), inCompiler COMMA_HERE) ;
+        var_whileLabel_14142 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 528)), inCompiler COMMA_HERE) ;
       } break ;
       case 2: {
-        var_whileLabel_14153 = inCompiler->synthetizedAttribute_tokenString () ;
+        var_whileLabel_14142 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 530)) ;
       } break ;
       default:
@@ -1218,37 +1218,37 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
       }
       enumGalgasBool test_15 = kBoolTrue ;
       if (kBoolTrue == test_15) {
-        test_15 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13668.readProperty_string ().objectCompare (var_whileLabel_14153.readProperty_string ())).boolEnum () ;
+        test_15 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13658.readProperty_string ().objectCompare (var_whileLabel_14142.readProperty_string ())).boolEnum () ;
         if (kBoolTrue == test_15) {
           GALGAS_string temp_16 ;
-          const enumGalgasBool test_17 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13668.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+          const enumGalgasBool test_17 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13658.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
           if (kBoolTrue == test_17) {
-            temp_16 = var_doLabel_13668.readProperty_string () ;
+            temp_16 = var_doLabel_13658.readProperty_string () ;
           }else if (kBoolFalse == test_17) {
             temp_16 = GALGAS_string ("empty") ;
           }
           TC_Array <FixItDescription> fixItArray18 ;
-          inCompiler->emitSemanticError (var_whileLabel_14153.readProperty_location (), GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 533)), fixItArray18  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 533)) ;
+          inCompiler->emitSemanticError (var_whileLabel_14142.readProperty_location (), GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 533)), fixItArray18  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 533)) ;
         }
       }
-      GALGAS_midrange_5F_conditionExpression var_whileCondition_14528 ;
-      nt_midrange_5F_condition_5F_expression_ (var_whileCondition_14528, inCompiler) ;
-      GALGAS_midrange_5F_instructionList var_instructionList_14590 ;
-      nt_midrange_5F_instruction_5F_list_ (var_instructionList_14590, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-      var_whilePartList_14071.addAssign_operation (var_whileCondition_14528, var_instructionList_14590, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 542))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 542)) ;
+      GALGAS_midrange_5F_conditionExpression var_whileCondition_14517 ;
+      nt_midrange_5F_condition_5F_expression_ (var_whileCondition_14517, inCompiler) ;
+      GALGAS_midrange_5F_instructionList var_instructionList_14579 ;
+      nt_midrange_5F_instruction_5F_list_ (var_instructionList_14579, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+      var_whilePartList_14061.addAssign_operation (var_whileCondition_14517, var_instructionList_14579, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 542))  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 542)) ;
       if (select_midrange_5F_syntax_22 (inCompiler) == 2) {
       }else{
         repeatFlag_14 = false ;
       }
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("midrange_syntax.galgas", 545)) ;
-    GALGAS_lstring var_endDoLabel_14804 ;
+    GALGAS_lstring var_endDoLabel_14793 ;
     switch (select_midrange_5F_syntax_24 (inCompiler)) {
     case 1: {
-      var_endDoLabel_14804 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 548)), inCompiler COMMA_HERE) ;
+      var_endDoLabel_14793 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 548)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_endDoLabel_14804 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_endDoLabel_14793 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 550)) ;
     } break ;
     default:
@@ -1256,41 +1256,41 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_19 = kBoolTrue ;
     if (kBoolTrue == test_19) {
-      test_19 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13668.readProperty_string ().objectCompare (var_endDoLabel_14804.readProperty_string ())).boolEnum () ;
+      test_19 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13658.readProperty_string ().objectCompare (var_endDoLabel_14793.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_19) {
         GALGAS_string temp_20 ;
-        const enumGalgasBool test_21 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13668.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_21 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_13658.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_21) {
-          temp_20 = var_doLabel_13668.readProperty_string () ;
+          temp_20 = var_doLabel_13658.readProperty_string () ;
         }else if (kBoolFalse == test_21) {
           temp_20 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray22 ;
-        inCompiler->emitSemanticError (var_endDoLabel_14804.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 553)), fixItArray22  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 553)) ;
+        inCompiler->emitSemanticError (var_endDoLabel_14793.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 553)), fixItArray22  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 553)) ;
       }
     }
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_do_5F_while::init_21__21__21__21_ (var_instructionLocation_13818, var_repeatedInstructionList_13898, var_endOfRepeatedInstructionList_14017, var_whilePartList_14071, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_do_5F_while::init_21__21__21__21_ (var_instructionLocation_13808, var_repeatedInstructionList_13888, var_endOfRepeatedInstructionList_14007, var_whilePartList_14061, inCompiler COMMA_HERE) ;
   } break ;
   case 13: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_mnop COMMA_SOURCE_FILE ("midrange_syntax.galgas", 562)) ;
-    GALGAS_location var_instructionLocation_15325 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 563)) ;
-    GALGAS_luint var_occurrenceFactor_15388 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GALGAS_location var_instructionLocation_15314 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 563)) ;
+    GALGAS_luint var_occurrenceFactor_15377 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("midrange_syntax.galgas", 564)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_MNOP::init_21__21_ (var_instructionLocation_15325, var_occurrenceFactor_15388, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_MNOP::init_21__21_ (var_instructionLocation_15314, var_occurrenceFactor_15377, inCompiler COMMA_HERE) ;
   } break ;
   case 14: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_jsr COMMA_SOURCE_FILE ("midrange_syntax.galgas", 567)) ;
-    GALGAS_location var_instructionLocation_15533 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 568)) ;
-    GALGAS_lstring var_targetLabelName_15601 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_location var_instructionLocation_15522 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 568)) ;
+    GALGAS_lstring var_targetLabelName_15590 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 569)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_JSR::init_21__21_ (var_instructionLocation_15533, var_targetLabelName_15601, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_JSR::init_21__21_ (var_instructionLocation_15522, var_targetLabelName_15590, inCompiler COMMA_HERE) ;
   } break ;
   case 15: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_jump COMMA_SOURCE_FILE ("midrange_syntax.galgas", 574)) ;
-    GALGAS_location var_instructionLocation_15756 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 575)) ;
-    GALGAS_lstring var_targetLabelName_15824 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_location var_instructionLocation_15745 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 575)) ;
+    GALGAS_lstring var_targetLabelName_15813 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 576)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_JUMP::init_21__21_ (var_instructionLocation_15756, var_targetLabelName_15824, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_JUMP::init_21__21_ (var_instructionLocation_15745, var_targetLabelName_15813, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -1767,25 +1767,25 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
                                                                                                           GALGAS_labelMap & ioArgument_ioLabelMap,
                                                                                                           Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
-  GALGAS_location var_instructionLocation_16223 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 593)) ;
-  GALGAS_midrange_5F_conditionExpression var_structured_5F_if_5F_condition_16299 ;
-  nt_midrange_5F_condition_5F_expression_ (var_structured_5F_if_5F_condition_16299, inCompiler) ;
-  GALGAS_midrange_5F_instructionList var_thenInstructionList_16362 ;
-  nt_midrange_5F_instruction_5F_list_ (var_thenInstructionList_16362, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-  GALGAS_midrange_5F_instructionList var_elseInstructionList_16485 ;
+  GALGAS_location var_instructionLocation_16212 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 593)) ;
+  GALGAS_midrange_5F_conditionExpression var_structured_5F_if_5F_condition_16288 ;
+  nt_midrange_5F_condition_5F_expression_ (var_structured_5F_if_5F_condition_16288, inCompiler) ;
+  GALGAS_midrange_5F_instructionList var_thenInstructionList_16351 ;
+  nt_midrange_5F_instruction_5F_list_ (var_thenInstructionList_16351, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+  GALGAS_midrange_5F_instructionList var_elseInstructionList_16474 ;
   switch (select_midrange_5F_syntax_25 (inCompiler)) {
   case 1: {
-    var_elseInstructionList_16485 = GALGAS_midrange_5F_instructionList::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 602)) ;
+    var_elseInstructionList_16474 = GALGAS_midrange_5F_instructionList::init (inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_elsif COMMA_SOURCE_FILE ("midrange_syntax.galgas", 604)) ;
-    GALGAS_lstring var_elsifIfLabel_16604 ;
+    GALGAS_lstring var_elsifIfLabel_16592 ;
     switch (select_midrange_5F_syntax_26 (inCompiler)) {
     case 1: {
-      var_elsifIfLabel_16604 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 607)), inCompiler COMMA_HERE) ;
+      var_elsifIfLabel_16592 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 607)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_elsifIfLabel_16604 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_elsifIfLabel_16592 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 609)) ;
     } break ;
     default:
@@ -1793,7 +1793,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elsifIfLabel_16604.readProperty_string ())).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elsifIfLabel_16592.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_0) {
         GALGAS_string temp_1 ;
         const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
@@ -1803,23 +1803,23 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
           temp_1 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (var_elsifIfLabel_16604.readProperty_location (), GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 612)), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 612)) ;
+        inCompiler->emitSemanticError (var_elsifIfLabel_16592.readProperty_location (), GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 612)), fixItArray3  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 612)) ;
       }
     }
-    GALGAS_midrange_5F_instruction var_elsifPartInstruction_16995 ;
-    nt_midrange_5F_structured_5F_if_5F_instruction_ (constinArgument_ifLabel, var_elsifPartInstruction_16995, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
-    var_elseInstructionList_16485 = GALGAS_midrange_5F_instructionList::class_func_emptyList (SOURCE_FILE ("midrange_syntax.galgas", 621)) ;
-    var_elseInstructionList_16485.addAssign_operation (var_elsifPartInstruction_16995  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 622)) ;
+    GALGAS_midrange_5F_instruction var_elsifPartInstruction_16983 ;
+    nt_midrange_5F_structured_5F_if_5F_instruction_ (constinArgument_ifLabel, var_elsifPartInstruction_16983, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+    var_elseInstructionList_16474 = GALGAS_midrange_5F_instructionList::init (inCompiler COMMA_HERE) ;
+    var_elseInstructionList_16474.addAssign_operation (var_elsifPartInstruction_16983  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 622)) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_else COMMA_SOURCE_FILE ("midrange_syntax.galgas", 624)) ;
-    GALGAS_lstring var_elseLabel_17231 ;
+    GALGAS_lstring var_elseLabel_17218 ;
     switch (select_midrange_5F_syntax_27 (inCompiler)) {
     case 1: {
-      var_elseLabel_17231 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 627)), inCompiler COMMA_HERE) ;
+      var_elseLabel_17218 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 627)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_elseLabel_17231 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_elseLabel_17218 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("midrange_syntax.galgas", 629)) ;
     } break ;
     default:
@@ -1827,7 +1827,7 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
     }
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elseLabel_17231.readProperty_string ())).boolEnum () ;
+      test_4 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elseLabel_17218.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         GALGAS_string temp_5 ;
         const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
@@ -1837,16 +1837,16 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_structured_
           temp_5 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (var_elseLabel_17231.readProperty_location (), GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 632)), fixItArray7  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 632)) ;
+        inCompiler->emitSemanticError (var_elseLabel_17218.readProperty_location (), GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 632)), fixItArray7  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 632)) ;
       }
     }
-    nt_midrange_5F_instruction_5F_list_ (var_elseInstructionList_16485, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
+    nt_midrange_5F_instruction_5F_list_ (var_elseInstructionList_16474, ioArgument_ioNeedsComputedGoto_32_, ioArgument_ioNeedsComputedGoto_34_, ioArgument_ioLabelMap, inCompiler) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_location var_endOfElsePartLocation_17697 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 641)) ;
-  outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_structured_5F_if::init_21__21__21__21__21_ (var_instructionLocation_16223, var_structured_5F_if_5F_condition_16299, var_thenInstructionList_16362, var_elseInstructionList_16485, var_endOfElsePartLocation_17697, inCompiler COMMA_HERE) ;
+  GALGAS_location var_endOfElsePartLocation_17684 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 641)) ;
+  outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_structured_5F_if::init_21__21__21__21__21_ (var_instructionLocation_16212, var_structured_5F_if_5F_condition_16288, var_thenInstructionList_16351, var_elseInstructionList_16474, var_endOfElsePartLocation_17684, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -1935,143 +1935,143 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_i
   outArgument_outInstruction.drop () ; // Release 'out' argument
   switch (select_midrange_5F_syntax_28 (inCompiler)) {
   case 1: {
-    GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code var_baseCode_18116 ;
+    GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code var_baseCode_18103 ;
     switch (select_midrange_5F_syntax_29 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_addwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 656)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_ADDWF (SOURCE_FILE ("midrange_syntax.galgas", 657)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_ADDWF (SOURCE_FILE ("midrange_syntax.galgas", 657)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_andwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 659)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_ANDWF (SOURCE_FILE ("midrange_syntax.galgas", 660)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_ANDWF (SOURCE_FILE ("midrange_syntax.galgas", 660)) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_comf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 662)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_COMF (SOURCE_FILE ("midrange_syntax.galgas", 663)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_COMF (SOURCE_FILE ("midrange_syntax.galgas", 663)) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 665)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_DECF (SOURCE_FILE ("midrange_syntax.galgas", 666)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_DECF (SOURCE_FILE ("midrange_syntax.galgas", 666)) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 668)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_INCF (SOURCE_FILE ("midrange_syntax.galgas", 669)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_INCF (SOURCE_FILE ("midrange_syntax.galgas", 669)) ;
     } break ;
     case 6: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_iorwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 671)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_IORWF (SOURCE_FILE ("midrange_syntax.galgas", 672)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_IORWF (SOURCE_FILE ("midrange_syntax.galgas", 672)) ;
     } break ;
     case 7: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 674)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 675)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 675)) ;
     } break ;
     case 8: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_rlf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 677)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_RLF (SOURCE_FILE ("midrange_syntax.galgas", 678)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_RLF (SOURCE_FILE ("midrange_syntax.galgas", 678)) ;
     } break ;
     case 9: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_rrf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 680)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_RRF (SOURCE_FILE ("midrange_syntax.galgas", 681)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_RRF (SOURCE_FILE ("midrange_syntax.galgas", 681)) ;
     } break ;
     case 10: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_subwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 683)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_SUBWF (SOURCE_FILE ("midrange_syntax.galgas", 684)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_SUBWF (SOURCE_FILE ("midrange_syntax.galgas", 684)) ;
     } break ;
     case 11: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_swapf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 686)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_SWAPF (SOURCE_FILE ("midrange_syntax.galgas", 687)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_SWAPF (SOURCE_FILE ("midrange_syntax.galgas", 687)) ;
     } break ;
     case 12: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_xorwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 689)) ;
-      var_baseCode_18116 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_XORWF (SOURCE_FILE ("midrange_syntax.galgas", 690)) ;
+      var_baseCode_18103 = GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_XORWF (SOURCE_FILE ("midrange_syntax.galgas", 690)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_18669 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 692)) ;
-    GALGAS_registerExpression var_registerExpression_18734 ;
-    nt_register_5F_parsing_ (var_registerExpression_18734, inCompiler) ;
-    GALGAS_bool var_W_5F_isDestination_18783 ;
-    nt_optional_5F_w_5F_as_5F_dest_ (var_W_5F_isDestination_18783, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FD::init_21__21__21__21_ (var_instructionLocation_18669, var_baseCode_18116, var_registerExpression_18734, var_W_5F_isDestination_18783, inCompiler COMMA_HERE) ;
+    GALGAS_location var_instructionLocation_18656 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 692)) ;
+    GALGAS_registerExpression var_registerExpression_18721 ;
+    nt_register_5F_parsing_ (var_registerExpression_18721, inCompiler) ;
+    GALGAS_bool var_W_5F_isDestination_18770 ;
+    nt_optional_5F_w_5F_as_5F_dest_ (var_W_5F_isDestination_18770, inCompiler) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FD::init_21__21__21__21_ (var_instructionLocation_18656, var_baseCode_18103, var_registerExpression_18721, var_W_5F_isDestination_18770, inCompiler COMMA_HERE) ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      GALGAS_bool test_1 = GALGAS_bool (ComparisonKind::equal, var_baseCode_18116.objectCompare (GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 702)))) ;
+      GALGAS_bool test_1 = GALGAS_bool (ComparisonKind::equal, var_baseCode_18103.objectCompare (GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 702)))) ;
       if (kBoolTrue == test_1.boolEnum ()) {
-        test_1 = var_W_5F_isDestination_18783.operator_not (SOURCE_FILE ("midrange_syntax.galgas", 702)) ;
+        test_1 = var_W_5F_isDestination_18770.operator_not (SOURCE_FILE ("midrange_syntax.galgas", 702)) ;
       }
       test_0 = test_1.boolEnum () ;
       if (kBoolTrue == test_0) {
         TC_Array <FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticWarning (var_instructionLocation_18669, GALGAS_string ("This instruction does not move data, it only sets flags. Use 'movf *, reg' instead of 'movf reg' to suppress this warning"), fixItArray2  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 703)) ;
+        inCompiler->emitSemanticWarning (var_instructionLocation_18656, GALGAS_string ("This instruction does not move data, it only sets flags. Use 'movf *, reg' instead of 'movf reg' to suppress this warning"), fixItArray2  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 703)) ;
       }
     }
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 707)) ;
-    GALGAS_location var_instructionLocation_19292 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 708)) ;
+    GALGAS_location var_instructionLocation_19279 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 708)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 709)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 710)) ;
-    GALGAS_registerExpression var_registerName_19364 ;
-    nt_register_5F_parsing_ (var_registerName_19364, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FD::init_21__21__21__21_ (var_instructionLocation_19292, GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 714)), var_registerName_19364, GALGAS_bool (false), inCompiler COMMA_HERE) ;
+    GALGAS_registerExpression var_registerName_19351 ;
+    nt_register_5F_parsing_ (var_registerName_19351, inCompiler) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FD::init_21__21__21__21_ (var_instructionLocation_19279, GALGAS_midrange_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("midrange_syntax.galgas", 714)), var_registerName_19351, GALGAS_bool (false), inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
-    GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code var_FAinstruction_19579 ;
+    GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code var_FAinstruction_19566 ;
     switch (select_midrange_5F_syntax_30 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_clrf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 721)) ;
-      var_FAinstruction_19579 = GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::class_func_CLRF (SOURCE_FILE ("midrange_syntax.galgas", 722)) ;
+      var_FAinstruction_19566 = GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::class_func_CLRF (SOURCE_FILE ("midrange_syntax.galgas", 722)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_movwf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 724)) ;
-      var_FAinstruction_19579 = GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::class_func_MOVWF (SOURCE_FILE ("midrange_syntax.galgas", 725)) ;
+      var_FAinstruction_19566 = GALGAS_midrange_5F_F_5F_instruction_5F_base_5F_code::class_func_MOVWF (SOURCE_FILE ("midrange_syntax.galgas", 725)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_19789 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 727)) ;
-    GALGAS_registerExpression var_registerExpression_19854 ;
-    nt_register_5F_parsing_ (var_registerExpression_19854, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_F::init_21__21__21_ (var_instructionLocation_19789, var_FAinstruction_19579, var_registerExpression_19854, inCompiler COMMA_HERE) ;
+    GALGAS_location var_instructionLocation_19776 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 727)) ;
+    GALGAS_registerExpression var_registerExpression_19841 ;
+    nt_register_5F_parsing_ (var_registerExpression_19841, inCompiler) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_F::init_21__21__21_ (var_instructionLocation_19776, var_FAinstruction_19566, var_registerExpression_19841, inCompiler COMMA_HERE) ;
   } break ;
   case 4: {
-    GALGAS_midrange_5F_bit_5F_oriented_5F_op var_bitOrientedOp_20039 ;
+    GALGAS_midrange_5F_bit_5F_oriented_5F_op var_bitOrientedOp_20026 ;
     switch (select_midrange_5F_syntax_31 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bcf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 736)) ;
-      var_bitOrientedOp_20039 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::class_func_BCF (SOURCE_FILE ("midrange_syntax.galgas", 736)) ;
+      var_bitOrientedOp_20026 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::class_func_BCF (SOURCE_FILE ("midrange_syntax.galgas", 736)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bsf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 738)) ;
-      var_bitOrientedOp_20039 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::class_func_BSF (SOURCE_FILE ("midrange_syntax.galgas", 738)) ;
+      var_bitOrientedOp_20026 = GALGAS_midrange_5F_bit_5F_oriented_5F_op::class_func_BSF (SOURCE_FILE ("midrange_syntax.galgas", 738)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_20219 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 740)) ;
-    GALGAS_registerExpression var_registerExpression_20284 ;
-    nt_register_5F_parsing_ (var_registerExpression_20284, inCompiler) ;
+    GALGAS_location var_instructionLocation_20206 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 740)) ;
+    GALGAS_registerExpression var_registerExpression_20271 ;
+    nt_register_5F_parsing_ (var_registerExpression_20271, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 742)) ;
-    GALGAS_bitNumberExpression var_bitNumberExpression_20341 ;
-    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_20341, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FB::init_21__21__21__21_ (var_instructionLocation_20219, var_bitOrientedOp_20039, var_registerExpression_20284, var_bitNumberExpression_20341, inCompiler COMMA_HERE) ;
+    GALGAS_bitNumberExpression var_bitNumberExpression_20328 ;
+    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_20328, inCompiler) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_FB::init_21__21__21__21_ (var_instructionLocation_20206, var_bitOrientedOp_20026, var_registerExpression_20271, var_bitNumberExpression_20328, inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_goto COMMA_SOURCE_FILE ("midrange_syntax.galgas", 750)) ;
-    GALGAS_location var_instructionLocation_20550 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 751)) ;
-    GALGAS_lstring var_targetLabelName_20618 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_location var_instructionLocation_20537 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 751)) ;
+    GALGAS_lstring var_targetLabelName_20605 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 752)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_GOTO::init_21__21_ (var_instructionLocation_20550, var_targetLabelName_20618, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_GOTO::init_21__21_ (var_instructionLocation_20537, var_targetLabelName_20605, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_call COMMA_SOURCE_FILE ("midrange_syntax.galgas", 757)) ;
-    GALGAS_location var_instructionLocation_20795 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 758)) ;
-    GALGAS_lstring var_targetLabelName_20863 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_location var_instructionLocation_20782 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 758)) ;
+    GALGAS_lstring var_targetLabelName_20850 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 759)) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_CALL::init_21__21_ (var_instructionLocation_20795, var_targetLabelName_20863, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_CALL::init_21__21_ (var_instructionLocation_20782, var_targetLabelName_20850, inCompiler COMMA_HERE) ;
   } break ;
   case 7: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_clrw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 764)) ;
@@ -2090,39 +2090,39 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_simple_5F_i
     outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_SLEEP::init_21_ (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 774)), inCompiler COMMA_HERE) ;
   } break ;
   case 11: {
-    GALGAS_midrange_5F_literal_5F_instruction_5F_opcode var_literalInstruction_21412 ;
+    GALGAS_midrange_5F_literal_5F_instruction_5F_opcode var_literalInstruction_21399 ;
     switch (select_midrange_5F_syntax_32 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_addlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 778)) ;
-      var_literalInstruction_21412 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_ADDLW (SOURCE_FILE ("midrange_syntax.galgas", 778)) ;
+      var_literalInstruction_21399 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_ADDLW (SOURCE_FILE ("midrange_syntax.galgas", 778)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_andlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 780)) ;
-      var_literalInstruction_21412 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_ANDLW (SOURCE_FILE ("midrange_syntax.galgas", 780)) ;
+      var_literalInstruction_21399 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_ANDLW (SOURCE_FILE ("midrange_syntax.galgas", 780)) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_iorlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 782)) ;
-      var_literalInstruction_21412 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_IORLW (SOURCE_FILE ("midrange_syntax.galgas", 782)) ;
+      var_literalInstruction_21399 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_IORLW (SOURCE_FILE ("midrange_syntax.galgas", 782)) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_movlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 784)) ;
-      var_literalInstruction_21412 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("midrange_syntax.galgas", 784)) ;
+      var_literalInstruction_21399 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("midrange_syntax.galgas", 784)) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_sublw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 786)) ;
-      var_literalInstruction_21412 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_SUBLW (SOURCE_FILE ("midrange_syntax.galgas", 786)) ;
+      var_literalInstruction_21399 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_SUBLW (SOURCE_FILE ("midrange_syntax.galgas", 786)) ;
     } break ;
     case 6: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_xorlw COMMA_SOURCE_FILE ("midrange_syntax.galgas", 788)) ;
-      var_literalInstruction_21412 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_XORLW (SOURCE_FILE ("midrange_syntax.galgas", 788)) ;
+      var_literalInstruction_21399 = GALGAS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_XORLW (SOURCE_FILE ("midrange_syntax.galgas", 788)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_21989 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 790)) ;
-    GALGAS_immediatExpression var_expression_22058 ;
-    nt_immediate_5F_expression_ (var_expression_22058, inCompiler) ;
-    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_literalOperation::init_21__21__21_ (var_instructionLocation_21989, var_literalInstruction_21412, var_expression_22058, inCompiler COMMA_HERE) ;
+    GALGAS_location var_instructionLocation_21976 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 790)) ;
+    GALGAS_immediatExpression var_expression_22045 ;
+    nt_immediate_5F_expression_ (var_expression_22045, inCompiler) ;
+    outArgument_outInstruction = GALGAS_midrange_5F_instruction_5F_literalOperation::init_21__21__21_ (var_instructionLocation_21976, var_literalInstruction_21399, var_expression_22045, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -2404,9 +2404,9 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
                                                                                               Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outCondition.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 803)) ;
-  GALGAS_midrange_5F_conditionExpression var_condition_22395 ;
-  nt_midrange_5F_condition_5F_factor_ (var_condition_22395, inCompiler) ;
-  outArgument_outCondition = GALGAS_midrange_5F_negateCondition::init_21_ (var_condition_22395, inCompiler COMMA_HERE) ;
+  GALGAS_midrange_5F_conditionExpression var_condition_22382 ;
+  nt_midrange_5F_condition_5F_factor_ (var_condition_22382, inCompiler) ;
+  outArgument_outCondition = GALGAS_midrange_5F_negateCondition::init_21_ (var_condition_22382, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -2452,68 +2452,68 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   outArgument_outCondition.drop () ; // Release 'out' argument
   switch (select_midrange_5F_syntax_33 (inCompiler)) {
   case 1: {
-    GALGAS_bool var_isIncrement_22819 ;
+    GALGAS_bool var_isIncrement_22806 ;
     switch (select_midrange_5F_syntax_34 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 822)) ;
-      var_isIncrement_22819 = GALGAS_bool (true) ;
+      var_isIncrement_22806 = GALGAS_bool (true) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("midrange_syntax.galgas", 824)) ;
-      var_isIncrement_22819 = GALGAS_bool (false) ;
+      var_isIncrement_22806 = GALGAS_bool (false) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_registerExpression var_registerExpression_22954 ;
-    nt_register_5F_parsing_ (var_registerExpression_22954, inCompiler) ;
-    GALGAS_bool var_W_5F_isDestination_22987 ;
+    GALGAS_registerExpression var_registerExpression_22941 ;
+    nt_register_5F_parsing_ (var_registerExpression_22941, inCompiler) ;
+    GALGAS_bool var_W_5F_isDestination_22974 ;
     switch (select_midrange_5F_syntax_35 (inCompiler)) {
     case 1: {
-      var_W_5F_isDestination_22987 = GALGAS_bool (false) ;
+      var_W_5F_isDestination_22974 = GALGAS_bool (false) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 831)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("midrange_syntax.galgas", 831)) ;
-      var_W_5F_isDestination_22987 = GALGAS_bool (true) ;
+      var_W_5F_isDestination_22974 = GALGAS_bool (true) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_lstring var_conditionString_23131 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_conditionString_23118 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("midrange_syntax.galgas", 833)) ;
-    GALGAS_string var_condition_23163 = var_conditionString_23131.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("midrange_syntax.galgas", 834)) ;
-    GALGAS_bool var_branchIfZero_23230 ;
+    GALGAS_string var_condition_23150 = var_conditionString_23118.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("midrange_syntax.galgas", 834)) ;
+    GALGAS_bool var_branchIfZero_23217 ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (ComparisonKind::equal, var_condition_23163.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::equal, var_condition_23150.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
       if (kBoolTrue == test_0) {
-        var_branchIfZero_23230 = GALGAS_bool (true) ;
+        var_branchIfZero_23217 = GALGAS_bool (true) ;
       }
     }
     if (kBoolFalse == test_0) {
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = GALGAS_bool (ComparisonKind::equal, var_condition_23163.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
+        test_1 = GALGAS_bool (ComparisonKind::equal, var_condition_23150.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
         if (kBoolTrue == test_1) {
-          var_branchIfZero_23230 = GALGAS_bool (false) ;
+          var_branchIfZero_23217 = GALGAS_bool (false) ;
         }
       }
       if (kBoolFalse == test_1) {
         TC_Array <FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (var_conditionString_23131.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_conditionString_23131.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)), fixItArray2  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)) ;
-        var_branchIfZero_23230.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (var_conditionString_23118.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_conditionString_23118.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)), fixItArray2  COMMA_SOURCE_FILE ("midrange_syntax.galgas", 841)) ;
+        var_branchIfZero_23217.drop () ; // Release error dropped variable
       }
     }
-    outArgument_outCondition = GALGAS_midrange_5F_incDecRegisterInCondition::init_21__21__21__21_ (var_registerExpression_22954, var_isIncrement_22819, var_W_5F_isDestination_22987, var_branchIfZero_23230, inCompiler COMMA_HERE) ;
+    outArgument_outCondition = GALGAS_midrange_5F_incDecRegisterInCondition::init_21__21__21__21_ (var_registerExpression_22941, var_isIncrement_22806, var_W_5F_isDestination_22974, var_branchIfZero_23217, inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
-    GALGAS_registerExpression var_registerExpression_23691 ;
-    nt_register_5F_parsing_ (var_registerExpression_23691, inCompiler) ;
+    GALGAS_registerExpression var_registerExpression_23678 ;
+    nt_register_5F_parsing_ (var_registerExpression_23678, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 852)) ;
-    GALGAS_bitNumberExpression var_bitNumberExpression_23748 ;
-    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_23748, inCompiler) ;
-    outArgument_outCondition = GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::init_21__21_ (var_registerExpression_23691, var_bitNumberExpression_23748, inCompiler COMMA_HERE) ;
+    GALGAS_bitNumberExpression var_bitNumberExpression_23735 ;
+    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_23735, inCompiler) ;
+    outArgument_outCondition = GALGAS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::init_21__21_ (var_registerExpression_23678, var_bitNumberExpression_23735, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -2608,11 +2608,11 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   while (repeatFlag_0) {
     if (select_midrange_5F_syntax_36 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 869)) ;
-      GALGAS_midrange_5F_conditionExpression var_c_24157 ;
-      nt_midrange_5F_condition_5F_term_ (var_c_24157, inCompiler) ;
-      GALGAS_midrange_5F_conditionExpression var_rc_24197 = GALGAS_midrange_5F_negateCondition::init_21_ (var_c_24157, inCompiler COMMA_HERE) ;
-      GALGAS_midrange_5F_conditionExpression var_lc_24277 = GALGAS_midrange_5F_negateCondition::init_21_ (outArgument_outCondition, inCompiler COMMA_HERE) ;
-      outArgument_outCondition = GALGAS_midrange_5F_negateCondition::init_21_ (GALGAS_midrange_5F_andCondition::init_21__21_ (var_lc_24277, var_rc_24197, inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+      GALGAS_midrange_5F_conditionExpression var_c_24144 ;
+      nt_midrange_5F_condition_5F_term_ (var_c_24144, inCompiler) ;
+      GALGAS_midrange_5F_conditionExpression var_rc_24184 = GALGAS_midrange_5F_negateCondition::init_21_ (var_c_24144, inCompiler COMMA_HERE) ;
+      GALGAS_midrange_5F_conditionExpression var_lc_24264 = GALGAS_midrange_5F_negateCondition::init_21_ (outArgument_outCondition, inCompiler COMMA_HERE) ;
+      outArgument_outCondition = GALGAS_midrange_5F_negateCondition::init_21_ (GALGAS_midrange_5F_andCondition::init_21__21_ (var_lc_24264, var_rc_24184, inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -2665,9 +2665,9 @@ void cParser_midrange_5F_syntax::rule_midrange_5F_syntax_midrange_5F_condition_5
   while (repeatFlag_0) {
     if (select_midrange_5F_syntax_37 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("midrange_syntax.galgas", 885)) ;
-      GALGAS_midrange_5F_conditionExpression var_c_24680 ;
-      nt_midrange_5F_condition_5F_factor_ (var_c_24680, inCompiler) ;
-      outArgument_outCondition = GALGAS_midrange_5F_andCondition::init_21__21_ (outArgument_outCondition, var_c_24680, inCompiler COMMA_HERE) ;
+      GALGAS_midrange_5F_conditionExpression var_c_24667 ;
+      nt_midrange_5F_condition_5F_factor_ (var_c_24667, inCompiler) ;
+      outArgument_outCondition = GALGAS_midrange_5F_andCondition::init_21__21_ (outArgument_outCondition, var_c_24667, inCompiler COMMA_HERE) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -2877,19 +2877,19 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_instruction
                                                                                               GALGAS_labelMap & ioArgument_ioLabelMap,
                                                                                               Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outInstructionList.drop () ; // Release 'out' argument
-  outArgument_outInstructionList = GALGAS_baseline_5F_instructionList::class_func_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 71)) ;
+  outArgument_outInstructionList = GALGAS_baseline_5F_instructionList::init (inCompiler COMMA_HERE) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     switch (select_baseline_5F_syntax_3 (inCompiler)) {
     case 2: {
-      GALGAS_baseline_5F_instruction var_instruction_1806 ;
-      nt_baseline_5F_simple_5F_instruction_ (var_instruction_1806, inCompiler) ;
-      outArgument_outInstructionList.addAssign_operation (var_instruction_1806  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 75)) ;
+      GALGAS_baseline_5F_instruction var_instruction_1805 ;
+      nt_baseline_5F_simple_5F_instruction_ (var_instruction_1805, inCompiler) ;
+      outArgument_outInstructionList.addAssign_operation (var_instruction_1805  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 75)) ;
     } break ;
     case 3: {
-      GALGAS_baseline_5F_instruction var_instruction_1914 ;
-      nt_baseline_5F_structured_5F_instruction_ (var_instruction_1914, ioArgument_ioLabelMap, inCompiler) ;
-      outArgument_outInstructionList.addAssign_operation (var_instruction_1914  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 80)) ;
+      GALGAS_baseline_5F_instruction var_instruction_1913 ;
+      nt_baseline_5F_structured_5F_instruction_ (var_instruction_1913, ioArgument_ioLabelMap, inCompiler) ;
+      outArgument_outInstructionList.addAssign_operation (var_instruction_1913  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 80)) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -2941,41 +2941,41 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_instruction
 
 void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_routine_5F_definition_i2_ (GALGAS_baseline_5F_routineDefinitionList & ioArgument_ioRoutineDefinitionList,
                                                                                                 Lexique_piccolo_5F_lexique * inCompiler) {
-  GALGAS_bool var_noreturn_2158 ;
+  GALGAS_bool var_noreturn_2157 ;
   switch (select_baseline_5F_syntax_4 (inCompiler)) {
   case 1: {
-    var_noreturn_2158 = GALGAS_bool (false) ;
+    var_noreturn_2157 = GALGAS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_noreturn COMMA_SOURCE_FILE ("baseline_syntax.galgas", 92)) ;
-    var_noreturn_2158 = GALGAS_bool (true) ;
+    var_noreturn_2157 = GALGAS_bool (true) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("baseline_syntax.galgas", 95)) ;
-  GALGAS_lstring var_routineName_2284 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_routineName_2283 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_routineDefinition, "") ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 96)) ;
-  GALGAS_luint var_page_2346 ;
+  GALGAS_luint var_page_2345 ;
   switch (select_baseline_5F_syntax_5 (inCompiler)) {
   case 1: {
-    var_page_2346 = GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100)), inCompiler COMMA_HERE) ;
+    var_page_2345 = GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 100)), inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_page COMMA_SOURCE_FILE ("baseline_syntax.galgas", 102)) ;
-    var_page_2346 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    var_page_2345 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("baseline_syntax.galgas", 103)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 106)) ;
-  GALGAS_labelMap var_labelMap_2475 = GALGAS_labelMap::class_func_emptyMap (SOURCE_FILE ("baseline_syntax.galgas", 107)) ;
-  GALGAS_baseline_5F_instructionList var_instructionList_2529 ;
-  nt_baseline_5F_instruction_5F_list_ (var_instructionList_2529, var_labelMap_2475, inCompiler) ;
+  GALGAS_labelMap var_labelMap_2474 = GALGAS_labelMap::init (inCompiler COMMA_HERE) ;
+  GALGAS_baseline_5F_instructionList var_instructionList_2527 ;
+  nt_baseline_5F_instruction_5F_list_ (var_instructionList_2527, var_labelMap_2474, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 111)) ;
-  ioArgument_ioRoutineDefinitionList.addAssign_operation (var_routineName_2284, var_page_2346, var_noreturn_2158, var_instructionList_2529, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 117))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 112)) ;
+  ioArgument_ioRoutineDefinitionList.addAssign_operation (var_routineName_2283, var_page_2345, var_noreturn_2157, var_instructionList_2527, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 117))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 112)) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -3048,43 +3048,43 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
   switch (select_baseline_5F_syntax_6 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("baseline_syntax.galgas", 127)) ;
-    GALGAS_lstring var_doLabel_2877 ;
+    GALGAS_lstring var_doLabel_2875 ;
     switch (select_baseline_5F_syntax_7 (inCompiler)) {
     case 1: {
-      var_doLabel_2877 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 130)), inCompiler COMMA_HERE) ;
+      var_doLabel_2875 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 130)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_doLabel_2877 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_doLabel_2875 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 132)) ;
       {
-      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_2877, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 133)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_2875, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 133)) ;
       }
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_3027 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 135)) ;
+    GALGAS_location var_instructionLocation_3025 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 135)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 136)) ;
-    GALGAS_lstring var_constantName_3094 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_constantName_3092 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 137)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 138)) ;
-    GALGAS_immediatExpression var_lowBoundExpression_3167 ;
-    nt_immediate_5F_expression_ (var_lowBoundExpression_3167, inCompiler) ;
+    GALGAS_immediatExpression var_lowBoundExpression_3165 ;
+    nt_immediate_5F_expression_ (var_lowBoundExpression_3165, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E__2E__2E_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 140)) ;
-    GALGAS_immediatExpression var_highBoundExpression_3248 ;
-    nt_immediate_5F_expression_ (var_highBoundExpression_3248, inCompiler) ;
+    GALGAS_immediatExpression var_highBoundExpression_3246 ;
+    nt_immediate_5F_expression_ (var_highBoundExpression_3246, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 142)) ;
-    GALGAS_baseline_5F_instructionList var_instructionList_3339 ;
-    nt_baseline_5F_instruction_5F_list_ (var_instructionList_3339, ioArgument_ioLabelMap, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::init_21__21__21__21__21__21_ (var_instructionLocation_3027, var_constantName_3094, var_lowBoundExpression_3167, var_highBoundExpression_3248, var_instructionList_3339, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 150)), inCompiler COMMA_HERE) ;
+    GALGAS_baseline_5F_instructionList var_instructionList_3337 ;
+    nt_baseline_5F_instruction_5F_list_ (var_instructionList_3337, ioArgument_ioLabelMap, inCompiler) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT::init_21__21__21__21__21__21_ (var_instructionLocation_3025, var_constantName_3092, var_lowBoundExpression_3165, var_highBoundExpression_3246, var_instructionList_3337, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 150)), inCompiler COMMA_HERE) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_syntax.galgas", 152)) ;
-    GALGAS_lstring var_endDoLabel_3601 ;
+    GALGAS_lstring var_endDoLabel_3599 ;
     switch (select_baseline_5F_syntax_8 (inCompiler)) {
     case 1: {
-      var_endDoLabel_3601 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 155)), inCompiler COMMA_HERE) ;
+      var_endDoLabel_3599 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 155)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_endDoLabel_3601 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_endDoLabel_3599 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 157)) ;
     } break ;
     default:
@@ -3092,62 +3092,62 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_2877.readProperty_string ().objectCompare (var_endDoLabel_3601.readProperty_string ())).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_2875.readProperty_string ().objectCompare (var_endDoLabel_3599.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_0) {
         GALGAS_string temp_1 ;
-        const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_2877.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_2875.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_2) {
-          temp_1 = var_doLabel_2877.readProperty_string () ;
+          temp_1 = var_doLabel_2875.readProperty_string () ;
         }else if (kBoolFalse == test_2) {
           temp_1 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (var_endDoLabel_3601.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 160)), fixItArray3  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 160)) ;
+        inCompiler->emitSemanticError (var_endDoLabel_3599.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 160)), fixItArray3  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 160)) ;
       }
     }
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_jump COMMA_SOURCE_FILE ("baseline_syntax.galgas", 164)) ;
-    GALGAS_location var_instructionLocation_3947 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 165)) ;
-    GALGAS_lstring var_targetLabelName_4015 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_location var_instructionLocation_3945 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 165)) ;
+    GALGAS_lstring var_targetLabelName_4013 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 166)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_JUMP::init_21__21_ (var_instructionLocation_3947, var_targetLabelName_4015, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_JUMP::init_21__21_ (var_instructionLocation_3945, var_targetLabelName_4013, inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_jsr COMMA_SOURCE_FILE ("baseline_syntax.galgas", 171)) ;
-    GALGAS_location var_instructionLocation_4170 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 172)) ;
-    GALGAS_lstring var_targetLabelName_4238 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_location var_instructionLocation_4168 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 172)) ;
+    GALGAS_lstring var_targetLabelName_4236 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 173)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_JSR::init_21__21_ (var_instructionLocation_4170, var_targetLabelName_4238, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_JSR::init_21__21_ (var_instructionLocation_4168, var_targetLabelName_4236, inCompiler COMMA_HERE) ;
   } break ;
   case 4: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_forever COMMA_SOURCE_FILE ("baseline_syntax.galgas", 178)) ;
-    GALGAS_lstring var_foreverLabel_4395 ;
+    GALGAS_lstring var_foreverLabel_4393 ;
     switch (select_baseline_5F_syntax_9 (inCompiler)) {
     case 1: {
-      var_foreverLabel_4395 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 181)), inCompiler COMMA_HERE) ;
+      var_foreverLabel_4393 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 181)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_foreverLabel_4395 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_foreverLabel_4393 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 183)) ;
       {
-      ioArgument_ioLabelMap.setter_insertKey (var_foreverLabel_4395, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 184)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_foreverLabel_4393, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 184)) ;
       }
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_4555 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 186)) ;
-    GALGAS_baseline_5F_instructionList var_instructionList_4629 ;
-    nt_baseline_5F_instruction_5F_list_ (var_instructionList_4629, ioArgument_ioLabelMap, inCompiler) ;
+    GALGAS_location var_instructionLocation_4553 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 186)) ;
+    GALGAS_baseline_5F_instructionList var_instructionList_4627 ;
+    nt_baseline_5F_instruction_5F_list_ (var_instructionList_4627, ioArgument_ioLabelMap, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_syntax.galgas", 188)) ;
-    GALGAS_lstring var_endForeverLabel_4685 ;
+    GALGAS_lstring var_endForeverLabel_4683 ;
     switch (select_baseline_5F_syntax_10 (inCompiler)) {
     case 1: {
-      var_endForeverLabel_4685 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191)), inCompiler COMMA_HERE) ;
+      var_endForeverLabel_4683 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 191)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_endForeverLabel_4685 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_endForeverLabel_4683 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 193)) ;
     } break ;
     default:
@@ -3155,122 +3155,122 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_4395.readProperty_string ().objectCompare (var_endForeverLabel_4685.readProperty_string ())).boolEnum () ;
+      test_4 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_4393.readProperty_string ().objectCompare (var_endForeverLabel_4683.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         GALGAS_string temp_5 ;
-        const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_4395.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, var_foreverLabel_4393.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_6) {
-          temp_5 = var_foreverLabel_4395.readProperty_string () ;
+          temp_5 = var_foreverLabel_4393.readProperty_string () ;
         }else if (kBoolFalse == test_6) {
           temp_5 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (var_endForeverLabel_4685.readProperty_location (), GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 196)), fixItArray7  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 196)) ;
+        inCompiler->emitSemanticError (var_endForeverLabel_4683.readProperty_location (), GALGAS_string ("'end' label does not match 'fovever' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 196)), fixItArray7  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 196)) ;
       }
     }
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FOREVER::init_21__21__21_ (var_instructionLocation_4555, var_instructionList_4629, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 202)), inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FOREVER::init_21__21__21_ (var_instructionLocation_4553, var_instructionList_4627, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 202)), inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("baseline_syntax.galgas", 205)) ;
-    GALGAS_location var_instructionLocation_5210 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 206)) ;
-    GALGAS_registerExpression var_registerExpression_5275 ;
-    GALGAS_bitNumberExpression var_bitNumberExpression_5323 ;
-    GALGAS_bool var_skipIfSet_5357 ;
+    GALGAS_location var_instructionLocation_5208 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 206)) ;
+    GALGAS_registerExpression var_registerExpression_5273 ;
+    GALGAS_bitNumberExpression var_bitNumberExpression_5321 ;
+    GALGAS_bool var_skipIfSet_5355 ;
     switch (select_baseline_5F_syntax_11 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 211)) ;
-      nt_register_5F_parsing_ (var_registerExpression_5275, inCompiler) ;
+      nt_register_5F_parsing_ (var_registerExpression_5273, inCompiler) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 213)) ;
-      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_5323, inCompiler) ;
-      var_skipIfSet_5357 = GALGAS_bool (true) ;
+      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_5321, inCompiler) ;
+      var_skipIfSet_5355 = GALGAS_bool (true) ;
     } break ;
     case 2: {
-      nt_register_5F_parsing_ (var_registerExpression_5275, inCompiler) ;
+      nt_register_5F_parsing_ (var_registerExpression_5273, inCompiler) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 218)) ;
-      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_5323, inCompiler) ;
-      var_skipIfSet_5357 = GALGAS_bool (false) ;
+      nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_5321, inCompiler) ;
+      var_skipIfSet_5355 = GALGAS_bool (false) ;
     } break ;
     default:
       break ;
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 222)) ;
-    GALGAS_baseline_5F_instruction var_instruction_5707 ;
-    nt_baseline_5F_simple_5F_instruction_ (var_instruction_5707, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::init_21__21__21__21__21_ (var_instructionLocation_5210, var_instruction_5707, var_skipIfSet_5357, var_registerExpression_5275, var_bitNumberExpression_5323, inCompiler COMMA_HERE) ;
+    GALGAS_baseline_5F_instruction var_instruction_5705 ;
+    nt_baseline_5F_simple_5F_instruction_ (var_instruction_5705, inCompiler) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest::init_21__21__21__21__21_ (var_instructionLocation_5208, var_instruction_5705, var_skipIfSet_5355, var_registerExpression_5273, var_bitNumberExpression_5321, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("baseline_syntax.galgas", 231)) ;
-    GALGAS_location var_instructionLocation_5929 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 232)) ;
-    GALGAS_bool var_increment_5980 ;
+    GALGAS_location var_instructionLocation_5927 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 232)) ;
+    GALGAS_bool var_increment_5978 ;
     switch (select_baseline_5F_syntax_12 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 235)) ;
-      var_increment_5980 = GALGAS_bool (false) ;
+      var_increment_5978 = GALGAS_bool (false) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 237)) ;
-      var_increment_5980 = GALGAS_bool (true) ;
+      var_increment_5978 = GALGAS_bool (true) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_registerExpression var_registerExpression_6109 ;
-    nt_register_5F_parsing_ (var_registerExpression_6109, inCompiler) ;
-    GALGAS_bool var_w_5F_isTarget_6142 ;
+    GALGAS_registerExpression var_registerExpression_6107 ;
+    nt_register_5F_parsing_ (var_registerExpression_6107, inCompiler) ;
+    GALGAS_bool var_w_5F_isTarget_6140 ;
     switch (select_baseline_5F_syntax_13 (inCompiler)) {
     case 1: {
-      var_w_5F_isTarget_6142 = GALGAS_bool (false) ;
+      var_w_5F_isTarget_6140 = GALGAS_bool (false) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 244)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("baseline_syntax.galgas", 244)) ;
-      var_w_5F_isTarget_6142 = GALGAS_bool (true) ;
+      var_w_5F_isTarget_6140 = GALGAS_bool (true) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_lstring var_conditionString_6271 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_conditionString_6269 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 246)) ;
-    GALGAS_string var_condition_6303 = var_conditionString_6271.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 247)) ;
+    GALGAS_string var_condition_6301 = var_conditionString_6269.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 247)) ;
     enumGalgasBool test_8 = kBoolTrue ;
     if (kBoolTrue == test_8) {
-      test_8 = GALGAS_bool (ComparisonKind::notEqual, var_condition_6303.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
+      test_8 = GALGAS_bool (ComparisonKind::notEqual, var_condition_6301.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
       if (kBoolTrue == test_8) {
         TC_Array <FixItDescription> fixItArray9 ;
-        inCompiler->emitSemanticError (var_conditionString_6271.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_condition_6303, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 249)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 249)), fixItArray9  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 249)) ;
+        inCompiler->emitSemanticError (var_conditionString_6269.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_condition_6301, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 249)).add_operation (GALGAS_string ("' condition; it should be 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 249)), fixItArray9  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 249)) ;
       }
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 251)) ;
-    GALGAS_baseline_5F_instruction var_instruction_6528 ;
-    nt_baseline_5F_simple_5F_instruction_ (var_instruction_6528, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::init_21__21__21__21__21_ (var_instructionLocation_5929, var_instruction_6528, var_increment_5980, var_registerExpression_6109, var_w_5F_isTarget_6142, inCompiler COMMA_HERE) ;
+    GALGAS_baseline_5F_instruction var_instruction_6526 ;
+    nt_baseline_5F_simple_5F_instruction_ (var_instruction_6526, inCompiler) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec::init_21__21__21__21__21_ (var_instructionLocation_5927, var_instruction_6526, var_increment_5978, var_registerExpression_6107, var_w_5F_isTarget_6140, inCompiler COMMA_HERE) ;
   } break ;
   case 7: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_if COMMA_SOURCE_FILE ("baseline_syntax.galgas", 261)) ;
-    GALGAS_lstring var_ifLabel_6744 ;
+    GALGAS_lstring var_ifLabel_6742 ;
     switch (select_baseline_5F_syntax_14 (inCompiler)) {
     case 1: {
-      var_ifLabel_6744 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 264)), inCompiler COMMA_HERE) ;
+      var_ifLabel_6742 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 264)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_ifLabel_6744 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_ifLabel_6742 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 266)) ;
       {
-      ioArgument_ioLabelMap.setter_insertKey (var_ifLabel_6744, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 267)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_ifLabel_6742, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 267)) ;
       }
     } break ;
     default:
       break ;
     }
-    nt_baseline_5F_structured_5F_if_5F_instruction_ (var_ifLabel_6744, outArgument_outInstruction, ioArgument_ioLabelMap, inCompiler) ;
+    nt_baseline_5F_structured_5F_if_5F_instruction_ (var_ifLabel_6742, outArgument_outInstruction, ioArgument_ioLabelMap, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_syntax.galgas", 270)) ;
-    GALGAS_lstring var_endIfLabel_6982 ;
+    GALGAS_lstring var_endIfLabel_6980 ;
     switch (select_baseline_5F_syntax_15 (inCompiler)) {
     case 1: {
-      var_endIfLabel_6982 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 273)), inCompiler COMMA_HERE) ;
+      var_endIfLabel_6980 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 273)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_endIfLabel_6982 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_endIfLabel_6980 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 275)) ;
     } break ;
     default:
@@ -3278,52 +3278,52 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
-      test_10 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_6744.readProperty_string ().objectCompare (var_endIfLabel_6982.readProperty_string ())).boolEnum () ;
+      test_10 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_6742.readProperty_string ().objectCompare (var_endIfLabel_6980.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_10) {
         GALGAS_string temp_11 ;
-        const enumGalgasBool test_12 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_6744.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_12 = GALGAS_bool (ComparisonKind::notEqual, var_ifLabel_6742.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_12) {
-          temp_11 = var_ifLabel_6744.readProperty_string () ;
+          temp_11 = var_ifLabel_6742.readProperty_string () ;
         }else if (kBoolFalse == test_12) {
           temp_11 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray13 ;
-        inCompiler->emitSemanticError (var_endIfLabel_6982.readProperty_location (), GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 278)), fixItArray13  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 278)) ;
+        inCompiler->emitSemanticError (var_endIfLabel_6980.readProperty_location (), GALGAS_string ("'end' label does not match 'if' label, it should be ").add_operation (temp_11, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 278)), fixItArray13  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 278)) ;
       }
     }
   } break ;
   case 8: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_do COMMA_SOURCE_FILE ("baseline_syntax.galgas", 282)) ;
-    GALGAS_lstring var_doLabel_7325 ;
+    GALGAS_lstring var_doLabel_7323 ;
     switch (select_baseline_5F_syntax_16 (inCompiler)) {
     case 1: {
-      var_doLabel_7325 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 285)), inCompiler COMMA_HERE) ;
+      var_doLabel_7323 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 285)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_doLabel_7325 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_doLabel_7323 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 287)) ;
       {
-      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_7325, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 288)) ;
+      ioArgument_ioLabelMap.setter_insertKey (var_doLabel_7323, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 288)) ;
       }
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_7465 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 290)) ;
-    GALGAS_baseline_5F_instructionList var_repeatedInstructionList_7539 ;
-    nt_baseline_5F_instruction_5F_list_ (var_repeatedInstructionList_7539, ioArgument_ioLabelMap, inCompiler) ;
-    GALGAS_location var_endOfRepeatedInstructionList_7584 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 292)) ;
-    GALGAS_baseline_5F_partList var_whilePartList_7638 = GALGAS_baseline_5F_partList::class_func_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 293)) ;
+    GALGAS_location var_instructionLocation_7463 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 290)) ;
+    GALGAS_baseline_5F_instructionList var_repeatedInstructionList_7537 ;
+    nt_baseline_5F_instruction_5F_list_ (var_repeatedInstructionList_7537, ioArgument_ioLabelMap, inCompiler) ;
+    GALGAS_location var_endOfRepeatedInstructionList_7582 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 292)) ;
+    GALGAS_baseline_5F_partList var_whilePartList_7636 = GALGAS_baseline_5F_partList::init (inCompiler COMMA_HERE) ;
     bool repeatFlag_14 = true ;
     while (repeatFlag_14) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_while COMMA_SOURCE_FILE ("baseline_syntax.galgas", 295)) ;
-      GALGAS_lstring var_whileLabel_7721 ;
+      GALGAS_lstring var_whileLabel_7718 ;
       switch (select_baseline_5F_syntax_18 (inCompiler)) {
       case 1: {
-        var_whileLabel_7721 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 298)), inCompiler COMMA_HERE) ;
+        var_whileLabel_7718 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 298)), inCompiler COMMA_HERE) ;
       } break ;
       case 2: {
-        var_whileLabel_7721 = inCompiler->synthetizedAttribute_tokenString () ;
+        var_whileLabel_7718 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 300)) ;
       } break ;
       default:
@@ -3331,37 +3331,37 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
       }
       enumGalgasBool test_15 = kBoolTrue ;
       if (kBoolTrue == test_15) {
-        test_15 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7325.readProperty_string ().objectCompare (var_whileLabel_7721.readProperty_string ())).boolEnum () ;
+        test_15 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7323.readProperty_string ().objectCompare (var_whileLabel_7718.readProperty_string ())).boolEnum () ;
         if (kBoolTrue == test_15) {
           GALGAS_string temp_16 ;
-          const enumGalgasBool test_17 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7325.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+          const enumGalgasBool test_17 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7323.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
           if (kBoolTrue == test_17) {
-            temp_16 = var_doLabel_7325.readProperty_string () ;
+            temp_16 = var_doLabel_7323.readProperty_string () ;
           }else if (kBoolFalse == test_17) {
             temp_16 = GALGAS_string ("empty") ;
           }
           TC_Array <FixItDescription> fixItArray18 ;
-          inCompiler->emitSemanticError (var_whileLabel_7721.readProperty_location (), GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 303)), fixItArray18  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 303)) ;
+          inCompiler->emitSemanticError (var_whileLabel_7718.readProperty_location (), GALGAS_string ("'while' label does not match 'do' label, it should be ").add_operation (temp_16, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 303)), fixItArray18  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 303)) ;
         }
       }
-      GALGAS_baseline_5F_conditionExpression var_whileCondition_8096 ;
-      nt_baseline_5F_condition_5F_expression_ (var_whileCondition_8096, inCompiler) ;
-      GALGAS_baseline_5F_instructionList var_instructionList_8150 ;
-      nt_baseline_5F_instruction_5F_list_ (var_instructionList_8150, ioArgument_ioLabelMap, inCompiler) ;
-      var_whilePartList_7638.addAssign_operation (var_whileCondition_8096, var_instructionList_8150, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
+      GALGAS_baseline_5F_conditionExpression var_whileCondition_8093 ;
+      nt_baseline_5F_condition_5F_expression_ (var_whileCondition_8093, inCompiler) ;
+      GALGAS_baseline_5F_instructionList var_instructionList_8147 ;
+      nt_baseline_5F_instruction_5F_list_ (var_instructionList_8147, ioArgument_ioLabelMap, inCompiler) ;
+      var_whilePartList_7636.addAssign_operation (var_whileCondition_8093, var_instructionList_8147, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308))  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 308)) ;
       if (select_baseline_5F_syntax_17 (inCompiler) == 2) {
       }else{
         repeatFlag_14 = false ;
       }
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_syntax.galgas", 311)) ;
-    GALGAS_lstring var_endDoLabel_8296 ;
+    GALGAS_lstring var_endDoLabel_8293 ;
     switch (select_baseline_5F_syntax_19 (inCompiler)) {
     case 1: {
-      var_endDoLabel_8296 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 314)), inCompiler COMMA_HERE) ;
+      var_endDoLabel_8293 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 314)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_endDoLabel_8296 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_endDoLabel_8293 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 316)) ;
     } break ;
     default:
@@ -3369,27 +3369,27 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_19 = kBoolTrue ;
     if (kBoolTrue == test_19) {
-      test_19 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7325.readProperty_string ().objectCompare (var_endDoLabel_8296.readProperty_string ())).boolEnum () ;
+      test_19 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7323.readProperty_string ().objectCompare (var_endDoLabel_8293.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_19) {
         GALGAS_string temp_20 ;
-        const enumGalgasBool test_21 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7325.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
+        const enumGalgasBool test_21 = GALGAS_bool (ComparisonKind::notEqual, var_doLabel_7323.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
         if (kBoolTrue == test_21) {
-          temp_20 = var_doLabel_7325.readProperty_string () ;
+          temp_20 = var_doLabel_7323.readProperty_string () ;
         }else if (kBoolFalse == test_21) {
           temp_20 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray22 ;
-        inCompiler->emitSemanticError (var_endDoLabel_8296.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 319)), fixItArray22  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 319)) ;
+        inCompiler->emitSemanticError (var_endDoLabel_8293.readProperty_location (), GALGAS_string ("'end' label does not match 'do' label, it should be ").add_operation (temp_20, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 319)), fixItArray22  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 319)) ;
       }
     }
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_do_5F_while::init_21__21__21__21_ (var_instructionLocation_7465, var_repeatedInstructionList_7539, var_endOfRepeatedInstructionList_7584, var_whilePartList_7638, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_do_5F_while::init_21__21__21__21_ (var_instructionLocation_7463, var_repeatedInstructionList_7537, var_endOfRepeatedInstructionList_7582, var_whilePartList_7636, inCompiler COMMA_HERE) ;
   } break ;
   case 9: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_mnop COMMA_SOURCE_FILE ("baseline_syntax.galgas", 328)) ;
-    GALGAS_location var_instructionLocation_8817 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 329)) ;
-    GALGAS_luint var_occurrenceFactor_8880 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GALGAS_location var_instructionLocation_8814 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 329)) ;
+    GALGAS_luint var_occurrenceFactor_8877 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("baseline_syntax.galgas", 330)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_MNOP::init_21__21_ (var_instructionLocation_8817, var_occurrenceFactor_8880, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_MNOP::init_21__21_ (var_instructionLocation_8814, var_occurrenceFactor_8877, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -3776,25 +3776,25 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
                                                                                                           GALGAS_labelMap & ioArgument_ioLabelMap,
                                                                                                           Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outInstruction.drop () ; // Release 'out' argument
-  GALGAS_location var_instructionLocation_9207 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 342)) ;
-  GALGAS_baseline_5F_conditionExpression var_structured_5F_if_5F_condition_9283 ;
-  nt_baseline_5F_condition_5F_expression_ (var_structured_5F_if_5F_condition_9283, inCompiler) ;
-  GALGAS_baseline_5F_instructionList var_thenInstructionList_9342 ;
-  nt_baseline_5F_instruction_5F_list_ (var_thenInstructionList_9342, ioArgument_ioLabelMap, inCompiler) ;
-  GALGAS_baseline_5F_instructionList var_elseInstructionList_9407 ;
+  GALGAS_location var_instructionLocation_9204 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 342)) ;
+  GALGAS_baseline_5F_conditionExpression var_structured_5F_if_5F_condition_9280 ;
+  nt_baseline_5F_condition_5F_expression_ (var_structured_5F_if_5F_condition_9280, inCompiler) ;
+  GALGAS_baseline_5F_instructionList var_thenInstructionList_9339 ;
+  nt_baseline_5F_instruction_5F_list_ (var_thenInstructionList_9339, ioArgument_ioLabelMap, inCompiler) ;
+  GALGAS_baseline_5F_instructionList var_elseInstructionList_9404 ;
   switch (select_baseline_5F_syntax_20 (inCompiler)) {
   case 1: {
-    var_elseInstructionList_9407 = GALGAS_baseline_5F_instructionList::class_func_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 347)) ;
+    var_elseInstructionList_9404 = GALGAS_baseline_5F_instructionList::init (inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_elsif COMMA_SOURCE_FILE ("baseline_syntax.galgas", 349)) ;
-    GALGAS_lstring var_elsifIfLabel_9526 ;
+    GALGAS_lstring var_elsifIfLabel_9522 ;
     switch (select_baseline_5F_syntax_21 (inCompiler)) {
     case 1: {
-      var_elsifIfLabel_9526 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 352)), inCompiler COMMA_HERE) ;
+      var_elsifIfLabel_9522 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 352)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_elsifIfLabel_9526 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_elsifIfLabel_9522 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 354)) ;
     } break ;
     default:
@@ -3802,7 +3802,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elsifIfLabel_9526.readProperty_string ())).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elsifIfLabel_9522.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_0) {
         GALGAS_string temp_1 ;
         const enumGalgasBool test_2 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
@@ -3812,23 +3812,23 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
           temp_1 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray3 ;
-        inCompiler->emitSemanticError (var_elsifIfLabel_9526.readProperty_location (), GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 357)), fixItArray3  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 357)) ;
+        inCompiler->emitSemanticError (var_elsifIfLabel_9522.readProperty_location (), GALGAS_string ("'elsif' label does not match 'if' label, it should be ").add_operation (temp_1, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 357)), fixItArray3  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 357)) ;
       }
     }
-    GALGAS_baseline_5F_instruction var_elsifPartInstruction_9905 ;
-    nt_baseline_5F_structured_5F_if_5F_instruction_ (constinArgument_ifLabel, var_elsifPartInstruction_9905, ioArgument_ioLabelMap, inCompiler) ;
-    var_elseInstructionList_9407 = GALGAS_baseline_5F_instructionList::class_func_emptyList (SOURCE_FILE ("baseline_syntax.galgas", 361)) ;
-    var_elseInstructionList_9407.addAssign_operation (var_elsifPartInstruction_9905  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 362)) ;
+    GALGAS_baseline_5F_instruction var_elsifPartInstruction_9901 ;
+    nt_baseline_5F_structured_5F_if_5F_instruction_ (constinArgument_ifLabel, var_elsifPartInstruction_9901, ioArgument_ioLabelMap, inCompiler) ;
+    var_elseInstructionList_9404 = GALGAS_baseline_5F_instructionList::init (inCompiler COMMA_HERE) ;
+    var_elseInstructionList_9404.addAssign_operation (var_elsifPartInstruction_9901  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 362)) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_else COMMA_SOURCE_FILE ("baseline_syntax.galgas", 364)) ;
-    GALGAS_lstring var_elseLabel_10077 ;
+    GALGAS_lstring var_elseLabel_10072 ;
     switch (select_baseline_5F_syntax_22 (inCompiler)) {
     case 1: {
-      var_elseLabel_10077 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367)), inCompiler COMMA_HERE) ;
+      var_elseLabel_10072 = GALGAS_lstring::init_21__21_ (GALGAS_string::makeEmptyString (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 367)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
-      var_elseLabel_10077 = inCompiler->synthetizedAttribute_tokenString () ;
+      var_elseLabel_10072 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_label COMMA_SOURCE_FILE ("baseline_syntax.galgas", 369)) ;
     } break ;
     default:
@@ -3836,7 +3836,7 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
     }
     enumGalgasBool test_4 = kBoolTrue ;
     if (kBoolTrue == test_4) {
-      test_4 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elseLabel_10077.readProperty_string ())).boolEnum () ;
+      test_4 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (var_elseLabel_10072.readProperty_string ())).boolEnum () ;
       if (kBoolTrue == test_4) {
         GALGAS_string temp_5 ;
         const enumGalgasBool test_6 = GALGAS_bool (ComparisonKind::notEqual, constinArgument_ifLabel.readProperty_string ().objectCompare (GALGAS_string::makeEmptyString ())).boolEnum () ;
@@ -3846,16 +3846,16 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_structured_
           temp_5 = GALGAS_string ("empty") ;
         }
         TC_Array <FixItDescription> fixItArray7 ;
-        inCompiler->emitSemanticError (var_elseLabel_10077.readProperty_location (), GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 372)), fixItArray7  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 372)) ;
+        inCompiler->emitSemanticError (var_elseLabel_10072.readProperty_location (), GALGAS_string ("'else' label does not match 'if' label, it should be ").add_operation (temp_5, inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 372)), fixItArray7  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 372)) ;
       }
     }
-    nt_baseline_5F_instruction_5F_list_ (var_elseInstructionList_9407, ioArgument_ioLabelMap, inCompiler) ;
+    nt_baseline_5F_instruction_5F_list_ (var_elseInstructionList_9404, ioArgument_ioLabelMap, inCompiler) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_location var_endOfElsePartLocation_10473 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 377)) ;
-  outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_structured_5F_if::init_21__21__21__21__21_ (var_instructionLocation_9207, var_structured_5F_if_5F_condition_9283, var_thenInstructionList_9342, var_elseInstructionList_9407, var_endOfElsePartLocation_10473, inCompiler COMMA_HERE) ;
+  GALGAS_location var_endOfElsePartLocation_10468 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 377)) ;
+  outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_structured_5F_if::init_21__21__21__21__21_ (var_instructionLocation_9204, var_structured_5F_if_5F_condition_9280, var_thenInstructionList_9339, var_elseInstructionList_9404, var_endOfElsePartLocation_10468, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -3944,143 +3944,143 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
   outArgument_outInstruction.drop () ; // Release 'out' argument
   switch (select_baseline_5F_syntax_23 (inCompiler)) {
   case 1: {
-    GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code var_baseCode_10892 ;
+    GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code var_baseCode_10887 ;
     switch (select_baseline_5F_syntax_24 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_addwf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 392)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_ADDWF (SOURCE_FILE ("baseline_syntax.galgas", 393)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_ADDWF (SOURCE_FILE ("baseline_syntax.galgas", 393)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_andwf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 395)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_ANDWF (SOURCE_FILE ("baseline_syntax.galgas", 396)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_ANDWF (SOURCE_FILE ("baseline_syntax.galgas", 396)) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_comf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 398)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_COMF (SOURCE_FILE ("baseline_syntax.galgas", 399)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_COMF (SOURCE_FILE ("baseline_syntax.galgas", 399)) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 401)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_DECF (SOURCE_FILE ("baseline_syntax.galgas", 402)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_DECF (SOURCE_FILE ("baseline_syntax.galgas", 402)) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 404)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_INCF (SOURCE_FILE ("baseline_syntax.galgas", 405)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_INCF (SOURCE_FILE ("baseline_syntax.galgas", 405)) ;
     } break ;
     case 6: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_iorwf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 407)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_IORWF (SOURCE_FILE ("baseline_syntax.galgas", 408)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_IORWF (SOURCE_FILE ("baseline_syntax.galgas", 408)) ;
     } break ;
     case 7: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 410)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 411)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 411)) ;
     } break ;
     case 8: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_rlf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 413)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_RLF (SOURCE_FILE ("baseline_syntax.galgas", 414)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_RLF (SOURCE_FILE ("baseline_syntax.galgas", 414)) ;
     } break ;
     case 9: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_rrf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 416)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_RRF (SOURCE_FILE ("baseline_syntax.galgas", 417)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_RRF (SOURCE_FILE ("baseline_syntax.galgas", 417)) ;
     } break ;
     case 10: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_subwf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 419)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_SUBWF (SOURCE_FILE ("baseline_syntax.galgas", 420)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_SUBWF (SOURCE_FILE ("baseline_syntax.galgas", 420)) ;
     } break ;
     case 11: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_swapf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 422)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_SWAPF (SOURCE_FILE ("baseline_syntax.galgas", 423)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_SWAPF (SOURCE_FILE ("baseline_syntax.galgas", 423)) ;
     } break ;
     case 12: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_xorwf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 425)) ;
-      var_baseCode_10892 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_XORWF (SOURCE_FILE ("baseline_syntax.galgas", 426)) ;
+      var_baseCode_10887 = GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_XORWF (SOURCE_FILE ("baseline_syntax.galgas", 426)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_11445 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 428)) ;
-    GALGAS_registerExpression var_registerExpression_11510 ;
-    nt_register_5F_parsing_ (var_registerExpression_11510, inCompiler) ;
-    GALGAS_bool var_W_5F_isDestination_11559 ;
-    nt_optional_5F_w_5F_as_5F_dest_ (var_W_5F_isDestination_11559, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FD::init_21__21__21__21_ (var_instructionLocation_11445, var_baseCode_10892, var_registerExpression_11510, var_W_5F_isDestination_11559, inCompiler COMMA_HERE) ;
+    GALGAS_location var_instructionLocation_11440 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 428)) ;
+    GALGAS_registerExpression var_registerExpression_11505 ;
+    nt_register_5F_parsing_ (var_registerExpression_11505, inCompiler) ;
+    GALGAS_bool var_W_5F_isDestination_11554 ;
+    nt_optional_5F_w_5F_as_5F_dest_ (var_W_5F_isDestination_11554, inCompiler) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FD::init_21__21__21__21_ (var_instructionLocation_11440, var_baseCode_10887, var_registerExpression_11505, var_W_5F_isDestination_11554, inCompiler COMMA_HERE) ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      GALGAS_bool test_1 = GALGAS_bool (ComparisonKind::equal, var_baseCode_10892.objectCompare (GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 438)))) ;
+      GALGAS_bool test_1 = GALGAS_bool (ComparisonKind::equal, var_baseCode_10887.objectCompare (GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 438)))) ;
       if (kBoolTrue == test_1.boolEnum ()) {
-        test_1 = var_W_5F_isDestination_11559.operator_not (SOURCE_FILE ("baseline_syntax.galgas", 438)) ;
+        test_1 = var_W_5F_isDestination_11554.operator_not (SOURCE_FILE ("baseline_syntax.galgas", 438)) ;
       }
       test_0 = test_1.boolEnum () ;
       if (kBoolTrue == test_0) {
         TC_Array <FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticWarning (var_instructionLocation_11445, GALGAS_string ("This instruction does not move data, it only sets flags. Use 'movf *, reg' instead of 'movf reg' to suppress this warning"), fixItArray2  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 439)) ;
+        inCompiler->emitSemanticWarning (var_instructionLocation_11440, GALGAS_string ("This instruction does not move data, it only sets flags. Use 'movf *, reg' instead of 'movf reg' to suppress this warning"), fixItArray2  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 439)) ;
       }
     }
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_movf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 443)) ;
-    GALGAS_location var_instructionLocation_12068 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 444)) ;
+    GALGAS_location var_instructionLocation_12063 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 444)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 445)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 446)) ;
-    GALGAS_registerExpression var_registerName_12140 ;
-    nt_register_5F_parsing_ (var_registerName_12140, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FD::init_21__21__21__21_ (var_instructionLocation_12068, GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 450)), var_registerName_12140, GALGAS_bool (false), inCompiler COMMA_HERE) ;
+    GALGAS_registerExpression var_registerName_12135 ;
+    nt_register_5F_parsing_ (var_registerName_12135, inCompiler) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FD::init_21__21__21__21_ (var_instructionLocation_12063, GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code::class_func_MOVF (SOURCE_FILE ("baseline_syntax.galgas", 450)), var_registerName_12135, GALGAS_bool (false), inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
-    GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code var_FAinstruction_12355 ;
+    GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code var_FAinstruction_12350 ;
     switch (select_baseline_5F_syntax_25 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_clrf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 457)) ;
-      var_FAinstruction_12355 = GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::class_func_CLRF (SOURCE_FILE ("baseline_syntax.galgas", 458)) ;
+      var_FAinstruction_12350 = GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::class_func_CLRF (SOURCE_FILE ("baseline_syntax.galgas", 458)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_movwf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 460)) ;
-      var_FAinstruction_12355 = GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::class_func_MOVWF (SOURCE_FILE ("baseline_syntax.galgas", 461)) ;
+      var_FAinstruction_12350 = GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code::class_func_MOVWF (SOURCE_FILE ("baseline_syntax.galgas", 461)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_12565 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 463)) ;
-    GALGAS_registerExpression var_registerExpression_12630 ;
-    nt_register_5F_parsing_ (var_registerExpression_12630, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_F::init_21__21__21_ (var_instructionLocation_12565, var_FAinstruction_12355, var_registerExpression_12630, inCompiler COMMA_HERE) ;
+    GALGAS_location var_instructionLocation_12560 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 463)) ;
+    GALGAS_registerExpression var_registerExpression_12625 ;
+    nt_register_5F_parsing_ (var_registerExpression_12625, inCompiler) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_F::init_21__21__21_ (var_instructionLocation_12560, var_FAinstruction_12350, var_registerExpression_12625, inCompiler COMMA_HERE) ;
   } break ;
   case 4: {
-    GALGAS_baseline_5F_bit_5F_oriented_5F_op var_bitOrientedOp_12815 ;
+    GALGAS_baseline_5F_bit_5F_oriented_5F_op var_bitOrientedOp_12810 ;
     switch (select_baseline_5F_syntax_26 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bcf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 472)) ;
-      var_bitOrientedOp_12815 = GALGAS_baseline_5F_bit_5F_oriented_5F_op::class_func_BCF (SOURCE_FILE ("baseline_syntax.galgas", 472)) ;
+      var_bitOrientedOp_12810 = GALGAS_baseline_5F_bit_5F_oriented_5F_op::class_func_BCF (SOURCE_FILE ("baseline_syntax.galgas", 472)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bsf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 474)) ;
-      var_bitOrientedOp_12815 = GALGAS_baseline_5F_bit_5F_oriented_5F_op::class_func_BSF (SOURCE_FILE ("baseline_syntax.galgas", 474)) ;
+      var_bitOrientedOp_12810 = GALGAS_baseline_5F_bit_5F_oriented_5F_op::class_func_BSF (SOURCE_FILE ("baseline_syntax.galgas", 474)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_12995 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 476)) ;
-    GALGAS_registerExpression var_registerExpression_13060 ;
-    nt_register_5F_parsing_ (var_registerExpression_13060, inCompiler) ;
+    GALGAS_location var_instructionLocation_12990 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 476)) ;
+    GALGAS_registerExpression var_registerExpression_13055 ;
+    nt_register_5F_parsing_ (var_registerExpression_13055, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 478)) ;
-    GALGAS_bitNumberExpression var_bitNumberExpression_13117 ;
-    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_13117, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FB::init_21__21__21__21_ (var_instructionLocation_12995, var_bitOrientedOp_12815, var_registerExpression_13060, var_bitNumberExpression_13117, inCompiler COMMA_HERE) ;
+    GALGAS_bitNumberExpression var_bitNumberExpression_13112 ;
+    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_13112, inCompiler) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_FB::init_21__21__21__21_ (var_instructionLocation_12990, var_bitOrientedOp_12810, var_registerExpression_13055, var_bitNumberExpression_13112, inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_goto COMMA_SOURCE_FILE ("baseline_syntax.galgas", 486)) ;
-    GALGAS_location var_instructionLocation_13326 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 487)) ;
-    GALGAS_lstring var_targetLabelName_13394 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_location var_instructionLocation_13321 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 487)) ;
+    GALGAS_lstring var_targetLabelName_13389 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 488)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_GOTO::init_21__21_ (var_instructionLocation_13326, var_targetLabelName_13394, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_GOTO::init_21__21_ (var_instructionLocation_13321, var_targetLabelName_13389, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_call COMMA_SOURCE_FILE ("baseline_syntax.galgas", 493)) ;
-    GALGAS_location var_instructionLocation_13571 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 494)) ;
-    GALGAS_lstring var_targetLabelName_13639 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_location var_instructionLocation_13566 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 494)) ;
+    GALGAS_lstring var_targetLabelName_13634 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_routineCall, "") ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 495)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_CALL::init_21__21_ (var_instructionLocation_13571, var_targetLabelName_13639, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_CALL::init_21__21_ (var_instructionLocation_13566, var_targetLabelName_13634, inCompiler COMMA_HERE) ;
   } break ;
   case 7: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_clrw COMMA_SOURCE_FILE ("baseline_syntax.galgas", 500)) ;
@@ -4104,36 +4104,36 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_simple_5F_i
   } break ;
   case 12: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_tris COMMA_SOURCE_FILE ("baseline_syntax.galgas", 515)) ;
-    GALGAS_lstring var_operand_14478 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_operand_14473 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 516)) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_TRIS::init_21__21_ (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 517)), var_operand_14478, inCompiler COMMA_HERE) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_TRIS::init_21__21_ (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 517)), var_operand_14473, inCompiler COMMA_HERE) ;
   } break ;
   case 13: {
-    GALGAS_baseline_5F_literal_5F_instruction_5F_opcode var_literalInstruction_14617 ;
+    GALGAS_baseline_5F_literal_5F_instruction_5F_opcode var_literalInstruction_14612 ;
     switch (select_baseline_5F_syntax_27 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_andlw COMMA_SOURCE_FILE ("baseline_syntax.galgas", 521)) ;
-      var_literalInstruction_14617 = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_ANDLW (SOURCE_FILE ("baseline_syntax.galgas", 521)) ;
+      var_literalInstruction_14612 = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_ANDLW (SOURCE_FILE ("baseline_syntax.galgas", 521)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_iorlw COMMA_SOURCE_FILE ("baseline_syntax.galgas", 523)) ;
-      var_literalInstruction_14617 = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_IORLW (SOURCE_FILE ("baseline_syntax.galgas", 523)) ;
+      var_literalInstruction_14612 = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_IORLW (SOURCE_FILE ("baseline_syntax.galgas", 523)) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_movlw COMMA_SOURCE_FILE ("baseline_syntax.galgas", 525)) ;
-      var_literalInstruction_14617 = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("baseline_syntax.galgas", 525)) ;
+      var_literalInstruction_14612 = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("baseline_syntax.galgas", 525)) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_xorlw COMMA_SOURCE_FILE ("baseline_syntax.galgas", 527)) ;
-      var_literalInstruction_14617 = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_XORLW (SOURCE_FILE ("baseline_syntax.galgas", 527)) ;
+      var_literalInstruction_14612 = GALGAS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_XORLW (SOURCE_FILE ("baseline_syntax.galgas", 527)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_location var_instructionLocation_15018 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 529)) ;
-    GALGAS_immediatExpression var_expression_15087 ;
-    nt_immediate_5F_expression_ (var_expression_15087, inCompiler) ;
-    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_literalOperation::init_21__21__21_ (var_instructionLocation_15018, var_literalInstruction_14617, var_expression_15087, inCompiler COMMA_HERE) ;
+    GALGAS_location var_instructionLocation_15013 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 529)) ;
+    GALGAS_immediatExpression var_expression_15082 ;
+    nt_immediate_5F_expression_ (var_expression_15082, inCompiler) ;
+    outArgument_outInstruction = GALGAS_baseline_5F_instruction_5F_literalOperation::init_21__21__21_ (var_instructionLocation_15013, var_literalInstruction_14612, var_expression_15082, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -4417,9 +4417,9 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
                                                                                               Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outCondition.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__21_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 542)) ;
-  GALGAS_baseline_5F_conditionExpression var_condition_15424 ;
-  nt_baseline_5F_condition_5F_factor_ (var_condition_15424, inCompiler) ;
-  outArgument_outCondition = GALGAS_baseline_5F_negateCondition::init_21_ (var_condition_15424, inCompiler COMMA_HERE) ;
+  GALGAS_baseline_5F_conditionExpression var_condition_15419 ;
+  nt_baseline_5F_condition_5F_factor_ (var_condition_15419, inCompiler) ;
+  outArgument_outCondition = GALGAS_baseline_5F_negateCondition::init_21_ (var_condition_15419, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -4465,68 +4465,68 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   outArgument_outCondition.drop () ; // Release 'out' argument
   switch (select_baseline_5F_syntax_28 (inCompiler)) {
   case 1: {
-    GALGAS_bool var_isIncrement_15848 ;
+    GALGAS_bool var_isIncrement_15843 ;
     switch (select_baseline_5F_syntax_29 (inCompiler)) {
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_incf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 561)) ;
-      var_isIncrement_15848 = GALGAS_bool (true) ;
+      var_isIncrement_15843 = GALGAS_bool (true) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_decf COMMA_SOURCE_FILE ("baseline_syntax.galgas", 563)) ;
-      var_isIncrement_15848 = GALGAS_bool (false) ;
+      var_isIncrement_15843 = GALGAS_bool (false) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_registerExpression var_registerExpression_15983 ;
-    nt_register_5F_parsing_ (var_registerExpression_15983, inCompiler) ;
-    GALGAS_bool var_W_5F_isDestination_16016 ;
+    GALGAS_registerExpression var_registerExpression_15978 ;
+    nt_register_5F_parsing_ (var_registerExpression_15978, inCompiler) ;
+    GALGAS_bool var_W_5F_isDestination_16011 ;
     switch (select_baseline_5F_syntax_30 (inCompiler)) {
     case 1: {
-      var_W_5F_isDestination_16016 = GALGAS_bool (false) ;
+      var_W_5F_isDestination_16011 = GALGAS_bool (false) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 570)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("baseline_syntax.galgas", 570)) ;
-      var_W_5F_isDestination_16016 = GALGAS_bool (true) ;
+      var_W_5F_isDestination_16011 = GALGAS_bool (true) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_lstring var_conditionString_16160 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_conditionString_16155 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_syntax.galgas", 572)) ;
-    GALGAS_string var_condition_16192 = var_conditionString_16160.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 573)) ;
-    GALGAS_bool var_branchIfZero_16259 ;
+    GALGAS_string var_condition_16187 = var_conditionString_16155.readProperty_string ().getter_uppercaseString (SOURCE_FILE ("baseline_syntax.galgas", 573)) ;
+    GALGAS_bool var_branchIfZero_16254 ;
     enumGalgasBool test_0 = kBoolTrue ;
     if (kBoolTrue == test_0) {
-      test_0 = GALGAS_bool (ComparisonKind::equal, var_condition_16192.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
+      test_0 = GALGAS_bool (ComparisonKind::equal, var_condition_16187.objectCompare (GALGAS_string ("Z"))).boolEnum () ;
       if (kBoolTrue == test_0) {
-        var_branchIfZero_16259 = GALGAS_bool (true) ;
+        var_branchIfZero_16254 = GALGAS_bool (true) ;
       }
     }
     if (kBoolFalse == test_0) {
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
-        test_1 = GALGAS_bool (ComparisonKind::equal, var_condition_16192.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
+        test_1 = GALGAS_bool (ComparisonKind::equal, var_condition_16187.objectCompare (GALGAS_string ("NZ"))).boolEnum () ;
         if (kBoolTrue == test_1) {
-          var_branchIfZero_16259 = GALGAS_bool (false) ;
+          var_branchIfZero_16254 = GALGAS_bool (false) ;
         }
       }
       if (kBoolFalse == test_1) {
         TC_Array <FixItDescription> fixItArray2 ;
-        inCompiler->emitSemanticError (var_conditionString_16160.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_conditionString_16160.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 580)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 580)), fixItArray2  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 580)) ;
-        var_branchIfZero_16259.drop () ; // Release error dropped variable
+        inCompiler->emitSemanticError (var_conditionString_16155.readProperty_location (), GALGAS_string ("invalid '").add_operation (var_conditionString_16155.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 580)).add_operation (GALGAS_string ("' condition; valid ones are: 'z' and 'nz'"), inCompiler COMMA_SOURCE_FILE ("baseline_syntax.galgas", 580)), fixItArray2  COMMA_SOURCE_FILE ("baseline_syntax.galgas", 580)) ;
+        var_branchIfZero_16254.drop () ; // Release error dropped variable
       }
     }
-    outArgument_outCondition = GALGAS_baseline_5F_incDecRegisterInCondition::init_21__21__21__21_ (var_registerExpression_15983, var_isIncrement_15848, var_W_5F_isDestination_16016, var_branchIfZero_16259, inCompiler COMMA_HERE) ;
+    outArgument_outCondition = GALGAS_baseline_5F_incDecRegisterInCondition::init_21__21__21__21_ (var_registerExpression_15978, var_isIncrement_15843, var_W_5F_isDestination_16011, var_branchIfZero_16254, inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
-    GALGAS_registerExpression var_registerExpression_16720 ;
-    nt_register_5F_parsing_ (var_registerExpression_16720, inCompiler) ;
+    GALGAS_registerExpression var_registerExpression_16715 ;
+    nt_register_5F_parsing_ (var_registerExpression_16715, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 591)) ;
-    GALGAS_bitNumberExpression var_bitNumberExpression_16777 ;
-    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_16777, inCompiler) ;
-    outArgument_outCondition = GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::init_21__21_ (var_registerExpression_16720, var_bitNumberExpression_16777, inCompiler COMMA_HERE) ;
+    GALGAS_bitNumberExpression var_bitNumberExpression_16772 ;
+    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_16772, inCompiler) ;
+    outArgument_outCondition = GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::init_21__21_ (var_registerExpression_16715, var_bitNumberExpression_16772, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -4621,11 +4621,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   while (repeatFlag_0) {
     if (select_baseline_5F_syntax_31 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 608)) ;
-      GALGAS_baseline_5F_conditionExpression var_c_17186 ;
-      nt_baseline_5F_condition_5F_term_ (var_c_17186, inCompiler) ;
-      GALGAS_baseline_5F_conditionExpression var_rc_17226 = GALGAS_baseline_5F_negateCondition::init_21_ (var_c_17186, inCompiler COMMA_HERE) ;
-      GALGAS_baseline_5F_conditionExpression var_lc_17306 = GALGAS_baseline_5F_negateCondition::init_21_ (outArgument_outCondition, inCompiler COMMA_HERE) ;
-      outArgument_outCondition = GALGAS_baseline_5F_negateCondition::init_21_ (GALGAS_baseline_5F_andCondition::init_21__21_ (var_lc_17306, var_rc_17226, inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+      GALGAS_baseline_5F_conditionExpression var_c_17181 ;
+      nt_baseline_5F_condition_5F_term_ (var_c_17181, inCompiler) ;
+      GALGAS_baseline_5F_conditionExpression var_rc_17221 = GALGAS_baseline_5F_negateCondition::init_21_ (var_c_17181, inCompiler COMMA_HERE) ;
+      GALGAS_baseline_5F_conditionExpression var_lc_17301 = GALGAS_baseline_5F_negateCondition::init_21_ (outArgument_outCondition, inCompiler COMMA_HERE) ;
+      outArgument_outCondition = GALGAS_baseline_5F_negateCondition::init_21_ (GALGAS_baseline_5F_andCondition::init_21__21_ (var_lc_17301, var_rc_17221, inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -4678,9 +4678,9 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   while (repeatFlag_0) {
     if (select_baseline_5F_syntax_32 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 624)) ;
-      GALGAS_baseline_5F_conditionExpression var_c_17709 ;
-      nt_baseline_5F_condition_5F_factor_ (var_c_17709, inCompiler) ;
-      outArgument_outCondition = GALGAS_baseline_5F_andCondition::init_21__21_ (outArgument_outCondition, var_c_17709, inCompiler COMMA_HERE) ;
+      GALGAS_baseline_5F_conditionExpression var_c_17704 ;
+      nt_baseline_5F_condition_5F_factor_ (var_c_17704, inCompiler) ;
+      outArgument_outCondition = GALGAS_baseline_5F_andCondition::init_21__21_ (outArgument_outCondition, var_c_17704, inCompiler COMMA_HERE) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -4729,42 +4729,42 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_ (
   GALGAS_lstring var_deviceName_565 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("baseline_program.galgas", 18)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("baseline_program.galgas", 19)) ;
-  GALGAS_baseline_5F_routineDefinitionList var_routineDefinitionList_588 = GALGAS_baseline_5F_routineDefinitionList::class_func_emptyList (SOURCE_FILE ("baseline_program.galgas", 20)) ;
-  GALGAS_ramDefinitionList var_ramDefinitionList_653 = GALGAS_ramDefinitionList::class_func_emptyList (SOURCE_FILE ("baseline_program.galgas", 21)) ;
-  GALGAS_lstringlist var_unusedRegisterList_701 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("baseline_program.galgas", 22)) ;
-  GALGAS_lstringlist var_unusedRoutineList_744 = GALGAS_lstringlist::class_func_emptyList (SOURCE_FILE ("baseline_program.galgas", 23)) ;
-  GALGAS_configDefinitionList var_configDefinitionList_786 = GALGAS_configDefinitionList::class_func_emptyList (SOURCE_FILE ("baseline_program.galgas", 24)) ;
-  GALGAS_constantDefinitionList var_constantDefinitionList_840 = GALGAS_constantDefinitionList::class_func_emptyList (SOURCE_FILE ("baseline_program.galgas", 25)) ;
-  nt_section_5F_list_ (var_routineDefinitionList_588, var_unusedRoutineList_744, var_ramDefinitionList_653, var_unusedRegisterList_701, var_configDefinitionList_786, var_constantDefinitionList_840, inCompiler) ;
+  GALGAS_baseline_5F_routineDefinitionList var_routineDefinitionList_588 = GALGAS_baseline_5F_routineDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_ramDefinitionList var_ramDefinitionList_652 = GALGAS_ramDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_lstringlist var_unusedRegisterList_699 = GALGAS_lstringlist::init (inCompiler COMMA_HERE) ;
+  GALGAS_lstringlist var_unusedRoutineList_741 = GALGAS_lstringlist::init (inCompiler COMMA_HERE) ;
+  GALGAS_configDefinitionList var_configDefinitionList_782 = GALGAS_configDefinitionList::init (inCompiler COMMA_HERE) ;
+  GALGAS_constantDefinitionList var_constantDefinitionList_835 = GALGAS_constantDefinitionList::init (inCompiler COMMA_HERE) ;
+  nt_section_5F_list_ (var_routineDefinitionList_588, var_unusedRoutineList_741, var_ramDefinitionList_652, var_unusedRegisterList_699, var_configDefinitionList_782, var_constantDefinitionList_835, inCompiler) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_end COMMA_SOURCE_FILE ("baseline_program.galgas", 33)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (ComparisonKind::equal, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("baseline_program.galgas", 35)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_baseline_5F_model var_piccoloModel_1138 = GALGAS_baseline_5F_model::init_21__21__21__21__21__21__21__21__21_ (var_programName_520, var_deviceName_565, var_configDefinitionList_786, var_ramDefinitionList_653, var_unusedRegisterList_701, var_constantDefinitionList_840, var_routineDefinitionList_588, var_unusedRoutineList_744, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 45)), inCompiler COMMA_HERE) ;
+      GALGAS_baseline_5F_model var_piccoloModel_1132 = GALGAS_baseline_5F_model::init_21__21__21__21__21__21__21__21__21_ (var_programName_520, var_deviceName_565, var_configDefinitionList_782, var_ramDefinitionList_652, var_unusedRegisterList_699, var_constantDefinitionList_835, var_routineDefinitionList_588, var_unusedRoutineList_741, GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 45)), inCompiler COMMA_HERE) ;
       {
-      routine_baseline_5F_analysis_3F__3F_ (var_piccoloModel_1138, GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)), inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)) ;
+      routine_baseline_5F_analysis_3F__3F_ (var_piccoloModel_1132, GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)), inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 47)) ;
       }
     }
   }
   if (kBoolFalse == test_0) {
-    GALGAS_string var_hexDestinationFile_1501 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 49)).getter_stringByDeletingPathExtension (SOURCE_FILE ("baseline_program.galgas", 49)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("baseline_program.galgas", 49)) ;
+    GALGAS_string var_hexDestinationFile_1495 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 49)).getter_stringByDeletingPathExtension (SOURCE_FILE ("baseline_program.galgas", 49)).add_operation (GALGAS_string (".hex"), inCompiler COMMA_SOURCE_FILE ("baseline_program.galgas", 49)) ;
     enumGalgasBool test_1 = kBoolTrue ;
     if (kBoolTrue == test_1) {
-      test_1 = var_hexDestinationFile_1501.getter_fileExists (SOURCE_FILE ("baseline_program.galgas", 50)).boolEnum () ;
+      test_1 = var_hexDestinationFile_1495.getter_fileExists (SOURCE_FILE ("baseline_program.galgas", 50)).boolEnum () ;
       if (kBoolTrue == test_1) {
         {
-        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_1501, inCompiler COMMA_SOURCE_FILE ("baseline_program.galgas", 51)) ;
+        GALGAS_string::class_method_deleteFile (var_hexDestinationFile_1495, inCompiler COMMA_SOURCE_FILE ("baseline_program.galgas", 51)) ;
         }
       }
     }
-    GALGAS_string var_asmDestinationFile_1712 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 53)).getter_stringByDeletingPathExtension (SOURCE_FILE ("baseline_program.galgas", 53)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("baseline_program.galgas", 53)) ;
+    GALGAS_string var_asmDestinationFile_1706 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("baseline_program.galgas", 53)).getter_stringByDeletingPathExtension (SOURCE_FILE ("baseline_program.galgas", 53)).add_operation (GALGAS_string (".asm"), inCompiler COMMA_SOURCE_FILE ("baseline_program.galgas", 53)) ;
     enumGalgasBool test_2 = kBoolTrue ;
     if (kBoolTrue == test_2) {
-      test_2 = var_asmDestinationFile_1712.getter_fileExists (SOURCE_FILE ("baseline_program.galgas", 54)).boolEnum () ;
+      test_2 = var_asmDestinationFile_1706.getter_fileExists (SOURCE_FILE ("baseline_program.galgas", 54)).boolEnum () ;
       if (kBoolTrue == test_2) {
         {
-        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_1712, inCompiler COMMA_SOURCE_FILE ("baseline_program.galgas", 55)) ;
+        GALGAS_string::class_method_deleteFile (var_asmDestinationFile_1706, inCompiler COMMA_SOURCE_FILE ("baseline_program.galgas", 55)) ;
         }
       }
     }
@@ -4793,10 +4793,10 @@ void cParser_baseline_5F_program::rule_baseline_5F_program_start_5F_symbol_i0_im
   outArgument_outUserRoutineDeclarationList.drop () ; // Release 'out' argument
   outArgument_outBootloaderReservedROMsize.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_baseline COMMA_SOURCE_FILE ("baseline_program.galgas", 69)) ;
-  GALGAS_lstring var_programName_2378 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_programName_2372 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("baseline_program.galgas", 70)) ;
   TC_Array <FixItDescription> fixItArray0 ;
-  inCompiler->emitSemanticError (var_programName_2378.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("baseline_program.galgas", 71)) ;
+  inCompiler->emitSemanticError (var_programName_2372.readProperty_location (), GALGAS_string ("this file does not define a bootloader specification"), fixItArray0  COMMA_SOURCE_FILE ("baseline_program.galgas", 71)) ;
   outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
   outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
   outArgument_outRamBank.drop () ; // Release error dropped variable
@@ -4871,8 +4871,8 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   outArgument_outDeviceName = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 40)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 42)) ;
-  outArgument_outBootloaderRoutineDeclarationList = GALGAS_routineDeclarationList::class_func_emptyList (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 43)) ;
-  outArgument_outBootloaderReservedRAMmap = GALGAS_bootloaderReservedRAMmap::class_func_emptyMap (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 44)) ;
+  outArgument_outBootloaderRoutineDeclarationList = GALGAS_routineDeclarationList::init (inCompiler COMMA_HERE) ;
+  outArgument_outBootloaderReservedRAMmap = GALGAS_bootloaderReservedRAMmap::init (inCompiler COMMA_HERE) ;
   outArgument_outReservedRomSize = GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 45)), inCompiler COMMA_HERE) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
@@ -4883,67 +4883,67 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_rom COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 50)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 51)) ;
-      GALGAS_luint var_rs_1695 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      GALGAS_luint var_rs_1693 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 52)) ;
       enumGalgasBool test_1 = kBoolTrue ;
       if (kBoolTrue == test_1) {
         test_1 = GALGAS_bool (ComparisonKind::notEqual, outArgument_outReservedRomSize.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
         if (kBoolTrue == test_1) {
           TC_Array <FixItDescription> fixItArray2 ;
-          inCompiler->emitSemanticError (var_rs_1695.readProperty_location (), GALGAS_string ("ROM size already defined"), fixItArray2  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 54)) ;
+          inCompiler->emitSemanticError (var_rs_1693.readProperty_location (), GALGAS_string ("ROM size already defined"), fixItArray2  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 54)) ;
         }
       }
       if (kBoolFalse == test_1) {
         enumGalgasBool test_3 = kBoolTrue ;
         if (kBoolTrue == test_3) {
-          test_3 = GALGAS_bool (ComparisonKind::equal, var_rs_1695.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+          test_3 = GALGAS_bool (ComparisonKind::equal, var_rs_1693.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_3) {
             TC_Array <FixItDescription> fixItArray4 ;
-            inCompiler->emitSemanticError (var_rs_1695.readProperty_location (), GALGAS_string ("ROM size should be > 0"), fixItArray4  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 56)) ;
+            inCompiler->emitSemanticError (var_rs_1693.readProperty_location (), GALGAS_string ("ROM size should be > 0"), fixItArray4  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 56)) ;
           }
         }
         if (kBoolFalse == test_3) {
           enumGalgasBool test_5 = kBoolTrue ;
           if (kBoolTrue == test_5) {
-            test_5 = GALGAS_bool (ComparisonKind::notEqual, var_rs_1695.readProperty_uint ().modulo_operation (GALGAS_uint (uint32_t (8U)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 57)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+            test_5 = GALGAS_bool (ComparisonKind::notEqual, var_rs_1693.readProperty_uint ().modulo_operation (GALGAS_uint (uint32_t (8U)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 57)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
             if (kBoolTrue == test_5) {
               TC_Array <FixItDescription> fixItArray6 ;
-              inCompiler->emitSemanticError (var_rs_1695.readProperty_location (), GALGAS_string ("ROM size should be a multiple of 8"), fixItArray6  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 58)) ;
+              inCompiler->emitSemanticError (var_rs_1693.readProperty_location (), GALGAS_string ("ROM size should be a multiple of 8"), fixItArray6  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 58)) ;
             }
           }
           if (kBoolFalse == test_5) {
-            outArgument_outReservedRomSize = var_rs_1695 ;
+            outArgument_outReservedRomSize = var_rs_1693 ;
           }
         }
       }
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 63)) ;
-      GALGAS_lstring var_bankName_2037 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_bankName_2035 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 64)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 65)) ;
-      GALGAS_luint var_rs_2080 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      GALGAS_luint var_rs_2078 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 66)) ;
       enumGalgasBool test_7 = kBoolTrue ;
       if (kBoolTrue == test_7) {
-        test_7 = outArgument_outBootloaderReservedRAMmap.getter_hasKey (var_bankName_2037.readProperty_string () COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 67)).boolEnum () ;
+        test_7 = outArgument_outBootloaderReservedRAMmap.getter_hasKey (var_bankName_2035.readProperty_string () COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 67)).boolEnum () ;
         if (kBoolTrue == test_7) {
           TC_Array <FixItDescription> fixItArray8 ;
-          inCompiler->emitSemanticError (var_rs_2080.readProperty_location (), GALGAS_string ("RAM size already defined for '").add_operation (var_bankName_2037.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 68)).add_operation (GALGAS_string ("' bank"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 68)), fixItArray8  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 68)) ;
+          inCompiler->emitSemanticError (var_rs_2078.readProperty_location (), GALGAS_string ("RAM size already defined for '").add_operation (var_bankName_2035.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 68)).add_operation (GALGAS_string ("' bank"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 68)), fixItArray8  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 68)) ;
         }
       }
       if (kBoolFalse == test_7) {
         enumGalgasBool test_9 = kBoolTrue ;
         if (kBoolTrue == test_9) {
-          test_9 = GALGAS_bool (ComparisonKind::equal, var_rs_2080.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+          test_9 = GALGAS_bool (ComparisonKind::equal, var_rs_2078.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_9) {
             TC_Array <FixItDescription> fixItArray10 ;
-            inCompiler->emitSemanticError (var_rs_2080.readProperty_location (), GALGAS_string ("RAM size should be > 0"), fixItArray10  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 70)) ;
+            inCompiler->emitSemanticError (var_rs_2078.readProperty_location (), GALGAS_string ("RAM size should be > 0"), fixItArray10  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 70)) ;
           }
         }
         if (kBoolFalse == test_9) {
           {
-          outArgument_outBootloaderReservedRAMmap.setter_insertKey (var_bankName_2037, var_rs_2080, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 72)) ;
+          outArgument_outBootloaderReservedRAMmap.setter_insertKey (var_bankName_2035, var_rs_2078, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 72)) ;
           }
         }
       }
@@ -4955,7 +4955,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 75)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 77)) ;
-  outArgument_outUserRoutineDeclarationList = GALGAS_routineDeclarationList::class_func_emptyList (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 78)) ;
+  outArgument_outUserRoutineDeclarationList = GALGAS_routineDeclarationList::init (inCompiler COMMA_HERE) ;
   bool repeatFlag_11 = true ;
   while (repeatFlag_11) {
     if (select_pic_31__38__5F_bootloader_5F_syntax_1 (inCompiler) == 2) {
@@ -4965,7 +4965,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
     }
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 83)) ;
-  outArgument_outSharedRamDefinitionList = GALGAS_ramDefinitionList::class_func_emptyList (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 85)) ;
+  outArgument_outSharedRamDefinitionList = GALGAS_ramDefinitionList::init (inCompiler COMMA_HERE) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 86)) ;
   bool repeatFlag_12 = true ;
   while (repeatFlag_12) {
@@ -5091,26 +5091,26 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
 //------------------------------------------------------------------------------------------------
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_start_5F_symbol_i1_ (Lexique_piccolo_5F_lexique * inCompiler) {
-  GALGAS_lstring var_bootloaderName_3262 ;
-  GALGAS_lstring var_deviceName_3293 ;
-  GALGAS_routineDeclarationList var_bootloaderRoutineDeclarationList_3320 ;
-  GALGAS_bootloaderReservedRAMmap var_bootloaderReservedRAMmap_3369 ;
-  GALGAS_luint var_reservedRomSize_3410 ;
-  GALGAS_routineDeclarationList var_userRoutineDeclarationList_3442 ;
-  GALGAS_ramDefinitionList var_sharedRamDefinitionList_3485 ;
-  GALGAS_string var_listFileContents_3518 ;
-  GALGAS_piccoloDeviceModel var_piccoloDeviceModel_3551 ;
-  GALGAS_uint var_accessBankSplitOffset_3586 ;
-  GALGAS_ramBankTable var_ramBank_3624 ;
-  GALGAS_registerTable var_registerTable_3648 ;
-  nt_parse_5F_bootloader_ (var_bootloaderName_3262, var_deviceName_3293, var_bootloaderRoutineDeclarationList_3320, var_bootloaderReservedRAMmap_3369, var_reservedRomSize_3410, var_userRoutineDeclarationList_3442, var_sharedRamDefinitionList_3485, var_listFileContents_3518, var_piccoloDeviceModel_3551, var_accessBankSplitOffset_3586, var_ramBank_3624, var_registerTable_3648, inCompiler) ;
-  GALGAS_string var_listingFile_3699 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)).add_operation (GALGAS_string (".list"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)) ;
+  GALGAS_lstring var_bootloaderName_3258 ;
+  GALGAS_lstring var_deviceName_3289 ;
+  GALGAS_routineDeclarationList var_bootloaderRoutineDeclarationList_3316 ;
+  GALGAS_bootloaderReservedRAMmap var_bootloaderReservedRAMmap_3365 ;
+  GALGAS_luint var_reservedRomSize_3406 ;
+  GALGAS_routineDeclarationList var_userRoutineDeclarationList_3438 ;
+  GALGAS_ramDefinitionList var_sharedRamDefinitionList_3481 ;
+  GALGAS_string var_listFileContents_3514 ;
+  GALGAS_piccoloDeviceModel var_piccoloDeviceModel_3547 ;
+  GALGAS_uint var_accessBankSplitOffset_3582 ;
+  GALGAS_ramBankTable var_ramBank_3620 ;
+  GALGAS_registerTable var_registerTable_3644 ;
+  nt_parse_5F_bootloader_ (var_bootloaderName_3258, var_deviceName_3289, var_bootloaderRoutineDeclarationList_3316, var_bootloaderReservedRAMmap_3365, var_reservedRomSize_3406, var_userRoutineDeclarationList_3438, var_sharedRamDefinitionList_3481, var_listFileContents_3514, var_piccoloDeviceModel_3547, var_accessBankSplitOffset_3582, var_ramBank_3620, var_registerTable_3644, inCompiler) ;
+  GALGAS_string var_listingFile_3695 = GALGAS_string::class_func_stringWithSourceFilePath (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)).getter_stringByDeletingPathExtension (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)).add_operation (GALGAS_string (".list"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 127)) ;
   enumGalgasBool test_0 = kBoolTrue ;
   if (kBoolTrue == test_0) {
     test_0 = GALGAS_bool (ComparisonKind::equal, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (gOption_piccolo_5F_options_ouputListingFile.readProperty_value ()) COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 128)).boolEnum () ;
     if (kBoolTrue == test_0) {
-      GALGAS_bool joker_3942 ; // Joker input parameter
-      var_listFileContents_3518.method_writeToFileWhenDifferentContents (var_listingFile_3699, joker_3942, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 129)) ;
+      GALGAS_bool joker_3938 ; // Joker input parameter
+      var_listFileContents_3514.method_writeToFileWhenDifferentContents (var_listingFile_3695, joker_3938, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 129)) ;
     }
   }
   enumGalgasBool test_1 = kBoolTrue ;
@@ -5118,7 +5118,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
     test_1 = GALGAS_bool (ComparisonKind::greaterThan, GALGAS_uint::class_func_errorCount (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 131)).objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
     if (kBoolTrue == test_1) {
       {
-      GALGAS_string::class_method_deleteFileIfExists (var_listingFile_3699, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 132)) ;
+      GALGAS_string::class_method_deleteFileIfExists (var_listingFile_3695, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 132)) ;
       }
     }
   }
@@ -5145,12 +5145,12 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   outArgument_outBootloaderRoutineDeclarationList.drop () ; // Release 'out' argument
   outArgument_outUserRoutineDeclarationList.drop () ; // Release 'out' argument
   outArgument_outBootloaderReservedROMsize.drop () ; // Release 'out' argument
-  GALGAS_lstring var_bootloaderName_4496 ;
-  GALGAS_lstring var_deviceName_4529 ;
-  GALGAS_ramDefinitionList var_sharedRamDefinitionList_4699 ;
-  GALGAS_string var_listFileContents_4739 ;
-  nt_parse_5F_bootloader_ (var_bootloaderName_4496, var_deviceName_4529, outArgument_outBootloaderRoutineDeclarationList, outArgument_outBootloaderReservedRAMmap, outArgument_outBootloaderReservedROMsize, outArgument_outUserRoutineDeclarationList, var_sharedRamDefinitionList_4699, var_listFileContents_4739, outArgument_outPiccoloDeviceModel, outArgument_outAccessBankSplitOffset, outArgument_outRamBank, outArgument_outRegisterTable, inCompiler) ;
-  outArgument_outDeviceName = var_deviceName_4529.readProperty_string () ;
+  GALGAS_lstring var_bootloaderName_4492 ;
+  GALGAS_lstring var_deviceName_4525 ;
+  GALGAS_ramDefinitionList var_sharedRamDefinitionList_4695 ;
+  GALGAS_string var_listFileContents_4735 ;
+  nt_parse_5F_bootloader_ (var_bootloaderName_4492, var_deviceName_4525, outArgument_outBootloaderRoutineDeclarationList, outArgument_outBootloaderReservedRAMmap, outArgument_outBootloaderReservedROMsize, outArgument_outUserRoutineDeclarationList, var_sharedRamDefinitionList_4695, var_listFileContents_4735, outArgument_outPiccoloDeviceModel, outArgument_outAccessBankSplitOffset, outArgument_outRamBank, outArgument_outRegisterTable, inCompiler) ;
+  outArgument_outDeviceName = var_deviceName_4525.readProperty_string () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -5170,29 +5170,29 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
 
 void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_ (GALGAS_routineDeclarationList & ioArgument_ioRoutineDefinitionList,
                                                                                                                        Lexique_piccolo_5F_lexique * inCompiler) {
-  GALGAS_bool var_noreturn_5039 ;
+  GALGAS_bool var_noreturn_5035 ;
   switch (select_pic_31__38__5F_bootloader_5F_syntax_3 (inCompiler)) {
   case 1: {
-    var_noreturn_5039 = GALGAS_bool (false) ;
+    var_noreturn_5035 = GALGAS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_noreturn COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 169)) ;
-    var_noreturn_5039 = GALGAS_bool (true) ;
+    var_noreturn_5035 = GALGAS_bool (true) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_routine COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 172)) ;
-  GALGAS_lstring var_routineName_5165 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_routineName_5161 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 173)) ;
-  GALGAS_luint var_requiredBank_5190 ;
-  GALGAS_luint var_returnedBank_5216 ;
-  GALGAS_bool var_preservesBank_5241 ;
+  GALGAS_luint var_requiredBank_5186 ;
+  GALGAS_luint var_returnedBank_5212 ;
+  GALGAS_bool var_preservesBank_5237 ;
   switch (select_pic_31__38__5F_bootloader_5F_syntax_4 (inCompiler)) {
   case 1: {
-    var_requiredBank_5190 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178)), inCompiler COMMA_HERE) ;
-    var_returnedBank_5216 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179)), inCompiler COMMA_HERE) ;
-    var_preservesBank_5241 = GALGAS_bool (false) ;
+    var_requiredBank_5186 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 178)), inCompiler COMMA_HERE) ;
+    var_returnedBank_5212 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 179)), inCompiler COMMA_HERE) ;
+    var_preservesBank_5237 = GALGAS_bool (false) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 182)) ;
@@ -5202,32 +5202,32 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_preserved COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 185)) ;
       enumGalgasBool test_0 = kBoolTrue ;
       if (kBoolTrue == test_0) {
-        test_0 = var_noreturn_5039.boolEnum () ;
+        test_0 = var_noreturn_5035.boolEnum () ;
         if (kBoolTrue == test_0) {
           TC_Array <FixItDescription> fixItArray1 ;
           inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 187)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:preserved\" setting"), fixItArray1  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 187)) ;
         }
       }
-      var_preservesBank_5241 = GALGAS_bool (true) ;
-      var_requiredBank_5190 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190)), inCompiler COMMA_HERE) ;
-      var_returnedBank_5216 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191)), inCompiler COMMA_HERE) ;
+      var_preservesBank_5237 = GALGAS_bool (true) ;
+      var_requiredBank_5186 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 190)), inCompiler COMMA_HERE) ;
+      var_returnedBank_5212 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 191)), inCompiler COMMA_HERE) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_requires COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 193)) ;
-      var_requiredBank_5190 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      var_requiredBank_5186 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 194)) ;
-      var_preservesBank_5241 = GALGAS_bool (false) ;
+      var_preservesBank_5237 = GALGAS_bool (false) ;
       switch (select_pic_31__38__5F_bootloader_5F_syntax_6 (inCompiler)) {
       case 1: {
-        var_returnedBank_5216 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197)), inCompiler COMMA_HERE) ;
+        var_returnedBank_5212 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 197)), inCompiler COMMA_HERE) ;
       } break ;
       case 2: {
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 199)) ;
-        var_returnedBank_5216 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        var_returnedBank_5212 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 200)) ;
         enumGalgasBool test_2 = kBoolTrue ;
         if (kBoolTrue == test_2) {
-          test_2 = var_noreturn_5039.boolEnum () ;
+          test_2 = var_noreturn_5035.boolEnum () ;
           if (kBoolTrue == test_2) {
             TC_Array <FixItDescription> fixItArray3 ;
             inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 202)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray3  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 202)) ;
@@ -5240,18 +5240,18 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ensures COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 206)) ;
-      var_returnedBank_5216 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      var_returnedBank_5212 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 207)) ;
       enumGalgasBool test_4 = kBoolTrue ;
       if (kBoolTrue == test_4) {
-        test_4 = var_noreturn_5039.boolEnum () ;
+        test_4 = var_noreturn_5035.boolEnum () ;
         if (kBoolTrue == test_4) {
           TC_Array <FixItDescription> fixItArray5 ;
           inCompiler->emitSemanticError (GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 209)), GALGAS_string ("a \"noreturn\" routine cannot accept \"bank:returned\" setting"), fixItArray5  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 209)) ;
         }
       }
-      var_preservesBank_5241 = GALGAS_bool (false) ;
-      var_requiredBank_5190 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212)), inCompiler COMMA_HERE) ;
+      var_preservesBank_5237 = GALGAS_bool (false) ;
+      var_requiredBank_5186 = GALGAS_luint::init_21__21_ (GALGAS_uint::class_func_max (SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 212)), inCompiler COMMA_HERE) ;
     } break ;
     default:
       break ;
@@ -5260,7 +5260,7 @@ void cParser_pic_31__38__5F_bootloader_5F_syntax::rule_pic_31__38__5F_bootloader
   default:
     break ;
   }
-  ioArgument_ioRoutineDefinitionList.addAssign_operation (var_routineName_5165, var_requiredBank_5190, var_returnedBank_5216, var_preservesBank_5241, var_noreturn_5039  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 216)) ;
+  ioArgument_ioRoutineDefinitionList.addAssign_operation (var_routineName_5161, var_requiredBank_5186, var_returnedBank_5212, var_preservesBank_5237, var_noreturn_5035  COMMA_SOURCE_FILE ("pic18_bootloader_syntax.galgas", 216)) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -5374,28 +5374,28 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_ (GALGAS_confi
                                                                     Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("communs.galgas", 8)) ;
   GALGAS_location var_defLocation_199 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 9)) ;
-  GALGAS_configSettingList var_settingList_234 = GALGAS_configSettingList::class_func_emptyList (SOURCE_FILE ("communs.galgas", 10)) ;
+  GALGAS_configSettingList var_settingList_234 = GALGAS_configSettingList::init (inCompiler COMMA_HERE) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 11)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_communs_0 (inCompiler) == 2) {
-      GALGAS_lstring var_settingName_324 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_settingName_323 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 14)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 15)) ;
-      GALGAS_lstring var_settingValue_361 ;
+      GALGAS_lstring var_settingValue_360 ;
       switch (select_communs_1 (inCompiler)) {
       case 1: {
-        var_settingValue_361 = inCompiler->synthetizedAttribute_tokenString () ;
+        var_settingValue_360 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 18)) ;
       } break ;
       case 2: {
-        var_settingValue_361 = inCompiler->synthetizedAttribute_tokenString () ;
+        var_settingValue_360 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("communs.galgas", 20)) ;
       } break ;
       default:
         break ;
       }
-      var_settingList_234.addAssign_operation (var_settingName_324, var_settingValue_361  COMMA_SOURCE_FILE ("communs.galgas", 22)) ;
+      var_settingList_234.addAssign_operation (var_settingName_323, var_settingValue_360  COMMA_SOURCE_FILE ("communs.galgas", 22)) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -5464,170 +5464,170 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_indexing (Lexi
 void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GALGAS_declarationInRam & outArgument_outDeclaration,
                                                                  Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outDeclaration.drop () ; // Release 'out' argument
-  GALGAS_registerProtection var_protection_731 ;
+  GALGAS_registerProtection var_protection_730 ;
   switch (select_communs_2 (inCompiler)) {
   case 1: {
-    var_protection_731 = GALGAS_registerProtection::class_func_publicRegister (SOURCE_FILE ("communs.galgas", 33)) ;
+    var_protection_730 = GALGAS_registerProtection::class_func_publicRegister (SOURCE_FILE ("communs.galgas", 33)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_protected COMMA_SOURCE_FILE ("communs.galgas", 35)) ;
-    var_protection_731 = GALGAS_registerProtection::class_func_protectedRegister (SOURCE_FILE ("communs.galgas", 36)) ;
+    var_protection_730 = GALGAS_registerProtection::class_func_protectedRegister (SOURCE_FILE ("communs.galgas", 36)) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_private COMMA_SOURCE_FILE ("communs.galgas", 38)) ;
-    var_protection_731 = GALGAS_registerProtection::class_func_privateRegister (SOURCE_FILE ("communs.galgas", 39)) ;
+    var_protection_730 = GALGAS_registerProtection::class_func_privateRegister (SOURCE_FILE ("communs.galgas", 39)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_byte COMMA_SOURCE_FILE ("communs.galgas", 41)) ;
-  GALGAS_lstring var_name_938 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_name_937 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableDeclaration, "") ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 42)) ;
-  GALGAS_immediatExpression var_sizeExpression_998 ;
+  GALGAS_immediatExpression var_sizeExpression_997 ;
   switch (select_communs_3 (inCompiler)) {
   case 1: {
-    var_sizeExpression_998 = GALGAS_immediatInteger::init_21_ (GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (1U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 45)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+    var_sizeExpression_997 = GALGAS_immediatInteger::init_21_ (GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (1U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 45)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 47)) ;
-    nt_immediate_5F_expression_ (var_sizeExpression_998, inCompiler) ;
+    nt_immediate_5F_expression_ (var_sizeExpression_997, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 49)) ;
   } break ;
   default:
     break ;
   }
-  GALGAS_bitSliceTable var_bitSliceTable_1162 = GALGAS_bitSliceTable::class_func_emptyMap (SOURCE_FILE ("communs.galgas", 51)) ;
-  GALGAS_string var_bitDefinitionString_1211 ;
+  GALGAS_bitSliceTable var_bitSliceTable_1161 = GALGAS_bitSliceTable::init (inCompiler COMMA_HERE) ;
+  GALGAS_string var_bitDefinitionString_1209 ;
   switch (select_communs_4 (inCompiler)) {
   case 1: {
-    var_bitDefinitionString_1211 = GALGAS_string::makeEmptyString () ;
+    var_bitDefinitionString_1209 = GALGAS_string::makeEmptyString () ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("communs.galgas", 56)) ;
-    var_bitDefinitionString_1211 = GALGAS_string (" <") ;
-    GALGAS_sint var_sliceIndex_1327 = GALGAS_sint (int32_t (8L)) ;
+    var_bitDefinitionString_1209 = GALGAS_string (" <") ;
+    GALGAS_sint var_sliceIndex_1325 = GALGAS_sint (int32_t (8L)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
       switch (select_communs_6 (inCompiler)) {
       case 1: {
-        GALGAS_uint var_sliceWidth_1383 = GALGAS_uint (uint32_t (0U)) ;
+        GALGAS_uint var_sliceWidth_1381 = GALGAS_uint (uint32_t (0U)) ;
         bool repeatFlag_1 = true ;
         while (repeatFlag_1) {
-          GALGAS_uint var_sliceBase_1451 = GALGAS_uint (uint32_t (0U)) ;
+          GALGAS_uint var_sliceBase_1449 = GALGAS_uint (uint32_t (0U)) ;
           enumGalgasBool test_2 = kBoolTrue ;
           if (kBoolTrue == test_2) {
-            test_2 = GALGAS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1327.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
+            test_2 = GALGAS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1325.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
             if (kBoolTrue == test_2) {
-              var_sliceBase_1451 = var_sliceIndex_1327.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
+              var_sliceBase_1449 = var_sliceIndex_1325.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
             }
           }
-          GALGAS_lstring var_sliceName_1592 = inCompiler->synthetizedAttribute_tokenString () ;
+          GALGAS_lstring var_sliceName_1590 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 67)) ;
           switch (select_communs_8 (inCompiler)) {
           case 1: {
             enumGalgasBool test_3 = kBoolTrue ;
             if (kBoolTrue == test_3) {
-              test_3 = GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1383.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1383.objectCompare (GALGAS_uint (uint32_t (1U)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
+              test_3 = GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1381.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1381.objectCompare (GALGAS_uint (uint32_t (1U)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
               if (kBoolTrue == test_3) {
                 TC_Array <FixItDescription> fixItArray4 ;
-                inCompiler->emitSemanticError (var_sliceName_1592.readProperty_location (), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_1592.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)), fixItArray4  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
+                inCompiler->emitSemanticError (var_sliceName_1590.readProperty_location (), GALGAS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_1590.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)), fixItArray4  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
               }
             }
-            var_sliceWidth_1383 = GALGAS_uint (uint32_t (1U)) ;
-            var_bitDefinitionString_1211.plusAssign_operation(var_sliceName_1592.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
+            var_sliceWidth_1381 = GALGAS_uint (uint32_t (1U)) ;
+            var_bitDefinitionString_1209.plusAssign_operation(var_sliceName_1590.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
           } break ;
           case 2: {
             inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 75)) ;
-            GALGAS_luint var_sliceSize_1922 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+            GALGAS_luint var_sliceSize_1920 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
             inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 76)) ;
             enumGalgasBool test_5 = kBoolTrue ;
             if (kBoolTrue == test_5) {
-              test_5 = GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1383.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1383.objectCompare (var_sliceSize_1922.readProperty_uint ())) COMMA_SOURCE_FILE ("communs.galgas", 77)).boolEnum () ;
+              test_5 = GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1381.objectCompare (GALGAS_uint (uint32_t (0U)))).operator_and (GALGAS_bool (ComparisonKind::notEqual, var_sliceWidth_1381.objectCompare (var_sliceSize_1920.readProperty_uint ())) COMMA_SOURCE_FILE ("communs.galgas", 77)).boolEnum () ;
               if (kBoolTrue == test_5) {
                 TC_Array <FixItDescription> fixItArray6 ;
-                inCompiler->emitSemanticError (var_sliceName_1592.readProperty_location (), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_1383.getter_string (SOURCE_FILE ("communs.galgas", 78)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (var_sliceName_1592.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)), fixItArray6  COMMA_SOURCE_FILE ("communs.galgas", 78)) ;
+                inCompiler->emitSemanticError (var_sliceName_1590.readProperty_location (), GALGAS_string ("a slice of ").add_operation (var_sliceWidth_1381.getter_string (SOURCE_FILE ("communs.galgas", 78)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (var_sliceName_1590.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GALGAS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)), fixItArray6  COMMA_SOURCE_FILE ("communs.galgas", 78)) ;
               }
             }
-            var_sliceWidth_1383 = var_sliceSize_1922.readProperty_uint () ;
-            var_sliceBase_1451 = var_sliceBase_1451.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)).substract_operation (var_sliceSize_1922.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)) ;
-            var_bitDefinitionString_1211.plusAssign_operation(var_sliceName_1592.readProperty_string ().add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (var_sliceSize_1922.readProperty_uint ().getter_string (SOURCE_FILE ("communs.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 82)) ;
+            var_sliceWidth_1381 = var_sliceSize_1920.readProperty_uint () ;
+            var_sliceBase_1449 = var_sliceBase_1449.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)).substract_operation (var_sliceSize_1920.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)) ;
+            var_bitDefinitionString_1209.plusAssign_operation(var_sliceName_1590.readProperty_string ().add_operation (GALGAS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (var_sliceSize_1920.readProperty_uint ().getter_string (SOURCE_FILE ("communs.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (GALGAS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 82)) ;
             inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 83)) ;
           } break ;
           default:
             break ;
           }
-          GALGAS_uint var_base_2368 = GALGAS_uint (uint32_t (0U)) ;
+          GALGAS_uint var_base_2366 = GALGAS_uint (uint32_t (0U)) ;
           enumGalgasBool test_7 = kBoolTrue ;
           if (kBoolTrue == test_7) {
-            test_7 = GALGAS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1327.objectCompare (var_sliceWidth_1383.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)))).boolEnum () ;
+            test_7 = GALGAS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1325.objectCompare (var_sliceWidth_1381.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)))).boolEnum () ;
             if (kBoolTrue == test_7) {
-              var_base_2368 = var_sliceIndex_1327.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)).substract_operation (var_sliceWidth_1383, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)) ;
+              var_base_2366 = var_sliceIndex_1325.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)).substract_operation (var_sliceWidth_1381, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)) ;
             }
           }
           {
-          var_bitSliceTable_1162.setter_insertKey (var_sliceName_1592, var_base_2368, var_sliceWidth_1383, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 89)) ;
+          var_bitSliceTable_1161.setter_insertKey (var_sliceName_1590, var_base_2366, var_sliceWidth_1381, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 89)) ;
           }
           if (select_communs_7 (inCompiler) == 2) {
             inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 91)) ;
-            var_bitDefinitionString_1211.plusAssign_operation(GALGAS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 92)) ;
+            var_bitDefinitionString_1209.plusAssign_operation(GALGAS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 92)) ;
           }else{
             repeatFlag_1 = false ;
           }
         }
-        var_sliceIndex_1327 = var_sliceIndex_1327.substract_operation (var_sliceWidth_1383.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
+        var_sliceIndex_1325 = var_sliceIndex_1325.substract_operation (var_sliceWidth_1381.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
       } break ;
       case 2: {
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 96)) ;
-        var_bitDefinitionString_1211.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 97)) ;
-        var_sliceIndex_1327.minusAssign_operation(GALGAS_sint (int32_t (1L)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 98)) ;
+        var_bitDefinitionString_1209.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 97)) ;
+        var_sliceIndex_1325.minusAssign_operation(GALGAS_sint (int32_t (1L)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 98)) ;
       } break ;
       case 3: {
-        GALGAS_luint var_bitCount_2799 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        GALGAS_luint var_bitCount_2797 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 100)) ;
         enumGalgasBool test_8 = kBoolTrue ;
         if (kBoolTrue == test_8) {
-          test_8 = GALGAS_bool (ComparisonKind::equal, var_bitCount_2799.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
+          test_8 = GALGAS_bool (ComparisonKind::equal, var_bitCount_2797.readProperty_uint ().objectCompare (GALGAS_uint (uint32_t (0U)))).boolEnum () ;
           if (kBoolTrue == test_8) {
             TC_Array <FixItDescription> fixItArray9 ;
-            inCompiler->emitSemanticError (var_bitCount_2799.readProperty_location (), GALGAS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 102)) ;
+            inCompiler->emitSemanticError (var_bitCount_2797.readProperty_location (), GALGAS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 102)) ;
           }
         }
-        cEnumerator_range enumerator_2952 (GALGAS_range (GALGAS_uint (uint32_t (0U)), var_bitCount_2799.readProperty_uint ().substract_operation (GALGAS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104))), EnumerationOrder::up) ;
-        while (enumerator_2952.hasCurrentObject ()) {
-          var_bitDefinitionString_1211.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 105)) ;
-          if (enumerator_2952.hasNextObject ()) {
-            var_bitDefinitionString_1211.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 106)) ;
+        cEnumerator_range enumerator_2950 (GALGAS_range (GALGAS_uint (uint32_t (0U)), var_bitCount_2797.readProperty_uint ().substract_operation (GALGAS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104))), EnumerationOrder::up) ;
+        while (enumerator_2950.hasCurrentObject ()) {
+          var_bitDefinitionString_1209.plusAssign_operation(GALGAS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 105)) ;
+          if (enumerator_2950.hasNextObject ()) {
+            var_bitDefinitionString_1209.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 106)) ;
           }
-          enumerator_2952.gotoNextObject () ;
+          enumerator_2950.gotoNextObject () ;
         }
-        var_sliceIndex_1327 = var_sliceIndex_1327.substract_operation (var_bitCount_2799.readProperty_uint ().getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)) ;
+        var_sliceIndex_1325 = var_sliceIndex_1325.substract_operation (var_bitCount_2797.readProperty_uint ().getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)) ;
       } break ;
       default:
         break ;
       }
       if (select_communs_5 (inCompiler) == 2) {
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 111)) ;
-        var_bitDefinitionString_1211.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 112)) ;
+        var_bitDefinitionString_1209.plusAssign_operation(GALGAS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 112)) ;
       }else{
         repeatFlag_0 = false ;
       }
     }
     enumGalgasBool test_10 = kBoolTrue ;
     if (kBoolTrue == test_10) {
-      test_10 = GALGAS_bool (ComparisonKind::notEqual, var_sliceIndex_1327.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
+      test_10 = GALGAS_bool (ComparisonKind::notEqual, var_sliceIndex_1325.objectCompare (GALGAS_sint (int32_t (0L)))).boolEnum () ;
       if (kBoolTrue == test_10) {
         TC_Array <FixItDescription> fixItArray11 ;
-        inCompiler->emitSemanticError (var_name_938.readProperty_location (), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name_938.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_sint (int32_t (8L)).substract_operation (var_sliceIndex_1327, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).getter_string (SOURCE_FILE ("communs.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)), fixItArray11  COMMA_SOURCE_FILE ("communs.galgas", 115)) ;
+        inCompiler->emitSemanticError (var_name_937.readProperty_location (), GALGAS_string ("Incorrect bit definition for register '").add_operation (var_name_937.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_sint (int32_t (8L)).substract_operation (var_sliceIndex_1325, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).getter_string (SOURCE_FILE ("communs.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GALGAS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)), fixItArray11  COMMA_SOURCE_FILE ("communs.galgas", 115)) ;
       }
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 117)) ;
-    var_bitDefinitionString_1211.plusAssign_operation(GALGAS_string (">"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 118)) ;
+    var_bitDefinitionString_1209.plusAssign_operation(GALGAS_string (">"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 118)) ;
   } break ;
   default:
     break ;
   }
-  outArgument_outDeclaration = GALGAS_byteDeclarationInRam::init_21__21__21__21__21_ (var_name_938, var_sizeExpression_998, var_bitSliceTable_1162, var_bitDefinitionString_1211, var_protection_731, inCompiler COMMA_HERE) ;
+  outArgument_outDeclaration = GALGAS_byteDeclarationInRam::init_21__21__21__21__21_ (var_name_937, var_sizeExpression_997, var_bitSliceTable_1161, var_bitDefinitionString_1209, var_protection_730, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -5798,21 +5798,21 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_indexing (Lexique
 void cParser_communs::rule_communs_ram_5F_definition_i2_ (GALGAS_ramDefinitionList & ioArgument_ioRamDefinitionList,
                                                           Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("communs.galgas", 128)) ;
-  GALGAS_lstring var_bankName_3685 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_bankName_3683 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 129)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 130)) ;
-  GALGAS_declarationInRamList var_declarationInRamList_3706 = GALGAS_declarationInRamList::class_func_emptyList (SOURCE_FILE ("communs.galgas", 131)) ;
+  GALGAS_declarationInRamList var_declarationInRamList_3704 = GALGAS_declarationInRamList::init (inCompiler COMMA_HERE) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_communs_9 (inCompiler) == 2) {
-      GALGAS_declarationInRam var_declaration_3819 ;
-      nt_declaration_5F_in_5F_ram_ (var_declaration_3819, inCompiler) ;
-      var_declarationInRamList_3706.addAssign_operation (var_declaration_3819  COMMA_SOURCE_FILE ("communs.galgas", 135)) ;
+      GALGAS_declarationInRam var_declaration_3816 ;
+      nt_declaration_5F_in_5F_ram_ (var_declaration_3816, inCompiler) ;
+      var_declarationInRamList_3704.addAssign_operation (var_declaration_3816  COMMA_SOURCE_FILE ("communs.galgas", 135)) ;
     }else{
       repeatFlag_0 = false ;
     }
   }
-  ioArgument_ioRamDefinitionList.addAssign_operation (var_bankName_3685, var_declarationInRamList_3706  COMMA_SOURCE_FILE ("communs.galgas", 137)) ;
+  ioArgument_ioRamDefinitionList.addAssign_operation (var_bankName_3683, var_declarationInRamList_3704  COMMA_SOURCE_FILE ("communs.galgas", 137)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 138)) ;
 }
 
@@ -5856,13 +5856,13 @@ void cParser_communs::rule_communs_ram_5F_definition_i2_indexing (Lexique_piccol
 void cParser_communs::rule_communs_constant_5F_definition_i3_ (GALGAS_constantDefinitionList & ioArgument_ioConstantDefinitionList,
                                                                Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_const COMMA_SOURCE_FILE ("communs.galgas", 145)) ;
-  GALGAS_lstring var_constantName_4121 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_constantName_4118 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_constantDeclaration, "") ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 146)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3D_ COMMA_SOURCE_FILE ("communs.galgas", 147)) ;
-  GALGAS_immediatExpression var_expression_4219 ;
-  nt_immediate_5F_expression_ (var_expression_4219, inCompiler) ;
-  ioArgument_ioConstantDefinitionList.addAssign_operation (var_constantName_4121, var_expression_4219  COMMA_SOURCE_FILE ("communs.galgas", 149)) ;
+  GALGAS_immediatExpression var_expression_4216 ;
+  nt_immediate_5F_expression_ (var_expression_4216, inCompiler) ;
+  ioArgument_ioConstantDefinitionList.addAssign_operation (var_constantName_4118, var_expression_4216  COMMA_SOURCE_FILE ("communs.galgas", 149)) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -5897,15 +5897,15 @@ void cParser_communs::rule_communs_immediate_5F_expression_i4_ (GALGAS_immediatE
     switch (select_communs_10 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("communs.galgas", 158)) ;
-      GALGAS_immediatExpression var_rightExpression_4531 ;
-      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4531, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatOr::init_21__21_ (outArgument_outExpression, var_rightExpression_4531, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_4528 ;
+      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4528, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatOr::init_21__21_ (outArgument_outExpression, var_rightExpression_4528, inCompiler COMMA_HERE) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("communs.galgas", 162)) ;
-      GALGAS_immediatExpression var_rightExpression_4689 ;
-      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4689, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatXor::init_21__21_ (outArgument_outExpression, var_rightExpression_4689, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_4686 ;
+      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4686, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatXor::init_21__21_ (outArgument_outExpression, var_rightExpression_4686, inCompiler COMMA_HERE) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -5969,9 +5969,9 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_term_i5_ (GALGAS_imme
   while (repeatFlag_0) {
     if (select_communs_11 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("communs.galgas", 174)) ;
-      GALGAS_immediatExpression var_rightExpression_5016 ;
-      nt_immediate_5F_bitwise_5F_factor_ (var_rightExpression_5016, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatAnd::init_21__21_ (outArgument_outExpression, var_rightExpression_5016, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_5013 ;
+      nt_immediate_5F_bitwise_5F_factor_ (var_rightExpression_5013, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatAnd::init_21__21_ (outArgument_outExpression, var_rightExpression_5013, inCompiler COMMA_HERE) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -6020,39 +6020,39 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_factor_i6_ (GALGAS_im
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3D__3D_ COMMA_SOURCE_FILE ("communs.galgas", 186)) ;
-    GALGAS_immediatExpression var_rightExpression_5323 ;
-    nt_immediate_5F_term_ (var_rightExpression_5323, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5323, inCompiler COMMA_HERE) ;
+    GALGAS_immediatExpression var_rightExpression_5320 ;
+    nt_immediate_5F_term_ (var_rightExpression_5320, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5320, inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__21__3D_ COMMA_SOURCE_FILE ("communs.galgas", 190)) ;
-    GALGAS_immediatExpression var_rightExpression_5459 ;
-    nt_immediate_5F_term_ (var_rightExpression_5459, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatNotEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5459, inCompiler COMMA_HERE) ;
+    GALGAS_immediatExpression var_rightExpression_5456 ;
+    nt_immediate_5F_term_ (var_rightExpression_5456, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatNotEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5456, inCompiler COMMA_HERE) ;
   } break ;
   case 4: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E__3D_ COMMA_SOURCE_FILE ("communs.galgas", 194)) ;
-    GALGAS_immediatExpression var_rightExpression_5598 ;
-    nt_immediate_5F_term_ (var_rightExpression_5598, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatGreaterOrEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5598, inCompiler COMMA_HERE) ;
+    GALGAS_immediatExpression var_rightExpression_5595 ;
+    nt_immediate_5F_term_ (var_rightExpression_5595, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatGreaterOrEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5595, inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C__3D_ COMMA_SOURCE_FILE ("communs.galgas", 198)) ;
-    GALGAS_immediatExpression var_rightExpression_5743 ;
-    nt_immediate_5F_term_ (var_rightExpression_5743, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatLowerOrEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5743, inCompiler COMMA_HERE) ;
+    GALGAS_immediatExpression var_rightExpression_5740 ;
+    nt_immediate_5F_term_ (var_rightExpression_5740, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatLowerOrEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5740, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 202)) ;
-    GALGAS_immediatExpression var_rightExpression_5885 ;
-    nt_immediate_5F_term_ (var_rightExpression_5885, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatGreaterTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5885, inCompiler COMMA_HERE) ;
+    GALGAS_immediatExpression var_rightExpression_5882 ;
+    nt_immediate_5F_term_ (var_rightExpression_5882, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatGreaterTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5882, inCompiler COMMA_HERE) ;
   } break ;
   case 7: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("communs.galgas", 206)) ;
-    GALGAS_immediatExpression var_rightExpression_6022 ;
-    nt_immediate_5F_term_ (var_rightExpression_6022, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatLowerTest::init_21__21_ (outArgument_outExpression, var_rightExpression_6022, inCompiler COMMA_HERE) ;
+    GALGAS_immediatExpression var_rightExpression_6019 ;
+    nt_immediate_5F_term_ (var_rightExpression_6019, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatLowerTest::init_21__21_ (outArgument_outExpression, var_rightExpression_6019, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -6143,27 +6143,27 @@ void cParser_communs::rule_communs_immediate_5F_term_i7_ (GALGAS_immediatExpress
     switch (select_communs_13 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2B_ COMMA_SOURCE_FILE ("communs.galgas", 218)) ;
-      GALGAS_immediatExpression var_rightExpression_6330 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6330, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatAdd::init_21__21_ (outArgument_outExpression, var_rightExpression_6330, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_6327 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6327, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatAdd::init_21__21_ (outArgument_outExpression, var_rightExpression_6327, inCompiler COMMA_HERE) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 222)) ;
-      GALGAS_immediatExpression var_rightExpression_6463 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6463, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatSub::init_21__21_ (outArgument_outExpression, var_rightExpression_6463, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_6460 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6460, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatSub::init_21__21_ (outArgument_outExpression, var_rightExpression_6460, inCompiler COMMA_HERE) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C__3C_ COMMA_SOURCE_FILE ("communs.galgas", 226)) ;
-      GALGAS_immediatExpression var_rightExpression_6597 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6597, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatLeftShift::init_21__21_ (outArgument_outExpression, var_rightExpression_6597, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_6594 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6594, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatLeftShift::init_21__21_ (outArgument_outExpression, var_rightExpression_6594, inCompiler COMMA_HERE) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E__3E_ COMMA_SOURCE_FILE ("communs.galgas", 230)) ;
-      GALGAS_immediatExpression var_rightExpression_6737 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6737, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatRightShift::init_21__21_ (outArgument_outExpression, var_rightExpression_6737, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_6734 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6734, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatRightShift::init_21__21_ (outArgument_outExpression, var_rightExpression_6734, inCompiler COMMA_HERE) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -6244,21 +6244,21 @@ void cParser_communs::rule_communs_immediate_5F_factor_i8_ (GALGAS_immediatExpre
     switch (select_communs_14 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("communs.galgas", 242)) ;
-      GALGAS_immediatExpression var_rightExpression_7050 ;
-      nt_immediate_5F_primary_ (var_rightExpression_7050, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatMul::init_21__21_ (outArgument_outExpression, var_rightExpression_7050, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_7047 ;
+      nt_immediate_5F_primary_ (var_rightExpression_7047, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatMul::init_21__21_ (outArgument_outExpression, var_rightExpression_7047, inCompiler COMMA_HERE) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__25_ COMMA_SOURCE_FILE ("communs.galgas", 246)) ;
-      GALGAS_immediatExpression var_rightExpression_7184 ;
-      nt_immediate_5F_primary_ (var_rightExpression_7184, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatMod::init_21__21_ (outArgument_outExpression, var_rightExpression_7184, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_7181 ;
+      nt_immediate_5F_primary_ (var_rightExpression_7181, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatMod::init_21__21_ (outArgument_outExpression, var_rightExpression_7181, inCompiler COMMA_HERE) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 250)) ;
-      GALGAS_immediatExpression var_rightExpression_7318 ;
-      nt_immediate_5F_primary_ (var_rightExpression_7318, inCompiler) ;
-      outArgument_outExpression = GALGAS_immediatDiv::init_21__21_ (outArgument_outExpression, var_rightExpression_7318, inCompiler COMMA_HERE) ;
+      GALGAS_immediatExpression var_rightExpression_7315 ;
+      nt_immediate_5F_primary_ (var_rightExpression_7315, inCompiler) ;
+      outArgument_outExpression = GALGAS_immediatDiv::init_21__21_ (outArgument_outExpression, var_rightExpression_7315, inCompiler COMMA_HERE) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -6328,48 +6328,48 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
   switch (select_communs_15 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 261)) ;
-    GALGAS_immediatExpression var_expression_7581 ;
-    nt_immediate_5F_primary_ (var_expression_7581, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatNegate::init_21_ (var_expression_7581, inCompiler COMMA_HERE) ;
+    GALGAS_immediatExpression var_expression_7578 ;
+    nt_immediate_5F_primary_ (var_expression_7578, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatNegate::init_21_ (var_expression_7578, inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7E_ COMMA_SOURCE_FILE ("communs.galgas", 265)) ;
-    GALGAS_immediatExpression var_expression_7690 ;
-    nt_immediate_5F_primary_ (var_expression_7690, inCompiler) ;
-    outArgument_outExpression = GALGAS_immediatComplement::init_21_ (var_expression_7690, inCompiler COMMA_HERE) ;
+    GALGAS_immediatExpression var_expression_7687 ;
+    nt_immediate_5F_primary_ (var_expression_7687, inCompiler) ;
+    outArgument_outExpression = GALGAS_immediatComplement::init_21_ (var_expression_7687, inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
-    GALGAS_luint var_constant_7792 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GALGAS_luint var_constant_7789 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 269)) ;
-    outArgument_outExpression = GALGAS_immediatInteger::init_21_ (var_constant_7792, inCompiler COMMA_HERE) ;
+    outArgument_outExpression = GALGAS_immediatInteger::init_21_ (var_constant_7789, inCompiler COMMA_HERE) ;
   } break ;
   case 4: {
-    GALGAS_lchar var_literalCharValue_7892 = inCompiler->synthetizedAttribute_charValue () ;
+    GALGAS_lchar var_literalCharValue_7889 = inCompiler->synthetizedAttribute_charValue () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_char COMMA_SOURCE_FILE ("communs.galgas", 272)) ;
-    outArgument_outExpression = GALGAS_immediatInteger::init_21_ (GALGAS_luint::init_21__21_ (var_literalCharValue_7892.readProperty_char ().getter_uint (SOURCE_FILE ("communs.galgas", 273)), var_literalCharValue_7892.readProperty_location (), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+    outArgument_outExpression = GALGAS_immediatInteger::init_21_ (GALGAS_luint::init_21__21_ (var_literalCharValue_7889.readProperty_char ().getter_uint (SOURCE_FILE ("communs.galgas", 273)), var_literalCharValue_7889.readProperty_location (), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
-    GALGAS_lstring var_registerName_8063 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_registerName_8060 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableUse, "") ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 275)) ;
-    GALGAS_immediatExpression var_offset_8125 ;
-    GALGAS_location var_endOfOffsetExpression_8150 ;
+    GALGAS_immediatExpression var_offset_8122 ;
+    GALGAS_location var_endOfOffsetExpression_8147 ;
     switch (select_communs_16 (inCompiler)) {
     case 1: {
-      var_offset_8125 = GALGAS_immediatInteger::init_21_ (GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 279)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
-      var_endOfOffsetExpression_8150 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 280)) ;
+      var_offset_8122 = GALGAS_immediatInteger::init_21_ (GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 279)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+      var_endOfOffsetExpression_8147 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 280)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 282)) ;
-      nt_immediate_5F_expression_ (var_offset_8125, inCompiler) ;
-      var_endOfOffsetExpression_8150 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 284)) ;
+      nt_immediate_5F_expression_ (var_offset_8122, inCompiler) ;
+      var_endOfOffsetExpression_8147 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 284)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 285)) ;
     } break ;
     default:
       break ;
     }
-    GALGAS_registerExpression var_registerExpression_8393 = GALGAS_registerExpression::init_21__21__21_ (var_registerName_8063, var_offset_8125, var_endOfOffsetExpression_8150, inCompiler COMMA_HERE) ;
-    outArgument_outExpression = GALGAS_immediatRegister::init_21_ (var_registerExpression_8393, inCompiler COMMA_HERE) ;
+    GALGAS_registerExpression var_registerExpression_8390 = GALGAS_registerExpression::init_21__21__21_ (var_registerName_8060, var_offset_8122, var_endOfOffsetExpression_8147, inCompiler COMMA_HERE) ;
+    outArgument_outExpression = GALGAS_immediatRegister::init_21_ (var_registerExpression_8390, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 294)) ;
@@ -6377,18 +6377,18 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 296)) ;
   } break ;
   case 7: {
-    GALGAS_lstring var_registerName_8674 = inCompiler->synthetizedAttribute_tokenString () ;
+    GALGAS_lstring var_registerName_8671 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 298)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 299)) ;
-    GALGAS_immediatSliceExpressionList var_sliceExpressionList_8703 = GALGAS_immediatSliceExpressionList::class_func_emptyList (SOURCE_FILE ("communs.galgas", 300)) ;
+    GALGAS_immediatSliceExpressionList var_sliceExpressionList_8700 = GALGAS_immediatSliceExpressionList::init (inCompiler COMMA_HERE) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      GALGAS_lstring var_sliceName_8801 = inCompiler->synthetizedAttribute_tokenString () ;
+      GALGAS_lstring var_sliceName_8797 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 302)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 303)) ;
-      GALGAS_immediatExpression var_expression_8855 ;
-      nt_immediate_5F_expression_ (var_expression_8855, inCompiler) ;
-      var_sliceExpressionList_8703.addAssign_operation (var_sliceName_8801, var_expression_8855  COMMA_SOURCE_FILE ("communs.galgas", 305)) ;
+      GALGAS_immediatExpression var_expression_8851 ;
+      nt_immediate_5F_expression_ (var_expression_8851, inCompiler) ;
+      var_sliceExpressionList_8700.addAssign_operation (var_sliceName_8797, var_expression_8851  COMMA_SOURCE_FILE ("communs.galgas", 305)) ;
       if (select_communs_17 (inCompiler) == 2) {
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 307)) ;
       }else{
@@ -6396,7 +6396,7 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GALGAS_immediatExpr
       }
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 309)) ;
-    outArgument_outExpression = GALGAS_immediatSlice::init_21__21_ (var_registerName_8674, var_sliceExpressionList_8703, inCompiler COMMA_HERE) ;
+    outArgument_outExpression = GALGAS_immediatSlice::init_21__21_ (var_registerName_8671, var_sliceExpressionList_8700, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -6527,26 +6527,26 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_indexing (Lexique_pic
 void cParser_communs::rule_communs_register_5F_parsing_i10_ (GALGAS_registerExpression & outArgument_outRegisterExpression,
                                                              Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outRegisterExpression.drop () ; // Release 'out' argument
-  GALGAS_lstring var_registerName_9194 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_registerName_9190 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableUse, "") ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 317)) ;
-  GALGAS_immediatExpression var_offset_9254 ;
-  GALGAS_location var_endOfOffsetExpression_9277 ;
+  GALGAS_immediatExpression var_offset_9250 ;
+  GALGAS_location var_endOfOffsetExpression_9273 ;
   switch (select_communs_18 (inCompiler)) {
   case 1: {
-    var_offset_9254 = GALGAS_immediatInteger::init_21_ (GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 321)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
-    var_endOfOffsetExpression_9277 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 322)) ;
+    var_offset_9250 = GALGAS_immediatInteger::init_21_ (GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 321)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+    var_endOfOffsetExpression_9273 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 322)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 324)) ;
-    nt_immediate_5F_expression_ (var_offset_9254, inCompiler) ;
-    var_endOfOffsetExpression_9277 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 326)) ;
+    nt_immediate_5F_expression_ (var_offset_9250, inCompiler) ;
+    var_endOfOffsetExpression_9273 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 326)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 327)) ;
   } break ;
   default:
     break ;
   }
-  outArgument_outRegisterExpression = GALGAS_registerExpression::init_21__21__21_ (var_registerName_9194, var_offset_9254, var_endOfOffsetExpression_9277, inCompiler COMMA_HERE) ;
+  outArgument_outRegisterExpression = GALGAS_registerExpression::init_21__21__21_ (var_registerName_9190, var_offset_9250, var_endOfOffsetExpression_9273, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -6591,23 +6591,23 @@ void cParser_communs::rule_communs_register_5F_parsing_i10_indexing (Lexique_pic
 void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_ (GALGAS_bitNumberExpression & outArgument_outBitNumber,
                                                                   Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
-  GALGAS_lstring var_bitNumberLabel_9759 = inCompiler->synthetizedAttribute_tokenString () ;
+  GALGAS_lstring var_bitNumberLabel_9755 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 339)) ;
-  GALGAS_luint var_bitIndex_9787 ;
+  GALGAS_luint var_bitIndex_9783 ;
   switch (select_communs_19 (inCompiler)) {
   case 1: {
-    var_bitIndex_9787 = GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 342)), inCompiler COMMA_HERE) ;
+    var_bitIndex_9783 = GALGAS_luint::init_21__21_ (GALGAS_uint (uint32_t (0U)), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 342)), inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 344)) ;
-    var_bitIndex_9787 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    var_bitIndex_9783 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 345)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 346)) ;
   } break ;
   default:
     break ;
   }
-  outArgument_outBitNumber = GALGAS_bitNumberLabelValue::init_21__21_ (var_bitNumberLabel_9759, var_bitIndex_9787, inCompiler COMMA_HERE) ;
+  outArgument_outBitNumber = GALGAS_bitNumberLabelValue::init_21__21_ (var_bitNumberLabel_9755, var_bitIndex_9783, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -6650,9 +6650,9 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_indexing (Lexiqu
 void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i12_ (GALGAS_bitNumberExpression & outArgument_outBitNumber,
                                                                   Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
-  GALGAS_luint var_bitIndex_10116 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  GALGAS_luint var_bitIndex_10112 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 354)) ;
-  outArgument_outBitNumber = GALGAS_bitNumberLiteralValue::init_21_ (var_bitIndex_10116, inCompiler COMMA_HERE) ;
+  outArgument_outBitNumber = GALGAS_bitNumberLiteralValue::init_21_ (var_bitIndex_10112, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -6674,11 +6674,11 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i13_ (GALGAS_bitNumb
                                                                   Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 361)) ;
-  GALGAS_immediatExpression var_bitNumberExpression_10340 ;
-  nt_immediate_5F_expression_ (var_bitNumberExpression_10340, inCompiler) ;
-  GALGAS_location var_endOfExpression_10366 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 363)) ;
+  GALGAS_immediatExpression var_bitNumberExpression_10336 ;
+  nt_immediate_5F_expression_ (var_bitNumberExpression_10336, inCompiler) ;
+  GALGAS_location var_endOfExpression_10362 = GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 363)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 364)) ;
-  outArgument_outBitNumber = GALGAS_bitNumberLiteralExpression::init_21__21_ (var_bitNumberExpression_10340, var_endOfExpression_10366, inCompiler COMMA_HERE) ;
+  outArgument_outBitNumber = GALGAS_bitNumberLiteralExpression::init_21__21_ (var_bitNumberExpression_10336, var_endOfExpression_10362, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------

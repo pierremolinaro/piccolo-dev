@@ -324,7 +324,7 @@ proc midrange_compute_JSR_JUMP
     iteration += 1
     ioListFileContents += "Pass " + [iteration string] + ":\n"
   #-------------------------------- First pass: build label map
-    var symbolTable =@midrange_symbolTableForConvertingRelatives §[]
+    var symbolTable =@midrange_symbolTableForConvertingRelatives ()
     var @uint currentAddress = 0
     for (mInstruction) in  ioGeneratedInstructionList do
       [mInstruction defineLabelAtAddress !?symbolTable !?currentAddress]

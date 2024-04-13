@@ -40,16 +40,16 @@ proc pic18_analyze
       case baseline : error inPiccoloModel.mDeviceNameOrBootLoaderReference: "a baseline device is not accepted here" : accessBankSplitOffset
     end
     ramBank = piccoloDeviceModel.mRamBankTable
-    bootloaderReservedRAMmap = @bootloaderReservedRAMmap §[]
+    bootloaderReservedRAMmap = @bootloaderReservedRAMmap ()
     registerTable = piccoloDeviceModel.mRegisterTable
-    bootloaderRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList §[]
-    userRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList §[]
-    bootloaderRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList §[]
-    userRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList §[]
+    bootloaderRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList ()
+    userRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList ()
+    bootloaderRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList ()
+    userRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList ()
     bootloaderReservedROMsize = @luint.init { !0 !@location.here}
   case bootloaderProgram :
-    bootloaderRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList §[]
-    userRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList §[]
+    bootloaderRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList ()
+    userRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList ()
     grammar pic18_grammar label importBootloaderSpecification (
       ?piccoloDeviceModel
       ?piccoloDeviceName
@@ -76,11 +76,11 @@ proc pic18_analyze
       ?userRoutineDeclarationListForUserProgramImplementation
       ?bootloaderReservedROMsize
     ) in inPiccoloModel.mDeviceNameOrBootLoaderReference
-    bootloaderRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList §[]
-    userRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList §[]
+    bootloaderRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList ()
+    userRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList ()
   end
 #-------------------------------- Build macro map
-  var @pic18MacroMap macroMap = §[]
+  var @pic18MacroMap macroMap = ()
   for (mMacroName mConstantNameList mInstructionList) in inPiccoloModel.mMacroDefinitionList do
     [!?macroMap insertKey !mMacroName !mConstantNameList !mInstructionList]
   end
@@ -92,7 +92,7 @@ proc pic18_analyze
     !bootloaderRoutineDeclarationListForBootloaderImplementation
     !userRoutineDeclarationListForUserProgramImplementation
   )
-  var declaredRoutineMap =@declaredRoutineMap §[]
+  var declaredRoutineMap =@declaredRoutineMap ()
   for (mRoutineName mRequiredBank mReturnedBank mPreservesBank mIsNoReturn mInstructionList *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?declaredRoutineMap insertKey
       !mRoutineName
@@ -104,7 +104,7 @@ proc pic18_analyze
     ]
   end
 #-------------------------------- Check used routines
-  var unusedDeclarationUnicity =@stringset §[]
+  var unusedDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' routine is not declared"
@@ -121,7 +121,7 @@ proc pic18_analyze
     end
   end
 #-------------------------------- inline routines
-  var inlinedRoutineSet =@stringset §[]
+  var inlinedRoutineSet =@stringset ()
   for (mValue) in  inPiccoloModel.mInlinedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' routine is not declared"
@@ -183,7 +183,7 @@ proc pic18_analyze
     for (mDefinitionLocation *) in  inPiccoloModel.mConfigDefinitionList do
       error mDefinitionLocation: "configuration is not allowed for a bootloader user program"
     end
-    actualConfigurationMap = @actualConfigurationMap §[]
+    actualConfigurationMap = @actualConfigurationMap ()
   else
     buildConfig (
       !piccoloDeviceModel.mConfigRegisterMap
@@ -200,7 +200,7 @@ proc pic18_analyze
     end
   end
 #-------------------------------- Build constant map
-  var @constantMap constantMap = §[]
+  var @constantMap constantMap = ()
 #--- Add "ROM_SIZE" and "RAM_SIZE" constants
   [!?constantMap insertKey !@lstring.init { !"ROM_SIZE" !@location.here} ![piccoloDeviceModel.mRomSize.uint sint64]]
   [!?constantMap insertKey !@lstring.init { !"RAM_SIZE" !@location.here} ![RAMsize sint64]]
@@ -210,7 +210,7 @@ proc pic18_analyze
     [!?constantMap insertKey !bootloaderSizeString ![bootloaderReservedROMsize.uint sint64]]
   end
 #--- Add declared constants
-  var usedRegisters = @stringset §[]
+  var usedRegisters = @stringset ()
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !piccoloDeviceModel.mRegisterTable !constantMap ?let @sint64 result !?usedRegisters]
     if [piccoloDeviceModel.mRegisterTable hasKey !mConstantName.string] then

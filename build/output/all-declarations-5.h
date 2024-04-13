@@ -107,6 +107,8 @@ class GALGAS_ramBankTable : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_ramBankTable init (Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -212,8 +214,13 @@ class GALGAS_ramBankTable : public AC_GALGAS_map {
                                                                                          const GALGAS_string & inKey
                                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_ramBankTable_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_ramBankTable ;
  
 } ; // End of GALGAS_ramBankTable class
@@ -253,7 +260,10 @@ class cMapElement_ramBankTable : public cMapElement {
   public: GALGAS_uint mProperty_mLastAddressPlusOne ;
   public: GALGAS_uintlist mProperty_mMirrorOffsetList ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_ramBankTable (const GALGAS_ramBankTable_2D_element & inValue
+                                    COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_ramBankTable (const GALGAS_lstring & inKey,
                                     const GALGAS_uint & in_mFirstAddress,
                                     const GALGAS_uint & in_mFirstFreeAddress,
@@ -670,6 +680,8 @@ class GALGAS_configRegisterMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_configRegisterMap init (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -775,8 +787,13 @@ class GALGAS_configRegisterMap : public AC_GALGAS_map {
                                                                                               const GALGAS_string & inKey
                                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_configRegisterMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_configRegisterMap ;
  
 } ; // End of GALGAS_configRegisterMap class

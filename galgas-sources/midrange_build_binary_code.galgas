@@ -296,7 +296,7 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 #---
-  var usedRegisters =@stringset §[]
+  var usedRegisters =@stringset ()
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Get values for PCLATH register
   let PCLATH_register = @registerExpression.init {
@@ -376,7 +376,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   ?let @midrange_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioAddress {
-  var usedRegisters =@stringset §[]
+  var usedRegisters =@stringset ()
 #---
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Get values for PCLATH register
@@ -668,7 +668,7 @@ proc build_midrange_ipic_binary_code
   ?!@string ioListFileContents
   !@uint outUsedROMsize {
 #-------------------------------- First pass: build label map
-  var symbolTable =@midrange_symbolTable §[]
+  var symbolTable =@midrange_symbolTable ()
   var @uint currentAddress = 0
   for (mInstruction) in  inGeneratedInstructionList do
     [mInstruction enterLabelAtAddress !?symbolTable !?currentAddress]

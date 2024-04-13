@@ -9,9 +9,9 @@ before {
    | [option piccolo_options_not_in_cocoa.outputMidrangeDeviceList value] then
   #--- Enumerate devices
     let @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePathes]
-    var pic18_devices =@stringlist §[]
-    var midrange_devices =@stringlist §[]
-    var baseline_devices =@stringlist §[]
+    var pic18_devices =@stringlist ()
+    var midrange_devices =@stringlist ()
+    var baseline_devices =@stringlist ()
   #--- Parse them
     for (mValue) in  allDevices do
       let @string name = [[mValue lastPathComponent] stringByDeletingPathExtension]

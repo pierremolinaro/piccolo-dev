@@ -371,7 +371,7 @@ func pic18_computeUsedRoutines
     outUsedRoutineSet += !mRoutineName.string
   end
 #--- Loop for accumulating used routines
-  var s =@stringset §[]
+  var s =@stringset ()
   loop( [inRoutineDefinitionList count])
   while s != outUsedRoutineSet do
     s = outUsedRoutineSet

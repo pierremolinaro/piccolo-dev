@@ -58,7 +58,7 @@ override method @pic18Instruction_switch analyze
   ?let @routineKind inRoutineKind
   ?!@stringset ioUsedRegisters
 {
-  var caseConstantMap =@caseConstantMap §[]
+  var caseConstantMap =@caseConstantMap ()
 #--- Labels
   let exitLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   ioLocalLabelIndex += 1
@@ -136,7 +136,7 @@ override method @pic18Instruction_switch analyze
       finalBankSettingDefined = true
       finalBankSetting = branchFinalBank
     end
-    ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+    ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
     ioBlockLabel = conditionFalseLabel
   end
 #--- "else" instruction list
@@ -170,7 +170,7 @@ override method @pic18Instruction_switch analyze
       !0
     }
   end
-  ioGeneratedInstructionList = §[]
+  ioGeneratedInstructionList = ()
 #--- Bank setting
   if finalBankSetting != branchFinalBank then
     error self.mElseBranchStartLocation: "the 'else' branch leaves bank setting to "
@@ -263,7 +263,7 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
     !@uint.max
     !0
   }
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
   ioBlockLabel = conditionFalseLabel
 }
 
@@ -350,7 +350,7 @@ override method @pic18IntervalCaseItem analyzeCaseItem
     ioGeneratedBlockList += !@ipic18Block.init {
       !.max # relocatable
       !firstConditionRejectedLabel
-      !§[!secondTestInstruction !.max !0]
+      !§[.init (secondTestInstruction, .max, 0)]
       !@ipic18JumpTerminator.init {!self.mCaseExpressionLocation !intervalRejectedLabel !.relative}
       !.max
       !0
@@ -368,13 +368,13 @@ override method @pic18IntervalCaseItem analyzeCaseItem
     ioGeneratedBlockList += !@ipic18Block.init {
       !.max # relocatable
       !firstConditionAcceptedLabel
-      !§[!secondTestInstruction !.max !0]
+      !§[.init (secondTestInstruction, .max, 0)]
       !t2
       !.max
       !0
     }
   #----------------------
-    ioGeneratedInstructionList = §[]
+    ioGeneratedInstructionList = ()
     ioBlockLabel = intervalRejectedLabel
   #--- Update comparison value
     ioLastComparisonValue = minBound

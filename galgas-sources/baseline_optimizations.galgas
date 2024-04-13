@@ -534,7 +534,7 @@ proc perform_baseline_optimizations
   ioListFileContents += "*" + ["CODE OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
 #-------------------------------- Build label map
-  var symbolTable =@baselineSymbolTableForOptimizations §[]
+  var symbolTable =@baselineSymbolTableForOptimizations ()
   for (mInstruction) in  ioGeneratedInstructionList do(lineIndex)
     [mInstruction defineLabel !?symbolTable !lineIndex]
   end
@@ -572,7 +572,7 @@ proc perform_baseline_optimizations
       end
     end
   #--- Delete non referenced labels
-    var referencedLabels =@stringset §[]
+    var referencedLabels =@stringset ()
     for (mInstruction) in  ioGeneratedInstructionList do
       [mInstruction enterReferencedLabel !?referencedLabels]
     end

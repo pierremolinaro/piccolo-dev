@@ -246,7 +246,7 @@ override method @ipic18JumpTerminator generateTerminatorCode
   ?let @string inNextBlockLabel
   !@codeList outCode {
   if self.mLabel.string == inNextBlockLabel then
-    outCode = @codeList §[]
+    outCode = @codeList ()
   else
     [inSymbolTable searchKey !self.mLabel ?let @uint targetAddress]
     switch self.mKind

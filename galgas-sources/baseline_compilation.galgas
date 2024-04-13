@@ -112,13 +112,13 @@ proc baseline_analysis
     ?let actualConfigurationMap
   )
 #-------------------------------- Build constant map
-  var @constantMap constantMap = §[]
+  var @constantMap constantMap = ()
   var @registerTable registerTable = piccoloDeviceModel.mRegisterTable
 #--- Add "ROM_SIZE" constant
 #  @lstring romSizeString [new !"ROM_SIZE" !here] ;
 #  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
 #--- Add declared constants
-  var @stringset usedRegisters = §[]
+  var @stringset usedRegisters = ()
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
     if [registerTable hasKey !mConstantName.string] then
@@ -141,7 +141,7 @@ proc baseline_analysis
     ?let @declaredByteMap declaredByteMap
   )
 #-------------------------------- Build routine map
-  var routineMap =@baselineRoutineMap §[]
+  var routineMap =@baselineRoutineMap ()
   for (mRoutineName mPage mIsNoReturn * *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage]
   end
@@ -176,7 +176,7 @@ proc baseline_analysis
     end
   end
 #-------------------------------- Order routines to place "main" routine first
-  var sortedRoutineDefinitionList =@baseline_routineDefinitionList §[]
+  var sortedRoutineDefinitionList =@baseline_routineDefinitionList ()
   for (mRoutineName mPage mIsNoReturn mInstructionList mEndOfRoutineLocation) in  inPiccoloModel.mRoutineDefinitionList do
     if mRoutineName.string == "main" then
       [!?sortedRoutineDefinitionList insertAtIndex 
@@ -197,7 +197,7 @@ proc baseline_analysis
     end
   end
 #-------------------------------- Check and translate routines
-  var intermediateInstructionList =@baseline_intermediate_instructionList §[]
+  var intermediateInstructionList =@baseline_intermediate_instructionList ()
   if @uint. errorCount == 0 then
     var @uint currentPage = 0
     var @uint localLabelIndex = 0
@@ -263,12 +263,12 @@ proc baseline_analysis
   let @stringset usedRoutineSet = baseline_computeUsedRoutines (
     !inPiccoloModel.mRoutineDefinitionList
   )
-  var declaredRoutineMap =@baseline_declaredRoutineMap §[]
+  var declaredRoutineMap =@baseline_declaredRoutineMap ()
   for (mRoutineName * * * *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?declaredRoutineMap insertKey !mRoutineName]
   end
 #-------------------------------- Check used routines
-  var unusedRoutineDeclarationUnicity =@stringset §[]
+  var unusedRoutineDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' routine is not declared"
@@ -285,7 +285,7 @@ proc baseline_analysis
     end
   end
 #----------------------------------------------------------- Check declared bytes are used
-  var unusedDeclarationUnicity =@stringset §[]
+  var unusedDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRegisterList do
     if not [registerTable hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' byte is not declared"
@@ -337,7 +337,7 @@ proc baseline_analysis
     ?let @bitSliceTable statusRegisterBitSliceTable
     !?usedRegisters
   ]
-  var assemblyInstructionList =@baseline_assembly_instructionList §[]
+  var assemblyInstructionList =@baseline_assembly_instructionList ()
   if @uint.errorCount == 0 then
     build_baseline_assembly_code (
       !intermediateInstructionList

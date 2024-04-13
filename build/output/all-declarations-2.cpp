@@ -8,6 +8,377 @@
 #include "all-declarations-2.h"
 
 //--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_intermediate_instruction setCurrentAddress'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_instruction::method_setCurrentAddress (GALGAS_uint & ioArgument_ioCurrentWordAdress,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  const GALGAS_baseline_5F_intermediate_5F_instruction temp_0 = this ;
+  ioArgument_ioCurrentWordAdress = ioArgument_ioCurrentWordAdress.add_operation (callExtensionGetter_length ((const cPtr_baseline_5F_intermediate_5F_instruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 20)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 20)) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_setCurrentAddress (cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                            GALGAS_uint & io_ioCurrentWordAdress,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
+    inObject->method_setCurrentAddress  (io_ioCurrentWordAdress, inCompiler COMMA_THERE) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Extension getter '@baseline_intermediate_instruction isLABEL'
+//
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction::getter_isLABEL (Compiler */* inCompiler */
+                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result_outIsLABEL ; // Returned variable
+  result_outIsLABEL = GALGAS_bool (false) ;
+//---
+  return result_outIsLABEL ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool callExtensionGetter_isLABEL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                         Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) {
+  GALGAS_bool result ;
+  if (nullptr != inObject) {
+    result = inObject->getter_isLABEL (inCompiler COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension getter '@baseline_intermediate_instruction isNULL'
+//
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction::getter_isNULL (Compiler */* inCompiler */
+                                                                         COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result_outIsNULL ; // Returned variable
+  result_outIsNULL = GALGAS_bool (false) ;
+//---
+  return result_outIsNULL ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool callExtensionGetter_isNULL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                        Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) {
+  GALGAS_bool result ;
+  if (nullptr != inObject) {
+    result = inObject->getter_isNULL (inCompiler COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension getter '@baseline_intermediate_instruction isSkippingInstruction'
+//
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction::getter_isSkippingInstruction (Compiler */* inCompiler */
+                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result_outIsSkipping ; // Returned variable
+  result_outIsSkipping = GALGAS_bool (false) ;
+//---
+  return result_outIsSkipping ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) {
+  GALGAS_bool result ;
+  if (nullptr != inObject) {
+    result = inObject->getter_isSkippingInstruction (inCompiler COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension getter '@baseline_intermediate_instruction nextInstructionIsReachable'
+//
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction::getter_nextInstructionIsReachable (Compiler */* inCompiler */
+                                                                                             COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result_outIsReachable ; // Returned variable
+  result_outIsReachable = GALGAS_bool (true) ;
+//---
+  return result_outIsReachable ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_bool result ;
+  if (nullptr != inObject) {
+    result = inObject->getter_nextInstructionIsReachable (inCompiler COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_intermediate_instruction enterReferencedLabel'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_instruction::method_enterReferencedLabel (GALGAS_stringset & /* ioArgument_ioReferencedLabelSet */,
+                                                                                Compiler * /* inCompiler */
+                                                                                COMMA_UNUSED_LOCATION_ARGS) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_enterReferencedLabel (cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                               GALGAS_stringset & io_ioReferencedLabelSet,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) {
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
+    inObject->method_enterReferencedLabel  (io_ioReferencedLabelSet, inCompiler COMMA_THERE) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_intermediate_instruction defineLabel'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_instruction::method_defineLabel (GALGAS_baselineSymbolTableForOptimizations & /* ioArgument_ioRoutineSymbolTable */,
+                                                                       const GALGAS_uint /* constinArgument_inLineIndex */,
+                                                                       Compiler * /* inCompiler */
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_defineLabel (cPtr_baseline_5F_intermediate_5F_instruction * inObject,
+                                      GALGAS_baselineSymbolTableForOptimizations & io_ioRoutineSymbolTable,
+                                      const GALGAS_uint constin_inLineIndex,
+                                      Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) {
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
+    inObject->method_defineLabel  (io_ioRoutineSymbolTable, constin_inLineIndex, inCompiler COMMA_THERE) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimizeTestDecInc (const GALGAS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
+                                                                                            const GALGAS_uint constinArgument_inLineIndex,
+                                                                                            GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
+                                                                                            GALGAS_string & ioArgument_ioListFileContents,
+                                                                                            GALGAS_bool & ioArgument_ioOptimizationsDone,
+                                                                                            Compiler * inCompiler
+                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_uint var_line_19685 ;
+  const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_0 = this ;
+  constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::init_21__21_ (temp_0.readProperty_mTargetLabel (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)), inCompiler COMMA_HERE), var_line_19685, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)) ;
+  GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_19864 ;
+  {
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_19685.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 483)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_19864, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 482)) ;
+  }
+  enumGalgasBool test_1 = kBoolTrue ;
+  if (kBoolTrue == test_1) {
+    GALGAS_baseline_5F_intermediate_5F_GOTO var_goto_19941 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_19864.ptr ())) ;
+    if (nullptr == var_goto_19941.ptr ()) {
+      test_1 = kBoolFalse ;
+    }
+    if (kBoolTrue == test_1) {
+      {
+      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_2 = this ;
+      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_3 = this ;
+      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_4 = this ;
+      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_5 = this ;
+      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_6 = this ;
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_goto_19941.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
+      }
+      ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 503)) ;
+      enumGalgasBool test_7 = kBoolTrue ;
+      if (kBoolTrue == test_7) {
+        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_8 = this ;
+        test_7 = temp_8.readProperty_mIncrement ().boolEnum () ;
+        if (kBoolTrue == test_7) {
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 505)) ;
+        }
+      }
+      if (kBoolFalse == test_7) {
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 507)) ;
+      }
+      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_9 = this ;
+      ioArgument_ioListFileContents.plusAssign_operation(temp_9.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 509)) ;
+      enumGalgasBool test_10 = kBoolTrue ;
+      if (kBoolTrue == test_10) {
+        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_11 = this ;
+        test_10 = temp_11.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
+        if (kBoolTrue == test_10) {
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 511)) ;
+        }
+      }
+      enumGalgasBool test_12 = kBoolTrue ;
+      if (kBoolTrue == test_12) {
+        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_13 = this ;
+        test_12 = temp_13.readProperty_mBranchIfZero ().boolEnum () ;
+        if (kBoolTrue == test_12) {
+          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 514)) ;
+        }
+      }
+      if (kBoolFalse == test_12) {
+        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 516)) ;
+      }
+      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": branching to GOTO replaced by second GOTO label\n"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 518)) ;
+    }
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeTestDecInc (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inObject,
+                                             const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                             const GALGAS_uint constin_inLineIndex,
+                                             GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                             GALGAS_string & io_ioListFileContents,
+                                             GALGAS_bool & io_ioOptimizationsDone,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) {
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
+    inObject->method_optimizeTestDecInc  (constin_inSymbolTable, constin_inLineIndex, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioOptimizationsDone, inCompiler COMMA_THERE) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+// @baseline_5F_assembly_5F_instruction reference class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_instruction::cPtr_baseline_5F_assembly_5F_instruction (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+
+
+
+ComparisonResult GALGAS_baseline_5F_assembly_5F_instruction::objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction::GALGAS_baseline_5F_assembly_5F_instruction (void) :
+AC_GALGAS_reference_class () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction::GALGAS_baseline_5F_assembly_5F_instruction (const cPtr_baseline_5F_assembly_5F_instruction * inSourcePtr) :
+AC_GALGAS_reference_class (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_instruction) ;
+}
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @baseline_assembly_instruction class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_instruction::cPtr_baseline_5F_assembly_5F_instruction (LOCATION_ARGS) :
+acStrongPtr_class (THERE) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @baseline_assembly_instruction generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction ("baseline_assembly_instruction",
+                                                                                           nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instruction GALGAS_baseline_5F_assembly_5F_instruction::extractObject (const GALGAS_object & inObject,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_assembly_5F_instruction result ;
+  const GALGAS_baseline_5F_assembly_5F_instruction * p = (const GALGAS_baseline_5F_assembly_5F_instruction *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_instruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
 
 ComparisonResult GALGAS_baseline_5F_assembly_5F_instruction_2D_weak::objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction_2D_weak & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -206,6 +577,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_baseline_5F_assembly_5F_instructionList GALGAS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_baseline_5F_assembly_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_assembly_5F_instructionList GALGAS_baseline_5F_assembly_5F_instructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_baseline_5F_assembly_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_assembly_5F_instructionList::enterElement (const GALGAS_baseline_5F_assembly_5F_instructionList_2D_element & inValue,
+                                                                   Compiler * /* inCompiler */
+                                                                   COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4578,6 +4968,14 @@ void callExtensionMethod_generateAssemblyCode (cPtr_baseline_5F_intermediate_5F_
 }
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_baseline_5F_symbolTable::cMapElement_baseline_5F_symbolTable (const GALGAS_baseline_5F_symbolTable_2D_element & inValue
+                                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mRoutineAddress (inValue.mProperty_mRoutineAddress) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_baseline_5F_symbolTable::cMapElement_baseline_5F_symbolTable (const GALGAS_lstring & inKey,
                                                                           const GALGAS_uint & in_mRoutineAddress
                                                                           COMMA_LOCATION_ARGS) :
@@ -4640,6 +5038,14 @@ GALGAS_baseline_5F_symbolTable & GALGAS_baseline_5F_symbolTable::operator = (con
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_symbolTable result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_baseline_5F_symbolTable result ;
   result.makeNewEmptyMap (THERE) ;
@@ -4662,6 +5068,21 @@ GALGAS_baseline_5F_symbolTable GALGAS_baseline_5F_symbolTable::getter_overridden
   GALGAS_baseline_5F_symbolTable result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_symbolTable::enterElement (const GALGAS_baseline_5F_symbolTable_2D_element & inValue,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
+  cMapElement_baseline_5F_symbolTable * p = nullptr ;
+  macroMyNew (p, cMapElement_baseline_5F_symbolTable (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@baseline_5F_symbolTable insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5228,6 +5649,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_midrange_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_instructionList GALGAS_midrange_5F_instructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_midrange_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_midrange_5F_instructionList::enterElement (const GALGAS_midrange_5F_instructionList_2D_element & inValue,
+                                                       Compiler * /* inCompiler */
+                                                       COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_midrange_5F_instructionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13072,6 +13512,25 @@ GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::class_func_emptyList (U
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_midrange_5F_partList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_midrange_5F_partList::enterElement (const GALGAS_midrange_5F_partList_2D_element & inValue,
+                                                Compiler * /* inCompiler */
+                                                COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_midrange_5F_partList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_midrange_5F_partList GALGAS_midrange_5F_partList::class_func_listWithValue (const GALGAS_midrange_5F_conditionExpression & inOperand0,
                                                                                    const GALGAS_midrange_5F_instructionList & inOperand1,
                                                                                    const GALGAS_location & inOperand2
@@ -14006,6 +14465,25 @@ GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitio
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_midrange_5F_interruptDefinitionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_midrange_5F_interruptDefinitionList::enterElement (const GALGAS_midrange_5F_interruptDefinitionList_2D_element & inValue,
+                                                               Compiler * /* inCompiler */
+                                                               COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_midrange_5F_interruptDefinitionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_midrange_5F_interruptDefinitionList GALGAS_midrange_5F_interruptDefinitionList::class_func_listWithValue (const GALGAS_location & inOperand0,
                                                                                                                  const GALGAS_midrange_5F_instructionList & inOperand1,
                                                                                                                  const GALGAS_lstring & inOperand2,
@@ -14692,6 +15170,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_midrange_5F_routineDefinitionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_midrange_5F_routineDefinitionList GALGAS_midrange_5F_routineDefinitionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_midrange_5F_routineDefinitionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_midrange_5F_routineDefinitionList::enterElement (const GALGAS_midrange_5F_routineDefinitionList_2D_element & inValue,
+                                                             Compiler * /* inCompiler */
+                                                             COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_midrange_5F_routineDefinitionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------

@@ -556,7 +556,7 @@ override method @pic18Instruction_FOREVER analyze
     !0
   }
 #--- Analyze instruction list
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
   ioBlockLabel = loopLabel
   analyzeInstructionList (
     !self.mInstructionList
@@ -1418,7 +1418,7 @@ override method @pic18Instruction_JUMP analyze
     !@uint.max
     !0
   }
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #--- No following code
   ioBlockLabel = ["" nowhere]
 }
@@ -1495,7 +1495,7 @@ override method @pic18Instruction_computed_rcall analyze
     error self.mInstructionLocation:"the routine name list length (" + [[self.mTargetLabels count] string] + ") should be equal to the computed range (" + [size string] + ")"
   end
 #---
-  var targetInstructionList =@ipic18SequentialInstructionList §[]
+  var targetInstructionList =@ipic18SequentialInstructionList ()
   for (mValue) in  self.mTargetLabels do
     targetInstructionList += !@ipic18_intermediate_JSR.init {!mValue.location !mValue !@jumpInstructionKind. relative} !@uint.max !0
   end
@@ -1572,7 +1572,7 @@ override method @pic18Instruction_computed_goto analyze
     !@uint.max
     !0
     }
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #--- No following code
   ioBlockLabel = ["" nowhere]
 }
@@ -1663,7 +1663,7 @@ override method @pic18Instruction_computed_bra analyze
     !@uint.max
     !0
     }
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #--- No following code
   ioBlockLabel = ["" nowhere]
 }
@@ -1703,7 +1703,7 @@ override method @pic18Instruction_computed_retlw analyze
     error self.mInstructionLocation:"the constant list length (" + [[self.mImmediateExpressionList count] string] + ") should be equal to the computed range (" + [size string] + ")"
   end
 #--- 
-  var literalValues =@uintlist §[]
+  var literalValues =@uintlist ()
   for (mExpression *) in  self.mImmediateExpressionList do(idx)
     [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 v !?ioUsedRegisters]
     if (v > 255) | (v < -128) then
@@ -1723,7 +1723,7 @@ override method @pic18Instruction_computed_retlw analyze
     !@uint.max
     !0
     }
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #--- No following code
   ioBlockLabel = ["" nowhere]
 }
@@ -1785,7 +1785,7 @@ override method @pic18Instruction_JUMPCC analyze
     !@uint.max
     !0
     }
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #--- Set label for following block
   ioBlockLabel = label0
 }
@@ -2037,7 +2037,7 @@ override method @pic18Instruction_structured_if analyze
     !@uint.max
     !0
   }
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #--- Analyze 'then' instruction list
   ioBlockLabel = conditionTrueLabel
   analyzeInstructionList (
@@ -2069,7 +2069,7 @@ override method @pic18Instruction_structured_if analyze
       !0
     }
   end
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #--- Build block
   ioBlockLabel = conditionFalseLabel
   analyzeInstructionList (
@@ -2101,7 +2101,7 @@ override method @pic18Instruction_structured_if analyze
       !0
     }
   end
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #---
   if elseBranchFinalBank == thenBranchFinalBank then
     ioCurrentBank = elseBranchFinalBank
@@ -2197,7 +2197,7 @@ override method @pic18Instruction_do_while analyze
     !@uint.max
     !0
   }
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #--- Repeated instruction list
   ioBlockLabel = startLabel
   var @uint repeatedBranchFinalBank = ioCurrentBank
@@ -2254,7 +2254,7 @@ override method @pic18Instruction_do_while analyze
       !@uint.max
       !0
     }
-    ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+    ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
     ioBlockLabel = conditionTrueLabel
     var @uint branchFinalBank = ioCurrentBank
     analyzeInstructionList (
@@ -2289,7 +2289,7 @@ override method @pic18Instruction_do_while analyze
       !@uint.max
       !0
     }
-    ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+    ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
     ioBlockLabel = conditionFalseLabel
   end
 }
@@ -2507,7 +2507,7 @@ override method @testTerminationForBlockInstruction generateBlock
   ioGeneratedBlockList += !@ipic18Block.init {
     !@uint. max # relocatable
     !conditionTrueLabel
-    !@ipic18SequentialInstructionList §[]
+    !@ipic18SequentialInstructionList ()
     !trueTerminator
     !@uint.max
     !0
@@ -2527,7 +2527,7 @@ override method @testTerminationForBlockInstruction generateBlock
   ioGeneratedBlockList += !@ipic18Block.init {
     !@uint. max # relocatable
     !conditionFalseLabel
-    !@ipic18SequentialInstructionList §[]
+    !@ipic18SequentialInstructionList ()
     !falseTerminator
     !@uint.max
     !0
@@ -2568,19 +2568,19 @@ override method @pic18Instruction_block analyze
     !@uint.max
     !0
     }
-  ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+  ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 #--- Compute block map
-  var blockMap =@blockInstructionBlockMap §[]
+  var blockMap =@blockInstructionBlockMap ()
   for (mBlockName mInstructionList mBlockTerminaisonForBlockInstruction mEndOfBlock) in  self.mBlockList do
     [!?blockMap insertKey !mBlockName !mInstructionList !mBlockTerminaisonForBlockInstruction !mEndOfBlock]
   end
 #--- Check start block is declared
   [blockMap searchKey !self.mStartBlockName ?* ?* ?*]
-  var blockInitialBankSelectionMap =@blockInitialBankSelectionMap §[]
+  var blockInitialBankSelectionMap =@blockInitialBankSelectionMap ()
   [!?blockInitialBankSelectionMap insertKey !self.mStartBlockName !ioCurrentBank !""]
 #--- Compute block accessiblity
   var accessibleBlockSet =@stringset.setWithString{ !self.mStartBlockName.string}
-  var handledBlockSet =@stringset §[]
+  var handledBlockSet =@stringset ()
   var @bool continueAccessibilityExploration = true
   var @bool continuesInSequence = false
   loop( [self.mBlockList count] + 1) while continueAccessibilityExploration do
@@ -2636,7 +2636,7 @@ override method @pic18Instruction_block analyze
         !@uint.max
         !0
       }
-      ioGeneratedInstructionList = @ipic18SequentialInstructionList §[]
+      ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
     #---
       [blockTermination addVisitedBlocks !?accessibleBlockSet !blockMap !currentBlockName !currentBank !?blockInitialBankSelectionMap !?continuesInSequence !?continueAccessibilityExploration]
     end
@@ -2960,7 +2960,7 @@ override method @pic18AndCondition analyzeCondition
   ioGeneratedBlockList += !@ipic18Block.init {
     !@uint. max # relocatable
     !conditionTrueLabel
-    !@ipic18SequentialInstructionList §[]
+    !@ipic18SequentialInstructionList ()
     !secondTestBlockTerminator
     !@uint.max
     !0
@@ -3030,14 +3030,14 @@ proc pic18_analyze_data_sections
   ?!@constantMap ioConstantMap
   ?!@stringset ioUsedRegisters
 {
-  outDataMap = §[]
+  outDataMap = ()
   for (name valueList isData8) in  inDataDefinitionList
   before
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     ioListFileContents += "*" + ["DATA DECLARATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   do
-    var @uintlist data = §[]
+    var @uintlist data = ()
     if isData8 then
       if ([valueList count] & 1) != 0 then
         error name : "the data8 byte count should be even"
@@ -3110,7 +3110,7 @@ proc build_ipic18_block_representation_list
   var constantMap = inConstantMap
   var usedRegisters = inUsedRegisters
 #-------------------------------- Build routine map
-  var routineMap =@routineMap §[]
+  var routineMap =@routineMap ()
   for (mRoutineName mRequiredBank mReturnedBank mPreservesBank mIsNoReturn) in  inUserRoutineDeclarationListForBootloaderImplementation do
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mRequiredBank.uint !mReturnedBank.uint !mPreservesBank]
   end
@@ -3127,7 +3127,7 @@ proc build_ipic18_block_representation_list
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mRequiredBank.uint !mReturnedBank.uint !mPreservesBank]
   end
 #-------------------------------- Build constant map
-#  var constantMap = @constantMap §[]
+#  var constantMap = @constantMap ()
 ##--- Add "ROM_SIZE" and "RAM_SIZE" constants
 #  [!?constantMap insertKey !@lstring. new { !"ROM_SIZE" !@location.here} !inROMSize]
 #  [!?constantMap insertKey !@lstring. new { !"RAM_SIZE" !@location.here} !inRAMSize]
@@ -3137,7 +3137,7 @@ proc build_ipic18_block_representation_list
 #    [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint64]]
 #  end
 ##--- Add declared constants
-#  var usedRegisters = @stringset §[]
+#  var usedRegisters = @stringset ()
 #  for () in  inConstantDefinitionList do
 #    [mExpression eval !inRegisterTable !constantMap ?let @sint64 result !?usedRegisters]
 #    if [inRegisterTable hasKey ![mConstantName string]] then
@@ -3176,13 +3176,13 @@ proc build_ipic18_block_representation_list
     end
   end
 #-------------------------------- Generate bootloader entry points for user program
-  var generatedBlockList =@ipic18BlockList §[]
+  var generatedBlockList =@ipic18BlockList ()
   var @uint entryPoint = 0x04
   for (mRoutineName * * * *) in  inBootloaderRoutineDeclarationListForUserProgramImplementation do
     generatedBlockList += !@ipic18Block.init {
       !entryPoint
       !mRoutineName
-      !@ipic18SequentialInstructionList §[]
+      !@ipic18SequentialInstructionList ()
       !@ipic18ReturnTerminator.init { !@location. nowhere}
       !@uint.max
       !0
@@ -3200,7 +3200,7 @@ proc build_ipic18_block_representation_list
     generatedBlockList += !@ipic18Block.init {
       !entryPoint
       !["_entry_user_" + [entryPoint xString] nowhere]
-      !@ipic18SequentialInstructionList §[]
+      !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator.init { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
@@ -3212,7 +3212,7 @@ proc build_ipic18_block_representation_list
     generatedBlockList += !@ipic18Block.init {
       !0
       ![".START" nowhere]
-      !@ipic18SequentialInstructionList §[]
+      !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator.init { !@location. nowhere !["main" nowhere] !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
@@ -3225,7 +3225,7 @@ proc build_ipic18_block_representation_list
     generatedBlockList += !@ipic18Block.init {
       !0x04
       !["_entry_bootloader_04" nowhere]
-      !@ipic18SequentialInstructionList §[]
+      !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator.init { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
@@ -3236,7 +3236,7 @@ proc build_ipic18_block_representation_list
     generatedBlockList += !@ipic18Block.init {
       !0x08
       ![".HIGH_INTERRUPT" nowhere]
-      !@ipic18SequentialInstructionList §[]
+      !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator.init { !@location. nowhere !["_high_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
@@ -3251,7 +3251,7 @@ proc build_ipic18_block_representation_list
     generatedBlockList += !@ipic18Block.init {
       !entryPoint
       !["_entry_bootloader_" + [entryPoint xString] nowhere]
-      !@ipic18SequentialInstructionList §[]
+      !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator.init { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
@@ -3263,7 +3263,7 @@ proc build_ipic18_block_representation_list
     generatedBlockList += !@ipic18Block.init {
       !0x18
       ![".LOW_INTERRUPT" nowhere]
-      !@ipic18SequentialInstructionList §[]
+      !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator.init { !@location. nowhere !["_low_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
@@ -3275,7 +3275,7 @@ proc build_ipic18_block_representation_list
     generatedBlockList += !@ipic18Block.init {
       !entryPoint
       !["_entry_bootloader_" + [entryPoint xString] nowhere]
-      !@ipic18SequentialInstructionList §[]
+      !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator.init { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
@@ -3289,7 +3289,7 @@ proc build_ipic18_block_representation_list
     for (mInterruptName mFastReturn mInstructionList mEndOfInterruptLocation) in  inInterruptDefinitionList do
       if mInterruptName.string == "low" then
         var currentBank =@uint.max # No bank
-        var generatedInstructionList =@ipic18SequentialInstructionList §[]
+        var generatedInstructionList =@ipic18SequentialInstructionList ()
         var currentBlockLabel =@lstring.init{ !"_low_interrupt" !mInterruptName.location}
         analyzeInstructionList (
           !mInstructionList
@@ -3329,7 +3329,7 @@ proc build_ipic18_block_representation_list
     for (mInterruptName mFastReturn mInstructionList mEndOfInterruptLocation) in  inInterruptDefinitionList do
       if mInterruptName.string == "high" then
         var currentBank =@uint.max # No bank
-        var generatedInstructionList =@ipic18SequentialInstructionList §[]
+        var generatedInstructionList =@ipic18SequentialInstructionList ()
         var currentBlockLabel =@lstring.init{ !"_high_interrupt" !mInterruptName.location}
         analyzeInstructionList (
           !mInstructionList
@@ -3373,7 +3373,7 @@ proc build_ipic18_block_representation_list
     else
       routineKind = @routineKind. regularRoutine
     end
-    var generatedInstructionList =@ipic18SequentialInstructionList §[]
+    var generatedInstructionList =@ipic18SequentialInstructionList ()
     var @lstring currentBlockLabel = mRoutineName
     analyzeInstructionList (
       !mInstructionList
@@ -3497,7 +3497,7 @@ proc build_ipic18_block_representation_list
   }
   generatedBlockList += !goto4Block
 #--- computed_goto2
-  var goto2InstructionList =@ipic18SequentialInstructionList §[]
+  var goto2InstructionList =@ipic18SequentialInstructionList ()
   goto2InstructionList += !ADDWF_WREG !@uint.max !0
   goto2InstructionList += !@ipic18_intermediate_instruction_FDA.init {
     !@location.here
@@ -3538,13 +3538,13 @@ proc build_ipic18_block_representation_list
       generatedBlockList += !@ipic18Block.init {
         !entryPoint
         !mRoutineName
-        !@ipic18SequentialInstructionList §[]
+        !@ipic18SequentialInstructionList ()
         !@ipic18JumpTerminator.init { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
         !@uint.max
         !0
       }
     else
-      var instructionList =@ipic18SequentialInstructionList §[]
+      var instructionList =@ipic18SequentialInstructionList ()
       if mReturnedBank.uint != @uint. max then
         instructionList += !@ipic18_intermediate_instruction_MOVLB.init { !@location.here !mReturnedBank} !@uint.max !0
       end
@@ -3560,7 +3560,7 @@ proc build_ipic18_block_representation_list
     entryPoint = entryPoint + 4
   end
 #----------------------------------------------------------- Check declared bytes are used
-  var unusedDeclarationUnicity =@stringset §[]
+  var unusedDeclarationUnicity =@stringset ()
   for (mValue) in  inUnusedRegisterList do
     if not [inRegisterTable hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' byte is not declared"
@@ -3606,7 +3606,7 @@ proc build_ipic18_block_representation_list
     )
   end
 #----------------------------------------------------------- Compute durations
-  var @blockDurationMap blockDurationMap = §[]
+  var @blockDurationMap blockDurationMap = ()
   if @uint.errorCount == 0 then
     ipic18DurationComputations (!?generatedBlockList ?blockDurationMap)
   end

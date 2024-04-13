@@ -806,6 +806,25 @@ GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::class
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_pic_31__38_CaseExpressionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_CaseExpressionList::enterElement (const GALGAS_pic_31__38_CaseExpressionList_2D_element & inValue,
+                                                         Compiler * /* inCompiler */
+                                                         COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_pic_31__38_CaseExpressionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_pic_31__38_CaseExpressionList GALGAS_pic_31__38_CaseExpressionList::class_func_listWithValue (const GALGAS_pic_31__38_AbstractCaseItem & inOperand0
                                                                                                      COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_CaseExpressionList result ;
@@ -1222,6 +1241,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_pic_31__38_SwitchInstructionCaseList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_SwitchInstructionCaseList GALGAS_pic_31__38_SwitchInstructionCaseList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_pic_31__38_SwitchInstructionCaseList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_SwitchInstructionCaseList::enterElement (const GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element & inValue,
+                                                                Compiler * /* inCompiler */
+                                                                COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2045,6 +2083,13 @@ GALGAS_pic_31__38_Instruction_5F_switch_2D_weak GALGAS_pic_31__38_Instruction_5F
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_caseConstantMap::cMapElement_caseConstantMap (const GALGAS_caseConstantMap_2D_element & inValue
+                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_caseConstantMap::cMapElement_caseConstantMap (const GALGAS_lstring & inKey
                                                           COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE) {
@@ -2098,6 +2143,14 @@ GALGAS_caseConstantMap & GALGAS_caseConstantMap::operator = (const GALGAS_caseCo
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_caseConstantMap GALGAS_caseConstantMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_caseConstantMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_caseConstantMap GALGAS_caseConstantMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_caseConstantMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -2120,6 +2173,21 @@ GALGAS_caseConstantMap GALGAS_caseConstantMap::getter_overriddenMap (Compiler * 
   GALGAS_caseConstantMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_caseConstantMap::enterElement (const GALGAS_caseConstantMap_2D_element & inValue,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) {
+  cMapElement_caseConstantMap * p = nullptr ;
+  macroMyNew (p, cMapElement_caseConstantMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@caseConstantMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2282,6 +2350,15 @@ void callExtensionMethod_analyzeCaseItem (cPtr_pic_31__38_AbstractCaseItem * inO
 }
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_pic_31__38__5F_dataMap::cMapElement_pic_31__38__5F_dataMap (const GALGAS_pic_31__38__5F_dataMap_2D_element & inValue
+                                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mData (inValue.mProperty_mData),
+mProperty_mIsData_38_ (inValue.mProperty_mIsData_38_) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_pic_31__38__5F_dataMap::cMapElement_pic_31__38__5F_dataMap (const GALGAS_lstring & inKey,
                                                                         const GALGAS_uintlist & in_mData,
                                                                         const GALGAS_bool & in_mIsData_38_
@@ -2353,6 +2430,14 @@ GALGAS_pic_31__38__5F_dataMap & GALGAS_pic_31__38__5F_dataMap::operator = (const
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38__5F_dataMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_pic_31__38__5F_dataMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -2375,6 +2460,21 @@ GALGAS_pic_31__38__5F_dataMap GALGAS_pic_31__38__5F_dataMap::getter_overriddenMa
   GALGAS_pic_31__38__5F_dataMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38__5F_dataMap::enterElement (const GALGAS_pic_31__38__5F_dataMap_2D_element & inValue,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  cMapElement_pic_31__38__5F_dataMap * p = nullptr ;
+  macroMyNew (p, cMapElement_pic_31__38__5F_dataMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@pic_31__38__5F_dataMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2955,6 +3055,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_ipic_31__38_SequentialInstructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38_SequentialInstructionList GALGAS_ipic_31__38_SequentialInstructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_ipic_31__38_SequentialInstructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_ipic_31__38_SequentialInstructionList::enterElement (const GALGAS_ipic_31__38_SequentialInstructionList_2D_element & inValue,
+                                                                 Compiler * /* inCompiler */
+                                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3719,6 +3838,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_ipic_31__38_BlockList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38_BlockList GALGAS_ipic_31__38_BlockList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_ipic_31__38_BlockList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_ipic_31__38_BlockList::enterElement (const GALGAS_ipic_31__38_BlockList_2D_element & inValue,
+                                                 Compiler * /* inCompiler */
+                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_ipic_31__38_BlockList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14496,173 +14634,6 @@ GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2D_weak GALGAS_ipic_31
       result = *p ;
     }else{
       inCompiler->castError ("ipic18_skip_instruction_BitTestSkip-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code (void) :
-mEnum (kNotBuilt) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_CPFSEQ (UNUSED_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  result.mEnum = kEnum_CPFSEQ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_CPFSGT (UNUSED_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  result.mEnum = kEnum_CPFSGT ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_CPFSLT (UNUSED_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  result.mEnum = kEnum_CPFSLT ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_TSTFSZ (UNUSED_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  result.mEnum = kEnum_TSTFSZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_CPFSEQ () const {
-  const bool ok = mEnum == kEnum_CPFSEQ ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_CPFSGT () const {
-  const bool ok = mEnum == kEnum_CPFSGT ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_CPFSLT () const {
-  const bool ok = mEnum == kEnum_CPFSLT ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_TSTFSZ () const {
-  const bool ok = mEnum == kEnum_TSTFSZ ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-static const char * gEnumNameArrayFor_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code [5] = {
-  "(not built)",
-  "CPFSEQ",
-  "CPFSGT",
-  "CPFSLT",
-  "TSTFSZ"
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::getter_isCPFSEQ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CPFSEQ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::getter_isCPFSGT (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CPFSGT == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::getter_isCPFSLT (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CPFSLT == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::getter_isTSTFSZ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_TSTFSZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::description (String & ioString,
-                                                                                             const int32_t /* inIndentation */) const {
-  ioString.appendCString ("<enum @ipic18_compare_register_instruction_base_code: ") ;
-  ioString.appendCString (gEnumNameArrayFor_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code [mEnum]) ;
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::objectCompare (const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @ipic18_compare_register_instruction_base_code generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ("ipic18_compare_register_instruction_base_code",
-                                                                                                                          nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::extractObject (const GALGAS_object & inObject,
-                                                                                                                                                                    Compiler * inCompiler
-                                                                                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code * p = (const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("ipic18_compare_register_instruction_base_code", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

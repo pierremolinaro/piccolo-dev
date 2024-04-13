@@ -319,7 +319,7 @@ proc build_baseline_binary_code
   ?!@string ioListFileContents
   !@uint outUsedROMsize {
 #-------------------------------- First pass: build label map
-  var symbolTable =@baseline_symbolTable §[]
+  var symbolTable =@baseline_symbolTable ()
   var @uint currentWordAddress = 0
   for (mInstruction) in  inAssemblyInstructionList do
     [mInstruction enterLabelAtAddress !?symbolTable !?currentWordAddress]

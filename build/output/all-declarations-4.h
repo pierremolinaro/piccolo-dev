@@ -10,6 +10,314 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+// Phase 1: @pic_31__38_Instruction_5F_JUMPCC reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_Instruction_5F_JUMPCC : public GALGAS_pic_31__38_PiccoloInstruction {
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_Instruction_5F_JUMPCC (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GALGAS_pic_31__38_Instruction_5F_JUMPCC (const class cPtr_pic_31__38_Instruction_5F_JUMPCC * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GALGAS_lstring readProperty_mTargetLabel (void) const ;
+  public: void setProperty_mTargetLabel (const GALGAS_lstring & inValue) ;
+
+  public: class GALGAS_conditional_5F_branch readProperty_mConditionalBranch (void) const ;
+  public: void setProperty_mConditionalBranch (const GALGAS_conditional_5F_branch & inValue) ;
+
+  public: class GALGAS_bool readProperty_mIsBcc (void) const ;
+  public: void setProperty_mIsBcc (const GALGAS_bool & inValue) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GALGAS_pic_31__38_Instruction_5F_JUMPCC init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                               const class GALGAS_lstring & inOperand1,
+                                                                               const class GALGAS_conditional_5F_branch & inOperand2,
+                                                                               const class GALGAS_bool & inOperand3,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_Instruction_5F_JUMPCC extractObject (const GALGAS_object & inObject,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_pic_31__38_Instruction_5F_JUMPCC class_func_new (const class GALGAS_location & inOperand0,
+                                                                               const class GALGAS_lstring & inOperand1,
+                                                                               const class GALGAS_conditional_5F_branch & inOperand2,
+                                                                               const class GALGAS_bool & inOperand3
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_JUMPCC & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_Instruction_5F_JUMPCC class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_JUMPCC ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @pic18Instruction_JUMPCC class
+//
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_pic_31__38_Instruction_5F_JUMPCC : public cPtr_pic_31__38_PiccoloInstruction {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void pic_31__38_Instruction_5F_JUMPCC_init_21__21__21__21_ (const class GALGAS_location & inOperand0,
+                                                                      const class GALGAS_lstring & inOperand1,
+                                                                      const class GALGAS_conditional_5F_branch & inOperand2,
+                                                                      const class GALGAS_bool & inOperand3,
+                                                                      Compiler * inCompiler) ;
+
+
+//--- Extension method addUsedRoutines
+  public: virtual void method_addUsedRoutines (const class GALGAS_pic_31__38_MacroMap arg_inMacroMap,
+           class GALGAS_stringset & arg_ioUsedRoutines,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method analyze
+  public: virtual void method_analyze (const class GALGAS_uint arg_inAccessBankSplitOffset,
+           class GALGAS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
+           const class GALGAS_routineMap arg_inRoutineMap,
+           const class GALGAS_registerTable arg_inRegisterTable,
+           const class GALGAS_pic_31__38__5F_dataMap arg_inDataMap,
+           const class GALGAS_constantMap arg_inConstantMap,
+           const class GALGAS_pic_31__38_MacroMap arg_inMacroMap,
+           class GALGAS_uint & arg_ioLocalLabelIndex,
+           class GALGAS_ipic_31__38_SequentialInstructionList & arg_ioGeneratedInstructionList,
+           class GALGAS_lstring & arg_ioBlockLabel,
+           class GALGAS_string & arg_ioListFileContents,
+           class GALGAS_uint & arg_ioCurrentBank,
+           const class GALGAS_bool arg_inShouldPreserveBSR,
+           const class GALGAS_routineKind arg_inRoutineKind,
+           class GALGAS_stringset & arg_ioUsedRegisters,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GALGAS_lstring mProperty_mTargetLabel ;
+  public: GALGAS_conditional_5F_branch mProperty_mConditionalBranch ;
+  public: GALGAS_bool mProperty_mIsBcc ;
+
+
+//--- Default constructor
+  public: cPtr_pic_31__38_Instruction_5F_JUMPCC (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_pic_31__38_Instruction_5F_JUMPCC (const GALGAS_location & in_mInstructionLocation,
+                                                 const GALGAS_lstring & in_mTargetLabel,
+                                                 const GALGAS_conditional_5F_branch & in_mConditionalBranch,
+                                                 const GALGAS_bool & in_mIsBcc
+                                                 COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+  public: virtual ComparisonResult dynamicObjectCompare (const acPtr_class * inOperandPtr) const override ;
+
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 1: @pic_31__38_Instruction_5F_JUMPCC_2D_weak weak reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak : public GALGAS_pic_31__38_PiccoloInstruction_2D_weak {
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak (const class GALGAS_pic_31__38_Instruction_5F_JUMPCC & inSource) ;
+
+  public: GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak & operator = (const class GALGAS_pic_31__38_Instruction_5F_JUMPCC & inSource) ;
+
+//--------------------------------- Bang operator
+  public: GALGAS_pic_31__38_Instruction_5F_JUMPCC bang_pic_31__38_Instruction_5F_JUMPCC_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak extractObject (const GALGAS_object & inObject,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Optional Methods
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//                                Phase 1: @pic_31__38_InstructionWithNoOperandKind enum                               *
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_pic_31__38_InstructionWithNoOperandKind : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public: GALGAS_pic_31__38_InstructionWithNoOperandKind (void) ;
+
+//--------------------------------- Enumeration
+  public: typedef enum {
+    kNotBuilt,
+    kEnum_CLRWDT,
+    kEnum_DAW,
+    kEnum_NOP,
+    kEnum_POP,
+    kEnum_PUSH,
+    kEnum_RESET,
+    kEnum_SLEEP
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private: enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
+  public: inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_pic_31__38_InstructionWithNoOperandKind extractObject (const GALGAS_object & inObject,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_pic_31__38_InstructionWithNoOperandKind class_func_CLRWDT (LOCATION_ARGS) ;
+
+  public: static class GALGAS_pic_31__38_InstructionWithNoOperandKind class_func_DAW (LOCATION_ARGS) ;
+
+  public: static class GALGAS_pic_31__38_InstructionWithNoOperandKind class_func_NOP (LOCATION_ARGS) ;
+
+  public: static class GALGAS_pic_31__38_InstructionWithNoOperandKind class_func_POP (LOCATION_ARGS) ;
+
+  public: static class GALGAS_pic_31__38_InstructionWithNoOperandKind class_func_PUSH (LOCATION_ARGS) ;
+
+  public: static class GALGAS_pic_31__38_InstructionWithNoOperandKind class_func_RESET (LOCATION_ARGS) ;
+
+  public: static class GALGAS_pic_31__38_InstructionWithNoOperandKind class_func_SLEEP (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_InstructionWithNoOperandKind & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCLRWDT (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isDAW (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isNOP (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPOP (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPUSH (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isRESET (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isSLEEP (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+  public: VIRTUAL_IN_DEBUG bool optional_CLRWDT () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_DAW () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_NOP () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_POP () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_PUSH () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_RESET () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_SLEEP () const ;
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_pic_31__38_InstructionWithNoOperandKind class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_InstructionWithNoOperandKind ;
+
+//--------------------------------------------------------------------------------------------------
+//
 // Phase 1: @pic_31__38_Instruction_5F_withNoOperand reference class
 //
 //--------------------------------------------------------------------------------------------------
@@ -5674,6 +5982,8 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_pic_31__38_DoWhilePartList init (Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5801,8 +6111,13 @@ class GALGAS_pic_31__38_DoWhilePartList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_pic_31__38_DoWhilePartList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_pic_31__38_DoWhilePartList ;
  
 } ; // End of GALGAS_pic_31__38_DoWhilePartList class
@@ -6159,6 +6474,8 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_pic_31__38_InterruptDefinitionList init (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6304,8 +6621,13 @@ class GALGAS_pic_31__38_InterruptDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_pic_31__38_InterruptDefinitionList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_pic_31__38_InterruptDefinitionList ;
  
 } ; // End of GALGAS_pic_31__38_InterruptDefinitionList class
@@ -6473,6 +6795,8 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_pic_31__38_RoutineDefinitionList init (Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6672,8 +6996,13 @@ class GALGAS_pic_31__38_RoutineDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_pic_31__38_RoutineDefinitionList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_pic_31__38_RoutineDefinitionList ;
  
 } ; // End of GALGAS_pic_31__38_RoutineDefinitionList class
@@ -6876,6 +7205,8 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_pic_31__38_MacroDefinitionList init (Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7003,8 +7334,13 @@ class GALGAS_pic_31__38_MacroDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_pic_31__38_MacroDefinitionList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_pic_31__38_MacroDefinitionList ;
  
 } ; // End of GALGAS_pic_31__38_MacroDefinitionList class
@@ -7157,6 +7493,8 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_pic_31__38_MacroMap init (Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7236,8 +7574,13 @@ class GALGAS_pic_31__38_MacroMap : public AC_GALGAS_map {
                                                                                                 const GALGAS_string & inKey
                                                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_pic_31__38_MacroMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_pic_31__38_MacroMap ;
  
 } ; // End of GALGAS_pic_31__38_MacroMap class
@@ -7273,7 +7616,10 @@ class cMapElement_pic_31__38_MacroMap : public cMapElement {
   public: GALGAS_lstringlist mProperty_mConstantNameList ;
   public: GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_pic_31__38_MacroMap (const GALGAS_pic_31__38_MacroMap_2D_element & inValue
+                                           COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_pic_31__38_MacroMap (const GALGAS_lstring & inKey,
                                            const GALGAS_lstringlist & in_mConstantNameList,
                                            const GALGAS_pic_31__38_InstructionList & in_mInstructionList
@@ -7420,6 +7766,8 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_routineDeclarationList init (Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7583,8 +7931,13 @@ class GALGAS_routineDeclarationList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_routineDeclarationList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_routineDeclarationList ;
  
 } ; // End of GALGAS_routineDeclarationList class
@@ -7843,6 +8196,8 @@ class GALGAS_dataList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_dataList init (Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -7970,8 +8325,13 @@ class GALGAS_dataList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_dataList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_dataList ;
  
 } ; // End of GALGAS_dataList class
@@ -8121,6 +8481,8 @@ class GALGAS_checkpicList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_checkpicList init (Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -8230,8 +8592,13 @@ class GALGAS_checkpicList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_checkpicList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_checkpicList ;
  
 } ; // End of GALGAS_checkpicList class
@@ -8986,6 +9353,8 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_pic_31__38_SwitchInstructionCaseList init (Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -9113,8 +9482,13 @@ class GALGAS_pic_31__38_SwitchInstructionCaseList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_pic_31__38_SwitchInstructionCaseList ;
  
 } ; // End of GALGAS_pic_31__38_SwitchInstructionCaseList class
@@ -10280,6 +10654,8 @@ class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_pic_31__38_CaseExpressionList init (Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -10371,8 +10747,13 @@ class GALGAS_pic_31__38_CaseExpressionList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_pic_31__38_CaseExpressionList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_pic_31__38_CaseExpressionList ;
  
 } ; // End of GALGAS_pic_31__38_CaseExpressionList class

@@ -1623,7 +1623,7 @@ proc build_midrange_assembly_instruction_list
   ?!@stringset ioUsedRegisters {
   var @string generationOptimizationMessages = ""
 #-------------------------------- Build routine map
-  var routineMap =@routineMap §[]
+  var routineMap =@routineMap ()
   for (mRoutineName * mRequiredBank mReturnedBank mPreservesBank mIsNoReturn * *) in  inPiccoloModel.mRoutineDefinitionList do
     if (mRequiredBank.uint != @uint. max) & (mRequiredBank.uint > 15) then
       error mRequiredBank:"the required bank value should be lower or equal to 15"
@@ -1634,7 +1634,7 @@ proc build_midrange_assembly_instruction_list
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mRequiredBank.uint !mReturnedBank.uint !mPreservesBank]
   end
 #-------------------------------- Build constant map
-#  var constantMap =@constantMap §[]
+#  var constantMap =@constantMap ()
 ##--- Add "ROM_SIZE" constant
 #  var romSizeString =@lstring.new{ !"ROM_SIZE" !@location.here}
 #  [!?constantMap insertKey !romSizeString ![inROMSize sint64]]
@@ -1810,7 +1810,7 @@ proc handleInterruptRoutine
   !@midrange_intermediate_instructionList outGeneratedInstructionList
   ?!@stringset ioUsedRegisters {
 #-------------------------------- Check and translate interrupt routine
-  outGeneratedInstructionList = @midrange_intermediate_instructionList §[]
+  outGeneratedInstructionList = @midrange_intermediate_instructionList ()
 #--- At zero, generate 'jump main' instruction
   outGeneratedInstructionList += !@midrange_intermediate_JUMP.init {
     !@location.here

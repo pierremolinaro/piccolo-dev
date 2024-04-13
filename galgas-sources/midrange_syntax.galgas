@@ -33,13 +33,13 @@ rule <start_symbol> {
   $identifier$ ?let @lstring programName
   $literal_string$ ?let @lstring deviceName
   $:$
-  var interruptDefinitionList =@midrange_interruptDefinitionList §[]
-  var routineDefinitionList =@midrange_routineDefinitionList §[]
-  var ramDefinitionList =@ramDefinitionList §[]
-  var unusedRegisterList =@lstringlist §[]
-  var unusedRoutineList =@lstringlist §[]
-  var configDefinitionList =@configDefinitionList §[]
-  var constantDefinitionList =@constantDefinitionList §[]
+  var interruptDefinitionList =@midrange_interruptDefinitionList ()
+  var routineDefinitionList =@midrange_routineDefinitionList ()
+  var ramDefinitionList =@ramDefinitionList ()
+  var unusedRegisterList =@lstringlist ()
+  var unusedRoutineList =@lstringlist ()
+  var configDefinitionList =@configDefinitionList ()
+  var constantDefinitionList =@constantDefinitionList ()
   var @bool needsComputedGoto2 = false
   var @bool needsComputedGoto4 = false
   repeat
@@ -165,7 +165,7 @@ rule <midrange_instruction_list>
   ?!@bool ioNeedsComputedGoto4
   ?!@labelMap ioLabelMap
   {
-  outInstructionList = @midrange_instructionList §[]
+  outInstructionList = @midrange_instructionList ()
   repeat
   while
     <midrange_simple_instruction> ?let instruction
@@ -193,7 +193,7 @@ rule <midrange_interrupt_definition>
   $,$
   $identifier$ ?let @lstring secondSaveRegister
   ${$
-  var @labelMap labelMap = §[]
+  var @labelMap labelMap = ()
   <midrange_instruction_list>
     ?let instructionList
     !?ioNeedsComputedGoto2
@@ -275,7 +275,7 @@ rule <midrange_routine_definition>
     end
   end
   ${$
-  var @labelMap labelMap = §[]
+  var @labelMap labelMap = ()
   <midrange_instruction_list>
     ?let instructionList
     !?ioNeedsComputedGoto2
@@ -520,7 +520,7 @@ rule <midrange_structured_instruction>
       !?ioNeedsComputedGoto4
       !?ioLabelMap
     let @location endOfRepeatedInstructionList = @location.here
-    var whilePartList =@midrange_partList §[]
+    var whilePartList =@midrange_partList ()
     repeat
       $while$
       let @lstring whileLabel
@@ -599,7 +599,7 @@ rule <midrange_structured_if_instruction>
     !?ioLabelMap
   var @midrange_instructionList elseInstructionList
   select
-    elseInstructionList = @midrange_instructionList §[]
+    elseInstructionList = @midrange_instructionList ()
   or
     $elsif$
     let @lstring elsifIfLabel
@@ -618,7 +618,7 @@ rule <midrange_structured_if_instruction>
       !?ioNeedsComputedGoto2
       !?ioNeedsComputedGoto4
       !?ioLabelMap
-    elseInstructionList = @midrange_instructionList §[]
+    elseInstructionList = @midrange_instructionList ()
     elseInstructionList += !elsifPartInstruction
   or
     $else$

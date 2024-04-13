@@ -43,8 +43,8 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     ?let actualConfigurationMap
   )
 #-------------------------------- Build constant map
-  var @constantMap constantMap = §[]
-  var @stringset usedRegisters = §[]
+  var @constantMap constantMap = ()
+  var @stringset usedRegisters = ()
   var @registerTable registerTable = piccoloDeviceModel.mRegisterTable
 #--- Add "ROM_SIZE" constant
   let romSizeString = @lstring.init {!"ROM_SIZE" !.here}
@@ -90,12 +90,12 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     !inPiccoloModel.mInterruptDefinitionList
     !inPiccoloModel.mRoutineDefinitionList
   )
-  var declaredRoutineMap =@midrange_declaredRoutineMap §[]
+  var declaredRoutineMap =@midrange_declaredRoutineMap ()
   for (mRoutineName * * * * * * *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?declaredRoutineMap insertKey !mRoutineName]
   end
 #-------------------------------- Check used routines
-  var unusedRoutineDeclarationUnicity =@stringset §[]
+  var unusedRoutineDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' routine is not declared"
@@ -112,7 +112,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     end
   end
 #----------------------------------------------------------- Check declared bytes are used
-  var unusedByteDeclarationUnicity =@stringset §[]
+  var unusedByteDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRegisterList do
     if not [registerTable hasKey !mValue.string] then
       error mValue : "the '" + mValue + "' byte is not declared"
@@ -142,7 +142,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
   #--- Generate hex file
     build_midrange_ipic_binary_code (
       !registerTable
-      !§[]
+      !()
       !piccoloDeviceModel.mBankCount.uint
       !generatedInstructionList
       !piccoloDeviceModel.mRomSize.uint

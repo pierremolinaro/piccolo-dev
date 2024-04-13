@@ -443,6 +443,25 @@ GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermedia
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_midrange_5F_intermediate_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_midrange_5F_intermediate_5F_instructionList::enterElement (const GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element & inValue,
+                                                                       Compiler * /* inCompiler */
+                                                                       COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_midrange_5F_intermediate_5F_instructionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_midrange_5F_intermediate_5F_instructionList GALGAS_midrange_5F_intermediate_5F_instructionList::class_func_listWithValue (const GALGAS_midrange_5F_intermediate_5F_instruction & inOperand0
                                                                                                                                  COMMA_LOCATION_ARGS) {
   GALGAS_midrange_5F_intermediate_5F_instructionList result ;
@@ -7116,6 +7135,14 @@ void callExtensionMethod_optimizeBitTestSkip (cPtr_midrange_5F_intermediate_5F_i
 }
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_midrange_5F_symbolTableForConvertingRelatives::cMapElement_midrange_5F_symbolTableForConvertingRelatives (const GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element & inValue
+                                                                                                                      COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mRoutineAddress (inValue.mProperty_mRoutineAddress) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_midrange_5F_symbolTableForConvertingRelatives::cMapElement_midrange_5F_symbolTableForConvertingRelatives (const GALGAS_lstring & inKey,
                                                                                                                       const GALGAS_uint & in_mRoutineAddress
                                                                                                                       COMMA_LOCATION_ARGS) :
@@ -7178,6 +7205,14 @@ GALGAS_midrange_5F_symbolTableForConvertingRelatives & GALGAS_midrange_5F_symbol
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_midrange_5F_symbolTableForConvertingRelatives GALGAS_midrange_5F_symbolTableForConvertingRelatives::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_midrange_5F_symbolTableForConvertingRelatives result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_midrange_5F_symbolTableForConvertingRelatives GALGAS_midrange_5F_symbolTableForConvertingRelatives::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_midrange_5F_symbolTableForConvertingRelatives result ;
   result.makeNewEmptyMap (THERE) ;
@@ -7200,6 +7235,21 @@ GALGAS_midrange_5F_symbolTableForConvertingRelatives GALGAS_midrange_5F_symbolTa
   GALGAS_midrange_5F_symbolTableForConvertingRelatives result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_midrange_5F_symbolTableForConvertingRelatives::enterElement (const GALGAS_midrange_5F_symbolTableForConvertingRelatives_2D_element & inValue,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) {
+  cMapElement_midrange_5F_symbolTableForConvertingRelatives * p = nullptr ;
+  macroMyNew (p, cMapElement_midrange_5F_symbolTableForConvertingRelatives (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@midrange_5F_symbolTableForConvertingRelatives insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7464,6 +7514,14 @@ void callExtensionMethod_buildAssemblyCode (cPtr_midrange_5F_intermediate_5F_ins
 }
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_midrange_5F_symbolTable::cMapElement_midrange_5F_symbolTable (const GALGAS_midrange_5F_symbolTable_2D_element & inValue
+                                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mRoutineAddress (inValue.mProperty_mRoutineAddress) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_midrange_5F_symbolTable::cMapElement_midrange_5F_symbolTable (const GALGAS_lstring & inKey,
                                                                           const GALGAS_uint & in_mRoutineAddress
                                                                           COMMA_LOCATION_ARGS) :
@@ -7526,6 +7584,14 @@ GALGAS_midrange_5F_symbolTable & GALGAS_midrange_5F_symbolTable::operator = (con
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_midrange_5F_symbolTable GALGAS_midrange_5F_symbolTable::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_midrange_5F_symbolTable result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_midrange_5F_symbolTable GALGAS_midrange_5F_symbolTable::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_midrange_5F_symbolTable result ;
   result.makeNewEmptyMap (THERE) ;
@@ -7548,6 +7614,21 @@ GALGAS_midrange_5F_symbolTable GALGAS_midrange_5F_symbolTable::getter_overridden
   GALGAS_midrange_5F_symbolTable result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_midrange_5F_symbolTable::enterElement (const GALGAS_midrange_5F_symbolTable_2D_element & inValue,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) {
+  cMapElement_midrange_5F_symbolTable * p = nullptr ;
+  macroMyNew (p, cMapElement_midrange_5F_symbolTable (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@midrange_5F_symbolTable insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8007,6 +8088,13 @@ GALGAS_uint extensionGetter_baseCode (const GALGAS_midrange_5F_literal_5F_instru
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_midrange_5F_declaredRoutineMap::cMapElement_midrange_5F_declaredRoutineMap (const GALGAS_midrange_5F_declaredRoutineMap_2D_element & inValue
+                                                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_midrange_5F_declaredRoutineMap::cMapElement_midrange_5F_declaredRoutineMap (const GALGAS_lstring & inKey
                                                                                         COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE) {
@@ -8060,6 +8148,14 @@ GALGAS_midrange_5F_declaredRoutineMap & GALGAS_midrange_5F_declaredRoutineMap::o
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_midrange_5F_declaredRoutineMap GALGAS_midrange_5F_declaredRoutineMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_midrange_5F_declaredRoutineMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_midrange_5F_declaredRoutineMap GALGAS_midrange_5F_declaredRoutineMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_midrange_5F_declaredRoutineMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -8082,6 +8178,21 @@ GALGAS_midrange_5F_declaredRoutineMap GALGAS_midrange_5F_declaredRoutineMap::get
   GALGAS_midrange_5F_declaredRoutineMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_midrange_5F_declaredRoutineMap::enterElement (const GALGAS_midrange_5F_declaredRoutineMap_2D_element & inValue,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cMapElement_midrange_5F_declaredRoutineMap * p = nullptr ;
+  macroMyNew (p, cMapElement_midrange_5F_declaredRoutineMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@midrange_5F_declaredRoutineMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8237,6 +8348,14 @@ GALGAS_midrange_5F_declaredRoutineMap GALGAS_midrange_5F_declaredRoutineMap::ext
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_bootloaderReservedRAMmap::cMapElement_bootloaderReservedRAMmap (const GALGAS_bootloaderReservedRAMmap_2D_element & inValue
+                                                                            COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mReservedSize (inValue.mProperty_mReservedSize) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_bootloaderReservedRAMmap::cMapElement_bootloaderReservedRAMmap (const GALGAS_lstring & inKey,
                                                                             const GALGAS_luint & in_mReservedSize
                                                                             COMMA_LOCATION_ARGS) :
@@ -8299,6 +8418,14 @@ GALGAS_bootloaderReservedRAMmap & GALGAS_bootloaderReservedRAMmap::operator = (c
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_bootloaderReservedRAMmap GALGAS_bootloaderReservedRAMmap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_bootloaderReservedRAMmap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_bootloaderReservedRAMmap GALGAS_bootloaderReservedRAMmap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_bootloaderReservedRAMmap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -8321,6 +8448,21 @@ GALGAS_bootloaderReservedRAMmap GALGAS_bootloaderReservedRAMmap::getter_overridd
   GALGAS_bootloaderReservedRAMmap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_bootloaderReservedRAMmap::enterElement (const GALGAS_bootloaderReservedRAMmap_2D_element & inValue,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) {
+  cMapElement_bootloaderReservedRAMmap * p = nullptr ;
+  macroMyNew (p, cMapElement_bootloaderReservedRAMmap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@bootloaderReservedRAMmap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8844,6 +8986,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_InstructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_pic_31__38_InstructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_InstructionList GALGAS_pic_31__38_InstructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_pic_31__38_InstructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_InstructionList::enterElement (const GALGAS_pic_31__38_InstructionList_2D_element & inValue,
+                                                      Compiler * /* inCompiler */
+                                                      COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_pic_31__38_InstructionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11846,6 +12007,25 @@ GALGAS_pic_31__38_BlockInstructionBlockList GALGAS_pic_31__38_BlockInstructionBl
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_pic_31__38_BlockInstructionBlockList GALGAS_pic_31__38_BlockInstructionBlockList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_pic_31__38_BlockInstructionBlockList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_BlockInstructionBlockList::enterElement (const GALGAS_pic_31__38_BlockInstructionBlockList_2D_element & inValue,
+                                                                Compiler * /* inCompiler */
+                                                                COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_pic_31__38_BlockInstructionBlockList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_pic_31__38_BlockInstructionBlockList GALGAS_pic_31__38_BlockInstructionBlockList::class_func_listWithValue (const GALGAS_lstring & inOperand0,
                                                                                                                    const GALGAS_pic_31__38_InstructionList & inOperand1,
                                                                                                                    const GALGAS_abstractBlockTerminationForBlockInstruction & inOperand2,
@@ -14700,349 +14880,6 @@ GALGAS_pic_31__38_Instruction_5F_JUMP_2D_weak GALGAS_pic_31__38_Instruction_5F_J
       result = *p ;
     }else{
       inCompiler->castError ("pic18Instruction_JUMP-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak::objectCompare (const GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak::GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak (void) :
-GALGAS_pic_31__38_PiccoloInstruction_2D_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak & GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak::operator = (const GALGAS_pic_31__38_Instruction_5F_JUMPCC & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak::GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak (const GALGAS_pic_31__38_Instruction_5F_JUMPCC & inSource) :
-GALGAS_pic_31__38_PiccoloInstruction_2D_weak (inSource) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak::class_func_nil (LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_JUMPCC GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak::bang_pic_31__38_Instruction_5F_JUMPCC_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_Instruction_5F_JUMPCC result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_pic_31__38_Instruction_5F_JUMPCC) ;
-      result = GALGAS_pic_31__38_Instruction_5F_JUMPCC ((cPtr_pic_31__38_Instruction_5F_JUMPCC *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @pic18Instruction_JUMPCC-weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak ("pic18Instruction_JUMPCC-weak",
-                                                                                                & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction_2D_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak::extractObject (const GALGAS_object & inObject,
-                                                                                                                Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak result ;
-  const GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak * p = (const GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_JUMPCC_2D_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18Instruction_JUMPCC-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_InstructionWithNoOperandKind::GALGAS_pic_31__38_InstructionWithNoOperandKind (void) :
-mEnum (kNotBuilt) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_pic_31__38_InstructionWithNoOperandKind::class_func_CLRWDT (UNUSED_LOCATION_ARGS) {
-  GALGAS_pic_31__38_InstructionWithNoOperandKind result ;
-  result.mEnum = kEnum_CLRWDT ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_pic_31__38_InstructionWithNoOperandKind::class_func_DAW (UNUSED_LOCATION_ARGS) {
-  GALGAS_pic_31__38_InstructionWithNoOperandKind result ;
-  result.mEnum = kEnum_DAW ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_pic_31__38_InstructionWithNoOperandKind::class_func_NOP (UNUSED_LOCATION_ARGS) {
-  GALGAS_pic_31__38_InstructionWithNoOperandKind result ;
-  result.mEnum = kEnum_NOP ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_pic_31__38_InstructionWithNoOperandKind::class_func_POP (UNUSED_LOCATION_ARGS) {
-  GALGAS_pic_31__38_InstructionWithNoOperandKind result ;
-  result.mEnum = kEnum_POP ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_pic_31__38_InstructionWithNoOperandKind::class_func_PUSH (UNUSED_LOCATION_ARGS) {
-  GALGAS_pic_31__38_InstructionWithNoOperandKind result ;
-  result.mEnum = kEnum_PUSH ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_pic_31__38_InstructionWithNoOperandKind::class_func_RESET (UNUSED_LOCATION_ARGS) {
-  GALGAS_pic_31__38_InstructionWithNoOperandKind result ;
-  result.mEnum = kEnum_RESET ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_pic_31__38_InstructionWithNoOperandKind::class_func_SLEEP (UNUSED_LOCATION_ARGS) {
-  GALGAS_pic_31__38_InstructionWithNoOperandKind result ;
-  result.mEnum = kEnum_SLEEP ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_pic_31__38_InstructionWithNoOperandKind::optional_CLRWDT () const {
-  const bool ok = mEnum == kEnum_CLRWDT ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_pic_31__38_InstructionWithNoOperandKind::optional_DAW () const {
-  const bool ok = mEnum == kEnum_DAW ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_pic_31__38_InstructionWithNoOperandKind::optional_NOP () const {
-  const bool ok = mEnum == kEnum_NOP ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_pic_31__38_InstructionWithNoOperandKind::optional_POP () const {
-  const bool ok = mEnum == kEnum_POP ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_pic_31__38_InstructionWithNoOperandKind::optional_PUSH () const {
-  const bool ok = mEnum == kEnum_PUSH ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_pic_31__38_InstructionWithNoOperandKind::optional_RESET () const {
-  const bool ok = mEnum == kEnum_RESET ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_pic_31__38_InstructionWithNoOperandKind::optional_SLEEP () const {
-  const bool ok = mEnum == kEnum_SLEEP ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-static const char * gEnumNameArrayFor_pic_31__38_InstructionWithNoOperandKind [8] = {
-  "(not built)",
-  "CLRWDT",
-  "DAW",
-  "NOP",
-  "POP",
-  "PUSH",
-  "RESET",
-  "SLEEP"
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_InstructionWithNoOperandKind::getter_isCLRWDT (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CLRWDT == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_InstructionWithNoOperandKind::getter_isDAW (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_DAW == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_InstructionWithNoOperandKind::getter_isNOP (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_NOP == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_InstructionWithNoOperandKind::getter_isPOP (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_POP == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_InstructionWithNoOperandKind::getter_isPUSH (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_PUSH == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_InstructionWithNoOperandKind::getter_isRESET (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_RESET == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_InstructionWithNoOperandKind::getter_isSLEEP (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_SLEEP == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_pic_31__38_InstructionWithNoOperandKind::description (String & ioString,
-                                                                  const int32_t /* inIndentation */) const {
-  ioString.appendCString ("<enum @pic18InstructionWithNoOperandKind: ") ;
-  ioString.appendCString (gEnumNameArrayFor_pic_31__38_InstructionWithNoOperandKind [mEnum]) ;
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_pic_31__38_InstructionWithNoOperandKind::objectCompare (const GALGAS_pic_31__38_InstructionWithNoOperandKind & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @pic18InstructionWithNoOperandKind generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_InstructionWithNoOperandKind ("pic18InstructionWithNoOperandKind",
-                                                                                               nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_pic_31__38_InstructionWithNoOperandKind::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_InstructionWithNoOperandKind ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_pic_31__38_InstructionWithNoOperandKind::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_InstructionWithNoOperandKind (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_InstructionWithNoOperandKind GALGAS_pic_31__38_InstructionWithNoOperandKind::extractObject (const GALGAS_object & inObject,
-                                                                                                              Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_InstructionWithNoOperandKind result ;
-  const GALGAS_pic_31__38_InstructionWithNoOperandKind * p = (const GALGAS_pic_31__38_InstructionWithNoOperandKind *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_InstructionWithNoOperandKind *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18InstructionWithNoOperandKind", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

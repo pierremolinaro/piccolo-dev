@@ -7,7 +7,7 @@ rule <configuration_definition>
 {
   $configuration$
   let defLocation = @location.here
-  var settingList =@configSettingList §[]
+  var settingList =@configSettingList ()
   ${$
   repeat
   while
@@ -48,7 +48,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
     <immediate_expression> ?sizeExpression
     $]$
   end
-  var bitSliceTable = @bitSliceTable §[]
+  var bitSliceTable = @bitSliceTable ()
   var @string bitDefinitionString
   select
     bitDefinitionString = ""
@@ -128,7 +128,7 @@ rule <ram_definition>
   $ram$
   $identifier$ ?let @lstring bankName
   ${$
-  var declarationInRamList =@declarationInRamList §[]
+  var declarationInRamList =@declarationInRamList ()
   repeat
   while
     <declaration_in_ram> ?let @declarationInRam declaration
@@ -297,7 +297,7 @@ rule <immediate_primary> !@immediatExpression outExpression {
   or
     $identifier$ ?let @lstring registerName
     $($
-    var sliceExpressionList =@immediatSliceExpressionList §[]
+    var sliceExpressionList =@immediatSliceExpressionList ()
     repeat
       $identifier$ ?let @lstring sliceName
       $:$

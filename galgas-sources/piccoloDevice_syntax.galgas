@@ -57,7 +57,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     end
     $;$
   end
-  var ramBankTable =@ramBankTable §[]
+  var ramBankTable =@ramBankTable ()
   repeat
   while
     $ram$
@@ -66,7 +66,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     $integer$ ?let @luint ramStart
     $to$
     $integer$ ?let @luint ramEnd
-    var mirrorOffsetList =@uintlist §[]
+    var mirrorOffsetList =@uintlist ()
     select
     or
       $mirrorat$
@@ -86,13 +86,13 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       !mirrorOffsetList
     ]
   end
-  var registerTable =@registerTable §[]
+  var registerTable =@registerTable ()
   repeat
   while
     $register$
     $identifier$ ?let @lstring registerName
     $at$
-    var registerAddressList =@uintlist §[]
+    var registerAddressList =@uintlist ()
     repeat
       $integer$ ?let @luint registerAddress
       registerAddressList += !registerAddress.uint
@@ -101,7 +101,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     end
     $<$
     var @uint sliceIndex = 8
-    var bitSliceTable =@bitSliceTable §[]
+    var bitSliceTable =@bitSliceTable ()
     var @string bitDefinitionString = " <"
     repeat
       select
@@ -149,7 +149,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable !bitDefinitionString !.publicRegister]
     $;$
   end
-  var configRegisterMap =@configRegisterMap §[]
+  var configRegisterMap =@configRegisterMap ()
   repeat
   while
     $configuration$
@@ -158,7 +158,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     $integer$ ?let @luint configRegisterAddress
     $width$
     $integer$ ?let @luint configRegisterWidth
-    var illegalMaskList =@illegalMaskList §[]
+    var illegalMaskList =@illegalMaskList ()
     repeat
     while
       $illegal$
@@ -170,8 +170,8 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       illegalMaskList += !illegalValue !illegalMask !illegalDescriptionString
     end
     ${$
-    var configRegisterMaskMap =@configRegisterMaskMap §[]
-    var settingNameSet =@stringset §[]
+    var configRegisterMaskMap =@configRegisterMaskMap ()
+    var settingNameSet =@stringset ()
     repeat
     while
       $identifier$ ?let @lstring maskName
@@ -183,7 +183,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       $integer$ ?let @luint maskValue
       $description$
       $string$ ?let @lstring maskDescriptionString
-      var fieldSettingMap =@fieldSettingMap §[]
+      var fieldSettingMap =@fieldSettingMap ()
       repeat
         $setting$
         $integer$ ?let @luint value

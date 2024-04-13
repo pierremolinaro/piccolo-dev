@@ -382,7 +382,7 @@ override method @immediatSlice eval
   ioUsedRegisters += !self.mRegisterName.string
   [inRegisterTable searchKey !self.mRegisterName ?* ?* ? bitSliceTable ?* ?let protection]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:false !protection]
-  var sliceNameSet = @stringset §[]
+  var sliceNameSet = @stringset ()
   for (mSliceName mExpression) in  self.mSliceExpressionList do
     if [sliceNameSet hasKey !mSliceName.string] then
       error mSliceName:"the '" + mSliceName + "' bit field has been already defined"

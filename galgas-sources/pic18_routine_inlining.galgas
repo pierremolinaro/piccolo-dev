@@ -30,7 +30,7 @@ override method @pic18Instruction_block performInlining
   ?let @stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 {
-  var @pic18BlockInstructionBlockList inlinedBlockList = §[]
+  var @pic18BlockInstructionBlockList inlinedBlockList = ()
   for (mBlockName mInstructionList mBlockTerminaisonForBlockInstruction mEndOfBlock) in self.mBlockList do
     performInlineFromInstructionList (
       !mInstructionList
@@ -88,7 +88,7 @@ override method @pic18Instruction_do_while performInlining
     !inCurrentlyInlinedRoutineSet
     ?let @pic18InstructionList repeatedInstructionList
   )
-  var whilePartList =@pic18DoWhilePartList §[]
+  var whilePartList =@pic18DoWhilePartList ()
   for (mCondition mInstructionList mEndOfPartLocation) in  self.mWhilePartList do
     performInlineFromInstructionList (
       !mInstructionList
@@ -210,7 +210,7 @@ proc performInlineFromInstructionList
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?let @stringset inCurrentlyInlinedRoutineSet
   !@pic18InstructionList outInstructionList {
-  outInstructionList = @pic18InstructionList §[]
+  outInstructionList = @pic18InstructionList ()
   for (mInstruction) in  inInstructionList do
     [mInstruction performInlining
       !inInlinedRoutineSet
@@ -230,7 +230,7 @@ proc pic18PerformRoutineInline
   ?!@pic18RoutineDefinitionList ioRoutineDefinitionList
 {
 #--- Interrupt routines
-  var interruptDefinitionList =@pic18InterruptDefinitionList §[]
+  var interruptDefinitionList =@pic18InterruptDefinitionList ()
   for (mInterruptName mFastReturn mInstructionList mEndOfInterruptLocation) in  ioInterruptDefinitionList do
     performInlineFromInstructionList (
       !mInstructionList
@@ -247,7 +247,7 @@ proc pic18PerformRoutineInline
   end
   ioInterruptDefinitionList = interruptDefinitionList
 #--- Regular routines
-  var routineDefinitionList =@pic18RoutineDefinitionList §[]
+  var routineDefinitionList =@pic18RoutineDefinitionList ()
   for (mRoutineName mRequiredBank mReturnedBank mPreservesBank mIsNoReturn mInstructionList mEndOfRoutineLocation) in  ioRoutineDefinitionList do
     performInlineFromInstructionList (
       !mInstructionList

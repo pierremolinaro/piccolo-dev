@@ -10,6 +10,95 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//                  Phase 1: @ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code enum                  *
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public: GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code (void) ;
+
+//--------------------------------- Enumeration
+  public: typedef enum {
+    kNotBuilt,
+    kEnum_CPFSEQ,
+    kEnum_CPFSGT,
+    kEnum_CPFSLT,
+    kEnum_TSTFSZ
+  } enumeration ;
+  
+//--------------------------------- Private data member
+  private: enumeration mEnum ;
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
+  public: inline enumeration enumValue (void) const { return mEnum ; }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code extractObject (const GALGAS_object & inObject,
+                                                                                                          Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSEQ (LOCATION_ARGS) ;
+
+  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSGT (LOCATION_ARGS) ;
+
+  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSLT (LOCATION_ARGS) ;
+
+  public: static class GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_TSTFSZ (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCPFSEQ (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCPFSGT (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isCPFSLT (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isTSTFSZ (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Optional Methods
+  public: VIRTUAL_IN_DEBUG bool optional_CPFSEQ () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_CPFSGT () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_CPFSLT () const ;
+
+  public: VIRTUAL_IN_DEBUG bool optional_TSTFSZ () const ;
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ;
+
+//--------------------------------------------------------------------------------------------------
+//
 // Phase 1: @ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register reference class
 //
 //--------------------------------------------------------------------------------------------------
@@ -532,6 +621,8 @@ class GALGAS_symbolTableForBlockOptimization : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_symbolTableForBlockOptimization init (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -598,8 +689,13 @@ class GALGAS_symbolTableForBlockOptimization : public AC_GALGAS_map {
                                                                                                             const GALGAS_string & inKey
                                                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_symbolTableForBlockOptimization_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_symbolTableForBlockOptimization ;
  
 } ; // End of GALGAS_symbolTableForBlockOptimization class
@@ -633,7 +729,10 @@ class cMapElement_symbolTableForBlockOptimization : public cMapElement {
 //--- Map attributes
   public: GALGAS_uint mProperty_mDefinitionBlockIndex ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_symbolTableForBlockOptimization (const GALGAS_symbolTableForBlockOptimization_2D_element & inValue
+                                                       COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_symbolTableForBlockOptimization (const GALGAS_lstring & inKey,
                                                        const GALGAS_uint & in_mDefinitionBlockIndex
                                                        COMMA_LOCATION_ARGS) ;
@@ -767,6 +866,8 @@ class GALGAS_symbolTableForClusterOrdering : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_symbolTableForClusterOrdering init (Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -833,8 +934,13 @@ class GALGAS_symbolTableForClusterOrdering : public AC_GALGAS_map {
                                                                                                           const GALGAS_string & inKey
                                                                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_symbolTableForClusterOrdering_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_symbolTableForClusterOrdering ;
  
 } ; // End of GALGAS_symbolTableForClusterOrdering class
@@ -868,7 +974,10 @@ class cMapElement_symbolTableForClusterOrdering : public cMapElement {
 //--- Map attributes
   public: GALGAS_uint mProperty_mCluster ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_symbolTableForClusterOrdering (const GALGAS_symbolTableForClusterOrdering_2D_element & inValue
+                                                     COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_symbolTableForClusterOrdering (const GALGAS_lstring & inKey,
                                                      const GALGAS_uint & in_mCluster
                                                      COMMA_LOCATION_ARGS) ;
@@ -1004,6 +1113,8 @@ class GALGAS_branchOverflowMap : public AC_GALGAS_listmap {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_branchOverflowMap init (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1041,7 +1152,6 @@ class GALGAS_branchOverflowMap : public AC_GALGAS_listmap {
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
-
   friend class cEnumerator_branchOverflowMap ;
  
 } ; // End of GALGAS_branchOverflowMap class
@@ -1090,6 +1200,8 @@ class GALGAS_symbolTableForRelativesResolution : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_symbolTableForRelativesResolution init (Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1156,8 +1268,13 @@ class GALGAS_symbolTableForRelativesResolution : public AC_GALGAS_map {
                                                                                                               const GALGAS_string & inKey
                                                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_symbolTableForRelativesResolution_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_symbolTableForRelativesResolution ;
  
 } ; // End of GALGAS_symbolTableForRelativesResolution class
@@ -1191,7 +1308,10 @@ class cMapElement_symbolTableForRelativesResolution : public cMapElement {
 //--- Map attributes
   public: GALGAS_uint mProperty_mLabelAddress ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_symbolTableForRelativesResolution (const GALGAS_symbolTableForRelativesResolution_2D_element & inValue
+                                                         COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_symbolTableForRelativesResolution (const GALGAS_lstring & inKey,
                                                          const GALGAS_uint & in_mLabelAddress
                                                          COMMA_LOCATION_ARGS) ;
@@ -1354,6 +1474,8 @@ class GALGAS_codeList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_codeList init (Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1463,8 +1585,13 @@ class GALGAS_codeList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_codeList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_codeList ;
  
 } ; // End of GALGAS_codeList class
@@ -1604,6 +1731,8 @@ class GALGAS_pic_31__38__5F_dataAddressMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_pic_31__38__5F_dataAddressMap init (Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -1670,8 +1799,13 @@ class GALGAS_pic_31__38__5F_dataAddressMap : public AC_GALGAS_map {
                                                                                                           const GALGAS_string & inKey
                                                                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_pic_31__38__5F_dataAddressMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_pic_31__38__5F_dataAddressMap ;
  
 } ; // End of GALGAS_pic_31__38__5F_dataAddressMap class
@@ -1705,7 +1839,10 @@ class cMapElement_pic_31__38__5F_dataAddressMap : public cMapElement {
 //--- Map attributes
   public: GALGAS_uint mProperty_mDataAddress ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_pic_31__38__5F_dataAddressMap (const GALGAS_pic_31__38__5F_dataAddressMap_2D_element & inValue
+                                                     COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_pic_31__38__5F_dataAddressMap (const GALGAS_lstring & inKey,
                                                      const GALGAS_uint & in_mDataAddress
                                                      COMMA_LOCATION_ARGS) ;
@@ -1958,6 +2095,8 @@ class GALGAS_declaredRoutineMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_declaredRoutineMap init (Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2076,8 +2215,13 @@ class GALGAS_declaredRoutineMap : public AC_GALGAS_map {
                                                                                                const GALGAS_string & inKey
                                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_declaredRoutineMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_declaredRoutineMap ;
  
 } ; // End of GALGAS_declaredRoutineMap class
@@ -2119,7 +2263,10 @@ class cMapElement_declaredRoutineMap : public cMapElement {
   public: GALGAS_bool mProperty_mIsNoReturn ;
   public: GALGAS_pic_31__38_InstructionList mProperty_mInstructionList ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_declaredRoutineMap (const GALGAS_declaredRoutineMap_2D_element & inValue
+                                          COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_declaredRoutineMap (const GALGAS_lstring & inKey,
                                           const GALGAS_luint & in_mRequiredBank,
                                           const GALGAS_luint & in_mReturnedBank,
@@ -2363,6 +2510,8 @@ class GALGAS_blockInstructionBlockMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_blockInstructionBlockMap init (Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2455,8 +2604,13 @@ class GALGAS_blockInstructionBlockMap : public AC_GALGAS_map {
                                                                                                      const GALGAS_string & inKey
                                                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_blockInstructionBlockMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_blockInstructionBlockMap ;
  
 } ; // End of GALGAS_blockInstructionBlockMap class
@@ -2494,7 +2648,10 @@ class cMapElement_blockInstructionBlockMap : public cMapElement {
   public: GALGAS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
   public: GALGAS_location mProperty_mEndOfBlock ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_blockInstructionBlockMap (const GALGAS_blockInstructionBlockMap_2D_element & inValue
+                                                COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_blockInstructionBlockMap (const GALGAS_lstring & inKey,
                                                 const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
                                                 const GALGAS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
@@ -2654,6 +2811,8 @@ class GALGAS_blockInitialBankSelectionMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_blockInitialBankSelectionMap init (Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -2733,8 +2892,13 @@ class GALGAS_blockInitialBankSelectionMap : public AC_GALGAS_map {
                                                                                                          const GALGAS_string & inKey
                                                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_blockInitialBankSelectionMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_blockInitialBankSelectionMap ;
  
 } ; // End of GALGAS_blockInitialBankSelectionMap class
@@ -2770,7 +2934,10 @@ class cMapElement_blockInitialBankSelectionMap : public cMapElement {
   public: GALGAS_uint mProperty_mInitialBankSelection ;
   public: GALGAS_string mProperty_mSourceBlock ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_blockInitialBankSelectionMap (const GALGAS_blockInitialBankSelectionMap_2D_element & inValue
+                                                    COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_blockInitialBankSelectionMap (const GALGAS_lstring & inKey,
                                                     const GALGAS_uint & in_mInitialBankSelection,
                                                     const GALGAS_string & in_mSourceBlock
@@ -3215,6 +3382,8 @@ class GALGAS_blockInvocationGraph : public AC_GALGAS_graph {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_blockInvocationGraph init (Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3361,6 +3530,8 @@ class GALGAS_clusterList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_clusterList init (Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3452,8 +3623,13 @@ class GALGAS_clusterList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_clusterList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_clusterList ;
  
 } ; // End of GALGAS_clusterList class
@@ -3580,6 +3756,8 @@ class GALGAS_neededConversionForClusterOrder : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_neededConversionForClusterOrder init (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3646,8 +3824,13 @@ class GALGAS_neededConversionForClusterOrder : public AC_GALGAS_map {
                                                                                                             const GALGAS_string & inKey
                                                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_neededConversionForClusterOrder_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_neededConversionForClusterOrder ;
  
 } ; // End of GALGAS_neededConversionForClusterOrder class
@@ -3681,7 +3864,10 @@ class cMapElement_neededConversionForClusterOrder : public cMapElement {
 //--- Map attributes
   public: GALGAS_uint mProperty_mConversions ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_neededConversionForClusterOrder (const GALGAS_neededConversionForClusterOrder_2D_element & inValue
+                                                       COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_neededConversionForClusterOrder (const GALGAS_lstring & inKey,
                                                        const GALGAS_uint & in_mConversions
                                                        COMMA_LOCATION_ARGS) ;
@@ -3815,6 +4001,8 @@ class GALGAS_generatedCodeMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_generatedCodeMap init (Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -3894,8 +4082,13 @@ class GALGAS_generatedCodeMap : public AC_GALGAS_map {
                                                                                              const GALGAS_string & inKey
                                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_generatedCodeMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_generatedCodeMap ;
  
 } ; // End of GALGAS_generatedCodeMap class
@@ -3931,7 +4124,10 @@ class cMapElement_generatedCodeMap : public cMapElement {
   public: GALGAS_codeList mProperty_mCode ;
   public: GALGAS_ipic_31__38_SequentialInstruction mProperty_mInstruction ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_generatedCodeMap (const GALGAS_generatedCodeMap_2D_element & inValue
+                                        COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_generatedCodeMap (const GALGAS_lstring & inKey,
                                         const GALGAS_codeList & in_mCode,
                                         const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction
@@ -4098,6 +4294,8 @@ class GALGAS_blockMapForStackComputation : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_blockMapForStackComputation init (Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4164,8 +4362,13 @@ class GALGAS_blockMapForStackComputation : public AC_GALGAS_map {
                                                                                                         const GALGAS_string & inKey
                                                                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_blockMapForStackComputation_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_blockMapForStackComputation ;
  
 } ; // End of GALGAS_blockMapForStackComputation class
@@ -4199,7 +4402,10 @@ class cMapElement_blockMapForStackComputation : public cMapElement {
 //--- Map attributes
   public: GALGAS_ipic_31__38_Block mProperty_mBlock ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_blockMapForStackComputation (const GALGAS_blockMapForStackComputation_2D_element & inValue
+                                                   COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_blockMapForStackComputation (const GALGAS_lstring & inKey,
                                                    const GALGAS_ipic_31__38_Block & in_mBlock
                                                    COMMA_LOCATION_ARGS) ;
@@ -4329,6 +4535,8 @@ class GALGAS_routineCallMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_routineCallMap init (Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4402,8 +4610,13 @@ class GALGAS_routineCallMap : public AC_GALGAS_map {
                                                                                            const GALGAS_string & inKey
                                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_routineCallMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_routineCallMap ;
  
 } ; // End of GALGAS_routineCallMap class
@@ -4439,7 +4652,10 @@ class cMapElement_routineCallMap : public cMapElement {
   public: GALGAS_stringset mProperty_mCalledRoutineSet ;
   public: GALGAS_uint mProperty_mTerminatorStackNeeds ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_routineCallMap (const GALGAS_routineCallMap_2D_element & inValue
+                                      COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_routineCallMap (const GALGAS_lstring & inKey,
                                       const GALGAS_stringset & in_mCalledRoutineSet,
                                       const GALGAS_uint & in_mTerminatorStackNeeds
@@ -4586,6 +4802,8 @@ class GALGAS_routineStackRequirementMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_routineStackRequirementMap init (Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4652,8 +4870,13 @@ class GALGAS_routineStackRequirementMap : public AC_GALGAS_map {
                                                                                                        const GALGAS_string & inKey
                                                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_routineStackRequirementMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_routineStackRequirementMap ;
  
 } ; // End of GALGAS_routineStackRequirementMap class
@@ -4687,7 +4910,10 @@ class cMapElement_routineStackRequirementMap : public cMapElement {
 //--- Map attributes
   public: GALGAS_uint mProperty_mLevels ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_routineStackRequirementMap (const GALGAS_routineStackRequirementMap_2D_element & inValue
+                                                  COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_routineStackRequirementMap (const GALGAS_lstring & inKey,
                                                   const GALGAS_uint & in_mLevels
                                                   COMMA_LOCATION_ARGS) ;
@@ -4845,6 +5071,8 @@ class GALGAS_blockDurationMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_blockDurationMap init (Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -4924,8 +5152,13 @@ class GALGAS_blockDurationMap : public AC_GALGAS_map {
                                                                                              const GALGAS_string & inKey
                                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_blockDurationMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_blockDurationMap ;
  
 } ; // End of GALGAS_blockDurationMap class
@@ -4961,7 +5194,10 @@ class cMapElement_blockDurationMap : public cMapElement {
   public: GALGAS_uint mProperty_mMinDuration ;
   public: GALGAS_uint mProperty_mMaxDuration ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_blockDurationMap (const GALGAS_blockDurationMap_2D_element & inValue
+                                        COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_blockDurationMap (const GALGAS_lstring & inKey,
                                         const GALGAS_uint & in_mMinDuration,
                                         const GALGAS_uint & in_mMaxDuration
@@ -5165,6 +5401,8 @@ class GALGAS_declaredByteMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_declaredByteMap init (Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5218,8 +5456,13 @@ class GALGAS_declaredByteMap : public AC_GALGAS_map {
                                                                                             const GALGAS_string & inKey
                                                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_declaredByteMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_declaredByteMap ;
  
 } ; // End of GALGAS_declaredByteMap class
@@ -5251,7 +5494,10 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_declaredByteMap ;
 class cMapElement_declaredByteMap : public cMapElement {
 //--- Map attributes
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_declaredByteMap (const GALGAS_declaredByteMap_2D_element & inValue
+                                       COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_declaredByteMap (const GALGAS_lstring & inKey
                                        COMMA_LOCATION_ARGS) ;
 
@@ -5785,6 +6031,8 @@ class GALGAS_illegalMaskList : public AC_GALGAS_list {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_illegalMaskList init (Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -5912,8 +6160,13 @@ class GALGAS_illegalMaskList : public AC_GALGAS_list {
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_illegalMaskList_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_illegalMaskList ;
  
 } ; // End of GALGAS_illegalMaskList class
@@ -6066,6 +6319,8 @@ class GALGAS_configRegisterMaskMap : public AC_GALGAS_map {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GALGAS_configRegisterMaskMap init (Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
@@ -6158,8 +6413,13 @@ class GALGAS_configRegisterMaskMap : public AC_GALGAS_map {
                                                                                                   const GALGAS_string & inKey
                                                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Friend
 
+//--- Append element
+  public: VIRTUAL_IN_DEBUG void enterElement (const class GALGAS_configRegisterMaskMap_2D_element & inValue,
+                                              Compiler * /* inCompiler */
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Friend
   friend class cEnumerator_configRegisterMaskMap ;
  
 } ; // End of GALGAS_configRegisterMaskMap class
@@ -6197,7 +6457,10 @@ class cMapElement_configRegisterMaskMap : public cMapElement {
   public: GALGAS_lstring mProperty_mDescription ;
   public: GALGAS_fieldSettingMap mProperty_mFieldSettingMap ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_configRegisterMaskMap (const GALGAS_configRegisterMaskMap_2D_element & inValue
+                                             COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_configRegisterMaskMap (const GALGAS_lstring & inKey,
                                              const GALGAS_luint & in_mMaskValue,
                                              const GALGAS_lstring & in_mDescription,
@@ -6345,7 +6608,10 @@ class cMapElement_configRegisterMap : public cMapElement {
   public: GALGAS_configRegisterMaskMap mProperty_mConfigRegisterMaskMap ;
   public: GALGAS_illegalMaskList mProperty_mIllegalMaskList ;
 
-//--- Constructor
+//--- Constructors
+  public: cMapElement_configRegisterMap (const GALGAS_configRegisterMap_2D_element & inValue
+                                         COMMA_LOCATION_ARGS) ;
+ 
   public: cMapElement_configRegisterMap (const GALGAS_lstring & inKey,
                                          const GALGAS_luint & in_mRegisterAddress,
                                          const GALGAS_luint & in_mRegisterWidth,
@@ -6557,95 +6823,4 @@ class cParser_piccoloDevice_5F_syntax {
 
 
 } ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 1: @branchOverflowMap_2D_element struct
-//
-//--------------------------------------------------------------------------------------------------
-
-class GALGAS_branchOverflowMap_2D_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GALGAS_string mProperty_key ;
-  public: inline GALGAS_string readProperty_key (void) const {
-    return mProperty_key ;
-  }
-
-  public: GALGAS_stringlist mProperty_mList ;
-  public: inline GALGAS_stringlist readProperty_mList (void) const {
-    return mProperty_mList ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GALGAS_branchOverflowMap_2D_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setKey (const GALGAS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_key = inValue ;
-  }
-
-  public: inline void setter_setMList (const GALGAS_stringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mList = inValue ;
-  }
-
-//--------------------------------- Virtual destructor
-  public: virtual ~ GALGAS_branchOverflowMap_2D_element (void) ;
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GALGAS_branchOverflowMap_2D_element (const GALGAS_string & in_key,
-                                               const GALGAS_stringlist & in_mList) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GALGAS_branchOverflowMap_2D_element init_21__21_ (const class GALGAS_string & inOperand0,
-                                                                   const class GALGAS_stringlist & inOperand1,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GALGAS_branchOverflowMap_2D_element extractObject (const GALGAS_object & inObject,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GALGAS_branchOverflowMap_2D_element class_func_new (const class GALGAS_string & inOperand0,
-                                                                           const class GALGAS_stringlist & inOperand1,
-                                                                           class Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GALGAS_branchOverflowMap_2D_element & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Optional Methods
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GALGAS_branchOverflowMap_2D_element class
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMap_2D_element ;
 

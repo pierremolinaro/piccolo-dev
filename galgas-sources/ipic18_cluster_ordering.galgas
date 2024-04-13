@@ -50,7 +50,7 @@ proc perform_cluster_ordering
     end
   #------------------- Optimization loop
     var @clusterList clusterList = inInitialClusterList
-    var neededConversionForClusterOrder =@neededConversionForClusterOrder §[]
+    var neededConversionForClusterOrder =@neededConversionForClusterOrder ()
     var @bool continue = true
     var @uint pass = 0
     loop( [clusterList count] * [clusterList count])
@@ -58,8 +58,8 @@ proc perform_cluster_ordering
       pass += 1
       ioListFileContents += "Pass " + pass + ":\n"
     #--- Build working block list and symbol table
-      var workingBlockList =@ipic18BlockList §[]
-      var symbolTable =@symbolTableForClusterOrdering §[]
+      var workingBlockList =@ipic18BlockList ()
+      var symbolTable =@symbolTableForClusterOrdering ()
       for (mBlockList) in  clusterList do(clusterIndex)
         workingBlockList += mBlockList
         for (mBlock) in  mBlockList do
@@ -175,7 +175,7 @@ proc perform_cluster_ordering
     end
     ioListFileContents += "\n"
   #---------------------------------- Build the new ordered block list
-    var newBlockList =@ipic18BlockList §[]
+    var newBlockList =@ipic18BlockList ()
   #--- First insert absolute blocks from 0
     continue = true
     for (mBlock) in  ioBlockList while continue do

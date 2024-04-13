@@ -17,12 +17,12 @@ rule <start_symbol> {
   $identifier$ ?let @lstring programName
   $literal_string$ ?let @lstring deviceName
   $:$
-  var routineDefinitionList =@baseline_routineDefinitionList §[]
-  var ramDefinitionList =@ramDefinitionList §[]
-  var unusedRegisterList =@lstringlist §[]
-  var unusedRoutineList =@lstringlist §[]
-  var configDefinitionList =@configDefinitionList §[]
-  var constantDefinitionList =@constantDefinitionList §[]
+  var routineDefinitionList =@baseline_routineDefinitionList ()
+  var ramDefinitionList =@ramDefinitionList ()
+  var unusedRegisterList =@lstringlist ()
+  var unusedRoutineList =@lstringlist ()
+  var configDefinitionList =@configDefinitionList ()
+  var constantDefinitionList =@constantDefinitionList ()
   <section_list>
     !?routineDefinitionList
     !?unusedRoutineList

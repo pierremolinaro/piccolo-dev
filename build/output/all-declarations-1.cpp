@@ -9,6 +9,495 @@
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_configFieldMap::cMapElement_configFieldMap (const GALGAS_configFieldMap_2D_element & inValue
+                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mRegisterName (inValue.mProperty_mRegisterName),
+mProperty_mMaskValue (inValue.mProperty_mMaskValue),
+mProperty_mDescription (inValue.mProperty_mDescription),
+mProperty_mFieldSettingMap (inValue.mProperty_mFieldSettingMap) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_configFieldMap::cMapElement_configFieldMap (const GALGAS_lstring & inKey,
+                                                        const GALGAS_lstring & in_mRegisterName,
+                                                        const GALGAS_luint & in_mMaskValue,
+                                                        const GALGAS_lstring & in_mDescription,
+                                                        const GALGAS_fieldSettingMap & in_mFieldSettingMap
+                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mProperty_mRegisterName (in_mRegisterName),
+mProperty_mMaskValue (in_mMaskValue),
+mProperty_mDescription (in_mDescription),
+mProperty_mFieldSettingMap (in_mFieldSettingMap) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool cMapElement_configFieldMap::isValid (void) const {
+  return mProperty_lkey.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement * cMapElement_configFieldMap::copy (void) {
+  cMapElement * result = nullptr ;
+  macroMyNew (result, cMapElement_configFieldMap (mProperty_lkey, mProperty_mRegisterName, mProperty_mMaskValue, mProperty_mDescription, mProperty_mFieldSettingMap COMMA_HERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cMapElement_configFieldMap::description (String & ioString, const int32_t inIndentation) const {
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mRegisterName" ":") ;
+  mProperty_mRegisterName.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mMaskValue" ":") ;
+  mProperty_mMaskValue.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mDescription" ":") ;
+  mProperty_mDescription.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mFieldSettingMap" ":") ;
+  mProperty_mFieldSettingMap.description (ioString, inIndentation) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult cMapElement_configFieldMap::compare (const cCollectionElement * inOperand) const {
+  cMapElement_configFieldMap * operand = (cMapElement_configFieldMap *) inOperand ;
+  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
+  if (ComparisonResult::operandEqual == result) {
+    result = mProperty_mRegisterName.objectCompare (operand->mProperty_mRegisterName) ;
+  }
+  if (ComparisonResult::operandEqual == result) {
+    result = mProperty_mMaskValue.objectCompare (operand->mProperty_mMaskValue) ;
+  }
+  if (ComparisonResult::operandEqual == result) {
+    result = mProperty_mDescription.objectCompare (operand->mProperty_mDescription) ;
+  }
+  if (ComparisonResult::operandEqual == result) {
+    result = mProperty_mFieldSettingMap.objectCompare (operand->mProperty_mFieldSettingMap) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap::GALGAS_configFieldMap (void) :
+AC_GALGAS_map () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap::GALGAS_configFieldMap (const GALGAS_configFieldMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap & GALGAS_configFieldMap::operator = (const GALGAS_configFieldMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_configFieldMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::class_func_emptyMap (LOCATION_ARGS) {
+  GALGAS_configFieldMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::class_func_mapWithMapToOverride (const GALGAS_configFieldMap & inMapToOverride
+                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_configFieldMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::getter_overriddenMap (Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const {
+  GALGAS_configFieldMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::enterElement (const GALGAS_configFieldMap_2D_element & inValue,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) {
+  cMapElement_configFieldMap * p = nullptr ;
+  macroMyNew (p, cMapElement_configFieldMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@configFieldMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::addAssign_operation (const GALGAS_lstring & inKey,
+                                                 const GALGAS_lstring & inArgument0,
+                                                 const GALGAS_luint & inArgument1,
+                                                 const GALGAS_lstring & inArgument2,
+                                                 const GALGAS_fieldSettingMap & inArgument3,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
+  cMapElement_configFieldMap * p = nullptr ;
+  macroMyNew (p, cMapElement_configFieldMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@configFieldMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::add_operation (const GALGAS_configFieldMap & inOperand,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_configFieldMap result = *this ;
+  cEnumerator_configFieldMap enumerator (inOperand, EnumerationOrder::up) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRegisterName (HERE), enumerator.current_mMaskValue (HERE), enumerator.current_mDescription (HERE), enumerator.current_mFieldSettingMap (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_insertKey (GALGAS_lstring inKey,
+                                              GALGAS_lstring inArgument0,
+                                              GALGAS_luint inArgument1,
+                                              GALGAS_lstring inArgument2,
+                                              GALGAS_fieldSettingMap inArgument3,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) {
+  cMapElement_configFieldMap * p = nullptr ;
+  macroMyNew (p, cMapElement_configFieldMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' configuration field is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const char * kSearchErrorMessage_configFieldMap_searchKey = "the '%K' configuration field is not declared" ;
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::method_searchKey (GALGAS_lstring inKey,
+                                              GALGAS_lstring & outArgument0,
+                                              GALGAS_luint & outArgument1,
+                                              GALGAS_lstring & outArgument2,
+                                              GALGAS_fieldSettingMap & outArgument3,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) performSearch (inKey,
+                                                                                             inCompiler,
+                                                                                             kSearchErrorMessage_configFieldMap_searchKey
+                                                                                             COMMA_THERE) ;
+  if (nullptr == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+    outArgument2.drop () ;
+    outArgument3.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    outArgument0 = p->mProperty_mRegisterName ;
+    outArgument1 = p->mProperty_mMaskValue ;
+    outArgument2 = p->mProperty_mDescription ;
+    outArgument3 = p->mProperty_mFieldSettingMap ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring GALGAS_configFieldMap::getter_mRegisterNameForKey (const GALGAS_string & inKey,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) attributes ;
+  GALGAS_lstring result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    result = p->mProperty_mRegisterName ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_luint GALGAS_configFieldMap::getter_mMaskValueForKey (const GALGAS_string & inKey,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) attributes ;
+  GALGAS_luint result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    result = p->mProperty_mMaskValue ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring GALGAS_configFieldMap::getter_mDescriptionForKey (const GALGAS_string & inKey,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) attributes ;
+  GALGAS_lstring result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    result = p->mProperty_mDescription ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_fieldSettingMap GALGAS_configFieldMap::getter_mFieldSettingMapForKey (const GALGAS_string & inKey,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) attributes ;
+  GALGAS_fieldSettingMap result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    result = p->mProperty_mFieldSettingMap ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_setMRegisterNameForKey (GALGAS_lstring inAttributeValue,
+                                                           GALGAS_string inKey,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_configFieldMap * p = (cMapElement_configFieldMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    p->mProperty_mRegisterName = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_setMMaskValueForKey (GALGAS_luint inAttributeValue,
+                                                        GALGAS_string inKey,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_configFieldMap * p = (cMapElement_configFieldMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    p->mProperty_mMaskValue = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_setMDescriptionForKey (GALGAS_lstring inAttributeValue,
+                                                          GALGAS_string inKey,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_configFieldMap * p = (cMapElement_configFieldMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    p->mProperty_mDescription = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_setMFieldSettingMapForKey (GALGAS_fieldSettingMap inAttributeValue,
+                                                              GALGAS_string inKey,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_configFieldMap * p = (cMapElement_configFieldMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    p->mProperty_mFieldSettingMap = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_configFieldMap * GALGAS_configFieldMap::readWriteAccessForWithInstruction (Compiler * inCompiler,
+                                                                                       const GALGAS_string & inKey
+                                                                                       COMMA_LOCATION_ARGS) {
+  cMapElement_configFieldMap * result = (cMapElement_configFieldMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_configFieldMap) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cEnumerator_configFieldMap::cEnumerator_configFieldMap (const GALGAS_configFieldMap & inEnumeratedObject,
+                                                        const EnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap_2D_element cEnumerator_configFieldMap::current (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return GALGAS_configFieldMap_2D_element (p->mProperty_lkey, p->mProperty_mRegisterName, p->mProperty_mMaskValue, p->mProperty_mDescription, p->mProperty_mFieldSettingMap) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring cEnumerator_configFieldMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring cEnumerator_configFieldMap::current_mRegisterName (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return p->mProperty_mRegisterName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_luint cEnumerator_configFieldMap::current_mMaskValue (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return p->mProperty_mMaskValue ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring cEnumerator_configFieldMap::current_mDescription (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return p->mProperty_mDescription ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_fieldSettingMap cEnumerator_configFieldMap::current_mFieldSettingMap (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return p->mProperty_mFieldSettingMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_configFieldMap::optional_searchKey (const GALGAS_string & inKey,
+                                                GALGAS_lstring & outArgument0,
+                                                GALGAS_luint & outArgument1,
+                                                GALGAS_lstring & outArgument2,
+                                                GALGAS_fieldSettingMap & outArgument3) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) searchForKey (inKey) ;
+  const bool result = nullptr != p ;
+  if (result) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    outArgument0 = p->mProperty_mRegisterName ;
+    outArgument1 = p->mProperty_mMaskValue ;
+    outArgument2 = p->mProperty_mDescription ;
+    outArgument3 = p->mProperty_mFieldSettingMap ;
+  }else{
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+    outArgument2.drop () ;
+    outArgument3.drop () ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @configFieldMap generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configFieldMap ("configFieldMap",
+                                                                      nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_configFieldMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_configFieldMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_configFieldMap::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_configFieldMap (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::extractObject (const GALGAS_object & inObject,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_configFieldMap result ;
+  const GALGAS_configFieldMap * p = (const GALGAS_configFieldMap *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_configFieldMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("configFieldMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GALGAS_fieldSettingMap_2D_element & inValue
+                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mValue (inValue.mProperty_mValue),
+mProperty_mMask (inValue.mProperty_mMask) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GALGAS_lstring & inKey,
                                                           const GALGAS_uint & in_mValue,
                                                           const GALGAS_uint & in_mMask
@@ -80,6 +569,14 @@ GALGAS_fieldSettingMap & GALGAS_fieldSettingMap::operator = (const GALGAS_fieldS
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_fieldSettingMap GALGAS_fieldSettingMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_fieldSettingMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_fieldSettingMap GALGAS_fieldSettingMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_fieldSettingMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -102,6 +599,21 @@ GALGAS_fieldSettingMap GALGAS_fieldSettingMap::getter_overriddenMap (Compiler * 
   GALGAS_fieldSettingMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_fieldSettingMap::enterElement (const GALGAS_fieldSettingMap_2D_element & inValue,
+                                           Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) {
+  cMapElement_fieldSettingMap * p = nullptr ;
+  macroMyNew (p, cMapElement_fieldSettingMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@fieldSettingMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1931,6 +2443,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_baseline_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_instructionList GALGAS_baseline_5F_instructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_baseline_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_instructionList::enterElement (const GALGAS_baseline_5F_instructionList_2D_element & inValue,
+                                                       Compiler * /* inCompiler */
+                                                       COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_baseline_5F_instructionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6596,6 +7127,25 @@ GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::class_func_emptyList (U
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_baseline_5F_partList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_partList::enterElement (const GALGAS_baseline_5F_partList_2D_element & inValue,
+                                                Compiler * /* inCompiler */
+                                                COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_baseline_5F_partList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baseline_5F_partList GALGAS_baseline_5F_partList::class_func_listWithValue (const GALGAS_baseline_5F_conditionExpression & inOperand0,
                                                                                    const GALGAS_baseline_5F_instructionList & inOperand1,
                                                                                    const GALGAS_location & inOperand2
@@ -7530,6 +8080,25 @@ GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionLis
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_baseline_5F_routineDefinitionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_routineDefinitionList::enterElement (const GALGAS_baseline_5F_routineDefinitionList_2D_element & inValue,
+                                                             Compiler * /* inCompiler */
+                                                             COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_baseline_5F_routineDefinitionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baseline_5F_routineDefinitionList GALGAS_baseline_5F_routineDefinitionList::class_func_listWithValue (const GALGAS_lstring & inOperand0,
                                                                                                              const GALGAS_luint & inOperand1,
                                                                                                              const GALGAS_bool & inOperand2,
@@ -8104,6 +8673,13 @@ void callExtensionMethod_addUsedRoutines (cPtr_baseline_5F_instruction * inObjec
 }
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_baseline_5F_declaredRoutineMap::cMapElement_baseline_5F_declaredRoutineMap (const GALGAS_baseline_5F_declaredRoutineMap_2D_element & inValue
+                                                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_baseline_5F_declaredRoutineMap::cMapElement_baseline_5F_declaredRoutineMap (const GALGAS_lstring & inKey
                                                                                         COMMA_LOCATION_ARGS) :
 cMapElement (inKey COMMA_THERE) {
@@ -8157,6 +8733,14 @@ GALGAS_baseline_5F_declaredRoutineMap & GALGAS_baseline_5F_declaredRoutineMap::o
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_baseline_5F_declaredRoutineMap GALGAS_baseline_5F_declaredRoutineMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_baseline_5F_declaredRoutineMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baseline_5F_declaredRoutineMap GALGAS_baseline_5F_declaredRoutineMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_baseline_5F_declaredRoutineMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -8179,6 +8763,21 @@ GALGAS_baseline_5F_declaredRoutineMap GALGAS_baseline_5F_declaredRoutineMap::get
   GALGAS_baseline_5F_declaredRoutineMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_declaredRoutineMap::enterElement (const GALGAS_baseline_5F_declaredRoutineMap_2D_element & inValue,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cMapElement_baseline_5F_declaredRoutineMap * p = nullptr ;
+  macroMyNew (p, cMapElement_baseline_5F_declaredRoutineMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@baseline_5F_declaredRoutineMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8814,6 +9413,25 @@ AC_GALGAS_list (inSharedArray) {
 
 GALGAS_baseline_5F_intermediate_5F_instructionList GALGAS_baseline_5F_intermediate_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
   return GALGAS_baseline_5F_intermediate_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_baseline_5F_intermediate_5F_instructionList GALGAS_baseline_5F_intermediate_5F_instructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GALGAS_baseline_5F_intermediate_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baseline_5F_intermediate_5F_instructionList::enterElement (const GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element & inValue,
+                                                                       Compiler * /* inCompiler */
+                                                                       COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13931,6 +14549,15 @@ GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2D_weak GALGAS_base
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_baselineRoutineMap::cMapElement_baselineRoutineMap (const GALGAS_baselineRoutineMap_2D_element & inValue
+                                                                COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mIsNoReturn (inValue.mProperty_mIsNoReturn),
+mProperty_mPage (inValue.mProperty_mPage) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_baselineRoutineMap::cMapElement_baselineRoutineMap (const GALGAS_lstring & inKey,
                                                                 const GALGAS_bool & in_mIsNoReturn,
                                                                 const GALGAS_luint & in_mPage
@@ -14002,6 +14629,14 @@ GALGAS_baselineRoutineMap & GALGAS_baselineRoutineMap::operator = (const GALGAS_
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_baselineRoutineMap GALGAS_baselineRoutineMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_baselineRoutineMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baselineRoutineMap GALGAS_baselineRoutineMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_baselineRoutineMap result ;
   result.makeNewEmptyMap (THERE) ;
@@ -14024,6 +14659,21 @@ GALGAS_baselineRoutineMap GALGAS_baselineRoutineMap::getter_overriddenMap (Compi
   GALGAS_baselineRoutineMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baselineRoutineMap::enterElement (const GALGAS_baselineRoutineMap_2D_element & inValue,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) {
+  cMapElement_baselineRoutineMap * p = nullptr ;
+  macroMyNew (p, cMapElement_baselineRoutineMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@baselineRoutineMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14354,6 +15004,14 @@ GALGAS_uint callExtensionGetter_length (const cPtr_baseline_5F_intermediate_5F_i
 
 //--------------------------------------------------------------------------------------------------
 
+cMapElement_baselineSymbolTableForOptimizations::cMapElement_baselineSymbolTableForOptimizations (const GALGAS_baselineSymbolTableForOptimizations_2D_element & inValue
+                                                                                                  COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mDefinitionLineIndex (inValue.mProperty_mDefinitionLineIndex) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cMapElement_baselineSymbolTableForOptimizations::cMapElement_baselineSymbolTableForOptimizations (const GALGAS_lstring & inKey,
                                                                                                   const GALGAS_uint & in_mDefinitionLineIndex
                                                                                                   COMMA_LOCATION_ARGS) :
@@ -14416,6 +15074,14 @@ GALGAS_baselineSymbolTableForOptimizations & GALGAS_baselineSymbolTableForOptimi
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_baselineSymbolTableForOptimizations GALGAS_baselineSymbolTableForOptimizations::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_baselineSymbolTableForOptimizations result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_baselineSymbolTableForOptimizations GALGAS_baselineSymbolTableForOptimizations::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_baselineSymbolTableForOptimizations result ;
   result.makeNewEmptyMap (THERE) ;
@@ -14438,6 +15104,21 @@ GALGAS_baselineSymbolTableForOptimizations GALGAS_baselineSymbolTableForOptimiza
   GALGAS_baselineSymbolTableForOptimizations result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
   return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_baselineSymbolTableForOptimizations::enterElement (const GALGAS_baselineSymbolTableForOptimizations_2D_element & inValue,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
+  cMapElement_baselineSymbolTableForOptimizations * p = nullptr ;
+  macroMyNew (p, cMapElement_baselineSymbolTableForOptimizations (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@baselineSymbolTableForOptimizations insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14649,377 +15330,6 @@ GALGAS_baselineSymbolTableForOptimizations GALGAS_baselineSymbolTableForOptimiza
       result = *p ;
     }else{
       inCompiler->castError ("baselineSymbolTableForOptimizations", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@baseline_intermediate_instruction setCurrentAddress'
-//
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_baseline_5F_intermediate_5F_instruction::method_setCurrentAddress (GALGAS_uint & ioArgument_ioCurrentWordAdress,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  const GALGAS_baseline_5F_intermediate_5F_instruction temp_0 = this ;
-  ioArgument_ioCurrentWordAdress = ioArgument_ioCurrentWordAdress.add_operation (callExtensionGetter_length ((const cPtr_baseline_5F_intermediate_5F_instruction *) temp_0.ptr (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 20)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 20)) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_setCurrentAddress (cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                            GALGAS_uint & io_ioCurrentWordAdress,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) {
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
-    inObject->method_setCurrentAddress  (io_ioCurrentWordAdress, inCompiler COMMA_THERE) ;
-  }
-}
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@baseline_intermediate_instruction isLABEL'
-//
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction::getter_isLABEL (Compiler */* inCompiler */
-                                                                          COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result_outIsLABEL ; // Returned variable
-  result_outIsLABEL = GALGAS_bool (false) ;
-//---
-  return result_outIsLABEL ;
-}
-
-
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool callExtensionGetter_isLABEL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                         Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) {
-  GALGAS_bool result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_isLABEL (inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@baseline_intermediate_instruction isNULL'
-//
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction::getter_isNULL (Compiler */* inCompiler */
-                                                                         COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result_outIsNULL ; // Returned variable
-  result_outIsNULL = GALGAS_bool (false) ;
-//---
-  return result_outIsNULL ;
-}
-
-
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool callExtensionGetter_isNULL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                        Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) {
-  GALGAS_bool result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_isNULL (inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@baseline_intermediate_instruction isSkippingInstruction'
-//
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction::getter_isSkippingInstruction (Compiler */* inCompiler */
-                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result_outIsSkipping ; // Returned variable
-  result_outIsSkipping = GALGAS_bool (false) ;
-//---
-  return result_outIsSkipping ;
-}
-
-
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool callExtensionGetter_isSkippingInstruction (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
-  GALGAS_bool result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_isSkippingInstruction (inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@baseline_intermediate_instruction nextInstructionIsReachable'
-//
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool cPtr_baseline_5F_intermediate_5F_instruction::getter_nextInstructionIsReachable (Compiler */* inCompiler */
-                                                                                             COMMA_UNUSED_LOCATION_ARGS) const {
-  GALGAS_bool result_outIsReachable ; // Returned variable
-  result_outIsReachable = GALGAS_bool (true) ;
-//---
-  return result_outIsReachable ;
-}
-
-
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_bool result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_nextInstructionIsReachable (inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@baseline_intermediate_instruction enterReferencedLabel'
-//
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_baseline_5F_intermediate_5F_instruction::method_enterReferencedLabel (GALGAS_stringset & /* ioArgument_ioReferencedLabelSet */,
-                                                                                Compiler * /* inCompiler */
-                                                                                COMMA_UNUSED_LOCATION_ARGS) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_enterReferencedLabel (cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                               GALGAS_stringset & io_ioReferencedLabelSet,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
-    inObject->method_enterReferencedLabel  (io_ioReferencedLabelSet, inCompiler COMMA_THERE) ;
-  }
-}
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@baseline_intermediate_instruction defineLabel'
-//
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_baseline_5F_intermediate_5F_instruction::method_defineLabel (GALGAS_baselineSymbolTableForOptimizations & /* ioArgument_ioRoutineSymbolTable */,
-                                                                       const GALGAS_uint /* constinArgument_inLineIndex */,
-                                                                       Compiler * /* inCompiler */
-                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_defineLabel (cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                      GALGAS_baselineSymbolTableForOptimizations & io_ioRoutineSymbolTable,
-                                      const GALGAS_uint constin_inLineIndex,
-                                      Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) {
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
-    inObject->method_defineLabel  (io_ioRoutineSymbolTable, constin_inLineIndex, inCompiler COMMA_THERE) ;
-  }
-}
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'
-//
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimizeTestDecInc (const GALGAS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
-                                                                                            const GALGAS_uint constinArgument_inLineIndex,
-                                                                                            GALGAS_baseline_5F_intermediate_5F_instructionList & ioArgument_ioGeneratedInstructionList,
-                                                                                            GALGAS_string & ioArgument_ioListFileContents,
-                                                                                            GALGAS_bool & ioArgument_ioOptimizationsDone,
-                                                                                            Compiler * inCompiler
-                                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_uint var_line_19685 ;
-  const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_0 = this ;
-  constinArgument_inSymbolTable.method_searchKey (GALGAS_lstring::init_21__21_ (temp_0.readProperty_mTargetLabel (), GALGAS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)), inCompiler COMMA_HERE), var_line_19685, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 480)) ;
-  GALGAS_baseline_5F_intermediate_5F_instruction var_firstInstruction_19864 ;
-  {
-  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_19685.add_operation (GALGAS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 483)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_19864, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 482)) ;
-  }
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
-    GALGAS_baseline_5F_intermediate_5F_GOTO var_goto_19941 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_19864.ptr ())) ;
-    if (nullptr == var_goto_19941.ptr ()) {
-      test_1 = kBoolFalse ;
-    }
-    if (kBoolTrue == test_1) {
-      {
-      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_2 = this ;
-      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_3 = this ;
-      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_4 = this ;
-      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_5 = this ;
-      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_6 = this ;
-      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_goto_19941.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
-      }
-      ioArgument_ioOptimizationsDone = GALGAS_bool (true) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)).add_operation (GALGAS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("GOTO "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 503)) ;
-      enumGalgasBool test_7 = kBoolTrue ;
-      if (kBoolTrue == test_7) {
-        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_8 = this ;
-        test_7 = temp_8.readProperty_mIncrement ().boolEnum () ;
-        if (kBoolTrue == test_7) {
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 505)) ;
-        }
-      }
-      if (kBoolFalse == test_7) {
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 507)) ;
-      }
-      const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_9 = this ;
-      ioArgument_ioListFileContents.plusAssign_operation(temp_9.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 509)) ;
-      enumGalgasBool test_10 = kBoolTrue ;
-      if (kBoolTrue == test_10) {
-        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_11 = this ;
-        test_10 = temp_11.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
-        if (kBoolTrue == test_10) {
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 511)) ;
-        }
-      }
-      enumGalgasBool test_12 = kBoolTrue ;
-      if (kBoolTrue == test_12) {
-        const GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_13 = this ;
-        test_12 = temp_13.readProperty_mBranchIfZero ().boolEnum () ;
-        if (kBoolTrue == test_12) {
-          ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 514)) ;
-        }
-      }
-      if (kBoolFalse == test_12) {
-        ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 516)) ;
-      }
-      ioArgument_ioListFileContents.plusAssign_operation(GALGAS_string (": branching to GOTO replaced by second GOTO label\n"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 518)) ;
-    }
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_optimizeTestDecInc (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inObject,
-                                             const GALGAS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                             const GALGAS_uint constin_inLineIndex,
-                                             GALGAS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                             GALGAS_string & io_ioListFileContents,
-                                             GALGAS_bool & io_ioOptimizationsDone,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) {
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    inObject->method_optimizeTestDecInc  (constin_inSymbolTable, constin_inLineIndex, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioOptimizationsDone, inCompiler COMMA_THERE) ;
-  }
-}
-//--------------------------------------------------------------------------------------------------
-// @baseline_5F_assembly_5F_instruction reference class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_baseline_5F_assembly_5F_instruction::cPtr_baseline_5F_assembly_5F_instruction (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
-
-
-ComparisonResult GALGAS_baseline_5F_assembly_5F_instruction::objectCompare (const GALGAS_baseline_5F_assembly_5F_instruction & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_baseline_5F_assembly_5F_instruction::GALGAS_baseline_5F_assembly_5F_instruction (void) :
-AC_GALGAS_reference_class () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_baseline_5F_assembly_5F_instruction::GALGAS_baseline_5F_assembly_5F_instruction (const cPtr_baseline_5F_assembly_5F_instruction * inSourcePtr) :
-AC_GALGAS_reference_class (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_instruction) ;
-}
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @baseline_assembly_instruction class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_baseline_5F_assembly_5F_instruction::cPtr_baseline_5F_assembly_5F_instruction (LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @baseline_assembly_instruction generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction ("baseline_assembly_instruction",
-                                                                                           nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_baseline_5F_assembly_5F_instruction::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_baseline_5F_assembly_5F_instruction::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_baseline_5F_assembly_5F_instruction (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_baseline_5F_assembly_5F_instruction GALGAS_baseline_5F_assembly_5F_instruction::extractObject (const GALGAS_object & inObject,
-                                                                                                      Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) {
-  GALGAS_baseline_5F_assembly_5F_instruction result ;
-  const GALGAS_baseline_5F_assembly_5F_instruction * p = (const GALGAS_baseline_5F_assembly_5F_instruction *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_baseline_5F_assembly_5F_instruction *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("baseline_assembly_instruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;
