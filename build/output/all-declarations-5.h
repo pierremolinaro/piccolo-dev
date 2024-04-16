@@ -272,7 +272,6 @@ class cMapElement_ramBankTable : public cMapElement {
                                     COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -544,8 +543,6 @@ class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GALGAS_pic_31__38_AST & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -617,8 +614,6 @@ class GALGAS_processorType : public AC_GALGAS_root {
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GALGAS_processorType & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -985,8 +980,6 @@ class GALGAS_piccoloDeviceModel : public AC_GALGAS_root {
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GALGAS_piccoloDeviceModel & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -1560,8 +1553,6 @@ class GALGAS_midrange_5F_model : public AC_GALGAS_root {
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GALGAS_midrange_5F_model & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -2103,8 +2094,6 @@ class GALGAS_baseline_5F_model : public AC_GALGAS_root {
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GALGAS_baseline_5F_model & inOperand) const ;
 
 //--------------------------------- Setters
 

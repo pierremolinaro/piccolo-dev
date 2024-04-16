@@ -9,530 +9,6 @@
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code (void) :
-mEnum (kNotBuilt) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_CPFSEQ (UNUSED_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  result.mEnum = kEnum_CPFSEQ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_CPFSGT (UNUSED_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  result.mEnum = kEnum_CPFSGT ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_CPFSLT (UNUSED_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  result.mEnum = kEnum_CPFSLT ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::class_func_TSTFSZ (UNUSED_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  result.mEnum = kEnum_TSTFSZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_CPFSEQ () const {
-  const bool ok = mEnum == kEnum_CPFSEQ ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_CPFSGT () const {
-  const bool ok = mEnum == kEnum_CPFSGT ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_CPFSLT () const {
-  const bool ok = mEnum == kEnum_CPFSLT ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::optional_TSTFSZ () const {
-  const bool ok = mEnum == kEnum_TSTFSZ ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-static const char * gEnumNameArrayFor_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code [5] = {
-  "(not built)",
-  "CPFSEQ",
-  "CPFSGT",
-  "CPFSLT",
-  "TSTFSZ"
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::getter_isCPFSEQ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CPFSEQ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::getter_isCPFSGT (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CPFSGT == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::getter_isCPFSLT (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CPFSLT == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::getter_isTSTFSZ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_TSTFSZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::description (String & ioString,
-                                                                                             const int32_t /* inIndentation */) const {
-  ioString.appendCString ("<enum @ipic18_compare_register_instruction_base_code: ") ;
-  ioString.appendCString (gEnumNameArrayFor_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code [mEnum]) ;
-  ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::objectCompare (const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @ipic18_compare_register_instruction_base_code generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ("ipic18_compare_register_instruction_base_code",
-                                                                                                                          nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::extractObject (const GALGAS_object & inObject,
-                                                                                                                                                                    Compiler * inCompiler
-                                                                                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code result ;
-  const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code * p = (const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("ipic18_compare_register_instruction_base_code", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register reference class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mCompareInstruction (),
-mProperty_mRegisterDescription () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::printNonNullClassInstanceProperties (void) const {
-    cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mCompareInstruction.printNonNullClassInstanceProperties ("mCompareInstruction") ;
-    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mEmbeddedInstruction.objectCompare (p->mProperty_mEmbeddedInstruction) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mCompareInstruction.objectCompare (p->mProperty_mCompareInstruction) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRegisterDescription.objectCompare (p->mProperty_mRegisterDescription) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
-ComparisonResult GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (void) :
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::
-init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
-                      const GALGAS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                      const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & in_mCompareInstruction,
-                      const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                      Compiler * inCompiler
-                      COMMA_LOCATION_ARGS) {
-  cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * object = nullptr ;
-  macroMyNew (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (inCompiler COMMA_THERE)) ;
-  object->ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_init_21__21__21__21_ (in_mInstructionLocation, in_mEmbeddedInstruction, in_mCompareInstruction, in_mRegisterDescription, inCompiler) ;
-  const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::
-ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_init_21__21__21__21_ (const GALGAS_location & in_mInstructionLocation,
-                                                                                 const GALGAS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                                                                                 const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & in_mCompareInstruction,
-                                                                                 const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                 Compiler * /* inCompiler */) {
-  mProperty_mInstructionLocation = in_mInstructionLocation ;
-  mProperty_mEmbeddedInstruction = in_mEmbeddedInstruction ;
-  mProperty_mCompareInstruction = in_mCompareInstruction ;
-  mProperty_mRegisterDescription = in_mRegisterDescription ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * inSourcePtr) :
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::class_func_new (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                                     const GALGAS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                                                                                                                                                     const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & in_mCompareInstruction,
-                                                                                                                                                     const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription
-                                                                                                                                                     COMMA_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (in_mInstructionLocation, in_mEmbeddedInstruction, in_mCompareInstruction, in_mRegisterDescription COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::readProperty_mCompareInstruction (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code () ;
-  }else{
-    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-    return p->mProperty_mCompareInstruction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::setProperty_mCompareInstruction (const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-    p->mProperty_mCompareInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::readProperty_mRegisterDescription (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
-  }else{
-    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-    return p->mProperty_mRegisterDescription ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::setProperty_mRegisterDescription (const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @ipic18_skip_instruction_compare_register class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (const GALGAS_location & in_mInstructionLocation,
-                                                                                                                                  const GALGAS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                                                                                                                                  const GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & in_mCompareInstruction,
-                                                                                                                                  const GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription
-                                                                                                                                  COMMA_LOCATION_ARGS) :
-cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (in_mInstructionLocation, in_mEmbeddedInstruction COMMA_THERE),
-mProperty_mCompareInstruction (),
-mProperty_mRegisterDescription () {
-  mProperty_mInstructionLocation = in_mInstructionLocation ;
-  mProperty_mEmbeddedInstruction = in_mEmbeddedInstruction ;
-  mProperty_mCompareInstruction = in_mCompareInstruction ;
-  mProperty_mRegisterDescription = in_mRegisterDescription ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register ;
-}
-
-void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::description (String & ioString,
-                                                                                   const int32_t inIndentation) const {
-  ioString.appendCString ("[@ipic18_skip_instruction_compare_register:") ;
-  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mEmbeddedInstruction.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mCompareInstruction.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (mProperty_mInstructionLocation, mProperty_mEmbeddedInstruction, mProperty_mCompareInstruction, mProperty_mRegisterDescription COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @ipic18_skip_instruction_compare_register generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register ("ipic18_skip_instruction_compare_register",
-                                                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::extractObject (const GALGAS_object & inObject,
-                                                                                                                                                    Compiler * inCompiler
-                                                                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register result ;
-  const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("ipic18_skip_instruction_compare_register", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak (void) :
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak & GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::operator = (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inSource) :
-GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak (inSource) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::class_func_nil (LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::bang_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-      result = GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register ((cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @ipic18_skip_instruction_compare_register-weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak ("ipic18_skip_instruction_compare_register-weak",
-                                                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2D_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak::extractObject (const GALGAS_object & inObject,
-                                                                                                                                                                    Compiler * inCompiler
-                                                                                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak result ;
-  const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak * p = (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2D_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("ipic18_skip_instruction_compare_register-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code (void) :
 mEnum (kNotBuilt) {
 }
@@ -640,21 +116,6 @@ void GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::description (String & io
   ioString.appendCString (">") ;
 }
 
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::objectCompare (const GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -721,31 +182,6 @@ mProperty_m_5F_W_5F_isDestination () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mInstructionLocation.objectCompare (p->mProperty_mInstructionLocation) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mEmbeddedInstruction.objectCompare (p->mProperty_mEmbeddedInstruction) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mInstruction_5F_FDA_5F_base_5F_code.objectCompare (p->mProperty_mInstruction_5F_FDA_5F_base_5F_code) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRegisterDescription.objectCompare (p->mProperty_mRegisterDescription) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_m_5F_W_5F_isDestination.objectCompare (p->mProperty_m_5F_W_5F_isDestination) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::objectCompare (const GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -1133,17 +569,6 @@ void cMapElement_symbolTableForBlockOptimization::description (String & ioString
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_symbolTableForBlockOptimization::compare (const cCollectionElement * inOperand) const {
-  cMapElement_symbolTableForBlockOptimization * operand = (cMapElement_symbolTableForBlockOptimization *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mDefinitionBlockIndex.objectCompare (operand->mProperty_mDefinitionBlockIndex) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_symbolTableForBlockOptimization::GALGAS_symbolTableForBlockOptimization (void) :
 AC_GALGAS_map () {
 }
@@ -1448,17 +873,6 @@ void cMapElement_symbolTableForClusterOrdering::description (String & ioString, 
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_symbolTableForClusterOrdering::compare (const cCollectionElement * inOperand) const {
-  cMapElement_symbolTableForClusterOrdering * operand = (cMapElement_symbolTableForClusterOrdering *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mCluster.objectCompare (operand->mProperty_mCluster) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_symbolTableForClusterOrdering::GALGAS_symbolTableForClusterOrdering (void) :
 AC_GALGAS_map () {
 }
@@ -1722,6 +1136,963 @@ GALGAS_symbolTableForClusterOrdering GALGAS_symbolTableForClusterOrdering::extra
 }
 
 //--------------------------------------------------------------------------------------------------
+
+class cNode_branchOverflowMapDictionary : public GALGAS_branchOverflowMapDictionary_2D_element {
+  public: cNode_branchOverflowMapDictionary * mInfPtr ;
+  public: cNode_branchOverflowMapDictionary * mSupPtr ;
+  public: int32_t mBalance ;
+
+  public: cNode_branchOverflowMapDictionary (const GALGAS_string & in_key,
+                                             const GALGAS_stringlist & inProperty_mList) :
+  GALGAS_branchOverflowMapDictionary_2D_element (in_key, inProperty_mList),
+  mInfPtr (nullptr),
+  mSupPtr (nullptr),
+  mBalance (0) {
+  }
+
+  public: cNode_branchOverflowMapDictionary (cNode_branchOverflowMapDictionary * inNode) ;
+
+  public: cNode_branchOverflowMapDictionary (cNode_branchOverflowMapDictionary &) = delete ;
+
+  public: cNode_branchOverflowMapDictionary& operator = (cNode_branchOverflowMapDictionary &) = delete ;
+
+  public: virtual ~ cNode_branchOverflowMapDictionary (void) {
+    macroMyDelete (mInfPtr) ;
+    macroMyDelete (mSupPtr) ;
+  }
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class cSharedDictRoot_branchOverflowMapDictionary : public SharedObject {
+//--------------------------------- Attributes
+  private: cNode_branchOverflowMapDictionary * mRoot ;
+  private: uint32_t mCount ;
+
+//--------------------------------- Constructor
+  protected: cSharedDictRoot_branchOverflowMapDictionary (LOCATION_ARGS) :
+  SharedObject (THERE),
+  mRoot (nullptr),
+  mCount (0) {
+  }
+
+//--------------------------------- Virtual destructor
+  protected: virtual ~ cSharedDictRoot_branchOverflowMapDictionary (void) {
+    macroMyDelete (mRoot) ;
+  }
+
+//--------------------------------- No copy
+  private: cSharedDictRoot_branchOverflowMapDictionary (const cSharedDictRoot_branchOverflowMapDictionary &) ;
+  private: cSharedDictRoot_branchOverflowMapDictionary & operator = (const cSharedDictRoot_branchOverflowMapDictionary &) ;
+
+//--------------------------------- Copy a map
+  protected: VIRTUAL_IN_DEBUG void copyFrom (const cSharedDictRoot_branchOverflowMapDictionary * inSource) ;
+
+//--------------------------------- Insert
+  protected: VIRTUAL_IN_DEBUG void performInsert (const GALGAS_branchOverflowMapDictionary_2D_element & inNewNode,
+                                                  const bool inEntryOverrideAllowed) {
+    macroUniqueSharedObject (this) ;
+    bool extension = false ;
+    bool entryAlreadyInDict = false ;
+    recursiveAddEntry (mRoot, inNewNode, entryAlreadyInDict, extension, inEntryOverrideAllowed) ;
+    if (!entryAlreadyInDict) {
+      mCount ++ ;
+    }
+    #ifndef DO_NOT_GENERATE_CHECKINGS
+      checkDict (HERE) ;
+    #endif
+  }
+
+  protected: static void rotateLeft (cNode_branchOverflowMapDictionary * & ioRootPtr) {
+    cNode_branchOverflowMapDictionary * ptr = ioRootPtr->mSupPtr ;
+    ioRootPtr->mSupPtr = ptr->mInfPtr ;
+    ptr->mInfPtr = ioRootPtr;
+
+    if (ptr->mBalance >= 0) {
+      ioRootPtr->mBalance ++ ;
+    }else{
+      ioRootPtr->mBalance += 1 - ptr->mBalance ;
+    }
+
+    if (ioRootPtr->mBalance > 0) {
+      ptr->mBalance += ioRootPtr->mBalance + 1 ;
+    }else{
+      ptr->mBalance ++ ;
+    }
+    ioRootPtr = ptr ;
+  }
+
+  protected: static void rotateRight (cNode_branchOverflowMapDictionary * & ioRootPtr) {
+    cNode_branchOverflowMapDictionary * ptr = ioRootPtr->mInfPtr ;
+    ioRootPtr->mInfPtr = ptr->mSupPtr ;
+    ptr->mSupPtr = ioRootPtr ;
+   
+    if (ptr->mBalance > 0) {
+      ioRootPtr->mBalance += -ptr->mBalance - 1 ;
+    }else{
+      ioRootPtr->mBalance -- ;
+    }
+    if (ioRootPtr->mBalance >= 0) {
+      ptr->mBalance -- ;
+    }else{
+      ptr->mBalance += ioRootPtr->mBalance - 1 ;
+    }
+    ioRootPtr = ptr ;
+  }
+
+  protected: static void recursiveAddEntry (cNode_branchOverflowMapDictionary * & ioRootPtr,
+                                            const GALGAS_branchOverflowMapDictionary_2D_element & inNewNode,
+                                            bool & outEntryAlreadyPresent,
+                                            bool & ioExtension,
+                                            const bool inEntryOverrideAllowed) {
+    if (ioRootPtr == nullptr) {
+      macroMyNew (ioRootPtr, cNode_branchOverflowMapDictionary (inNewNode.mProperty_key, inNewNode.mProperty_mList)) ;
+      ioExtension = true ;
+      outEntryAlreadyPresent = false ;
+    }else{
+      macroValidPointer (ioRootPtr) ;
+      const ComparisonResult comparaison = ioRootPtr->mProperty_key.objectCompare (inNewNode.mProperty_key) ;
+      if (comparaison == ComparisonResult::firstOperandGreaterThanSecond) {
+        recursiveAddEntry (ioRootPtr->mInfPtr, inNewNode, outEntryAlreadyPresent, ioExtension, inEntryOverrideAllowed) ;
+        if (ioExtension) {
+          ioRootPtr->mBalance++;
+          if (ioRootPtr->mBalance == 0) {
+            ioExtension = false;
+          }else if (ioRootPtr->mBalance == 2) {
+            if (ioRootPtr->mInfPtr->mBalance == -1) {
+              rotateLeft (ioRootPtr->mInfPtr) ;
+            }
+            rotateRight (ioRootPtr) ;
+            ioExtension = false;
+          }
+        }
+      }else if (comparaison == ComparisonResult::firstOperandLowerThanSecond) {
+        recursiveAddEntry (ioRootPtr->mSupPtr, inNewNode, outEntryAlreadyPresent, ioExtension, inEntryOverrideAllowed) ;
+        if (ioExtension) {
+          ioRootPtr->mBalance-- ;
+          if (ioRootPtr->mBalance == 0) {
+            ioExtension = false ;
+          }else if (ioRootPtr->mBalance == -2) {
+            if (ioRootPtr->mSupPtr->mBalance == 1) {
+              rotateRight (ioRootPtr->mSupPtr) ;
+            }
+            rotateLeft (ioRootPtr) ;
+            ioExtension = false;
+          }
+        }
+      }else{  // Found
+        ioExtension = false ;
+        outEntryAlreadyPresent = true ;
+        if (inEntryOverrideAllowed) {
+          ioRootPtr->mProperty_mList = inNewNode.mProperty_mList ;
+        }
+      }
+    }
+  }
+
+//--------------------------------- Search
+  private: VIRTUAL_IN_DEBUG cNode_branchOverflowMapDictionary * findEntryInDict (const GALGAS_string & inKey) const {
+    cNode_branchOverflowMapDictionary * result = nullptr ;
+    cNode_branchOverflowMapDictionary * currentNode = mRoot ;
+    while ((currentNode != nullptr) && (nullptr == result)) {
+      macroValidPointer (currentNode) ;
+      const ComparisonResult comparaison = currentNode->mProperty_key.objectCompare (inKey) ;
+      if (comparaison == ComparisonResult::firstOperandGreaterThanSecond) {
+        currentNode = currentNode->mInfPtr ;
+      }else if (comparaison == ComparisonResult::firstOperandLowerThanSecond) {
+        currentNode = currentNode->mSupPtr ;
+      }else{ // Found
+        result = currentNode ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- Remove
+  protected: VIRTUAL_IN_DEBUG void performRemove (const GALGAS_string & inKey, cNode_branchOverflowMapDictionary * & outRemovedNodePtr) {
+    bool branchHasBeenRemoved = false ; // Unused here
+    internalRemoveRecursively (mRoot, inKey, outRemovedNodePtr, branchHasBeenRemoved) ;
+    if (nullptr != outRemovedNodePtr) {
+      mCount -- ;
+    }
+  }
+
+  protected: static void supBranchDecreased (cNode_branchOverflowMapDictionary * & ioRoot,
+                                              bool & ioBranchHasBeenRemoved) {
+    ioRoot->mBalance ++ ;
+    switch (ioRoot->mBalance) {
+    case 0:
+      break;
+    case 1:
+      ioBranchHasBeenRemoved = false;
+      break;
+    case 2:
+      switch (ioRoot->mInfPtr->mBalance) {
+      case -1:
+        rotateLeft (ioRoot->mInfPtr) ;
+        rotateRight (ioRoot) ;
+        break;
+      case 0:
+        rotateRight (ioRoot) ;
+        ioBranchHasBeenRemoved = false;
+        break;
+      case 1:
+        rotateRight (ioRoot) ;
+        break;
+      }
+      break;
+    }
+  }
+
+  protected: static void infBranchDecreased (cNode_branchOverflowMapDictionary * & ioRoot,
+                                              bool & ioBranchHasBeenRemoved) {
+    ioRoot->mBalance -- ;
+    switch (ioRoot->mBalance) {
+    case 0:
+      break;
+    case -1:
+      ioBranchHasBeenRemoved = false;
+      break;
+    case -2:
+      switch (ioRoot->mSupPtr->mBalance) {
+      case 1:
+        rotateRight (ioRoot->mSupPtr) ;
+        rotateLeft (ioRoot) ;
+        break;
+      case 0:
+        rotateLeft (ioRoot) ;
+        ioBranchHasBeenRemoved = false;
+        break;
+      case -1:
+        rotateLeft (ioRoot) ;
+        break;
+      }
+      break;
+    }
+  }
+
+  protected: static void getPreviousElement (cNode_branchOverflowMapDictionary * & ioRoot,
+                                             cNode_branchOverflowMapDictionary * & ioElement,
+                                             bool & ioBranchHasBeenRemoved) {
+    if (ioRoot->mSupPtr == nullptr) {
+      ioElement = ioRoot ;
+      ioRoot = ioRoot->mInfPtr ;
+      ioBranchHasBeenRemoved = true ;
+    }else{
+      getPreviousElement (ioRoot->mSupPtr, ioElement, ioBranchHasBeenRemoved) ;
+      if (ioBranchHasBeenRemoved) {
+        supBranchDecreased (ioRoot, ioBranchHasBeenRemoved) ;
+      }
+    }
+  }
+
+  protected: static void internalRemoveRecursively (cNode_branchOverflowMapDictionary * & ioRoot,
+                                                     const GALGAS_string & inKeyToRemove,
+                                                     cNode_branchOverflowMapDictionary * & outRemovedNode,
+                                                     bool & ioBranchHasBeenRemoved) {
+    if (ioRoot != nullptr) {
+      const ComparisonResult comparaison = ioRoot->mProperty_key.objectCompare (inKeyToRemove) ;
+      if (comparaison == ComparisonResult::firstOperandGreaterThanSecond) {
+        internalRemoveRecursively (ioRoot->mInfPtr, inKeyToRemove, outRemovedNode, ioBranchHasBeenRemoved);
+        if (ioBranchHasBeenRemoved) {
+          infBranchDecreased (ioRoot, ioBranchHasBeenRemoved) ;
+        }
+      }else if (comparaison == ComparisonResult::firstOperandLowerThanSecond) {
+        internalRemoveRecursively (ioRoot->mSupPtr, inKeyToRemove, outRemovedNode, ioBranchHasBeenRemoved);
+        if (ioBranchHasBeenRemoved) {
+          supBranchDecreased (ioRoot, ioBranchHasBeenRemoved);
+        }
+      }else{
+        cNode_branchOverflowMapDictionary * p = ioRoot ;
+        if (p->mInfPtr == nullptr) {
+          ioRoot = p->mSupPtr;
+          p->mSupPtr = nullptr;
+          ioBranchHasBeenRemoved = true;
+        }else if (p->mSupPtr == nullptr) {
+          ioRoot = p->mInfPtr;
+          p->mInfPtr = nullptr;
+          ioBranchHasBeenRemoved = true;
+        }else{
+          getPreviousElement (p->mInfPtr, ioRoot, ioBranchHasBeenRemoved) ;
+          ioRoot->mSupPtr = p->mSupPtr;
+          p->mSupPtr = nullptr;
+          ioRoot->mInfPtr = p->mInfPtr;
+          p->mInfPtr = nullptr;
+          ioRoot->mBalance = p->mBalance;
+          p->mBalance = 0;
+          if (ioBranchHasBeenRemoved) {
+            infBranchDecreased (ioRoot, ioBranchHasBeenRemoved) ;
+          }
+        }
+        outRemovedNode = p ;
+      }
+    }
+  }
+
+//--------------------------------- Internal method for enumeration
+  protected: VIRTUAL_IN_DEBUG void populateEnumerationArray (capCollectionElementArray & ioEnumerationArray) const ;
+
+//--------------------------------- Check Dictionary
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+      private: VIRTUAL_IN_DEBUG void checkDict (LOCATION_ARGS) const {
+      uint32_t n = 0 ;
+      checkNode (mRoot, n) ;
+      macroAssertThere (n == mCount, "n (%lld) != mCount (%lld)", n, mCount) ;
+    }
+  #endif
+
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    private: static void checkNode (const cNode_branchOverflowMapDictionary * inNode,
+                                     uint32_t & ioCount) {
+      if (nullptr != inNode) {
+        checkNode (inNode->mInfPtr, ioCount) ;
+        ioCount ++ ;
+        checkNode (inNode->mSupPtr, ioCount) ;
+      }
+    }
+  #endif
+
+//--------------------------------- Compare Dictionaries
+  public: ComparisonResult compare (const cSharedDictRoot_branchOverflowMapDictionary * inOperand) const {
+    ComparisonResult result = ComparisonResult::operandEqual ;
+    if (mCount < inOperand->mCount) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (mCount > inOperand->mCount) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      capCollectionElementArray enumerationArray ;
+      populateEnumerationArray (enumerationArray) ;
+      capCollectionElementArray operandEnumerationArray ;
+      inOperand->populateEnumerationArray (operandEnumerationArray) ;
+      result = enumerationArray.compareCollectionElementArray (operandEnumerationArray) ;
+    }
+    return result ;
+  }
+
+//--------------------------------- Friend
+  friend class GALGAS_branchOverflowMapDictionary ;
+} ;
+
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary::GALGAS_branchOverflowMapDictionary (void) :
+AC_GALGAS_root (),
+mSharedDict (nullptr) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary::~ GALGAS_branchOverflowMapDictionary (void) {
+  macroDetachSharedObject (mSharedDict) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary::GALGAS_branchOverflowMapDictionary (const GALGAS_branchOverflowMapDictionary & inSource) :
+AC_GALGAS_root (),
+mSharedDict (nullptr) {
+  macroAssignSharedObject (mSharedDict, inSource.mSharedDict) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary & GALGAS_branchOverflowMapDictionary::operator = (const GALGAS_branchOverflowMapDictionary & inSource) {
+  macroAssignSharedObject (mSharedDict, inSource.mSharedDict) ;
+  return * this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::drop (void) {
+  macroDetachSharedObject (mSharedDict) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary GALGAS_branchOverflowMapDictionary::class_func_emptyDict (LOCATION_ARGS) {
+  GALGAS_branchOverflowMapDictionary result ;
+  macroMyNew (result.mSharedDict, cSharedDictRoot_branchOverflowMapDictionary (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary GALGAS_branchOverflowMapDictionary::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_branchOverflowMapDictionary result ;
+  macroMyNew (result.mSharedDict, cSharedDictRoot_branchOverflowMapDictionary (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+#ifdef PRAGMA_MARK_ALLOWED
+  #pragma mark Description
+#endif
+
+//--------------------------------------------------------------------------------------------------
+
+static void internalDescription_branchOverflowMapDictionary (const cNode_branchOverflowMapDictionary * inNode,
+                                 String & ioString,
+                                 const int32_t inIndentation) {
+  if (nullptr != inNode) {
+    internalDescription_branchOverflowMapDictionary (inNode->mInfPtr, ioString, inIndentation) ;
+    ioString.appendNewLine () ;
+    inNode->description (ioString, inIndentation) ;
+    internalDescription_branchOverflowMapDictionary (inNode->mSupPtr, ioString, inIndentation) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::description (String & ioString,
+                                             const int32_t inIndentation) const {
+  ioString.appendCString ("<dict @") ;
+  ioString.appendCString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (":") ;
+  if (isValid ()) {
+    internalDescription_branchOverflowMapDictionary (mSharedDict->mRoot, ioString, inIndentation) ;
+  }else{
+    ioString.appendCString (" not built") ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_uint GALGAS_branchOverflowMapDictionary::getter_count (UNUSED_LOCATION_ARGS) const {
+  GALGAS_uint result ;
+  if (isValid ()) {
+    result = GALGAS_uint (mSharedDict->mCount) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+#ifdef PRAGMA_MARK_ALLOWED
+  #pragma mark Insulate
+#endif
+
+//--------------------------------------------------------------------------------------------------
+
+cNode_branchOverflowMapDictionary::cNode_branchOverflowMapDictionary (cNode_branchOverflowMapDictionary * inNode) :
+GALGAS_branchOverflowMapDictionary_2D_element (inNode->mProperty_key, inNode->mProperty_mList),
+mInfPtr (nullptr),
+mSupPtr (nullptr),
+mBalance (inNode->mBalance) {
+  if (inNode->mInfPtr != nullptr) {
+    macroMyNew (mInfPtr, cNode_branchOverflowMapDictionary (inNode->mInfPtr)) ;
+  }
+  if (inNode->mSupPtr != nullptr) {
+    macroMyNew (mSupPtr, cNode_branchOverflowMapDictionary (inNode->mSupPtr)) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cSharedDictRoot_branchOverflowMapDictionary::copyFrom (const cSharedDictRoot_branchOverflowMapDictionary * inSource) {
+  macroUniqueSharedObject (this) ;
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    inSource->checkDict (HERE) ;
+  #endif
+  macroValidSharedObject (inSource, cSharedDictRoot_branchOverflowMapDictionary) ;
+  mCount = inSource->mCount ;
+  if (nullptr != inSource->mRoot) {
+    macroMyNew (mRoot, cNode_branchOverflowMapDictionary (inSource->mRoot)) ;
+  }
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    checkDict (HERE) ;
+  #endif
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::insulate (LOCATION_ARGS) {
+  if ((nullptr != mSharedDict) && !mSharedDict->isUniquelyReferenced ()) {
+    cSharedDictRoot_branchOverflowMapDictionary * p = nullptr ;
+    macroMyNew (p, cSharedDictRoot_branchOverflowMapDictionary (THERE)) ;
+    p->copyFrom (mSharedDict) ;
+    macroAssignSharedObject (mSharedDict, p) ;
+    macroDetachSharedObject (p) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+#ifdef PRAGMA_MARK_ALLOWED
+  #pragma mark Insert
+#endif
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::enterElement (const GALGAS_branchOverflowMapDictionary_2D_element & inValue,
+                                                       Compiler * /* inCompiler */
+                                                       COMMA_LOCATION_ARGS) {
+  if (isValid () && inValue.isValid ()) {
+    insulate (THERE) ;
+    macroUniqueSharedObject (mSharedDict) ;
+    const bool entryOverrideAllowed = true ;
+    mSharedDict->performInsert (inValue, entryOverrideAllowed) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::addAssign_operation (const GALGAS_string & inKey,
+                                                              const GALGAS_stringlist & inArgument0,
+                                                              Compiler * /* inCompiler */
+                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_branchOverflowMapDictionary_2D_element newElement (inKey, inArgument0) ;
+  if (isValid () && newElement.isValid ()) {
+    insulate (THERE) ;
+    macroUniqueSharedObject (mSharedDict) ;
+    const bool entryOverrideAllowed = true ;
+    mSharedDict->performInsert (newElement, entryOverrideAllowed) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::setter_insert (const GALGAS_string inKey,
+                                                        const GALGAS_stringlist inArgument0,
+                                                        Compiler * /* inCompiler */
+                                                        COMMA_LOCATION_ARGS) {
+  GALGAS_branchOverflowMapDictionary_2D_element newElement (inKey, inArgument0) ;
+  if (isValid () && newElement.isValid ()) {
+    insulate (THERE) ;
+    macroUniqueSharedObject (mSharedDict) ;
+    const bool entryOverrideAllowed = true ;
+    mSharedDict->performInsert (newElement, entryOverrideAllowed) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_branchOverflowMapDictionary::getter_hasKey (const GALGAS_string & inKey
+                                                               COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_bool result ;
+  if (isValid () && inKey.isValid ()) {
+    const cNode_branchOverflowMapDictionary * p = mSharedDict->findEntryInDict (inKey) ;
+    result = GALGAS_bool (p != nullptr) ;
+   }
+   return result ;
+ }
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::method_searchKey (GALGAS_string inKey,
+                                                           GALGAS_stringlist & outArgument0,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) const {
+  const cNode_branchOverflowMapDictionary * p = nullptr ;
+  if (isValid () && inKey.isValid ()) {
+    p = mSharedDict->findEntryInDict (inKey) ;
+    if (nullptr == p) {
+    //--- Build error message
+      String message = "cannot search in dict: the key does not exist" ;
+    //--- Emit error message
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  if (nullptr == p) {
+    outArgument0.drop () ;
+  }else{
+    macroValidSharedObject (p, cNode_branchOverflowMapDictionary) ;
+    outArgument0 = p->mProperty_mList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::setter_removeKey (GALGAS_string inKey,
+                                                           GALGAS_stringlist & outArgument0,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
+  cNode_branchOverflowMapDictionary * p = nullptr ;
+  if (isValid () && inKey.isValid ()) {
+    insulate (THERE) ;
+    macroUniqueSharedObject (mSharedDict) ;
+    mSharedDict->performRemove (inKey, p) ;
+    if (nullptr == p) {
+    //--- Build error message
+      String message = "cannot remove in dict: the key does not exist" ;
+    //--- Emit error message
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  if (nullptr == p) {
+    outArgument0.drop () ;
+  }else{
+    macroValidSharedObject (p, cNode_branchOverflowMapDictionary) ;
+    outArgument0 = p->mProperty_mList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_stringlist GALGAS_branchOverflowMapDictionary::getter_mListForKey (const GALGAS_string & inKey,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const {
+  GALGAS_stringlist result ;
+  if (isValid () && inKey.isValid ()) {
+  const cNode_branchOverflowMapDictionary * p = mSharedDict->findEntryInDict (inKey) ;
+   if (nullptr == p) {
+    //--- Build error message
+      String message = "cannot get mList ForKey in dict: the key does not exist" ;
+    //--- Emit error message
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (p, cNode_branchOverflowMapDictionary) ;
+      result = p->mProperty_mList  ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::setter_setMListForKey (GALGAS_stringlist inPropertyValue,
+                                                                GALGAS_string inKey,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) {
+  if (isValid () && inKey.isValid ()) {
+    insulate (THERE) ;
+    macroUniqueSharedObject (mSharedDict) ;
+    cNode_branchOverflowMapDictionary * p = mSharedDict->findEntryInDict (inKey) ;
+    if (nullptr == p) {
+    //--- Build error message
+      String message = "cannot setMListForKey in dict: the key does not exist" ;
+    //--- Emit error message
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }else{
+      p->mProperty_mList = inPropertyValue ;
+    }
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+#ifdef PRAGMA_MARK_ALLOWED
+  #pragma mark Object compare
+#endif
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GALGAS_branchOverflowMapDictionary::objectCompare (const GALGAS_branchOverflowMapDictionary & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    result = mSharedDict->compare (inOperand.mSharedDict) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+#ifdef PRAGMA_MARK_ALLOWED
+  #pragma mark map Enumeration
+#endif
+
+//--------------------------------------------------------------------------------------------------
+
+class cCollectionElement_branchOverflowMapDictionary : public cCollectionElement {
+  public: GALGAS_branchOverflowMapDictionary_2D_element mElement ;
+
+//--- Constructor
+  public: cCollectionElement_branchOverflowMapDictionary (const GALGAS_branchOverflowMapDictionary_2D_element & inElement) :
+  cCollectionElement (HERE),
+  mElement (inElement) {
+  }
+
+//--- No copy
+  private: cCollectionElement_branchOverflowMapDictionary (const cCollectionElement_branchOverflowMapDictionary &) ;
+  private: cCollectionElement_branchOverflowMapDictionary & operator = (const cCollectionElement_branchOverflowMapDictionary &) ;
+
+//--- Virtual method that checks that all attributes are valid
+  public: virtual bool isValid (void) const { return mElement.isValid () ; }
+
+//--- Virtual method for comparing elements
+
+//--- Virtual method that returns a copy of current object
+  public: virtual cCollectionElement * copy (void) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_branchOverflowMapDictionary (mElement)) ;
+    return p ;
+  }
+
+//--- Description
+  public: virtual void description (String & ioString, const int32_t inIndentation) const {
+    mElement.description (ioString, inIndentation) ;
+  }
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+static void enterAscendingEnumeration_branchOverflowMapDictionary (cNode_branchOverflowMapDictionary * inNode,
+                                                       capCollectionElementArray & ioEnumerationArray) {
+  if (inNode != nullptr) {
+    enterAscendingEnumeration_branchOverflowMapDictionary (inNode->mInfPtr, ioEnumerationArray) ;
+    cCollectionElement_branchOverflowMapDictionary * p = nullptr ;
+    macroMyNew (p, cCollectionElement_branchOverflowMapDictionary (*inNode)) ;
+    capCollectionElement element ;
+    element.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    ioEnumerationArray.appendObject (element) ;
+    enterAscendingEnumeration_branchOverflowMapDictionary (inNode->mSupPtr, ioEnumerationArray) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cSharedDictRoot_branchOverflowMapDictionary::populateEnumerationArray (capCollectionElementArray & ioEnumerationArray) const {
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    checkDict (HERE) ;
+  #endif
+  ioEnumerationArray.setCapacity (mCount) ;
+  enterAscendingEnumeration_branchOverflowMapDictionary (mRoot, ioEnumerationArray) ;
+  macroAssert (mCount == ioEnumerationArray.count (), "mCount (%lld) != ioEnumerationArray.count () (%lld)", mCount, ioEnumerationArray.count ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary::populateEnumerationArray (capCollectionElementArray & ioEnumerationArray) const {
+  if (nullptr != mSharedDict) {
+    mSharedDict->populateEnumerationArray (ioEnumerationArray) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cEnumerator_branchOverflowMapDictionary::cEnumerator_branchOverflowMapDictionary (const GALGAS_branchOverflowMapDictionary & inEnumeratedObject,
+                                                        const EnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary_2D_element cEnumerator_branchOverflowMapDictionary::current (LOCATION_ARGS) const {
+  const cCollectionElement_branchOverflowMapDictionary* p = dynamic_cast  <const cCollectionElement_branchOverflowMapDictionary*> (currentObjectPtr (THERE)) ;
+  macroValidSharedObject (p, cCollectionElement_branchOverflowMapDictionary) ;
+  return GALGAS_branchOverflowMapDictionary_2D_element (p->mElement) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_string cEnumerator_branchOverflowMapDictionary::current_key (LOCATION_ARGS) const {
+  const cCollectionElement_branchOverflowMapDictionary* p = dynamic_cast  <const cCollectionElement_branchOverflowMapDictionary*> (currentObjectPtr (THERE)) ;
+  macroValidSharedObject (p, cCollectionElement_branchOverflowMapDictionary) ;
+  return p->mElement.mProperty_key ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_stringlist cEnumerator_branchOverflowMapDictionary::current_mList (LOCATION_ARGS) const {
+  const cCollectionElement_branchOverflowMapDictionary* p = dynamic_cast  <const cCollectionElement_branchOverflowMapDictionary*> (currentObjectPtr (THERE)) ;
+  macroValidSharedObject (p, cCollectionElement_branchOverflowMapDictionary) ;
+  return p->mElement.mProperty_mList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_branchOverflowMapDictionary::optional_searchKey (const GALGAS_string & inKey,
+                                                             GALGAS_stringlist & outArgument0) const {
+  const cNode_branchOverflowMapDictionary * p = nullptr ;
+  if ((mSharedDict != nullptr) && inKey.isValid ()) {
+    p = (const cNode_branchOverflowMapDictionary *) mSharedDict->findEntryInDict (inKey) ;
+  }
+  const bool result = nullptr != p ;
+  if (result) {
+    macroValidSharedObject (p, cNode_branchOverflowMapDictionary) ;
+    outArgument0 = p->mProperty_mList ;
+  }else{
+    outArgument0.drop () ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @branchOverflowMapDictionary generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMapDictionary ("branchOverflowMapDictionary",
+                                                                                   nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_branchOverflowMapDictionary::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_branchOverflowMapDictionary ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_branchOverflowMapDictionary::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_branchOverflowMapDictionary (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary GALGAS_branchOverflowMapDictionary::extractObject (const GALGAS_object & inObject,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) {
+  GALGAS_branchOverflowMapDictionary result ;
+  const GALGAS_branchOverflowMapDictionary * p = (const GALGAS_branchOverflowMapDictionary *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_branchOverflowMapDictionary *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("branchOverflowMapDictionary", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMap::GALGAS_branchOverflowMap (void) :
+mProperty_dictionary () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMap::~ GALGAS_branchOverflowMap (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_branchOverflowMap GALGAS_branchOverflowMap::init (Compiler * inCompiler
+                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_branchOverflowMap result ;
+  result.setInitializedProperties (inCompiler) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMap::setInitializedProperties (Compiler * inCompiler) {
+  mProperty_dictionary = GALGAS_branchOverflowMapDictionary::init (inCompiler COMMA_HERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMap::GALGAS_branchOverflowMap (const GALGAS_branchOverflowMapDictionary & inOperand0) :
+mProperty_dictionary (inOperand0) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMap GALGAS_branchOverflowMap::class_func_new (Compiler * inCompiler
+                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_branchOverflowMap result ;
+  result.setInitializedProperties (inCompiler) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_branchOverflowMap::isValid (void) const {
+  return mProperty_dictionary.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMap::drop (void) {
+  mProperty_dictionary.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMap::description (String & ioString,
+                                            const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @branchOverflowMap:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_dictionary.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @branchOverflowMap generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMap ("branchOverflowMap",
+                                                                         nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_branchOverflowMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_branchOverflowMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_branchOverflowMap::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_branchOverflowMap (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMap GALGAS_branchOverflowMap::extractObject (const GALGAS_object & inObject,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
+  GALGAS_branchOverflowMap result ;
+  const GALGAS_branchOverflowMap * p = (const GALGAS_branchOverflowMap *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_branchOverflowMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("branchOverflowMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension Getter '@branchOverflowMap listForKey'
+//
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_stringlist extensionGetter_listForKey (const GALGAS_branchOverflowMap & inObject,
+                                              const GALGAS_string & constinArgument_inKey,
+                                              Compiler * inCompiler
+                                              COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_stringlist result_result ; // Returned variable
+  enumGalgasBool test_0 = kBoolTrue ;
+  if (kBoolTrue == test_0) {
+    const GALGAS_branchOverflowMap temp_1 = inObject ;
+    test_0 = temp_1.readProperty_dictionary ().getter_hasKey (constinArgument_inKey COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 412)).boolEnum () ;
+    if (kBoolTrue == test_0) {
+      const GALGAS_branchOverflowMap temp_2 = inObject ;
+      temp_2.readProperty_dictionary ().method_searchKey (constinArgument_inKey, result_result, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 413)) ;
+    }
+  }
+  if (kBoolFalse == test_0) {
+    result_result = GALGAS_stringlist::init (inCompiler COMMA_HERE) ;
+  }
+//---
+  return result_result ;
+}
+
+
+
+
+//--------------------------------------------------------------------------------------------------
 //
 //Extension method '@ipic18SequentialInstruction instructionRelativeBranchOverflow'
 //
@@ -1854,17 +2225,6 @@ void cMapElement_symbolTableForRelativesResolution::description (String & ioStri
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mLabelAddress" ":") ;
   mProperty_mLabelAddress.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_symbolTableForRelativesResolution::compare (const cCollectionElement * inOperand) const {
-  cMapElement_symbolTableForRelativesResolution * operand = (cMapElement_symbolTableForRelativesResolution *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLabelAddress.objectCompare (operand->mProperty_mLabelAddress) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2147,7 +2507,6 @@ class cCollectionElement_codeList : public cCollectionElement {
   public: cCollectionElement_codeList (const GALGAS_codeList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -2200,14 +2559,6 @@ void cCollectionElement_codeList::description (String & ioString, const int32_t 
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mBinaryCode" ":") ;
   mObject.mProperty_mBinaryCode.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_codeList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_codeList * operand = (cCollectionElement_codeList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_codeList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2662,17 +3013,6 @@ void cMapElement_pic_31__38__5F_dataAddressMap::description (String & ioString, 
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mDataAddress" ":") ;
   mProperty_mDataAddress.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_pic_31__38__5F_dataAddressMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_pic_31__38__5F_dataAddressMap * operand = (cMapElement_pic_31__38__5F_dataAddressMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mDataAddress.objectCompare (operand->mProperty_mDataAddress) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3252,29 +3592,6 @@ void cMapElement_declaredRoutineMap::description (String & ioString, const int32
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mInstructionList" ":") ;
   mProperty_mInstructionList.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_declaredRoutineMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_declaredRoutineMap * operand = (cMapElement_declaredRoutineMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRequiredBank.objectCompare (operand->mProperty_mRequiredBank) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mReturnedBank.objectCompare (operand->mProperty_mReturnedBank) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mPreservesBank.objectCompare (operand->mProperty_mPreservesBank) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mIsNoReturn.objectCompare (operand->mProperty_mIsNoReturn) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mInstructionList.objectCompare (operand->mProperty_mInstructionList) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3864,23 +4181,6 @@ void cMapElement_blockInstructionBlockMap::description (String & ioString, const
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_blockInstructionBlockMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_blockInstructionBlockMap * operand = (cMapElement_blockInstructionBlockMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mInstructionList.objectCompare (operand->mProperty_mInstructionList) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mBlockTerminaisonForBlockInstruction.objectCompare (operand->mProperty_mBlockTerminaisonForBlockInstruction) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mEndOfBlock.objectCompare (operand->mProperty_mEndOfBlock) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_blockInstructionBlockMap::GALGAS_blockInstructionBlockMap (void) :
 AC_GALGAS_map () {
 }
@@ -4278,20 +4578,6 @@ void cMapElement_blockInitialBankSelectionMap::description (String & ioString, c
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mSourceBlock" ":") ;
   mProperty_mSourceBlock.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_blockInitialBankSelectionMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_blockInitialBankSelectionMap * operand = (cMapElement_blockInitialBankSelectionMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mInitialBankSelection.objectCompare (operand->mProperty_mInitialBankSelection) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mSourceBlock.objectCompare (operand->mProperty_mSourceBlock) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5029,34 +5315,6 @@ GALGAS_optimizeFlagStruct GALGAS_optimizeFlagStruct::class_func_new (const GALGA
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_optimizeFlagStruct::objectCompare (const GALGAS_optimizeFlagStruct & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mRemoveEmptyRoutine.objectCompare (inOperand.mProperty_mRemoveEmptyRoutine) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mJSRtoRETLWreplacedByMOVLW.objectCompare (inOperand.mProperty_mJSRtoRETLWreplacedByMOVLW) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mJSRfollowedByRETreplacedByJUMP.objectCompare (inOperand.mProperty_mJSRfollowedByRETreplacedByJUMP) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mMOVLWfollowedByRETreplacedByRETLW.objectCompare (inOperand.mProperty_mMOVLWfollowedByRETreplacedByRETLW) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mJSRtoOneInstructionRoutineReplacedByInstruction.objectCompare (inOperand.mProperty_mJSRtoOneInstructionRoutineReplacedByInstruction) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction.objectCompare (inOperand.mProperty_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank.objectCompare (inOperand.mProperty_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_optimizeFlagStruct::isValid (void) const {
   return mProperty_mRemoveEmptyRoutine.isValid () && mProperty_mJSRtoRETLWreplacedByMOVLW.isValid () && mProperty_mJSRfollowedByRETreplacedByJUMP.isValid () && mProperty_mMOVLWfollowedByRETreplacedByRETLW.isValid () && mProperty_mJSRtoOneInstructionRoutineReplacedByInstruction.isValid () && mProperty_mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction.isValid () && mProperty_mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank.isValid () ;
 }
@@ -5455,7 +5713,6 @@ class cCollectionElement_clusterList : public cCollectionElement {
   public: cCollectionElement_clusterList (const GALGAS_clusterList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -5503,14 +5760,6 @@ void cCollectionElement_clusterList::description (String & ioString, const int32
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mBlockList" ":") ;
   mObject.mProperty_mBlockList.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_clusterList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_clusterList * operand = (cCollectionElement_clusterList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_clusterList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5909,17 +6158,6 @@ void cMapElement_neededConversionForClusterOrder::description (String & ioString
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_neededConversionForClusterOrder::compare (const cCollectionElement * inOperand) const {
-  cMapElement_neededConversionForClusterOrder * operand = (cMapElement_neededConversionForClusterOrder *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mConversions.objectCompare (operand->mProperty_mConversions) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_neededConversionForClusterOrder::GALGAS_neededConversionForClusterOrder (void) :
 AC_GALGAS_map () {
 }
@@ -6227,20 +6465,6 @@ void cMapElement_generatedCodeMap::description (String & ioString, const int32_t
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mInstruction" ":") ;
   mProperty_mInstruction.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_generatedCodeMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_generatedCodeMap * operand = (cMapElement_generatedCodeMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mCode.objectCompare (operand->mProperty_mCode) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mInstruction.objectCompare (operand->mProperty_mInstruction) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6646,17 +6870,6 @@ void cMapElement_blockMapForStackComputation::description (String & ioString, co
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_blockMapForStackComputation::compare (const cCollectionElement * inOperand) const {
-  cMapElement_blockMapForStackComputation * operand = (cMapElement_blockMapForStackComputation *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mBlock.objectCompare (operand->mProperty_mBlock) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_blockMapForStackComputation::GALGAS_blockMapForStackComputation (void) :
 AC_GALGAS_map () {
 }
@@ -6964,20 +7177,6 @@ void cMapElement_routineCallMap::description (String & ioString, const int32_t i
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mTerminatorStackNeeds" ":") ;
   mProperty_mTerminatorStackNeeds.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_routineCallMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_routineCallMap * operand = (cMapElement_routineCallMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mCalledRoutineSet.objectCompare (operand->mProperty_mCalledRoutineSet) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mTerminatorStackNeeds.objectCompare (operand->mProperty_mTerminatorStackNeeds) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7302,17 +7501,6 @@ void cMapElement_routineStackRequirementMap::description (String & ioString, con
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mLevels" ":") ;
   mProperty_mLevels.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_routineStackRequirementMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_routineStackRequirementMap * operand = (cMapElement_routineStackRequirementMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLevels.objectCompare (operand->mProperty_mLevels) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7666,20 +7854,6 @@ void cMapElement_blockDurationMap::description (String & ioString, const int32_t
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mMaxDuration" ":") ;
   mProperty_mMaxDuration.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_blockDurationMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_blockDurationMap * operand = (cMapElement_blockDurationMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mMinDuration.objectCompare (operand->mProperty_mMinDuration) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mMaxDuration.objectCompare (operand->mProperty_mMaxDuration) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9188,14 +9362,6 @@ void cMapElement_declaredByteMap::description (String & /* ioString */, const in
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_declaredByteMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_declaredByteMap * operand = (cMapElement_declaredByteMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_declaredByteMap::GALGAS_declaredByteMap (void) :
 AC_GALGAS_map () {
 }
@@ -9479,29 +9645,6 @@ void cMapElement_registerTable::description (String & ioString, const int32_t in
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mProtection" ":") ;
   mProperty_mProtection.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_registerTable::compare (const cCollectionElement * inOperand) const {
-  cMapElement_registerTable * operand = (cMapElement_registerTable *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRegisterAddressList.objectCompare (operand->mProperty_mRegisterAddressList) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mSize.objectCompare (operand->mProperty_mSize) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mBitSliceTable.objectCompare (operand->mProperty_mBitSliceTable) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mBitDefinitionString.objectCompare (operand->mProperty_mBitDefinitionString) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mProtection.objectCompare (operand->mProperty_mProtection) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10080,26 +10223,6 @@ void cMapElement_ramBankTable::description (String & ioString, const int32_t inI
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_ramBankTable::compare (const cCollectionElement * inOperand) const {
-  cMapElement_ramBankTable * operand = (cMapElement_ramBankTable *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mFirstAddress.objectCompare (operand->mProperty_mFirstAddress) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mFirstFreeAddress.objectCompare (operand->mProperty_mFirstFreeAddress) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLastAddressPlusOne.objectCompare (operand->mProperty_mLastAddressPlusOne) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mMirrorOffsetList.objectCompare (operand->mProperty_mMirrorOffsetList) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_ramBankTable::GALGAS_ramBankTable (void) :
 AC_GALGAS_map () {
 }
@@ -10606,21 +10729,6 @@ void GALGAS_processorType::description (String & ioString,
   ioString.appendCString (">") ;
 }
 
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_processorType::objectCompare (const GALGAS_processorType & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -10681,7 +10789,6 @@ class cCollectionElement_illegalMaskList : public cCollectionElement {
   public: cCollectionElement_illegalMaskList (const GALGAS_illegalMaskList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -10739,14 +10846,6 @@ void cCollectionElement_illegalMaskList::description (String & ioString, const i
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mDescription" ":") ;
   mObject.mProperty_mDescription.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_illegalMaskList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_illegalMaskList * operand = (cCollectionElement_illegalMaskList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_illegalMaskList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -11279,23 +11378,6 @@ void cMapElement_configRegisterMaskMap::description (String & ioString, const in
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_configRegisterMaskMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_configRegisterMaskMap * operand = (cMapElement_configRegisterMaskMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mMaskValue.objectCompare (operand->mProperty_mMaskValue) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mDescription.objectCompare (operand->mProperty_mDescription) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mFieldSettingMap.objectCompare (operand->mProperty_mFieldSettingMap) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_configRegisterMaskMap::GALGAS_configRegisterMaskMap (void) :
 AC_GALGAS_map () {
 }
@@ -11707,26 +11789,6 @@ void cMapElement_configRegisterMap::description (String & ioString, const int32_
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mIllegalMaskList" ":") ;
   mProperty_mIllegalMaskList.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_configRegisterMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_configRegisterMap * operand = (cMapElement_configRegisterMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRegisterAddress.objectCompare (operand->mProperty_mRegisterAddress) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRegisterWidth.objectCompare (operand->mProperty_mRegisterWidth) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mConfigRegisterMaskMap.objectCompare (operand->mProperty_mConfigRegisterMaskMap) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mIllegalMaskList.objectCompare (operand->mProperty_mIllegalMaskList) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -12976,16 +13038,6 @@ GALGAS_declarationInRamList_2D_element GALGAS_declarationInRamList_2D_element::c
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_declarationInRamList_2D_element::objectCompare (const GALGAS_declarationInRamList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mDeclarationInRAM.objectCompare (inOperand.mProperty_mDeclarationInRAM) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_declarationInRamList_2D_element::isValid (void) const {
   return mProperty_mDeclarationInRAM.isValid () ;
 }
@@ -13099,19 +13151,6 @@ GALGAS_configDefinitionList_2D_element GALGAS_configDefinitionList_2D_element::c
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mDefinitionLocation = in_mDefinitionLocation ;
   result.mProperty_mSettingList = in_mSettingList ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_configDefinitionList_2D_element::objectCompare (const GALGAS_configDefinitionList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mDefinitionLocation.objectCompare (inOperand.mProperty_mDefinitionLocation) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mSettingList.objectCompare (inOperand.mProperty_mSettingList) ;
-  }
   return result ;
 }
 
@@ -13238,19 +13277,6 @@ GALGAS_immediatExpressionList_2D_element GALGAS_immediatExpressionList_2D_elemen
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_immediatExpressionList_2D_element::objectCompare (const GALGAS_immediatExpressionList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mExpression.objectCompare (inOperand.mProperty_mExpression) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mErrorLocation.objectCompare (inOperand.mProperty_mErrorLocation) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_immediatExpressionList_2D_element::isValid (void) const {
   return mProperty_mExpression.isValid () && mProperty_mErrorLocation.isValid () ;
 }
@@ -13360,16 +13386,6 @@ GALGAS_baseline_5F_instructionList_2D_element GALGAS_baseline_5F_instructionList
   GALGAS_baseline_5F_instructionList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mInstruction = in_mInstruction ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_baseline_5F_instructionList_2D_element::objectCompare (const GALGAS_baseline_5F_instructionList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mInstruction.objectCompare (inOperand.mProperty_mInstruction) ;
-  }
   return result ;
 }
 
@@ -13500,22 +13516,6 @@ GALGAS_baseline_5F_partList_2D_element GALGAS_baseline_5F_partList_2D_element::c
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_baseline_5F_partList_2D_element::objectCompare (const GALGAS_baseline_5F_partList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mCondition.objectCompare (inOperand.mProperty_mCondition) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mInstructionList.objectCompare (inOperand.mProperty_mInstructionList) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mEndOfPartLocation.objectCompare (inOperand.mProperty_mEndOfPartLocation) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_baseline_5F_partList_2D_element::isValid (void) const {
   return mProperty_mCondition.isValid () && mProperty_mInstructionList.isValid () && mProperty_mEndOfPartLocation.isValid () ;
 }
@@ -13633,16 +13633,6 @@ GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element GALGAS_baseline_5F
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::objectCompare (const GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mInstruction.objectCompare (inOperand.mProperty_mInstruction) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_baseline_5F_intermediate_5F_instructionList_2D_element::isValid (void) const {
   return mProperty_mInstruction.isValid () ;
 }
@@ -13754,16 +13744,6 @@ GALGAS_baseline_5F_assembly_5F_instructionList_2D_element GALGAS_baseline_5F_ass
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::objectCompare (const GALGAS_baseline_5F_assembly_5F_instructionList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mInstruction.objectCompare (inOperand.mProperty_mInstruction) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_baseline_5F_assembly_5F_instructionList_2D_element::isValid (void) const {
   return mProperty_mInstruction.isValid () ;
 }
@@ -13870,16 +13850,6 @@ GALGAS_midrange_5F_instructionList_2D_element GALGAS_midrange_5F_instructionList
   GALGAS_midrange_5F_instructionList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mInstruction = in_mInstruction ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_midrange_5F_instructionList_2D_element::objectCompare (const GALGAS_midrange_5F_instructionList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mInstruction.objectCompare (inOperand.mProperty_mInstruction) ;
-  }
   return result ;
 }
 
@@ -14010,22 +13980,6 @@ GALGAS_midrange_5F_partList_2D_element GALGAS_midrange_5F_partList_2D_element::c
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_midrange_5F_partList_2D_element::objectCompare (const GALGAS_midrange_5F_partList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mCondition.objectCompare (inOperand.mProperty_mCondition) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mInstructionList.objectCompare (inOperand.mProperty_mInstructionList) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mEndOfPartLocation.objectCompare (inOperand.mProperty_mEndOfPartLocation) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_midrange_5F_partList_2D_element::isValid (void) const {
   return mProperty_mCondition.isValid () && mProperty_mInstructionList.isValid () && mProperty_mEndOfPartLocation.isValid () ;
 }
@@ -14143,16 +14097,6 @@ GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element GALGAS_midrange_5F
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::objectCompare (const GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mInstruction.objectCompare (inOperand.mProperty_mInstruction) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_midrange_5F_intermediate_5F_instructionList_2D_element::isValid (void) const {
   return mProperty_mInstruction.isValid () ;
 }
@@ -14259,16 +14203,6 @@ GALGAS_pic_31__38_InstructionList_2D_element GALGAS_pic_31__38_InstructionList_2
   GALGAS_pic_31__38_InstructionList_2D_element result ;
   result.setInitializedProperties (inCompiler) ;
   result.mProperty_mInstruction = in_mInstruction ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_pic_31__38_InstructionList_2D_element::objectCompare (const GALGAS_pic_31__38_InstructionList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mInstruction.objectCompare (inOperand.mProperty_mInstruction) ;
-  }
   return result ;
 }
 
@@ -14399,22 +14333,6 @@ GALGAS_pic_31__38_DoWhilePartList_2D_element GALGAS_pic_31__38_DoWhilePartList_2
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_pic_31__38_DoWhilePartList_2D_element::objectCompare (const GALGAS_pic_31__38_DoWhilePartList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mCondition.objectCompare (inOperand.mProperty_mCondition) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mInstructionList.objectCompare (inOperand.mProperty_mInstructionList) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mEndOfPartLocation.objectCompare (inOperand.mProperty_mEndOfPartLocation) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_pic_31__38_DoWhilePartList_2D_element::isValid (void) const {
   return mProperty_mCondition.isValid () && mProperty_mInstructionList.isValid () && mProperty_mEndOfPartLocation.isValid () ;
 }
@@ -14539,19 +14457,6 @@ GALGAS_checkpicList_2D_element GALGAS_checkpicList_2D_element::class_func_new (c
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_checkpicList_2D_element::objectCompare (const GALGAS_checkpicList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mErrorLocation.objectCompare (inOperand.mProperty_mErrorLocation) ;
-  }
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mValueList.objectCompare (inOperand.mProperty_mValueList) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_checkpicList_2D_element::isValid (void) const {
   return mProperty_mErrorLocation.isValid () && mProperty_mValueList.isValid () ;
 }
@@ -14666,16 +14571,6 @@ GALGAS_pic_31__38_CaseExpressionList_2D_element GALGAS_pic_31__38_CaseExpression
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_pic_31__38_CaseExpressionList_2D_element::objectCompare (const GALGAS_pic_31__38_CaseExpressionList_2D_element & inOperand) const {
-   ComparisonResult result = ComparisonResult::operandEqual ;
-  if (result == ComparisonResult::operandEqual) {
-    result = mProperty_mCaseItem.objectCompare (inOperand.mProperty_mCaseItem) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GALGAS_pic_31__38_CaseExpressionList_2D_element::isValid (void) const {
   return mProperty_mCaseItem.isValid () ;
 }
@@ -14736,6 +14631,268 @@ GALGAS_pic_31__38_CaseExpressionList_2D_element GALGAS_pic_31__38_CaseExpression
       result = *p ;
     }else{
       inCompiler->castError ("pic18CaseExpressionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (void) :
+mProperty_mStartOfCase (),
+mProperty_mCaseExpressionList (),
+mProperty_mInstructionList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::~ GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::init_21__21__21_ (const GALGAS_location & in_mStartOfCase,
+                                                                                                                                 const GALGAS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
+                                                                                                                                 const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                                 Compiler * inCompiler
+                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mStartOfCase = in_mStartOfCase ;
+  result.mProperty_mCaseExpressionList = in_mCaseExpressionList ;
+  result.mProperty_mInstructionList = in_mInstructionList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (const GALGAS_location & inOperand0,
+                                                                                                                const GALGAS_pic_31__38_CaseExpressionList & inOperand1,
+                                                                                                                const GALGAS_pic_31__38_InstructionList & inOperand2) :
+mProperty_mStartOfCase (inOperand0),
+mProperty_mCaseExpressionList (inOperand1),
+mProperty_mInstructionList (inOperand2) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::class_func_new (const GALGAS_location & in_mStartOfCase,
+                                                                                                                               const GALGAS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
+                                                                                                                               const GALGAS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                               Compiler * inCompiler
+                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mStartOfCase = in_mStartOfCase ;
+  result.mProperty_mCaseExpressionList = in_mCaseExpressionList ;
+  result.mProperty_mInstructionList = in_mInstructionList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::isValid (void) const {
+  return mProperty_mStartOfCase.isValid () && mProperty_mCaseExpressionList.isValid () && mProperty_mInstructionList.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::drop (void) {
+  mProperty_mStartOfCase.drop () ;
+  mProperty_mCaseExpressionList.drop () ;
+  mProperty_mInstructionList.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::description (String & ioString,
+                                                                          const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @pic18SwitchInstructionCaseList-element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mStartOfCase.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mCaseExpressionList.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @pic18SwitchInstructionCaseList-element generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element ("pic18SwitchInstructionCaseList-element",
+                                                                                                       nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                              Compiler * inCompiler
+                                                                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element result ;
+  const GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element * p = (const GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_SwitchInstructionCaseList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18SwitchInstructionCaseList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38_SequentialInstructionList_2D_element::GALGAS_ipic_31__38_SequentialInstructionList_2D_element (void) :
+mProperty_mInstruction (),
+mProperty_mMin (),
+mProperty_mMax () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38_SequentialInstructionList_2D_element::~ GALGAS_ipic_31__38_SequentialInstructionList_2D_element (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_SequentialInstructionList_2D_element::init_21__21__21_ (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
+                                                                                                                                   const GALGAS_uint & in_mMin,
+                                                                                                                                   const GALGAS_uint & in_mMax,
+                                                                                                                                   Compiler * inCompiler
+                                                                                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_ipic_31__38_SequentialInstructionList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mInstruction = in_mInstruction ;
+  result.mProperty_mMin = in_mMin ;
+  result.mProperty_mMax = in_mMax ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38_SequentialInstructionList_2D_element::GALGAS_ipic_31__38_SequentialInstructionList_2D_element (const GALGAS_ipic_31__38_SequentialInstruction & inOperand0,
+                                                                                                                  const GALGAS_uint & inOperand1,
+                                                                                                                  const GALGAS_uint & inOperand2) :
+mProperty_mInstruction (inOperand0),
+mProperty_mMin (inOperand1),
+mProperty_mMax (inOperand2) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_SequentialInstructionList_2D_element::class_func_new (const GALGAS_ipic_31__38_SequentialInstruction & in_mInstruction,
+                                                                                                                                 const GALGAS_uint & in_mMin,
+                                                                                                                                 const GALGAS_uint & in_mMax,
+                                                                                                                                 Compiler * inCompiler
+                                                                                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_ipic_31__38_SequentialInstructionList_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mInstruction = in_mInstruction ;
+  result.mProperty_mMin = in_mMin ;
+  result.mProperty_mMax = in_mMax ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_ipic_31__38_SequentialInstructionList_2D_element::isValid (void) const {
+  return mProperty_mInstruction.isValid () && mProperty_mMin.isValid () && mProperty_mMax.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::drop (void) {
+  mProperty_mInstruction.drop () ;
+  mProperty_mMin.drop () ;
+  mProperty_mMax.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_ipic_31__38_SequentialInstructionList_2D_element::description (String & ioString,
+                                                                           const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @ipic18SequentialInstructionList-element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mInstruction.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mMin.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mMax.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @ipic18SequentialInstructionList-element generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList_2D_element ("ipic18SequentialInstructionList-element",
+                                                                                                        nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_ipic_31__38_SequentialInstructionList_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList_2D_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_ipic_31__38_SequentialInstructionList_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_ipic_31__38_SequentialInstructionList_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_SequentialInstructionList_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                                                Compiler * inCompiler
+                                                                                                                                COMMA_LOCATION_ARGS) {
+  GALGAS_ipic_31__38_SequentialInstructionList_2D_element result ;
+  const GALGAS_ipic_31__38_SequentialInstructionList_2D_element * p = (const GALGAS_ipic_31__38_SequentialInstructionList_2D_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_ipic_31__38_SequentialInstructionList_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("ipic18SequentialInstructionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

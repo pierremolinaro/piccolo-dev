@@ -10,6 +10,18 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Extension setter '@branchOverflowMap insertKey'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionSetter_insertKey (class GALGAS_branchOverflowMap & ioObject,
+                                const class GALGAS_string constin_inKey,
+                                const class GALGAS_string constin_inValue,
+                                class Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
 //Extension method '@ipic18Block display'
 //
 //--------------------------------------------------------------------------------------------------
@@ -574,4 +586,13 @@ void routine_perform_5F_baseline_5F_optimizations_26__26_ (class GALGAS_baseline
                                                            class GALGAS_string & ioArgument1,
                                                            class Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Function 'acceptableTRISoperand'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GALGAS_stringset function_acceptableTRISoperand (class Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
 

@@ -135,7 +135,7 @@ abstract refclass @pic18AbstractCaseItem {
 
 #----------------------------------------------------*
 
-enum @pic18Instruction_FDA_base_code_AST {
+enum @pic18Instruction_FDA_base_code_AST %equatable {
   case ADDWF  case ADDWFC  case ANDWF  case COMF  case DECF  case INCF 
   case IORWF  case MOVF  case RLCF  case RLNCF  case RRCF  case RRNCF
   case SUBFWB  case SUBWF  case SUBWFB  case SWAPF  case XORWF
@@ -185,13 +185,13 @@ refclass @pic18Instruction_FBA : @pic18PiccoloSimpleInstruction {
 
 #----------------------------------------------------*
 
-enum @conditional_branch {
+enum @conditional_branch %equatable {
   case bz  case bnz  case bn  case bnn  case bc  case bnc  case bov  case bnov
 }
 
 #----------------------------------------------------*
 
-enum @jumpInstructionKind {
+enum @jumpInstructionKind %equatable {
   case ipicRelative
   case relative
   case absolute
@@ -246,7 +246,7 @@ refclass @pic18Instruction_withNoOperand : @pic18PiccoloSimpleInstruction {
 
 #----------------------------------------------------*
 
-enum @literal_instruction_opcode {
+enum @literal_instruction_opcode %equatable {
   case ADDLW  case ANDLW  case IORLW  case MOVLW  case MULLW  case SUBLW  case XORLW
 }
 
@@ -532,7 +532,7 @@ list @routineDeclarationList {
 
 #----------------------------------------------------*
 
-enum @programKind {
+enum @programKind %equatable {
   case regularProgram  case bootloaderProgram  case userProgram
 }
 

@@ -156,7 +156,7 @@ refclass @midrange_intermediate_instruction_BitTestSkip : @midrange_intermediate
 
 #----------------------------------------------------*
 
-enum @midrange_call_goto_bit {
+enum @midrange_call_goto_bit %equatable {
   case set  case clear  case noChange
 }
 

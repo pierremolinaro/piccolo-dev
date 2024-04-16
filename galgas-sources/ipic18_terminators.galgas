@@ -183,7 +183,7 @@ override method @ipic18JumpTerminator terminatorRelativeBranchOverflow
     switch self.mKind
     case ipicRelative, relative :
       if not pic18_checkBRA_RCALL (!inSymbolTable !self.mLabel !inAddress) then
-        ioOverflowMap += !inBlockLabel !self.mLabel.string
+        [!?ioOverflowMap insertKey !inBlockLabel !self.mLabel.string]
       end
     case absolute :
     end  
@@ -263,12 +263,6 @@ override method @ipic18JumpTerminator generateTerminatorCode
 override getter @ipic18JumpTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
-#  outResult = (inTerminator is == @ipic18JumpTerminator)
-#  if outResult then
-#    let @ipic18JumpTerminator t = ( inTerminator as @ipic18JumpTerminator)
-#    outResult = (mLabel.string == [t mLabel].string) & (mKind == [t mKind])
-#  end
-
   if let t = inTerminator as @ipic18JumpTerminator then
     outResult = (self.mLabel.string == t.mLabel.string) & (self.mKind == t.mKind)
   else
@@ -929,7 +923,7 @@ override method @ipic18ComputedRETLWTerminator terminatorRelativeBranchOverflow
   ?!@branchOverflowMap ioOverflowMap {
   if self.mUsesRCALL then  
     if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress) then
-      ioOverflowMap += !inBlockLabel !"_computed_goto_2"
+      [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_2"]
     end
   end
 }
@@ -1033,7 +1027,7 @@ override method @ipic18ComputedGotoTerminator terminatorRelativeBranchOverflow
   ?!@branchOverflowMap ioOverflowMap {
   if self.mUsesRCALL then  
     if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_4" nowhere] !inAddress) then
-      ioOverflowMap += !inBlockLabel !"_computed_goto_4"
+      [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_4"]
     end
   end
 }
@@ -1139,7 +1133,7 @@ override method @ipic18ComputedBraTerminator terminatorRelativeBranchOverflow
   var @uint address
   if self.mUsesRCALL then  
     if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress) then
-      ioOverflowMap += !inBlockLabel !"_computed_goto_2"
+      [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_2"]
     end
     address = inAddress + 2
   else
@@ -1147,7 +1141,7 @@ override method @ipic18ComputedBraTerminator terminatorRelativeBranchOverflow
   end
   for (mValue) in  self.mTargetLabels do
     if not pic18_checkBRA_RCALL (!inSymbolTable !mValue !address) then
-      ioOverflowMap += !inBlockLabel !mValue.string
+      [!?ioOverflowMap insertKey !inBlockLabel !mValue.string]
     end
     address = address + 2
   end
@@ -1434,11 +1428,11 @@ override method @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflo
     switch self.mBranchModeOnFalseLabel
     case native : # !Bcc F
       if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenFalse !inAddress) then
-        ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenFalse.string
+        [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
       end
     case ipicBRA : # Bcc Z ; BRA F ; Z:
       if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse !inAddress + 2) then
-        ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenFalse.string
+        [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
       end
     case ipicGOTO : # Bcc Z ; GOTO F ; Z:
     end
@@ -1446,11 +1440,11 @@ override method @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflo
     switch self.mBranchModeOnTrueLabel
     case native : # Bcc T
       if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress) then
-        ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+        [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
       end
     case ipicBRA : # !Bcc Z ; BRA T ; Z:
       if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress + 2) then
-        ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+        [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
       end
     case ipicGOTO : # !Bcc Z ; GOTO T ; Z:
     end
@@ -1460,10 +1454,10 @@ override method @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflo
       switch self.mBranchModeOnTrueLabel
       case native, ipicBRA : # !Bcc F ; BRA T
         if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenFalse !inAddress) then
-          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenFalse.string
+          [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
         end
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress+2) then
-          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+          [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
       case ipicGOTO : # !Bcc F ; GOTO T
       end
@@ -1471,32 +1465,34 @@ override method @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflo
       switch self.mBranchModeOnTrueLabel
       case native   : # Bcc T ; BRA F
         if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress) then
-          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+          [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse!inAddress+2) then
-          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenFalse.string
+          [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
         end
       case ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse!inAddress+2) then
-          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenFalse.string
+          [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
         end
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress+4) then
-          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+          [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
       case ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse!inAddress+2) then
-          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenFalse.string
+          [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
         end
       end
     case ipicGOTO :
       switch self.mBranchModeOnTrueLabel
       case native   : # Bcc T ; GOTO F
         if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress) then
-          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+#          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+          [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
       case ipicBRA  : # Bcc Z ; GOTO F ; Z: BRA T
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress+6) then
-          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+#          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+          [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
       case ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
       end

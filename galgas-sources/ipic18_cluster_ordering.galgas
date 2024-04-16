@@ -82,7 +82,7 @@ proc perform_cluster_ordering
         ?let @branchOverflowMap overflowMap
       )
       var @uint overflowCount = 0
-      for (key mList) in  overflowMap do
+      for (key mList) in overflowMap.dictionary do
         for (mValue) in  mList do
           overflowCount += 1
           [symbolTable searchKey ![key nowhere] ?let @uint sourceCluster]
@@ -107,7 +107,7 @@ proc perform_cluster_ordering
       end
     #--- Correction
       var @bool correctionLoop = true
-      for (key mList) in  overflowMap while correctionLoop do
+      for (key mList) in overflowMap.dictionary while correctionLoop do
         for (mValue) in  mList while correctionLoop do
           [symbolTable searchKey ![mValue nowhere] ?let @uint targetCluster]
           if targetCluster != @uint. max then

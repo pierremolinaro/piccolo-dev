@@ -923,7 +923,8 @@ override method @ipic18_intermediate_JSR instructionRelativeBranchOverflow
   switch self.mKind
   case ipicRelative, relative :
     if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabel !inAddress) then
-      ioOverflowMap += !inBlockLabel !self.mTargetLabel.string
+#      ioOverflowMap += !inBlockLabel !self.mTargetLabel.string
+      [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabel.string]
     end
   case absolute : # Allways ok
   end
@@ -1034,7 +1035,8 @@ override method @ipic18_intermediate_instruction_computed_rcall instructionRelat
   end
   if self.mUsesRCALL then
     if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_4" nowhere] !inAddress) then
-      ioOverflowMap += !inBlockLabel !"_computed_goto_4"
+#      ioOverflowMap += !inBlockLabel !"_computed_goto_4"
+      [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_4"]
     end
   end
 }

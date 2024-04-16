@@ -1,6 +1,6 @@
 
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 map @pic18_dataMap {
   public var @uintlist mData
@@ -9,13 +9,13 @@ map @pic18_dataMap {
   search searchKey error message "the '%K' data is not declared"
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract refclass @ipic18SequentialInstruction {
   public var @location mInstructionLocation
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 list @ipic18SequentialInstructionList {
   public var @ipic18SequentialInstruction mInstruction
@@ -23,13 +23,13 @@ list @ipic18SequentialInstructionList {
   public var @uint mMax
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract refclass @ipic18AbstractBlockTerminator {
   public var @location mInstructionLocation
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 struct @ipic18Block {
   public var @uint mAddress # [@uint max] if relocatable
@@ -40,68 +40,68 @@ struct @ipic18Block {
   public var @uint mTerminatorMax
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 list @ipic18BlockList {
   public var @ipic18Block mBlock
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 #!Block terminators
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract refclass @ipic18SingleInstructionTerminator : @ipic18AbstractBlockTerminator {
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18ReturnTerminator : @ipic18SingleInstructionTerminator {
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18RetlwTerminator : @ipic18SingleInstructionTerminator {
   public var @uint mLiteralValue
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18RetfieTerminator : @ipic18SingleInstructionTerminator {
   public var @bool mFastReturn
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18JumpTerminator : @ipic18SingleInstructionTerminator {
   public var @lstring mLabel
   public var @jumpInstructionKind mKind
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18ComputedGotoTerminator : @ipic18AbstractBlockTerminator {
   public var @lstringlist mTargetLabels
   public var @bool mUsesRCALL
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18ComputedRETLWTerminator : @ipic18AbstractBlockTerminator {
   public var @uintlist mLiteralValues
   public var @bool mUsesRCALL
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
-enum @conditionalBranchMode {
+enum @conditionalBranchMode %equatable {
   case native  # Use Bcc instruction only
   case ipicBRA  # Use BRA if possible (Bcc + BRA)
   case ipicGOTO # use GOTO (Bcc + GOTO)
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18ConditionalJumpTerminator : @ipic18AbstractBlockTerminator {
   public var @conditional_branch mConditionalBranch
@@ -111,7 +111,7 @@ refclass @ipic18ConditionalJumpTerminator : @ipic18AbstractBlockTerminator {
   public var @conditionalBranchMode mBranchModeOnFalseLabel
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18ComputedBraTerminator : @ipic18AbstractBlockTerminator {
   public var @lstringlist mTargetLabels
@@ -120,27 +120,27 @@ refclass @ipic18ComputedBraTerminator : @ipic18AbstractBlockTerminator {
 
 #----------------------------------------------------*
 
-enum @ipic18RegisterComparison {
+enum @ipic18RegisterComparison %equatable {
   case registerEqualsToW 
   case registerGreaterThanW 
   case registerLowerThanW
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract refclass @ipic18AbstractConditionTerminator : @ipic18AbstractBlockTerminator {
   public var @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionTrue
   public var @ipic18SingleInstructionTerminator mSingleInstructionTerminatorIfConditionFalse
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @pic18RegisterComparisonTerminator : @ipic18AbstractConditionTerminator {
   public var @ipic18_intermediate_registerExpression mRegisterDescription
   public var @ipic18RegisterComparison mComparison
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18IncDecRegisterTerminator : @ipic18AbstractConditionTerminator {
   public var @ipic18_intermediate_registerExpression mRegisterDescription
@@ -148,30 +148,30 @@ refclass @ipic18IncDecRegisterTerminator : @ipic18AbstractConditionTerminator {
   public var @bool m_W_isDestination
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @pic18TestRegisterTerminator : @ipic18AbstractConditionTerminator {
   public var @ipic18_intermediate_registerExpression mRegisterDescription
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @pic18BitTestTerminator : @ipic18AbstractConditionTerminator {
   public var @ipic18_intermediate_registerExpression mRegisterDescription
   public var @uint mBitNumber
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 #!Regular instructions
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18InstructionWithNoOperand : @ipic18SequentialInstruction {
   public var @pic18InstructionWithNoOperandKind mKind
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 struct @ipic18_intermediate_registerExpression {
   public var @string mAssemblyString
@@ -179,7 +179,7 @@ struct @ipic18_intermediate_registerExpression {
   public var @bool mNeedsBSR
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 getter @ipic18_intermediate_registerExpression isEqualToRegister
   ?let @ipic18_intermediate_registerExpression inRegister
@@ -193,7 +193,7 @@ getter @ipic18_intermediate_registerExpression isEqualToRegister
   end
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_FDA : @ipic18SequentialInstruction {
   public var @pic18Instruction_FDA_base_code_AST mInstruction_FDA_base_code
@@ -207,42 +207,42 @@ enum @FA_sequential_instruction_base_code {
   case CLRF  case MOVWF  case MULWF  case NEGF  case SETF
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_FA : @ipic18SequentialInstruction {
   public var @FA_sequential_instruction_base_code mFAinstruction
   public var @ipic18_intermediate_registerExpression mRegisterDescription
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 struct @ipic18_intermediate_registerExpressionWithoutBSRIndication {
   public var @string mAssemblyString
   public var @uint mRegisterAddress # 12 bit full address
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_MOVFF : @ipic18SequentialInstruction {
   public var @ipic18_intermediate_registerExpressionWithoutBSRIndication mSourceRegisterDescription
   public var @ipic18_intermediate_registerExpressionWithoutBSRIndication mDestinationRegisterDescription
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_literalOperation : @ipic18SequentialInstruction {
   public var @literal_instruction_opcode mLiteralInstruction
   public var @uint mLiteralValue
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_LFSR : @ipic18SequentialInstruction {
   public var @luint mFSRindex
   public var @uint mValue
 }  
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_FBA : @ipic18SequentialInstruction {
   public var @bit_oriented_op mBitOrientedOp
@@ -250,55 +250,55 @@ refclass @ipic18_intermediate_instruction_FBA : @ipic18SequentialInstruction {
   public var @uint mBitNumber
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_JSR : @ipic18SequentialInstruction {
   public var @lstring mTargetLabel
   public var @jumpInstructionKind mKind
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_MOVLB : @ipic18SequentialInstruction {
   public var @luint mBankIndex
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_FNOP : @ipic18SequentialInstruction {
   public var @uint mBlankValue
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_BLANK : @ipic18SequentialInstruction {
   public var @uint mBlankValue
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_TBLRD : @ipic18SequentialInstruction {
   public var @tableAccessOption mOption
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_TBLWT : @ipic18SequentialInstruction {
   public var @tableAccessOption mOption
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_MNOP : @ipic18SequentialInstruction {
   public var @luint mOccurrenceFactor
 }
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_NOPBRA : @ipic18SequentialInstruction {
   public var @luint mOccurrenceFactor
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_MOV_LABEL_W : @ipic18SequentialInstruction {
   public var @lstring mLabel
@@ -306,20 +306,20 @@ refclass @ipic18_intermediate_MOV_LABEL_W : @ipic18SequentialInstruction {
   public var @uint mRightShift
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_intermediate_instruction_computed_rcall : @ipic18SequentialInstruction {
   public var @ipic18SequentialInstructionList mTargetInstructions
   public var @bool mUsesRCALL
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract refclass @ipic18_condition_skip_instruction : @ipic18SequentialInstruction {
   public var @ipic18SequentialInstruction mEmbeddedInstruction
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_skip_instruction_BitTestSkip : @ipic18_condition_skip_instruction {
   public var @bool mSkipIfSet
@@ -333,7 +333,7 @@ enum @ipic18_compare_register_instruction_base_code {
   case CPFSEQ  case CPFSGT  case CPFSLT  case TSTFSZ
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_skip_instruction_compare_register : @ipic18_condition_skip_instruction {
   public var @ipic18_compare_register_instruction_base_code mCompareInstruction
@@ -346,7 +346,7 @@ enum @skip_instruction_FDA_base_code {
   case DECFSZ  case DCFSNZ  case INCFSZ  case INFSNZ
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 refclass @ipic18_skip_instruction_FDA : @ipic18_condition_skip_instruction {
   public var @skip_instruction_FDA_base_code mInstruction_FDA_base_code
@@ -354,11 +354,11 @@ refclass @ipic18_skip_instruction_FDA : @ipic18_condition_skip_instruction {
   public var @bool m_W_isDestination
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 #!Optimization
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 map @symbolTableForBlockOptimization {
   public var @uint mDefinitionBlockIndex
@@ -366,11 +366,11 @@ map @symbolTableForBlockOptimization {
   search searchKey error message "the '%K' label is not declared"
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 #!Cluster ordering optimization
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 map @symbolTableForClusterOrdering {
   public var @uint mCluster
@@ -378,11 +378,49 @@ map @symbolTableForClusterOrdering {
   search searchKey error message "the '%K' label is not declared"
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
-listmap @branchOverflowMap (@stringlist)
+// listmap @branchOverflowMap (@stringlist)
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
+
+dict @branchOverflowMapDictionary : @string {
+  public var @stringlist mList
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————
+
+struct @branchOverflowMap {
+  private(set) var @branchOverflowMapDictionary dictionary = ()
+
+  //·····························································································
+
+  setter insertKey  ?let @string inKey
+                    ?let @string inValue {
+    if [self.dictionary hasKey !inKey] then
+      [self.dictionary searchKey !inKey ?var aList]
+      [!?aList append !inValue]
+      self.dictionary += !inKey !aList
+    else
+      self.dictionary += !inKey !§[.init (inValue)]
+    end
+  }
+
+  //·····························································································
+
+  getter listForKey ?let @string inKey -> @stringlist {
+    if [self.dictionary hasKey !inKey] then
+      [self.dictionary searchKey !inKey ?result]
+   else
+      result = ()
+    end
+  }
+
+  //·····························································································
+
+}
+
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 method @ipic18SequentialInstruction instructionRelativeBranchOverflow
   ?let @uint unused inAddress
@@ -391,7 +429,7 @@ method @ipic18SequentialInstruction instructionRelativeBranchOverflow
   ?!@branchOverflowMap unused ioOverflowMap {
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 method @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
   ?let @uint unused inAddress
@@ -401,11 +439,11 @@ method @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
   ?!@branchOverflowMap unused ioOverflowMap {
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 #!@symbolTableForRelativesResolution
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 method @ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution
   ?let @uint unused inAddress
@@ -418,7 +456,7 @@ method @ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution
   outModifiedTerminator = self
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 map @symbolTableForRelativesResolution {
   public var @uint mLabelAddress
@@ -426,14 +464,14 @@ map @symbolTableForRelativesResolution {
   search searchKey error message "the '%K' label is not declared"
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 list @codeList {
   public var @string mAssemblyCode
   public var @uintlist mBinaryCode
 }
   
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 map @pic18_dataAddressMap {
   public var @uint mDataAddress
@@ -441,7 +479,7 @@ map @pic18_dataAddressMap {
   search searchKey error message "the '%K' data is not declared"
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract method @ipic18SequentialInstruction generateCode
   ?let @uint inAddress
@@ -449,7 +487,7 @@ abstract method @ipic18SequentialInstruction generateCode
   ?let @pic18_dataAddressMap inDataMap
   !@codeList outCode
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract method @ipic18AbstractBlockTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -457,17 +495,17 @@ abstract method @ipic18AbstractBlockTerminator generateTerminatorCode
   ?let @string inNextBlockLabel
   !@codeList outCode
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract getter @ipic18AbstractBlockTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 #!Check displacement
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_checkBCC
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -479,7 +517,7 @@ func pic18_checkBCC
   outDisplacementOK =  (displacement <= 127) & (displacement >= - 128)
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_checkBRA_RCALL
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -492,7 +530,7 @@ func pic18_checkBRA_RCALL
   outDisplacementOK =  (displacement <= 1023) & (displacement >= - 1024)
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_BRA_RCALL_displacement
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -503,11 +541,11 @@ func pic18_BRA_RCALL_displacement
   outDisplacement = ([targetAddress sint] - 2 - [inCurrentAddress sint]) >> 1
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 #!Generate branch instructions
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_Bcc_instruction_code
   ?let @uint inConditionalBranchInstructionAddress
@@ -554,7 +592,7 @@ func pic18_Bcc_instruction_code
     !@uintlist. listWithValue { !baseCode | [displacement & 0x0FF uint]}}
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_RCALL_instruction_code
   ?let @uint inRCALLinstructionAddress
@@ -571,7 +609,7 @@ func pic18_RCALL_instruction_code
     !@uintlist. listWithValue { !0xD800 | [displacement & 0x07FF uint]}}
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_BRA_instruction_code
   ?let @uint inRCALLinstructionAddress
@@ -588,7 +626,7 @@ func pic18_BRA_instruction_code
     !@uintlist. listWithValue { !0xD000 | [displacement & 0x07FF uint]}}
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_CALL_instruction_code
   ?let @uint inTargetAddress
@@ -602,7 +640,7 @@ func pic18_CALL_instruction_code
     !binaryCode}
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_GOTO_instruction_code
   ?let @uint inTargetAddress
@@ -616,7 +654,7 @@ func pic18_GOTO_instruction_code
     !binaryCode}
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_definition_label
   ?let @lstring inTargetLabel
@@ -626,5 +664,5 @@ func pic18_definition_label
     !@uintlist ()}
 }
 
-#----------------------------------------------------------------------------*
+//——————————————————————————————————————————————————————————————————————————————————————————————
 

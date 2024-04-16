@@ -1,7 +1,7 @@
 
 #----------------------------------------------------*
 
-enum @baseline_instruction_FD_base_code {
+enum @baseline_instruction_FD_base_code %equatable {
   case ADDWF  case ANDWF  case COMF  case DECF  case DECFSZ  case INCF  case INCFSZ  case IORWF  case MOVF  case RLF  case RRF  case SUBWF  case SWAPF  case XORWF
 }
 
@@ -54,7 +54,7 @@ getter @baseline_bit_oriented_op mnemonic -> @string outResult {
 
 #----------------------------------------------------*
 
-enum @baseline_literal_instruction_opcode {
+enum @baseline_literal_instruction_opcode %equatable {
   case ANDLW  case IORLW  case MOVLW  case RETLW  case XORLW
 }
 

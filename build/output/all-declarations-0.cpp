@@ -23,7 +23,6 @@ class cCollectionElement__32_lstringlist : public cCollectionElement {
   public: cCollectionElement__32_lstringlist (const GALGAS__32_lstringlist_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -76,14 +75,6 @@ void cCollectionElement__32_lstringlist::description (String & ioString, const i
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mValue1" ":") ;
   mObject.mProperty_mValue_31_.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement__32_lstringlist::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement__32_lstringlist * operand = (cCollectionElement__32_lstringlist *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement__32_lstringlist) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4061,20 +4052,6 @@ void cMapElement_bitSliceTable::description (String & ioString, const int32_t in
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_bitSliceTable::compare (const cCollectionElement * inOperand) const {
-  cMapElement_bitSliceTable * operand = (cMapElement_bitSliceTable *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mSliceIndex.objectCompare (operand->mProperty_mSliceIndex) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mSliceSize.objectCompare (operand->mProperty_mSliceSize) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_bitSliceTable::GALGAS_bitSliceTable (void) :
 AC_GALGAS_map () {
 }
@@ -4400,8 +4377,6 @@ acStrongPtr_class (THERE) {
 
 //--------------------------------------------------------------------------------------------------
 
-
-
 ComparisonResult GALGAS_immediatExpression::objectCompare (const GALGAS_immediatExpression & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -4608,8 +4583,6 @@ acStrongPtr_class (THERE) {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-
 
 ComparisonResult GALGAS_declarationInRam::objectCompare (const GALGAS_declarationInRam & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -4887,21 +4860,6 @@ void GALGAS_registerProtection::description (String & ioString,
   ioString.appendCString (">") ;
 }
 
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_registerProtection::objectCompare (const GALGAS_registerProtection & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    if (mEnum < inOperand.mEnum) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (mEnum > inOperand.mEnum) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -5070,7 +5028,6 @@ class cCollectionElement_declarationInRamList : public cCollectionElement {
   public: cCollectionElement_declarationInRamList (const GALGAS_declarationInRamList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -5118,14 +5075,6 @@ void cCollectionElement_declarationInRamList::description (String & ioString, co
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mDeclarationInRAM" ":") ;
   mObject.mProperty_mDeclarationInRAM.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_declarationInRamList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_declarationInRamList * operand = (cCollectionElement_declarationInRamList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_declarationInRamList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5498,7 +5447,6 @@ class cCollectionElement_ramDefinitionList : public cCollectionElement {
   public: cCollectionElement_ramDefinitionList (const GALGAS_ramDefinitionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -5551,14 +5499,6 @@ void cCollectionElement_ramDefinitionList::description (String & ioString, const
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mDeclaration" ":") ;
   mObject.mProperty_mDeclaration.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_ramDefinitionList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_ramDefinitionList * operand = (cCollectionElement_ramDefinitionList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_ramDefinitionList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5991,7 +5931,6 @@ class cCollectionElement_configSettingList : public cCollectionElement {
   public: cCollectionElement_configSettingList (const GALGAS_configSettingList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -6044,14 +5983,6 @@ void cCollectionElement_configSettingList::description (String & ioString, const
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mSettingValue" ":") ;
   mObject.mProperty_mSettingValue.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_configSettingList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_configSettingList * operand = (cCollectionElement_configSettingList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_configSettingList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6484,7 +6415,6 @@ class cCollectionElement_configDefinitionList : public cCollectionElement {
   public: cCollectionElement_configDefinitionList (const GALGAS_configDefinitionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -6537,14 +6467,6 @@ void cCollectionElement_configDefinitionList::description (String & ioString, co
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mSettingList" ":") ;
   mObject.mProperty_mSettingList.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_configDefinitionList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_configDefinitionList * operand = (cCollectionElement_configDefinitionList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_configDefinitionList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7087,7 +7009,6 @@ class cCollectionElement_immediatExpressionList : public cCollectionElement {
   public: cCollectionElement_immediatExpressionList (const GALGAS_immediatExpressionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -7140,14 +7061,6 @@ void cCollectionElement_immediatExpressionList::description (String & ioString, 
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mErrorLocation" ":") ;
   mObject.mProperty_mErrorLocation.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_immediatExpressionList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_immediatExpressionList * operand = (cCollectionElement_immediatExpressionList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_immediatExpressionList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -7806,22 +7719,6 @@ mProperty_mRightExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatAdd::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatAdd * p = (const cPtr_immediatAdd *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatAdd) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatAdd::objectCompare (const GALGAS_immediatAdd & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -8140,22 +8037,6 @@ mProperty_mRightExpression () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_immediatSub::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatSub * p = (const cPtr_immediatSub *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatSub) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_immediatSub::objectCompare (const GALGAS_immediatSub & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -8476,22 +8357,6 @@ mProperty_mRightExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatMul::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatMul * p = (const cPtr_immediatMul *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatMul) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatMul::objectCompare (const GALGAS_immediatMul & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -8810,22 +8675,6 @@ mProperty_mRightExpression () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_immediatDiv::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatDiv * p = (const cPtr_immediatDiv *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatDiv) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_immediatDiv::objectCompare (const GALGAS_immediatDiv & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -9146,22 +8995,6 @@ mProperty_mRightExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatMod::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatMod * p = (const cPtr_immediatMod *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatMod) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatMod::objectCompare (const GALGAS_immediatMod & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -9480,22 +9313,6 @@ mProperty_mRightExpression () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_immediatOr::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatOr * p = (const cPtr_immediatOr *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatOr) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_immediatOr::objectCompare (const GALGAS_immediatOr & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -9816,22 +9633,6 @@ mProperty_mRightExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatAnd::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatAnd * p = (const cPtr_immediatAnd *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatAnd) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatAnd::objectCompare (const GALGAS_immediatAnd & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -10150,22 +9951,6 @@ mProperty_mRightExpression () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_immediatXor::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatXor * p = (const cPtr_immediatXor *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatXor) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_immediatXor::objectCompare (const GALGAS_immediatXor & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -10486,22 +10271,6 @@ mProperty_mRightExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatLeftShift::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatLeftShift * p = (const cPtr_immediatLeftShift *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatLeftShift) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatLeftShift::objectCompare (const GALGAS_immediatLeftShift & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -10820,22 +10589,6 @@ mProperty_mRightExpression () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_immediatRightShift::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatRightShift * p = (const cPtr_immediatRightShift *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatRightShift) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_immediatRightShift::objectCompare (const GALGAS_immediatRightShift & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -11156,22 +10909,6 @@ mProperty_mRightExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatEqualTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatEqualTest * p = (const cPtr_immediatEqualTest *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatEqualTest) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatEqualTest::objectCompare (const GALGAS_immediatEqualTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -11490,22 +11227,6 @@ mProperty_mRightExpression () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_immediatNotEqualTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatNotEqualTest * p = (const cPtr_immediatNotEqualTest *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatNotEqualTest) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_immediatNotEqualTest::objectCompare (const GALGAS_immediatNotEqualTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -11826,22 +11547,6 @@ mProperty_mRightExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatGreaterTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatGreaterTest * p = (const cPtr_immediatGreaterTest *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatGreaterTest) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatGreaterTest::objectCompare (const GALGAS_immediatGreaterTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -12160,22 +11865,6 @@ mProperty_mRightExpression () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_immediatGreaterOrEqualTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatGreaterOrEqualTest * p = (const cPtr_immediatGreaterOrEqualTest *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatGreaterOrEqualTest) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_immediatGreaterOrEqualTest::objectCompare (const GALGAS_immediatGreaterOrEqualTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -12496,22 +12185,6 @@ mProperty_mRightExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatLowerTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatLowerTest * p = (const cPtr_immediatLowerTest *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatLowerTest) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatLowerTest::objectCompare (const GALGAS_immediatLowerTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -12831,22 +12504,6 @@ mProperty_mRightExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatLowerOrEqualTest::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatLowerOrEqualTest * p = (const cPtr_immediatLowerOrEqualTest *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatLowerOrEqualTest) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mLeftExpression.objectCompare (p->mProperty_mLeftExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRightExpression.objectCompare (p->mProperty_mRightExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatLowerOrEqualTest::objectCompare (const GALGAS_immediatLowerOrEqualTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -13164,19 +12821,6 @@ mProperty_mExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatNegate::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatNegate * p = (const cPtr_immediatNegate *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatNegate) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mExpression.objectCompare (p->mProperty_mExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatNegate::objectCompare (const GALGAS_immediatNegate & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -13463,19 +13107,6 @@ mProperty_mExpression () {
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cPtr_immediatComplement::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_immediatComplement * p = (const cPtr_immediatComplement *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_immediatComplement) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mExpression.objectCompare (p->mProperty_mExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-
 ComparisonResult GALGAS_immediatComplement::objectCompare (const GALGAS_immediatComplement & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -13758,7 +13389,6 @@ class cCollectionElement_immediatSliceExpressionList : public cCollectionElement
   public: cCollectionElement_immediatSliceExpressionList (const GALGAS_immediatSliceExpressionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -13811,14 +13441,6 @@ void cCollectionElement_immediatSliceExpressionList::description (String & ioStr
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mExpression" ":") ;
   mObject.mProperty_mExpression.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_immediatSliceExpressionList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_immediatSliceExpressionList * operand = (cCollectionElement_immediatSliceExpressionList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_immediatSliceExpressionList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14361,7 +13983,6 @@ class cCollectionElement_constantDefinitionList : public cCollectionElement {
   public: cCollectionElement_constantDefinitionList (const GALGAS_constantDefinitionList_2D_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method for comparing elements
-  public: virtual ComparisonResult compare (const cCollectionElement * inOperand) const ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
@@ -14414,14 +14035,6 @@ void cCollectionElement_constantDefinitionList::description (String & ioString, 
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mExpression" ":") ;
   mObject.mProperty_mExpression.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cCollectionElement_constantDefinitionList::compare (const cCollectionElement * inOperand) const {
-  cCollectionElement_constantDefinitionList * operand = (cCollectionElement_constantDefinitionList *) inOperand ;
-  macroValidSharedObject (operand, cCollectionElement_constantDefinitionList) ;
-  return mObject.objectCompare (operand->mObject) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14887,20 +14500,6 @@ void cMapElement_actualConfigurationMap::description (String & ioString, const i
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_actualConfigurationMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_actualConfigurationMap * operand = (cMapElement_actualConfigurationMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRegisterAddress.objectCompare (operand->mProperty_mRegisterAddress) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRegisterValue.objectCompare (operand->mProperty_mRegisterValue) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_actualConfigurationMap::GALGAS_actualConfigurationMap (void) :
 AC_GALGAS_map () {
 }
@@ -15226,8 +14825,6 @@ acStrongPtr_class (THERE) {
 
 //--------------------------------------------------------------------------------------------------
 
-
-
 ComparisonResult GALGAS_bitNumberExpression::objectCompare (const GALGAS_bitNumberExpression & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -15438,22 +15035,6 @@ mProperty_mEndOfExpression () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_bitNumberLiteralExpression::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_bitNumberLiteralExpression * p = (const cPtr_bitNumberLiteralExpression *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mBitNumberLiteralExpression.objectCompare (p->mProperty_mBitNumberLiteralExpression) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mEndOfExpression.objectCompare (p->mProperty_mEndOfExpression) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_bitNumberLiteralExpression::objectCompare (const GALGAS_bitNumberLiteralExpression & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -15771,19 +15352,6 @@ mProperty_mBitNumberLiteralValue () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-
-ComparisonResult cPtr_bitNumberLiteralValue::dynamicObjectCompare (const acPtr_class * inOperandPtr) const {
-  ComparisonResult result = ComparisonResult::operandEqual ;
-  const cPtr_bitNumberLiteralValue * p = (const cPtr_bitNumberLiteralValue *) inOperandPtr ;
-  macroValidSharedObject (p, cPtr_bitNumberLiteralValue) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mBitNumberLiteralValue.objectCompare (p->mProperty_mBitNumberLiteralValue) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 
 ComparisonResult GALGAS_bitNumberLiteralValue::objectCompare (const GALGAS_bitNumberLiteralValue & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -16196,14 +15764,6 @@ void cMapElement_labelMap::description (String & /* ioString */, const int32_t /
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_labelMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_labelMap * operand = (cMapElement_labelMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_labelMap::GALGAS_labelMap (void) :
 AC_GALGAS_map () {
 }
@@ -16475,17 +16035,6 @@ void cMapElement_constantMap::description (String & ioString, const int32_t inIn
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mValue" ":") ;
   mProperty_mValue.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_constantMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_constantMap * operand = (cMapElement_constantMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mValue.objectCompare (operand->mProperty_mValue) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -16811,26 +16360,6 @@ void cMapElement_routineMap::description (String & ioString, const int32_t inInd
   ioString.appendStringMultiple ("| ", inIndentation) ;
   ioString.appendCString ("mPreservesBank" ":") ;
   mProperty_mPreservesBank.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult cMapElement_routineMap::compare (const cCollectionElement * inOperand) const {
-  cMapElement_routineMap * operand = (cMapElement_routineMap *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mIsNoReturn.objectCompare (operand->mProperty_mIsNoReturn) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mRequiredBank.objectCompare (operand->mProperty_mRequiredBank) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mReturnedBank.objectCompare (operand->mProperty_mReturnedBank) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mPreservesBank.objectCompare (operand->mProperty_mPreservesBank) ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -17469,20 +16998,6 @@ void cMapElement_symbolTableForOptimizations::description (String & ioString, co
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult cMapElement_symbolTableForOptimizations::compare (const cCollectionElement * inOperand) const {
-  cMapElement_symbolTableForOptimizations * operand = (cMapElement_symbolTableForOptimizations *) inOperand ;
-  ComparisonResult result = mProperty_lkey.objectCompare (operand->mProperty_lkey) ;
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mDefinitionLineIndex.objectCompare (operand->mProperty_mDefinitionLineIndex) ;
-  }
-  if (ComparisonResult::operandEqual == result) {
-    result = mProperty_mIsDeletable.objectCompare (operand->mProperty_mIsDeletable) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GALGAS_symbolTableForOptimizations::GALGAS_symbolTableForOptimizations (void) :
 AC_GALGAS_map () {
 }
@@ -17806,6 +17321,466 @@ GALGAS_symbolTableForOptimizations GALGAS_symbolTableForOptimizations::extractOb
       result = *p ;
     }else{
       inCompiler->castError ("symbolTableForOptimizations", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_configFieldMap::cMapElement_configFieldMap (const GALGAS_configFieldMap_2D_element & inValue
+                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mRegisterName (inValue.mProperty_mRegisterName),
+mProperty_mMaskValue (inValue.mProperty_mMaskValue),
+mProperty_mDescription (inValue.mProperty_mDescription),
+mProperty_mFieldSettingMap (inValue.mProperty_mFieldSettingMap) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_configFieldMap::cMapElement_configFieldMap (const GALGAS_lstring & inKey,
+                                                        const GALGAS_lstring & in_mRegisterName,
+                                                        const GALGAS_luint & in_mMaskValue,
+                                                        const GALGAS_lstring & in_mDescription,
+                                                        const GALGAS_fieldSettingMap & in_mFieldSettingMap
+                                                        COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mProperty_mRegisterName (in_mRegisterName),
+mProperty_mMaskValue (in_mMaskValue),
+mProperty_mDescription (in_mDescription),
+mProperty_mFieldSettingMap (in_mFieldSettingMap) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool cMapElement_configFieldMap::isValid (void) const {
+  return mProperty_lkey.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement * cMapElement_configFieldMap::copy (void) {
+  cMapElement * result = nullptr ;
+  macroMyNew (result, cMapElement_configFieldMap (mProperty_lkey, mProperty_mRegisterName, mProperty_mMaskValue, mProperty_mDescription, mProperty_mFieldSettingMap COMMA_HERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cMapElement_configFieldMap::description (String & ioString, const int32_t inIndentation) const {
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mRegisterName" ":") ;
+  mProperty_mRegisterName.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mMaskValue" ":") ;
+  mProperty_mMaskValue.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mDescription" ":") ;
+  mProperty_mDescription.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mFieldSettingMap" ":") ;
+  mProperty_mFieldSettingMap.description (ioString, inIndentation) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap::GALGAS_configFieldMap (void) :
+AC_GALGAS_map () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap::GALGAS_configFieldMap (const GALGAS_configFieldMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap & GALGAS_configFieldMap::operator = (const GALGAS_configFieldMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GALGAS_configFieldMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::class_func_emptyMap (LOCATION_ARGS) {
+  GALGAS_configFieldMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::class_func_mapWithMapToOverride (const GALGAS_configFieldMap & inMapToOverride
+                                                                              COMMA_LOCATION_ARGS) {
+  GALGAS_configFieldMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::getter_overriddenMap (Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const {
+  GALGAS_configFieldMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::enterElement (const GALGAS_configFieldMap_2D_element & inValue,
+                                          Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) {
+  cMapElement_configFieldMap * p = nullptr ;
+  macroMyNew (p, cMapElement_configFieldMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@configFieldMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::addAssign_operation (const GALGAS_lstring & inKey,
+                                                 const GALGAS_lstring & inArgument0,
+                                                 const GALGAS_luint & inArgument1,
+                                                 const GALGAS_lstring & inArgument2,
+                                                 const GALGAS_fieldSettingMap & inArgument3,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
+  cMapElement_configFieldMap * p = nullptr ;
+  macroMyNew (p, cMapElement_configFieldMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@configFieldMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::add_operation (const GALGAS_configFieldMap & inOperand,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const {
+  GALGAS_configFieldMap result = *this ;
+  cEnumerator_configFieldMap enumerator (inOperand, EnumerationOrder::up) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRegisterName (HERE), enumerator.current_mMaskValue (HERE), enumerator.current_mDescription (HERE), enumerator.current_mFieldSettingMap (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_insertKey (GALGAS_lstring inKey,
+                                              GALGAS_lstring inArgument0,
+                                              GALGAS_luint inArgument1,
+                                              GALGAS_lstring inArgument2,
+                                              GALGAS_fieldSettingMap inArgument3,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) {
+  cMapElement_configFieldMap * p = nullptr ;
+  macroMyNew (p, cMapElement_configFieldMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' configuration field is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const char * kSearchErrorMessage_configFieldMap_searchKey = "the '%K' configuration field is not declared" ;
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::method_searchKey (GALGAS_lstring inKey,
+                                              GALGAS_lstring & outArgument0,
+                                              GALGAS_luint & outArgument1,
+                                              GALGAS_lstring & outArgument2,
+                                              GALGAS_fieldSettingMap & outArgument3,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) performSearch (inKey,
+                                                                                             inCompiler,
+                                                                                             kSearchErrorMessage_configFieldMap_searchKey
+                                                                                             COMMA_THERE) ;
+  if (nullptr == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+    outArgument2.drop () ;
+    outArgument3.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    outArgument0 = p->mProperty_mRegisterName ;
+    outArgument1 = p->mProperty_mMaskValue ;
+    outArgument2 = p->mProperty_mDescription ;
+    outArgument3 = p->mProperty_mFieldSettingMap ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring GALGAS_configFieldMap::getter_mRegisterNameForKey (const GALGAS_string & inKey,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) attributes ;
+  GALGAS_lstring result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    result = p->mProperty_mRegisterName ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_luint GALGAS_configFieldMap::getter_mMaskValueForKey (const GALGAS_string & inKey,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) attributes ;
+  GALGAS_luint result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    result = p->mProperty_mMaskValue ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring GALGAS_configFieldMap::getter_mDescriptionForKey (const GALGAS_string & inKey,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) attributes ;
+  GALGAS_lstring result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    result = p->mProperty_mDescription ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_fieldSettingMap GALGAS_configFieldMap::getter_mFieldSettingMapForKey (const GALGAS_string & inKey,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) attributes ;
+  GALGAS_fieldSettingMap result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    result = p->mProperty_mFieldSettingMap ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_setMRegisterNameForKey (GALGAS_lstring inAttributeValue,
+                                                           GALGAS_string inKey,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_configFieldMap * p = (cMapElement_configFieldMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    p->mProperty_mRegisterName = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_setMMaskValueForKey (GALGAS_luint inAttributeValue,
+                                                        GALGAS_string inKey,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_configFieldMap * p = (cMapElement_configFieldMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    p->mProperty_mMaskValue = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_setMDescriptionForKey (GALGAS_lstring inAttributeValue,
+                                                          GALGAS_string inKey,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_configFieldMap * p = (cMapElement_configFieldMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    p->mProperty_mDescription = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_configFieldMap::setter_setMFieldSettingMapForKey (GALGAS_fieldSettingMap inAttributeValue,
+                                                              GALGAS_string inKey,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_configFieldMap * p = (cMapElement_configFieldMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    p->mProperty_mFieldSettingMap = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_configFieldMap * GALGAS_configFieldMap::readWriteAccessForWithInstruction (Compiler * inCompiler,
+                                                                                       const GALGAS_string & inKey
+                                                                                       COMMA_LOCATION_ARGS) {
+  cMapElement_configFieldMap * result = (cMapElement_configFieldMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_configFieldMap) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cEnumerator_configFieldMap::cEnumerator_configFieldMap (const GALGAS_configFieldMap & inEnumeratedObject,
+                                                        const EnumerationOrder inOrder) :
+cGenericAbstractEnumerator (inOrder) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap_2D_element cEnumerator_configFieldMap::current (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return GALGAS_configFieldMap_2D_element (p->mProperty_lkey, p->mProperty_mRegisterName, p->mProperty_mMaskValue, p->mProperty_mDescription, p->mProperty_mFieldSettingMap) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring cEnumerator_configFieldMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring cEnumerator_configFieldMap::current_mRegisterName (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return p->mProperty_mRegisterName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_luint cEnumerator_configFieldMap::current_mMaskValue (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return p->mProperty_mMaskValue ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_lstring cEnumerator_configFieldMap::current_mDescription (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return p->mProperty_mDescription ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_fieldSettingMap cEnumerator_configFieldMap::current_mFieldSettingMap (LOCATION_ARGS) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_configFieldMap) ;
+  return p->mProperty_mFieldSettingMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_configFieldMap::optional_searchKey (const GALGAS_string & inKey,
+                                                GALGAS_lstring & outArgument0,
+                                                GALGAS_luint & outArgument1,
+                                                GALGAS_lstring & outArgument2,
+                                                GALGAS_fieldSettingMap & outArgument3) const {
+  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) searchForKey (inKey) ;
+  const bool result = nullptr != p ;
+  if (result) {
+    macroValidSharedObject (p, cMapElement_configFieldMap) ;
+    outArgument0 = p->mProperty_mRegisterName ;
+    outArgument1 = p->mProperty_mMaskValue ;
+    outArgument2 = p->mProperty_mDescription ;
+    outArgument3 = p->mProperty_mFieldSettingMap ;
+  }else{
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+    outArgument2.drop () ;
+    outArgument3.drop () ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @configFieldMap generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configFieldMap ("configFieldMap",
+                                                                      nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_configFieldMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_configFieldMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_configFieldMap::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_configFieldMap (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap GALGAS_configFieldMap::extractObject (const GALGAS_object & inObject,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_configFieldMap result ;
+  const GALGAS_configFieldMap * p = (const GALGAS_configFieldMap *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_configFieldMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("configFieldMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

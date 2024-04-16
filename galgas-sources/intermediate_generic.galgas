@@ -70,7 +70,7 @@ map @routineMap {
 
 #----------------------------------------------------------------------------*
 
-enum @routineKind {
+enum @routineKind %equatable {
   case regularRoutine  case noReturnRoutine  case interruptRoutine
 }
 

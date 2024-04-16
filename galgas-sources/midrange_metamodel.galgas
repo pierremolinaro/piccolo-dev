@@ -62,7 +62,7 @@ refclass @midrange_instruction_STATIC_REPEAT : @midrange_instruction {
 
 #----------------------------------------------------*
 
-enum @midrange_instruction_FD_base_code {
+enum @midrange_instruction_FD_base_code %equatable {
   case ADDWF  case ANDWF  case COMF  case DECF  case DECFSZ  case INCF  case INCFSZ  case IORWF  case MOVF  case RLF  case RRF  case SUBWF  case SWAPF  case XORWF
 }
 
@@ -180,7 +180,7 @@ refclass @midrange_instruction_SLEEP : @midrange_instruction {
 
 #----------------------------------------------------*
 
-enum @midrange_literal_instruction_opcode {
+enum @midrange_literal_instruction_opcode %equatable {
   case ADDLW  case ANDLW  case IORLW  case MOVLW  case RETLW  case SUBLW  case XORLW
 }
 
