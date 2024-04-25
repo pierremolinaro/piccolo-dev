@@ -8,158 +8,6 @@
 #include "all-declarations-7.h"
 
 //--------------------------------------------------------------------------------------------------
-
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code (void) :
-mEnum (kNotBuilt) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_DECFSZ (UNUSED_LOCATION_ARGS) {
-  GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  result.mEnum = kEnum_DECFSZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_DCFSNZ (UNUSED_LOCATION_ARGS) {
-  GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  result.mEnum = kEnum_DCFSNZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_INCFSZ (UNUSED_LOCATION_ARGS) {
-  GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  result.mEnum = kEnum_INCFSZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_INFSNZ (UNUSED_LOCATION_ARGS) {
-  GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  result.mEnum = kEnum_INFSNZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::optional_DECFSZ () const {
-  const bool ok = mEnum == kEnum_DECFSZ ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::optional_DCFSNZ () const {
-  const bool ok = mEnum == kEnum_DCFSNZ ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::optional_INCFSZ () const {
-  const bool ok = mEnum == kEnum_INCFSZ ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::optional_INFSNZ () const {
-  const bool ok = mEnum == kEnum_INFSNZ ;
-  return ok ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-static const char * gEnumNameArrayFor_skip_5F_instruction_5F_FDA_5F_base_5F_code [5] = {
-  "(not built)",
-  "DECFSZ",
-  "DCFSNZ",
-  "INCFSZ",
-  "INFSNZ"
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isDECFSZ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_DECFSZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isDCFSNZ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_DCFSNZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isINCFSZ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_INCFSZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isINFSNZ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_INFSNZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::description (String & ioString,
-                                                                     const int32_t /* inIndentation */) const {
-  ioString.appendCString ("<enum @skip_instruction_FDA_base_code: ") ;
-  ioString.appendCString (gEnumNameArrayFor_skip_5F_instruction_5F_FDA_5F_base_5F_code [mEnum]) ;
-  ioString.appendCString (">") ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @skip_instruction_FDA_base_code generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code ("skip_instruction_FDA_base_code",
-                                                                                                  nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code::extractObject (const GALGAS_object & inObject,
-                                                                                                                    Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) {
-  GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  const GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code * p = (const GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("skip_instruction_FDA_base_code", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 // @ipic_31__38__5F_skip_5F_instruction_5F_FDA reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -604,6 +452,27 @@ GALGAS_symbolTableForBlockOptimization GALGAS_symbolTableForBlockOptimization::c
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_symbolTableForBlockOptimization_2D_element_3F_ GALGAS_symbolTableForBlockOptimization
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_symbolTableForBlockOptimization_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_symbolTableForBlockOptimization * p = (cMapElement_symbolTableForBlockOptimization *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_symbolTableForBlockOptimization_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_symbolTableForBlockOptimization_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mDefinitionBlockIndex = p->mProperty_mDefinitionBlockIndex ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_symbolTableForBlockOptimization GALGAS_symbolTableForBlockOptimization::class_func_mapWithMapToOverride (const GALGAS_symbolTableForBlockOptimization & inMapToOverride
                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_symbolTableForBlockOptimization result ;
@@ -775,21 +644,6 @@ GALGAS_uint cEnumerator_symbolTableForBlockOptimization::current_mDefinitionBloc
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_symbolTableForBlockOptimization::optional_searchKey (const GALGAS_string & inKey,
-                                                                 GALGAS_uint & outArgument0) const {
-  const cMapElement_symbolTableForBlockOptimization * p = (const cMapElement_symbolTableForBlockOptimization *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_symbolTableForBlockOptimization) ;
-    outArgument0 = p->mProperty_mDefinitionBlockIndex ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @symbolTableForBlockOptimization generic code implementation
 //
@@ -903,6 +757,27 @@ GALGAS_symbolTableForClusterOrdering GALGAS_symbolTableForClusterOrdering::init 
 GALGAS_symbolTableForClusterOrdering GALGAS_symbolTableForClusterOrdering::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_symbolTableForClusterOrdering result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_symbolTableForClusterOrdering_2D_element_3F_ GALGAS_symbolTableForClusterOrdering
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_symbolTableForClusterOrdering_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_symbolTableForClusterOrdering * p = (cMapElement_symbolTableForClusterOrdering *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_symbolTableForClusterOrdering_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_symbolTableForClusterOrdering_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mCluster = p->mProperty_mCluster ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -1076,21 +951,6 @@ GALGAS_uint cEnumerator_symbolTableForClusterOrdering::current_mCluster (LOCATIO
   const cMapElement_symbolTableForClusterOrdering * p = (const cMapElement_symbolTableForClusterOrdering *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_symbolTableForClusterOrdering) ;
   return p->mProperty_mCluster ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_symbolTableForClusterOrdering::optional_searchKey (const GALGAS_string & inKey,
-                                                               GALGAS_uint & outArgument0) const {
-  const cMapElement_symbolTableForClusterOrdering * p = (const cMapElement_symbolTableForClusterOrdering *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_symbolTableForClusterOrdering) ;
-    outArgument0 = p->mProperty_mCluster ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1571,6 +1431,24 @@ GALGAS_uint GALGAS_branchOverflowMapDictionary::getter_count (UNUSED_LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_branchOverflowMapDictionary_2D_element_3F_ GALGAS_branchOverflowMapDictionary
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                      Compiler * /* inCompiler */
+                      COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_branchOverflowMapDictionary_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    const cNode_branchOverflowMapDictionary * p = mSharedDict->findEntryInDict (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_branchOverflowMapDictionary_2D_element_3F_::init_nil () ;
+    }else{
+      result = *p ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 #ifdef PRAGMA_MARK_ALLOWED
   #pragma mark Insulate
 #endif
@@ -1892,24 +1770,6 @@ GALGAS_stringlist cEnumerator_branchOverflowMapDictionary::current_mList (LOCATI
   const cCollectionElement_branchOverflowMapDictionary* p = dynamic_cast  <const cCollectionElement_branchOverflowMapDictionary*> (currentObjectPtr (THERE)) ;
   macroValidSharedObject (p, cCollectionElement_branchOverflowMapDictionary) ;
   return p->mElement.mProperty_mList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_branchOverflowMapDictionary::optional_searchKey (const GALGAS_string & inKey,
-                                                             GALGAS_stringlist & outArgument0) const {
-  const cNode_branchOverflowMapDictionary * p = nullptr ;
-  if ((mSharedDict != nullptr) && inKey.isValid ()) {
-    p = (const cNode_branchOverflowMapDictionary *) mSharedDict->findEntryInDict (inKey) ;
-  }
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cNode_branchOverflowMapDictionary) ;
-    outArgument0 = p->mProperty_mList ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2264,6 +2124,27 @@ GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolutio
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_symbolTableForRelativesResolution_2D_element_3F_ GALGAS_symbolTableForRelativesResolution
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_symbolTableForRelativesResolution_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_symbolTableForRelativesResolution * p = (cMapElement_symbolTableForRelativesResolution *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_symbolTableForRelativesResolution_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_symbolTableForRelativesResolution_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mLabelAddress = p->mProperty_mLabelAddress ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_symbolTableForRelativesResolution GALGAS_symbolTableForRelativesResolution::class_func_mapWithMapToOverride (const GALGAS_symbolTableForRelativesResolution & inMapToOverride
                                                                                                                     COMMA_LOCATION_ARGS) {
   GALGAS_symbolTableForRelativesResolution result ;
@@ -2432,21 +2313,6 @@ GALGAS_uint cEnumerator_symbolTableForRelativesResolution::current_mLabelAddress
   const cMapElement_symbolTableForRelativesResolution * p = (const cMapElement_symbolTableForRelativesResolution *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_symbolTableForRelativesResolution) ;
   return p->mProperty_mLabelAddress ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_symbolTableForRelativesResolution::optional_searchKey (const GALGAS_string & inKey,
-                                                                   GALGAS_uint & outArgument0) const {
-  const cMapElement_symbolTableForRelativesResolution * p = (const cMapElement_symbolTableForRelativesResolution *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_symbolTableForRelativesResolution) ;
-    outArgument0 = p->mProperty_mLabelAddress ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3052,6 +2918,27 @@ GALGAS_pic_31__38__5F_dataAddressMap GALGAS_pic_31__38__5F_dataAddressMap::class
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_pic_31__38__5F_dataAddressMap_2D_element_3F_ GALGAS_pic_31__38__5F_dataAddressMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_pic_31__38__5F_dataAddressMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_pic_31__38__5F_dataAddressMap * p = (cMapElement_pic_31__38__5F_dataAddressMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_pic_31__38__5F_dataAddressMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_pic_31__38__5F_dataAddressMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mDataAddress = p->mProperty_mDataAddress ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_pic_31__38__5F_dataAddressMap GALGAS_pic_31__38__5F_dataAddressMap::class_func_mapWithMapToOverride (const GALGAS_pic_31__38__5F_dataAddressMap & inMapToOverride
                                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38__5F_dataAddressMap result ;
@@ -3220,21 +3107,6 @@ GALGAS_uint cEnumerator_pic_31__38__5F_dataAddressMap::current_mDataAddress (LOC
   const cMapElement_pic_31__38__5F_dataAddressMap * p = (const cMapElement_pic_31__38__5F_dataAddressMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataAddressMap) ;
   return p->mProperty_mDataAddress ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_pic_31__38__5F_dataAddressMap::optional_searchKey (const GALGAS_string & inKey,
-                                                               GALGAS_uint & outArgument0) const {
-  const cMapElement_pic_31__38__5F_dataAddressMap * p = (const cMapElement_pic_31__38__5F_dataAddressMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataAddressMap) ;
-    outArgument0 = p->mProperty_mDataAddress ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3463,39 +3335,39 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_pic_31__38_InstructionWithN
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_pic_31__38_InstructionWithNoOperandKind temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kNotBuilt:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::invalid:
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_CLRWDT:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_CLRWDT:
     {
       result_outResult = GALGAS_string ("CLRWDT") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_DAW:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_DAW:
     {
       result_outResult = GALGAS_string ("DAW") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_NOP:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_NOP:
     {
       result_outResult = GALGAS_string ("NOP") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_POP:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_POP:
     {
       result_outResult = GALGAS_string ("POP") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_PUSH:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_PUSH:
     {
       result_outResult = GALGAS_string ("PUSH") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_RESET:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_RESET:
     {
       result_outResult = GALGAS_string ("RESET") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_SLEEP:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_SLEEP:
     {
       result_outResult = GALGAS_string ("SLEEP") ;
     }
@@ -3626,6 +3498,31 @@ GALGAS_declaredRoutineMap GALGAS_declaredRoutineMap::init (Compiler * COMMA_LOCA
 GALGAS_declaredRoutineMap GALGAS_declaredRoutineMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_declaredRoutineMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_declaredRoutineMap_2D_element_3F_ GALGAS_declaredRoutineMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_declaredRoutineMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_declaredRoutineMap * p = (cMapElement_declaredRoutineMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_declaredRoutineMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_declaredRoutineMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mRequiredBank = p->mProperty_mRequiredBank ;
+      element.mProperty_mReturnedBank = p->mProperty_mReturnedBank ;
+      element.mProperty_mPreservesBank = p->mProperty_mPreservesBank ;
+      element.mProperty_mIsNoReturn = p->mProperty_mIsNoReturn ;
+      element.mProperty_mInstructionList = p->mProperty_mInstructionList ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -3970,33 +3867,6 @@ GALGAS_pic_31__38_InstructionList cEnumerator_declaredRoutineMap::current_mInstr
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_declaredRoutineMap::optional_searchKey (const GALGAS_string & inKey,
-                                                    GALGAS_luint & outArgument0,
-                                                    GALGAS_luint & outArgument1,
-                                                    GALGAS_bool & outArgument2,
-                                                    GALGAS_bool & outArgument3,
-                                                    GALGAS_pic_31__38_InstructionList & outArgument4) const {
-  const cMapElement_declaredRoutineMap * p = (const cMapElement_declaredRoutineMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_declaredRoutineMap) ;
-    outArgument0 = p->mProperty_mRequiredBank ;
-    outArgument1 = p->mProperty_mReturnedBank ;
-    outArgument2 = p->mProperty_mPreservesBank ;
-    outArgument3 = p->mProperty_mIsNoReturn ;
-    outArgument4 = p->mProperty_mInstructionList ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-    outArgument3.drop () ;
-    outArgument4.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @declaredRoutineMap generic code implementation
 //
@@ -4211,6 +4081,29 @@ GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::init (Compiler 
 GALGAS_blockInstructionBlockMap GALGAS_blockInstructionBlockMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_blockInstructionBlockMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_blockInstructionBlockMap_2D_element_3F_ GALGAS_blockInstructionBlockMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_blockInstructionBlockMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_blockInstructionBlockMap * p = (cMapElement_blockInstructionBlockMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_blockInstructionBlockMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_blockInstructionBlockMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mInstructionList = p->mProperty_mInstructionList ;
+      element.mProperty_mBlockTerminaisonForBlockInstruction = p->mProperty_mBlockTerminaisonForBlockInstruction ;
+      element.mProperty_mEndOfBlock = p->mProperty_mEndOfBlock ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -4471,27 +4364,6 @@ GALGAS_location cEnumerator_blockInstructionBlockMap::current_mEndOfBlock (LOCAT
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_blockInstructionBlockMap::optional_searchKey (const GALGAS_string & inKey,
-                                                          GALGAS_pic_31__38_InstructionList & outArgument0,
-                                                          GALGAS_abstractBlockTerminationForBlockInstruction & outArgument1,
-                                                          GALGAS_location & outArgument2) const {
-  const cMapElement_blockInstructionBlockMap * p = (const cMapElement_blockInstructionBlockMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_blockInstructionBlockMap) ;
-    outArgument0 = p->mProperty_mInstructionList ;
-    outArgument1 = p->mProperty_mBlockTerminaisonForBlockInstruction ;
-    outArgument2 = p->mProperty_mEndOfBlock ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @blockInstructionBlockMap generic code implementation
 //
@@ -4612,6 +4484,28 @@ GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::init (C
 GALGAS_blockInitialBankSelectionMap GALGAS_blockInitialBankSelectionMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_blockInitialBankSelectionMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_blockInitialBankSelectionMap_2D_element_3F_ GALGAS_blockInitialBankSelectionMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_blockInitialBankSelectionMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_blockInitialBankSelectionMap * p = (cMapElement_blockInitialBankSelectionMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_blockInitialBankSelectionMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_blockInitialBankSelectionMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mInitialBankSelection = p->mProperty_mInitialBankSelection ;
+      element.mProperty_mSourceBlock = p->mProperty_mSourceBlock ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -4827,24 +4721,6 @@ GALGAS_string cEnumerator_blockInitialBankSelectionMap::current_mSourceBlock (LO
   const cMapElement_blockInitialBankSelectionMap * p = (const cMapElement_blockInitialBankSelectionMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
   return p->mProperty_mSourceBlock ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_blockInitialBankSelectionMap::optional_searchKey (const GALGAS_string & inKey,
-                                                              GALGAS_uint & outArgument0,
-                                                              GALGAS_string & outArgument1) const {
-  const cMapElement_blockInitialBankSelectionMap * p = (const cMapElement_blockInitialBankSelectionMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_blockInitialBankSelectionMap) ;
-    outArgument0 = p->mProperty_mInitialBankSelection ;
-    outArgument1 = p->mProperty_mSourceBlock ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6193,6 +6069,27 @@ GALGAS_neededConversionForClusterOrder GALGAS_neededConversionForClusterOrder::c
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_neededConversionForClusterOrder_2D_element_3F_ GALGAS_neededConversionForClusterOrder
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_neededConversionForClusterOrder_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_neededConversionForClusterOrder * p = (cMapElement_neededConversionForClusterOrder *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_neededConversionForClusterOrder_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_neededConversionForClusterOrder_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mConversions = p->mProperty_mConversions ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_neededConversionForClusterOrder GALGAS_neededConversionForClusterOrder::class_func_mapWithMapToOverride (const GALGAS_neededConversionForClusterOrder & inMapToOverride
                                                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_neededConversionForClusterOrder result ;
@@ -6364,21 +6261,6 @@ GALGAS_uint cEnumerator_neededConversionForClusterOrder::current_mConversions (L
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_neededConversionForClusterOrder::optional_searchKey (const GALGAS_string & inKey,
-                                                                 GALGAS_uint & outArgument0) const {
-  const cMapElement_neededConversionForClusterOrder * p = (const cMapElement_neededConversionForClusterOrder *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_neededConversionForClusterOrder) ;
-    outArgument0 = p->mProperty_mConversions ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @neededConversionForClusterOrder generic code implementation
 //
@@ -6499,6 +6381,28 @@ GALGAS_generatedCodeMap GALGAS_generatedCodeMap::init (Compiler * COMMA_LOCATION
 GALGAS_generatedCodeMap GALGAS_generatedCodeMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_generatedCodeMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_generatedCodeMap_2D_element_3F_ GALGAS_generatedCodeMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_generatedCodeMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_generatedCodeMap * p = (cMapElement_generatedCodeMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_generatedCodeMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_generatedCodeMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mCode = p->mProperty_mCode ;
+      element.mProperty_mInstruction = p->mProperty_mInstruction ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -6717,24 +6621,6 @@ GALGAS_ipic_31__38_SequentialInstruction cEnumerator_generatedCodeMap::current_m
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_generatedCodeMap::optional_searchKey (const GALGAS_string & inKey,
-                                                  GALGAS_codeList & outArgument0,
-                                                  GALGAS_ipic_31__38_SequentialInstruction & outArgument1) const {
-  const cMapElement_generatedCodeMap * p = (const cMapElement_generatedCodeMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_generatedCodeMap) ;
-    outArgument0 = p->mProperty_mCode ;
-    outArgument1 = p->mProperty_mInstruction ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @generatedCodeMap generic code implementation
 //
@@ -6900,6 +6786,27 @@ GALGAS_blockMapForStackComputation GALGAS_blockMapForStackComputation::init (Com
 GALGAS_blockMapForStackComputation GALGAS_blockMapForStackComputation::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_blockMapForStackComputation result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_blockMapForStackComputation_2D_element_3F_ GALGAS_blockMapForStackComputation
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_blockMapForStackComputation_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_blockMapForStackComputation * p = (cMapElement_blockMapForStackComputation *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_blockMapForStackComputation_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_blockMapForStackComputation_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mBlock = p->mProperty_mBlock ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -7076,21 +6983,6 @@ GALGAS_ipic_31__38_Block cEnumerator_blockMapForStackComputation::current_mBlock
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_blockMapForStackComputation::optional_searchKey (const GALGAS_string & inKey,
-                                                             GALGAS_ipic_31__38_Block & outArgument0) const {
-  const cMapElement_blockMapForStackComputation * p = (const cMapElement_blockMapForStackComputation *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_blockMapForStackComputation) ;
-    outArgument0 = p->mProperty_mBlock ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @blockMapForStackComputation generic code implementation
 //
@@ -7211,6 +7103,28 @@ GALGAS_routineCallMap GALGAS_routineCallMap::init (Compiler * COMMA_LOCATION_ARG
 GALGAS_routineCallMap GALGAS_routineCallMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_routineCallMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_routineCallMap_2D_element_3F_ GALGAS_routineCallMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_routineCallMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_routineCallMap * p = (cMapElement_routineCallMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_routineCallMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_routineCallMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mCalledRoutineSet = p->mProperty_mCalledRoutineSet ;
+      element.mProperty_mTerminatorStackNeeds = p->mProperty_mTerminatorStackNeeds ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -7404,24 +7318,6 @@ GALGAS_uint cEnumerator_routineCallMap::current_mTerminatorStackNeeds (LOCATION_
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_routineCallMap::optional_searchKey (const GALGAS_string & inKey,
-                                                GALGAS_stringset & outArgument0,
-                                                GALGAS_uint & outArgument1) const {
-  const cMapElement_routineCallMap * p = (const cMapElement_routineCallMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_routineCallMap) ;
-    outArgument0 = p->mProperty_mCalledRoutineSet ;
-    outArgument1 = p->mProperty_mTerminatorStackNeeds ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @routineCallMap generic code implementation
 //
@@ -7535,6 +7431,27 @@ GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::init (Compi
 GALGAS_routineStackRequirementMap GALGAS_routineStackRequirementMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_routineStackRequirementMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_routineStackRequirementMap_2D_element_3F_ GALGAS_routineStackRequirementMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_routineStackRequirementMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_routineStackRequirementMap * p = (cMapElement_routineStackRequirementMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_routineStackRequirementMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_routineStackRequirementMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mLevels = p->mProperty_mLevels ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -7711,21 +7628,6 @@ GALGAS_uint cEnumerator_routineStackRequirementMap::current_mLevels (LOCATION_AR
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_routineStackRequirementMap::optional_searchKey (const GALGAS_string & inKey,
-                                                            GALGAS_uint & outArgument0) const {
-  const cMapElement_routineStackRequirementMap * p = (const cMapElement_routineStackRequirementMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_routineStackRequirementMap) ;
-    outArgument0 = p->mProperty_mLevels ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @routineStackRequirementMap generic code implementation
 //
@@ -7888,6 +7790,28 @@ GALGAS_blockDurationMap GALGAS_blockDurationMap::init (Compiler * COMMA_LOCATION
 GALGAS_blockDurationMap GALGAS_blockDurationMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_blockDurationMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_blockDurationMap_2D_element_3F_ GALGAS_blockDurationMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_blockDurationMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_blockDurationMap * p = (cMapElement_blockDurationMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_blockDurationMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_blockDurationMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mMinDuration = p->mProperty_mMinDuration ;
+      element.mProperty_mMaxDuration = p->mProperty_mMaxDuration ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -8103,24 +8027,6 @@ GALGAS_uint cEnumerator_blockDurationMap::current_mMaxDuration (LOCATION_ARGS) c
   const cMapElement_blockDurationMap * p = (const cMapElement_blockDurationMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_blockDurationMap) ;
   return p->mProperty_mMaxDuration ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_blockDurationMap::optional_searchKey (const GALGAS_string & inKey,
-                                                  GALGAS_uint & outArgument0,
-                                                  GALGAS_uint & outArgument1) const {
-  const cMapElement_blockDurationMap * p = (const cMapElement_blockDurationMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_blockDurationMap) ;
-    outArgument0 = p->mProperty_mMinDuration ;
-    outArgument1 = p->mProperty_mMaxDuration ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9397,6 +9303,26 @@ GALGAS_declaredByteMap GALGAS_declaredByteMap::class_func_emptyMap (LOCATION_ARG
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_declaredByteMap_2D_element_3F_ GALGAS_declaredByteMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_declaredByteMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_declaredByteMap * p = (cMapElement_declaredByteMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_declaredByteMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_declaredByteMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_declaredByteMap GALGAS_declaredByteMap::class_func_mapWithMapToOverride (const GALGAS_declaredByteMap & inMapToOverride
                                                                                 COMMA_LOCATION_ARGS) {
   GALGAS_declaredByteMap result ;
@@ -9523,18 +9449,6 @@ GALGAS_lstring cEnumerator_declaredByteMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_declaredByteMap::optional_searchKey (const GALGAS_string & inKey) const {
-  const cMapElement_declaredByteMap * p = (const cMapElement_declaredByteMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_declaredByteMap) ;
-  }else{
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -9679,6 +9593,31 @@ GALGAS_registerTable GALGAS_registerTable::init (Compiler * COMMA_LOCATION_ARGS)
 GALGAS_registerTable GALGAS_registerTable::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_registerTable result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_registerTable_2D_element_3F_ GALGAS_registerTable
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_registerTable_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_registerTable * p = (cMapElement_registerTable *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_registerTable_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_registerTable_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mRegisterAddressList = p->mProperty_mRegisterAddressList ;
+      element.mProperty_mSize = p->mProperty_mSize ;
+      element.mProperty_mBitSliceTable = p->mProperty_mBitSliceTable ;
+      element.mProperty_mBitDefinitionString = p->mProperty_mBitDefinitionString ;
+      element.mProperty_mProtection = p->mProperty_mProtection ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -10023,33 +9962,6 @@ GALGAS_registerProtection cEnumerator_registerTable::current_mProtection (LOCATI
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_registerTable::optional_searchKey (const GALGAS_string & inKey,
-                                               GALGAS_uintlist & outArgument0,
-                                               GALGAS_uint & outArgument1,
-                                               GALGAS_bitSliceTable & outArgument2,
-                                               GALGAS_string & outArgument3,
-                                               GALGAS_registerProtection & outArgument4) const {
-  const cMapElement_registerTable * p = (const cMapElement_registerTable *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_registerTable) ;
-    outArgument0 = p->mProperty_mRegisterAddressList ;
-    outArgument1 = p->mProperty_mSize ;
-    outArgument2 = p->mProperty_mBitSliceTable ;
-    outArgument3 = p->mProperty_mBitDefinitionString ;
-    outArgument4 = p->mProperty_mProtection ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-    outArgument3.drop () ;
-    outArgument4.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @registerTable generic code implementation
 //
@@ -10104,13 +10016,11 @@ void extensionMethod_checkPrivateAccess (const GALGAS_registerTable inObject,
                                          Compiler * inCompiler
                                          COMMA_UNUSED_LOCATION_ARGS) {
   switch (constinArgument_inRegisterProtection.enumValue ()) {
-  case GALGAS_registerProtection::kNotBuilt:
+  case GALGAS_registerProtection::Enumeration::invalid:
     break ;
-  case GALGAS_registerProtection::kEnum_publicRegister:
-    {
-    }
+  case GALGAS_registerProtection::Enumeration::enum_publicRegister:
     break ;
-  case GALGAS_registerProtection::kEnum_protectedRegister:
+  case GALGAS_registerProtection::Enumeration::enum_protectedRegister:
     {
       enumGalgasBool test_0 = kBoolTrue ;
       if (kBoolTrue == test_0) {
@@ -10135,7 +10045,7 @@ void extensionMethod_checkPrivateAccess (const GALGAS_registerTable inObject,
       }
     }
     break ;
-  case GALGAS_registerProtection::kEnum_privateRegister:
+  case GALGAS_registerProtection::Enumeration::enum_privateRegister:
     {
       enumGalgasBool test_6 = kBoolTrue ;
       if (kBoolTrue == test_6) {
@@ -10253,6 +10163,30 @@ GALGAS_ramBankTable GALGAS_ramBankTable::init (Compiler * COMMA_LOCATION_ARGS) {
 GALGAS_ramBankTable GALGAS_ramBankTable::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_ramBankTable result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_ramBankTable_2D_element_3F_ GALGAS_ramBankTable
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_ramBankTable_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_ramBankTable * p = (cMapElement_ramBankTable *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_ramBankTable_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_ramBankTable_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mFirstAddress = p->mProperty_mFirstAddress ;
+      element.mProperty_mFirstFreeAddress = p->mProperty_mFirstFreeAddress ;
+      element.mProperty_mLastAddressPlusOne = p->mProperty_mLastAddressPlusOne ;
+      element.mProperty_mMirrorOffsetList = p->mProperty_mMirrorOffsetList ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -10555,30 +10489,6 @@ GALGAS_uintlist cEnumerator_ramBankTable::current_mMirrorOffsetList (LOCATION_AR
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_ramBankTable::optional_searchKey (const GALGAS_string & inKey,
-                                              GALGAS_uint & outArgument0,
-                                              GALGAS_uint & outArgument1,
-                                              GALGAS_uint & outArgument2,
-                                              GALGAS_uintlist & outArgument3) const {
-  const cMapElement_ramBankTable * p = (const cMapElement_ramBankTable *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_ramBankTable) ;
-    outArgument0 = p->mProperty_mFirstAddress ;
-    outArgument1 = p->mProperty_mFirstFreeAddress ;
-    outArgument2 = p->mProperty_mLastAddressPlusOne ;
-    outArgument3 = p->mProperty_mMirrorOffsetList ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-    outArgument3.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @ramBankTable generic code implementation
 //
@@ -10623,14 +10533,15 @@ GALGAS_ramBankTable GALGAS_ramBankTable::extractObject (const GALGAS_object & in
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_processorType::GALGAS_processorType (void) :
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_processorType GALGAS_processorType::class_func_pic_31__38__5F__36__30_ (UNUSED_LOCATION_ARGS) {
   GALGAS_processorType result ;
-  result.mEnum = kEnum_pic_31__38__5F__36__30_ ;
+  result.mEnum = Enumeration::enum_pic_31__38__5F__36__30_ ;
   return result ;
 }
 
@@ -10638,7 +10549,7 @@ GALGAS_processorType GALGAS_processorType::class_func_pic_31__38__5F__36__30_ (U
 
 GALGAS_processorType GALGAS_processorType::class_func_pic_31__38__5F__38__30_ (UNUSED_LOCATION_ARGS) {
   GALGAS_processorType result ;
-  result.mEnum = kEnum_pic_31__38__5F__38__30_ ;
+  result.mEnum = Enumeration::enum_pic_31__38__5F__38__30_ ;
   return result ;
 }
 
@@ -10646,7 +10557,7 @@ GALGAS_processorType GALGAS_processorType::class_func_pic_31__38__5F__38__30_ (U
 
 GALGAS_processorType GALGAS_processorType::class_func_midrange (UNUSED_LOCATION_ARGS) {
   GALGAS_processorType result ;
-  result.mEnum = kEnum_midrange ;
+  result.mEnum = Enumeration::enum_midrange ;
   return result ;
 }
 
@@ -10654,36 +10565,32 @@ GALGAS_processorType GALGAS_processorType::class_func_midrange (UNUSED_LOCATION_
 
 GALGAS_processorType GALGAS_processorType::class_func_baseline (UNUSED_LOCATION_ARGS) {
   GALGAS_processorType result ;
-  result.mEnum = kEnum_baseline ;
+  result.mEnum = Enumeration::enum_baseline ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_processorType::optional_pic_31__38__5F__36__30_ () const {
-  const bool ok = mEnum == kEnum_pic_31__38__5F__36__30_ ;
-  return ok ;
+GALGAS_bool GALGAS_processorType::getter_pic_31__38__5F__36__30_ (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_pic_31__38__5F__36__30_ == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_processorType::optional_pic_31__38__5F__38__30_ () const {
-  const bool ok = mEnum == kEnum_pic_31__38__5F__38__30_ ;
-  return ok ;
+GALGAS_bool GALGAS_processorType::getter_pic_31__38__5F__38__30_ (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_pic_31__38__5F__38__30_ == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_processorType::optional_midrange () const {
-  const bool ok = mEnum == kEnum_midrange ;
-  return ok ;
+GALGAS_bool GALGAS_processorType::getter_midrange (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_midrange == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_processorType::optional_baseline () const {
-  const bool ok = mEnum == kEnum_baseline ;
-  return ok ;
+GALGAS_bool GALGAS_processorType::getter_baseline (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_baseline == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10698,34 +10605,10 @@ static const char * gEnumNameArrayFor_processorType [5] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_processorType::getter_isPic_31__38__5F__36__30_ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_pic_31__38__5F__36__30_ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_processorType::getter_isPic_31__38__5F__38__30_ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_pic_31__38__5F__38__30_ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_processorType::getter_isMidrange (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_midrange == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_processorType::getter_isBaseline (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_baseline == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_processorType::description (String & ioString,
                                         const int32_t /* inIndentation */) const {
   ioString.appendCString ("<enum @processorType: ") ;
-  ioString.appendCString (gEnumNameArrayFor_processorType [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_processorType [size_t (mEnum)]) ;
   ioString.appendCString (">") ;
 }
 
@@ -11413,6 +11296,29 @@ GALGAS_configRegisterMaskMap GALGAS_configRegisterMaskMap::class_func_emptyMap (
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_configRegisterMaskMap_2D_element_3F_ GALGAS_configRegisterMaskMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_configRegisterMaskMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_configRegisterMaskMap * p = (cMapElement_configRegisterMaskMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_configRegisterMaskMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_configRegisterMaskMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mMaskValue = p->mProperty_mMaskValue ;
+      element.mProperty_mDescription = p->mProperty_mDescription ;
+      element.mProperty_mFieldSettingMap = p->mProperty_mFieldSettingMap ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_configRegisterMaskMap GALGAS_configRegisterMaskMap::class_func_mapWithMapToOverride (const GALGAS_configRegisterMaskMap & inMapToOverride
                                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_configRegisterMaskMap result ;
@@ -11668,27 +11574,6 @@ GALGAS_fieldSettingMap cEnumerator_configRegisterMaskMap::current_mFieldSettingM
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_configRegisterMaskMap::optional_searchKey (const GALGAS_string & inKey,
-                                                       GALGAS_luint & outArgument0,
-                                                       GALGAS_lstring & outArgument1,
-                                                       GALGAS_fieldSettingMap & outArgument2) const {
-  const cMapElement_configRegisterMaskMap * p = (const cMapElement_configRegisterMaskMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_configRegisterMaskMap) ;
-    outArgument0 = p->mProperty_mMaskValue ;
-    outArgument1 = p->mProperty_mDescription ;
-    outArgument2 = p->mProperty_mFieldSettingMap ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @configRegisterMaskMap generic code implementation
 //
@@ -11823,6 +11708,30 @@ GALGAS_configRegisterMap GALGAS_configRegisterMap::init (Compiler * COMMA_LOCATI
 GALGAS_configRegisterMap GALGAS_configRegisterMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_configRegisterMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configRegisterMap_2D_element_3F_ GALGAS_configRegisterMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_configRegisterMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_configRegisterMap * p = (cMapElement_configRegisterMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_configRegisterMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_configRegisterMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mRegisterAddress = p->mProperty_mRegisterAddress ;
+      element.mProperty_mRegisterWidth = p->mProperty_mRegisterWidth ;
+      element.mProperty_mConfigRegisterMaskMap = p->mProperty_mConfigRegisterMaskMap ;
+      element.mProperty_mIllegalMaskList = p->mProperty_mIllegalMaskList ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -12122,30 +12031,6 @@ GALGAS_illegalMaskList cEnumerator_configRegisterMap::current_mIllegalMaskList (
   const cMapElement_configRegisterMap * p = (const cMapElement_configRegisterMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_configRegisterMap) ;
   return p->mProperty_mIllegalMaskList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_configRegisterMap::optional_searchKey (const GALGAS_string & inKey,
-                                                   GALGAS_luint & outArgument0,
-                                                   GALGAS_luint & outArgument1,
-                                                   GALGAS_configRegisterMaskMap & outArgument2,
-                                                   GALGAS_illegalMaskList & outArgument3) const {
-  const cMapElement_configRegisterMap * p = (const cMapElement_configRegisterMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_configRegisterMap) ;
-    outArgument0 = p->mProperty_mRegisterAddress ;
-    outArgument1 = p->mProperty_mRegisterWidth ;
-    outArgument2 = p->mProperty_mConfigRegisterMaskMap ;
-    outArgument3 = p->mProperty_mIllegalMaskList ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-    outArgument3.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14893,6 +14778,127 @@ GALGAS_ipic_31__38_SequentialInstructionList_2D_element GALGAS_ipic_31__38_Seque
       result = *p ;
     }else{
       inCompiler->castError ("ipic18SequentialInstructionList-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary_2D_element::GALGAS_branchOverflowMapDictionary_2D_element (void) :
+mProperty_key (),
+mProperty_mList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary_2D_element::~ GALGAS_branchOverflowMapDictionary_2D_element (void) {
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary_2D_element GALGAS_branchOverflowMapDictionary_2D_element::init_21__21_ (const GALGAS_string & in_key,
+                                                                                                           const GALGAS_stringlist & in_mList,
+                                                                                                           Compiler * inCompiler
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_branchOverflowMapDictionary_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_key = in_key ;
+  result.mProperty_mList = in_mList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary_2D_element::GALGAS_branchOverflowMapDictionary_2D_element (const GALGAS_string & inOperand0,
+                                                                                              const GALGAS_stringlist & inOperand1) :
+mProperty_key (inOperand0),
+mProperty_mList (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary_2D_element GALGAS_branchOverflowMapDictionary_2D_element::class_func_new (const GALGAS_string & in_key,
+                                                                                                             const GALGAS_stringlist & in_mList,
+                                                                                                             Compiler * inCompiler
+                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GALGAS_branchOverflowMapDictionary_2D_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_key = in_key ;
+  result.mProperty_mList = in_mList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GALGAS_branchOverflowMapDictionary_2D_element::isValid (void) const {
+  return mProperty_key.isValid () && mProperty_mList.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary_2D_element::drop (void) {
+  mProperty_key.drop () ;
+  mProperty_mList.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GALGAS_branchOverflowMapDictionary_2D_element::description (String & ioString,
+                                                                 const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @branchOverflowMapDictionary-element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_key.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mList.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @branchOverflowMapDictionary-element generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2D_element ("branchOverflowMapDictionary-element",
+                                                                                              nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GALGAS_branchOverflowMapDictionary_2D_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2D_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GALGAS_branchOverflowMapDictionary_2D_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GALGAS_branchOverflowMapDictionary_2D_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_branchOverflowMapDictionary_2D_element GALGAS_branchOverflowMapDictionary_2D_element::extractObject (const GALGAS_object & inObject,
+                                                                                                            Compiler * inCompiler
+                                                                                                            COMMA_LOCATION_ARGS) {
+  GALGAS_branchOverflowMapDictionary_2D_element result ;
+  const GALGAS_branchOverflowMapDictionary_2D_element * p = (const GALGAS_branchOverflowMapDictionary_2D_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GALGAS_branchOverflowMapDictionary_2D_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("branchOverflowMapDictionary-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

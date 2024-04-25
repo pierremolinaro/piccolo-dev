@@ -8,121 +8,121 @@
 #include "all-declarations-8.h"
 
 //--------------------------------------------------------------------------------------------------
+//
+//Optional @branchOverflowMapDictionary_2D_element_3F_
+//
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_branchOverflowMapDictionary_2D_element::GALGAS_branchOverflowMapDictionary_2D_element (void) :
-mProperty_key (),
-mProperty_mList () {
+GALGAS_branchOverflowMapDictionary_2D_element_3F_::GALGAS_branchOverflowMapDictionary_2D_element_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_branchOverflowMapDictionary_2D_element::~ GALGAS_branchOverflowMapDictionary_2D_element (void) {
+GALGAS_branchOverflowMapDictionary_2D_element_3F_::GALGAS_branchOverflowMapDictionary_2D_element_3F_ (const GALGAS_branchOverflowMapDictionary_2D_element & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
 }
 
-//---Synthetized initializer -----------------------------------------------------------------------
+//--------------------------------------------------------------------------------------------------
 
-GALGAS_branchOverflowMapDictionary_2D_element GALGAS_branchOverflowMapDictionary_2D_element::init_21__21_ (const GALGAS_string & in_key,
-                                                                                                           const GALGAS_stringlist & in_mList,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_branchOverflowMapDictionary_2D_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_key = in_key ;
-  result.mProperty_mList = in_mList ;
+GALGAS_branchOverflowMapDictionary_2D_element_3F_ GALGAS_branchOverflowMapDictionary_2D_element_3F_::init_nil (void) {
+  GALGAS_branchOverflowMapDictionary_2D_element_3F_ result ;
+  result.mState = OptionalState::isNil ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_branchOverflowMapDictionary_2D_element::setInitializedProperties (Compiler * /* inCompiler */) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_branchOverflowMapDictionary_2D_element::GALGAS_branchOverflowMapDictionary_2D_element (const GALGAS_string & inOperand0,
-                                                                                              const GALGAS_stringlist & inOperand1) :
-mProperty_key (inOperand0),
-mProperty_mList (inOperand1) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_branchOverflowMapDictionary_2D_element GALGAS_branchOverflowMapDictionary_2D_element::class_func_new (const GALGAS_string & in_key,
-                                                                                                             const GALGAS_stringlist & in_mList,
-                                                                                                             Compiler * inCompiler
-                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GALGAS_branchOverflowMapDictionary_2D_element result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_key = in_key ;
-  result.mProperty_mList = in_mList ;
+bool GALGAS_branchOverflowMapDictionary_2D_element_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_branchOverflowMapDictionary_2D_element::isValid (void) const {
-  return mProperty_key.isValid () && mProperty_mList.isValid () ;
+bool GALGAS_branchOverflowMapDictionary_2D_element_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_branchOverflowMapDictionary_2D_element::drop (void) {
-  mProperty_key.drop () ;
-  mProperty_mList.drop () ;
+void GALGAS_branchOverflowMapDictionary_2D_element_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GALGAS_branchOverflowMapDictionary_2D_element () ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-void GALGAS_branchOverflowMapDictionary_2D_element::description (String & ioString,
-                                                                 const int32_t inIndentation) const {
-  ioString.appendCString ("<struct @branchOverflowMapDictionary-element:") ;
-  if (! isValid ()) {
-    ioString.appendCString (" not built") ;
-  }else{
-    mProperty_key.description (ioString, inIndentation+1) ;
-    ioString.appendCString (", ") ;
-    mProperty_mList.description (ioString, inIndentation+1) ;
+void GALGAS_branchOverflowMapDictionary_2D_element_3F_::description (String & ioString,
+                                                                     const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
   }
   ioString.appendCString (">") ;
 }
 
 //--------------------------------------------------------------------------------------------------
 //
-//     @branchOverflowMapDictionary-element generic code implementation
+//     @branchOverflowMapDictionary-element? generic code implementation
 //
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2D_element ("branchOverflowMapDictionary-element",
-                                                                                              nullptr) ;
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2D_element_3F_ ("branchOverflowMapDictionary-element?",
+                                                                                                  nullptr) ;
 
 //--------------------------------------------------------------------------------------------------
 
-const C_galgas_type_descriptor * GALGAS_branchOverflowMapDictionary_2D_element::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2D_element ;
+const C_galgas_type_descriptor * GALGAS_branchOverflowMapDictionary_2D_element_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2D_element_3F_ ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-AC_GALGAS_root * GALGAS_branchOverflowMapDictionary_2D_element::clonedObject (void) const {
+AC_GALGAS_root * GALGAS_branchOverflowMapDictionary_2D_element_3F_::clonedObject (void) const {
   AC_GALGAS_root * result = nullptr ;
   if (isValid ()) {
-    macroMyNew (result, GALGAS_branchOverflowMapDictionary_2D_element (*this)) ;
+    macroMyNew (result, GALGAS_branchOverflowMapDictionary_2D_element_3F_ (*this)) ;
   }
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_branchOverflowMapDictionary_2D_element GALGAS_branchOverflowMapDictionary_2D_element::extractObject (const GALGAS_object & inObject,
-                                                                                                            Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_branchOverflowMapDictionary_2D_element result ;
-  const GALGAS_branchOverflowMapDictionary_2D_element * p = (const GALGAS_branchOverflowMapDictionary_2D_element *) inObject.embeddedObject () ;
+GALGAS_branchOverflowMapDictionary_2D_element_3F_ GALGAS_branchOverflowMapDictionary_2D_element_3F_::extractObject (const GALGAS_object & inObject,
+                                                                                                                    Compiler * inCompiler
+                                                                                                                    COMMA_LOCATION_ARGS) {
+  GALGAS_branchOverflowMapDictionary_2D_element_3F_ result ;
+  const GALGAS_branchOverflowMapDictionary_2D_element_3F_ * p = (const GALGAS_branchOverflowMapDictionary_2D_element_3F_ *) inObject.embeddedObject () ;
   if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_branchOverflowMapDictionary_2D_element *> (p)) {
+    if (nullptr != dynamic_cast <const GALGAS_branchOverflowMapDictionary_2D_element_3F_ *> (p)) {
       result = *p ;
     }else{
-      inCompiler->castError ("branchOverflowMapDictionary-element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+      inCompiler->castError ("branchOverflowMapDictionary-element?", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

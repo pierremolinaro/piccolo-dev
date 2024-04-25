@@ -10,6 +10,135 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Routine 'perform_midrange_optimizations&&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_perform_5F_midrange_5F_optimizations_26__26_ (class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
+                                                           class GALGAS_string & ioArgument1,
+                                                           class Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'midrange_compute_JSR_JUMP&&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_midrange_5F_compute_5F_JSR_5F_JUMP_26__26_ (class GALGAS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
+                                                         class GALGAS_string & ioArgument1,
+                                                         class Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'midrange_build_assembly_code?????!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_midrange_5F_build_5F_assembly_5F_code_3F__3F__3F__3F__3F__21_ (const class GALGAS_string constinArgument0,
+                                                                            const class GALGAS_registerTable constinArgument1,
+                                                                            const class GALGAS_registerTable constinArgument2,
+                                                                            const class GALGAS_midrange_5F_intermediate_5F_instructionList constinArgument3,
+                                                                            const class GALGAS_actualConfigurationMap constinArgument4,
+                                                                            class GALGAS_string & outArgument5,
+                                                                            class Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'emitMidrangeCodeAtWordAddress?&?&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_emitMidrangeCodeAtWordAddress_3F__26__3F__26_ (const class GALGAS_uint constinArgument0,
+                                                            class GALGAS_uint & ioArgument1,
+                                                            const class GALGAS_midrange_5F_intermediate_5F_instruction constinArgument2,
+                                                            class GALGAS_string & ioArgument3,
+                                                            class Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'emitMidrangeDirectCodeAtWordAddress?&?&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_emitMidrangeDirectCodeAtWordAddress_3F__26__3F__26_ (const class GALGAS_uint constinArgument0,
+                                                                  class GALGAS_uint & ioArgument1,
+                                                                  const class GALGAS_string constinArgument2,
+                                                                  class GALGAS_string & ioArgument3,
+                                                                  class Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'emitNoMidrangeCodeAtWordAddress??&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_emitNoMidrangeCodeAtWordAddress_3F__3F__26_ (const class GALGAS_uint constinArgument0,
+                                                          const class GALGAS_midrange_5F_intermediate_5F_instruction constinArgument1,
+                                                          class GALGAS_string & ioArgument2,
+                                                          class Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'emit_midrange_GOTOinstruction_nocheck??&&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_emit_5F_midrange_5F_GOTOinstruction_5F_nocheck_3F__3F__26__26_ (const class GALGAS_string constinArgument0,
+                                                                             const class GALGAS_uint constinArgument1,
+                                                                             class GALGAS_uint & ioArgument2,
+                                                                             class GALGAS_string & ioArgument3,
+                                                                             class Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'emit_midrange_GOTOinstruction?&??&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_emit_5F_midrange_5F_GOTOinstruction_3F__26__3F__3F__26_ (const class GALGAS_location constinArgument0,
+                                                                      class GALGAS_uint & ioArgument1,
+                                                                      const class GALGAS_string constinArgument2,
+                                                                      const class GALGAS_uint constinArgument3,
+                                                                      class GALGAS_string & ioArgument4,
+                                                                      class Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'emit_midrange_CALLinstruction_nocheck??&&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_emit_5F_midrange_5F_CALLinstruction_5F_nocheck_3F__3F__26__26_ (const class GALGAS_string constinArgument0,
+                                                                             const class GALGAS_uint constinArgument1,
+                                                                             class GALGAS_uint & ioArgument2,
+                                                                             class GALGAS_string & ioArgument3,
+                                                                             class Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'emit_midrange_CALLinstruction?&??&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_emit_5F_midrange_5F_CALLinstruction_3F__26__3F__3F__26_ (const class GALGAS_location constinArgument0,
+                                                                      class GALGAS_uint & ioArgument1,
+                                                                      const class GALGAS_string constinArgument2,
+                                                                      const class GALGAS_uint constinArgument3,
+                                                                      class GALGAS_string & ioArgument4,
+                                                                      class Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
 //Routine 'build_midrange_ipic_binary_code??????&!'
 //
 //--------------------------------------------------------------------------------------------------
@@ -229,30 +358,4 @@ class GALGAS_codeList function_pic_31__38__5F_GOTO_5F_instruction_5F_code (const
 class GALGAS_codeList function_pic_31__38__5F_definition_5F_label (const class GALGAS_lstring & constinArgument0,
                                                                    class Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'performInlineFromInstructionList????!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_performInlineFromInstructionList_3F__3F__3F__3F__21_ (const class GALGAS_pic_31__38_InstructionList constinArgument0,
-                                                                   const class GALGAS_stringset constinArgument1,
-                                                                   const class GALGAS_declaredRoutineMap constinArgument2,
-                                                                   const class GALGAS_stringset constinArgument3,
-                                                                   class GALGAS_pic_31__38_InstructionList & outArgument4,
-                                                                   class Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'displayBlockList?&?'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_displayBlockList_3F__26__3F_ (const class GALGAS_string constinArgument0,
-                                           class GALGAS_string & ioArgument1,
-                                           const class GALGAS_ipic_31__38_BlockList constinArgument2,
-                                           class Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
 

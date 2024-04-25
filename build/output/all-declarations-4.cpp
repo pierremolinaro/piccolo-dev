@@ -9,333 +9,6 @@
 
 //--------------------------------------------------------------------------------------------------
 
-ComparisonResult GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::objectCompare (const GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak (void) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak & GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::operator = (const GALGAS_pic_31__38_Instruction_5F_fnop & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak (const GALGAS_pic_31__38_Instruction_5F_fnop & inSource) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak (inSource) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::class_func_nil (LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::bang_pic_31__38_Instruction_5F_fnop_2D_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GALGAS_pic_31__38_Instruction_5F_fnop result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_pic_31__38_Instruction_5F_fnop) ;
-      result = GALGAS_pic_31__38_Instruction_5F_fnop ((cPtr_pic_31__38_Instruction_5F_fnop *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @pic18Instruction_fnop-weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak ("pic18Instruction_fnop-weak",
-                                                                                              & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction_2D_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak::extractObject (const GALGAS_object & inObject,
-                                                                                                            Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak result ;
-  const GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak * p = (const GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_fnop_2D_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18Instruction_fnop-weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @pic_31__38_Instruction_5F_LFSR reference class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_pic_31__38_Instruction_5F_LFSR::cPtr_pic_31__38_Instruction_5F_LFSR (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_pic_31__38_PiccoloSimpleInstruction (inCompiler COMMA_THERE),
-mProperty_mFSRindex (),
-mProperty_mImmediatExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_pic_31__38_Instruction_5F_LFSR::printNonNullClassInstanceProperties (void) const {
-    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mFSRindex.printNonNullClassInstanceProperties ("mFSRindex") ;
-    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GALGAS_pic_31__38_Instruction_5F_LFSR::objectCompare (const GALGAS_pic_31__38_Instruction_5F_LFSR & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_LFSR::GALGAS_pic_31__38_Instruction_5F_LFSR (void) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_LFSR GALGAS_pic_31__38_Instruction_5F_LFSR::
-init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
-                  const GALGAS_luint & in_mFSRindex,
-                  const GALGAS_immediatExpression & in_mImmediatExpression,
-                  Compiler * inCompiler
-                  COMMA_LOCATION_ARGS) {
-  cPtr_pic_31__38_Instruction_5F_LFSR * object = nullptr ;
-  macroMyNew (object, cPtr_pic_31__38_Instruction_5F_LFSR (inCompiler COMMA_THERE)) ;
-  object->pic_31__38_Instruction_5F_LFSR_init_21__21__21_ (in_mInstructionLocation, in_mFSRindex, in_mImmediatExpression, inCompiler) ;
-  const GALGAS_pic_31__38_Instruction_5F_LFSR result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_pic_31__38_Instruction_5F_LFSR::
-pic_31__38_Instruction_5F_LFSR_init_21__21__21_ (const GALGAS_location & in_mInstructionLocation,
-                                                 const GALGAS_luint & in_mFSRindex,
-                                                 const GALGAS_immediatExpression & in_mImmediatExpression,
-                                                 Compiler * /* inCompiler */) {
-  mProperty_mInstructionLocation = in_mInstructionLocation ;
-  mProperty_mFSRindex = in_mFSRindex ;
-  mProperty_mImmediatExpression = in_mImmediatExpression ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_LFSR::GALGAS_pic_31__38_Instruction_5F_LFSR (const cPtr_pic_31__38_Instruction_5F_LFSR * inSourcePtr) :
-GALGAS_pic_31__38_PiccoloSimpleInstruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_LFSR GALGAS_pic_31__38_Instruction_5F_LFSR::class_func_new (const GALGAS_location & in_mInstructionLocation,
-                                                                                             const GALGAS_luint & in_mFSRindex,
-                                                                                             const GALGAS_immediatExpression & in_mImmediatExpression
-                                                                                             COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_LFSR result ;
-  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_LFSR (in_mInstructionLocation, in_mFSRindex, in_mImmediatExpression COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_luint GALGAS_pic_31__38_Instruction_5F_LFSR::readProperty_mFSRindex (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_luint () ;
-  }else{
-    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-    return p->mProperty_mFSRindex ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_pic_31__38_Instruction_5F_LFSR::setProperty_mFSRindex (const GALGAS_luint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-    p->mProperty_mFSRindex = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_immediatExpression GALGAS_pic_31__38_Instruction_5F_LFSR::readProperty_mImmediatExpression (void) const {
-  if (nullptr == mObjectPtr) {
-    return GALGAS_immediatExpression () ;
-  }else{
-    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-    return p->mProperty_mImmediatExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GALGAS_pic_31__38_Instruction_5F_LFSR::setProperty_mImmediatExpression (const GALGAS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
-    p->mProperty_mImmediatExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @pic18Instruction_LFSR class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_pic_31__38_Instruction_5F_LFSR::cPtr_pic_31__38_Instruction_5F_LFSR (const GALGAS_location & in_mInstructionLocation,
-                                                                          const GALGAS_luint & in_mFSRindex,
-                                                                          const GALGAS_immediatExpression & in_mImmediatExpression
-                                                                          COMMA_LOCATION_ARGS) :
-cPtr_pic_31__38_PiccoloSimpleInstruction (in_mInstructionLocation COMMA_THERE),
-mProperty_mFSRindex (),
-mProperty_mImmediatExpression () {
-  mProperty_mInstructionLocation = in_mInstructionLocation ;
-  mProperty_mFSRindex = in_mFSRindex ;
-  mProperty_mImmediatExpression = in_mImmediatExpression ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_LFSR::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ;
-}
-
-void cPtr_pic_31__38_Instruction_5F_LFSR::description (String & ioString,
-                                                       const int32_t inIndentation) const {
-  ioString.appendCString ("[@pic18Instruction_LFSR:") ;
-  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mFSRindex.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mImmediatExpression.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_pic_31__38_Instruction_5F_LFSR::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_LFSR (mProperty_mInstructionLocation, mProperty_mFSRindex, mProperty_mImmediatExpression COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @pic18Instruction_LFSR generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ("pic18Instruction_LFSR",
-                                                                                      & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GALGAS_pic_31__38_Instruction_5F_LFSR::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GALGAS_pic_31__38_Instruction_5F_LFSR::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GALGAS_pic_31__38_Instruction_5F_LFSR (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_pic_31__38_Instruction_5F_LFSR GALGAS_pic_31__38_Instruction_5F_LFSR::extractObject (const GALGAS_object & inObject,
-                                                                                            Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) {
-  GALGAS_pic_31__38_Instruction_5F_LFSR result ;
-  const GALGAS_pic_31__38_Instruction_5F_LFSR * p = (const GALGAS_pic_31__38_Instruction_5F_LFSR *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GALGAS_pic_31__38_Instruction_5F_LFSR *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18Instruction_LFSR", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak::objectCompare (const GALGAS_pic_31__38_Instruction_5F_LFSR_2D_weak & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -961,14 +634,15 @@ GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2D_weak GALGAS_pic_31__38_Inst
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_tableAccessOption::GALGAS_tableAccessOption (void) :
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_tableAccessOption GALGAS_tableAccessOption::class_func_simpleAccess (UNUSED_LOCATION_ARGS) {
   GALGAS_tableAccessOption result ;
-  result.mEnum = kEnum_simpleAccess ;
+  result.mEnum = Enumeration::enum_simpleAccess ;
   return result ;
 }
 
@@ -976,7 +650,7 @@ GALGAS_tableAccessOption GALGAS_tableAccessOption::class_func_simpleAccess (UNUS
 
 GALGAS_tableAccessOption GALGAS_tableAccessOption::class_func_postIncrement (UNUSED_LOCATION_ARGS) {
   GALGAS_tableAccessOption result ;
-  result.mEnum = kEnum_postIncrement ;
+  result.mEnum = Enumeration::enum_postIncrement ;
   return result ;
 }
 
@@ -984,7 +658,7 @@ GALGAS_tableAccessOption GALGAS_tableAccessOption::class_func_postIncrement (UNU
 
 GALGAS_tableAccessOption GALGAS_tableAccessOption::class_func_postDecrement (UNUSED_LOCATION_ARGS) {
   GALGAS_tableAccessOption result ;
-  result.mEnum = kEnum_postDecrement ;
+  result.mEnum = Enumeration::enum_postDecrement ;
   return result ;
 }
 
@@ -992,36 +666,32 @@ GALGAS_tableAccessOption GALGAS_tableAccessOption::class_func_postDecrement (UNU
 
 GALGAS_tableAccessOption GALGAS_tableAccessOption::class_func_preIncrement (UNUSED_LOCATION_ARGS) {
   GALGAS_tableAccessOption result ;
-  result.mEnum = kEnum_preIncrement ;
+  result.mEnum = Enumeration::enum_preIncrement ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_tableAccessOption::optional_simpleAccess () const {
-  const bool ok = mEnum == kEnum_simpleAccess ;
-  return ok ;
+GALGAS_bool GALGAS_tableAccessOption::getter_simpleAccess (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_simpleAccess == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_tableAccessOption::optional_postIncrement () const {
-  const bool ok = mEnum == kEnum_postIncrement ;
-  return ok ;
+GALGAS_bool GALGAS_tableAccessOption::getter_postIncrement (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_postIncrement == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_tableAccessOption::optional_postDecrement () const {
-  const bool ok = mEnum == kEnum_postDecrement ;
-  return ok ;
+GALGAS_bool GALGAS_tableAccessOption::getter_postDecrement (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_postDecrement == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_tableAccessOption::optional_preIncrement () const {
-  const bool ok = mEnum == kEnum_preIncrement ;
-  return ok ;
+GALGAS_bool GALGAS_tableAccessOption::getter_preIncrement (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_preIncrement == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -1036,34 +706,10 @@ static const char * gEnumNameArrayFor_tableAccessOption [5] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_tableAccessOption::getter_isSimpleAccess (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_simpleAccess == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_tableAccessOption::getter_isPostIncrement (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_postIncrement == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_tableAccessOption::getter_isPostDecrement (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_postDecrement == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_tableAccessOption::getter_isPreIncrement (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_preIncrement == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_tableAccessOption::description (String & ioString,
                                             const int32_t /* inIndentation */) const {
   ioString.appendCString ("<enum @tableAccessOption: ") ;
-  ioString.appendCString (gEnumNameArrayFor_tableAccessOption [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_tableAccessOption [size_t (mEnum)]) ;
   ioString.appendCString (">") ;
 }
 
@@ -2616,14 +2262,15 @@ GALGAS_pic_31__38_Instruction_5F_FOREVER_2D_weak GALGAS_pic_31__38_Instruction_5
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_if_5F_semi_5F_colon_5F_op::GALGAS_if_5F_semi_5F_colon_5F_op (void) :
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_if_5F_semi_5F_colon_5F_op GALGAS_if_5F_semi_5F_colon_5F_op::class_func_CPFSEQ (UNUSED_LOCATION_ARGS) {
   GALGAS_if_5F_semi_5F_colon_5F_op result ;
-  result.mEnum = kEnum_CPFSEQ ;
+  result.mEnum = Enumeration::enum_CPFSEQ ;
   return result ;
 }
 
@@ -2631,7 +2278,7 @@ GALGAS_if_5F_semi_5F_colon_5F_op GALGAS_if_5F_semi_5F_colon_5F_op::class_func_CP
 
 GALGAS_if_5F_semi_5F_colon_5F_op GALGAS_if_5F_semi_5F_colon_5F_op::class_func_CPFSGT (UNUSED_LOCATION_ARGS) {
   GALGAS_if_5F_semi_5F_colon_5F_op result ;
-  result.mEnum = kEnum_CPFSGT ;
+  result.mEnum = Enumeration::enum_CPFSGT ;
   return result ;
 }
 
@@ -2639,7 +2286,7 @@ GALGAS_if_5F_semi_5F_colon_5F_op GALGAS_if_5F_semi_5F_colon_5F_op::class_func_CP
 
 GALGAS_if_5F_semi_5F_colon_5F_op GALGAS_if_5F_semi_5F_colon_5F_op::class_func_CPFSLT (UNUSED_LOCATION_ARGS) {
   GALGAS_if_5F_semi_5F_colon_5F_op result ;
-  result.mEnum = kEnum_CPFSLT ;
+  result.mEnum = Enumeration::enum_CPFSLT ;
   return result ;
 }
 
@@ -2647,36 +2294,32 @@ GALGAS_if_5F_semi_5F_colon_5F_op GALGAS_if_5F_semi_5F_colon_5F_op::class_func_CP
 
 GALGAS_if_5F_semi_5F_colon_5F_op GALGAS_if_5F_semi_5F_colon_5F_op::class_func_TSTFSZ (UNUSED_LOCATION_ARGS) {
   GALGAS_if_5F_semi_5F_colon_5F_op result ;
-  result.mEnum = kEnum_TSTFSZ ;
+  result.mEnum = Enumeration::enum_TSTFSZ ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_if_5F_semi_5F_colon_5F_op::optional_CPFSEQ () const {
-  const bool ok = mEnum == kEnum_CPFSEQ ;
-  return ok ;
+GALGAS_bool GALGAS_if_5F_semi_5F_colon_5F_op::getter_CPFSEQ (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_CPFSEQ == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_if_5F_semi_5F_colon_5F_op::optional_CPFSGT () const {
-  const bool ok = mEnum == kEnum_CPFSGT ;
-  return ok ;
+GALGAS_bool GALGAS_if_5F_semi_5F_colon_5F_op::getter_CPFSGT (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_CPFSGT == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_if_5F_semi_5F_colon_5F_op::optional_CPFSLT () const {
-  const bool ok = mEnum == kEnum_CPFSLT ;
-  return ok ;
+GALGAS_bool GALGAS_if_5F_semi_5F_colon_5F_op::getter_CPFSLT (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_CPFSLT == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_if_5F_semi_5F_colon_5F_op::optional_TSTFSZ () const {
-  const bool ok = mEnum == kEnum_TSTFSZ ;
-  return ok ;
+GALGAS_bool GALGAS_if_5F_semi_5F_colon_5F_op::getter_TSTFSZ (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_TSTFSZ == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2691,34 +2334,10 @@ static const char * gEnumNameArrayFor_if_5F_semi_5F_colon_5F_op [5] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_if_5F_semi_5F_colon_5F_op::getter_isCPFSEQ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CPFSEQ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_if_5F_semi_5F_colon_5F_op::getter_isCPFSGT (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CPFSGT == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_if_5F_semi_5F_colon_5F_op::getter_isCPFSLT (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_CPFSLT == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_if_5F_semi_5F_colon_5F_op::getter_isTSTFSZ (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_TSTFSZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_if_5F_semi_5F_colon_5F_op::description (String & ioString,
                                                     const int32_t /* inIndentation */) const {
   ioString.appendCString ("<enum @if_semi_colon_op: ") ;
-  ioString.appendCString (gEnumNameArrayFor_if_5F_semi_5F_colon_5F_op [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_if_5F_semi_5F_colon_5F_op [size_t (mEnum)]) ;
   ioString.appendCString (">") ;
 }
 
@@ -4994,14 +4613,15 @@ GALGAS_pic_31__38_RegisterTestCondition_2D_weak GALGAS_pic_31__38_RegisterTestCo
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_RegisterComparison::GALGAS_pic_31__38_RegisterComparison (void) :
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class_func_notEqual (UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterComparison result ;
-  result.mEnum = kEnum_notEqual ;
+  result.mEnum = Enumeration::enum_notEqual ;
   return result ;
 }
 
@@ -5009,7 +4629,7 @@ GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class
 
 GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class_func_equal (UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterComparison result ;
-  result.mEnum = kEnum_equal ;
+  result.mEnum = Enumeration::enum_equal ;
   return result ;
 }
 
@@ -5017,7 +4637,7 @@ GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class
 
 GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class_func_greaterOrEqual (UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterComparison result ;
-  result.mEnum = kEnum_greaterOrEqual ;
+  result.mEnum = Enumeration::enum_greaterOrEqual ;
   return result ;
 }
 
@@ -5025,7 +4645,7 @@ GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class
 
 GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class_func_greater (UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterComparison result ;
-  result.mEnum = kEnum_greater ;
+  result.mEnum = Enumeration::enum_greater ;
   return result ;
 }
 
@@ -5033,7 +4653,7 @@ GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class
 
 GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class_func_lowerOrEqual (UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterComparison result ;
-  result.mEnum = kEnum_lowerOrEqual ;
+  result.mEnum = Enumeration::enum_lowerOrEqual ;
   return result ;
 }
 
@@ -5041,50 +4661,44 @@ GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class
 
 GALGAS_pic_31__38_RegisterComparison GALGAS_pic_31__38_RegisterComparison::class_func_lower (UNUSED_LOCATION_ARGS) {
   GALGAS_pic_31__38_RegisterComparison result ;
-  result.mEnum = kEnum_lower ;
+  result.mEnum = Enumeration::enum_lower ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_pic_31__38_RegisterComparison::optional_notEqual () const {
-  const bool ok = mEnum == kEnum_notEqual ;
-  return ok ;
+GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_notEqual (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_notEqual == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_pic_31__38_RegisterComparison::optional_equal () const {
-  const bool ok = mEnum == kEnum_equal ;
-  return ok ;
+GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_equal (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_equal == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_pic_31__38_RegisterComparison::optional_greaterOrEqual () const {
-  const bool ok = mEnum == kEnum_greaterOrEqual ;
-  return ok ;
+GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_greaterOrEqual (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_greaterOrEqual == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_pic_31__38_RegisterComparison::optional_greater () const {
-  const bool ok = mEnum == kEnum_greater ;
-  return ok ;
+GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_greater (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_greater == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_pic_31__38_RegisterComparison::optional_lowerOrEqual () const {
-  const bool ok = mEnum == kEnum_lowerOrEqual ;
-  return ok ;
+GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_lowerOrEqual (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_lowerOrEqual == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_pic_31__38_RegisterComparison::optional_lower () const {
-  const bool ok = mEnum == kEnum_lower ;
-  return ok ;
+GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_lower (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_lower == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -5101,46 +4715,10 @@ static const char * gEnumNameArrayFor_pic_31__38_RegisterComparison [7] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_isNotEqual (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_notEqual == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_isEqual (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_equal == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_isGreaterOrEqual (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_greaterOrEqual == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_isGreater (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_greater == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_isLowerOrEqual (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_lowerOrEqual == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_pic_31__38_RegisterComparison::getter_isLower (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_lower == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_pic_31__38_RegisterComparison::description (String & ioString,
                                                         const int32_t /* inIndentation */) const {
   ioString.appendCString ("<enum @pic18RegisterComparison: ") ;
-  ioString.appendCString (gEnumNameArrayFor_pic_31__38_RegisterComparison [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_pic_31__38_RegisterComparison [size_t (mEnum)]) ;
   ioString.appendCString (">") ;
 }
 
@@ -9808,6 +9386,28 @@ GALGAS_pic_31__38_MacroMap GALGAS_pic_31__38_MacroMap::class_func_emptyMap (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_pic_31__38_MacroMap_2D_element_3F_ GALGAS_pic_31__38_MacroMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_pic_31__38_MacroMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_pic_31__38_MacroMap * p = (cMapElement_pic_31__38_MacroMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_pic_31__38_MacroMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_pic_31__38_MacroMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mConstantNameList = p->mProperty_mConstantNameList ;
+      element.mProperty_mInstructionList = p->mProperty_mInstructionList ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_pic_31__38_MacroMap GALGAS_pic_31__38_MacroMap::class_func_mapWithMapToOverride (const GALGAS_pic_31__38_MacroMap & inMapToOverride
                                                                                         COMMA_LOCATION_ARGS) {
   GALGAS_pic_31__38_MacroMap result ;
@@ -10018,24 +9618,6 @@ GALGAS_pic_31__38_InstructionList cEnumerator_pic_31__38_MacroMap::current_mInst
   const cMapElement_pic_31__38_MacroMap * p = (const cMapElement_pic_31__38_MacroMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
   return p->mProperty_mInstructionList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_pic_31__38_MacroMap::optional_searchKey (const GALGAS_string & inKey,
-                                                     GALGAS_lstringlist & outArgument0,
-                                                     GALGAS_pic_31__38_InstructionList & outArgument1) const {
-  const cMapElement_pic_31__38_MacroMap * p = (const cMapElement_pic_31__38_MacroMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
-    outArgument0 = p->mProperty_mConstantNameList ;
-    outArgument1 = p->mProperty_mInstructionList ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10765,14 +10347,15 @@ GALGAS_routineDeclarationList GALGAS_routineDeclarationList::extractObject (cons
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_programKind::GALGAS_programKind (void) :
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_programKind GALGAS_programKind::class_func_regularProgram (UNUSED_LOCATION_ARGS) {
   GALGAS_programKind result ;
-  result.mEnum = kEnum_regularProgram ;
+  result.mEnum = Enumeration::enum_regularProgram ;
   return result ;
 }
 
@@ -10780,7 +10363,7 @@ GALGAS_programKind GALGAS_programKind::class_func_regularProgram (UNUSED_LOCATIO
 
 GALGAS_programKind GALGAS_programKind::class_func_bootloaderProgram (UNUSED_LOCATION_ARGS) {
   GALGAS_programKind result ;
-  result.mEnum = kEnum_bootloaderProgram ;
+  result.mEnum = Enumeration::enum_bootloaderProgram ;
   return result ;
 }
 
@@ -10788,29 +10371,26 @@ GALGAS_programKind GALGAS_programKind::class_func_bootloaderProgram (UNUSED_LOCA
 
 GALGAS_programKind GALGAS_programKind::class_func_userProgram (UNUSED_LOCATION_ARGS) {
   GALGAS_programKind result ;
-  result.mEnum = kEnum_userProgram ;
+  result.mEnum = Enumeration::enum_userProgram ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_programKind::optional_regularProgram () const {
-  const bool ok = mEnum == kEnum_regularProgram ;
-  return ok ;
+GALGAS_bool GALGAS_programKind::getter_regularProgram (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_regularProgram == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_programKind::optional_bootloaderProgram () const {
-  const bool ok = mEnum == kEnum_bootloaderProgram ;
-  return ok ;
+GALGAS_bool GALGAS_programKind::getter_bootloaderProgram (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_bootloaderProgram == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_programKind::optional_userProgram () const {
-  const bool ok = mEnum == kEnum_userProgram ;
-  return ok ;
+GALGAS_bool GALGAS_programKind::getter_userProgram (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_userProgram == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10824,28 +10404,10 @@ static const char * gEnumNameArrayFor_programKind [4] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_programKind::getter_isRegularProgram (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_regularProgram == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_programKind::getter_isBootloaderProgram (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_bootloaderProgram == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_programKind::getter_isUserProgram (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_userProgram == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_programKind::description (String & ioString,
                                       const int32_t /* inIndentation */) const {
   ioString.appendCString ("<enum @programKind: ") ;
-  ioString.appendCString (gEnumNameArrayFor_programKind [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_programKind [size_t (mEnum)]) ;
   ioString.appendCString (">") ;
 }
 
@@ -11953,34 +11515,34 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_pic_31__38_RegisterComparis
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_pic_31__38_RegisterComparison temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_pic_31__38_RegisterComparison::kNotBuilt:
+  case GALGAS_pic_31__38_RegisterComparison::Enumeration::invalid:
     break ;
-  case GALGAS_pic_31__38_RegisterComparison::kEnum_notEqual:
+  case GALGAS_pic_31__38_RegisterComparison::Enumeration::enum_notEqual:
     {
       result_outResult = GALGAS_string ("!=") ;
     }
     break ;
-  case GALGAS_pic_31__38_RegisterComparison::kEnum_equal:
+  case GALGAS_pic_31__38_RegisterComparison::Enumeration::enum_equal:
     {
       result_outResult = GALGAS_string ("==") ;
     }
     break ;
-  case GALGAS_pic_31__38_RegisterComparison::kEnum_greaterOrEqual:
+  case GALGAS_pic_31__38_RegisterComparison::Enumeration::enum_greaterOrEqual:
     {
       result_outResult = GALGAS_string (">=") ;
     }
     break ;
-  case GALGAS_pic_31__38_RegisterComparison::kEnum_greater:
+  case GALGAS_pic_31__38_RegisterComparison::Enumeration::enum_greater:
     {
       result_outResult = GALGAS_string (">") ;
     }
     break ;
-  case GALGAS_pic_31__38_RegisterComparison::kEnum_lowerOrEqual:
+  case GALGAS_pic_31__38_RegisterComparison::Enumeration::enum_lowerOrEqual:
     {
       result_outResult = GALGAS_string ("<=") ;
     }
     break ;
-  case GALGAS_pic_31__38_RegisterComparison::kEnum_lower:
+  case GALGAS_pic_31__38_RegisterComparison::Enumeration::enum_lower:
     {
       result_outResult = GALGAS_string ("<") ;
     }
@@ -12005,44 +11567,44 @@ GALGAS_string extensionGetter_condition (const GALGAS_conditional_5F_branch & in
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_conditional_5F_branch temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_conditional_5F_branch::kNotBuilt:
+  case GALGAS_conditional_5F_branch::Enumeration::invalid:
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bz:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bz:
     {
       result_outResult = GALGAS_string ("Z") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bnz:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bnz:
     {
       result_outResult = GALGAS_string ("NZ") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bn:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bn:
     {
       result_outResult = GALGAS_string ("N") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bnn:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bnn:
     {
       result_outResult = GALGAS_string ("NN") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bc:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bc:
     {
       result_outResult = GALGAS_string ("C") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bnc:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bnc:
     {
       result_outResult = GALGAS_string ("NC") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bov:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bov:
     {
       result_outResult = GALGAS_string ("OV") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bnov:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bnov:
     {
       result_outResult = GALGAS_string ("NOV") ;
     }
@@ -12067,39 +11629,39 @@ GALGAS_string extensionGetter_assemblyCode (const GALGAS_pic_31__38_InstructionW
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_pic_31__38_InstructionWithNoOperandKind temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kNotBuilt:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::invalid:
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_CLRWDT:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_CLRWDT:
     {
       result_outResult = GALGAS_string ("CLRWDT") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_DAW:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_DAW:
     {
       result_outResult = GALGAS_string ("DAW") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_NOP:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_NOP:
     {
       result_outResult = GALGAS_string ("NOP") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_POP:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_POP:
     {
       result_outResult = GALGAS_string ("POP") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_PUSH:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_PUSH:
     {
       result_outResult = GALGAS_string ("PUSH") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_RESET:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_RESET:
     {
       result_outResult = GALGAS_string ("RESET") ;
     }
     break ;
-  case GALGAS_pic_31__38_InstructionWithNoOperandKind::kEnum_SLEEP:
+  case GALGAS_pic_31__38_InstructionWithNoOperandKind::Enumeration::enum_SLEEP:
     {
       result_outResult = GALGAS_string ("SLEEP") ;
     }
@@ -12124,49 +11686,49 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_FA_5F_instruction_5F_base_5
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_FA_5F_instruction_5F_base_5F_code temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kNotBuilt:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::invalid:
     break ;
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CLRF:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_CLRF:
     {
       result_outResult = GALGAS_string ("CLRF") ;
     }
     break ;
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSEQ:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_CPFSEQ:
     {
       result_outResult = GALGAS_string ("CPFSEQ") ;
     }
     break ;
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSGT:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_CPFSGT:
     {
       result_outResult = GALGAS_string ("CPFSGT") ;
     }
     break ;
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_CPFSLT:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_CPFSLT:
     {
       result_outResult = GALGAS_string ("CPFSLT") ;
     }
     break ;
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MOVWF:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_MOVWF:
     {
       result_outResult = GALGAS_string ("MOVWF") ;
     }
     break ;
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_MULWF:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_MULWF:
     {
       result_outResult = GALGAS_string ("MULWF") ;
     }
     break ;
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_NEGF:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_NEGF:
     {
       result_outResult = GALGAS_string ("NEGF") ;
     }
     break ;
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_SETF:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_SETF:
     {
       result_outResult = GALGAS_string ("SETF") ;
     }
     break ;
-  case GALGAS_FA_5F_instruction_5F_base_5F_code::kEnum_TSTFSZ:
+  case GALGAS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_TSTFSZ:
     {
       result_outResult = GALGAS_string ("TSTFSZ") ;
     }
@@ -12191,19 +11753,19 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_bit_5F_oriented_5F_op & inO
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_bit_5F_oriented_5F_op temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_bit_5F_oriented_5F_op::kNotBuilt:
+  case GALGAS_bit_5F_oriented_5F_op::Enumeration::invalid:
     break ;
-  case GALGAS_bit_5F_oriented_5F_op::kEnum_BCF:
+  case GALGAS_bit_5F_oriented_5F_op::Enumeration::enum_BCF:
     {
       result_outResult = GALGAS_string ("BCF") ;
     }
     break ;
-  case GALGAS_bit_5F_oriented_5F_op::kEnum_BSF:
+  case GALGAS_bit_5F_oriented_5F_op::Enumeration::enum_BSF:
     {
       result_outResult = GALGAS_string ("BSF") ;
     }
     break ;
-  case GALGAS_bit_5F_oriented_5F_op::kEnum_BTG:
+  case GALGAS_bit_5F_oriented_5F_op::Enumeration::enum_BTG:
     {
       result_outResult = GALGAS_string ("BTG") ;
     }
@@ -12228,44 +11790,44 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_conditional_5F_branch & inO
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_conditional_5F_branch temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_conditional_5F_branch::kNotBuilt:
+  case GALGAS_conditional_5F_branch::Enumeration::invalid:
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bz:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bz:
     {
       result_outResult = GALGAS_string ("BZ") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bnz:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bnz:
     {
       result_outResult = GALGAS_string ("BNZ") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bn:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bn:
     {
       result_outResult = GALGAS_string ("BN") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bnn:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bnn:
     {
       result_outResult = GALGAS_string ("BNN") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bc:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bc:
     {
       result_outResult = GALGAS_string ("BC") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bnc:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bnc:
     {
       result_outResult = GALGAS_string ("BNC") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bov:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bov:
     {
       result_outResult = GALGAS_string ("BOV") ;
     }
     break ;
-  case GALGAS_conditional_5F_branch::kEnum_bnov:
+  case GALGAS_conditional_5F_branch::Enumeration::enum_bnov:
     {
       result_outResult = GALGAS_string ("BNOV") ;
     }
@@ -12290,39 +11852,39 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_literal_5F_instruction_5F_o
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_literal_5F_instruction_5F_opcode temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_literal_5F_instruction_5F_opcode::kNotBuilt:
+  case GALGAS_literal_5F_instruction_5F_opcode::Enumeration::invalid:
     break ;
-  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_ADDLW:
+  case GALGAS_literal_5F_instruction_5F_opcode::Enumeration::enum_ADDLW:
     {
       result_outResult = GALGAS_string ("ADDLW") ;
     }
     break ;
-  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_ANDLW:
+  case GALGAS_literal_5F_instruction_5F_opcode::Enumeration::enum_ANDLW:
     {
       result_outResult = GALGAS_string ("ANDLW") ;
     }
     break ;
-  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_IORLW:
+  case GALGAS_literal_5F_instruction_5F_opcode::Enumeration::enum_IORLW:
     {
       result_outResult = GALGAS_string ("IORLW") ;
     }
     break ;
-  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_MOVLW:
+  case GALGAS_literal_5F_instruction_5F_opcode::Enumeration::enum_MOVLW:
     {
       result_outResult = GALGAS_string ("MOVLW") ;
     }
     break ;
-  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_MULLW:
+  case GALGAS_literal_5F_instruction_5F_opcode::Enumeration::enum_MULLW:
     {
       result_outResult = GALGAS_string ("MULLW") ;
     }
     break ;
-  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_SUBLW:
+  case GALGAS_literal_5F_instruction_5F_opcode::Enumeration::enum_SUBLW:
     {
       result_outResult = GALGAS_string ("SUBLW") ;
     }
     break ;
-  case GALGAS_literal_5F_instruction_5F_opcode::kEnum_XORLW:
+  case GALGAS_literal_5F_instruction_5F_opcode::Enumeration::enum_XORLW:
     {
       result_outResult = GALGAS_string ("XORLW") ;
     }
@@ -12347,24 +11909,24 @@ GALGAS_string extensionGetter_mnemonic (const GALGAS_tableAccessOption & inObjec
   GALGAS_string result_outResult ; // Returned variable
   const GALGAS_tableAccessOption temp_0 = inObject ;
   switch (temp_0.enumValue ()) {
-  case GALGAS_tableAccessOption::kNotBuilt:
+  case GALGAS_tableAccessOption::Enumeration::invalid:
     break ;
-  case GALGAS_tableAccessOption::kEnum_simpleAccess:
+  case GALGAS_tableAccessOption::Enumeration::enum_simpleAccess:
     {
       result_outResult = GALGAS_string ("*") ;
     }
     break ;
-  case GALGAS_tableAccessOption::kEnum_postIncrement:
+  case GALGAS_tableAccessOption::Enumeration::enum_postIncrement:
     {
       result_outResult = GALGAS_string ("*+") ;
     }
     break ;
-  case GALGAS_tableAccessOption::kEnum_postDecrement:
+  case GALGAS_tableAccessOption::Enumeration::enum_postDecrement:
     {
       result_outResult = GALGAS_string ("*-") ;
     }
     break ;
-  case GALGAS_tableAccessOption::kEnum_preIncrement:
+  case GALGAS_tableAccessOption::Enumeration::enum_preIncrement:
     {
       result_outResult = GALGAS_string ("+*") ;
     }

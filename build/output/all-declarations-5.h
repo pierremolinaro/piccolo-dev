@@ -201,13 +201,9 @@ class GALGAS_ramBankTable : public AC_GALGAS_map {
 
 
 //--------------------------------- Read subscripts
-
-//--------------------------------- Optional Methods
-  public: VIRTUAL_IN_DEBUG bool optional_searchKey (const class GALGAS_string & constinOperand0,
-                                                    class GALGAS_uint & outOperand1,
-                                                    class GALGAS_uint & outOperand2,
-                                                    class GALGAS_uint & outOperand3,
-                                                    class GALGAS_uintlist & outOperand4) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_ramBankTable_2D_element_3F_ readSubscript__3F_ (const class GALGAS_string & in0,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -555,8 +551,6 @@ class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
-//--------------------------------- Optional Methods
-
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -568,9 +562,7 @@ class GALGAS_pic_31__38_AST : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_AST ;
 
 //--------------------------------------------------------------------------------------------------
-//
-//                                             Phase 1: @processorType enum                                            *
-//
+//   enum processorType
 //--------------------------------------------------------------------------------------------------
 
 class GALGAS_processorType : public AC_GALGAS_root {
@@ -578,21 +570,31 @@ class GALGAS_processorType : public AC_GALGAS_root {
   public: GALGAS_processorType (void) ;
 
 //--------------------------------- Enumeration
-  public: typedef enum {
-    kNotBuilt,
-    kEnum_pic_31__38__5F__36__30_,
-    kEnum_pic_31__38__5F__38__30_,
-    kEnum_midrange,
-    kEnum_baseline
-  } enumeration ;
+  public: enum class Enumeration {
+    invalid,
+    enum_pic_31__38__5F__36__30_,
+    enum_pic_31__38__5F__38__30_,
+    enum_midrange,
+    enum_baseline
+  } ;
   
-//--------------------------------- Private data member
-  private: enumeration mEnum ;
+//--------------------------------- Private properties
+  private: Enumeration mEnum ;
+
+//--------------------------------- Associated value extraction
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return kNotBuilt != mEnum ; }
-  public: VIRTUAL_IN_DEBUG inline void drop (void) override { mEnum = kNotBuilt ; }
-  public: inline enumeration enumValue (void) const { return mEnum ; }
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override {
+    return Enumeration::invalid != mEnum ;
+  }
+
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override {
+    mEnum = Enumeration::invalid ;
+  }
+
+  public: inline Enumeration enumValue (void) const {
+    return mEnum ;
+  }
 
 //-- Start of type generic part
 
@@ -625,26 +627,16 @@ class GALGAS_processorType : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isBaseline (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_baseline (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isMidrange (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_midrange (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPic_31__38__5F__36__30_ (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_pic_31__38__5F__36__30_ (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_isPic_31__38__5F__38__30_ (LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_bool getter_pic_31__38__5F__38__30_ (LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-
-//--------------------------------- Optional Methods
-  public: VIRTUAL_IN_DEBUG bool optional_baseline () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_midrange () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_pic_31__38__5F__36__30_ () const ;
-
-  public: VIRTUAL_IN_DEBUG bool optional_pic_31__38__5F__38__30_ () const ;
-
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -775,13 +767,9 @@ class GALGAS_configRegisterMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Read subscripts
-
-//--------------------------------- Optional Methods
-  public: VIRTUAL_IN_DEBUG bool optional_searchKey (const class GALGAS_string & constinOperand0,
-                                                    class GALGAS_luint & outOperand1,
-                                                    class GALGAS_luint & outOperand2,
-                                                    class GALGAS_configRegisterMaskMap & outOperand3,
-                                                    class GALGAS_illegalMaskList & outOperand4) const ;
+  public: VIRTUAL_IN_DEBUG class GALGAS_configRegisterMap_2D_element_3F_ readSubscript__3F_ (const class GALGAS_string & in0,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Introspection
@@ -997,8 +985,6 @@ class GALGAS_piccoloDeviceModel : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
-
-//--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -1573,8 +1559,6 @@ class GALGAS_midrange_5F_model : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
-//--------------------------------- Optional Methods
-
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2115,8 +2099,6 @@ class GALGAS_baseline_5F_model : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
-
-//--------------------------------- Optional Methods
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;

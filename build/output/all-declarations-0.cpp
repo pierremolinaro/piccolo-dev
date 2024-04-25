@@ -4087,6 +4087,28 @@ GALGAS_bitSliceTable GALGAS_bitSliceTable::class_func_emptyMap (LOCATION_ARGS) {
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_bitSliceTable_2D_element_3F_ GALGAS_bitSliceTable
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_bitSliceTable_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_bitSliceTable * p = (cMapElement_bitSliceTable *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_bitSliceTable_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_bitSliceTable_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mSliceIndex = p->mProperty_mSliceIndex ;
+      element.mProperty_mSliceSize = p->mProperty_mSliceSize ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_bitSliceTable GALGAS_bitSliceTable::class_func_mapWithMapToOverride (const GALGAS_bitSliceTable & inMapToOverride
                                                                             COMMA_LOCATION_ARGS) {
   GALGAS_bitSliceTable result ;
@@ -4297,24 +4319,6 @@ GALGAS_uint cEnumerator_bitSliceTable::current_mSliceSize (LOCATION_ARGS) const 
   const cMapElement_bitSliceTable * p = (const cMapElement_bitSliceTable *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_bitSliceTable) ;
   return p->mProperty_mSliceSize ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_bitSliceTable::optional_searchKey (const GALGAS_string & inKey,
-                                               GALGAS_uint & outArgument0,
-                                               GALGAS_uint & outArgument1) const {
-  const cMapElement_bitSliceTable * p = (const cMapElement_bitSliceTable *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_bitSliceTable) ;
-    outArgument0 = p->mProperty_mSliceIndex ;
-    outArgument1 = p->mProperty_mSliceSize ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4776,14 +4780,15 @@ GALGAS_declarationInRam_2D_weak GALGAS_declarationInRam_2D_weak::extractObject (
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_registerProtection::GALGAS_registerProtection (void) :
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_registerProtection GALGAS_registerProtection::class_func_publicRegister (UNUSED_LOCATION_ARGS) {
   GALGAS_registerProtection result ;
-  result.mEnum = kEnum_publicRegister ;
+  result.mEnum = Enumeration::enum_publicRegister ;
   return result ;
 }
 
@@ -4791,7 +4796,7 @@ GALGAS_registerProtection GALGAS_registerProtection::class_func_publicRegister (
 
 GALGAS_registerProtection GALGAS_registerProtection::class_func_protectedRegister (UNUSED_LOCATION_ARGS) {
   GALGAS_registerProtection result ;
-  result.mEnum = kEnum_protectedRegister ;
+  result.mEnum = Enumeration::enum_protectedRegister ;
   return result ;
 }
 
@@ -4799,29 +4804,26 @@ GALGAS_registerProtection GALGAS_registerProtection::class_func_protectedRegiste
 
 GALGAS_registerProtection GALGAS_registerProtection::class_func_privateRegister (UNUSED_LOCATION_ARGS) {
   GALGAS_registerProtection result ;
-  result.mEnum = kEnum_privateRegister ;
+  result.mEnum = Enumeration::enum_privateRegister ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_registerProtection::optional_publicRegister () const {
-  const bool ok = mEnum == kEnum_publicRegister ;
-  return ok ;
+GALGAS_bool GALGAS_registerProtection::getter_publicRegister (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_publicRegister == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_registerProtection::optional_protectedRegister () const {
-  const bool ok = mEnum == kEnum_protectedRegister ;
-  return ok ;
+GALGAS_bool GALGAS_registerProtection::getter_protectedRegister (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_protectedRegister == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_registerProtection::optional_privateRegister () const {
-  const bool ok = mEnum == kEnum_privateRegister ;
-  return ok ;
+GALGAS_bool GALGAS_registerProtection::getter_privateRegister (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_privateRegister == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -4835,28 +4837,10 @@ static const char * gEnumNameArrayFor_registerProtection [4] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_registerProtection::getter_isPublicRegister (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_publicRegister == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_registerProtection::getter_isProtectedRegister (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_protectedRegister == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_registerProtection::getter_isPrivateRegister (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_privateRegister == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_registerProtection::description (String & ioString,
                                              const int32_t /* inIndentation */) const {
   ioString.appendCString ("<enum @registerProtection: ") ;
-  ioString.appendCString (gEnumNameArrayFor_registerProtection [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_registerProtection [size_t (mEnum)]) ;
   ioString.appendCString (">") ;
 }
 
@@ -14535,6 +14519,28 @@ GALGAS_actualConfigurationMap GALGAS_actualConfigurationMap::class_func_emptyMap
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_actualConfigurationMap_2D_element_3F_ GALGAS_actualConfigurationMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_actualConfigurationMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_actualConfigurationMap * p = (cMapElement_actualConfigurationMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_actualConfigurationMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_actualConfigurationMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mRegisterAddress = p->mProperty_mRegisterAddress ;
+      element.mProperty_mRegisterValue = p->mProperty_mRegisterValue ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_actualConfigurationMap GALGAS_actualConfigurationMap::class_func_mapWithMapToOverride (const GALGAS_actualConfigurationMap & inMapToOverride
                                                                                               COMMA_LOCATION_ARGS) {
   GALGAS_actualConfigurationMap result ;
@@ -14745,24 +14751,6 @@ GALGAS_uint cEnumerator_actualConfigurationMap::current_mRegisterValue (LOCATION
   const cMapElement_actualConfigurationMap * p = (const cMapElement_actualConfigurationMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_actualConfigurationMap) ;
   return p->mProperty_mRegisterValue ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_actualConfigurationMap::optional_searchKey (const GALGAS_string & inKey,
-                                                        GALGAS_uint & outArgument0,
-                                                        GALGAS_uint & outArgument1) const {
-  const cMapElement_actualConfigurationMap * p = (const cMapElement_actualConfigurationMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_actualConfigurationMap) ;
-    outArgument0 = p->mProperty_mRegisterAddress ;
-    outArgument1 = p->mProperty_mRegisterValue ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -15799,6 +15787,26 @@ GALGAS_labelMap GALGAS_labelMap::class_func_emptyMap (LOCATION_ARGS) {
 
 //--------------------------------------------------------------------------------------------------
 
+GALGAS_labelMap_2D_element_3F_ GALGAS_labelMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_labelMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_labelMap * p = (cMapElement_labelMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_labelMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_labelMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 GALGAS_labelMap GALGAS_labelMap::class_func_mapWithMapToOverride (const GALGAS_labelMap & inMapToOverride
                                                                   COMMA_LOCATION_ARGS) {
   GALGAS_labelMap result ;
@@ -15906,18 +15914,6 @@ GALGAS_lstring cEnumerator_labelMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_labelMap::optional_searchKey (const GALGAS_string & inKey) const {
-  const cMapElement_labelMap * p = (const cMapElement_labelMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_labelMap) ;
-  }else{
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -16069,6 +16065,27 @@ GALGAS_constantMap GALGAS_constantMap::init (Compiler * COMMA_LOCATION_ARGS) {
 GALGAS_constantMap GALGAS_constantMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_constantMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_constantMap_2D_element_3F_ GALGAS_constantMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_constantMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_constantMap * p = (cMapElement_constantMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_constantMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_constantMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mValue = p->mProperty_mValue ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -16245,21 +16262,6 @@ GALGAS_sint_36__34_ cEnumerator_constantMap::current_mValue (LOCATION_ARGS) cons
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_constantMap::optional_searchKey (const GALGAS_string & inKey,
-                                             GALGAS_sint_36__34_ & outArgument0) const {
-  const cMapElement_constantMap * p = (const cMapElement_constantMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_constantMap) ;
-    outArgument0 = p->mProperty_mValue ;
-  }else{
-    outArgument0.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @constantMap generic code implementation
 //
@@ -16394,6 +16396,30 @@ GALGAS_routineMap GALGAS_routineMap::init (Compiler * COMMA_LOCATION_ARGS) {
 GALGAS_routineMap GALGAS_routineMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_routineMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_routineMap_2D_element_3F_ GALGAS_routineMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_routineMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_routineMap * p = (cMapElement_routineMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_routineMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_routineMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mIsNoReturn = p->mProperty_mIsNoReturn ;
+      element.mProperty_mRequiredBank = p->mProperty_mRequiredBank ;
+      element.mProperty_mReturnedBank = p->mProperty_mReturnedBank ;
+      element.mProperty_mPreservesBank = p->mProperty_mPreservesBank ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -16696,30 +16722,6 @@ GALGAS_bool cEnumerator_routineMap::current_mPreservesBank (LOCATION_ARGS) const
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_routineMap::optional_searchKey (const GALGAS_string & inKey,
-                                            GALGAS_bool & outArgument0,
-                                            GALGAS_uint & outArgument1,
-                                            GALGAS_uint & outArgument2,
-                                            GALGAS_bool & outArgument3) const {
-  const cMapElement_routineMap * p = (const cMapElement_routineMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_routineMap) ;
-    outArgument0 = p->mProperty_mIsNoReturn ;
-    outArgument1 = p->mProperty_mRequiredBank ;
-    outArgument2 = p->mProperty_mReturnedBank ;
-    outArgument3 = p->mProperty_mPreservesBank ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-    outArgument3.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @routineMap generic code implementation
 //
@@ -16764,14 +16766,15 @@ GALGAS_routineMap GALGAS_routineMap::extractObject (const GALGAS_object & inObje
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_routineKind::GALGAS_routineKind (void) :
-mEnum (kNotBuilt) {
+mEnum (Enumeration::invalid) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
 GALGAS_routineKind GALGAS_routineKind::class_func_regularRoutine (UNUSED_LOCATION_ARGS) {
   GALGAS_routineKind result ;
-  result.mEnum = kEnum_regularRoutine ;
+  result.mEnum = Enumeration::enum_regularRoutine ;
   return result ;
 }
 
@@ -16779,7 +16782,7 @@ GALGAS_routineKind GALGAS_routineKind::class_func_regularRoutine (UNUSED_LOCATIO
 
 GALGAS_routineKind GALGAS_routineKind::class_func_noReturnRoutine (UNUSED_LOCATION_ARGS) {
   GALGAS_routineKind result ;
-  result.mEnum = kEnum_noReturnRoutine ;
+  result.mEnum = Enumeration::enum_noReturnRoutine ;
   return result ;
 }
 
@@ -16787,29 +16790,26 @@ GALGAS_routineKind GALGAS_routineKind::class_func_noReturnRoutine (UNUSED_LOCATI
 
 GALGAS_routineKind GALGAS_routineKind::class_func_interruptRoutine (UNUSED_LOCATION_ARGS) {
   GALGAS_routineKind result ;
-  result.mEnum = kEnum_interruptRoutine ;
+  result.mEnum = Enumeration::enum_interruptRoutine ;
   return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_routineKind::optional_regularRoutine () const {
-  const bool ok = mEnum == kEnum_regularRoutine ;
-  return ok ;
+GALGAS_bool GALGAS_routineKind::getter_regularRoutine (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_regularRoutine == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_routineKind::optional_noReturnRoutine () const {
-  const bool ok = mEnum == kEnum_noReturnRoutine ;
-  return ok ;
+GALGAS_bool GALGAS_routineKind::getter_noReturnRoutine (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noReturnRoutine == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool GALGAS_routineKind::optional_interruptRoutine () const {
-  const bool ok = mEnum == kEnum_interruptRoutine ;
-  return ok ;
+GALGAS_bool GALGAS_routineKind::getter_interruptRoutine (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_interruptRoutine == mEnum) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -16823,28 +16823,10 @@ static const char * gEnumNameArrayFor_routineKind [4] = {
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_routineKind::getter_isRegularRoutine (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_regularRoutine == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_routineKind::getter_isNoReturnRoutine (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_noReturnRoutine == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_routineKind::getter_isInterruptRoutine (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (kNotBuilt != mEnum, kEnum_interruptRoutine == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GALGAS_routineKind::description (String & ioString,
                                       const int32_t /* inIndentation */) const {
   ioString.appendCString ("<enum @routineKind: ") ;
-  ioString.appendCString (gEnumNameArrayFor_routineKind [mEnum]) ;
+  ioString.appendCString (gEnumNameArrayFor_routineKind [size_t (mEnum)]) ;
   ioString.appendCString (">") ;
 }
 
@@ -17028,6 +17010,28 @@ GALGAS_symbolTableForOptimizations GALGAS_symbolTableForOptimizations::init (Com
 GALGAS_symbolTableForOptimizations GALGAS_symbolTableForOptimizations::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_symbolTableForOptimizations result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_symbolTableForOptimizations_2D_element_3F_ GALGAS_symbolTableForOptimizations
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_symbolTableForOptimizations_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_symbolTableForOptimizations * p = (cMapElement_symbolTableForOptimizations *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_symbolTableForOptimizations_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_symbolTableForOptimizations_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mDefinitionLineIndex = p->mProperty_mDefinitionLineIndex ;
+      element.mProperty_mIsDeletable = p->mProperty_mIsDeletable ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -17267,24 +17271,6 @@ GALGAS_bool cEnumerator_symbolTableForOptimizations::current_mIsDeletable (LOCAT
 }
 
 //--------------------------------------------------------------------------------------------------
-
-bool GALGAS_symbolTableForOptimizations::optional_searchKey (const GALGAS_string & inKey,
-                                                             GALGAS_uint & outArgument0,
-                                                             GALGAS_bool & outArgument1) const {
-  const cMapElement_symbolTableForOptimizations * p = (const cMapElement_symbolTableForOptimizations *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_symbolTableForOptimizations) ;
-    outArgument0 = p->mProperty_mDefinitionLineIndex ;
-    outArgument1 = p->mProperty_mIsDeletable ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //     @symbolTableForOptimizations generic code implementation
 //
@@ -17419,6 +17405,30 @@ GALGAS_configFieldMap GALGAS_configFieldMap::init (Compiler * COMMA_LOCATION_ARG
 GALGAS_configFieldMap GALGAS_configFieldMap::class_func_emptyMap (LOCATION_ARGS) {
   GALGAS_configFieldMap result ;
   result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_configFieldMap_2D_element_3F_ GALGAS_configFieldMap
+::readSubscript__3F_ (const class GALGAS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GALGAS_configFieldMap_2D_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_configFieldMap * p = (cMapElement_configFieldMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GALGAS_configFieldMap_2D_element_3F_::init_nil () ;
+    }else{
+      GALGAS_configFieldMap_2D_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mRegisterName = p->mProperty_mRegisterName ;
+      element.mProperty_mMaskValue = p->mProperty_mMaskValue ;
+      element.mProperty_mDescription = p->mProperty_mDescription ;
+      element.mProperty_mFieldSettingMap = p->mProperty_mFieldSettingMap ;
+      result = element ;
+    }
+  }
   return result ;
 }
 
@@ -17718,30 +17728,6 @@ GALGAS_fieldSettingMap cEnumerator_configFieldMap::current_mFieldSettingMap (LOC
   const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_configFieldMap) ;
   return p->mProperty_mFieldSettingMap ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GALGAS_configFieldMap::optional_searchKey (const GALGAS_string & inKey,
-                                                GALGAS_lstring & outArgument0,
-                                                GALGAS_luint & outArgument1,
-                                                GALGAS_lstring & outArgument2,
-                                                GALGAS_fieldSettingMap & outArgument3) const {
-  const cMapElement_configFieldMap * p = (const cMapElement_configFieldMap *) searchForKey (inKey) ;
-  const bool result = nullptr != p ;
-  if (result) {
-    macroValidSharedObject (p, cMapElement_configFieldMap) ;
-    outArgument0 = p->mProperty_mRegisterName ;
-    outArgument1 = p->mProperty_mMaskValue ;
-    outArgument2 = p->mProperty_mDescription ;
-    outArgument3 = p->mProperty_mFieldSettingMap ;
-  }else{
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-    outArgument2.drop () ;
-    outArgument3.drop () ;
-  }
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
