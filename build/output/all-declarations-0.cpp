@@ -4810,21 +4810,9 @@ GALGAS_registerProtection GALGAS_registerProtection::class_func_privateRegister 
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_registerProtection::getter_publicRegister (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_publicRegister == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_registerProtection::getter_protectedRegister (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_protectedRegister == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_registerProtection::getter_privateRegister (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_privateRegister == mEnum) ;
-}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4834,6 +4822,24 @@ static const char * gEnumNameArrayFor_registerProtection [4] = {
   "protectedRegister",
   "privateRegister"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_registerProtection::getter_isPublicRegister (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_publicRegister == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_registerProtection::getter_isProtectedRegister (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_protectedRegister == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_registerProtection::getter_isPrivateRegister (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_privateRegister == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -16796,21 +16802,9 @@ GALGAS_routineKind GALGAS_routineKind::class_func_interruptRoutine (UNUSED_LOCAT
 
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_routineKind::getter_regularRoutine (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_regularRoutine == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
-GALGAS_bool GALGAS_routineKind::getter_noReturnRoutine (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noReturnRoutine == mEnum) ;
-}
-
 //--------------------------------------------------------------------------------------------------
-
-GALGAS_bool GALGAS_routineKind::getter_interruptRoutine (UNUSED_LOCATION_ARGS) const {
-  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_interruptRoutine == mEnum) ;
-}
 
 //--------------------------------------------------------------------------------------------------
 
@@ -16820,6 +16814,24 @@ static const char * gEnumNameArrayFor_routineKind [4] = {
   "noReturnRoutine",
   "interruptRoutine"
 } ;
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_routineKind::getter_isRegularRoutine (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_regularRoutine == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_routineKind::getter_isNoReturnRoutine (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_noReturnRoutine == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GALGAS_bool GALGAS_routineKind::getter_isInterruptRoutine (UNUSED_LOCATION_ARGS) const {
+  return GALGAS_bool (Enumeration::invalid != mEnum, Enumeration::enum_interruptRoutine == mEnum) ;
+}
 
 //--------------------------------------------------------------------------------------------------
 
