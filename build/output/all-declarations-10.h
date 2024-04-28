@@ -14,9 +14,9 @@
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionSetter_insertKey (class GALGAS_branchOverflowMap & ioObject,
-                                const class GALGAS_string constin_inKey,
-                                const class GALGAS_string constin_inValue,
+void extensionSetter_insertKey (class GGS_branchOverflowMap & ioObject,
+                                const class GGS_string constin_inKey,
+                                const class GGS_string constin_inValue,
                                 class Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) ;
 
@@ -26,9 +26,9 @@ void extensionSetter_insertKey (class GALGAS_branchOverflowMap & ioObject,
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionMethod_display (const class GALGAS_ipic_31__38_Block inObject,
-                              const class GALGAS_string constin_inNextBlockLabel,
-                              class GALGAS_string & io_ioListFileContents,
+void extensionMethod_display (const class GGS_ipic_31__38_Block inObject,
+                              const class GGS_string constin_inNextBlockLabel,
+                              class GGS_string & io_ioListFileContents,
                               class Compiler * inCompiler
                               COMMA_LOCATION_ARGS) ;
 
@@ -39,14 +39,14 @@ void extensionMethod_display (const class GALGAS_ipic_31__38_Block inObject,
 //--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyzeRegisterExpression (class cPtr_registerExpression * inObject,
-                                                    const class GALGAS_uint constin_inAccessBankSplitOffset,
-                                                    const class GALGAS_uint constin_inCurrentBank,
-                                                    const class GALGAS_registerTable constin_inRegisterTable,
-                                                    const class GALGAS_constantMap constin_inConstantMap,
-                                                    const class GALGAS_bool constin_inWriteAccess,
-                                                    class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
-                                                    class GALGAS_bitSliceTable & out_outBitSliceTable,
-                                                    class GALGAS_stringset & io_ioUsedRegisters,
+                                                    const class GGS_uint constin_inAccessBankSplitOffset,
+                                                    const class GGS_uint constin_inCurrentBank,
+                                                    const class GGS_registerTable constin_inRegisterTable,
+                                                    const class GGS_constantMap constin_inConstantMap,
+                                                    const class GGS_bool constin_inWriteAccess,
+                                                    class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
+                                                    class GGS_bitSliceTable & out_outBitSliceTable,
+                                                    class GGS_stringset & io_ioUsedRegisters,
                                                     Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
@@ -57,11 +57,11 @@ void callExtensionMethod_analyzeRegisterExpression (class cPtr_registerExpressio
 //--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (class cPtr_registerExpression * inObject,
-                                                                       const class GALGAS_registerTable constin_inRegisterTable,
-                                                                       const class GALGAS_constantMap constin_inConstantMap,
-                                                                       const class GALGAS_bool constin_inWriteAccess,
-                                                                       class GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & out_outIPICregisterDescription,
-                                                                       class GALGAS_stringset & io_ioUsedRegisters,
+                                                                       const class GGS_registerTable constin_inRegisterTable,
+                                                                       const class GGS_constantMap constin_inConstantMap,
+                                                                       const class GGS_bool constin_inWriteAccess,
+                                                                       class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & out_outIPICregisterDescription,
+                                                                       class GGS_stringset & io_ioUsedRegisters,
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
@@ -72,11 +72,11 @@ void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (class cPt
 //--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_getRegisterAddress (class cPtr_registerExpression * inObject,
-                                             const class GALGAS_registerTable constin_inRegisterTable,
-                                             const class GALGAS_constantMap constin_inConstantMap,
-                                             const class GALGAS_bool constin_inWriteAccess,
-                                             class GALGAS_stringset & io_ioUsedRegisters,
-                                             class GALGAS_uint & out_outRegisterAddress,
+                                             const class GGS_registerTable constin_inRegisterTable,
+                                             const class GGS_constantMap constin_inConstantMap,
+                                             const class GGS_bool constin_inWriteAccess,
+                                             class GGS_stringset & io_ioUsedRegisters,
+                                             class GGS_uint & out_outRegisterAddress,
                                              Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
@@ -86,10 +86,10 @@ void callExtensionMethod_getRegisterAddress (class cPtr_registerExpression * inO
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionMethod_enterReferencedLabels (const class GALGAS_ipic_31__38_Block inObject,
-                                            const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                            const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                                            class GALGAS_stringset & io_ioReferencedBlockSet,
+void extensionMethod_enterReferencedLabels (const class GGS_ipic_31__38_Block inObject,
+                                            const class GGS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                            const class GGS_ipic_31__38_BlockList constin_inBlockList,
+                                            class GGS_stringset & io_ioReferencedBlockSet,
                                             class Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
@@ -99,13 +99,13 @@ void extensionMethod_enterReferencedLabels (const class GALGAS_ipic_31__38_Block
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionMethod_optimize (const class GALGAS_ipic_31__38_Block inObject,
-                               const class GALGAS_symbolTableForBlockOptimization constin_inSymbolTable,
-                               const class GALGAS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                               const class GALGAS_ipic_31__38_BlockList constin_inBlockList,
-                               class GALGAS_bool & io_ioOptimizationDone,
-                               class GALGAS_string & io_ioListFileContents,
-                               class GALGAS_ipic_31__38_Block & out_outOptimizedBlock,
+void extensionMethod_optimize (const class GGS_ipic_31__38_Block inObject,
+                               const class GGS_symbolTableForBlockOptimization constin_inSymbolTable,
+                               const class GGS_optimizeFlagStruct constin_inOptimizeFlagStruct,
+                               const class GGS_ipic_31__38_BlockList constin_inBlockList,
+                               class GGS_bool & io_ioOptimizationDone,
+                               class GGS_string & io_ioListFileContents,
+                               class GGS_ipic_31__38_Block & out_outOptimizedBlock,
                                class Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
@@ -115,14 +115,14 @@ void extensionMethod_optimize (const class GALGAS_ipic_31__38_Block inObject,
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_instructionListOptimization_3F__3F__3F__3F__3F__21__26__21_ (const class GALGAS_symbolTableForBlockOptimization constinArgument0,
-                                                                          const class GALGAS_optimizeFlagStruct constinArgument1,
-                                                                          const class GALGAS_ipic_31__38_BlockList constinArgument2,
-                                                                          const class GALGAS_ipic_31__38_SequentialInstructionList constinArgument3,
-                                                                          const class GALGAS_lstring constinArgument4,
-                                                                          class GALGAS_bool & outArgument5,
-                                                                          class GALGAS_string & ioArgument6,
-                                                                          class GALGAS_ipic_31__38_SequentialInstructionList & outArgument7,
+void routine_instructionListOptimization_3F__3F__3F__3F__3F__21__26__21_ (const class GGS_symbolTableForBlockOptimization constinArgument0,
+                                                                          const class GGS_optimizeFlagStruct constinArgument1,
+                                                                          const class GGS_ipic_31__38_BlockList constinArgument2,
+                                                                          const class GGS_ipic_31__38_SequentialInstructionList constinArgument3,
+                                                                          const class GGS_lstring constinArgument4,
+                                                                          class GGS_bool & outArgument5,
+                                                                          class GGS_string & ioArgument6,
+                                                                          class GGS_ipic_31__38_SequentialInstructionList & outArgument7,
                                                                           class Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
@@ -132,13 +132,13 @@ void routine_instructionListOptimization_3F__3F__3F__3F__3F__21__26__21_ (const 
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionMethod_performRelativesResolution (const class GALGAS_ipic_31__38_Block inObject,
-                                                 const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                                 const class GALGAS_string constin_inNextBlockLabel,
-                                                 const class GALGAS_uint constin_inBlockStartAddress,
-                                                 class GALGAS_uint & io_ioConversionCount,
-                                                 class GALGAS_string & io_ioListFileContents,
-                                                 class GALGAS_ipic_31__38_Block & out_outModifiedBlock,
+void extensionMethod_performRelativesResolution (const class GGS_ipic_31__38_Block inObject,
+                                                 const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                 const class GGS_string constin_inNextBlockLabel,
+                                                 const class GGS_uint constin_inBlockStartAddress,
+                                                 class GGS_uint & io_ioConversionCount,
+                                                 class GGS_string & io_ioListFileContents,
+                                                 class GGS_ipic_31__38_Block & out_outModifiedBlock,
                                                  class Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -148,10 +148,10 @@ void extensionMethod_performRelativesResolution (const class GALGAS_ipic_31__38_
 //
 //--------------------------------------------------------------------------------------------------
 
-class GALGAS_uint extensionGetter_blockSize (const class GALGAS_ipic_31__38_Block & inObject,
-                                             const class GALGAS_string & constinArgument0,
-                                             class Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+class GGS_uint extensionGetter_blockSize (const class GGS_ipic_31__38_Block & inObject,
+                                          const class GGS_string & constinArgument0,
+                                          class Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -159,11 +159,11 @@ class GALGAS_uint extensionGetter_blockSize (const class GALGAS_ipic_31__38_Bloc
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionMethod_relativeBranchOverflow (const class GALGAS_ipic_31__38_Block inObject,
-                                             const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                             const class GALGAS_string constin_inNextBlockLabel,
-                                             const class GALGAS_uint constin_inBlockStartAddress,
-                                             class GALGAS_branchOverflowMap & io_ioOverflowMap,
+void extensionMethod_relativeBranchOverflow (const class GGS_ipic_31__38_Block inObject,
+                                             const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                             const class GGS_string constin_inNextBlockLabel,
+                                             const class GGS_uint constin_inBlockStartAddress,
+                                             class GGS_branchOverflowMap & io_ioOverflowMap,
                                              class Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
@@ -173,14 +173,14 @@ void extensionMethod_relativeBranchOverflow (const class GALGAS_ipic_31__38_Bloc
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionMethod_generateCodeForBlock (const class GALGAS_ipic_31__38_Block inObject,
-                                           const class GALGAS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                           const class GALGAS_pic_31__38__5F_dataAddressMap constin_inDataMap,
-                                           const class GALGAS_uint constin_inBlockAddress,
-                                           const class GALGAS_string constin_inNextBlockLabel,
-                                           class GALGAS_string & io_ioListFileContents,
-                                           class GALGAS_string & io_ioAssemblyString,
-                                           class GALGAS_generatedCodeMap & io_ioGeneratedCodeMap,
+void extensionMethod_generateCodeForBlock (const class GGS_ipic_31__38_Block inObject,
+                                           const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                           const class GGS_pic_31__38__5F_dataAddressMap constin_inDataMap,
+                                           const class GGS_uint constin_inBlockAddress,
+                                           const class GGS_string constin_inNextBlockLabel,
+                                           class GGS_string & io_ioListFileContents,
+                                           class GGS_string & io_ioAssemblyString,
+                                           class GGS_generatedCodeMap & io_ioGeneratedCodeMap,
                                            class Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
@@ -190,7 +190,7 @@ void extensionMethod_generateCodeForBlock (const class GALGAS_ipic_31__38_Block 
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_emitCode_3F_ (const class GALGAS_uint constinArgument0,
+void routine_emitCode_3F_ (const class GGS_uint constinArgument0,
                            class Compiler * inCompiler
                            COMMA_LOCATION_ARGS) ;
 
@@ -200,12 +200,12 @@ void routine_emitCode_3F_ (const class GALGAS_uint constinArgument0,
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const class GALGAS_uint constinArgument0,
-                                                           const class GALGAS_codeList constinArgument1,
-                                                           const class GALGAS_stringlist constinArgument2,
-                                                           const class GALGAS_uint constinArgument3,
-                                                           const class GALGAS_uint constinArgument4,
-                                                           class GALGAS_string & ioArgument5,
+void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const class GGS_uint constinArgument0,
+                                                           const class GGS_codeList constinArgument1,
+                                                           const class GGS_stringlist constinArgument2,
+                                                           const class GGS_uint constinArgument3,
+                                                           const class GGS_uint constinArgument4,
+                                                           class GGS_string & ioArgument5,
                                                            class Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
@@ -215,11 +215,11 @@ void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const class GALGAS_ui
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionMethod_computeDuration (const class GALGAS_ipic_31__38_Block inObject,
-                                      class GALGAS_blockDurationMap & io_ioExploredBlockMap,
-                                      class GALGAS_string in_inNextLabel,
-                                      class GALGAS_ipic_31__38_Block & out_outNewBlock,
-                                      class GALGAS_bool & io_ioContinue,
+void extensionMethod_computeDuration (const class GGS_ipic_31__38_Block inObject,
+                                      class GGS_blockDurationMap & io_ioExploredBlockMap,
+                                      class GGS_string in_inNextLabel,
+                                      class GGS_ipic_31__38_Block & out_outNewBlock,
+                                      class GGS_bool & io_ioContinue,
                                       class Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
@@ -236,19 +236,19 @@ class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax
   public: virtual void nt_start_5F_symbol_indexing (Lexique_piccoloDevice_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_start_5F_symbol_ (GALGAS_piccoloDeviceModel & outArgument0,
+  public: virtual void nt_start_5F_symbol_ (GGS_piccoloDeviceModel & outArgument0,
                                             Lexique_piccoloDevice_5F_lexique * inCompiler) ;
 
 //--- Start symbol
   public: static void _performSourceFileParsing_ (Compiler * inCompiler,
-                                                  GALGAS_lstring inFileName,
-                                                  GALGAS_piccoloDeviceModel & outArgument0
+                                                  GGS_lstring inFileName,
+                                                  GGS_piccoloDeviceModel & outArgument0
                                                   COMMA_LOCATION_ARGS) ;
 
   public: static void _performSourceStringParsing_ (Compiler * inCompiler,
-                                                    GALGAS_string inSourceString,
-                                                    GALGAS_string inNameString,
-                                                    GALGAS_piccoloDeviceModel & outArgument0
+                                                    GGS_string inSourceString,
+                                                    GGS_string inNameString,
+                                                    GGS_piccoloDeviceModel & outArgument0
                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Indexing
@@ -303,7 +303,7 @@ class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_println_3F_ (const class GALGAS_string constinArgument0,
+void routine_println_3F_ (const class GGS_string constinArgument0,
                           class Compiler * inCompiler
                           COMMA_LOCATION_ARGS) ;
 
@@ -313,7 +313,7 @@ void routine_println_3F_ (const class GALGAS_string constinArgument0,
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_print_3F_ (const class GALGAS_string constinArgument0,
+void routine_print_3F_ (const class GGS_string constinArgument0,
                         class Compiler * inCompiler
                         COMMA_LOCATION_ARGS) ;
 
@@ -375,7 +375,7 @@ void routine_initCodeGenerator (class Compiler * inCompiler
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_setEmitAddress_3F_ (const class GALGAS_uint constinArgument0,
+void routine_setEmitAddress_3F_ (const class GGS_uint constinArgument0,
                                  class Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
@@ -385,7 +385,7 @@ void routine_setEmitAddress_3F_ (const class GALGAS_uint constinArgument0,
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_currentEmitAddress_21_ (class GALGAS_uint & outArgument0,
+void routine_currentEmitAddress_21_ (class GGS_uint & outArgument0,
                                      class Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
@@ -395,7 +395,7 @@ void routine_currentEmitAddress_21_ (class GALGAS_uint & outArgument0,
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_emitByte_3F_ (const class GALGAS_uint constinArgument0,
+void routine_emitByte_3F_ (const class GGS_uint constinArgument0,
                            class Compiler * inCompiler
                            COMMA_LOCATION_ARGS) ;
 
@@ -405,7 +405,7 @@ void routine_emitByte_3F_ (const class GALGAS_uint constinArgument0,
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_getGeneratedContents_21_ (class GALGAS_string & outArgument0,
+void routine_getGeneratedContents_21_ (class GGS_string & outArgument0,
                                        class Compiler * inCompiler
                                        COMMA_LOCATION_ARGS) ;
 
@@ -415,8 +415,8 @@ void routine_getGeneratedContents_21_ (class GALGAS_string & outArgument0,
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_get_5F_C_5F_ArrayImplementation_3F__21_ (const class GALGAS_string constinArgument0,
-                                                      class GALGAS_string & outArgument1,
+void routine_get_5F_C_5F_ArrayImplementation_3F__21_ (const class GGS_string constinArgument0,
+                                                      class GGS_string & outArgument1,
                                                       class Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
@@ -426,8 +426,8 @@ void routine_get_5F_C_5F_ArrayImplementation_3F__21_ (const class GALGAS_string 
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_get_5F_C_5F_ArrayHeader_3F__21_ (const class GALGAS_string constinArgument0,
-                                              class GALGAS_string & outArgument1,
+void routine_get_5F_C_5F_ArrayHeader_3F__21_ (const class GGS_string constinArgument0,
+                                              class GGS_string & outArgument1,
                                               class Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
@@ -437,7 +437,7 @@ void routine_get_5F_C_5F_ArrayHeader_3F__21_ (const class GALGAS_string constinA
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_checkCurrentEmitAddress_3F_ (const class GALGAS_uint constinArgument0,
+void routine_checkCurrentEmitAddress_3F_ (const class GGS_uint constinArgument0,
                                           class Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) ;
 

@@ -27,7 +27,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_baseline_5F_condition_5F_expression_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_baseline_5F_condition_5F_expression_ (GALGAS_baseline_5F_conditionExpression & outArgument0,
+  public: virtual void nt_baseline_5F_condition_5F_expression_ (GGS_baseline_5F_conditionExpression & outArgument0,
                                                                 Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_condition_factor' non terminal
@@ -38,7 +38,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_baseline_5F_condition_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_baseline_5F_condition_5F_factor_ (GALGAS_baseline_5F_conditionExpression & outArgument0,
+  public: virtual void nt_baseline_5F_condition_5F_factor_ (GGS_baseline_5F_conditionExpression & outArgument0,
                                                             Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_condition_term' non terminal
@@ -49,7 +49,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_baseline_5F_condition_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_baseline_5F_condition_5F_term_ (GALGAS_baseline_5F_conditionExpression & outArgument0,
+  public: virtual void nt_baseline_5F_condition_5F_term_ (GGS_baseline_5F_conditionExpression & outArgument0,
                                                           Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_instruction_list' non terminal
@@ -60,8 +60,8 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_baseline_5F_instruction_5F_list_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_baseline_5F_instruction_5F_list_ (GALGAS_baseline_5F_instructionList & outArgument0,
-                                                            GALGAS_labelMap & ioArgument1,
+  public: virtual void nt_baseline_5F_instruction_5F_list_ (GGS_baseline_5F_instructionList & outArgument0,
+                                                            GGS_labelMap & ioArgument1,
                                                             Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_routine_definition' non terminal
@@ -72,7 +72,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_baseline_5F_routine_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_baseline_5F_routine_5F_definition_ (GALGAS_baseline_5F_routineDefinitionList & ioArgument0,
+  public: virtual void nt_baseline_5F_routine_5F_definition_ (GGS_baseline_5F_routineDefinitionList & ioArgument0,
                                                               Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_simple_instruction' non terminal
@@ -83,7 +83,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_baseline_5F_simple_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_baseline_5F_simple_5F_instruction_ (GALGAS_baseline_5F_instruction & outArgument0,
+  public: virtual void nt_baseline_5F_simple_5F_instruction_ (GGS_baseline_5F_instruction & outArgument0,
                                                               Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_structured_if_instruction' non terminal
@@ -94,9 +94,9 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_baseline_5F_structured_5F_if_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_baseline_5F_structured_5F_if_5F_instruction_ (const GALGAS_lstring inArgument0,
-                                                                        GALGAS_baseline_5F_instruction & outArgument1,
-                                                                        GALGAS_labelMap & ioArgument2,
+  public: virtual void nt_baseline_5F_structured_5F_if_5F_instruction_ (const GGS_lstring inArgument0,
+                                                                        GGS_baseline_5F_instruction & outArgument1,
+                                                                        GGS_labelMap & ioArgument2,
                                                                         Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'baseline_structured_instruction' non terminal
@@ -107,8 +107,8 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_baseline_5F_structured_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_baseline_5F_structured_5F_instruction_ (GALGAS_baseline_5F_instruction & outArgument0,
-                                                                  GALGAS_labelMap & ioArgument1,
+  public: virtual void nt_baseline_5F_structured_5F_instruction_ (GGS_baseline_5F_instruction & outArgument0,
+                                                                  GGS_labelMap & ioArgument1,
                                                                   Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'bit_number_parsing' non terminal
@@ -119,7 +119,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_bit_5F_number_5F_parsing_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_bit_5F_number_5F_parsing_ (GALGAS_bitNumberExpression & outArgument0,
+  public: virtual void nt_bit_5F_number_5F_parsing_ (GGS_bitNumberExpression & outArgument0,
                                                      Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'block_termination' non terminal
@@ -130,7 +130,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_block_5F_termination_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_block_5F_termination_ (GALGAS_abstractBlockTerminationForBlockInstruction & outArgument0,
+  public: virtual void nt_block_5F_termination_ (GGS_abstractBlockTerminationForBlockInstruction & outArgument0,
                                                  Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'body' non terminal
@@ -141,19 +141,19 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_body_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_body_ (GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
-                                 GALGAS_pic_31__38_RoutineDefinitionList & ioArgument1,
-                                 GALGAS_pic_31__38_MacroDefinitionList & ioArgument2,
-                                 GALGAS_lstringlist & ioArgument3,
-                                 GALGAS_lstringlist & ioArgument4,
-                                 GALGAS_ramDefinitionList & ioArgument5,
-                                 GALGAS_lstringlist & ioArgument6,
-                                 GALGAS_configDefinitionList & ioArgument7,
-                                 GALGAS_constantDefinitionList & ioArgument8,
-                                 GALGAS_checkpicList & ioArgument9,
-                                 GALGAS_dataList & ioArgument10,
-                                 GALGAS_bool & ioArgument11,
-                                 GALGAS_bool & ioArgument12,
+  public: virtual void nt_body_ (GGS_pic_31__38_InterruptDefinitionList & ioArgument0,
+                                 GGS_pic_31__38_RoutineDefinitionList & ioArgument1,
+                                 GGS_pic_31__38_MacroDefinitionList & ioArgument2,
+                                 GGS_lstringlist & ioArgument3,
+                                 GGS_lstringlist & ioArgument4,
+                                 GGS_ramDefinitionList & ioArgument5,
+                                 GGS_lstringlist & ioArgument6,
+                                 GGS_configDefinitionList & ioArgument7,
+                                 GGS_constantDefinitionList & ioArgument8,
+                                 GGS_checkpicList & ioArgument9,
+                                 GGS_dataList & ioArgument10,
+                                 GGS_bool & ioArgument11,
+                                 GGS_bool & ioArgument12,
                                  Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'checkpic_definition' non terminal
@@ -164,7 +164,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_checkpic_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_checkpic_5F_definition_ (GALGAS_checkpicList & ioArgument0,
+  public: virtual void nt_checkpic_5F_definition_ (GGS_checkpicList & ioArgument0,
                                                    Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'condition_expression' non terminal
@@ -175,7 +175,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_condition_5F_expression_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_condition_5F_expression_ (GALGAS_pic_31__38_ConditionExpression & outArgument0,
+  public: virtual void nt_condition_5F_expression_ (GGS_pic_31__38_ConditionExpression & outArgument0,
                                                     Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'condition_factor' non terminal
@@ -186,7 +186,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_condition_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_condition_5F_factor_ (GALGAS_pic_31__38_ConditionExpression & outArgument0,
+  public: virtual void nt_condition_5F_factor_ (GGS_pic_31__38_ConditionExpression & outArgument0,
                                                 Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'condition_term' non terminal
@@ -197,7 +197,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_condition_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_condition_5F_term_ (GALGAS_pic_31__38_ConditionExpression & outArgument0,
+  public: virtual void nt_condition_5F_term_ (GGS_pic_31__38_ConditionExpression & outArgument0,
                                               Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'configuration_definition' non terminal
@@ -208,7 +208,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_configuration_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_configuration_5F_definition_ (GALGAS_configDefinitionList & ioArgument0,
+  public: virtual void nt_configuration_5F_definition_ (GGS_configDefinitionList & ioArgument0,
                                                         Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'constant_definition' non terminal
@@ -219,7 +219,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_constant_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_constant_5F_definition_ (GALGAS_constantDefinitionList & ioArgument0,
+  public: virtual void nt_constant_5F_definition_ (GGS_constantDefinitionList & ioArgument0,
                                                    Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'data_definition' non terminal
@@ -230,7 +230,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_data_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_data_5F_definition_ (GALGAS_dataList & ioArgument0,
+  public: virtual void nt_data_5F_definition_ (GGS_dataList & ioArgument0,
                                                Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'declaration_in_ram' non terminal
@@ -241,7 +241,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_declaration_5F_in_5F_ram_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_declaration_5F_in_5F_ram_ (GALGAS_declarationInRam & outArgument0,
+  public: virtual void nt_declaration_5F_in_5F_ram_ (GGS_declarationInRam & outArgument0,
                                                      Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'immediate_bitwise_factor' non terminal
@@ -252,7 +252,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_immediate_5F_bitwise_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_immediate_5F_bitwise_5F_factor_ (GALGAS_immediatExpression & outArgument0,
+  public: virtual void nt_immediate_5F_bitwise_5F_factor_ (GGS_immediatExpression & outArgument0,
                                                            Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'immediate_bitwise_term' non terminal
@@ -263,7 +263,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_immediate_5F_bitwise_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_immediate_5F_bitwise_5F_term_ (GALGAS_immediatExpression & outArgument0,
+  public: virtual void nt_immediate_5F_bitwise_5F_term_ (GGS_immediatExpression & outArgument0,
                                                          Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'immediate_expression' non terminal
@@ -274,7 +274,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_immediate_5F_expression_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_immediate_5F_expression_ (GALGAS_immediatExpression & outArgument0,
+  public: virtual void nt_immediate_5F_expression_ (GGS_immediatExpression & outArgument0,
                                                     Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'immediate_factor' non terminal
@@ -285,7 +285,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_immediate_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_immediate_5F_factor_ (GALGAS_immediatExpression & outArgument0,
+  public: virtual void nt_immediate_5F_factor_ (GGS_immediatExpression & outArgument0,
                                                 Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'immediate_primary' non terminal
@@ -296,7 +296,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_immediate_5F_primary_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_immediate_5F_primary_ (GALGAS_immediatExpression & outArgument0,
+  public: virtual void nt_immediate_5F_primary_ (GGS_immediatExpression & outArgument0,
                                                  Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'immediate_term' non terminal
@@ -307,7 +307,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_immediate_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_immediate_5F_term_ (GALGAS_immediatExpression & outArgument0,
+  public: virtual void nt_immediate_5F_term_ (GGS_immediatExpression & outArgument0,
                                               Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'instruction_list' non terminal
@@ -318,10 +318,10 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_instruction_5F_list_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_instruction_5F_list_ (GALGAS_pic_31__38_InstructionList & outArgument0,
-                                                GALGAS_bool & ioArgument1,
-                                                GALGAS_bool & ioArgument2,
-                                                GALGAS_labelMap & ioArgument3,
+  public: virtual void nt_instruction_5F_list_ (GGS_pic_31__38_InstructionList & outArgument0,
+                                                GGS_bool & ioArgument1,
+                                                GGS_bool & ioArgument2,
+                                                GGS_labelMap & ioArgument3,
                                                 Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'interrupt_definition' non terminal
@@ -332,9 +332,9 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_interrupt_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_interrupt_5F_definition_ (GALGAS_pic_31__38_InterruptDefinitionList & ioArgument0,
-                                                    GALGAS_bool & ioArgument1,
-                                                    GALGAS_bool & ioArgument2,
+  public: virtual void nt_interrupt_5F_definition_ (GGS_pic_31__38_InterruptDefinitionList & ioArgument0,
+                                                    GGS_bool & ioArgument1,
+                                                    GGS_bool & ioArgument2,
                                                     Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'midrange_condition_expression' non terminal
@@ -345,7 +345,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_midrange_5F_condition_5F_expression_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_midrange_5F_condition_5F_expression_ (GALGAS_midrange_5F_conditionExpression & outArgument0,
+  public: virtual void nt_midrange_5F_condition_5F_expression_ (GGS_midrange_5F_conditionExpression & outArgument0,
                                                                 Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'midrange_condition_factor' non terminal
@@ -356,7 +356,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_midrange_5F_condition_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_midrange_5F_condition_5F_factor_ (GALGAS_midrange_5F_conditionExpression & outArgument0,
+  public: virtual void nt_midrange_5F_condition_5F_factor_ (GGS_midrange_5F_conditionExpression & outArgument0,
                                                             Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'midrange_condition_term' non terminal
@@ -367,7 +367,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_midrange_5F_condition_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_midrange_5F_condition_5F_term_ (GALGAS_midrange_5F_conditionExpression & outArgument0,
+  public: virtual void nt_midrange_5F_condition_5F_term_ (GGS_midrange_5F_conditionExpression & outArgument0,
                                                           Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'midrange_instruction_list' non terminal
@@ -378,10 +378,10 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_midrange_5F_instruction_5F_list_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_midrange_5F_instruction_5F_list_ (GALGAS_midrange_5F_instructionList & outArgument0,
-                                                            GALGAS_bool & ioArgument1,
-                                                            GALGAS_bool & ioArgument2,
-                                                            GALGAS_labelMap & ioArgument3,
+  public: virtual void nt_midrange_5F_instruction_5F_list_ (GGS_midrange_5F_instructionList & outArgument0,
+                                                            GGS_bool & ioArgument1,
+                                                            GGS_bool & ioArgument2,
+                                                            GGS_labelMap & ioArgument3,
                                                             Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'midrange_interrupt_definition' non terminal
@@ -392,9 +392,9 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_midrange_5F_interrupt_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_midrange_5F_interrupt_5F_definition_ (GALGAS_midrange_5F_interruptDefinitionList & ioArgument0,
-                                                                GALGAS_bool & ioArgument1,
-                                                                GALGAS_bool & ioArgument2,
+  public: virtual void nt_midrange_5F_interrupt_5F_definition_ (GGS_midrange_5F_interruptDefinitionList & ioArgument0,
+                                                                GGS_bool & ioArgument1,
+                                                                GGS_bool & ioArgument2,
                                                                 Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'midrange_routine_definition' non terminal
@@ -405,9 +405,9 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_midrange_5F_routine_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_midrange_5F_routine_5F_definition_ (GALGAS_midrange_5F_routineDefinitionList & ioArgument0,
-                                                              GALGAS_bool & ioArgument1,
-                                                              GALGAS_bool & ioArgument2,
+  public: virtual void nt_midrange_5F_routine_5F_definition_ (GGS_midrange_5F_routineDefinitionList & ioArgument0,
+                                                              GGS_bool & ioArgument1,
+                                                              GGS_bool & ioArgument2,
                                                               Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'midrange_simple_instruction' non terminal
@@ -418,7 +418,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_midrange_5F_simple_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_midrange_5F_simple_5F_instruction_ (GALGAS_midrange_5F_instruction & outArgument0,
+  public: virtual void nt_midrange_5F_simple_5F_instruction_ (GGS_midrange_5F_instruction & outArgument0,
                                                               Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'midrange_structured_if_instruction' non terminal
@@ -429,11 +429,11 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_ (const GALGAS_lstring inArgument0,
-                                                                        GALGAS_midrange_5F_instruction & outArgument1,
-                                                                        GALGAS_bool & ioArgument2,
-                                                                        GALGAS_bool & ioArgument3,
-                                                                        GALGAS_labelMap & ioArgument4,
+  public: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_ (const GGS_lstring inArgument0,
+                                                                        GGS_midrange_5F_instruction & outArgument1,
+                                                                        GGS_bool & ioArgument2,
+                                                                        GGS_bool & ioArgument3,
+                                                                        GGS_labelMap & ioArgument4,
                                                                         Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'midrange_structured_instruction' non terminal
@@ -444,10 +444,10 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_midrange_5F_structured_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_midrange_5F_structured_5F_instruction_ (GALGAS_midrange_5F_instruction & outArgument0,
-                                                                  GALGAS_bool & ioArgument1,
-                                                                  GALGAS_bool & ioArgument2,
-                                                                  GALGAS_labelMap & ioArgument3,
+  public: virtual void nt_midrange_5F_structured_5F_instruction_ (GGS_midrange_5F_instruction & outArgument0,
+                                                                  GGS_bool & ioArgument1,
+                                                                  GGS_bool & ioArgument2,
+                                                                  GGS_labelMap & ioArgument3,
                                                                   Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'optional_w_as_dest' non terminal
@@ -458,7 +458,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_optional_5F_w_5F_as_5F_dest_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_optional_5F_w_5F_as_5F_dest_ (GALGAS_bool & outArgument0,
+  public: virtual void nt_optional_5F_w_5F_as_5F_dest_ (GGS_bool & outArgument0,
                                                         Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'parse_bootloader' non terminal
@@ -469,18 +469,18 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_parse_5F_bootloader_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_parse_5F_bootloader_ (GALGAS_lstring & outArgument0,
-                                                GALGAS_lstring & outArgument1,
-                                                GALGAS_routineDeclarationList & outArgument2,
-                                                GALGAS_bootloaderReservedRAMmap & outArgument3,
-                                                GALGAS_luint & outArgument4,
-                                                GALGAS_routineDeclarationList & outArgument5,
-                                                GALGAS_ramDefinitionList & outArgument6,
-                                                GALGAS_string & outArgument7,
-                                                GALGAS_piccoloDeviceModel & outArgument8,
-                                                GALGAS_uint & outArgument9,
-                                                GALGAS_ramBankTable & outArgument10,
-                                                GALGAS_registerTable & outArgument11,
+  public: virtual void nt_parse_5F_bootloader_ (GGS_lstring & outArgument0,
+                                                GGS_lstring & outArgument1,
+                                                GGS_routineDeclarationList & outArgument2,
+                                                GGS_bootloaderReservedRAMmap & outArgument3,
+                                                GGS_luint & outArgument4,
+                                                GGS_routineDeclarationList & outArgument5,
+                                                GGS_ramDefinitionList & outArgument6,
+                                                GGS_string & outArgument7,
+                                                GGS_piccoloDeviceModel & outArgument8,
+                                                GGS_uint & outArgument9,
+                                                GGS_ramBankTable & outArgument10,
+                                                GGS_registerTable & outArgument11,
                                                 Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'ram_definition' non terminal
@@ -491,7 +491,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_ram_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_ram_5F_definition_ (GALGAS_ramDefinitionList & ioArgument0,
+  public: virtual void nt_ram_5F_definition_ (GGS_ramDefinitionList & ioArgument0,
                                               Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'register_parsing' non terminal
@@ -502,7 +502,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_register_5F_parsing_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_register_5F_parsing_ (GALGAS_registerExpression & outArgument0,
+  public: virtual void nt_register_5F_parsing_ (GGS_registerExpression & outArgument0,
                                                 Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'routine_declaration' non terminal
@@ -513,7 +513,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_routine_5F_declaration_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_routine_5F_declaration_ (GALGAS_routineDeclarationList & ioArgument0,
+  public: virtual void nt_routine_5F_declaration_ (GGS_routineDeclarationList & ioArgument0,
                                                    Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'routine_definition' non terminal
@@ -524,9 +524,9 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_routine_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_routine_5F_definition_ (GALGAS_pic_31__38_RoutineDefinitionList & ioArgument0,
-                                                  GALGAS_bool & ioArgument1,
-                                                  GALGAS_bool & ioArgument2,
+  public: virtual void nt_routine_5F_definition_ (GGS_pic_31__38_RoutineDefinitionList & ioArgument0,
+                                                  GGS_bool & ioArgument1,
+                                                  GGS_bool & ioArgument2,
                                                   Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'section_list' non terminal
@@ -537,12 +537,12 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_section_5F_list_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_section_5F_list_ (GALGAS_baseline_5F_routineDefinitionList & ioArgument0,
-                                            GALGAS_lstringlist & ioArgument1,
-                                            GALGAS_ramDefinitionList & ioArgument2,
-                                            GALGAS_lstringlist & ioArgument3,
-                                            GALGAS_configDefinitionList & ioArgument4,
-                                            GALGAS_constantDefinitionList & ioArgument5,
+  public: virtual void nt_section_5F_list_ (GGS_baseline_5F_routineDefinitionList & ioArgument0,
+                                            GGS_lstringlist & ioArgument1,
+                                            GGS_ramDefinitionList & ioArgument2,
+                                            GGS_lstringlist & ioArgument3,
+                                            GGS_configDefinitionList & ioArgument4,
+                                            GGS_constantDefinitionList & ioArgument5,
                                             Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'simple_instruction' non terminal
@@ -553,7 +553,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_simple_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_simple_5F_instruction_ (GALGAS_pic_31__38_PiccoloSimpleInstruction & outArgument0,
+  public: virtual void nt_simple_5F_instruction_ (GGS_pic_31__38_PiccoloSimpleInstruction & outArgument0,
                                                   Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'start_symbol' non terminal
@@ -568,52 +568,52 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //--- Start symbol
   public: static void _performSourceFileParsing_ (Compiler * inCompiler,
-                                                  GALGAS_lstring inFileName
+                                                  GGS_lstring inFileName
                                                   COMMA_LOCATION_ARGS) ;
 
   public: static void _performSourceStringParsing_ (Compiler * inCompiler,
-                                                    GALGAS_string inSourceString,
-                                                    GALGAS_string inNameString
+                                                    GGS_string inSourceString,
+                                                    GGS_string inNameString
                                                     COMMA_LOCATION_ARGS) ;
 
 //----------- 'importBootloaderSpecification' label
-  public: virtual void nt_start_5F_symbol_importBootloaderSpecification (GALGAS_piccoloDeviceModel & outArgument0,
-                                                                         GALGAS_string & outArgument1,
-                                                                         GALGAS_uint & outArgument2,
-                                                                         GALGAS_ramBankTable & outArgument3,
-                                                                         GALGAS_registerTable & outArgument4,
-                                                                         GALGAS_bootloaderReservedRAMmap & outArgument5,
-                                                                         GALGAS_routineDeclarationList & outArgument6,
-                                                                         GALGAS_routineDeclarationList & outArgument7,
-                                                                         GALGAS_luint & outArgument8,
+  public: virtual void nt_start_5F_symbol_importBootloaderSpecification (GGS_piccoloDeviceModel & outArgument0,
+                                                                         GGS_string & outArgument1,
+                                                                         GGS_uint & outArgument2,
+                                                                         GGS_ramBankTable & outArgument3,
+                                                                         GGS_registerTable & outArgument4,
+                                                                         GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                         GGS_routineDeclarationList & outArgument6,
+                                                                         GGS_routineDeclarationList & outArgument7,
+                                                                         GGS_luint & outArgument8,
                                                                          Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //--- Start symbol
   public: static void _performSourceFileParsing_importBootloaderSpecification (Compiler * inCompiler,
-                                                                               GALGAS_lstring inFileName,
-                                                                               GALGAS_piccoloDeviceModel & outArgument0,
-                                                                               GALGAS_string & outArgument1,
-                                                                               GALGAS_uint & outArgument2,
-                                                                               GALGAS_ramBankTable & outArgument3,
-                                                                               GALGAS_registerTable & outArgument4,
-                                                                               GALGAS_bootloaderReservedRAMmap & outArgument5,
-                                                                               GALGAS_routineDeclarationList & outArgument6,
-                                                                               GALGAS_routineDeclarationList & outArgument7,
-                                                                               GALGAS_luint & outArgument8
+                                                                               GGS_lstring inFileName,
+                                                                               GGS_piccoloDeviceModel & outArgument0,
+                                                                               GGS_string & outArgument1,
+                                                                               GGS_uint & outArgument2,
+                                                                               GGS_ramBankTable & outArgument3,
+                                                                               GGS_registerTable & outArgument4,
+                                                                               GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                               GGS_routineDeclarationList & outArgument6,
+                                                                               GGS_routineDeclarationList & outArgument7,
+                                                                               GGS_luint & outArgument8
                                                                                COMMA_LOCATION_ARGS) ;
 
   public: static void _performSourceStringParsing_importBootloaderSpecification (Compiler * inCompiler,
-                                                                                 GALGAS_string inSourceString,
-                                                                                 GALGAS_string inNameString,
-                                                                                 GALGAS_piccoloDeviceModel & outArgument0,
-                                                                                 GALGAS_string & outArgument1,
-                                                                                 GALGAS_uint & outArgument2,
-                                                                                 GALGAS_ramBankTable & outArgument3,
-                                                                                 GALGAS_registerTable & outArgument4,
-                                                                                 GALGAS_bootloaderReservedRAMmap & outArgument5,
-                                                                                 GALGAS_routineDeclarationList & outArgument6,
-                                                                                 GALGAS_routineDeclarationList & outArgument7,
-                                                                                 GALGAS_luint & outArgument8
+                                                                                 GGS_string inSourceString,
+                                                                                 GGS_string inNameString,
+                                                                                 GGS_piccoloDeviceModel & outArgument0,
+                                                                                 GGS_string & outArgument1,
+                                                                                 GGS_uint & outArgument2,
+                                                                                 GGS_ramBankTable & outArgument3,
+                                                                                 GGS_registerTable & outArgument4,
+                                                                                 GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                                 GGS_routineDeclarationList & outArgument6,
+                                                                                 GGS_routineDeclarationList & outArgument7,
+                                                                                 GGS_luint & outArgument8
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Indexing
@@ -636,11 +636,11 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_structured_5F_if_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_structured_5F_if_5F_instruction_ (const GALGAS_lstring inArgument0,
-                                                            GALGAS_pic_31__38_PiccoloInstruction & outArgument1,
-                                                            GALGAS_bool & ioArgument2,
-                                                            GALGAS_bool & ioArgument3,
-                                                            GALGAS_labelMap & ioArgument4,
+  public: virtual void nt_structured_5F_if_5F_instruction_ (const GGS_lstring inArgument0,
+                                                            GGS_pic_31__38_PiccoloInstruction & outArgument1,
+                                                            GGS_bool & ioArgument2,
+                                                            GGS_bool & ioArgument3,
+                                                            GGS_labelMap & ioArgument4,
                                                             Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //------------------------------------- 'structured_instruction' non terminal
@@ -651,10 +651,10 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
   public: virtual void nt_structured_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
 
 //----------- '' label
-  public: virtual void nt_structured_5F_instruction_ (GALGAS_pic_31__38_PiccoloInstruction & outArgument0,
-                                                      GALGAS_bool & ioArgument1,
-                                                      GALGAS_bool & ioArgument2,
-                                                      GALGAS_labelMap & ioArgument3,
+  public: virtual void nt_structured_5F_instruction_ (GGS_pic_31__38_PiccoloInstruction & outArgument0,
+                                                      GGS_bool & ioArgument1,
+                                                      GGS_bool & ioArgument2,
+                                                      GGS_labelMap & ioArgument3,
                                                       Lexique_piccolo_5F_lexique * inCompiler) ;
 
   public: virtual int32_t select_pic_31__38__5F_syntax_0 (Lexique_piccolo_5F_lexique *) ;
