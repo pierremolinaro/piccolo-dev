@@ -4493,6 +4493,7 @@ GGS_registerExpression_2E_weak::GGS_registerExpression_2E_weak (const GGS_regist
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_registerExpression_2E_weak GGS_registerExpression_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -4699,6 +4700,7 @@ GGS_declarationInRam_2E_weak & GGS_declarationInRam_2E_weak::operator = (const G
 GGS_declarationInRam_2E_weak::GGS_declarationInRam_2E_weak (const GGS_declarationInRam & inSource) :
 AC_GALGAS_weak_reference (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -4927,6 +4929,7 @@ GGS_byteDeclarationInRam_2E_weak & GGS_byteDeclarationInRam_2E_weak::operator = 
 GGS_byteDeclarationInRam_2E_weak::GGS_byteDeclarationInRam_2E_weak (const GGS_byteDeclarationInRam & inSource) :
 GGS_declarationInRam_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -6866,6 +6869,7 @@ GGS_immediatExpression_2E_weak::GGS_immediatExpression_2E_weak (const GGS_immedi
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatExpression_2E_weak GGS_immediatExpression_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -7449,6 +7453,7 @@ GGS_immediatInteger_2E_weak::GGS_immediatInteger_2E_weak (const GGS_immediatInte
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatInteger_2E_weak GGS_immediatInteger_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -7558,6 +7563,7 @@ GGS_immediatRegister_2E_weak & GGS_immediatRegister_2E_weak::operator = (const G
 GGS_immediatRegister_2E_weak::GGS_immediatRegister_2E_weak (const GGS_immediatRegister & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -7878,6 +7884,7 @@ GGS_immediatAdd_2E_weak::GGS_immediatAdd_2E_weak (const GGS_immediatAdd & inSour
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatAdd_2E_weak GGS_immediatAdd_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -8196,6 +8203,7 @@ GGS_immediatSub_2E_weak & GGS_immediatSub_2E_weak::operator = (const GGS_immedia
 GGS_immediatSub_2E_weak::GGS_immediatSub_2E_weak (const GGS_immediatSub & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -8516,6 +8524,7 @@ GGS_immediatMul_2E_weak::GGS_immediatMul_2E_weak (const GGS_immediatMul & inSour
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatMul_2E_weak GGS_immediatMul_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -8834,6 +8843,7 @@ GGS_immediatDiv_2E_weak & GGS_immediatDiv_2E_weak::operator = (const GGS_immedia
 GGS_immediatDiv_2E_weak::GGS_immediatDiv_2E_weak (const GGS_immediatDiv & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9154,6 +9164,7 @@ GGS_immediatMod_2E_weak::GGS_immediatMod_2E_weak (const GGS_immediatMod & inSour
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatMod_2E_weak GGS_immediatMod_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -9472,6 +9483,7 @@ GGS_immediatOr_2E_weak & GGS_immediatOr_2E_weak::operator = (const GGS_immediatO
 GGS_immediatOr_2E_weak::GGS_immediatOr_2E_weak (const GGS_immediatOr & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -9792,6 +9804,7 @@ GGS_immediatAnd_2E_weak::GGS_immediatAnd_2E_weak (const GGS_immediatAnd & inSour
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatAnd_2E_weak GGS_immediatAnd_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -10110,6 +10123,7 @@ GGS_immediatXor_2E_weak & GGS_immediatXor_2E_weak::operator = (const GGS_immedia
 GGS_immediatXor_2E_weak::GGS_immediatXor_2E_weak (const GGS_immediatXor & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -10430,6 +10444,7 @@ GGS_immediatLeftShift_2E_weak::GGS_immediatLeftShift_2E_weak (const GGS_immediat
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatLeftShift_2E_weak GGS_immediatLeftShift_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -10748,6 +10763,7 @@ GGS_immediatRightShift_2E_weak & GGS_immediatRightShift_2E_weak::operator = (con
 GGS_immediatRightShift_2E_weak::GGS_immediatRightShift_2E_weak (const GGS_immediatRightShift & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11068,6 +11084,7 @@ GGS_immediatEqualTest_2E_weak::GGS_immediatEqualTest_2E_weak (const GGS_immediat
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatEqualTest_2E_weak GGS_immediatEqualTest_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -11386,6 +11403,7 @@ GGS_immediatNotEqualTest_2E_weak & GGS_immediatNotEqualTest_2E_weak::operator = 
 GGS_immediatNotEqualTest_2E_weak::GGS_immediatNotEqualTest_2E_weak (const GGS_immediatNotEqualTest & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -11706,6 +11724,7 @@ GGS_immediatGreaterTest_2E_weak::GGS_immediatGreaterTest_2E_weak (const GGS_imme
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatGreaterTest_2E_weak GGS_immediatGreaterTest_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12024,6 +12043,7 @@ GGS_immediatGreaterOrEqualTest_2E_weak & GGS_immediatGreaterOrEqualTest_2E_weak:
 GGS_immediatGreaterOrEqualTest_2E_weak::GGS_immediatGreaterOrEqualTest_2E_weak (const GGS_immediatGreaterOrEqualTest & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -12344,6 +12364,7 @@ GGS_immediatLowerTest_2E_weak::GGS_immediatLowerTest_2E_weak (const GGS_immediat
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatLowerTest_2E_weak GGS_immediatLowerTest_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12663,6 +12684,7 @@ GGS_immediatLowerOrEqualTest_2E_weak::GGS_immediatLowerOrEqualTest_2E_weak (cons
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatLowerOrEqualTest_2E_weak GGS_immediatLowerOrEqualTest_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -12949,6 +12971,7 @@ GGS_immediatNegate_2E_weak::GGS_immediatNegate_2E_weak (const GGS_immediatNegate
 GGS_immediatExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatNegate_2E_weak GGS_immediatNegate_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -13234,6 +13257,7 @@ GGS_immediatComplement_2E_weak & GGS_immediatComplement_2E_weak::operator = (con
 GGS_immediatComplement_2E_weak::GGS_immediatComplement_2E_weak (const GGS_immediatComplement & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -13817,6 +13841,7 @@ GGS_immediatSlice_2E_weak & GGS_immediatSlice_2E_weak::operator = (const GGS_imm
 GGS_immediatSlice_2E_weak::GGS_immediatSlice_2E_weak (const GGS_immediatSlice & inSource) :
 GGS_immediatExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
@@ -14858,6 +14883,7 @@ GGS_bitNumberExpression_2E_weak::GGS_bitNumberExpression_2E_weak (const GGS_bitN
 AC_GALGAS_weak_reference (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_bitNumberExpression_2E_weak GGS_bitNumberExpression_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -15177,6 +15203,7 @@ GGS_bitNumberLiteralExpression_2E_weak::GGS_bitNumberLiteralExpression_2E_weak (
 GGS_bitNumberExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_bitNumberLiteralExpression_2E_weak GGS_bitNumberLiteralExpression_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -15463,6 +15490,7 @@ GGS_bitNumberLiteralValue_2E_weak::GGS_bitNumberLiteralValue_2E_weak (const GGS_
 GGS_bitNumberExpression_2E_weak (inSource) {
 }
 
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_bitNumberLiteralValue_2E_weak GGS_bitNumberLiteralValue_2E_weak::class_func_nil (LOCATION_ARGS) {
@@ -15572,6 +15600,7 @@ GGS_bitNumberLabelValue_2E_weak & GGS_bitNumberLabelValue_2E_weak::operator = (c
 GGS_bitNumberLabelValue_2E_weak::GGS_bitNumberLabelValue_2E_weak (const GGS_bitNumberLabelValue & inSource) :
 GGS_bitNumberExpression_2E_weak (inSource) {
 }
+
 
 //--------------------------------------------------------------------------------------------------
 

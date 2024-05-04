@@ -23,8 +23,43 @@ class GGS_pic_31__38_SimpleConstantCaseItem_2E_weak : public GGS_pic_31__38_Abst
 
   public: GGS_pic_31__38_SimpleConstantCaseItem_2E_weak & operator = (const class GGS_pic_31__38_SimpleConstantCaseItem & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_SimpleConstantCaseItem_2E_weak init_nil (void) {
+    GGS_pic_31__38_SimpleConstantCaseItem_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_pic_31__38_SimpleConstantCaseItem bang_pic_31__38_SimpleConstantCaseItem_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_pic_31__38_SimpleConstantCaseItem unwrappedValue (void) const {
+    GGS_pic_31__38_SimpleConstantCaseItem result ;
+    if (isValid ()) {
+      const cPtr_pic_31__38_SimpleConstantCaseItem * p = (cPtr_pic_31__38_SimpleConstantCaseItem *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_pic_31__38_SimpleConstantCaseItem (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -78,8 +113,43 @@ class GGS_pic_31__38_IntervalCaseItem_2E_weak : public GGS_pic_31__38_AbstractCa
 
   public: GGS_pic_31__38_IntervalCaseItem_2E_weak & operator = (const class GGS_pic_31__38_IntervalCaseItem & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_IntervalCaseItem_2E_weak init_nil (void) {
+    GGS_pic_31__38_IntervalCaseItem_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_pic_31__38_IntervalCaseItem bang_pic_31__38_IntervalCaseItem_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_pic_31__38_IntervalCaseItem unwrappedValue (void) const {
+    GGS_pic_31__38_IntervalCaseItem result ;
+    if (isValid ()) {
+      const cPtr_pic_31__38_IntervalCaseItem * p = (cPtr_pic_31__38_IntervalCaseItem *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_pic_31__38_IntervalCaseItem (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -311,8 +381,43 @@ class GGS_pic_31__38_Instruction_5F_switch_2E_weak : public GGS_pic_31__38_Picco
 
   public: GGS_pic_31__38_Instruction_5F_switch_2E_weak & operator = (const class GGS_pic_31__38_Instruction_5F_switch & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_Instruction_5F_switch_2E_weak init_nil (void) {
+    GGS_pic_31__38_Instruction_5F_switch_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_pic_31__38_Instruction_5F_switch bang_pic_31__38_Instruction_5F_switch_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_pic_31__38_Instruction_5F_switch unwrappedValue (void) const {
+    GGS_pic_31__38_Instruction_5F_switch result ;
+    if (isValid ()) {
+      const cPtr_pic_31__38_Instruction_5F_switch * p = (cPtr_pic_31__38_Instruction_5F_switch *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_pic_31__38_Instruction_5F_switch (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -573,9 +678,15 @@ class GGS_caseConstantMap_2E_element_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_caseConstantMap_2E_element_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_caseConstantMap_2E_element_3F_ (const GGS_caseConstantMap_2E_element & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_caseConstantMap_2E_element_3F_ (const GGS_caseConstantMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_caseConstantMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_caseConstantMap_2E_element unwrappedValue (void) const {
@@ -1262,9 +1373,15 @@ class GGS_pic_31__38__5F_dataMap_2E_element_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_pic_31__38__5F_dataMap_2E_element_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_pic_31__38__5F_dataMap_2E_element_3F_ (const GGS_pic_31__38__5F_dataMap_2E_element & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_pic_31__38__5F_dataMap_2E_element_3F_ (const GGS_pic_31__38__5F_dataMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_pic_31__38__5F_dataMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_pic_31__38__5F_dataMap_2E_element unwrappedValue (void) const {
@@ -1489,8 +1606,43 @@ class GGS_ipic_31__38_SequentialInstruction_2E_weak : public AC_GALGAS_weak_refe
 
   public: GGS_ipic_31__38_SequentialInstruction_2E_weak & operator = (const class GGS_ipic_31__38_SequentialInstruction & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_SequentialInstruction_2E_weak init_nil (void) {
+    GGS_ipic_31__38_SequentialInstruction_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_SequentialInstruction bang_ipic_31__38_SequentialInstruction_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_SequentialInstruction unwrappedValue (void) const {
+    GGS_ipic_31__38_SequentialInstruction result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_SequentialInstruction * p = (cPtr_ipic_31__38_SequentialInstruction *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_SequentialInstruction (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1818,8 +1970,43 @@ class GGS_ipic_31__38_AbstractBlockTerminator_2E_weak : public AC_GALGAS_weak_re
 
   public: GGS_ipic_31__38_AbstractBlockTerminator_2E_weak & operator = (const class GGS_ipic_31__38_AbstractBlockTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_AbstractBlockTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_AbstractBlockTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_AbstractBlockTerminator bang_ipic_31__38_AbstractBlockTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_AbstractBlockTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_AbstractBlockTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_AbstractBlockTerminator * p = (cPtr_ipic_31__38_AbstractBlockTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_AbstractBlockTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2188,8 +2375,43 @@ class GGS_ipic_31__38_SingleInstructionTerminator_2E_weak : public GGS_ipic_31__
 
   public: GGS_ipic_31__38_SingleInstructionTerminator_2E_weak & operator = (const class GGS_ipic_31__38_SingleInstructionTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_SingleInstructionTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_SingleInstructionTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_SingleInstructionTerminator bang_ipic_31__38_SingleInstructionTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_SingleInstructionTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_SingleInstructionTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_SingleInstructionTerminator * p = (cPtr_ipic_31__38_SingleInstructionTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_SingleInstructionTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2397,8 +2619,43 @@ class GGS_ipic_31__38_ReturnTerminator_2E_weak : public GGS_ipic_31__38_SingleIn
 
   public: GGS_ipic_31__38_ReturnTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ReturnTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_ReturnTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_ReturnTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_ReturnTerminator bang_ipic_31__38_ReturnTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_ReturnTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_ReturnTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_ReturnTerminator * p = (cPtr_ipic_31__38_ReturnTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_ReturnTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2614,8 +2871,43 @@ class GGS_ipic_31__38_RetlwTerminator_2E_weak : public GGS_ipic_31__38_SingleIns
 
   public: GGS_ipic_31__38_RetlwTerminator_2E_weak & operator = (const class GGS_ipic_31__38_RetlwTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_RetlwTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_RetlwTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_RetlwTerminator bang_ipic_31__38_RetlwTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_RetlwTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_RetlwTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_RetlwTerminator * p = (cPtr_ipic_31__38_RetlwTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_RetlwTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2831,8 +3123,43 @@ class GGS_ipic_31__38_RetfieTerminator_2E_weak : public GGS_ipic_31__38_SingleIn
 
   public: GGS_ipic_31__38_RetfieTerminator_2E_weak & operator = (const class GGS_ipic_31__38_RetfieTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_RetfieTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_RetfieTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_RetfieTerminator bang_ipic_31__38_RetfieTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_RetfieTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_RetfieTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_RetfieTerminator * p = (cPtr_ipic_31__38_RetfieTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_RetfieTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3085,8 +3412,43 @@ class GGS_ipic_31__38_JumpTerminator_2E_weak : public GGS_ipic_31__38_SingleInst
 
   public: GGS_ipic_31__38_JumpTerminator_2E_weak & operator = (const class GGS_ipic_31__38_JumpTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_JumpTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_JumpTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_JumpTerminator bang_ipic_31__38_JumpTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_JumpTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_JumpTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_JumpTerminator * p = (cPtr_ipic_31__38_JumpTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_JumpTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3327,8 +3689,43 @@ class GGS_ipic_31__38_ComputedGotoTerminator_2E_weak : public GGS_ipic_31__38_Ab
 
   public: GGS_ipic_31__38_ComputedGotoTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ComputedGotoTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_ComputedGotoTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_ComputedGotoTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_ComputedGotoTerminator bang_ipic_31__38_ComputedGotoTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_ComputedGotoTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_ComputedGotoTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_ComputedGotoTerminator * p = (cPtr_ipic_31__38_ComputedGotoTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_ComputedGotoTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3569,8 +3966,43 @@ class GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak : public GGS_ipic_31__38_A
 
   public: GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ComputedRETLWTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_ComputedRETLWTerminator bang_ipic_31__38_ComputedRETLWTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_ComputedRETLWTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_ComputedRETLWTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_ComputedRETLWTerminator * p = (cPtr_ipic_31__38_ComputedRETLWTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_ComputedRETLWTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3924,8 +4356,43 @@ class GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak : public GGS_ipic_31__38
 
   public: GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ConditionalJumpTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_ConditionalJumpTerminator bang_ipic_31__38_ConditionalJumpTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_ConditionalJumpTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_ConditionalJumpTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_ConditionalJumpTerminator * p = (cPtr_ipic_31__38_ConditionalJumpTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_ConditionalJumpTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4166,8 +4633,43 @@ class GGS_ipic_31__38_ComputedBraTerminator_2E_weak : public GGS_ipic_31__38_Abs
 
   public: GGS_ipic_31__38_ComputedBraTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ComputedBraTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_ComputedBraTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_ComputedBraTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_ComputedBraTerminator bang_ipic_31__38_ComputedBraTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_ComputedBraTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_ComputedBraTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_ComputedBraTerminator * p = (cPtr_ipic_31__38_ComputedBraTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_ComputedBraTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4453,8 +4955,43 @@ class GGS_ipic_31__38_AbstractConditionTerminator_2E_weak : public GGS_ipic_31__
 
   public: GGS_ipic_31__38_AbstractConditionTerminator_2E_weak & operator = (const class GGS_ipic_31__38_AbstractConditionTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_AbstractConditionTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_AbstractConditionTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_AbstractConditionTerminator bang_ipic_31__38_AbstractConditionTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_AbstractConditionTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_AbstractConditionTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_AbstractConditionTerminator * p = (cPtr_ipic_31__38_AbstractConditionTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_AbstractConditionTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4789,8 +5326,43 @@ class GGS_pic_31__38_RegisterComparisonTerminator_2E_weak : public GGS_ipic_31__
 
   public: GGS_pic_31__38_RegisterComparisonTerminator_2E_weak & operator = (const class GGS_pic_31__38_RegisterComparisonTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_RegisterComparisonTerminator_2E_weak init_nil (void) {
+    GGS_pic_31__38_RegisterComparisonTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_pic_31__38_RegisterComparisonTerminator bang_pic_31__38_RegisterComparisonTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_pic_31__38_RegisterComparisonTerminator unwrappedValue (void) const {
+    GGS_pic_31__38_RegisterComparisonTerminator result ;
+    if (isValid ()) {
+      const cPtr_pic_31__38_RegisterComparisonTerminator * p = (cPtr_pic_31__38_RegisterComparisonTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_pic_31__38_RegisterComparisonTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -5018,8 +5590,43 @@ class GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak : public GGS_ipic_31__38_
 
   public: GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak & operator = (const class GGS_ipic_31__38_IncDecRegisterTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak init_nil (void) {
+    GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_IncDecRegisterTerminator bang_ipic_31__38_IncDecRegisterTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_IncDecRegisterTerminator unwrappedValue (void) const {
+    GGS_ipic_31__38_IncDecRegisterTerminator result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_IncDecRegisterTerminator * p = (cPtr_ipic_31__38_IncDecRegisterTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_IncDecRegisterTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -5245,8 +5852,43 @@ class GGS_pic_31__38_TestRegisterTerminator_2E_weak : public GGS_ipic_31__38_Abs
 
   public: GGS_pic_31__38_TestRegisterTerminator_2E_weak & operator = (const class GGS_pic_31__38_TestRegisterTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_TestRegisterTerminator_2E_weak init_nil (void) {
+    GGS_pic_31__38_TestRegisterTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_pic_31__38_TestRegisterTerminator bang_pic_31__38_TestRegisterTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_pic_31__38_TestRegisterTerminator unwrappedValue (void) const {
+    GGS_pic_31__38_TestRegisterTerminator result ;
+    if (isValid ()) {
+      const cPtr_pic_31__38_TestRegisterTerminator * p = (cPtr_pic_31__38_TestRegisterTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_pic_31__38_TestRegisterTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -5466,8 +6108,43 @@ class GGS_pic_31__38_BitTestTerminator_2E_weak : public GGS_ipic_31__38_Abstract
 
   public: GGS_pic_31__38_BitTestTerminator_2E_weak & operator = (const class GGS_pic_31__38_BitTestTerminator & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_BitTestTerminator_2E_weak init_nil (void) {
+    GGS_pic_31__38_BitTestTerminator_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_pic_31__38_BitTestTerminator bang_pic_31__38_BitTestTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_pic_31__38_BitTestTerminator unwrappedValue (void) const {
+    GGS_pic_31__38_BitTestTerminator result ;
+    if (isValid ()) {
+      const cPtr_pic_31__38_BitTestTerminator * p = (cPtr_pic_31__38_BitTestTerminator *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_pic_31__38_BitTestTerminator (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -5634,8 +6311,43 @@ class GGS_ipic_31__38_InstructionWithNoOperand_2E_weak : public GGS_ipic_31__38_
 
   public: GGS_ipic_31__38_InstructionWithNoOperand_2E_weak & operator = (const class GGS_ipic_31__38_InstructionWithNoOperand & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38_InstructionWithNoOperand_2E_weak init_nil (void) {
+    GGS_ipic_31__38_InstructionWithNoOperand_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38_InstructionWithNoOperand bang_ipic_31__38_InstructionWithNoOperand_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38_InstructionWithNoOperand unwrappedValue (void) const {
+    GGS_ipic_31__38_InstructionWithNoOperand result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38_InstructionWithNoOperand * p = (cPtr_ipic_31__38_InstructionWithNoOperand *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38_InstructionWithNoOperand (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -5829,8 +6541,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak : public GG
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA bang_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -6097,8 +6844,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak : public GGS
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA bang_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -6371,8 +7153,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak : public 
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF bang_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -6547,8 +7364,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_wea
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation bang_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -6732,8 +7584,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak : public G
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR bang_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -6916,8 +7803,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak : public GG
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA bang_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7143,8 +8065,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak : public GGS_ipic_31__38_S
 
   public: GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_JSR & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_JSR bang_ipic_31__38__5F_intermediate_5F_JSR_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_JSR unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_JSR result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_JSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_JSR *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_JSR (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7311,8 +8268,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak : public 
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB bang_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7479,8 +8471,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak : public G
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP bang_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7647,8 +8674,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak : public 
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK bang_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7821,8 +8883,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak : public 
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD bang_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7995,8 +9092,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak : public 
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT bang_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8172,8 +9304,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak : public G
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP bang_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8349,8 +9516,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak : public
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA bang_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8533,8 +9735,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak : public GGS
 
   public: GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W bang_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * p = (cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8760,8 +9997,43 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_we
 
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall bang_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8941,8 +10213,43 @@ class GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak : public GGS_
 
   public: GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak & operator = (const class GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction bang_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * p = (cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -9149,8 +10456,43 @@ class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak : public GG
 
   public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak & operator = (const class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip bang_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -9436,8 +10778,43 @@ class GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak : p
 
   public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak & operator = (const class GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak init_nil (void) {
+    GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register bang_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register unwrappedValue (void) const {
+    GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register result ;
+    if (isValid ()) {
+      const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 

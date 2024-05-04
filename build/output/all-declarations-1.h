@@ -670,8 +670,43 @@ class GGS_baseline_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
 
   public: GGS_baseline_5F_instruction_2E_weak & operator = (const class GGS_baseline_5F_instruction & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction bang_baseline_5F_instruction_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction unwrappedValue (void) const {
+    GGS_baseline_5F_instruction result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction * p = (cPtr_baseline_5F_instruction *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1082,8 +1117,43 @@ class GGS_baseline_5F_instruction_5F_FD_2E_weak : public GGS_baseline_5F_instruc
 
   public: GGS_baseline_5F_instruction_5F_FD_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_FD & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_FD_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_FD_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_FD bang_baseline_5F_instruction_5F_FD_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_FD unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_FD result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_FD * p = (cPtr_baseline_5F_instruction_5F_FD *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_FD (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1266,8 +1336,43 @@ class GGS_baseline_5F_instruction_5F_F_2E_weak : public GGS_baseline_5F_instruct
 
   public: GGS_baseline_5F_instruction_5F_F_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_F & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_F_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_F_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_F bang_baseline_5F_instruction_5F_F_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_F unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_F result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_F * p = (cPtr_baseline_5F_instruction_5F_F *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_F (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1458,8 +1563,43 @@ class GGS_baseline_5F_instruction_5F_FB_2E_weak : public GGS_baseline_5F_instruc
 
   public: GGS_baseline_5F_instruction_5F_FB_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_FB & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_FB_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_FB_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_FB bang_baseline_5F_instruction_5F_FB_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_FB unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_FB result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_FB * p = (cPtr_baseline_5F_instruction_5F_FB *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_FB (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1638,8 +1778,43 @@ class GGS_baseline_5F_instruction_5F_CALL_2E_weak : public GGS_baseline_5F_instr
 
   public: GGS_baseline_5F_instruction_5F_CALL_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_CALL & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_CALL_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_CALL_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_CALL bang_baseline_5F_instruction_5F_CALL_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_CALL unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_CALL result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_CALL * p = (cPtr_baseline_5F_instruction_5F_CALL *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_CALL (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1814,8 +1989,43 @@ class GGS_baseline_5F_instruction_5F_JSR_2E_weak : public GGS_baseline_5F_instru
 
   public: GGS_baseline_5F_instruction_5F_JSR_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_JSR & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_JSR_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_JSR_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_JSR bang_baseline_5F_instruction_5F_JSR_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_JSR unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_JSR result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_JSR * p = (cPtr_baseline_5F_instruction_5F_JSR *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_JSR (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -1994,8 +2204,43 @@ class GGS_baseline_5F_instruction_5F_GOTO_2E_weak : public GGS_baseline_5F_instr
 
   public: GGS_baseline_5F_instruction_5F_GOTO_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_GOTO & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_GOTO_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_GOTO_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_GOTO bang_baseline_5F_instruction_5F_GOTO_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_GOTO unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_GOTO result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_GOTO * p = (cPtr_baseline_5F_instruction_5F_GOTO *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_GOTO (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2174,8 +2419,43 @@ class GGS_baseline_5F_instruction_5F_JUMP_2E_weak : public GGS_baseline_5F_instr
 
   public: GGS_baseline_5F_instruction_5F_JUMP_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_JUMP & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_JUMP_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_JUMP_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_JUMP bang_baseline_5F_instruction_5F_JUMP_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_JUMP unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_JUMP result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_JUMP * p = (cPtr_baseline_5F_instruction_5F_JUMP *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_JUMP (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2350,8 +2630,43 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak : public GGS_baseline
 
   public: GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_WO_5F_OPERAND bang_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_WO_5F_OPERAND unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_WO_5F_OPERAND result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_WO_5F_OPERAND (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2526,8 +2841,43 @@ class GGS_baseline_5F_instruction_5F_TRIS_2E_weak : public GGS_baseline_5F_instr
 
   public: GGS_baseline_5F_instruction_5F_TRIS_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_TRIS & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_TRIS_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_TRIS_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_TRIS bang_baseline_5F_instruction_5F_TRIS_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_TRIS unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_TRIS result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_TRIS * p = (cPtr_baseline_5F_instruction_5F_TRIS *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_TRIS (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2714,8 +3064,43 @@ class GGS_baseline_5F_instruction_5F_literalOperation_2E_weak : public GGS_basel
 
   public: GGS_baseline_5F_instruction_5F_literalOperation_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_literalOperation & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_literalOperation_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_literalOperation_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_literalOperation bang_baseline_5F_instruction_5F_literalOperation_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_literalOperation unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_literalOperation result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_literalOperation (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -2890,8 +3275,43 @@ class GGS_baseline_5F_instruction_5F_MNOP_2E_weak : public GGS_baseline_5F_instr
 
   public: GGS_baseline_5F_instruction_5F_MNOP_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_MNOP & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_MNOP_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_MNOP_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_MNOP bang_baseline_5F_instruction_5F_MNOP_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_MNOP unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_MNOP result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_instruction_5F_MNOP *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_MNOP (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3078,8 +3498,43 @@ class GGS_baseline_5F_instruction_5F_FOREVER_2E_weak : public GGS_baseline_5F_in
 
   public: GGS_baseline_5F_instruction_5F_FOREVER_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_FOREVER & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_FOREVER_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_FOREVER_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_FOREVER bang_baseline_5F_instruction_5F_FOREVER_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_FOREVER unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_FOREVER result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_FOREVER (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3286,8 +3741,43 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak : public GGS_basel
 
   public: GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT bang_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3440,8 +3930,43 @@ class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak : public GGS_ba
 
   public: GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON bang_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3644,8 +4169,43 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak : public GGS_baseline
 
   public: GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_IF_5F_BitTest & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_IF_5F_BitTest bang_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_IF_5F_BitTest unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_IF_5F_BitTest result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * p = (cPtr_baseline_5F_instruction_5F_IF_5F_BitTest *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_IF_5F_BitTest (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3840,8 +4400,43 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak : public GGS_baseline_
 
   public: GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_IF_5F_IncDec & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_IF_5F_IncDec bang_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_IF_5F_IncDec unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_IF_5F_IncDec result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_IF_5F_IncDec * p = (cPtr_baseline_5F_instruction_5F_IF_5F_IncDec *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_IF_5F_IncDec (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -3992,8 +4587,43 @@ class GGS_baseline_5F_conditionExpression_2E_weak : public AC_GALGAS_weak_refere
 
   public: GGS_baseline_5F_conditionExpression_2E_weak & operator = (const class GGS_baseline_5F_conditionExpression & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_conditionExpression_2E_weak init_nil (void) {
+    GGS_baseline_5F_conditionExpression_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_conditionExpression bang_baseline_5F_conditionExpression_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_conditionExpression unwrappedValue (void) const {
+    GGS_baseline_5F_conditionExpression result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_conditionExpression * p = (cPtr_baseline_5F_conditionExpression *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_conditionExpression (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4182,8 +4812,43 @@ class GGS_baseline_5F_incDecRegisterInCondition_2E_weak : public GGS_baseline_5F
 
   public: GGS_baseline_5F_incDecRegisterInCondition_2E_weak & operator = (const class GGS_baseline_5F_incDecRegisterInCondition & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_incDecRegisterInCondition_2E_weak init_nil (void) {
+    GGS_baseline_5F_incDecRegisterInCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_incDecRegisterInCondition bang_baseline_5F_incDecRegisterInCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_incDecRegisterInCondition unwrappedValue (void) const {
+    GGS_baseline_5F_incDecRegisterInCondition result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_incDecRegisterInCondition *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_incDecRegisterInCondition (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4348,8 +5013,43 @@ class GGS_baseline_5F_negateCondition_2E_weak : public GGS_baseline_5F_condition
 
   public: GGS_baseline_5F_negateCondition_2E_weak & operator = (const class GGS_baseline_5F_negateCondition & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_negateCondition_2E_weak init_nil (void) {
+    GGS_baseline_5F_negateCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_negateCondition bang_baseline_5F_negateCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_negateCondition unwrappedValue (void) const {
+    GGS_baseline_5F_negateCondition result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_negateCondition * p = (cPtr_baseline_5F_negateCondition *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_negateCondition (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4522,8 +5222,43 @@ class GGS_baseline_5F_andCondition_2E_weak : public GGS_baseline_5F_conditionExp
 
   public: GGS_baseline_5F_andCondition_2E_weak & operator = (const class GGS_baseline_5F_andCondition & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_andCondition_2E_weak init_nil (void) {
+    GGS_baseline_5F_andCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_andCondition bang_baseline_5F_andCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_andCondition unwrappedValue (void) const {
+    GGS_baseline_5F_andCondition result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_andCondition * p = (cPtr_baseline_5F_andCondition *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_andCondition (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4696,8 +5431,43 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak : p
 
   public: GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak & operator = (const class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak init_nil (void) {
+    GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition bang_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition unwrappedValue (void) const {
+    GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition * p = (cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -4900,8 +5670,43 @@ class GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak : public GGS_basel
 
   public: GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_structured_5F_if & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_structured_5F_if bang_baseline_5F_instruction_5F_structured_5F_if_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_structured_5F_if unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_structured_5F_if result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_structured_5F_if (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -5376,8 +6181,43 @@ class GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak : public GGS_baseline_5
 
   public: GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak & operator = (const class GGS_baseline_5F_instruction_5F_do_5F_while & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak init_nil (void) {
+    GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_instruction_5F_do_5F_while bang_baseline_5F_instruction_5F_do_5F_while_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_instruction_5F_do_5F_while unwrappedValue (void) const {
+    GGS_baseline_5F_instruction_5F_do_5F_while result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_instruction_5F_do_5F_while (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -6005,9 +6845,15 @@ class GGS_baseline_5F_declaredRoutineMap_2E_element_3F_ : public AC_GALGAS_root 
 //--------------------------------- Default constructor
   public: GGS_baseline_5F_declaredRoutineMap_2E_element_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_baseline_5F_declaredRoutineMap_2E_element_3F_ (const GGS_baseline_5F_declaredRoutineMap_2E_element & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_baseline_5F_declaredRoutineMap_2E_element_3F_ (const GGS_baseline_5F_declaredRoutineMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_baseline_5F_declaredRoutineMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_baseline_5F_declaredRoutineMap_2E_element unwrappedValue (void) const {
@@ -6313,8 +7159,43 @@ class GGS_baseline_5F_intermediate_5F_instruction_2E_weak : public AC_GALGAS_wea
 
   public: GGS_baseline_5F_intermediate_5F_instruction_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_instruction & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_instruction_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_instruction_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_instruction bang_baseline_5F_intermediate_5F_instruction_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_instruction unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_instruction result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_instruction * p = (cPtr_baseline_5F_intermediate_5F_instruction *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_instruction (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -6695,8 +7576,43 @@ class GGS_baseline_5F_intermediate_5F_NULL_2E_weak : public GGS_baseline_5F_inte
 
   public: GGS_baseline_5F_intermediate_5F_NULL_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_NULL & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_NULL_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_NULL_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_NULL bang_baseline_5F_intermediate_5F_NULL_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_NULL unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_NULL result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_NULL * p = (cPtr_baseline_5F_intermediate_5F_NULL *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_NULL (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -6835,8 +7751,43 @@ class GGS_baseline_5F_intermediate_5F_pseudo_2E_weak : public GGS_baseline_5F_in
 
   public: GGS_baseline_5F_intermediate_5F_pseudo_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_pseudo & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_pseudo_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_pseudo_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_pseudo bang_baseline_5F_intermediate_5F_pseudo_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_pseudo unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_pseudo result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_pseudo * p = (cPtr_baseline_5F_intermediate_5F_pseudo *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_pseudo (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7009,8 +7960,43 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak : public GGS_baseli
 
   public: GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE bang_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7184,8 +8170,43 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak : public GGS_basel
 
   public: GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL bang_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7366,8 +8387,43 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak : publi
 
   public: GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE bang_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7547,8 +8603,43 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak : public 
 
   public: GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE bang_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7697,8 +8788,43 @@ class GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak : public GGS_bas
 
   public: GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_actualInstruction & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_actualInstruction bang_baseline_5F_intermediate_5F_actualInstruction_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_actualInstruction unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_actualInstruction result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_actualInstruction * p = (cPtr_baseline_5F_intermediate_5F_actualInstruction *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_actualInstruction (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -7881,8 +9007,43 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak : public GGS_bas
 
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_instruction_5F_FD & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_FD bang_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_FD unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_FD result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_instruction_5F_FD (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8057,8 +9218,43 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak : public GGS_base
 
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_instruction_5F_F & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_F bang_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_F unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_F result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_instruction_5F_F (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8241,8 +9437,43 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak : public GGS_bas
 
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_instruction_5F_FB & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_FB bang_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_FB unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_FB result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_instruction_5F_FB (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8428,8 +9659,43 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak : publi
 
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip bang_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8611,8 +9877,43 @@ class GGS_baseline_5F_intermediate_5F_GOTO_2E_weak : public GGS_baseline_5F_inte
 
   public: GGS_baseline_5F_intermediate_5F_GOTO_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_GOTO & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_GOTO_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_GOTO_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_GOTO bang_baseline_5F_intermediate_5F_GOTO_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_GOTO unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_GOTO result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_GOTO * p = (cPtr_baseline_5F_intermediate_5F_GOTO *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_GOTO (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8813,8 +10114,43 @@ class GGS_baseline_5F_intermediate_5F_JUMP_2E_weak : public GGS_baseline_5F_inte
 
   public: GGS_baseline_5F_intermediate_5F_JUMP_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_JUMP & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_JUMP_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_JUMP_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_JUMP bang_baseline_5F_intermediate_5F_JUMP_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_JUMP unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_JUMP result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_JUMP * p = (cPtr_baseline_5F_intermediate_5F_JUMP *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_JUMP (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -8993,8 +10329,43 @@ class GGS_baseline_5F_intermediate_5F_CALL_2E_weak : public GGS_baseline_5F_inte
 
   public: GGS_baseline_5F_intermediate_5F_CALL_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_CALL & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_CALL_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_CALL_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_CALL bang_baseline_5F_intermediate_5F_CALL_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_CALL unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_CALL result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_CALL * p = (cPtr_baseline_5F_intermediate_5F_CALL *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_CALL (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -9192,8 +10563,43 @@ class GGS_baseline_5F_intermediate_5F_JSR_2E_weak : public GGS_baseline_5F_inter
 
   public: GGS_baseline_5F_intermediate_5F_JSR_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_JSR & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_JSR_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_JSR_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_JSR bang_baseline_5F_intermediate_5F_JSR_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_JSR unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_JSR result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_JSR * p = (cPtr_baseline_5F_intermediate_5F_JSR *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_JSR (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -9360,8 +10766,43 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak : public GGS_baselin
 
   public: GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND bang_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -9536,8 +10977,43 @@ class GGS_baseline_5F_intermediate_5F_TRIS_2E_weak : public GGS_baseline_5F_inte
 
   public: GGS_baseline_5F_intermediate_5F_TRIS_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_TRIS & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_TRIS_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_TRIS_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_TRIS bang_baseline_5F_intermediate_5F_TRIS_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_TRIS unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_TRIS result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_TRIS * p = (cPtr_baseline_5F_intermediate_5F_TRIS *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_TRIS (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -9715,8 +11191,43 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak : 
 
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation bang_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -9886,8 +11397,43 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak : public GGS_b
 
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP bang_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -10101,8 +11647,43 @@ class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak : public
 
   public: GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak init_nil (void) {
+    GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition bang_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition unwrappedValue (void) const {
+    GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -10425,9 +12006,15 @@ class GGS_baselineRoutineMap_2E_element_3F_ : public AC_GALGAS_root {
 //--------------------------------- Default constructor
   public: GGS_baselineRoutineMap_2E_element_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_baselineRoutineMap_2E_element_3F_ (const GGS_baselineRoutineMap_2E_element & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_baselineRoutineMap_2E_element_3F_ (const GGS_baselineRoutineMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_baselineRoutineMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_baselineRoutineMap_2E_element unwrappedValue (void) const {
@@ -10807,9 +12394,15 @@ class GGS_baselineSymbolTableForOptimizations_2E_element_3F_ : public AC_GALGAS_
 //--------------------------------- Default constructor
   public: GGS_baselineSymbolTableForOptimizations_2E_element_3F_ (void) ;
 
-//--------------------------------- Dedicaced constructors
-  public: GGS_baselineSymbolTableForOptimizations_2E_element_3F_ (const GGS_baselineSymbolTableForOptimizations_2E_element & inValue) ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_baselineSymbolTableForOptimizations_2E_element_3F_ (const GGS_baselineSymbolTableForOptimizations_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
   public: static GGS_baselineSymbolTableForOptimizations_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
   public: inline GGS_baselineSymbolTableForOptimizations_2E_element unwrappedValue (void) const {
@@ -11085,8 +12678,43 @@ class GGS_baseline_5F_assembly_5F_instruction_2E_weak : public AC_GALGAS_weak_re
 
   public: GGS_baseline_5F_assembly_5F_instruction_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_instruction & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_assembly_5F_instruction_2E_weak init_nil (void) {
+    GGS_baseline_5F_assembly_5F_instruction_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_assembly_5F_instruction bang_baseline_5F_assembly_5F_instruction_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_assembly_5F_instruction unwrappedValue (void) const {
+    GGS_baseline_5F_assembly_5F_instruction result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_assembly_5F_instruction * p = (cPtr_baseline_5F_assembly_5F_instruction *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_assembly_5F_instruction (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -11477,8 +13105,43 @@ class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak : public GGS_baseline_5F
 
   public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak init_nil (void) {
+    GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG bang_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_assembly_5F_pseudo_5F_ORG unwrappedValue (void) const {
+    GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
@@ -11652,8 +13315,43 @@ class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak : public GGS_
 
   public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) ;
 
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak init_nil (void) {
+    GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
 //--------------------------------- Bang operator
   public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE bang_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE unwrappedValue (void) const {
+    GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE result ;
+    if (isValid ()) {
+      const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
 
 //-- Start of type generic part
 
