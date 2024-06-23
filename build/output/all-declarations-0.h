@@ -956,11 +956,10 @@ class cPtr_immediatExpression : public acStrongPtr_class {
 //--- Properties
 
 
-//--- Default constructor
-  public: cPtr_immediatExpression (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_immediatExpression (LOCATION_ARGS) ;
+  public: cPtr_immediatExpression (Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
 //--- Description
@@ -1015,7 +1014,8 @@ class GGS_registerExpression : public AC_GALGAS_reference_class {
 //--------------------------------- GALGAS class functions
   public: static class GGS_registerExpression class_func_new (const class GGS_lstring & inOperand0,
                                                               const class GGS_immediatExpression & inOperand1,
-                                                              const class GGS_location & inOperand2
+                                                              const class GGS_location & inOperand2,
+                                                              class Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1116,11 +1116,12 @@ class cPtr_registerExpression : public acStrongPtr_class {
 //--- Constructor
   public: cPtr_registerExpression (const GGS_lstring & in_mRegisterName,
                                    const GGS_immediatExpression & in_mOffset,
-                                   const GGS_location & in_mEndOfOffsetExpression
+                                   const GGS_location & in_mEndOfOffsetExpression,
+                                   Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1300,11 +1301,10 @@ class cPtr_declarationInRam : public acStrongPtr_class {
 //--- Properties
 
 
-//--- Default constructor
-  public: cPtr_declarationInRam (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_declarationInRam (LOCATION_ARGS) ;
+  public: cPtr_declarationInRam (Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
 //--- Description
@@ -1541,7 +1541,8 @@ class GGS_byteDeclarationInRam : public GGS_declarationInRam {
                                                                 const class GGS_immediatExpression & inOperand1,
                                                                 const class GGS_bitSliceTable & inOperand2,
                                                                 const class GGS_string & inOperand3,
-                                                                const class GGS_registerProtection & inOperand4
+                                                                const class GGS_registerProtection & inOperand4,
+                                                                class Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1612,11 +1613,12 @@ class cPtr_byteDeclarationInRam : public cPtr_declarationInRam {
                                      const GGS_immediatExpression & in_mSizeExpression,
                                      const GGS_bitSliceTable & in_mBitSliceTable,
                                      const GGS_string & in_mBitDefinitionString,
-                                     const GGS_registerProtection & in_mProtection
+                                     const GGS_registerProtection & in_mProtection,
+                                     Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3069,7 +3071,8 @@ class GGS_immediatInteger : public GGS_immediatExpression {
                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_immediatInteger class_func_new (const class GGS_luint & inOperand0
+  public: static class GGS_immediatInteger class_func_new (const class GGS_luint & inOperand0,
+                                                           class Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3126,11 +3129,12 @@ class cPtr_immediatInteger : public cPtr_immediatExpression {
   public: cPtr_immediatInteger (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_immediatInteger (const GGS_luint & in_mValue
+  public: cPtr_immediatInteger (const GGS_luint & in_mValue,
+                                Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3265,7 +3269,8 @@ class GGS_immediatRegister : public GGS_immediatExpression {
                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_immediatRegister class_func_new (const class GGS_registerExpression & inOperand0
+  public: static class GGS_immediatRegister class_func_new (const class GGS_registerExpression & inOperand0,
+                                                            class Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3322,11 +3327,12 @@ class cPtr_immediatRegister : public cPtr_immediatExpression {
   public: cPtr_immediatRegister (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_immediatRegister (const GGS_registerExpression & in_mRegister
+  public: cPtr_immediatRegister (const GGS_registerExpression & in_mRegister,
+                                 Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3466,7 +3472,8 @@ class GGS_immediatAdd : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatAdd class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                       const class GGS_immediatExpression & inOperand1
+                                                       const class GGS_immediatExpression & inOperand1,
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3526,11 +3533,12 @@ class cPtr_immediatAdd : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatAdd (const GGS_immediatExpression & in_mLeftExpression,
-                            const GGS_immediatExpression & in_mRightExpression
+                            const GGS_immediatExpression & in_mRightExpression,
+                            Compiler * inCompiler
                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3670,7 +3678,8 @@ class GGS_immediatSub : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatSub class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                       const class GGS_immediatExpression & inOperand1
+                                                       const class GGS_immediatExpression & inOperand1,
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3730,11 +3739,12 @@ class cPtr_immediatSub : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatSub (const GGS_immediatExpression & in_mLeftExpression,
-                            const GGS_immediatExpression & in_mRightExpression
+                            const GGS_immediatExpression & in_mRightExpression,
+                            Compiler * inCompiler
                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3874,7 +3884,8 @@ class GGS_immediatMul : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatMul class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                       const class GGS_immediatExpression & inOperand1
+                                                       const class GGS_immediatExpression & inOperand1,
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3934,11 +3945,12 @@ class cPtr_immediatMul : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatMul (const GGS_immediatExpression & in_mLeftExpression,
-                            const GGS_immediatExpression & in_mRightExpression
+                            const GGS_immediatExpression & in_mRightExpression,
+                            Compiler * inCompiler
                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4078,7 +4090,8 @@ class GGS_immediatDiv : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatDiv class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                       const class GGS_immediatExpression & inOperand1
+                                                       const class GGS_immediatExpression & inOperand1,
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4138,11 +4151,12 @@ class cPtr_immediatDiv : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatDiv (const GGS_immediatExpression & in_mLeftExpression,
-                            const GGS_immediatExpression & in_mRightExpression
+                            const GGS_immediatExpression & in_mRightExpression,
+                            Compiler * inCompiler
                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4282,7 +4296,8 @@ class GGS_immediatMod : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatMod class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                       const class GGS_immediatExpression & inOperand1
+                                                       const class GGS_immediatExpression & inOperand1,
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4342,11 +4357,12 @@ class cPtr_immediatMod : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatMod (const GGS_immediatExpression & in_mLeftExpression,
-                            const GGS_immediatExpression & in_mRightExpression
+                            const GGS_immediatExpression & in_mRightExpression,
+                            Compiler * inCompiler
                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4486,7 +4502,8 @@ class GGS_immediatOr : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatOr class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                      const class GGS_immediatExpression & inOperand1
+                                                      const class GGS_immediatExpression & inOperand1,
+                                                      class Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4546,11 +4563,12 @@ class cPtr_immediatOr : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatOr (const GGS_immediatExpression & in_mLeftExpression,
-                           const GGS_immediatExpression & in_mRightExpression
+                           const GGS_immediatExpression & in_mRightExpression,
+                           Compiler * inCompiler
                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4690,7 +4708,8 @@ class GGS_immediatAnd : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatAnd class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                       const class GGS_immediatExpression & inOperand1
+                                                       const class GGS_immediatExpression & inOperand1,
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4750,11 +4769,12 @@ class cPtr_immediatAnd : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatAnd (const GGS_immediatExpression & in_mLeftExpression,
-                            const GGS_immediatExpression & in_mRightExpression
+                            const GGS_immediatExpression & in_mRightExpression,
+                            Compiler * inCompiler
                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4894,7 +4914,8 @@ class GGS_immediatXor : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatXor class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                       const class GGS_immediatExpression & inOperand1
+                                                       const class GGS_immediatExpression & inOperand1,
+                                                       class Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4954,11 +4975,12 @@ class cPtr_immediatXor : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatXor (const GGS_immediatExpression & in_mLeftExpression,
-                            const GGS_immediatExpression & in_mRightExpression
+                            const GGS_immediatExpression & in_mRightExpression,
+                            Compiler * inCompiler
                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5098,7 +5120,8 @@ class GGS_immediatLeftShift : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatLeftShift class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                             const class GGS_immediatExpression & inOperand1
+                                                             const class GGS_immediatExpression & inOperand1,
+                                                             class Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5158,11 +5181,12 @@ class cPtr_immediatLeftShift : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatLeftShift (const GGS_immediatExpression & in_mLeftExpression,
-                                  const GGS_immediatExpression & in_mRightExpression
+                                  const GGS_immediatExpression & in_mRightExpression,
+                                  Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5302,7 +5326,8 @@ class GGS_immediatRightShift : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatRightShift class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                              const class GGS_immediatExpression & inOperand1
+                                                              const class GGS_immediatExpression & inOperand1,
+                                                              class Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5362,11 +5387,12 @@ class cPtr_immediatRightShift : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatRightShift (const GGS_immediatExpression & in_mLeftExpression,
-                                   const GGS_immediatExpression & in_mRightExpression
+                                   const GGS_immediatExpression & in_mRightExpression,
+                                   Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5506,7 +5532,8 @@ class GGS_immediatEqualTest : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatEqualTest class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                             const class GGS_immediatExpression & inOperand1
+                                                             const class GGS_immediatExpression & inOperand1,
+                                                             class Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5566,11 +5593,12 @@ class cPtr_immediatEqualTest : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatEqualTest (const GGS_immediatExpression & in_mLeftExpression,
-                                  const GGS_immediatExpression & in_mRightExpression
+                                  const GGS_immediatExpression & in_mRightExpression,
+                                  Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5710,7 +5738,8 @@ class GGS_immediatNotEqualTest : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatNotEqualTest class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                                const class GGS_immediatExpression & inOperand1
+                                                                const class GGS_immediatExpression & inOperand1,
+                                                                class Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5770,11 +5799,12 @@ class cPtr_immediatNotEqualTest : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatNotEqualTest (const GGS_immediatExpression & in_mLeftExpression,
-                                     const GGS_immediatExpression & in_mRightExpression
+                                     const GGS_immediatExpression & in_mRightExpression,
+                                     Compiler * inCompiler
                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5914,7 +5944,8 @@ class GGS_immediatGreaterTest : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatGreaterTest class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                               const class GGS_immediatExpression & inOperand1
+                                                               const class GGS_immediatExpression & inOperand1,
+                                                               class Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5974,11 +6005,12 @@ class cPtr_immediatGreaterTest : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatGreaterTest (const GGS_immediatExpression & in_mLeftExpression,
-                                    const GGS_immediatExpression & in_mRightExpression
+                                    const GGS_immediatExpression & in_mRightExpression,
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6118,7 +6150,8 @@ class GGS_immediatGreaterOrEqualTest : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatGreaterOrEqualTest class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                                      const class GGS_immediatExpression & inOperand1
+                                                                      const class GGS_immediatExpression & inOperand1,
+                                                                      class Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6178,11 +6211,12 @@ class cPtr_immediatGreaterOrEqualTest : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatGreaterOrEqualTest (const GGS_immediatExpression & in_mLeftExpression,
-                                           const GGS_immediatExpression & in_mRightExpression
+                                           const GGS_immediatExpression & in_mRightExpression,
+                                           Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6322,7 +6356,8 @@ class GGS_immediatLowerTest : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatLowerTest class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                             const class GGS_immediatExpression & inOperand1
+                                                             const class GGS_immediatExpression & inOperand1,
+                                                             class Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6382,11 +6417,12 @@ class cPtr_immediatLowerTest : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatLowerTest (const GGS_immediatExpression & in_mLeftExpression,
-                                  const GGS_immediatExpression & in_mRightExpression
+                                  const GGS_immediatExpression & in_mRightExpression,
+                                  Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6526,7 +6562,8 @@ class GGS_immediatLowerOrEqualTest : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatLowerOrEqualTest class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                                    const class GGS_immediatExpression & inOperand1
+                                                                    const class GGS_immediatExpression & inOperand1,
+                                                                    class Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6586,11 +6623,12 @@ class cPtr_immediatLowerOrEqualTest : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatLowerOrEqualTest (const GGS_immediatExpression & in_mLeftExpression,
-                                         const GGS_immediatExpression & in_mRightExpression
+                                         const GGS_immediatExpression & in_mRightExpression,
+                                         Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6725,7 +6763,8 @@ class GGS_immediatNegate : public GGS_immediatExpression {
                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_immediatNegate class_func_new (const class GGS_immediatExpression & inOperand0
+  public: static class GGS_immediatNegate class_func_new (const class GGS_immediatExpression & inOperand0,
+                                                          class Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6782,11 +6821,12 @@ class cPtr_immediatNegate : public cPtr_immediatExpression {
   public: cPtr_immediatNegate (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_immediatNegate (const GGS_immediatExpression & in_mExpression
+  public: cPtr_immediatNegate (const GGS_immediatExpression & in_mExpression,
+                               Compiler * inCompiler
                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6921,7 +6961,8 @@ class GGS_immediatComplement : public GGS_immediatExpression {
                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_immediatComplement class_func_new (const class GGS_immediatExpression & inOperand0
+  public: static class GGS_immediatComplement class_func_new (const class GGS_immediatExpression & inOperand0,
+                                                              class Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6978,11 +7019,12 @@ class cPtr_immediatComplement : public cPtr_immediatExpression {
   public: cPtr_immediatComplement (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_immediatComplement (const GGS_immediatExpression & in_mExpression
+  public: cPtr_immediatComplement (const GGS_immediatExpression & in_mExpression,
+                                   Compiler * inCompiler
                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7374,7 +7416,8 @@ class GGS_immediatSlice : public GGS_immediatExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_immediatSlice class_func_new (const class GGS_lstring & inOperand0,
-                                                         const class GGS_immediatSliceExpressionList & inOperand1
+                                                         const class GGS_immediatSliceExpressionList & inOperand1,
+                                                         class Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -7434,11 +7477,12 @@ class cPtr_immediatSlice : public cPtr_immediatExpression {
 
 //--- Constructor
   public: cPtr_immediatSlice (const GGS_lstring & in_mRegisterName,
-                              const GGS_immediatSliceExpressionList & in_mSliceExpressionList
+                              const GGS_immediatSliceExpressionList & in_mSliceExpressionList,
+                              Compiler * inCompiler
                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8218,11 +8262,10 @@ class cPtr_bitNumberExpression : public acStrongPtr_class {
 //--- Properties
 
 
-//--- Default constructor
-  public: cPtr_bitNumberExpression (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_bitNumberExpression (LOCATION_ARGS) ;
+  public: cPtr_bitNumberExpression (Compiler * inCompiler
+                                    COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
 //--- Description
@@ -8362,7 +8405,8 @@ class GGS_bitNumberLiteralExpression : public GGS_bitNumberExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_bitNumberLiteralExpression class_func_new (const class GGS_immediatExpression & inOperand0,
-                                                                      const class GGS_location & inOperand1
+                                                                      const class GGS_location & inOperand1,
+                                                                      class Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8423,11 +8467,12 @@ class cPtr_bitNumberLiteralExpression : public cPtr_bitNumberExpression {
 
 //--- Constructor
   public: cPtr_bitNumberLiteralExpression (const GGS_immediatExpression & in_mBitNumberLiteralExpression,
-                                           const GGS_location & in_mEndOfExpression
+                                           const GGS_location & in_mEndOfExpression,
+                                           Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8562,7 +8607,8 @@ class GGS_bitNumberLiteralValue : public GGS_bitNumberExpression {
                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_bitNumberLiteralValue class_func_new (const class GGS_luint & inOperand0
+  public: static class GGS_bitNumberLiteralValue class_func_new (const class GGS_luint & inOperand0,
+                                                                 class Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8620,11 +8666,12 @@ class cPtr_bitNumberLiteralValue : public cPtr_bitNumberExpression {
   public: cPtr_bitNumberLiteralValue (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_bitNumberLiteralValue (const GGS_luint & in_mBitNumberLiteralValue
+  public: cPtr_bitNumberLiteralValue (const GGS_luint & in_mBitNumberLiteralValue,
+                                      Compiler * inCompiler
                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8764,7 +8811,8 @@ class GGS_bitNumberLabelValue : public GGS_bitNumberExpression {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_bitNumberLabelValue class_func_new (const class GGS_lstring & inOperand0,
-                                                               const class GGS_luint & inOperand1
+                                                               const class GGS_luint & inOperand1,
+                                                               class Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8825,11 +8873,12 @@ class cPtr_bitNumberLabelValue : public cPtr_bitNumberExpression {
 
 //--- Constructor
   public: cPtr_bitNumberLabelValue (const GGS_lstring & in_mBitNumberLabelValue,
-                                    const GGS_luint & in_mBitNumberIndexValue
+                                    const GGS_luint & in_mBitNumberIndexValue,
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description

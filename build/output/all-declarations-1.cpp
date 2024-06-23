@@ -1102,22 +1102,6 @@ GGS_string extensionGetter_mnemonic (const GGS_baseline_5F_WO_5F_OPERAND_5F_grou
 // @baseline_5F_instruction reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_instruction::cPtr_baseline_5F_instruction (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE),
-mProperty_mInstructionLocation () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
-    mProperty_mInstructionLocation.printNonNullClassInstanceProperties ("mInstructionLocation") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_instruction::objectCompare (const GGS_baseline_5F_instruction & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -1172,13 +1156,30 @@ void GGS_baseline_5F_instruction::setProperty_mInstructionLocation (const GGS_lo
 //Pointer class for @baseline_instruction class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_instruction::cPtr_baseline_5F_instruction (const GGS_location & in_mInstructionLocation
+cPtr_baseline_5F_instruction::cPtr_baseline_5F_instruction (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+acStrongPtr_class (inCompiler COMMA_THERE),
+mProperty_mInstructionLocation () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_instruction::cPtr_baseline_5F_instruction (const GGS_location & in_mInstructionLocation,
+                                                            Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE),
+acStrongPtr_class (inCompiler COMMA_THERE),
 mProperty_mInstructionLocation () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+    mProperty_mInstructionLocation.printNonNullClassInstanceProperties ("mInstructionLocation") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -2523,22 +2524,6 @@ GGS_baseline_5F_instruction_5F_JUMP_2E_weak GGS_baseline_5F_instruction_5F_JUMP_
 // @baseline_5F_instruction_5F_WO_5F_OPERAND reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mInstruction () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_instruction_5F_WO_5F_OPERAND::objectCompare (const GGS_baseline_5F_instruction_5F_WO_5F_OPERAND & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -2595,10 +2580,11 @@ GGS_baseline_5F_instruction (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_instruction_5F_WO_5F_OPERAND GGS_baseline_5F_instruction_5F_WO_5F_OPERAND::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                           const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
+                                                                                                           const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+                                                                                                           Compiler * inCompiler
                                                                                                            COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_instruction_5F_WO_5F_OPERAND result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (in_mInstructionLocation, in_mInstruction COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (in_mInstructionLocation, in_mInstruction,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -2628,10 +2614,18 @@ void GGS_baseline_5F_instruction_5F_WO_5F_OPERAND::setProperty_mInstruction (con
 //Pointer class for @baseline_instruction_WO_OPERAND class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mInstruction () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (const GGS_location & in_mInstructionLocation,
-                                                                                              const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
+                                                                                              const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+                                                                                              Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_instruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mInstruction () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
   mProperty_mInstruction = in_mInstruction ;
@@ -2654,12 +2648,21 @@ void cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::description (String & ioStri
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (mProperty_mInstructionLocation, mProperty_mInstruction COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (mProperty_mInstructionLocation, mProperty_mInstruction, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -2929,24 +2932,6 @@ GGS_baseline_5F_instruction_5F_TRIS_2E_weak GGS_baseline_5F_instruction_5F_TRIS_
 // @baseline_5F_instruction_5F_literalOperation reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_instruction_5F_literalOperation::cPtr_baseline_5F_instruction_5F_literalOperation (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mLiteralInstruction (),
-mProperty_mImmediatExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_instruction_5F_literalOperation::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mLiteralInstruction.printNonNullClassInstanceProperties ("mLiteralInstruction") ;
-    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_instruction_5F_literalOperation::objectCompare (const GGS_baseline_5F_instruction_5F_literalOperation & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -3007,10 +2992,11 @@ GGS_baseline_5F_instruction (inSourcePtr) {
 
 GGS_baseline_5F_instruction_5F_literalOperation GGS_baseline_5F_instruction_5F_literalOperation::class_func_new (const GGS_location & in_mInstructionLocation,
                                                                                                                  const GGS_baseline_5F_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
-                                                                                                                 const GGS_immediatExpression & in_mImmediatExpression
+                                                                                                                 const GGS_immediatExpression & in_mImmediatExpression,
+                                                                                                                 Compiler * inCompiler
                                                                                                                  COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_instruction_5F_literalOperation result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_literalOperation (in_mInstructionLocation, in_mLiteralInstruction, in_mImmediatExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_literalOperation (in_mInstructionLocation, in_mLiteralInstruction, in_mImmediatExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -3062,11 +3048,20 @@ void GGS_baseline_5F_instruction_5F_literalOperation::setProperty_mImmediatExpre
 //Pointer class for @baseline_instruction_literalOperation class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_instruction_5F_literalOperation::cPtr_baseline_5F_instruction_5F_literalOperation (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mLiteralInstruction (),
+mProperty_mImmediatExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_instruction_5F_literalOperation::cPtr_baseline_5F_instruction_5F_literalOperation (const GGS_location & in_mInstructionLocation,
                                                                                                     const GGS_baseline_5F_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
-                                                                                                    const GGS_immediatExpression & in_mImmediatExpression
+                                                                                                    const GGS_immediatExpression & in_mImmediatExpression,
+                                                                                                    Compiler * inCompiler
                                                                                                     COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_instruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mLiteralInstruction (),
 mProperty_mImmediatExpression () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
@@ -3093,12 +3088,22 @@ void cPtr_baseline_5F_instruction_5F_literalOperation::description (String & ioS
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_instruction_5F_literalOperation::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_instruction_5F_literalOperation::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_literalOperation (mProperty_mInstructionLocation, mProperty_mLiteralInstruction, mProperty_mImmediatExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_literalOperation (mProperty_mInstructionLocation, mProperty_mLiteralInstruction, mProperty_mImmediatExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_instruction_5F_literalOperation::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mLiteralInstruction.printNonNullClassInstanceProperties ("mLiteralInstruction") ;
+    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -3257,22 +3262,6 @@ GGS_baseline_5F_instruction_5F_literalOperation_2E_weak GGS_baseline_5F_instruct
 // @baseline_5F_instruction_5F_MNOP reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_instruction_5F_MNOP::cPtr_baseline_5F_instruction_5F_MNOP (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mOccurrenceFactor () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_instruction_5F_MNOP::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mOccurrenceFactor.printNonNullClassInstanceProperties ("mOccurrenceFactor") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_instruction_5F_MNOP::objectCompare (const GGS_baseline_5F_instruction_5F_MNOP & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -3329,10 +3318,11 @@ GGS_baseline_5F_instruction (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_instruction_5F_MNOP GGS_baseline_5F_instruction_5F_MNOP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                         const GGS_luint & in_mOccurrenceFactor
+                                                                                         const GGS_luint & in_mOccurrenceFactor,
+                                                                                         Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_instruction_5F_MNOP result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_MNOP (in_mInstructionLocation, in_mOccurrenceFactor COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_MNOP (in_mInstructionLocation, in_mOccurrenceFactor,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -3362,10 +3352,18 @@ void GGS_baseline_5F_instruction_5F_MNOP::setProperty_mOccurrenceFactor (const G
 //Pointer class for @baseline_instruction_MNOP class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_instruction_5F_MNOP::cPtr_baseline_5F_instruction_5F_MNOP (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mOccurrenceFactor () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_instruction_5F_MNOP::cPtr_baseline_5F_instruction_5F_MNOP (const GGS_location & in_mInstructionLocation,
-                                                                            const GGS_luint & in_mOccurrenceFactor
+                                                                            const GGS_luint & in_mOccurrenceFactor,
+                                                                            Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_instruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mOccurrenceFactor () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
   mProperty_mOccurrenceFactor = in_mOccurrenceFactor ;
@@ -3388,12 +3386,21 @@ void cPtr_baseline_5F_instruction_5F_MNOP::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_instruction_5F_MNOP::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_instruction_5F_MNOP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_MNOP (mProperty_mInstructionLocation, mProperty_mOccurrenceFactor COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_MNOP (mProperty_mInstructionLocation, mProperty_mOccurrenceFactor, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_instruction_5F_MNOP::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mOccurrenceFactor.printNonNullClassInstanceProperties ("mOccurrenceFactor") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -3552,24 +3559,6 @@ GGS_baseline_5F_instruction_5F_MNOP_2E_weak GGS_baseline_5F_instruction_5F_MNOP_
 // @baseline_5F_instruction_5F_FOREVER reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_instruction_5F_FOREVER::cPtr_baseline_5F_instruction_5F_FOREVER (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mInstructionList (),
-mProperty_mEndOfInstructionList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_instruction_5F_FOREVER::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
-    mProperty_mEndOfInstructionList.printNonNullClassInstanceProperties ("mEndOfInstructionList") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_instruction_5F_FOREVER::objectCompare (const GGS_baseline_5F_instruction_5F_FOREVER & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -3630,10 +3619,11 @@ GGS_baseline_5F_instruction (inSourcePtr) {
 
 GGS_baseline_5F_instruction_5F_FOREVER GGS_baseline_5F_instruction_5F_FOREVER::class_func_new (const GGS_location & in_mInstructionLocation,
                                                                                                const GGS_baseline_5F_instructionList & in_mInstructionList,
-                                                                                               const GGS_location & in_mEndOfInstructionList
+                                                                                               const GGS_location & in_mEndOfInstructionList,
+                                                                                               Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_instruction_5F_FOREVER result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_FOREVER (in_mInstructionLocation, in_mInstructionList, in_mEndOfInstructionList COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_FOREVER (in_mInstructionLocation, in_mInstructionList, in_mEndOfInstructionList,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -3685,11 +3675,20 @@ void GGS_baseline_5F_instruction_5F_FOREVER::setProperty_mEndOfInstructionList (
 //Pointer class for @baseline_instruction_FOREVER class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_instruction_5F_FOREVER::cPtr_baseline_5F_instruction_5F_FOREVER (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mInstructionList (),
+mProperty_mEndOfInstructionList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_instruction_5F_FOREVER::cPtr_baseline_5F_instruction_5F_FOREVER (const GGS_location & in_mInstructionLocation,
                                                                                   const GGS_baseline_5F_instructionList & in_mInstructionList,
-                                                                                  const GGS_location & in_mEndOfInstructionList
+                                                                                  const GGS_location & in_mEndOfInstructionList,
+                                                                                  Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_instruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mInstructionList (),
 mProperty_mEndOfInstructionList () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
@@ -3716,12 +3715,22 @@ void cPtr_baseline_5F_instruction_5F_FOREVER::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_instruction_5F_FOREVER::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_instruction_5F_FOREVER::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_FOREVER (mProperty_mInstructionLocation, mProperty_mInstructionList, mProperty_mEndOfInstructionList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_FOREVER (mProperty_mInstructionLocation, mProperty_mInstructionList, mProperty_mEndOfInstructionList, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_instruction_5F_FOREVER::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
+    mProperty_mEndOfInstructionList.printNonNullClassInstanceProperties ("mEndOfInstructionList") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -3991,22 +4000,6 @@ GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak GGS_baseline_5F_instruct
 // @baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mInstruction () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::objectCompare (const GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -4061,15 +4054,32 @@ void GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::setProperty_mInstructio
 //Pointer class for @baseline_instruction_IF_SEMI_COLON class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mInstruction () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (const GGS_location & in_mInstructionLocation,
-                                                                                                          const GGS_baseline_5F_instruction & in_mInstruction
+                                                                                                          const GGS_baseline_5F_instruction & in_mInstruction,
+                                                                                                          Compiler * inCompiler
                                                                                                           COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_instruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mInstruction () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
   mProperty_mInstruction = in_mInstruction ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -4450,20 +4460,6 @@ GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak GGS_baseline_5F_instruction_
 // @baseline_5F_conditionExpression reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_conditionExpression::cPtr_baseline_5F_conditionExpression (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_conditionExpression::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_conditionExpression::objectCompare (const GGS_baseline_5F_conditionExpression & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -4496,10 +4492,22 @@ AC_GALGAS_reference_class (inSourcePtr) {
 //Pointer class for @baseline_conditionExpression class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_conditionExpression::cPtr_baseline_5F_conditionExpression (LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_conditionExpression::cPtr_baseline_5F_conditionExpression (Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) :
+acStrongPtr_class (inCompiler COMMA_THERE) {
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_conditionExpression::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -4769,22 +4777,6 @@ GGS_baseline_5F_incDecRegisterInCondition_2E_weak GGS_baseline_5F_incDecRegister
 // @baseline_5F_negateCondition reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_negateCondition::cPtr_baseline_5F_negateCondition (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_conditionExpression (inCompiler COMMA_THERE),
-mProperty_mCondition () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_negateCondition::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_conditionExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mCondition.printNonNullClassInstanceProperties ("mCondition") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_negateCondition::objectCompare (const GGS_baseline_5F_negateCondition & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -4837,10 +4829,11 @@ GGS_baseline_5F_conditionExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_negateCondition GGS_baseline_5F_negateCondition::class_func_new (const GGS_baseline_5F_conditionExpression & in_mCondition
+GGS_baseline_5F_negateCondition GGS_baseline_5F_negateCondition::class_func_new (const GGS_baseline_5F_conditionExpression & in_mCondition,
+                                                                                 Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_negateCondition result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_negateCondition (in_mCondition COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_negateCondition (in_mCondition,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -4870,9 +4863,17 @@ void GGS_baseline_5F_negateCondition::setProperty_mCondition (const GGS_baseline
 //Pointer class for @baseline_negateCondition class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_negateCondition::cPtr_baseline_5F_negateCondition (const GGS_baseline_5F_conditionExpression & in_mCondition
+cPtr_baseline_5F_negateCondition::cPtr_baseline_5F_negateCondition (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_conditionExpression (inCompiler COMMA_THERE),
+mProperty_mCondition () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_negateCondition::cPtr_baseline_5F_negateCondition (const GGS_baseline_5F_conditionExpression & in_mCondition,
+                                                                    Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_conditionExpression (THERE),
+cPtr_baseline_5F_conditionExpression (inCompiler COMMA_THERE),
 mProperty_mCondition () {
   mProperty_mCondition = in_mCondition ;
 }
@@ -4892,12 +4893,21 @@ void cPtr_baseline_5F_negateCondition::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_negateCondition::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_negateCondition::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_negateCondition (mProperty_mCondition COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_negateCondition (mProperty_mCondition, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_negateCondition::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_conditionExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mCondition.printNonNullClassInstanceProperties ("mCondition") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -5056,24 +5066,6 @@ GGS_baseline_5F_negateCondition_2E_weak GGS_baseline_5F_negateCondition_2E_weak:
 // @baseline_5F_andCondition reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_andCondition::cPtr_baseline_5F_andCondition (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_conditionExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_andCondition::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_conditionExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_andCondition::objectCompare (const GGS_baseline_5F_andCondition & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -5130,10 +5122,11 @@ GGS_baseline_5F_conditionExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_andCondition GGS_baseline_5F_andCondition::class_func_new (const GGS_baseline_5F_conditionExpression & in_mLeftExpression,
-                                                                           const GGS_baseline_5F_conditionExpression & in_mRightExpression
+                                                                           const GGS_baseline_5F_conditionExpression & in_mRightExpression,
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_andCondition result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_andCondition (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_andCondition (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -5185,10 +5178,19 @@ void GGS_baseline_5F_andCondition::setProperty_mRightExpression (const GGS_basel
 //Pointer class for @baseline_andCondition class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_andCondition::cPtr_baseline_5F_andCondition (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_conditionExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_andCondition::cPtr_baseline_5F_andCondition (const GGS_baseline_5F_conditionExpression & in_mLeftExpression,
-                                                              const GGS_baseline_5F_conditionExpression & in_mRightExpression
+                                                              const GGS_baseline_5F_conditionExpression & in_mRightExpression,
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_conditionExpression (THERE),
+cPtr_baseline_5F_conditionExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -5212,12 +5214,22 @@ void cPtr_baseline_5F_andCondition::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_andCondition::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_andCondition::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_andCondition (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_andCondition (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_andCondition::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_conditionExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -5487,28 +5499,6 @@ GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak GGS_basel
 // @baseline_5F_instruction_5F_structured_5F_if reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_instruction_5F_structured_5F_if::cPtr_baseline_5F_instruction_5F_structured_5F_if (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mIfCondition (),
-mProperty_mThenInstructionList (),
-mProperty_mElseInstructionList (),
-mProperty_mEndOfElsePartLocation () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_instruction_5F_structured_5F_if::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mIfCondition.printNonNullClassInstanceProperties ("mIfCondition") ;
-    mProperty_mThenInstructionList.printNonNullClassInstanceProperties ("mThenInstructionList") ;
-    mProperty_mElseInstructionList.printNonNullClassInstanceProperties ("mElseInstructionList") ;
-    mProperty_mEndOfElsePartLocation.printNonNullClassInstanceProperties ("mEndOfElsePartLocation") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_instruction_5F_structured_5F_if::objectCompare (const GGS_baseline_5F_instruction_5F_structured_5F_if & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -5577,10 +5567,11 @@ GGS_baseline_5F_instruction_5F_structured_5F_if GGS_baseline_5F_instruction_5F_s
                                                                                                                  const GGS_baseline_5F_conditionExpression & in_mIfCondition,
                                                                                                                  const GGS_baseline_5F_instructionList & in_mThenInstructionList,
                                                                                                                  const GGS_baseline_5F_instructionList & in_mElseInstructionList,
-                                                                                                                 const GGS_location & in_mEndOfElsePartLocation
+                                                                                                                 const GGS_location & in_mEndOfElsePartLocation,
+                                                                                                                 Compiler * inCompiler
                                                                                                                  COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_instruction_5F_structured_5F_if result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_structured_5F_if (in_mInstructionLocation, in_mIfCondition, in_mThenInstructionList, in_mElseInstructionList, in_mEndOfElsePartLocation COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_structured_5F_if (in_mInstructionLocation, in_mIfCondition, in_mThenInstructionList, in_mElseInstructionList, in_mEndOfElsePartLocation,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -5676,13 +5667,24 @@ void GGS_baseline_5F_instruction_5F_structured_5F_if::setProperty_mEndOfElsePart
 //Pointer class for @baseline_instruction_structured_if class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_instruction_5F_structured_5F_if::cPtr_baseline_5F_instruction_5F_structured_5F_if (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mIfCondition (),
+mProperty_mThenInstructionList (),
+mProperty_mElseInstructionList (),
+mProperty_mEndOfElsePartLocation () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_instruction_5F_structured_5F_if::cPtr_baseline_5F_instruction_5F_structured_5F_if (const GGS_location & in_mInstructionLocation,
                                                                                                     const GGS_baseline_5F_conditionExpression & in_mIfCondition,
                                                                                                     const GGS_baseline_5F_instructionList & in_mThenInstructionList,
                                                                                                     const GGS_baseline_5F_instructionList & in_mElseInstructionList,
-                                                                                                    const GGS_location & in_mEndOfElsePartLocation
+                                                                                                    const GGS_location & in_mEndOfElsePartLocation,
+                                                                                                    Compiler * inCompiler
                                                                                                     COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_instruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mIfCondition (),
 mProperty_mThenInstructionList (),
 mProperty_mElseInstructionList (),
@@ -5717,12 +5719,24 @@ void cPtr_baseline_5F_instruction_5F_structured_5F_if::description (String & ioS
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_instruction_5F_structured_5F_if::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_instruction_5F_structured_5F_if::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_structured_5F_if (mProperty_mInstructionLocation, mProperty_mIfCondition, mProperty_mThenInstructionList, mProperty_mElseInstructionList, mProperty_mEndOfElsePartLocation COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_structured_5F_if (mProperty_mInstructionLocation, mProperty_mIfCondition, mProperty_mThenInstructionList, mProperty_mElseInstructionList, mProperty_mEndOfElsePartLocation, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_instruction_5F_structured_5F_if::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mIfCondition.printNonNullClassInstanceProperties ("mIfCondition") ;
+    mProperty_mThenInstructionList.printNonNullClassInstanceProperties ("mThenInstructionList") ;
+    mProperty_mElseInstructionList.printNonNullClassInstanceProperties ("mElseInstructionList") ;
+    mProperty_mEndOfElsePartLocation.printNonNullClassInstanceProperties ("mEndOfElsePartLocation") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -6418,26 +6432,6 @@ GGS_baseline_5F_partList GGS_baseline_5F_partList::extractObject (const GGS_obje
 // @baseline_5F_instruction_5F_do_5F_while reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_instruction_5F_do_5F_while::cPtr_baseline_5F_instruction_5F_do_5F_while (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mRepeatedInstructionList (),
-mProperty_mEndOfRepeatedInstructionList (),
-mProperty_mWhilePartList () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_instruction_5F_do_5F_while::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mRepeatedInstructionList.printNonNullClassInstanceProperties ("mRepeatedInstructionList") ;
-    mProperty_mEndOfRepeatedInstructionList.printNonNullClassInstanceProperties ("mEndOfRepeatedInstructionList") ;
-    mProperty_mWhilePartList.printNonNullClassInstanceProperties ("mWhilePartList") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_instruction_5F_do_5F_while::objectCompare (const GGS_baseline_5F_instruction_5F_do_5F_while & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -6502,10 +6496,11 @@ GGS_baseline_5F_instruction (inSourcePtr) {
 GGS_baseline_5F_instruction_5F_do_5F_while GGS_baseline_5F_instruction_5F_do_5F_while::class_func_new (const GGS_location & in_mInstructionLocation,
                                                                                                        const GGS_baseline_5F_instructionList & in_mRepeatedInstructionList,
                                                                                                        const GGS_location & in_mEndOfRepeatedInstructionList,
-                                                                                                       const GGS_baseline_5F_partList & in_mWhilePartList
+                                                                                                       const GGS_baseline_5F_partList & in_mWhilePartList,
+                                                                                                       Compiler * inCompiler
                                                                                                        COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_instruction_5F_do_5F_while result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_do_5F_while (in_mInstructionLocation, in_mRepeatedInstructionList, in_mEndOfRepeatedInstructionList, in_mWhilePartList COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_instruction_5F_do_5F_while (in_mInstructionLocation, in_mRepeatedInstructionList, in_mEndOfRepeatedInstructionList, in_mWhilePartList,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -6579,12 +6574,22 @@ void GGS_baseline_5F_instruction_5F_do_5F_while::setProperty_mWhilePartList (con
 //Pointer class for @baseline_instruction_do_while class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_instruction_5F_do_5F_while::cPtr_baseline_5F_instruction_5F_do_5F_while (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mRepeatedInstructionList (),
+mProperty_mEndOfRepeatedInstructionList (),
+mProperty_mWhilePartList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_instruction_5F_do_5F_while::cPtr_baseline_5F_instruction_5F_do_5F_while (const GGS_location & in_mInstructionLocation,
                                                                                           const GGS_baseline_5F_instructionList & in_mRepeatedInstructionList,
                                                                                           const GGS_location & in_mEndOfRepeatedInstructionList,
-                                                                                          const GGS_baseline_5F_partList & in_mWhilePartList
+                                                                                          const GGS_baseline_5F_partList & in_mWhilePartList,
+                                                                                          Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_instruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_instruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mRepeatedInstructionList (),
 mProperty_mEndOfRepeatedInstructionList (),
 mProperty_mWhilePartList () {
@@ -6615,12 +6620,23 @@ void cPtr_baseline_5F_instruction_5F_do_5F_while::description (String & ioString
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_instruction_5F_do_5F_while::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_instruction_5F_do_5F_while::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_do_5F_while (mProperty_mInstructionLocation, mProperty_mRepeatedInstructionList, mProperty_mEndOfRepeatedInstructionList, mProperty_mWhilePartList COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_instruction_5F_do_5F_while (mProperty_mInstructionLocation, mProperty_mRepeatedInstructionList, mProperty_mEndOfRepeatedInstructionList, mProperty_mWhilePartList, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_instruction_5F_do_5F_while::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mRepeatedInstructionList.printNonNullClassInstanceProperties ("mRepeatedInstructionList") ;
+    mProperty_mEndOfRepeatedInstructionList.printNonNullClassInstanceProperties ("mEndOfRepeatedInstructionList") ;
+    mProperty_mWhilePartList.printNonNullClassInstanceProperties ("mWhilePartList") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -7892,20 +7908,6 @@ GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_
 // @baseline_5F_intermediate_5F_instruction reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_instruction::cPtr_baseline_5F_intermediate_5F_instruction (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_instruction::objectCompare (const GGS_baseline_5F_intermediate_5F_instruction & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -7938,10 +7940,22 @@ AC_GALGAS_reference_class (inSourcePtr) {
 //Pointer class for @baseline_intermediate_instruction class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_instruction::cPtr_baseline_5F_intermediate_5F_instruction (LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_intermediate_5F_instruction::cPtr_baseline_5F_intermediate_5F_instruction (Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) :
+acStrongPtr_class (inCompiler COMMA_THERE) {
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -8509,20 +8523,6 @@ GGS_baseline_5F_intermediate_5F_instructionList GGS_baseline_5F_intermediate_5F_
 // @baseline_5F_intermediate_5F_NULL reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_NULL::cPtr_baseline_5F_intermediate_5F_NULL (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_instruction (inCompiler COMMA_THERE) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_NULL::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties () ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_NULL::objectCompare (const GGS_baseline_5F_intermediate_5F_NULL & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -8572,9 +8572,9 @@ GGS_baseline_5F_intermediate_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_NULL GGS_baseline_5F_intermediate_5F_NULL::class_func_new (LOCATION_ARGS) {
+GGS_baseline_5F_intermediate_5F_NULL GGS_baseline_5F_intermediate_5F_NULL::class_func_new (Compiler * inCompiler COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_NULL result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_NULL (THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_NULL (inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -8582,8 +8582,12 @@ GGS_baseline_5F_intermediate_5F_NULL GGS_baseline_5F_intermediate_5F_NULL::class
 //Pointer class for @baseline_intermediate_NULL class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_NULL::cPtr_baseline_5F_intermediate_5F_NULL (LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_instruction (THERE) {
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_intermediate_5F_NULL::cPtr_baseline_5F_intermediate_5F_NULL (Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_instruction (inCompiler COMMA_THERE) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8599,12 +8603,20 @@ void cPtr_baseline_5F_intermediate_5F_NULL::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_NULL::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_NULL::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_NULL (THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_NULL (inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_NULL::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -8763,20 +8775,6 @@ GGS_baseline_5F_intermediate_5F_NULL_2E_weak GGS_baseline_5F_intermediate_5F_NUL
 // @baseline_5F_intermediate_5F_pseudo reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_pseudo::cPtr_baseline_5F_intermediate_5F_pseudo (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_instruction (inCompiler COMMA_THERE) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_pseudo::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties () ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_pseudo::objectCompare (const GGS_baseline_5F_intermediate_5F_pseudo & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -8809,10 +8807,22 @@ GGS_baseline_5F_intermediate_5F_instruction (inSourcePtr) {
 //Pointer class for @baseline_intermediate_pseudo class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_pseudo::cPtr_baseline_5F_intermediate_5F_pseudo (LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_instruction (THERE) {
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_intermediate_5F_pseudo::cPtr_baseline_5F_intermediate_5F_pseudo (Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_instruction (inCompiler COMMA_THERE) {
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_pseudo::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties () ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -8971,22 +8981,6 @@ GGS_baseline_5F_intermediate_5F_pseudo_2E_weak GGS_baseline_5F_intermediate_5F_p
 // @baseline_5F_intermediate_5F_pseudo_5F_PAGE reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_pseudo (inCompiler COMMA_THERE),
-mProperty_mPage () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_pseudo::printNonNullClassInstanceProperties () ;
-    mProperty_mPage.printNonNullClassInstanceProperties ("mPage") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::objectCompare (const GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -9039,10 +9033,11 @@ GGS_baseline_5F_intermediate_5F_pseudo (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::class_func_new (const GGS_uint & in_mPage
+GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::class_func_new (const GGS_uint & in_mPage,
+                                                                                                               Compiler * inCompiler
                                                                                                                COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (in_mPage COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (in_mPage,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -9072,9 +9067,17 @@ void GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::setProperty_mPage (const GG
 //Pointer class for @baseline_intermediate_pseudo_PAGE class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (const GGS_uint & in_mPage
+cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_pseudo (inCompiler COMMA_THERE),
+mProperty_mPage () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (const GGS_uint & in_mPage,
+                                                                                                  Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_pseudo (THERE),
+cPtr_baseline_5F_intermediate_5F_pseudo (inCompiler COMMA_THERE),
 mProperty_mPage () {
   mProperty_mPage = in_mPage ;
 }
@@ -9094,12 +9097,21 @@ void cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::description (String & ioSt
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (mProperty_mPage COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (mProperty_mPage, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_pseudo::printNonNullClassInstanceProperties () ;
+    mProperty_mPage.printNonNullClassInstanceProperties ("mPage") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -9591,22 +9603,6 @@ GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak GGS_baseline_5F
 // @baseline_5F_intermediate_5F_actualInstruction reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_actualInstruction::cPtr_baseline_5F_intermediate_5F_actualInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mInstructionLocation () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mInstructionLocation.printNonNullClassInstanceProperties ("mInstructionLocation") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_actualInstruction::objectCompare (const GGS_baseline_5F_intermediate_5F_actualInstruction & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -9661,13 +9657,30 @@ void GGS_baseline_5F_intermediate_5F_actualInstruction::setProperty_mInstruction
 //Pointer class for @baseline_intermediate_actualInstruction class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_actualInstruction::cPtr_baseline_5F_intermediate_5F_actualInstruction (const GGS_location & in_mInstructionLocation
+cPtr_baseline_5F_intermediate_5F_actualInstruction::cPtr_baseline_5F_intermediate_5F_actualInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mInstructionLocation () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_intermediate_5F_actualInstruction::cPtr_baseline_5F_intermediate_5F_actualInstruction (const GGS_location & in_mInstructionLocation,
+                                                                                                        Compiler * inCompiler
                                                                                                         COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_instruction (THERE),
+cPtr_baseline_5F_intermediate_5F_instruction (inCompiler COMMA_THERE),
 mProperty_mInstructionLocation () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstructionLocation.printNonNullClassInstanceProperties ("mInstructionLocation") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -9826,26 +9839,6 @@ GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak GGS_baseline_5F_interm
 // @baseline_5F_intermediate_5F_instruction_5F_FD reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
-mProperty_mInstruction (),
-mProperty_mRegisterDescription (),
-mProperty_m_5F_W_5F_isDestination () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
-    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
-    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_instruction_5F_FD::objectCompare (const GGS_baseline_5F_intermediate_5F_instruction_5F_FD & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -9910,10 +9903,11 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 GGS_baseline_5F_intermediate_5F_instruction_5F_FD GGS_baseline_5F_intermediate_5F_instruction_5F_FD::class_func_new (const GGS_location & in_mInstructionLocation,
                                                                                                                      const GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
                                                                                                                      const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                     const GGS_bool & in_m_5F_W_5F_isDestination
+                                                                                                                     const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                                                                                     Compiler * inCompiler
                                                                                                                      COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_instruction_5F_FD result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_m_5F_W_5F_isDestination COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_m_5F_W_5F_isDestination,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -9987,12 +9981,22 @@ void GGS_baseline_5F_intermediate_5F_instruction_5F_FD::setProperty_m_5F_W_5F_is
 //Pointer class for @baseline_intermediate_instruction_FD class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
+mProperty_mInstruction (),
+mProperty_mRegisterDescription (),
+mProperty_m_5F_W_5F_isDestination () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (const GGS_location & in_mInstructionLocation,
                                                                                                         const GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
                                                                                                         const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                        const GGS_bool & in_m_5F_W_5F_isDestination
+                                                                                                        const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                                                                        Compiler * inCompiler
                                                                                                         COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mInstruction (),
 mProperty_mRegisterDescription (),
 mProperty_m_5F_W_5F_isDestination () {
@@ -10023,12 +10027,23 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::description (String & i
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, mProperty_m_5F_W_5F_isDestination COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, mProperty_m_5F_W_5F_isDestination, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -10187,24 +10202,6 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak GGS_baseline_5F_interm
 // @baseline_5F_intermediate_5F_instruction_5F_F reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_instruction_5F_F::cPtr_baseline_5F_intermediate_5F_instruction_5F_F (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
-mProperty_mInstruction (),
-mProperty_mRegisterDescription () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_instruction_5F_F::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
-    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_instruction_5F_F::objectCompare (const GGS_baseline_5F_intermediate_5F_instruction_5F_F & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -10265,10 +10262,11 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 
 GGS_baseline_5F_intermediate_5F_instruction_5F_F GGS_baseline_5F_intermediate_5F_instruction_5F_F::class_func_new (const GGS_location & in_mInstructionLocation,
                                                                                                                    const GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
-                                                                                                                   const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription
+                                                                                                                   const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                                   Compiler * inCompiler
                                                                                                                    COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_instruction_5F_F result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_F (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_F (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -10320,11 +10318,20 @@ void GGS_baseline_5F_intermediate_5F_instruction_5F_F::setProperty_mRegisterDesc
 //Pointer class for @baseline_intermediate_instruction_F class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_intermediate_5F_instruction_5F_F::cPtr_baseline_5F_intermediate_5F_instruction_5F_F (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
+mProperty_mInstruction (),
+mProperty_mRegisterDescription () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_intermediate_5F_instruction_5F_F::cPtr_baseline_5F_intermediate_5F_instruction_5F_F (const GGS_location & in_mInstructionLocation,
                                                                                                       const GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
-                                                                                                      const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription
+                                                                                                      const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                      Compiler * inCompiler
                                                                                                       COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mInstruction (),
 mProperty_mRegisterDescription () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
@@ -10351,12 +10358,22 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_F::description (String & io
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_F::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_F::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_F (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_F (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_instruction_5F_F::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -10515,26 +10532,6 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak GGS_baseline_5F_interme
 // @baseline_5F_intermediate_5F_instruction_5F_FB reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
-mProperty_mInstruction (),
-mProperty_mRegisterDescription (),
-mProperty_mBitNumber () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
-    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
-    mProperty_mBitNumber.printNonNullClassInstanceProperties ("mBitNumber") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_instruction_5F_FB::objectCompare (const GGS_baseline_5F_intermediate_5F_instruction_5F_FB & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -10599,10 +10596,11 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 GGS_baseline_5F_intermediate_5F_instruction_5F_FB GGS_baseline_5F_intermediate_5F_instruction_5F_FB::class_func_new (const GGS_location & in_mInstructionLocation,
                                                                                                                      const GGS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
                                                                                                                      const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                     const GGS_uint & in_mBitNumber
+                                                                                                                     const GGS_uint & in_mBitNumber,
+                                                                                                                     Compiler * inCompiler
                                                                                                                      COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_instruction_5F_FB result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_mBitNumber COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_mBitNumber,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -10676,12 +10674,22 @@ void GGS_baseline_5F_intermediate_5F_instruction_5F_FB::setProperty_mBitNumber (
 //Pointer class for @baseline_intermediate_instruction_FB class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
+mProperty_mInstruction (),
+mProperty_mRegisterDescription (),
+mProperty_mBitNumber () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (const GGS_location & in_mInstructionLocation,
                                                                                                         const GGS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
                                                                                                         const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                        const GGS_uint & in_mBitNumber
+                                                                                                        const GGS_uint & in_mBitNumber,
+                                                                                                        Compiler * inCompiler
                                                                                                         COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mInstruction (),
 mProperty_mRegisterDescription (),
 mProperty_mBitNumber () {
@@ -10712,12 +10720,23 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::description (String & i
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, mProperty_mBitNumber COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, mProperty_mBitNumber, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_mBitNumber.printNonNullClassInstanceProperties ("mBitNumber") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -10876,26 +10895,6 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak GGS_baseline_5F_interm
 // @baseline_5F_intermediate_5F_instruction_5F_BitTestSkip reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
-mProperty_mSkipIfSet (),
-mProperty_mRegisterDescription (),
-mProperty_mBitNumber () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mSkipIfSet.printNonNullClassInstanceProperties ("mSkipIfSet") ;
-    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
-    mProperty_mBitNumber.printNonNullClassInstanceProperties ("mBitNumber") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::objectCompare (const GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -10960,10 +10959,11 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::class_func_new (const GGS_location & in_mInstructionLocation,
                                                                                                                                        const GGS_bool & in_mSkipIfSet,
                                                                                                                                        const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                                       const GGS_uint & in_mBitNumber
+                                                                                                                                       const GGS_uint & in_mBitNumber,
+                                                                                                                                       Compiler * inCompiler
                                                                                                                                        COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (in_mInstructionLocation, in_mSkipIfSet, in_mRegisterDescription, in_mBitNumber COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (in_mInstructionLocation, in_mSkipIfSet, in_mRegisterDescription, in_mBitNumber,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -11037,12 +11037,22 @@ void GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setProperty_mBi
 //Pointer class for @baseline_intermediate_instruction_BitTestSkip class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
+mProperty_mSkipIfSet (),
+mProperty_mRegisterDescription (),
+mProperty_mBitNumber () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (const GGS_location & in_mInstructionLocation,
                                                                                                                           const GGS_bool & in_mSkipIfSet,
                                                                                                                           const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                          const GGS_uint & in_mBitNumber
+                                                                                                                          const GGS_uint & in_mBitNumber,
+                                                                                                                          Compiler * inCompiler
                                                                                                                           COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mSkipIfSet (),
 mProperty_mRegisterDescription (),
 mProperty_mBitNumber () {
@@ -11073,12 +11083,23 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::description (S
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (mProperty_mInstructionLocation, mProperty_mSkipIfSet, mProperty_mRegisterDescription, mProperty_mBitNumber COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (mProperty_mInstructionLocation, mProperty_mSkipIfSet, mProperty_mRegisterDescription, mProperty_mBitNumber, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mSkipIfSet.printNonNullClassInstanceProperties ("mSkipIfSet") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_mBitNumber.printNonNullClassInstanceProperties ("mBitNumber") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -11681,22 +11702,6 @@ GGS_baseline_5F_intermediate_5F_JSR_2E_weak GGS_baseline_5F_intermediate_5F_JSR_
 // @baseline_5F_intermediate_5F_WO_5F_OPERAND reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
-mProperty_mInstruction () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND::objectCompare (const GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -11753,10 +11758,11 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                             const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
+                                                                                                             const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+                                                                                                             Compiler * inCompiler
                                                                                                              COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (in_mInstructionLocation, in_mInstruction COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (in_mInstructionLocation, in_mInstruction,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -11786,10 +11792,18 @@ void GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND::setProperty_mInstruction (co
 //Pointer class for @baseline_intermediate_WO_OPERAND class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
+mProperty_mInstruction () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (const GGS_location & in_mInstructionLocation,
-                                                                                                const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
+                                                                                                const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+                                                                                                Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mInstruction () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
   mProperty_mInstruction = in_mInstruction ;
@@ -11812,12 +11826,21 @@ void cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::description (String & ioStr
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (mProperty_mInstructionLocation, mProperty_mInstruction COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (mProperty_mInstructionLocation, mProperty_mInstruction, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -12087,24 +12110,6 @@ GGS_baseline_5F_intermediate_5F_TRIS_2E_weak GGS_baseline_5F_intermediate_5F_TRI
 // @baseline_5F_intermediate_5F_instruction_5F_literalOperation reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
-mProperty_mInstruction (),
-mProperty_mLiteralValue () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
-    mProperty_mLiteralValue.printNonNullClassInstanceProperties ("mLiteralValue") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::objectCompare (const GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -12165,10 +12170,11 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 
 GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::class_func_new (const GGS_location & in_mInstructionLocation,
                                                                                                                                                  const GGS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
-                                                                                                                                                 const GGS_uint & in_mLiteralValue
+                                                                                                                                                 const GGS_uint & in_mLiteralValue,
+                                                                                                                                                 Compiler * inCompiler
                                                                                                                                                  COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (in_mInstructionLocation, in_mInstruction, in_mLiteralValue COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (in_mInstructionLocation, in_mInstruction, in_mLiteralValue,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -12220,11 +12226,20 @@ void GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::setPropert
 //Pointer class for @baseline_intermediate_instruction_literalOperation class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
+mProperty_mInstruction (),
+mProperty_mLiteralValue () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (const GGS_location & in_mInstructionLocation,
                                                                                                                                     const GGS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
-                                                                                                                                    const GGS_uint & in_mLiteralValue
+                                                                                                                                    const GGS_uint & in_mLiteralValue,
+                                                                                                                                    Compiler * inCompiler
                                                                                                                                     COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mInstruction (),
 mProperty_mLiteralValue () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
@@ -12251,12 +12266,22 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::descripti
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mLiteralValue COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mLiteralValue, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction.printNonNullClassInstanceProperties ("mInstruction") ;
+    mProperty_mLiteralValue.printNonNullClassInstanceProperties ("mLiteralValue") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -12415,22 +12440,6 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak GGS_base
 // @baseline_5F_intermediate_5F_instruction_5F_MNOP reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
-mProperty_mOccurrenceFactor () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mOccurrenceFactor.printNonNullClassInstanceProperties ("mOccurrenceFactor") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP::objectCompare (const GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -12487,10 +12496,11 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                         const GGS_luint & in_mOccurrenceFactor
+                                                                                                                         const GGS_luint & in_mOccurrenceFactor,
+                                                                                                                         Compiler * inCompiler
                                                                                                                          COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (in_mInstructionLocation, in_mOccurrenceFactor COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (in_mInstructionLocation, in_mOccurrenceFactor,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -12520,10 +12530,18 @@ void GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP::setProperty_mOccurrenc
 //Pointer class for @baseline_intermediate_instruction_MNOP class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
+mProperty_mOccurrenceFactor () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (const GGS_location & in_mInstructionLocation,
-                                                                                                            const GGS_luint & in_mOccurrenceFactor
+                                                                                                            const GGS_luint & in_mOccurrenceFactor,
+                                                                                                            Compiler * inCompiler
                                                                                                             COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mOccurrenceFactor () {
   mProperty_mInstructionLocation = in_mInstructionLocation ;
   mProperty_mOccurrenceFactor = in_mOccurrenceFactor ;
@@ -12546,12 +12564,21 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::description (String &
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (mProperty_mInstructionLocation, mProperty_mOccurrenceFactor COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (mProperty_mInstructionLocation, mProperty_mOccurrenceFactor, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mOccurrenceFactor.printNonNullClassInstanceProperties ("mOccurrenceFactor") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -12710,30 +12737,6 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak GGS_baseline_5F_inte
 // @baseline_5F_intermediate_5F_incDecRegisterInCondition reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
-mProperty_mRegisterDescription (),
-mProperty_mTargetLabel (),
-mProperty_mIncrement (),
-mProperty_m_5F_W_5F_isDestination (),
-mProperty_mBranchIfZero () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
-    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
-    mProperty_mTargetLabel.printNonNullClassInstanceProperties ("mTargetLabel") ;
-    mProperty_mIncrement.printNonNullClassInstanceProperties ("mIncrement") ;
-    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
-    mProperty_mBranchIfZero.printNonNullClassInstanceProperties ("mBranchIfZero") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::objectCompare (const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -12806,10 +12809,11 @@ GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition GGS_baseline_5F_interm
                                                                                                                                      const GGS_string & in_mTargetLabel,
                                                                                                                                      const GGS_bool & in_mIncrement,
                                                                                                                                      const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                                                     const GGS_bool & in_mBranchIfZero
+                                                                                                                                     const GGS_bool & in_mBranchIfZero,
+                                                                                                                                     Compiler * inCompiler
                                                                                                                                      COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (in_mInstructionLocation, in_mRegisterDescription, in_mTargetLabel, in_mIncrement, in_m_5F_W_5F_isDestination, in_mBranchIfZero COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (in_mInstructionLocation, in_mRegisterDescription, in_mTargetLabel, in_mIncrement, in_m_5F_W_5F_isDestination, in_mBranchIfZero,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -12927,14 +12931,26 @@ void GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_mBra
 //Pointer class for @baseline_intermediate_incDecRegisterInCondition class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_intermediate_5F_actualInstruction (inCompiler COMMA_THERE),
+mProperty_mRegisterDescription (),
+mProperty_mTargetLabel (),
+mProperty_mIncrement (),
+mProperty_m_5F_W_5F_isDestination (),
+mProperty_mBranchIfZero () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (const GGS_location & in_mInstructionLocation,
                                                                                                                         const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
                                                                                                                         const GGS_string & in_mTargetLabel,
                                                                                                                         const GGS_bool & in_mIncrement,
                                                                                                                         const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                                        const GGS_bool & in_mBranchIfZero
+                                                                                                                        const GGS_bool & in_mBranchIfZero,
+                                                                                                                        Compiler * inCompiler
                                                                                                                         COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation COMMA_THERE),
+cPtr_baseline_5F_intermediate_5F_actualInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
 mProperty_mRegisterDescription (),
 mProperty_mTargetLabel (),
 mProperty_mIncrement (),
@@ -12973,12 +12989,25 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::description (St
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (mProperty_mInstructionLocation, mProperty_mRegisterDescription, mProperty_mTargetLabel, mProperty_mIncrement, mProperty_m_5F_W_5F_isDestination, mProperty_mBranchIfZero COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (mProperty_mInstructionLocation, mProperty_mRegisterDescription, mProperty_mTargetLabel, mProperty_mIncrement, mProperty_m_5F_W_5F_isDestination, mProperty_mBranchIfZero, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_intermediate_5F_actualInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_mTargetLabel.printNonNullClassInstanceProperties ("mTargetLabel") ;
+    mProperty_mIncrement.printNonNullClassInstanceProperties ("mIncrement") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+    mProperty_mBranchIfZero.printNonNullClassInstanceProperties ("mBranchIfZero") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -14182,20 +14211,6 @@ void callExtensionMethod_optimizeTestDecInc (cPtr_baseline_5F_intermediate_5F_in
 // @baseline_5F_assembly_5F_instruction reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_assembly_5F_instruction::cPtr_baseline_5F_assembly_5F_instruction (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_assembly_5F_instruction::objectCompare (const GGS_baseline_5F_assembly_5F_instruction & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -14228,10 +14243,22 @@ AC_GALGAS_reference_class (inSourcePtr) {
 //Pointer class for @baseline_assembly_instruction class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_assembly_5F_instruction::cPtr_baseline_5F_assembly_5F_instruction (LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_instruction::cPtr_baseline_5F_assembly_5F_instruction (Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) :
+acStrongPtr_class (inCompiler COMMA_THERE) {
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -14799,22 +14826,6 @@ GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instruct
 // @baseline_5F_assembly_5F_pseudo_5F_ORG reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_assembly_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mOrigin () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mOrigin.printNonNullClassInstanceProperties ("mOrigin") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -14867,10 +14878,11 @@ GGS_baseline_5F_assembly_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::class_func_new (const GGS_uint & in_mOrigin
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::class_func_new (const GGS_uint & in_mOrigin,
+                                                                                                     Compiler * inCompiler
                                                                                                      COMMA_LOCATION_ARGS) {
   GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (in_mOrigin COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (in_mOrigin,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -14900,9 +14912,17 @@ void GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::setProperty_mOrigin (const GGS_u
 //Pointer class for @baseline_assembly_pseudo_ORG class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (const GGS_uint & in_mOrigin
+cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_assembly_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mOrigin () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (const GGS_uint & in_mOrigin,
+                                                                                        Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_assembly_5F_instruction (THERE),
+cPtr_baseline_5F_assembly_5F_instruction (inCompiler COMMA_THERE),
 mProperty_mOrigin () {
   mProperty_mOrigin = in_mOrigin ;
 }
@@ -14922,12 +14942,21 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (mProperty_mOrigin COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (mProperty_mOrigin, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mOrigin.printNonNullClassInstanceProperties ("mOrigin") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -15077,117 +15106,6 @@ GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak GGS_baseline_5F_assembly_5F_ps
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_pseudo_ORG.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (void) :
-GGS_baseline_5F_assembly_5F_instruction_2E_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::operator = (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) :
-GGS_baseline_5F_assembly_5F_instruction_2E_weak (inSource) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::class_func_nil (LOCATION_ARGS) {
-  GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::bang_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE) ;
-      result = GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE ((cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @baseline_assembly_pseudo_BEGINOFROUTINE.weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak ("baseline_assembly_pseudo_BEGINOFROUTINE.weak",
-                                                                                                                & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_2E_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::extractObject (const GGS_object & inObject,
-                                                                                                                                          Compiler * inCompiler
-                                                                                                                                          COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak result ;
-  const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak * p = (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("baseline_assembly_pseudo_BEGINOFROUTINE.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

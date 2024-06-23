@@ -642,7 +642,8 @@ class cPtr_baseline_5F_instruction : public acStrongPtr_class {
   public: cPtr_baseline_5F_instruction (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_instruction (const GGS_location & in_mInstructionLocation
+  public: cPtr_baseline_5F_instruction (const GGS_location & in_mInstructionLocation,
+                                        Compiler * inCompiler
                                         COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
@@ -1010,7 +1011,8 @@ class GGS_baseline_5F_instruction_5F_FD : public GGS_baseline_5F_instruction {
   public: static class GGS_baseline_5F_instruction_5F_FD class_func_new (const class GGS_location & inOperand0,
                                                                          const class GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inOperand1,
                                                                          const class GGS_registerExpression & inOperand2,
-                                                                         const class GGS_bool & inOperand3
+                                                                         const class GGS_bool & inOperand3,
+                                                                         class Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1086,11 +1088,12 @@ class cPtr_baseline_5F_instruction_5F_FD : public cPtr_baseline_5F_instruction {
   public: cPtr_baseline_5F_instruction_5F_FD (const GGS_location & in_mInstructionLocation,
                                               const GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction_5F_FD_5F_base_5F_code,
                                               const GGS_registerExpression & in_mRegisterExpression,
-                                              const GGS_bool & in_m_5F_W_5F_isDestination
+                                              const GGS_bool & in_m_5F_W_5F_isDestination,
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1232,7 +1235,8 @@ class GGS_baseline_5F_instruction_5F_F : public GGS_baseline_5F_instruction {
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_F class_func_new (const class GGS_location & inOperand0,
                                                                         const class GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                        const class GGS_registerExpression & inOperand2
+                                                                        const class GGS_registerExpression & inOperand2,
+                                                                        class Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1305,11 +1309,12 @@ class cPtr_baseline_5F_instruction_5F_F : public cPtr_baseline_5F_instruction {
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_F (const GGS_location & in_mInstructionLocation,
                                              const GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mFAinstruction,
-                                             const GGS_registerExpression & in_mRegisterExpression
+                                             const GGS_registerExpression & in_mRegisterExpression,
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1456,7 +1461,8 @@ class GGS_baseline_5F_instruction_5F_FB : public GGS_baseline_5F_instruction {
   public: static class GGS_baseline_5F_instruction_5F_FB class_func_new (const class GGS_location & inOperand0,
                                                                          const class GGS_baseline_5F_bit_5F_oriented_5F_op & inOperand1,
                                                                          const class GGS_registerExpression & inOperand2,
-                                                                         const class GGS_bitNumberExpression & inOperand3
+                                                                         const class GGS_bitNumberExpression & inOperand3,
+                                                                         class Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1532,11 +1538,12 @@ class cPtr_baseline_5F_instruction_5F_FB : public cPtr_baseline_5F_instruction {
   public: cPtr_baseline_5F_instruction_5F_FB (const GGS_location & in_mInstructionLocation,
                                               const GGS_baseline_5F_bit_5F_oriented_5F_op & in_mBitOrientedOp,
                                               const GGS_registerExpression & in_mRegisterExpression,
-                                              const GGS_bitNumberExpression & in_mBitNumber
+                                              const GGS_bitNumberExpression & in_mBitNumber,
+                                              Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1673,7 +1680,8 @@ class GGS_baseline_5F_instruction_5F_CALL : public GGS_baseline_5F_instruction {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_CALL class_func_new (const class GGS_location & inOperand0,
-                                                                           const class GGS_lstring & inOperand1
+                                                                           const class GGS_lstring & inOperand1,
+                                                                           class Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1747,11 +1755,12 @@ class cPtr_baseline_5F_instruction_5F_CALL : public cPtr_baseline_5F_instruction
 
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_CALL (const GGS_location & in_mInstructionLocation,
-                                                const GGS_lstring & in_mTargetLabel
+                                                const GGS_lstring & in_mTargetLabel,
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1888,7 +1897,8 @@ class GGS_baseline_5F_instruction_5F_JSR : public GGS_baseline_5F_instruction {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_JSR class_func_new (const class GGS_location & inOperand0,
-                                                                          const class GGS_lstring & inOperand1
+                                                                          const class GGS_lstring & inOperand1,
+                                                                          class Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -1958,11 +1968,12 @@ class cPtr_baseline_5F_instruction_5F_JSR : public cPtr_baseline_5F_instruction 
 
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_JSR (const GGS_location & in_mInstructionLocation,
-                                               const GGS_lstring & in_mTargetLabel
+                                               const GGS_lstring & in_mTargetLabel,
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2099,7 +2110,8 @@ class GGS_baseline_5F_instruction_5F_GOTO : public GGS_baseline_5F_instruction {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_GOTO class_func_new (const class GGS_location & inOperand0,
-                                                                           const class GGS_lstring & inOperand1
+                                                                           const class GGS_lstring & inOperand1,
+                                                                           class Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2173,11 +2185,12 @@ class cPtr_baseline_5F_instruction_5F_GOTO : public cPtr_baseline_5F_instruction
 
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_GOTO (const GGS_location & in_mInstructionLocation,
-                                                const GGS_lstring & in_mTargetLabel
+                                                const GGS_lstring & in_mTargetLabel,
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2314,7 +2327,8 @@ class GGS_baseline_5F_instruction_5F_JUMP : public GGS_baseline_5F_instruction {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_JUMP class_func_new (const class GGS_location & inOperand0,
-                                                                           const class GGS_lstring & inOperand1
+                                                                           const class GGS_lstring & inOperand1,
+                                                                           class Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2388,11 +2402,12 @@ class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction
 
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_JUMP (const GGS_location & in_mInstructionLocation,
-                                                const GGS_lstring & in_mTargetLabel
+                                                const GGS_lstring & in_mTargetLabel,
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2529,7 +2544,8 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND : public GGS_baseline_5F_inst
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND class_func_new (const class GGS_location & inOperand0,
-                                                                                    const class GGS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1
+                                                                                    const class GGS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1,
+                                                                                    class Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2599,11 +2615,12 @@ class cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND : public cPtr_baseline_5F_in
 
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND (const GGS_location & in_mInstructionLocation,
-                                                         const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
+                                                         const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+                                                         Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2740,7 +2757,8 @@ class GGS_baseline_5F_instruction_5F_TRIS : public GGS_baseline_5F_instruction {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_TRIS class_func_new (const class GGS_location & inOperand0,
-                                                                           const class GGS_lstring & inOperand1
+                                                                           const class GGS_lstring & inOperand1,
+                                                                           class Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2810,11 +2828,12 @@ class cPtr_baseline_5F_instruction_5F_TRIS : public cPtr_baseline_5F_instruction
 
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_TRIS (const GGS_location & in_mInstructionLocation,
-                                                const GGS_lstring & in_mOperand
+                                                const GGS_lstring & in_mOperand,
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2956,7 +2975,8 @@ class GGS_baseline_5F_instruction_5F_literalOperation : public GGS_baseline_5F_i
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_literalOperation class_func_new (const class GGS_location & inOperand0,
                                                                                        const class GGS_baseline_5F_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                       const class GGS_immediatExpression & inOperand2
+                                                                                       const class GGS_immediatExpression & inOperand2,
+                                                                                       class Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3033,11 +3053,12 @@ class cPtr_baseline_5F_instruction_5F_literalOperation : public cPtr_baseline_5F
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_literalOperation (const GGS_location & in_mInstructionLocation,
                                                             const GGS_baseline_5F_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
-                                                            const GGS_immediatExpression & in_mImmediatExpression
+                                                            const GGS_immediatExpression & in_mImmediatExpression,
+                                                            Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3174,7 +3195,8 @@ class GGS_baseline_5F_instruction_5F_MNOP : public GGS_baseline_5F_instruction {
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_MNOP class_func_new (const class GGS_location & inOperand0,
-                                                                           const class GGS_luint & inOperand1
+                                                                           const class GGS_luint & inOperand1,
+                                                                           class Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3244,11 +3266,12 @@ class cPtr_baseline_5F_instruction_5F_MNOP : public cPtr_baseline_5F_instruction
 
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_MNOP (const GGS_location & in_mInstructionLocation,
-                                                const GGS_luint & in_mOccurrenceFactor
+                                                const GGS_luint & in_mOccurrenceFactor,
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3390,7 +3413,8 @@ class GGS_baseline_5F_instruction_5F_FOREVER : public GGS_baseline_5F_instructio
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_instruction_5F_FOREVER class_func_new (const class GGS_location & inOperand0,
                                                                               const class GGS_baseline_5F_instructionList & inOperand1,
-                                                                              const class GGS_location & inOperand2
+                                                                              const class GGS_location & inOperand2,
+                                                                              class Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3467,11 +3491,12 @@ class cPtr_baseline_5F_instruction_5F_FOREVER : public cPtr_baseline_5F_instruct
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_FOREVER (const GGS_location & in_mInstructionLocation,
                                                    const GGS_baseline_5F_instructionList & in_mInstructionList,
-                                                   const GGS_location & in_mEndOfInstructionList
+                                                   const GGS_location & in_mEndOfInstructionList,
+                                                   Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3628,7 +3653,8 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public GGS_baseline_5F_i
                                                                                        const class GGS_immediatExpression & inOperand2,
                                                                                        const class GGS_immediatExpression & inOperand3,
                                                                                        const class GGS_baseline_5F_instructionList & inOperand4,
-                                                                                       const class GGS_location & inOperand5
+                                                                                       const class GGS_location & inOperand5,
+                                                                                       class Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3710,11 +3736,12 @@ class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F
                                                             const GGS_immediatExpression & in_mLowerBoundExpression,
                                                             const GGS_immediatExpression & in_mUpperBoundExpression,
                                                             const GGS_baseline_5F_instructionList & in_mInstructionList,
-                                                            const GGS_location & in_mEndOfInstruction
+                                                            const GGS_location & in_mEndOfInstruction,
+                                                            Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3902,7 +3929,8 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_baseline
 
 //--- Constructor
   public: cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (const GGS_location & in_mInstructionLocation,
-                                                               const GGS_baseline_5F_instruction & in_mInstruction
+                                                               const GGS_baseline_5F_instruction & in_mInstruction,
+                                                               Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
@@ -4052,7 +4080,8 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest : public GGS_baseline_5F_inst
                                                                                     const class GGS_baseline_5F_instruction & inOperand1,
                                                                                     const class GGS_bool & inOperand2,
                                                                                     const class GGS_registerExpression & inOperand3,
-                                                                                    const class GGS_bitNumberExpression & inOperand4
+                                                                                    const class GGS_bitNumberExpression & inOperand4,
+                                                                                    class Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4138,11 +4167,12 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest : public cPtr_baseline_5F_in
                                                          const GGS_baseline_5F_instruction & in_mInstruction,
                                                          const GGS_bool & in_mSkipIfSet,
                                                          const GGS_registerExpression & in_mRegisterExpression,
-                                                         const GGS_bitNumberExpression & in_mBitNumber
+                                                         const GGS_bitNumberExpression & in_mBitNumber,
+                                                         Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4291,7 +4321,8 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec : public GGS_baseline_5F_instr
                                                                                    const class GGS_baseline_5F_instruction & inOperand1,
                                                                                    const class GGS_bool & inOperand2,
                                                                                    const class GGS_registerExpression & inOperand3,
-                                                                                   const class GGS_bool & inOperand4
+                                                                                   const class GGS_bool & inOperand4,
+                                                                                   class Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4369,11 +4400,12 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_IncDec : public cPtr_baseline_5F_ins
                                                         const GGS_baseline_5F_instruction & in_mInstruction,
                                                         const GGS_bool & in_mIncrement,
                                                         const GGS_registerExpression & in_mRegisterExpression,
-                                                        const GGS_bool & in_m_5F_W_5F_isDestination
+                                                        const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                        Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4556,11 +4588,10 @@ class cPtr_baseline_5F_conditionExpression : public acStrongPtr_class {
 //--- Properties
 
 
-//--- Default constructor
-  public: cPtr_baseline_5F_conditionExpression (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_conditionExpression (LOCATION_ARGS) ;
+  public: cPtr_baseline_5F_conditionExpression (Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
 //--- Description
@@ -4710,7 +4741,8 @@ class GGS_baseline_5F_incDecRegisterInCondition : public GGS_baseline_5F_conditi
   public: static class GGS_baseline_5F_incDecRegisterInCondition class_func_new (const class GGS_registerExpression & inOperand0,
                                                                                  const class GGS_bool & inOperand1,
                                                                                  const class GGS_bool & inOperand2,
-                                                                                 const class GGS_bool & inOperand3
+                                                                                 const class GGS_bool & inOperand3,
+                                                                                 class Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4781,11 +4813,12 @@ class cPtr_baseline_5F_incDecRegisterInCondition : public cPtr_baseline_5F_condi
   public: cPtr_baseline_5F_incDecRegisterInCondition (const GGS_registerExpression & in_mRegisterExpression,
                                                       const GGS_bool & in_mIncrement,
                                                       const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                      const GGS_bool & in_mBranchIfZero
+                                                      const GGS_bool & in_mBranchIfZero,
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4920,7 +4953,8 @@ class GGS_baseline_5F_negateCondition : public GGS_baseline_5F_conditionExpressi
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_negateCondition class_func_new (const class GGS_baseline_5F_conditionExpression & inOperand0
+  public: static class GGS_baseline_5F_negateCondition class_func_new (const class GGS_baseline_5F_conditionExpression & inOperand0,
+                                                                       class Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4982,11 +5016,12 @@ class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpres
   public: cPtr_baseline_5F_negateCondition (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_negateCondition (const GGS_baseline_5F_conditionExpression & in_mCondition
+  public: cPtr_baseline_5F_negateCondition (const GGS_baseline_5F_conditionExpression & in_mCondition,
+                                            Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5126,7 +5161,8 @@ class GGS_baseline_5F_andCondition : public GGS_baseline_5F_conditionExpression 
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_andCondition class_func_new (const class GGS_baseline_5F_conditionExpression & inOperand0,
-                                                                    const class GGS_baseline_5F_conditionExpression & inOperand1
+                                                                    const class GGS_baseline_5F_conditionExpression & inOperand1,
+                                                                    class Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5191,11 +5227,12 @@ class cPtr_baseline_5F_andCondition : public cPtr_baseline_5F_conditionExpressio
 
 //--- Constructor
   public: cPtr_baseline_5F_andCondition (const GGS_baseline_5F_conditionExpression & in_mLeftExpression,
-                                         const GGS_baseline_5F_conditionExpression & in_mRightExpression
+                                         const GGS_baseline_5F_conditionExpression & in_mRightExpression,
+                                         Compiler * inCompiler
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5335,7 +5372,8 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public GG
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition class_func_new (const class GGS_registerExpression & inOperand0,
-                                                                                                      const class GGS_bitNumberExpression & inOperand1
+                                                                                                      const class GGS_bitNumberExpression & inOperand1,
+                                                                                                      class Compiler * inCompiler
                                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5400,11 +5438,12 @@ class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
 
 //--- Constructor
   public: cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (const GGS_registerExpression & in_mRegisterExpression,
-                                                                           const GGS_bitNumberExpression & in_mBitNumber
+                                                                           const GGS_bitNumberExpression & in_mBitNumber,
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5556,7 +5595,8 @@ class GGS_baseline_5F_instruction_5F_structured_5F_if : public GGS_baseline_5F_i
                                                                                        const class GGS_baseline_5F_conditionExpression & inOperand1,
                                                                                        const class GGS_baseline_5F_instructionList & inOperand2,
                                                                                        const class GGS_baseline_5F_instructionList & inOperand3,
-                                                                                       const class GGS_location & inOperand4
+                                                                                       const class GGS_location & inOperand4,
+                                                                                       class Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5639,11 +5679,12 @@ class cPtr_baseline_5F_instruction_5F_structured_5F_if : public cPtr_baseline_5F
                                                             const GGS_baseline_5F_conditionExpression & in_mIfCondition,
                                                             const GGS_baseline_5F_instructionList & in_mThenInstructionList,
                                                             const GGS_baseline_5F_instructionList & in_mElseInstructionList,
-                                                            const GGS_location & in_mEndOfElsePartLocation
+                                                            const GGS_location & in_mEndOfElsePartLocation,
+                                                            Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6074,7 +6115,8 @@ class GGS_baseline_5F_instruction_5F_do_5F_while : public GGS_baseline_5F_instru
   public: static class GGS_baseline_5F_instruction_5F_do_5F_while class_func_new (const class GGS_location & inOperand0,
                                                                                   const class GGS_baseline_5F_instructionList & inOperand1,
                                                                                   const class GGS_location & inOperand2,
-                                                                                  const class GGS_baseline_5F_partList & inOperand3
+                                                                                  const class GGS_baseline_5F_partList & inOperand3,
+                                                                                  class Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6150,11 +6192,12 @@ class cPtr_baseline_5F_instruction_5F_do_5F_while : public cPtr_baseline_5F_inst
   public: cPtr_baseline_5F_instruction_5F_do_5F_while (const GGS_location & in_mInstructionLocation,
                                                        const GGS_baseline_5F_instructionList & in_mRepeatedInstructionList,
                                                        const GGS_location & in_mEndOfRepeatedInstructionList,
-                                                       const GGS_baseline_5F_partList & in_mWhilePartList
+                                                       const GGS_baseline_5F_partList & in_mWhilePartList,
+                                                       Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7128,11 +7171,10 @@ class cPtr_baseline_5F_intermediate_5F_instruction : public acStrongPtr_class {
 //--- Properties
 
 
-//--- Default constructor
-  public: cPtr_baseline_5F_intermediate_5F_instruction (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_intermediate_5F_instruction (LOCATION_ARGS) ;
+  public: cPtr_baseline_5F_intermediate_5F_instruction (Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
 //--- Description
@@ -7483,7 +7525,8 @@ class GGS_baseline_5F_intermediate_5F_NULL : public GGS_baseline_5F_intermediate
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_intermediate_5F_NULL class_func_new (LOCATION_ARGS) ;
+  public: static class GGS_baseline_5F_intermediate_5F_NULL class_func_new (Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_baseline_5F_intermediate_5F_NULL & inOperand) const ;
@@ -7542,14 +7585,13 @@ class cPtr_baseline_5F_intermediate_5F_NULL : public cPtr_baseline_5F_intermedia
 //--- Properties
 
 
-//--- Default constructor
-  public: cPtr_baseline_5F_intermediate_5F_NULL (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_intermediate_5F_NULL (LOCATION_ARGS) ;
+  public: cPtr_baseline_5F_intermediate_5F_NULL (Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7720,11 +7762,10 @@ class cPtr_baseline_5F_intermediate_5F_pseudo : public cPtr_baseline_5F_intermed
 //--- Properties
 
 
-//--- Default constructor
-  public: cPtr_baseline_5F_intermediate_5F_pseudo (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_intermediate_5F_pseudo (LOCATION_ARGS) ;
+  public: cPtr_baseline_5F_intermediate_5F_pseudo (Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
 //--- Description
@@ -7859,7 +7900,8 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public GGS_baseline_5F_in
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE class_func_new (const class GGS_uint & inOperand0
+  public: static class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE class_func_new (const class GGS_uint & inOperand0,
+                                                                                      class Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -7929,11 +7971,12 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public cPtr_baseline_5F_
   public: cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (const GGS_uint & in_mPage
+  public: cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (const GGS_uint & in_mPage,
+                                                           Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8068,7 +8111,8 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public GGS_baseline_5F_i
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL class_func_new (const class GGS_lstring & inOperand0
+  public: static class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL class_func_new (const class GGS_lstring & inOperand0,
+                                                                                       class Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8139,11 +8183,12 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public cPtr_baseline_5F
   public: cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL (const GGS_lstring & in_mLabel
+  public: cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL (const GGS_lstring & in_mLabel,
+                                                            Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8283,7 +8328,8 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public GGS_ba
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE class_func_new (const class GGS_lstring & inOperand0,
-                                                                                                  const class GGS_bool & inOperand1
+                                                                                                  const class GGS_bool & inOperand1,
+                                                                                                  class Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8356,11 +8402,12 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public cPtr_
 
 //--- Constructor
   public: cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE (const GGS_lstring & in_mRoutineName,
-                                                                       const GGS_bool & in_mIsRegular
+                                                                       const GGS_bool & in_mIsRegular,
+                                                                       Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8500,7 +8547,8 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public GGS_base
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE class_func_new (const class GGS_lstring & inOperand0,
-                                                                                                const class GGS_uint & inOperand1
+                                                                                                const class GGS_uint & inOperand1,
+                                                                                                class Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8572,11 +8620,12 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public cPtr_ba
 
 //--- Constructor
   public: cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE (const GGS_lstring & in_mRoutineName,
-                                                                     const GGS_uint & in_mPage
+                                                                     const GGS_uint & in_mPage,
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8760,7 +8809,8 @@ class cPtr_baseline_5F_intermediate_5F_actualInstruction : public cPtr_baseline_
   public: cPtr_baseline_5F_intermediate_5F_actualInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_intermediate_5F_actualInstruction (const GGS_location & in_mInstructionLocation
+  public: cPtr_baseline_5F_intermediate_5F_actualInstruction (const GGS_location & in_mInstructionLocation,
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
@@ -8908,7 +8958,8 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD : public GGS_baseline_5F
   public: static class GGS_baseline_5F_intermediate_5F_instruction_5F_FD class_func_new (const class GGS_location & inOperand0,
                                                                                          const class GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inOperand1,
                                                                                          const class GGS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                         const class GGS_bool & inOperand3
+                                                                                         const class GGS_bool & inOperand3,
+                                                                                         class Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8976,11 +9027,12 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_FD : public cPtr_baseline_
   public: cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (const GGS_location & in_mInstructionLocation,
                                                               const GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
                                                               const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                              const GGS_bool & in_m_5F_W_5F_isDestination
+                                                              const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9122,7 +9174,8 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F : public GGS_baseline_5F_
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_intermediate_5F_instruction_5F_F class_func_new (const class GGS_location & inOperand0,
                                                                                         const class GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                                        const class GGS_baseline_5F_intermediate_5F_registerExpression & inOperand2
+                                                                                        const class GGS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                        class Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9187,11 +9240,12 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_F : public cPtr_baseline_5
 //--- Constructor
   public: cPtr_baseline_5F_intermediate_5F_instruction_5F_F (const GGS_location & in_mInstructionLocation,
                                                              const GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
-                                                             const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription
+                                                             const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9338,7 +9392,8 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB : public GGS_baseline_5F
   public: static class GGS_baseline_5F_intermediate_5F_instruction_5F_FB class_func_new (const class GGS_location & inOperand0,
                                                                                          const class GGS_baseline_5F_bit_5F_oriented_5F_op & inOperand1,
                                                                                          const class GGS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                         const class GGS_uint & inOperand3
+                                                                                         const class GGS_uint & inOperand3,
+                                                                                         class Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9406,11 +9461,12 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_FB : public cPtr_baseline_
   public: cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (const GGS_location & in_mInstructionLocation,
                                                               const GGS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
                                                               const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                              const GGS_uint & in_mBitNumber
+                                                              const GGS_uint & in_mBitNumber,
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9557,7 +9613,8 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public GGS_ba
   public: static class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip class_func_new (const class GGS_location & inOperand0,
                                                                                                   const class GGS_bool & inOperand1,
                                                                                                   const class GGS_baseline_5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                                  const class GGS_uint & inOperand3
+                                                                                                  const class GGS_uint & inOperand3,
+                                                                                                  class Compiler * inCompiler
                                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9628,11 +9685,12 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public cPtr_
   public: cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (const GGS_location & in_mInstructionLocation,
                                                                        const GGS_bool & in_mSkipIfSet,
                                                                        const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                       const GGS_uint & in_mBitNumber
+                                                                       const GGS_uint & in_mBitNumber,
+                                                                       Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9769,7 +9827,8 @@ class GGS_baseline_5F_intermediate_5F_GOTO : public GGS_baseline_5F_intermediate
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_intermediate_5F_GOTO class_func_new (const class GGS_location & inOperand0,
-                                                                            const class GGS_lstring & inOperand1
+                                                                            const class GGS_lstring & inOperand1,
+                                                                            class Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9846,11 +9905,12 @@ class cPtr_baseline_5F_intermediate_5F_GOTO : public cPtr_baseline_5F_intermedia
 
 //--- Constructor
   public: cPtr_baseline_5F_intermediate_5F_GOTO (const GGS_location & in_mInstructionLocation,
-                                                 const GGS_lstring & in_mTargetLabel
+                                                 const GGS_lstring & in_mTargetLabel,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9997,7 +10057,8 @@ class GGS_baseline_5F_intermediate_5F_JUMP : public GGS_baseline_5F_intermediate
   public: static class GGS_baseline_5F_intermediate_5F_JUMP class_func_new (const class GGS_location & inOperand0,
                                                                             const class GGS_lstring & inOperand1,
                                                                             const class GGS_uint & inOperand2,
-                                                                            const class GGS_uint & inOperand3
+                                                                            const class GGS_uint & inOperand3,
+                                                                            class Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -10083,11 +10144,12 @@ class cPtr_baseline_5F_intermediate_5F_JUMP : public cPtr_baseline_5F_intermedia
   public: cPtr_baseline_5F_intermediate_5F_JUMP (const GGS_location & in_mInstructionLocation,
                                                  const GGS_lstring & in_mTargetLabel,
                                                  const GGS_uint & in_mCurrentPage,
-                                                 const GGS_uint & in_mTargetPage
+                                                 const GGS_uint & in_mTargetPage,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10224,7 +10286,8 @@ class GGS_baseline_5F_intermediate_5F_CALL : public GGS_baseline_5F_intermediate
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_intermediate_5F_CALL class_func_new (const class GGS_location & inOperand0,
-                                                                            const class GGS_lstring & inOperand1
+                                                                            const class GGS_lstring & inOperand1,
+                                                                            class Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -10298,11 +10361,12 @@ class cPtr_baseline_5F_intermediate_5F_CALL : public cPtr_baseline_5F_intermedia
 
 //--- Constructor
   public: cPtr_baseline_5F_intermediate_5F_CALL (const GGS_location & in_mInstructionLocation,
-                                                 const GGS_lstring & in_mTargetLabel
+                                                 const GGS_lstring & in_mTargetLabel,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10449,7 +10513,8 @@ class GGS_baseline_5F_intermediate_5F_JSR : public GGS_baseline_5F_intermediate_
   public: static class GGS_baseline_5F_intermediate_5F_JSR class_func_new (const class GGS_location & inOperand0,
                                                                            const class GGS_lstring & inOperand1,
                                                                            const class GGS_uint & inOperand2,
-                                                                           const class GGS_uint & inOperand3
+                                                                           const class GGS_uint & inOperand3,
+                                                                           class Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -10532,11 +10597,12 @@ class cPtr_baseline_5F_intermediate_5F_JSR : public cPtr_baseline_5F_intermediat
   public: cPtr_baseline_5F_intermediate_5F_JSR (const GGS_location & in_mInstructionLocation,
                                                 const GGS_lstring & in_mTargetLabel,
                                                 const GGS_uint & in_mCurrentPage,
-                                                const GGS_uint & in_mTargetPage
+                                                const GGS_uint & in_mTargetPage,
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10673,7 +10739,8 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND : public GGS_baseline_5F_int
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND class_func_new (const class GGS_location & inOperand0,
-                                                                                     const class GGS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1
+                                                                                     const class GGS_baseline_5F_WO_5F_OPERAND_5F_group & inOperand1,
+                                                                                     class Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -10735,11 +10802,12 @@ class cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND : public cPtr_baseline_5F_i
 
 //--- Constructor
   public: cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (const GGS_location & in_mInstructionLocation,
-                                                          const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction
+                                                          const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
+                                                          Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10881,7 +10949,8 @@ class GGS_baseline_5F_intermediate_5F_TRIS : public GGS_baseline_5F_intermediate
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_intermediate_5F_TRIS class_func_new (const class GGS_location & inOperand0,
                                                                             const class GGS_lstring & inOperand1,
-                                                                            const class GGS_uint & inOperand2
+                                                                            const class GGS_uint & inOperand2,
+                                                                            class Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -10946,11 +11015,12 @@ class cPtr_baseline_5F_intermediate_5F_TRIS : public cPtr_baseline_5F_intermedia
 //--- Constructor
   public: cPtr_baseline_5F_intermediate_5F_TRIS (const GGS_location & in_mInstructionLocation,
                                                  const GGS_lstring & in_mOperand,
-                                                 const GGS_uint & in_mOpcode
+                                                 const GGS_uint & in_mOpcode,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -11092,7 +11162,8 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public G
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation class_func_new (const class GGS_location & inOperand0,
                                                                                                        const class GGS_baseline_5F_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                                       const class GGS_uint & inOperand2
+                                                                                                       const class GGS_uint & inOperand2,
+                                                                                                       class Compiler * inCompiler
                                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -11160,11 +11231,12 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public 
 //--- Constructor
   public: cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (const GGS_location & in_mInstructionLocation,
                                                                             const GGS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
-                                                                            const GGS_uint & in_mLiteralValue
+                                                                            const GGS_uint & in_mLiteralValue,
+                                                                            Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -11301,7 +11373,8 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP : public GGS_baseline_
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP class_func_new (const class GGS_location & inOperand0,
-                                                                                           const class GGS_luint & inOperand1
+                                                                                           const class GGS_luint & inOperand1,
+                                                                                           class Compiler * inCompiler
                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -11366,11 +11439,12 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP : public cPtr_baselin
 
 //--- Constructor
   public: cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (const GGS_location & in_mInstructionLocation,
-                                                                const GGS_luint & in_mOccurrenceFactor
+                                                                const GGS_luint & in_mOccurrenceFactor,
+                                                                Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -11527,7 +11601,8 @@ class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition : public GGS_bas
                                                                                                  const class GGS_string & inOperand2,
                                                                                                  const class GGS_bool & inOperand3,
                                                                                                  const class GGS_bool & inOperand4,
-                                                                                                 const class GGS_bool & inOperand5
+                                                                                                 const class GGS_bool & inOperand5,
+                                                                                                 class Compiler * inCompiler
                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -11616,11 +11691,12 @@ class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition : public cPtr_b
                                                                       const GGS_string & in_mTargetLabel,
                                                                       const GGS_bool & in_mIncrement,
                                                                       const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                      const GGS_bool & in_mBranchIfZero
+                                                                      const GGS_bool & in_mBranchIfZero,
+                                                                      Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -12647,11 +12723,10 @@ class cPtr_baseline_5F_assembly_5F_instruction : public acStrongPtr_class {
 //--- Properties
 
 
-//--- Default constructor
-  public: cPtr_baseline_5F_assembly_5F_instruction (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_instruction (LOCATION_ARGS) ;
+  public: cPtr_baseline_5F_assembly_5F_instruction (Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
 //--- Description
@@ -13006,7 +13081,8 @@ class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG : public GGS_baseline_5F_assembl
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG class_func_new (const class GGS_uint & inOperand0
+  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG class_func_new (const class GGS_uint & inOperand0,
+                                                                                 class Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -13074,11 +13150,12 @@ class cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG : public cPtr_baseline_5F_assem
   public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (const GGS_uint & in_mOrigin
+  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (const GGS_uint & in_mOrigin,
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -13179,214 +13256,4 @@ class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak : public GGS_baseline_5F
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE reference class
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public GGS_baseline_5F_assembly_5F_instruction {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (const class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_lstring readProperty_mRoutineName (void) const ;
-  public: void setProperty_mRoutineName (const GGS_lstring & inValue) ;
-
-  public: class GGS_bool readProperty_mIsRegular (void) const ;
-  public: void setProperty_mIsRegular (const GGS_bool & inValue) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                                    const class GGS_bool & inOperand1,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE extractObject (const GGS_object & inObject,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE class_func_new (const class GGS_lstring & inOperand0,
-                                                                                            const class GGS_bool & inOperand1
-                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE class
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @baseline_assembly_pseudo_BEGINOFROUTINE class
-//
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public cPtr_baseline_5F_assembly_5F_instruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                              const class GGS_bool & inOperand1,
-                                                                              Compiler * inCompiler) ;
-
-
-//--- Extension getter length
-  public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateBinaryCodeAtAddress
-  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method print
-  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_lstring mProperty_mRoutineName ;
-  public: GGS_bool mProperty_mIsRegular ;
-
-
-//--- Default constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (const GGS_lstring & in_mRoutineName,
-                                                                 const GGS_bool & in_mIsRegular
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak weak reference class
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak : public GGS_baseline_5F_assembly_5F_instruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (const class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) ;
-
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak init_nil (void) {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE bang_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE unwrappedValue (void) const {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak extractObject (const GGS_object & inObject,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak class
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak ;
 

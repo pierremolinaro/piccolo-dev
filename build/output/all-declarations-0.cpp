@@ -4356,20 +4356,6 @@ GGS_bitSliceTable GGS_bitSliceTable::extractObject (const GGS_object & inObject,
 // @immediatExpression reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatExpression::cPtr_immediatExpression (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatExpression::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatExpression::objectCompare (const GGS_immediatExpression & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -4402,10 +4388,22 @@ AC_GALGAS_reference_class (inSourcePtr) {
 //Pointer class for @immediatExpression class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatExpression::cPtr_immediatExpression (LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_immediatExpression::cPtr_immediatExpression (Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) :
+acStrongPtr_class (inCompiler COMMA_THERE) {
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatExpression::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -4564,20 +4562,6 @@ GGS_registerExpression_2E_weak GGS_registerExpression_2E_weak::extractObject (co
 // @declarationInRam reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_declarationInRam::cPtr_declarationInRam (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_declarationInRam::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_declarationInRam::objectCompare (const GGS_declarationInRam & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -4610,10 +4594,22 @@ AC_GALGAS_reference_class (inSourcePtr) {
 //Pointer class for @declarationInRam class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_declarationInRam::cPtr_declarationInRam (LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_declarationInRam::cPtr_declarationInRam (Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) :
+acStrongPtr_class (inCompiler COMMA_THERE) {
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_declarationInRam::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -7635,24 +7631,6 @@ GGS_immediatRegister_2E_weak GGS_immediatRegister_2E_weak::extractObject (const 
 // @immediatAdd reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatAdd::cPtr_immediatAdd (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatAdd::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatAdd::objectCompare (const GGS_immediatAdd & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -7709,10 +7687,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatAdd GGS_immediatAdd::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                 const GGS_immediatExpression & in_mRightExpression
+                                                 const GGS_immediatExpression & in_mRightExpression,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   GGS_immediatAdd result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatAdd (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatAdd (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -7764,10 +7743,19 @@ void GGS_immediatAdd::setProperty_mRightExpression (const GGS_immediatExpression
 //Pointer class for @immediatAdd class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatAdd::cPtr_immediatAdd (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatAdd::cPtr_immediatAdd (const GGS_immediatExpression & in_mLeftExpression,
-                                    const GGS_immediatExpression & in_mRightExpression
+                                    const GGS_immediatExpression & in_mRightExpression,
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -7791,12 +7779,22 @@ void cPtr_immediatAdd::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatAdd::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatAdd::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatAdd (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatAdd (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatAdd::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -7955,24 +7953,6 @@ GGS_immediatAdd_2E_weak GGS_immediatAdd_2E_weak::extractObject (const GGS_object
 // @immediatSub reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatSub::cPtr_immediatSub (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatSub::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatSub::objectCompare (const GGS_immediatSub & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -8029,10 +8009,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatSub GGS_immediatSub::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                 const GGS_immediatExpression & in_mRightExpression
+                                                 const GGS_immediatExpression & in_mRightExpression,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   GGS_immediatSub result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatSub (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatSub (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -8084,10 +8065,19 @@ void GGS_immediatSub::setProperty_mRightExpression (const GGS_immediatExpression
 //Pointer class for @immediatSub class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatSub::cPtr_immediatSub (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatSub::cPtr_immediatSub (const GGS_immediatExpression & in_mLeftExpression,
-                                    const GGS_immediatExpression & in_mRightExpression
+                                    const GGS_immediatExpression & in_mRightExpression,
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -8111,12 +8101,22 @@ void cPtr_immediatSub::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatSub::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatSub::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatSub (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatSub (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatSub::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -8275,24 +8275,6 @@ GGS_immediatSub_2E_weak GGS_immediatSub_2E_weak::extractObject (const GGS_object
 // @immediatMul reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatMul::cPtr_immediatMul (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatMul::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatMul::objectCompare (const GGS_immediatMul & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -8349,10 +8331,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatMul GGS_immediatMul::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                 const GGS_immediatExpression & in_mRightExpression
+                                                 const GGS_immediatExpression & in_mRightExpression,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   GGS_immediatMul result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatMul (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatMul (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -8404,10 +8387,19 @@ void GGS_immediatMul::setProperty_mRightExpression (const GGS_immediatExpression
 //Pointer class for @immediatMul class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatMul::cPtr_immediatMul (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatMul::cPtr_immediatMul (const GGS_immediatExpression & in_mLeftExpression,
-                                    const GGS_immediatExpression & in_mRightExpression
+                                    const GGS_immediatExpression & in_mRightExpression,
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -8431,12 +8423,22 @@ void cPtr_immediatMul::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatMul::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatMul::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatMul (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatMul (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatMul::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -8595,24 +8597,6 @@ GGS_immediatMul_2E_weak GGS_immediatMul_2E_weak::extractObject (const GGS_object
 // @immediatDiv reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatDiv::cPtr_immediatDiv (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatDiv::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatDiv::objectCompare (const GGS_immediatDiv & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -8669,10 +8653,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatDiv GGS_immediatDiv::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                 const GGS_immediatExpression & in_mRightExpression
+                                                 const GGS_immediatExpression & in_mRightExpression,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   GGS_immediatDiv result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatDiv (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatDiv (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -8724,10 +8709,19 @@ void GGS_immediatDiv::setProperty_mRightExpression (const GGS_immediatExpression
 //Pointer class for @immediatDiv class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatDiv::cPtr_immediatDiv (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatDiv::cPtr_immediatDiv (const GGS_immediatExpression & in_mLeftExpression,
-                                    const GGS_immediatExpression & in_mRightExpression
+                                    const GGS_immediatExpression & in_mRightExpression,
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -8751,12 +8745,22 @@ void cPtr_immediatDiv::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatDiv::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatDiv::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatDiv (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatDiv (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatDiv::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -8915,24 +8919,6 @@ GGS_immediatDiv_2E_weak GGS_immediatDiv_2E_weak::extractObject (const GGS_object
 // @immediatMod reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatMod::cPtr_immediatMod (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatMod::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatMod::objectCompare (const GGS_immediatMod & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -8989,10 +8975,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatMod GGS_immediatMod::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                 const GGS_immediatExpression & in_mRightExpression
+                                                 const GGS_immediatExpression & in_mRightExpression,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   GGS_immediatMod result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatMod (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatMod (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -9044,10 +9031,19 @@ void GGS_immediatMod::setProperty_mRightExpression (const GGS_immediatExpression
 //Pointer class for @immediatMod class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatMod::cPtr_immediatMod (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatMod::cPtr_immediatMod (const GGS_immediatExpression & in_mLeftExpression,
-                                    const GGS_immediatExpression & in_mRightExpression
+                                    const GGS_immediatExpression & in_mRightExpression,
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -9071,12 +9067,22 @@ void cPtr_immediatMod::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatMod::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatMod::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatMod (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatMod (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatMod::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -9235,24 +9241,6 @@ GGS_immediatMod_2E_weak GGS_immediatMod_2E_weak::extractObject (const GGS_object
 // @immediatOr reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatOr::cPtr_immediatOr (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatOr::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatOr::objectCompare (const GGS_immediatOr & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -9309,10 +9297,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatOr GGS_immediatOr::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                               const GGS_immediatExpression & in_mRightExpression
+                                               const GGS_immediatExpression & in_mRightExpression,
+                                               Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) {
   GGS_immediatOr result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatOr (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatOr (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -9364,10 +9353,19 @@ void GGS_immediatOr::setProperty_mRightExpression (const GGS_immediatExpression 
 //Pointer class for @immediatOr class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatOr::cPtr_immediatOr (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatOr::cPtr_immediatOr (const GGS_immediatExpression & in_mLeftExpression,
-                                  const GGS_immediatExpression & in_mRightExpression
+                                  const GGS_immediatExpression & in_mRightExpression,
+                                  Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -9391,12 +9389,22 @@ void cPtr_immediatOr::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatOr::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatOr::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatOr (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatOr (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatOr::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -9555,24 +9563,6 @@ GGS_immediatOr_2E_weak GGS_immediatOr_2E_weak::extractObject (const GGS_object &
 // @immediatAnd reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatAnd::cPtr_immediatAnd (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatAnd::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatAnd::objectCompare (const GGS_immediatAnd & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -9629,10 +9619,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatAnd GGS_immediatAnd::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                 const GGS_immediatExpression & in_mRightExpression
+                                                 const GGS_immediatExpression & in_mRightExpression,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   GGS_immediatAnd result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatAnd (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatAnd (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -9684,10 +9675,19 @@ void GGS_immediatAnd::setProperty_mRightExpression (const GGS_immediatExpression
 //Pointer class for @immediatAnd class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatAnd::cPtr_immediatAnd (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatAnd::cPtr_immediatAnd (const GGS_immediatExpression & in_mLeftExpression,
-                                    const GGS_immediatExpression & in_mRightExpression
+                                    const GGS_immediatExpression & in_mRightExpression,
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -9711,12 +9711,22 @@ void cPtr_immediatAnd::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatAnd::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatAnd::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatAnd (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatAnd (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatAnd::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -9875,24 +9885,6 @@ GGS_immediatAnd_2E_weak GGS_immediatAnd_2E_weak::extractObject (const GGS_object
 // @immediatXor reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatXor::cPtr_immediatXor (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatXor::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatXor::objectCompare (const GGS_immediatXor & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -9949,10 +9941,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatXor GGS_immediatXor::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                 const GGS_immediatExpression & in_mRightExpression
+                                                 const GGS_immediatExpression & in_mRightExpression,
+                                                 Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) {
   GGS_immediatXor result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatXor (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatXor (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -10004,10 +9997,19 @@ void GGS_immediatXor::setProperty_mRightExpression (const GGS_immediatExpression
 //Pointer class for @immediatXor class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatXor::cPtr_immediatXor (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatXor::cPtr_immediatXor (const GGS_immediatExpression & in_mLeftExpression,
-                                    const GGS_immediatExpression & in_mRightExpression
+                                    const GGS_immediatExpression & in_mRightExpression,
+                                    Compiler * inCompiler
                                     COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -10031,12 +10033,22 @@ void cPtr_immediatXor::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatXor::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatXor::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatXor (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatXor (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatXor::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -10195,24 +10207,6 @@ GGS_immediatXor_2E_weak GGS_immediatXor_2E_weak::extractObject (const GGS_object
 // @immediatLeftShift reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatLeftShift::cPtr_immediatLeftShift (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatLeftShift::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatLeftShift::objectCompare (const GGS_immediatLeftShift & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -10269,10 +10263,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatLeftShift GGS_immediatLeftShift::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                             const GGS_immediatExpression & in_mRightExpression
+                                                             const GGS_immediatExpression & in_mRightExpression,
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) {
   GGS_immediatLeftShift result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatLeftShift (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatLeftShift (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -10324,10 +10319,19 @@ void GGS_immediatLeftShift::setProperty_mRightExpression (const GGS_immediatExpr
 //Pointer class for @immediatLeftShift class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatLeftShift::cPtr_immediatLeftShift (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatLeftShift::cPtr_immediatLeftShift (const GGS_immediatExpression & in_mLeftExpression,
-                                                const GGS_immediatExpression & in_mRightExpression
+                                                const GGS_immediatExpression & in_mRightExpression,
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -10351,12 +10355,22 @@ void cPtr_immediatLeftShift::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatLeftShift::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatLeftShift::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatLeftShift (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatLeftShift (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatLeftShift::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -10515,24 +10529,6 @@ GGS_immediatLeftShift_2E_weak GGS_immediatLeftShift_2E_weak::extractObject (cons
 // @immediatRightShift reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatRightShift::cPtr_immediatRightShift (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatRightShift::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatRightShift::objectCompare (const GGS_immediatRightShift & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -10589,10 +10585,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatRightShift GGS_immediatRightShift::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                               const GGS_immediatExpression & in_mRightExpression
+                                                               const GGS_immediatExpression & in_mRightExpression,
+                                                               Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) {
   GGS_immediatRightShift result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatRightShift (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatRightShift (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -10644,10 +10641,19 @@ void GGS_immediatRightShift::setProperty_mRightExpression (const GGS_immediatExp
 //Pointer class for @immediatRightShift class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatRightShift::cPtr_immediatRightShift (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatRightShift::cPtr_immediatRightShift (const GGS_immediatExpression & in_mLeftExpression,
-                                                  const GGS_immediatExpression & in_mRightExpression
+                                                  const GGS_immediatExpression & in_mRightExpression,
+                                                  Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -10671,12 +10677,22 @@ void cPtr_immediatRightShift::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatRightShift::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatRightShift::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatRightShift (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatRightShift (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatRightShift::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -10835,24 +10851,6 @@ GGS_immediatRightShift_2E_weak GGS_immediatRightShift_2E_weak::extractObject (co
 // @immediatEqualTest reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatEqualTest::cPtr_immediatEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatEqualTest::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatEqualTest::objectCompare (const GGS_immediatEqualTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -10909,10 +10907,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatEqualTest GGS_immediatEqualTest::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                             const GGS_immediatExpression & in_mRightExpression
+                                                             const GGS_immediatExpression & in_mRightExpression,
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) {
   GGS_immediatEqualTest result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatEqualTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatEqualTest (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -10964,10 +10963,19 @@ void GGS_immediatEqualTest::setProperty_mRightExpression (const GGS_immediatExpr
 //Pointer class for @immediatEqualTest class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatEqualTest::cPtr_immediatEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatEqualTest::cPtr_immediatEqualTest (const GGS_immediatExpression & in_mLeftExpression,
-                                                const GGS_immediatExpression & in_mRightExpression
+                                                const GGS_immediatExpression & in_mRightExpression,
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -10991,12 +10999,22 @@ void cPtr_immediatEqualTest::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatEqualTest::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatEqualTest::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatEqualTest (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatEqualTest (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatEqualTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -11155,24 +11173,6 @@ GGS_immediatEqualTest_2E_weak GGS_immediatEqualTest_2E_weak::extractObject (cons
 // @immediatNotEqualTest reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatNotEqualTest::cPtr_immediatNotEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatNotEqualTest::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatNotEqualTest::objectCompare (const GGS_immediatNotEqualTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -11229,10 +11229,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatNotEqualTest GGS_immediatNotEqualTest::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                                   const GGS_immediatExpression & in_mRightExpression
+                                                                   const GGS_immediatExpression & in_mRightExpression,
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) {
   GGS_immediatNotEqualTest result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatNotEqualTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatNotEqualTest (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -11284,10 +11285,19 @@ void GGS_immediatNotEqualTest::setProperty_mRightExpression (const GGS_immediatE
 //Pointer class for @immediatNotEqualTest class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatNotEqualTest::cPtr_immediatNotEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatNotEqualTest::cPtr_immediatNotEqualTest (const GGS_immediatExpression & in_mLeftExpression,
-                                                      const GGS_immediatExpression & in_mRightExpression
+                                                      const GGS_immediatExpression & in_mRightExpression,
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -11311,12 +11321,22 @@ void cPtr_immediatNotEqualTest::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatNotEqualTest::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatNotEqualTest::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatNotEqualTest (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatNotEqualTest (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatNotEqualTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -11475,24 +11495,6 @@ GGS_immediatNotEqualTest_2E_weak GGS_immediatNotEqualTest_2E_weak::extractObject
 // @immediatGreaterTest reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatGreaterTest::cPtr_immediatGreaterTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatGreaterTest::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatGreaterTest::objectCompare (const GGS_immediatGreaterTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -11549,10 +11551,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatGreaterTest GGS_immediatGreaterTest::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                                 const GGS_immediatExpression & in_mRightExpression
+                                                                 const GGS_immediatExpression & in_mRightExpression,
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) {
   GGS_immediatGreaterTest result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatGreaterTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatGreaterTest (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -11604,10 +11607,19 @@ void GGS_immediatGreaterTest::setProperty_mRightExpression (const GGS_immediatEx
 //Pointer class for @immediatGreaterTest class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatGreaterTest::cPtr_immediatGreaterTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatGreaterTest::cPtr_immediatGreaterTest (const GGS_immediatExpression & in_mLeftExpression,
-                                                    const GGS_immediatExpression & in_mRightExpression
+                                                    const GGS_immediatExpression & in_mRightExpression,
+                                                    Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -11631,12 +11643,22 @@ void cPtr_immediatGreaterTest::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatGreaterTest::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatGreaterTest::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatGreaterTest (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatGreaterTest (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatGreaterTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -11795,24 +11817,6 @@ GGS_immediatGreaterTest_2E_weak GGS_immediatGreaterTest_2E_weak::extractObject (
 // @immediatGreaterOrEqualTest reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatGreaterOrEqualTest::cPtr_immediatGreaterOrEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatGreaterOrEqualTest::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatGreaterOrEqualTest::objectCompare (const GGS_immediatGreaterOrEqualTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -11869,10 +11873,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatGreaterOrEqualTest GGS_immediatGreaterOrEqualTest::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                                               const GGS_immediatExpression & in_mRightExpression
+                                                                               const GGS_immediatExpression & in_mRightExpression,
+                                                                               Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) {
   GGS_immediatGreaterOrEqualTest result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatGreaterOrEqualTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatGreaterOrEqualTest (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -11924,10 +11929,19 @@ void GGS_immediatGreaterOrEqualTest::setProperty_mRightExpression (const GGS_imm
 //Pointer class for @immediatGreaterOrEqualTest class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatGreaterOrEqualTest::cPtr_immediatGreaterOrEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatGreaterOrEqualTest::cPtr_immediatGreaterOrEqualTest (const GGS_immediatExpression & in_mLeftExpression,
-                                                                  const GGS_immediatExpression & in_mRightExpression
+                                                                  const GGS_immediatExpression & in_mRightExpression,
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -11951,12 +11965,22 @@ void cPtr_immediatGreaterOrEqualTest::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatGreaterOrEqualTest::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatGreaterOrEqualTest::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatGreaterOrEqualTest (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatGreaterOrEqualTest (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatGreaterOrEqualTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -12115,24 +12139,6 @@ GGS_immediatGreaterOrEqualTest_2E_weak GGS_immediatGreaterOrEqualTest_2E_weak::e
 // @immediatLowerTest reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatLowerTest::cPtr_immediatLowerTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatLowerTest::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatLowerTest::objectCompare (const GGS_immediatLowerTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -12189,10 +12195,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatLowerTest GGS_immediatLowerTest::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                             const GGS_immediatExpression & in_mRightExpression
+                                                             const GGS_immediatExpression & in_mRightExpression,
+                                                             Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) {
   GGS_immediatLowerTest result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatLowerTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatLowerTest (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -12244,10 +12251,19 @@ void GGS_immediatLowerTest::setProperty_mRightExpression (const GGS_immediatExpr
 //Pointer class for @immediatLowerTest class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatLowerTest::cPtr_immediatLowerTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatLowerTest::cPtr_immediatLowerTest (const GGS_immediatExpression & in_mLeftExpression,
-                                                const GGS_immediatExpression & in_mRightExpression
+                                                const GGS_immediatExpression & in_mRightExpression,
+                                                Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -12271,12 +12287,22 @@ void cPtr_immediatLowerTest::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatLowerTest::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatLowerTest::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatLowerTest (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatLowerTest (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatLowerTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -12435,24 +12461,6 @@ GGS_immediatLowerTest_2E_weak GGS_immediatLowerTest_2E_weak::extractObject (cons
 // @immediatLowerOrEqualTest reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatLowerOrEqualTest::cPtr_immediatLowerOrEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mLeftExpression (),
-mProperty_mRightExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatLowerOrEqualTest::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
-    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatLowerOrEqualTest::objectCompare (const GGS_immediatLowerOrEqualTest & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -12509,10 +12517,11 @@ GGS_immediatExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_immediatLowerOrEqualTest GGS_immediatLowerOrEqualTest::class_func_new (const GGS_immediatExpression & in_mLeftExpression,
-                                                                           const GGS_immediatExpression & in_mRightExpression
+                                                                           const GGS_immediatExpression & in_mRightExpression,
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) {
   GGS_immediatLowerOrEqualTest result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatLowerOrEqualTest (in_mLeftExpression, in_mRightExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatLowerOrEqualTest (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -12564,10 +12573,19 @@ void GGS_immediatLowerOrEqualTest::setProperty_mRightExpression (const GGS_immed
 //Pointer class for @immediatLowerOrEqualTest class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_immediatLowerOrEqualTest::cPtr_immediatLowerOrEqualTest (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mLeftExpression (),
+mProperty_mRightExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_immediatLowerOrEqualTest::cPtr_immediatLowerOrEqualTest (const GGS_immediatExpression & in_mLeftExpression,
-                                                              const GGS_immediatExpression & in_mRightExpression
+                                                              const GGS_immediatExpression & in_mRightExpression,
+                                                              Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mLeftExpression (),
 mProperty_mRightExpression () {
   mProperty_mLeftExpression = in_mLeftExpression ;
@@ -12591,12 +12609,22 @@ void cPtr_immediatLowerOrEqualTest::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatLowerOrEqualTest::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatLowerOrEqualTest::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatLowerOrEqualTest (mProperty_mLeftExpression, mProperty_mRightExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatLowerOrEqualTest (mProperty_mLeftExpression, mProperty_mRightExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatLowerOrEqualTest::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mLeftExpression.printNonNullClassInstanceProperties ("mLeftExpression") ;
+    mProperty_mRightExpression.printNonNullClassInstanceProperties ("mRightExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -12755,22 +12783,6 @@ GGS_immediatLowerOrEqualTest_2E_weak GGS_immediatLowerOrEqualTest_2E_weak::extra
 // @immediatNegate reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatNegate::cPtr_immediatNegate (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatNegate::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mExpression.printNonNullClassInstanceProperties ("mExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatNegate::objectCompare (const GGS_immediatNegate & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -12823,10 +12835,11 @@ GGS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_immediatNegate GGS_immediatNegate::class_func_new (const GGS_immediatExpression & in_mExpression
+GGS_immediatNegate GGS_immediatNegate::class_func_new (const GGS_immediatExpression & in_mExpression,
+                                                       Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) {
   GGS_immediatNegate result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatNegate (in_mExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatNegate (in_mExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -12856,9 +12869,17 @@ void GGS_immediatNegate::setProperty_mExpression (const GGS_immediatExpression &
 //Pointer class for @immediatNegate class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatNegate::cPtr_immediatNegate (const GGS_immediatExpression & in_mExpression
+cPtr_immediatNegate::cPtr_immediatNegate (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_immediatNegate::cPtr_immediatNegate (const GGS_immediatExpression & in_mExpression,
+                                          Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mExpression () {
   mProperty_mExpression = in_mExpression ;
 }
@@ -12878,12 +12899,21 @@ void cPtr_immediatNegate::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatNegate::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatNegate::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatNegate (mProperty_mExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatNegate (mProperty_mExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatNegate::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mExpression.printNonNullClassInstanceProperties ("mExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -13042,22 +13072,6 @@ GGS_immediatNegate_2E_weak GGS_immediatNegate_2E_weak::extractObject (const GGS_
 // @immediatComplement reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatComplement::cPtr_immediatComplement (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (inCompiler COMMA_THERE),
-mProperty_mExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_immediatComplement::printNonNullClassInstanceProperties (void) const {
-    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mExpression.printNonNullClassInstanceProperties ("mExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_immediatComplement::objectCompare (const GGS_immediatComplement & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -13110,10 +13124,11 @@ GGS_immediatExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_immediatComplement GGS_immediatComplement::class_func_new (const GGS_immediatExpression & in_mExpression
+GGS_immediatComplement GGS_immediatComplement::class_func_new (const GGS_immediatExpression & in_mExpression,
+                                                               Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) {
   GGS_immediatComplement result ;
-  macroMyNew (result.mObjectPtr, cPtr_immediatComplement (in_mExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_immediatComplement (in_mExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -13143,9 +13158,17 @@ void GGS_immediatComplement::setProperty_mExpression (const GGS_immediatExpressi
 //Pointer class for @immediatComplement class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_immediatComplement::cPtr_immediatComplement (const GGS_immediatExpression & in_mExpression
+cPtr_immediatComplement::cPtr_immediatComplement (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_immediatExpression (inCompiler COMMA_THERE),
+mProperty_mExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_immediatComplement::cPtr_immediatComplement (const GGS_immediatExpression & in_mExpression,
+                                                  Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) :
-cPtr_immediatExpression (THERE),
+cPtr_immediatExpression (inCompiler COMMA_THERE),
 mProperty_mExpression () {
   mProperty_mExpression = in_mExpression ;
 }
@@ -13165,12 +13188,21 @@ void cPtr_immediatComplement::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatComplement::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_immediatComplement::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_immediatComplement (mProperty_mExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_immediatComplement (mProperty_mExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_immediatComplement::printNonNullClassInstanceProperties (void) const {
+    cPtr_immediatExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mExpression.printNonNullClassInstanceProperties ("mExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -14746,20 +14778,6 @@ GGS_actualConfigurationMap GGS_actualConfigurationMap::extractObject (const GGS_
 // @bitNumberExpression reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_bitNumberExpression::cPtr_bitNumberExpression (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_bitNumberExpression::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_bitNumberExpression::objectCompare (const GGS_bitNumberExpression & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -14792,10 +14810,22 @@ AC_GALGAS_reference_class (inSourcePtr) {
 //Pointer class for @bitNumberExpression class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_bitNumberExpression::cPtr_bitNumberExpression (LOCATION_ARGS) :
-acStrongPtr_class (THERE) {
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_bitNumberExpression::cPtr_bitNumberExpression (Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) :
+acStrongPtr_class (inCompiler COMMA_THERE) {
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_bitNumberExpression::printNonNullClassInstanceProperties (void) const {
+    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -14954,24 +14984,6 @@ GGS_bitNumberExpression_2E_weak GGS_bitNumberExpression_2E_weak::extractObject (
 // @bitNumberLiteralExpression reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_bitNumberLiteralExpression::cPtr_bitNumberLiteralExpression (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_bitNumberExpression (inCompiler COMMA_THERE),
-mProperty_mBitNumberLiteralExpression (),
-mProperty_mEndOfExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_bitNumberLiteralExpression::printNonNullClassInstanceProperties (void) const {
-    cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mBitNumberLiteralExpression.printNonNullClassInstanceProperties ("mBitNumberLiteralExpression") ;
-    mProperty_mEndOfExpression.printNonNullClassInstanceProperties ("mEndOfExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_bitNumberLiteralExpression::objectCompare (const GGS_bitNumberLiteralExpression & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -15028,10 +15040,11 @@ GGS_bitNumberExpression (inSourcePtr) {
 //--------------------------------------------------------------------------------------------------
 
 GGS_bitNumberLiteralExpression GGS_bitNumberLiteralExpression::class_func_new (const GGS_immediatExpression & in_mBitNumberLiteralExpression,
-                                                                               const GGS_location & in_mEndOfExpression
+                                                                               const GGS_location & in_mEndOfExpression,
+                                                                               Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) {
   GGS_bitNumberLiteralExpression result ;
-  macroMyNew (result.mObjectPtr, cPtr_bitNumberLiteralExpression (in_mBitNumberLiteralExpression, in_mEndOfExpression COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_bitNumberLiteralExpression (in_mBitNumberLiteralExpression, in_mEndOfExpression,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -15083,10 +15096,19 @@ void GGS_bitNumberLiteralExpression::setProperty_mEndOfExpression (const GGS_loc
 //Pointer class for @bitNumberLiteralExpression class
 //--------------------------------------------------------------------------------------------------
 
+cPtr_bitNumberLiteralExpression::cPtr_bitNumberLiteralExpression (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_bitNumberExpression (inCompiler COMMA_THERE),
+mProperty_mBitNumberLiteralExpression (),
+mProperty_mEndOfExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
 cPtr_bitNumberLiteralExpression::cPtr_bitNumberLiteralExpression (const GGS_immediatExpression & in_mBitNumberLiteralExpression,
-                                                                  const GGS_location & in_mEndOfExpression
+                                                                  const GGS_location & in_mEndOfExpression,
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) :
-cPtr_bitNumberExpression (THERE),
+cPtr_bitNumberExpression (inCompiler COMMA_THERE),
 mProperty_mBitNumberLiteralExpression (),
 mProperty_mEndOfExpression () {
   mProperty_mBitNumberLiteralExpression = in_mBitNumberLiteralExpression ;
@@ -15110,12 +15132,22 @@ void cPtr_bitNumberLiteralExpression::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_bitNumberLiteralExpression::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_bitNumberLiteralExpression::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_bitNumberLiteralExpression (mProperty_mBitNumberLiteralExpression, mProperty_mEndOfExpression COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_bitNumberLiteralExpression (mProperty_mBitNumberLiteralExpression, mProperty_mEndOfExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_bitNumberLiteralExpression::printNonNullClassInstanceProperties (void) const {
+    cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mBitNumberLiteralExpression.printNonNullClassInstanceProperties ("mBitNumberLiteralExpression") ;
+    mProperty_mEndOfExpression.printNonNullClassInstanceProperties ("mEndOfExpression") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -15274,22 +15306,6 @@ GGS_bitNumberLiteralExpression_2E_weak GGS_bitNumberLiteralExpression_2E_weak::e
 // @bitNumberLiteralValue reference class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_bitNumberLiteralValue::cPtr_bitNumberLiteralValue (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_bitNumberExpression (inCompiler COMMA_THERE),
-mProperty_mBitNumberLiteralValue () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_bitNumberLiteralValue::printNonNullClassInstanceProperties (void) const {
-    cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
-    mProperty_mBitNumberLiteralValue.printNonNullClassInstanceProperties ("mBitNumberLiteralValue") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
 ComparisonResult GGS_bitNumberLiteralValue::objectCompare (const GGS_bitNumberLiteralValue & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -15342,10 +15358,11 @@ GGS_bitNumberExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_bitNumberLiteralValue GGS_bitNumberLiteralValue::class_func_new (const GGS_luint & in_mBitNumberLiteralValue
+GGS_bitNumberLiteralValue GGS_bitNumberLiteralValue::class_func_new (const GGS_luint & in_mBitNumberLiteralValue,
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) {
   GGS_bitNumberLiteralValue result ;
-  macroMyNew (result.mObjectPtr, cPtr_bitNumberLiteralValue (in_mBitNumberLiteralValue COMMA_THERE)) ;
+  macroMyNew (result.mObjectPtr, cPtr_bitNumberLiteralValue (in_mBitNumberLiteralValue,  inCompiler COMMA_THERE)) ;
   return result ;
 }
 
@@ -15375,9 +15392,17 @@ void GGS_bitNumberLiteralValue::setProperty_mBitNumberLiteralValue (const GGS_lu
 //Pointer class for @bitNumberLiteralValue class
 //--------------------------------------------------------------------------------------------------
 
-cPtr_bitNumberLiteralValue::cPtr_bitNumberLiteralValue (const GGS_luint & in_mBitNumberLiteralValue
+cPtr_bitNumberLiteralValue::cPtr_bitNumberLiteralValue (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_bitNumberExpression (inCompiler COMMA_THERE),
+mProperty_mBitNumberLiteralValue () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_bitNumberLiteralValue::cPtr_bitNumberLiteralValue (const GGS_luint & in_mBitNumberLiteralValue,
+                                                        Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) :
-cPtr_bitNumberExpression (THERE),
+cPtr_bitNumberExpression (inCompiler COMMA_THERE),
 mProperty_mBitNumberLiteralValue () {
   mProperty_mBitNumberLiteralValue = in_mBitNumberLiteralValue ;
 }
@@ -15397,12 +15422,21 @@ void cPtr_bitNumberLiteralValue::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_bitNumberLiteralValue::duplicate (LOCATION_ARGS) const {
+acPtr_class * cPtr_bitNumberLiteralValue::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
   acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_bitNumberLiteralValue (mProperty_mBitNumberLiteralValue COMMA_THERE)) ;
+  macroMyNew (ptr, cPtr_bitNumberLiteralValue (mProperty_mBitNumberLiteralValue, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
 
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_bitNumberLiteralValue::printNonNullClassInstanceProperties (void) const {
+    cPtr_bitNumberExpression::printNonNullClassInstanceProperties () ;
+    mProperty_mBitNumberLiteralValue.printNonNullClassInstanceProperties ("mBitNumberLiteralValue") ;
+  }
+#endif
 
 //--------------------------------------------------------------------------------------------------
 //

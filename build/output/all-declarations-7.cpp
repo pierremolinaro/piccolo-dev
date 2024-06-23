@@ -8,6 +8,266 @@
 #include "all-declarations-7.h"
 
 //--------------------------------------------------------------------------------------------------
+// @ipic_31__38__5F_skip_5F_instruction_5F_FDA reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (void) :
+GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::
+init_21__21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                          const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                          const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                          const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                          const GGS_bool & in_m_5F_W_5F_isDestination,
+                          Compiler * inCompiler
+                          COMMA_LOCATION_ARGS) {
+  cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * object = nullptr ;
+  macroMyNew (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (inCompiler COMMA_THERE)) ;
+  object->ipic_31__38__5F_skip_5F_instruction_5F_FDA_init_21__21__21__21__21_ (in_mInstructionLocation, in_mEmbeddedInstruction, in_mInstruction_5F_FDA_5F_base_5F_code, in_mRegisterDescription, in_m_5F_W_5F_isDestination, inCompiler) ;
+  const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::
+ipic_31__38__5F_skip_5F_instruction_5F_FDA_init_21__21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                                                                     const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                                     const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                     const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                     const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                                     Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mEmbeddedInstruction = in_mEmbeddedInstruction ;
+  mProperty_mInstruction_5F_FDA_5F_base_5F_code = in_mInstruction_5F_FDA_5F_base_5F_code ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * inSourcePtr) :
+GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::class_func_new (const GGS_location & in_mInstructionLocation,
+                                                                                                               const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                                                                               const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                                                               const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                               const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_LOCATION_ARGS) {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result ;
+  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (in_mInstructionLocation, in_mEmbeddedInstruction, in_mInstruction_5F_FDA_5F_base_5F_code, in_mRegisterDescription, in_m_5F_W_5F_isDestination,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code () ;
+  }else{
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    return p->mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setProperty_mInstruction_5F_FDA_5F_base_5F_code (const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    p->mProperty_mInstruction_5F_FDA_5F_base_5F_code = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_mRegisterDescription (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
+  }else{
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    return p->mProperty_mRegisterDescription ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    p->mProperty_mRegisterDescription = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_m_5F_W_5F_isDestination (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_bool () ;
+  }else{
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    return p->mProperty_m_5F_W_5F_isDestination ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    p->mProperty_m_5F_W_5F_isDestination = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @ipic18_skip_instruction_FDA class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mInstruction_5F_FDA_5F_base_5F_code (),
+mProperty_mRegisterDescription (),
+mProperty_m_5F_W_5F_isDestination () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const GGS_location & in_mInstructionLocation,
+                                                                                                  const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                                                                  const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                                                  const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                  const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                                                                  Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (in_mInstructionLocation, in_mEmbeddedInstruction, inCompiler COMMA_THERE),
+mProperty_mInstruction_5F_FDA_5F_base_5F_code (),
+mProperty_mRegisterDescription (),
+mProperty_m_5F_W_5F_isDestination () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mEmbeddedInstruction = in_mEmbeddedInstruction ;
+  mProperty_mInstruction_5F_FDA_5F_base_5F_code = in_mInstruction_5F_FDA_5F_base_5F_code ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ;
+}
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::description (String & ioString,
+                                                                   const int32_t inIndentation) const {
+  ioString.appendCString ("[@ipic18_skip_instruction_FDA:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mEmbeddedInstruction.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mInstruction_5F_FDA_5F_base_5F_code.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_m_5F_W_5F_isDestination.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (mProperty_mInstructionLocation, mProperty_mEmbeddedInstruction, mProperty_mInstruction_5F_FDA_5F_base_5F_code, mProperty_mRegisterDescription, mProperty_m_5F_W_5F_isDestination, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::printNonNullClassInstanceProperties (void) const {
+    cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction_5F_FDA_5F_base_5F_code.printNonNullClassInstanceProperties ("mInstruction_FDA_base_code") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//
+//     @ipic18_skip_instruction_FDA generic code implementation
+//
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ("ipic18_skip_instruction_FDA",
+                                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::extractObject (const GGS_object & inObject,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result ;
+  const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("ipic18_skip_instruction_FDA", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
 
 ComparisonResult GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
@@ -14973,556 +15233,6 @@ GGS_clusterList_2E_element GGS_clusterList_2E_element::extractObject (const GGS_
       result = *p ;
     }else{
       inCompiler->castError ("clusterList.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @registerExpression reference class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_registerExpression::cPtr_registerExpression (Compiler * /* inCompiler */ COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE),
-mProperty_mRegisterName (),
-mProperty_mOffset (),
-mProperty_mEndOfOffsetExpression () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_registerExpression::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
-    mProperty_mRegisterName.printNonNullClassInstanceProperties ("mRegisterName") ;
-    mProperty_mOffset.printNonNullClassInstanceProperties ("mOffset") ;
-    mProperty_mEndOfOffsetExpression.printNonNullClassInstanceProperties ("mEndOfOffsetExpression") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_registerExpression::objectCompare (const GGS_registerExpression & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_registerExpression::GGS_registerExpression (void) :
-AC_GALGAS_reference_class () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_registerExpression GGS_registerExpression::
-init_21__21__21_ (const GGS_lstring & in_mRegisterName,
-                  const GGS_immediatExpression & in_mOffset,
-                  const GGS_location & in_mEndOfOffsetExpression,
-                  Compiler * inCompiler
-                  COMMA_LOCATION_ARGS) {
-  cPtr_registerExpression * object = nullptr ;
-  macroMyNew (object, cPtr_registerExpression (inCompiler COMMA_THERE)) ;
-  object->registerExpression_init_21__21__21_ (in_mRegisterName, in_mOffset, in_mEndOfOffsetExpression, inCompiler) ;
-  const GGS_registerExpression result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_registerExpression::
-registerExpression_init_21__21__21_ (const GGS_lstring & in_mRegisterName,
-                                     const GGS_immediatExpression & in_mOffset,
-                                     const GGS_location & in_mEndOfOffsetExpression,
-                                     Compiler * /* inCompiler */) {
-  mProperty_mRegisterName = in_mRegisterName ;
-  mProperty_mOffset = in_mOffset ;
-  mProperty_mEndOfOffsetExpression = in_mEndOfOffsetExpression ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_registerExpression::GGS_registerExpression (const cPtr_registerExpression * inSourcePtr) :
-AC_GALGAS_reference_class (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_registerExpression) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_registerExpression GGS_registerExpression::class_func_new (const GGS_lstring & in_mRegisterName,
-                                                               const GGS_immediatExpression & in_mOffset,
-                                                               const GGS_location & in_mEndOfOffsetExpression
-                                                               COMMA_LOCATION_ARGS) {
-  GGS_registerExpression result ;
-  macroMyNew (result.mObjectPtr, cPtr_registerExpression (in_mRegisterName, in_mOffset, in_mEndOfOffsetExpression COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_registerExpression::readProperty_mRegisterName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_registerExpression * p = (cPtr_registerExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_registerExpression) ;
-    return p->mProperty_mRegisterName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_registerExpression::setProperty_mRegisterName (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_registerExpression * p = (cPtr_registerExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_registerExpression) ;
-    p->mProperty_mRegisterName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_immediatExpression GGS_registerExpression::readProperty_mOffset (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_immediatExpression () ;
-  }else{
-    cPtr_registerExpression * p = (cPtr_registerExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_registerExpression) ;
-    return p->mProperty_mOffset ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_registerExpression::setProperty_mOffset (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_registerExpression * p = (cPtr_registerExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_registerExpression) ;
-    p->mProperty_mOffset = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_location GGS_registerExpression::readProperty_mEndOfOffsetExpression (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_location () ;
-  }else{
-    cPtr_registerExpression * p = (cPtr_registerExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_registerExpression) ;
-    return p->mProperty_mEndOfOffsetExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_registerExpression::setProperty_mEndOfOffsetExpression (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_registerExpression * p = (cPtr_registerExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_registerExpression) ;
-    p->mProperty_mEndOfOffsetExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @registerExpression class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_registerExpression::cPtr_registerExpression (const GGS_lstring & in_mRegisterName,
-                                                  const GGS_immediatExpression & in_mOffset,
-                                                  const GGS_location & in_mEndOfOffsetExpression
-                                                  COMMA_LOCATION_ARGS) :
-acStrongPtr_class (THERE),
-mProperty_mRegisterName (),
-mProperty_mOffset (),
-mProperty_mEndOfOffsetExpression () {
-  mProperty_mRegisterName = in_mRegisterName ;
-  mProperty_mOffset = in_mOffset ;
-  mProperty_mEndOfOffsetExpression = in_mEndOfOffsetExpression ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_registerExpression::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_registerExpression ;
-}
-
-void cPtr_registerExpression::description (String & ioString,
-                                           const int32_t inIndentation) const {
-  ioString.appendCString ("[@registerExpression:") ;
-  mProperty_mRegisterName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mOffset.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mEndOfOffsetExpression.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_registerExpression::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_registerExpression (mProperty_mRegisterName, mProperty_mOffset, mProperty_mEndOfOffsetExpression COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @registerExpression generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_registerExpression ("registerExpression",
-                                                                          nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_registerExpression::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_registerExpression ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_registerExpression::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_registerExpression (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_registerExpression GGS_registerExpression::extractObject (const GGS_object & inObject,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-  GGS_registerExpression result ;
-  const GGS_registerExpression * p = (const GGS_registerExpression *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_registerExpression *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("registerExpression", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @byteDeclarationInRam reference class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_byteDeclarationInRam::cPtr_byteDeclarationInRam (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_declarationInRam (inCompiler COMMA_THERE),
-mProperty_mName (),
-mProperty_mSizeExpression (),
-mProperty_mBitSliceTable (),
-mProperty_mBitDefinitionString (),
-mProperty_mProtection () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_byteDeclarationInRam::printNonNullClassInstanceProperties (void) const {
-    cPtr_declarationInRam::printNonNullClassInstanceProperties () ;
-    mProperty_mName.printNonNullClassInstanceProperties ("mName") ;
-    mProperty_mSizeExpression.printNonNullClassInstanceProperties ("mSizeExpression") ;
-    mProperty_mBitSliceTable.printNonNullClassInstanceProperties ("mBitSliceTable") ;
-    mProperty_mBitDefinitionString.printNonNullClassInstanceProperties ("mBitDefinitionString") ;
-    mProperty_mProtection.printNonNullClassInstanceProperties ("mProtection") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_byteDeclarationInRam::objectCompare (const GGS_byteDeclarationInRam & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_byteDeclarationInRam::GGS_byteDeclarationInRam (void) :
-GGS_declarationInRam () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_byteDeclarationInRam GGS_byteDeclarationInRam::
-init_21__21__21__21__21_ (const GGS_lstring & in_mName,
-                          const GGS_immediatExpression & in_mSizeExpression,
-                          const GGS_bitSliceTable & in_mBitSliceTable,
-                          const GGS_string & in_mBitDefinitionString,
-                          const GGS_registerProtection & in_mProtection,
-                          Compiler * inCompiler
-                          COMMA_LOCATION_ARGS) {
-  cPtr_byteDeclarationInRam * object = nullptr ;
-  macroMyNew (object, cPtr_byteDeclarationInRam (inCompiler COMMA_THERE)) ;
-  object->byteDeclarationInRam_init_21__21__21__21__21_ (in_mName, in_mSizeExpression, in_mBitSliceTable, in_mBitDefinitionString, in_mProtection, inCompiler) ;
-  const GGS_byteDeclarationInRam result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_byteDeclarationInRam::
-byteDeclarationInRam_init_21__21__21__21__21_ (const GGS_lstring & in_mName,
-                                               const GGS_immediatExpression & in_mSizeExpression,
-                                               const GGS_bitSliceTable & in_mBitSliceTable,
-                                               const GGS_string & in_mBitDefinitionString,
-                                               const GGS_registerProtection & in_mProtection,
-                                               Compiler * /* inCompiler */) {
-  mProperty_mName = in_mName ;
-  mProperty_mSizeExpression = in_mSizeExpression ;
-  mProperty_mBitSliceTable = in_mBitSliceTable ;
-  mProperty_mBitDefinitionString = in_mBitDefinitionString ;
-  mProperty_mProtection = in_mProtection ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_byteDeclarationInRam::GGS_byteDeclarationInRam (const cPtr_byteDeclarationInRam * inSourcePtr) :
-GGS_declarationInRam (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_byteDeclarationInRam) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_byteDeclarationInRam GGS_byteDeclarationInRam::class_func_new (const GGS_lstring & in_mName,
-                                                                   const GGS_immediatExpression & in_mSizeExpression,
-                                                                   const GGS_bitSliceTable & in_mBitSliceTable,
-                                                                   const GGS_string & in_mBitDefinitionString,
-                                                                   const GGS_registerProtection & in_mProtection
-                                                                   COMMA_LOCATION_ARGS) {
-  GGS_byteDeclarationInRam result ;
-  macroMyNew (result.mObjectPtr, cPtr_byteDeclarationInRam (in_mName, in_mSizeExpression, in_mBitSliceTable, in_mBitDefinitionString, in_mProtection COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring GGS_byteDeclarationInRam::readProperty_mName (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_lstring () ;
-  }else{
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    return p->mProperty_mName ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_byteDeclarationInRam::setProperty_mName (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    p->mProperty_mName = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_immediatExpression GGS_byteDeclarationInRam::readProperty_mSizeExpression (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_immediatExpression () ;
-  }else{
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    return p->mProperty_mSizeExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_byteDeclarationInRam::setProperty_mSizeExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    p->mProperty_mSizeExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bitSliceTable GGS_byteDeclarationInRam::readProperty_mBitSliceTable (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_bitSliceTable () ;
-  }else{
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    return p->mProperty_mBitSliceTable ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_byteDeclarationInRam::setProperty_mBitSliceTable (const GGS_bitSliceTable & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    p->mProperty_mBitSliceTable = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_string GGS_byteDeclarationInRam::readProperty_mBitDefinitionString (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_string () ;
-  }else{
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    return p->mProperty_mBitDefinitionString ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_byteDeclarationInRam::setProperty_mBitDefinitionString (const GGS_string & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    p->mProperty_mBitDefinitionString = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_registerProtection GGS_byteDeclarationInRam::readProperty_mProtection (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_registerProtection () ;
-  }else{
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    return p->mProperty_mProtection ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_byteDeclarationInRam::setProperty_mProtection (const GGS_registerProtection & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_byteDeclarationInRam * p = (cPtr_byteDeclarationInRam *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_byteDeclarationInRam) ;
-    p->mProperty_mProtection = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @byteDeclarationInRam class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_byteDeclarationInRam::cPtr_byteDeclarationInRam (const GGS_lstring & in_mName,
-                                                      const GGS_immediatExpression & in_mSizeExpression,
-                                                      const GGS_bitSliceTable & in_mBitSliceTable,
-                                                      const GGS_string & in_mBitDefinitionString,
-                                                      const GGS_registerProtection & in_mProtection
-                                                      COMMA_LOCATION_ARGS) :
-cPtr_declarationInRam (THERE),
-mProperty_mName (),
-mProperty_mSizeExpression (),
-mProperty_mBitSliceTable (),
-mProperty_mBitDefinitionString (),
-mProperty_mProtection () {
-  mProperty_mName = in_mName ;
-  mProperty_mSizeExpression = in_mSizeExpression ;
-  mProperty_mBitSliceTable = in_mBitSliceTable ;
-  mProperty_mBitDefinitionString = in_mBitDefinitionString ;
-  mProperty_mProtection = in_mProtection ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_byteDeclarationInRam::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_byteDeclarationInRam ;
-}
-
-void cPtr_byteDeclarationInRam::description (String & ioString,
-                                             const int32_t inIndentation) const {
-  ioString.appendCString ("[@byteDeclarationInRam:") ;
-  mProperty_mName.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mSizeExpression.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mBitSliceTable.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mBitDefinitionString.description (ioString, inIndentation+1) ;
-  ioString.appendCString (", ") ;
-  mProperty_mProtection.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_byteDeclarationInRam::duplicate (LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_byteDeclarationInRam (mProperty_mName, mProperty_mSizeExpression, mProperty_mBitSliceTable, mProperty_mBitDefinitionString, mProperty_mProtection COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @byteDeclarationInRam generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_byteDeclarationInRam ("byteDeclarationInRam",
-                                                                            & kTypeDescriptor_GALGAS_declarationInRam) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_byteDeclarationInRam::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_byteDeclarationInRam ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_byteDeclarationInRam::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_byteDeclarationInRam (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_byteDeclarationInRam GGS_byteDeclarationInRam::extractObject (const GGS_object & inObject,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) {
-  GGS_byteDeclarationInRam result ;
-  const GGS_byteDeclarationInRam * p = (const GGS_byteDeclarationInRam *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_byteDeclarationInRam *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("byteDeclarationInRam", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

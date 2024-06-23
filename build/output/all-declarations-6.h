@@ -1578,7 +1578,8 @@ class cPtr_ipic_31__38_SequentialInstruction : public acStrongPtr_class {
   public: cPtr_ipic_31__38_SequentialInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_ipic_31__38_SequentialInstruction (const GGS_location & in_mInstructionLocation
+  public: cPtr_ipic_31__38_SequentialInstruction (const GGS_location & in_mInstructionLocation,
+                                                  Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
@@ -1942,7 +1943,8 @@ class cPtr_ipic_31__38_AbstractBlockTerminator : public acStrongPtr_class {
   public: cPtr_ipic_31__38_AbstractBlockTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_ipic_31__38_AbstractBlockTerminator (const GGS_location & in_mInstructionLocation
+  public: cPtr_ipic_31__38_AbstractBlockTerminator (const GGS_location & in_mInstructionLocation,
+                                                    Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
@@ -2347,7 +2349,8 @@ class cPtr_ipic_31__38_SingleInstructionTerminator : public cPtr_ipic_31__38_Abs
   public: cPtr_ipic_31__38_SingleInstructionTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_ipic_31__38_SingleInstructionTerminator (const GGS_location & in_mInstructionLocation
+  public: cPtr_ipic_31__38_SingleInstructionTerminator (const GGS_location & in_mInstructionLocation,
+                                                        Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
@@ -2480,7 +2483,8 @@ class GGS_ipic_31__38_ReturnTerminator : public GGS_ipic_31__38_SingleInstructio
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ReturnTerminator class_func_new (const class GGS_location & inOperand0
+  public: static class GGS_ipic_31__38_ReturnTerminator class_func_new (const class GGS_location & inOperand0,
+                                                                        class Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2588,11 +2592,12 @@ class cPtr_ipic_31__38_ReturnTerminator : public cPtr_ipic_31__38_SingleInstruct
   public: cPtr_ipic_31__38_ReturnTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
 
 //--- Constructor
-  public: cPtr_ipic_31__38_ReturnTerminator (const GGS_location & in_mInstructionLocation
+  public: cPtr_ipic_31__38_ReturnTerminator (const GGS_location & in_mInstructionLocation,
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2729,7 +2734,8 @@ class GGS_ipic_31__38_RetlwTerminator : public GGS_ipic_31__38_SingleInstruction
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38_RetlwTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                       const class GGS_uint & inOperand1
+                                                                       const class GGS_uint & inOperand1,
+                                                                       class Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -2840,11 +2846,12 @@ class cPtr_ipic_31__38_RetlwTerminator : public cPtr_ipic_31__38_SingleInstructi
 
 //--- Constructor
   public: cPtr_ipic_31__38_RetlwTerminator (const GGS_location & in_mInstructionLocation,
-                                            const GGS_uint & in_mLiteralValue
+                                            const GGS_uint & in_mLiteralValue,
+                                            Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2981,7 +2988,8 @@ class GGS_ipic_31__38_RetfieTerminator : public GGS_ipic_31__38_SingleInstructio
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38_RetfieTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                        const class GGS_bool & inOperand1
+                                                                        const class GGS_bool & inOperand1,
+                                                                        class Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3092,11 +3100,12 @@ class cPtr_ipic_31__38_RetfieTerminator : public cPtr_ipic_31__38_SingleInstruct
 
 //--- Constructor
   public: cPtr_ipic_31__38_RetfieTerminator (const GGS_location & in_mInstructionLocation,
-                                             const GGS_bool & in_mFastReturn
+                                             const GGS_bool & in_mFastReturn,
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3238,7 +3247,8 @@ class GGS_ipic_31__38_JumpTerminator : public GGS_ipic_31__38_SingleInstructionT
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38_JumpTerminator class_func_new (const class GGS_location & inOperand0,
                                                                       const class GGS_lstring & inOperand1,
-                                                                      const class GGS_jumpInstructionKind & inOperand2
+                                                                      const class GGS_jumpInstructionKind & inOperand2,
+                                                                      class Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3381,11 +3391,12 @@ class cPtr_ipic_31__38_JumpTerminator : public cPtr_ipic_31__38_SingleInstructio
 //--- Constructor
   public: cPtr_ipic_31__38_JumpTerminator (const GGS_location & in_mInstructionLocation,
                                            const GGS_lstring & in_mLabel,
-                                           const GGS_jumpInstructionKind & in_mKind
+                                           const GGS_jumpInstructionKind & in_mKind,
+                                           Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3527,7 +3538,8 @@ class GGS_ipic_31__38_ComputedGotoTerminator : public GGS_ipic_31__38_AbstractBl
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38_ComputedGotoTerminator class_func_new (const class GGS_location & inOperand0,
                                                                               const class GGS_lstringlist & inOperand1,
-                                                                              const class GGS_bool & inOperand2
+                                                                              const class GGS_bool & inOperand2,
+                                                                              class Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3658,11 +3670,12 @@ class cPtr_ipic_31__38_ComputedGotoTerminator : public cPtr_ipic_31__38_Abstract
 //--- Constructor
   public: cPtr_ipic_31__38_ComputedGotoTerminator (const GGS_location & in_mInstructionLocation,
                                                    const GGS_lstringlist & in_mTargetLabels,
-                                                   const GGS_bool & in_mUsesRCALL
+                                                   const GGS_bool & in_mUsesRCALL,
+                                                   Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3804,7 +3817,8 @@ class GGS_ipic_31__38_ComputedRETLWTerminator : public GGS_ipic_31__38_AbstractB
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38_ComputedRETLWTerminator class_func_new (const class GGS_location & inOperand0,
                                                                                const class GGS_uintlist & inOperand1,
-                                                                               const class GGS_bool & inOperand2
+                                                                               const class GGS_bool & inOperand2,
+                                                                               class Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -3935,11 +3949,12 @@ class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_Abstrac
 //--- Constructor
   public: cPtr_ipic_31__38_ComputedRETLWTerminator (const GGS_location & in_mInstructionLocation,
                                                     const GGS_uintlist & in_mLiteralValues,
-                                                    const GGS_bool & in_mUsesRCALL
+                                                    const GGS_bool & in_mUsesRCALL,
+                                                    Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4180,7 +4195,8 @@ class GGS_ipic_31__38_ConditionalJumpTerminator : public GGS_ipic_31__38_Abstrac
                                                                                  const class GGS_lstring & inOperand2,
                                                                                  const class GGS_conditionalBranchMode & inOperand3,
                                                                                  const class GGS_lstring & inOperand4,
-                                                                                 const class GGS_conditionalBranchMode & inOperand5
+                                                                                 const class GGS_conditionalBranchMode & inOperand5,
+                                                                                 class Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4325,11 +4341,12 @@ class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_Abstr
                                                       const GGS_lstring & in_mTargetLabelWhenTrue,
                                                       const GGS_conditionalBranchMode & in_mBranchModeOnTrueLabel,
                                                       const GGS_lstring & in_mTargetLabelWhenFalse,
-                                                      const GGS_conditionalBranchMode & in_mBranchModeOnFalseLabel
+                                                      const GGS_conditionalBranchMode & in_mBranchModeOnFalseLabel,
+                                                      Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4471,7 +4488,8 @@ class GGS_ipic_31__38_ComputedBraTerminator : public GGS_ipic_31__38_AbstractBlo
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38_ComputedBraTerminator class_func_new (const class GGS_location & inOperand0,
                                                                              const class GGS_lstringlist & inOperand1,
-                                                                             const class GGS_bool & inOperand2
+                                                                             const class GGS_bool & inOperand2,
+                                                                             class Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -4602,11 +4620,12 @@ class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractB
 //--- Constructor
   public: cPtr_ipic_31__38_ComputedBraTerminator (const GGS_location & in_mInstructionLocation,
                                                   const GGS_lstringlist & in_mTargetLabels,
-                                                  const GGS_bool & in_mUsesRCALL
+                                                  const GGS_bool & in_mUsesRCALL,
+                                                  Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4927,7 +4946,8 @@ class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_Abs
 //--- Constructor
   public: cPtr_ipic_31__38_AbstractConditionTerminator (const GGS_location & in_mInstructionLocation,
                                                         const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                        const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse
+                                                        const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
+                                                        Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
@@ -5175,7 +5195,8 @@ class GGS_pic_31__38_RegisterComparisonTerminator : public GGS_ipic_31__38_Abstr
                                                                                    const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
                                                                                    const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
                                                                                    const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                   const class GGS_ipic_31__38_RegisterComparison & inOperand4
+                                                                                   const class GGS_ipic_31__38_RegisterComparison & inOperand4,
+                                                                                   class Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5295,11 +5316,12 @@ class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_Abs
                                                         const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
                                                         const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
                                                         const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                        const GGS_ipic_31__38_RegisterComparison & in_mComparison
+                                                        const GGS_ipic_31__38_RegisterComparison & in_mComparison,
+                                                        Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5450,7 +5472,8 @@ class GGS_ipic_31__38_IncDecRegisterTerminator : public GGS_ipic_31__38_Abstract
                                                                                 const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
                                                                                 const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
                                                                                 const class GGS_bool & inOperand4,
-                                                                                const class GGS_bool & inOperand5
+                                                                                const class GGS_bool & inOperand5,
+                                                                                class Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5559,11 +5582,12 @@ class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_Abstra
                                                      const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
                                                      const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
                                                      const GGS_bool & in_mIncrement,
-                                                     const GGS_bool & in_m_5F_W_5F_isDestination
+                                                     const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                     Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5704,7 +5728,8 @@ class GGS_pic_31__38_TestRegisterTerminator : public GGS_ipic_31__38_AbstractCon
   public: static class GGS_pic_31__38_TestRegisterTerminator class_func_new (const class GGS_location & inOperand0,
                                                                              const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
                                                                              const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                             const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3
+                                                                             const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                             class Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -5821,11 +5846,12 @@ class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractC
   public: cPtr_pic_31__38_TestRegisterTerminator (const GGS_location & in_mInstructionLocation,
                                                   const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
                                                   const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                  const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription
+                                                  const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                  Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5971,7 +5997,8 @@ class GGS_pic_31__38_BitTestTerminator : public GGS_ipic_31__38_AbstractConditio
                                                                         const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
                                                                         const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
                                                                         const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                        const class GGS_uint & inOperand4
+                                                                        const class GGS_uint & inOperand4,
+                                                                        class Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6077,11 +6104,12 @@ class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractCondit
                                              const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
                                              const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
                                              const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                             const GGS_uint & in_mBitNumber
+                                             const GGS_uint & in_mBitNumber,
+                                             Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6218,7 +6246,8 @@ class GGS_ipic_31__38_InstructionWithNoOperand : public GGS_ipic_31__38_Sequenti
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38_InstructionWithNoOperand class_func_new (const class GGS_location & inOperand0,
-                                                                                const class GGS_pic_31__38_InstructionWithNoOperandKind & inOperand1
+                                                                                const class GGS_pic_31__38_InstructionWithNoOperandKind & inOperand1,
+                                                                                class Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6280,11 +6309,12 @@ class cPtr_ipic_31__38_InstructionWithNoOperand : public cPtr_ipic_31__38_Sequen
 
 //--- Constructor
   public: cPtr_ipic_31__38_InstructionWithNoOperand (const GGS_location & in_mInstructionLocation,
-                                                     const GGS_pic_31__38_InstructionWithNoOperandKind & in_mKind
+                                                     const GGS_pic_31__38_InstructionWithNoOperandKind & in_mKind,
+                                                     Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6442,7 +6472,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public GGS_ipic_3
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA class_func_new (const class GGS_location & inOperand0,
                                                                                               const class GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inOperand1,
                                                                                               const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                              const class GGS_bool & inOperand3
+                                                                                              const class GGS_bool & inOperand3,
+                                                                                              class Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6510,11 +6541,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public cPtr_ipic
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (const GGS_location & in_mInstructionLocation,
                                                                    const GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & in_mInstruction_5F_FDA_5F_base_5F_code,
                                                                    const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                   const GGS_bool & in_m_5F_W_5F_isDestination
+                                                                   const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6748,7 +6780,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public GGS_ipic_31
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA class_func_new (const class GGS_location & inOperand0,
                                                                                              const class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                                             const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2
+                                                                                             const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
+                                                                                             class Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -6813,11 +6846,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (const GGS_location & in_mInstructionLocation,
                                                                   const GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code & in_mFAinstruction,
-                                                                  const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription
+                                                                  const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7048,7 +7082,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public GGS_ipic
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF class_func_new (const class GGS_location & inOperand0,
                                                                                                 const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand1,
-                                                                                                const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand2
+                                                                                                const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand2,
+                                                                                                class Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -7122,11 +7157,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ip
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (const GGS_location & in_mInstructionLocation,
                                                                      const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & in_mSourceRegisterDescription,
-                                                                     const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & in_mDestinationRegisterDescription
+                                                                     const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & in_mDestinationRegisterDescription,
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7268,7 +7304,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : publ
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation class_func_new (const class GGS_location & inOperand0,
                                                                                                            const class GGS_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                                           const class GGS_uint & inOperand2
+                                                                                                           const class GGS_uint & inOperand2,
+                                                                                                           class Compiler * inCompiler
                                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -7333,11 +7370,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : pub
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (const GGS_location & in_mInstructionLocation,
                                                                                 const GGS_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
-                                                                                const GGS_uint & in_mLiteralValue
+                                                                                const GGS_uint & in_mLiteralValue,
+                                                                                Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7479,7 +7517,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public GGS_ipic_
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR class_func_new (const class GGS_location & inOperand0,
                                                                                                const class GGS_luint & inOperand1,
-                                                                                               const class GGS_uint & inOperand2
+                                                                                               const class GGS_uint & inOperand2,
+                                                                                               class Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -7553,11 +7592,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipi
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (const GGS_location & in_mInstructionLocation,
                                                                     const GGS_luint & in_mFSRindex,
-                                                                    const GGS_uint & in_mValue
+                                                                    const GGS_uint & in_mValue,
+                                                                    Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7704,7 +7744,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public GGS_ipic_3
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA class_func_new (const class GGS_location & inOperand0,
                                                                                               const class GGS_bit_5F_oriented_5F_op & inOperand1,
                                                                                               const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                              const class GGS_uint & inOperand3
+                                                                                              const class GGS_uint & inOperand3,
+                                                                                              class Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -7772,11 +7813,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public cPtr_ipic
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (const GGS_location & in_mInstructionLocation,
                                                                    const GGS_bit_5F_oriented_5F_op & in_mBitOrientedOp,
                                                                    const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                   const GGS_uint & in_mBitNumber
+                                                                   const GGS_uint & in_mBitNumber,
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7918,7 +7960,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_JSR : public GGS_ipic_31__38_Sequentia
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_JSR class_func_new (const class GGS_location & inOperand0,
                                                                                const class GGS_lstring & inOperand1,
-                                                                               const class GGS_jumpInstructionKind & inOperand2
+                                                                               const class GGS_jumpInstructionKind & inOperand2,
+                                                                               class Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8034,11 +8077,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_Sequent
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_JSR (const GGS_location & in_mInstructionLocation,
                                                     const GGS_lstring & in_mTargetLabel,
-                                                    const GGS_jumpInstructionKind & in_mKind
+                                                    const GGS_jumpInstructionKind & in_mKind,
+                                                    Compiler * inCompiler
                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8175,7 +8219,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public GGS_ipic
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_luint & inOperand1
+                                                                                                const class GGS_luint & inOperand1,
+                                                                                                class Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8237,11 +8282,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public cPtr_ip
 
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (const GGS_location & in_mInstructionLocation,
-                                                                     const GGS_luint & in_mBankIndex
+                                                                     const GGS_luint & in_mBankIndex,
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8378,7 +8424,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public GGS_ipic_
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP class_func_new (const class GGS_location & inOperand0,
-                                                                                               const class GGS_uint & inOperand1
+                                                                                               const class GGS_uint & inOperand1,
+                                                                                               class Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8440,11 +8487,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public cPtr_ipi
 
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (const GGS_location & in_mInstructionLocation,
-                                                                    const GGS_uint & in_mBlankValue
+                                                                    const GGS_uint & in_mBlankValue,
+                                                                    Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8581,7 +8629,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public GGS_ipic
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_uint & inOperand1
+                                                                                                const class GGS_uint & inOperand1,
+                                                                                                class Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8643,11 +8692,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public cPtr_ip
 
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (const GGS_location & in_mInstructionLocation,
-                                                                     const GGS_uint & in_mBlankValue
+                                                                     const GGS_uint & in_mBlankValue,
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8784,7 +8834,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public GGS_ipic
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_tableAccessOption & inOperand1
+                                                                                                const class GGS_tableAccessOption & inOperand1,
+                                                                                                class Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -8852,11 +8903,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ip
 
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (const GGS_location & in_mInstructionLocation,
-                                                                     const GGS_tableAccessOption & in_mOption
+                                                                     const GGS_tableAccessOption & in_mOption,
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8993,7 +9045,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public GGS_ipic
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_tableAccessOption & inOperand1
+                                                                                                const class GGS_tableAccessOption & inOperand1,
+                                                                                                class Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9061,11 +9114,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ip
 
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (const GGS_location & in_mInstructionLocation,
-                                                                     const GGS_tableAccessOption & in_mOption
+                                                                     const GGS_tableAccessOption & in_mOption,
+                                                                     Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9202,7 +9256,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public GGS_ipic_
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP class_func_new (const class GGS_location & inOperand0,
-                                                                                               const class GGS_luint & inOperand1
+                                                                                               const class GGS_luint & inOperand1,
+                                                                                               class Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9273,11 +9328,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipi
 
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (const GGS_location & in_mInstructionLocation,
-                                                                    const GGS_luint & in_mOccurrenceFactor
+                                                                    const GGS_luint & in_mOccurrenceFactor,
+                                                                    Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9414,7 +9470,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public GGS_ipi
 
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA class_func_new (const class GGS_location & inOperand0,
-                                                                                                 const class GGS_luint & inOperand1
+                                                                                                 const class GGS_luint & inOperand1,
+                                                                                                 class Compiler * inCompiler
                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9485,11 +9542,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_i
 
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (const GGS_location & in_mInstructionLocation,
-                                                                      const GGS_luint & in_mOccurrenceFactor
+                                                                      const GGS_luint & in_mOccurrenceFactor,
+                                                                      Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9636,7 +9694,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public GGS_ipic_31
   public: static class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W class_func_new (const class GGS_location & inOperand0,
                                                                                              const class GGS_lstring & inOperand1,
                                                                                              const class GGS_uint & inOperand2,
-                                                                                             const class GGS_uint & inOperand3
+                                                                                             const class GGS_uint & inOperand3,
+                                                                                             class Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9704,11 +9763,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public cPtr_ipic_
   public: cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (const GGS_location & in_mInstructionLocation,
                                                                   const GGS_lstring & in_mLabel,
                                                                   const GGS_uint & in_mOffset,
-                                                                  const GGS_uint & in_mRightShift
+                                                                  const GGS_uint & in_mRightShift,
+                                                                  Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9850,7 +9910,8 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : pub
 //--------------------------------- GALGAS class functions
   public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall class_func_new (const class GGS_location & inOperand0,
                                                                                                             const class GGS_ipic_31__38_SequentialInstructionList & inOperand1,
-                                                                                                            const class GGS_bool & inOperand2
+                                                                                                            const class GGS_bool & inOperand2,
+                                                                                                            class Compiler * inCompiler
                                                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -9966,11 +10027,12 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : pu
 //--- Constructor
   public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (const GGS_location & in_mInstructionLocation,
                                                                                  const GGS_ipic_31__38_SequentialInstructionList & in_mTargetInstructions,
-                                                                                 const GGS_bool & in_mUsesRCALL
+                                                                                 const GGS_bool & in_mUsesRCALL,
+                                                                                 Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10185,7 +10247,8 @@ class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_3
 
 //--- Constructor
   public: cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (const GGS_location & in_mInstructionLocation,
-                                                                 const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction
+                                                                 const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Attribute accessors
@@ -10335,7 +10398,8 @@ class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public GGS_ipic_3
                                                                                               const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
                                                                                               const class GGS_bool & inOperand2,
                                                                                               const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                              const class GGS_uint & inOperand4
+                                                                                              const class GGS_uint & inOperand4,
+                                                                                              class Compiler * inCompiler
                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -10425,11 +10489,12 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic
                                                                    const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
                                                                    const GGS_bool & in_mSkipIfSet,
                                                                    const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                   const GGS_uint & in_mBitNumber
+                                                                   const GGS_uint & in_mBitNumber,
+                                                                   Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10660,7 +10725,8 @@ class GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public GG
   public: static class GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register class_func_new (const class GGS_location & inOperand0,
                                                                                                       const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
                                                                                                       const class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inOperand2,
-                                                                                                      const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3
+                                                                                                      const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                                      class Compiler * inCompiler
                                                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
@@ -10747,11 +10813,12 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public c
   public: cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (const GGS_location & in_mInstructionLocation,
                                                                            const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
                                                                            const GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & in_mCompareInstruction,
-                                                                           const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription
+                                                                           const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                           Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10939,157 +11006,4 @@ class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code : public AC_GALGAS_root {
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 1: @ipic_31__38__5F_skip_5F_instruction_5F_FDA reference class
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const ;
-  public: void setProperty_mInstruction_5F_FDA_5F_base_5F_code (const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inValue) ;
-
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-  public: void setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
-
-  public: class GGS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
-  public: void setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA init_21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                          const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                          const class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inOperand2,
-                                                                                          const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                          const class GGS_bool & inOperand4,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA extractObject (const GGS_object & inObject,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA class_func_new (const class GGS_location & inOperand0,
-                                                                                      const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                      const class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inOperand2,
-                                                                                      const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                      const class GGS_bool & inOperand4
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ; // End of GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA class
-
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ;
-
-//--------------------------------------------------------------------------------------------------
-//
-// Phase 2: pointer class for @ipic18_skip_instruction_FDA class
-//
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_skip_5F_instruction_5F_FDA_init_21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                    const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                    const class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inOperand2,
-                                                                                    const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                    const class GGS_bool & inOperand4,
-                                                                                    Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeInstruction
-  public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_lstring arg_inBlockLabel,
-           class GGS_bool & arg_outOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outOptimizedInstruction,
-           class GGS_bool & arg_outNOPsubstitution,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performInstructionRelativeBranchResolution
-  public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outModifiedInstruction,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-  public: GGS_bool mProperty_m_5F_W_5F_isDestination ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const GGS_location & in_mInstructionLocation,
-                                                           const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                                                           const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
-                                                           const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                           const GGS_bool & in_m_5F_W_5F_isDestination
-                                                           COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
 

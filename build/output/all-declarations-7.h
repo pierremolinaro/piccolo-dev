@@ -10,6 +10,161 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+// Phase 1: @ipic_31__38__5F_skip_5F_instruction_5F_FDA reference class
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction {
+//--------------------------------- Default constructor
+  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const ;
+  public: void setProperty_mInstruction_5F_FDA_5F_base_5F_code (const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inValue) ;
+
+  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
+  public: void setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) ;
+
+  public: class GGS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
+  public: void setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA init_21__21__21__21__21_ (const class GGS_location & inOperand0,
+                                                                                          const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
+                                                                                          const class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inOperand2,
+                                                                                          const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                          const class GGS_bool & inOperand4,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA extractObject (const GGS_object & inObject,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA class_func_new (const class GGS_location & inOperand0,
+                                                                                      const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
+                                                                                      const class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inOperand2,
+                                                                                      const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                      const class GGS_bool & inOperand4,
+                                                                                      class Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ; // End of GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA class
+
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ;
+
+//--------------------------------------------------------------------------------------------------
+//
+// Phase 2: pointer class for @ipic18_skip_instruction_FDA class
+//
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void ipic_31__38__5F_skip_5F_instruction_5F_FDA_init_21__21__21__21__21_ (const class GGS_location & inOperand0,
+                                                                                    const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
+                                                                                    const class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inOperand2,
+                                                                                    const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
+                                                                                    const class GGS_bool & inOperand4,
+                                                                                    Compiler * inCompiler) ;
+
+
+//--- Extension getter instructionDisplay
+  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method generateCode
+  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
+           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
+           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
+           class GGS_codeList & arg_outCode,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method optimizeInstruction
+  public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
+           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
+           const class GGS_ipic_31__38_BlockList arg_inBlockList,
+           const class GGS_lstring arg_inBlockLabel,
+           class GGS_bool & arg_outOptimizationDone,
+           class GGS_string & arg_ioListFileContents,
+           class GGS_ipic_31__38_SequentialInstruction & arg_outOptimizedInstruction,
+           class GGS_bool & arg_outNOPsubstitution,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method performInstructionRelativeBranchResolution
+  public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
+           const class GGS_string arg_inBlockLabel,
+           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
+           class GGS_uint & arg_ioConversionCount,
+           class GGS_string & arg_ioListFileContents,
+           class GGS_ipic_31__38_SequentialInstruction & arg_outModifiedInstruction,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
+  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
+  public: GGS_bool mProperty_m_5F_W_5F_isDestination ;
+
+
+//--- Default constructor
+  public: cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const GGS_location & in_mInstructionLocation,
+                                                           const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                           const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                                                           const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                           const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Class descriptor
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
 // Phase 1: @ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak weak reference class
 //
 //--------------------------------------------------------------------------------------------------
