@@ -217,7 +217,7 @@ void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const class GGS_uint 
 
 void extensionMethod_computeDuration (const class GGS_ipic_31__38_Block inObject,
                                       class GGS_blockDurationMap & io_ioExploredBlockMap,
-                                      class GGS_string in_inNextLabel,
+                                      const class GGS_string constin_inNextLabel,
                                       class GGS_ipic_31__38_Block & out_outNewBlock,
                                       class GGS_bool & io_ioContinue,
                                       class Compiler * inCompiler

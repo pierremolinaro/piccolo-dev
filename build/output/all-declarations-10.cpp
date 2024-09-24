@@ -2117,7 +2117,7 @@ void extensionMethod_generateCodeForBlock (const GGS_ipic_31__38_Block inObject,
 
 void extensionMethod_computeDuration (const GGS_ipic_31__38_Block inObject,
                                       GGS_blockDurationMap & ioArgument_ioExploredBlockMap,
-                                      GGS_string inArgument_inNextLabel,
+                                      const GGS_string constinArgument_inNextLabel,
                                       GGS_ipic_31__38_Block & outArgument_outNewBlock,
                                       GGS_bool & ioArgument_ioContinue,
                                       Compiler * inCompiler
@@ -2137,7 +2137,7 @@ void extensionMethod_computeDuration (const GGS_ipic_31__38_Block inObject,
     GGS_uint var_terminatorMin_22377 ;
     GGS_uint var_terminatorMax_22396 ;
     const GGS_ipic_31__38_Block temp_4 = inObject ;
-    callExtensionMethod_terminatorMinMaxDuration ((cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.readProperty_mTerminator ().ptr (), ioArgument_ioExploredBlockMap, inArgument_inNextLabel, var_terminatorMin_22377, var_terminatorMax_22396, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 593)) ;
+    callExtensionMethod_terminatorMinMaxDuration ((cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.readProperty_mTerminator ().ptr (), ioArgument_ioExploredBlockMap, constinArgument_inNextLabel, var_terminatorMin_22377, var_terminatorMax_22396, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas", 593)) ;
     GGS_uint var_min_22419 = var_terminatorMin_22377 ;
     GGS_uint var_max_22447 = var_terminatorMax_22396 ;
     GGS_ipic_31__38_SequentialInstructionList var_computedInstructionList_22508 = GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE) ;

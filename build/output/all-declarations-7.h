@@ -6315,7 +6315,7 @@ void callExtensionMethod_duration (class cPtr_ipic_31__38_SingleInstructionTermi
 //--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_minMaxDuration (class cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                         class GGS_blockDurationMap in_inExploredBlockMap,
+                                         const class GGS_blockDurationMap constin_inExploredBlockMap,
                                          class GGS_uint & out_outMin,
                                          class GGS_uint & out_outMax,
                                          Compiler * inCompiler
@@ -6533,40 +6533,40 @@ class Lexique_piccoloDevice_5F_lexique : public Lexique {
 
 
 //--- Terminal symbols enumeration
-  public: enum {kToken_,
-   kToken_identifier /* 1 */ ,
-   kToken_integer /* 2 */ ,
-   kToken_string /* 3 */ ,
-   kToken_comment /* 4 */ ,
-   kToken_controller /* 5 */ ,
-   kToken_processor /* 6 */ ,
-   kToken_romsize /* 7 */ ,
-   kToken_eepromsize /* 8 */ ,
-   kToken_bank /* 9 */ ,
-   kToken_unusedregister /* 10 */ ,
-   kToken_mirrorat /* 11 */ ,
-   kToken_ram /* 12 */ ,
-   kToken_register /* 13 */ ,
-   kToken_at /* 14 */ ,
-   kToken_to /* 15 */ ,
-   kToken_configuration /* 16 */ ,
-   kToken_width /* 17 */ ,
-   kToken_description /* 18 */ ,
-   kToken_mask /* 19 */ ,
-   kToken_illegal /* 20 */ ,
-   kToken_message /* 21 */ ,
-   kToken_setting /* 22 */ ,
-   kToken__3C_ /* 23 */ ,
-   kToken__3E_ /* 24 */ ,
-   kToken__2C_ /* 25 */ ,
-   kToken__2D_ /* 26 */ ,
-   kToken__2F_ /* 27 */ ,
-   kToken__3B_ /* 28 */ ,
-   kToken__3A_ /* 29 */ ,
-   kToken__5B_ /* 30 */ ,
-   kToken__5D_ /* 31 */ ,
-   kToken__7B_ /* 32 */ ,
-   kToken__7D_ /* 33 */ } ;
+  public: const static int32_t kToken_ = 0 ;
+  public: static const int32_t kToken_identifier = 1 ;
+  public: static const int32_t kToken_integer = 2 ;
+  public: static const int32_t kToken_string = 3 ;
+  public: static const int32_t kToken_comment = 4 ;
+  public: static const int32_t kToken_controller = 5 ;
+  public: static const int32_t kToken_processor = 6 ;
+  public: static const int32_t kToken_romsize = 7 ;
+  public: static const int32_t kToken_eepromsize = 8 ;
+  public: static const int32_t kToken_bank = 9 ;
+  public: static const int32_t kToken_unusedregister = 10 ;
+  public: static const int32_t kToken_mirrorat = 11 ;
+  public: static const int32_t kToken_ram = 12 ;
+  public: static const int32_t kToken_register = 13 ;
+  public: static const int32_t kToken_at = 14 ;
+  public: static const int32_t kToken_to = 15 ;
+  public: static const int32_t kToken_configuration = 16 ;
+  public: static const int32_t kToken_width = 17 ;
+  public: static const int32_t kToken_description = 18 ;
+  public: static const int32_t kToken_mask = 19 ;
+  public: static const int32_t kToken_illegal = 20 ;
+  public: static const int32_t kToken_message = 21 ;
+  public: static const int32_t kToken_setting = 22 ;
+  public: static const int32_t kToken__3C_ = 23 ;
+  public: static const int32_t kToken__3E_ = 24 ;
+  public: static const int32_t kToken__2C_ = 25 ;
+  public: static const int32_t kToken__2D_ = 26 ;
+  public: static const int32_t kToken__2F_ = 27 ;
+  public: static const int32_t kToken__3B_ = 28 ;
+  public: static const int32_t kToken__3A_ = 29 ;
+  public: static const int32_t kToken__5B_ = 30 ;
+  public: static const int32_t kToken__5D_ = 31 ;
+  public: static const int32_t kToken__7B_ = 32 ;
+  public: static const int32_t kToken__7D_ = 33 ;
 
 //--- Key words table 'controlKeyWordList'
   public: static int32_t search_into_controlKeyWordList (const String & inSearchedString) ;

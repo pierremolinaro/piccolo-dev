@@ -8104,7 +8104,7 @@ void callExtensionMethod_duration (cPtr_ipic_31__38_SingleInstructionTerminator 
 //
 //--------------------------------------------------------------------------------------------------
 
-void cPtr_ipic_31__38_SequentialInstruction::method_minMaxDuration (GGS_blockDurationMap /* inArgument_inExploredBlockMap */,
+void cPtr_ipic_31__38_SequentialInstruction::method_minMaxDuration (const GGS_blockDurationMap /* constinArgument_inExploredBlockMap */,
                                                                     GGS_uint & outArgument_outMin,
                                                                     GGS_uint & outArgument_outMax,
                                                                     Compiler * /* inCompiler */
@@ -8116,7 +8116,7 @@ void cPtr_ipic_31__38_SequentialInstruction::method_minMaxDuration (GGS_blockDur
 //--------------------------------------------------------------------------------------------------
 
 void callExtensionMethod_minMaxDuration (cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                         GGS_blockDurationMap in_inExploredBlockMap,
+                                         const GGS_blockDurationMap constin_inExploredBlockMap,
                                          GGS_uint & out_outMin,
                                          GGS_uint & out_outMax,
                                          Compiler * inCompiler
@@ -8125,7 +8125,7 @@ void callExtensionMethod_minMaxDuration (cPtr_ipic_31__38_SequentialInstruction 
   out_outMax.drop () ;
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
-    inObject->method_minMaxDuration  (in_inExploredBlockMap, out_outMin, out_outMax, inCompiler COMMA_THERE) ;
+    inObject->method_minMaxDuration  (constin_inExploredBlockMap, out_outMin, out_outMax, inCompiler COMMA_THERE) ;
   }
 }
 //--------------------------------------------------------------------------------------------------

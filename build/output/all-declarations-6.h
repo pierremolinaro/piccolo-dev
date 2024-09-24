@@ -1545,7 +1545,7 @@ class cPtr_ipic_31__38_SequentialInstruction : public acStrongPtr_class {
            Compiler * COMMA_LOCATION_ARGS) ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) ;
@@ -7141,7 +7141,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ip
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -7576,7 +7576,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipi
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -8041,7 +8041,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_Sequent
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -8889,7 +8889,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ip
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -9100,7 +9100,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ip
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -9314,7 +9314,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipi
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -9528,7 +9528,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_i
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -9991,7 +9991,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : pu
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -10233,7 +10233,7 @@ class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_3
            Compiler * COMMA_LOCATION_ARGS) override ;
 
 //--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (class GGS_blockDurationMap arg_inExploredBlockMap,
+  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
