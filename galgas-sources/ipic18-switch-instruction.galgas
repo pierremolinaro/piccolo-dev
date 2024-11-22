@@ -2,14 +2,14 @@
 #! AST
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-refclass @pic18SimpleConstantCaseItem : @pic18AbstractCaseItem {
+class @pic18SimpleConstantCaseItem : @pic18AbstractCaseItem {
   public var @immediatExpression mCaseExpression
   public var @location mCaseExpressionLocation
 }
 
 #·······················································································································
 
-refclass @pic18IntervalCaseItem : @pic18AbstractCaseItem {
+class @pic18IntervalCaseItem : @pic18AbstractCaseItem {
   public var @immediatExpression mMinExpression
   public var @immediatExpression mMaxExpression
   public var @location mCaseExpressionLocation
@@ -31,7 +31,7 @@ list @pic18SwitchInstructionCaseList {
 
 #·······················································································································
 
-refclass @pic18Instruction_switch : @pic18PiccoloInstruction {
+class @pic18Instruction_switch : @pic18PiccoloInstruction {
   public var @pic18SwitchInstructionCaseList mCaseList
   public var @location mElseBranchStartLocation
   public var @pic18InstructionList mElseInstructionList

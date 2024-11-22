@@ -89,7 +89,7 @@ method @registerExpression resolveMidrangeAccess
 
 #----------------------------------------------------*
 
-abstract refclass @midrange_intermediate_instruction {
+abstract class @midrange_intermediate_instruction {
 }
 
 #----------------------------------------------------*
@@ -100,32 +100,32 @@ list @midrange_intermediate_instructionList {
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_NULL : @midrange_intermediate_instruction {
+class @midrange_intermediate_NULL : @midrange_intermediate_instruction {
 }
 
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_pseudo_ORG : @midrange_intermediate_instruction {
+class @midrange_intermediate_pseudo_ORG : @midrange_intermediate_instruction {
   public var @uint mOrigin
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_pseudo_LABEL : @midrange_intermediate_instruction {
+class @midrange_intermediate_pseudo_LABEL : @midrange_intermediate_instruction {
   public var @lstring mLabel
   public var @bool mIsDeletable
 }
 
 #----------------------------------------------------*
 
-abstract refclass @midrange_intermediate_actualInstruction : @midrange_intermediate_instruction {
+abstract class @midrange_intermediate_actualInstruction : @midrange_intermediate_instruction {
   public var @location mInstructionLocation
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_FD : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_FD : @midrange_intermediate_actualInstruction {
   public var @midrange_instruction_FD_base_code mInstruction_FD_base_code
   public var @midrange_intermediate_registerExpression mRegisterDescription
   public var @bool m_W_isDestination
@@ -133,14 +133,14 @@ refclass @midrange_intermediate_instruction_FD : @midrange_intermediate_actualIn
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_F : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_F : @midrange_intermediate_actualInstruction {
   public var @midrange_F_instruction_base_code mFinstruction
   public var @midrange_intermediate_registerExpression mRegisterDescription
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_FB : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_FB : @midrange_intermediate_actualInstruction {
   public var @midrange_bit_oriented_op mBitOrientedOp
   public var @midrange_intermediate_registerExpression mRegisterDescription
   public var @uint mBitNumber
@@ -148,7 +148,7 @@ refclass @midrange_intermediate_instruction_FB : @midrange_intermediate_actualIn
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_BitTestSkip : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_BitTestSkip : @midrange_intermediate_actualInstruction {
   public var @bool mSkipIfSet
   public var @midrange_intermediate_registerExpression mRegisterDescription
   public var @uint mBitNumber
@@ -162,7 +162,7 @@ enum @midrange_call_goto_bit %equatable {
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_JUMP : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_JUMP : @midrange_intermediate_actualInstruction {
   public var @lstring mTargetLabel
   public var @midrange_call_goto_bit mBit11
   public var @midrange_call_goto_bit mBit12
@@ -170,19 +170,19 @@ refclass @midrange_intermediate_JUMP : @midrange_intermediate_actualInstruction 
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_GOTO : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_GOTO : @midrange_intermediate_actualInstruction {
   public var @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_CALL : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_CALL : @midrange_intermediate_actualInstruction {
   public var @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_JSR : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_JSR : @midrange_intermediate_actualInstruction {
   public var @lstring mTargetLabel
   public var @midrange_call_goto_bit mBit11
   public var @midrange_call_goto_bit mBit12
@@ -190,50 +190,50 @@ refclass @midrange_intermediate_JSR : @midrange_intermediate_actualInstruction {
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_CLRWDT : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_CLRWDT : @midrange_intermediate_actualInstruction {
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_CLRW : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_CLRW : @midrange_intermediate_actualInstruction {
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_NOP : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_NOP : @midrange_intermediate_actualInstruction {
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_RETURN : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_RETURN : @midrange_intermediate_actualInstruction {
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_RETFIE : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_RETFIE : @midrange_intermediate_actualInstruction {
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_SLEEP : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_SLEEP : @midrange_intermediate_actualInstruction {
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_literalOperation : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_literalOperation : @midrange_intermediate_actualInstruction {
   public var @midrange_literal_instruction_opcode mLiteralInstruction
   public var @uint mLiteralValue
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_instruction_MNOP : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_instruction_MNOP : @midrange_intermediate_actualInstruction {
   public var @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
-refclass @midrange_intermediate_incDecRegisterInCondition : @midrange_intermediate_actualInstruction {
+class @midrange_intermediate_incDecRegisterInCondition : @midrange_intermediate_actualInstruction {
   public var @midrange_intermediate_registerExpression mRegisterDescription
   public var @string mTargetLabel
   public var @bool mIncrement

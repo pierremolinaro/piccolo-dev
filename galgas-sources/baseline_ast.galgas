@@ -2,7 +2,7 @@
 
 #----------------------------------------------------*
 
-abstract refclass @baseline_instruction {
+abstract class @baseline_instruction {
   public var @location mInstructionLocation
 }
 
@@ -14,7 +14,7 @@ list @baseline_instructionList {
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_FD : @baseline_instruction {
+class @baseline_instruction_FD : @baseline_instruction {
   public var @baseline_instruction_FD_base_code mInstruction_FD_base_code
   public var @registerExpression mRegisterExpression
   public var @bool m_W_isDestination
@@ -22,14 +22,14 @@ refclass @baseline_instruction_FD : @baseline_instruction {
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_F : @baseline_instruction {
+class @baseline_instruction_F : @baseline_instruction {
   public var @baseline_F_instruction_base_code mFAinstruction
   public var @registerExpression mRegisterExpression
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_FB : @baseline_instruction {
+class @baseline_instruction_FB : @baseline_instruction {
   public var @baseline_bit_oriented_op mBitOrientedOp
   public var @registerExpression mRegisterExpression
   public var @bitNumberExpression mBitNumber
@@ -37,63 +37,63 @@ refclass @baseline_instruction_FB : @baseline_instruction {
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_CALL : @baseline_instruction {
+class @baseline_instruction_CALL : @baseline_instruction {
   public var @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_JSR : @baseline_instruction {
+class @baseline_instruction_JSR : @baseline_instruction {
   public var @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_GOTO : @baseline_instruction {
+class @baseline_instruction_GOTO : @baseline_instruction {
   public var @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_JUMP : @baseline_instruction {
+class @baseline_instruction_JUMP : @baseline_instruction {
   public var @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_WO_OPERAND : @baseline_instruction {
+class @baseline_instruction_WO_OPERAND : @baseline_instruction {
   public var @baseline_WO_OPERAND_group mInstruction
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_TRIS : @baseline_instruction {
+class @baseline_instruction_TRIS : @baseline_instruction {
   public var @lstring mOperand
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_literalOperation : @baseline_instruction {
+class @baseline_instruction_literalOperation : @baseline_instruction {
   public var @baseline_literal_instruction_opcode mLiteralInstruction
   public var @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_MNOP : @baseline_instruction {
+class @baseline_instruction_MNOP : @baseline_instruction {
   public var @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_FOREVER : @baseline_instruction {
+class @baseline_instruction_FOREVER : @baseline_instruction {
   public var @baseline_instructionList mInstructionList
   public var @location mEndOfInstructionList
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
+class @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
   public var @lstring mConstantName
   public var @immediatExpression mLowerBoundExpression
   public var @immediatExpression mUpperBoundExpression
@@ -103,13 +103,13 @@ refclass @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
 
 #----------------------------------------------------*
 
-abstract refclass @baseline_instruction_IF_SEMI_COLON : @baseline_instruction {
+abstract class @baseline_instruction_IF_SEMI_COLON : @baseline_instruction {
   public var @baseline_instruction mInstruction
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_IF_BitTest : @baseline_instruction_IF_SEMI_COLON {
+class @baseline_instruction_IF_BitTest : @baseline_instruction_IF_SEMI_COLON {
   public var @bool mSkipIfSet
   public var @registerExpression mRegisterExpression
   public var @bitNumberExpression mBitNumber
@@ -134,7 +134,7 @@ method @baseline_instruction_IF_BitTest getMnemonic !@string outMnemonic {
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_IF_IncDec : @baseline_instruction_IF_SEMI_COLON {
+class @baseline_instruction_IF_IncDec : @baseline_instruction_IF_SEMI_COLON {
   public var @bool mIncrement
   public var @registerExpression mRegisterExpression
   public var @bool m_W_isDestination
@@ -142,12 +142,12 @@ refclass @baseline_instruction_IF_IncDec : @baseline_instruction_IF_SEMI_COLON {
 
 #----------------------------------------------------*
 
-abstract refclass @baseline_conditionExpression {
+abstract class @baseline_conditionExpression {
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_incDecRegisterInCondition : @baseline_conditionExpression {
+class @baseline_incDecRegisterInCondition : @baseline_conditionExpression {
   public var @registerExpression mRegisterExpression
   public var @bool mIncrement
   public var @bool m_W_isDestination
@@ -156,20 +156,20 @@ refclass @baseline_incDecRegisterInCondition : @baseline_conditionExpression {
 
 #----------------------------------------------------*
 
-refclass @baseline_negateCondition : @baseline_conditionExpression {
+class @baseline_negateCondition : @baseline_conditionExpression {
   public var @baseline_conditionExpression mCondition
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_andCondition : @baseline_conditionExpression {
+class @baseline_andCondition : @baseline_conditionExpression {
   public var @baseline_conditionExpression mLeftExpression
   public var @baseline_conditionExpression mRightExpression
 }
 
 #----------------------------------------------------*
 
-refclass @baseline_bitTest_in_structured_if_condition : @baseline_conditionExpression {
+class @baseline_bitTest_in_structured_if_condition : @baseline_conditionExpression {
   public var @registerExpression mRegisterExpression
   public var @bitNumberExpression mBitNumber
 #  @bool mBTFSSinstruction
@@ -177,7 +177,7 @@ refclass @baseline_bitTest_in_structured_if_condition : @baseline_conditionExpre
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_structured_if : @baseline_instruction {
+class @baseline_instruction_structured_if : @baseline_instruction {
   public var @baseline_conditionExpression mIfCondition
   public var @baseline_instructionList mThenInstructionList
   public var @baseline_instructionList mElseInstructionList
@@ -194,7 +194,7 @@ list @baseline_partList {
 
 #----------------------------------------------------*
 
-refclass @baseline_instruction_do_while : @baseline_instruction {
+class @baseline_instruction_do_while : @baseline_instruction {
   public var @baseline_instructionList mRepeatedInstructionList
   public var @location mEndOfRepeatedInstructionList
   public var @baseline_partList mWhilePartList
