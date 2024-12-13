@@ -208,10 +208,10 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   $}$
 #--- Check some registers are actual defined
   if (processorName.string == "pic18_60") | (processorName.string == "pic18_80") then
-    [registerTable searchKey !@lstring.init { !"BSR" !@location.here} ?5*]
-    [registerTable searchKey !@lstring.init { !"TOSL" !@location.here} ?5*]
-    [registerTable searchKey !@lstring.init { !"TOSH" !@location.here} ?5*]
-    [registerTable searchKey !@lstring.init { !"TOSU" !@location.here} ?5*]
+    [registerTable searchKey !@lstring { !"BSR" !@location.here} ?5*]
+    [registerTable searchKey !@lstring { !"TOSL" !@location.here} ?5*]
+    [registerTable searchKey !@lstring { !"TOSH" !@location.here} ?5*]
+    [registerTable searchKey !@lstring { !"TOSU" !@location.here} ?5*]
   end
 #--- Check if controller has a shared bank
   var @string sharedBankName = "" # No shared bank by default
@@ -227,7 +227,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     end
   end
 #---
-  outPiccoloDeviceModel = @piccoloDeviceModel.init {
+  outPiccoloDeviceModel = @piccoloDeviceModel {
     !deviceName
     !processorType
     !romSize

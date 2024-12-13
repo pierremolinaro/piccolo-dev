@@ -112,13 +112,13 @@ proc baseline_analysis
     ?let actualConfigurationMap
   )
 #-------------------------------- Build constant map
-  var @constantMap constantMap = ()
+  var @constantMap constantMap = @()
   var @registerTable registerTable = piccoloDeviceModel.mRegisterTable
 #--- Add "ROM_SIZE" constant
 #  @lstring romSizeString [new !"ROM_SIZE" !here] ;
 #  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
 #--- Add declared constants
-  var @stringset usedRegisters = ()
+  var @stringset usedRegisters = @()
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
     if [registerTable hasKey !mConstantName.string] then
@@ -154,7 +154,7 @@ proc baseline_analysis
   end
 #-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
-    [routineMap searchKey !@lstring.init { !"main" !@location.here} ?let @bool isNoReturn ?let @luint page]
+    [routineMap searchKey !@lstring { !"main" !@location.here} ?let @bool isNoReturn ?let @luint page]
     if not isNoReturn then
       error [routineMap locationForKey !"main"] :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main page 0\""
     end
@@ -208,7 +208,7 @@ proc baseline_analysis
         #---
           if not pseudo_PAGE_generated then
             pseudo_PAGE_generated = true
-            intermediateInstructionList += !@baseline_intermediate_pseudo_PAGE.init { !currentPage}
+            intermediateInstructionList += !@baseline_intermediate_pseudo_PAGE { !currentPage}
           end
         #---
           let @routineKind routineKind
@@ -233,8 +233,8 @@ proc baseline_analysis
           end
         #--- Check and translate instructions
           if mRoutineName.string != "main" then
-            intermediateInstructionList += !@baseline_intermediate_pseudo_BEGIN_ROUTINE.init { !mRoutineName !not mIsNoReturn}
-            intermediateInstructionList += !@baseline_intermediate_pseudo_LABEL.init { !mRoutineName}
+            intermediateInstructionList += !@baseline_intermediate_pseudo_BEGIN_ROUTINE { !mRoutineName !not mIsNoReturn}
+            intermediateInstructionList += !@baseline_intermediate_pseudo_LABEL { !mRoutineName}
           end
           handleBaselineInstructionList (
             !currentPage
@@ -250,7 +250,7 @@ proc baseline_analysis
             !not mIsNoReturn # Last instruction should be RETLW ?
             !?usedRegisters
           )
-          intermediateInstructionList += !@baseline_intermediate_pseudo_END_ROUTINE.init { !mRoutineName !currentPage}
+          intermediateInstructionList += !@baseline_intermediate_pseudo_END_ROUTINE { !mRoutineName !currentPage}
           if mIsNoReturn & continuesInSequence then
             error mRoutineName:"execution should not reach the end of a \"noreturn\" routine"
           end
@@ -325,9 +325,9 @@ proc baseline_analysis
   end
 #-------------------------------- Build assembly instruction list
   initCodeGenerator ()
-  let sr = @registerExpression.init {
-    !.init {!"STATUS" !.here}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let sr = @registerExpression {
+    ! @{!"STATUS" !.here}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [sr resolveBaselineAccess

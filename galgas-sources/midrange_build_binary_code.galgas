@@ -299,9 +299,9 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   var usedRegisters =@stringset ()
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Get values for PCLATH register
-  let PCLATH_register = @registerExpression.init {
-    !@lstring.init {!"PCLATH" !.here}
-    !@immediatInteger.init {!.init {!0 !@location.here}}
+  let PCLATH_register = @registerExpression {
+    !@lstring {!"PCLATH" !.here}
+    !@immediatInteger {! @{!0 !@location.here}}
     !.here
   }
   [PCLATH_register resolveMidrangeAccess
@@ -380,9 +380,9 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
 #---
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
 #--- Get values for PCLATH register
-  let PCLATH_register = @registerExpression.init{
-    !@lstring.init {!"PCLATH" !@location.here}
-    !@immediatInteger.init {!.init {!0 !@location.here}}
+  let PCLATH_register = @registerExpression {
+    !@lstring {!"PCLATH" !@location.here}
+    !@immediatInteger {! @{!0 !@location.here}}
     !.here
   }
   [PCLATH_register resolveMidrangeAccess
@@ -508,7 +508,7 @@ override method @midrange_intermediate_incDecRegisterInCondition generateBinaryC
     emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !"$ + 2" !ioAddress + 2 !?ioListFileContents )
   end
 #--- Generate GOTO instruction
-  [inRoutineSymbolTable searchKey !@lstring.init { !self.mTargetLabel !@location.here} ?let targetAddress]
+  [inRoutineSymbolTable searchKey !@lstring { !self.mTargetLabel !@location.here} ?let targetAddress]
   emit_midrange_GOTOinstruction ( !self.mInstructionLocation !?ioAddress !self.mTargetLabel !targetAddress !?ioListFileContents )
 }
 

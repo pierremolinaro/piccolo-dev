@@ -36,7 +36,7 @@ method @ipic18Block performRelativesResolution
     ?let @ipic18AbstractBlockTerminator modifiedTerminator
   ]
 #---
-  outModifiedBlock = @ipic18Block.init {
+  outModifiedBlock = @ipic18Block {
     !self.mAddress
     !self.mLabel
     !modifiedInstructionList

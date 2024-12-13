@@ -49,7 +49,7 @@ proc actualBuildConfig
       elsif [fieldSettingMap count] > 0 then
         let errorMessage = "the '" + mSettingValue + "' value is not defined for configuration setting '"
         + mSettingName + "'"
-        var @stringlist replacementSuggestions = ()
+        var @stringlist replacementSuggestions = @()
         for (lkey * *) in  fieldSettingMap do
           replacementSuggestions += !"\"" + lkey + "\""
         end

@@ -30,7 +30,7 @@ override method @pic18Instruction_block performInlining
   ?let @stringset inCurrentlyInlinedRoutineSet
   ?!@pic18InstructionList ioInstructionList
 {
-  var @pic18BlockInstructionBlockList inlinedBlockList = ()
+  var @pic18BlockInstructionBlockList inlinedBlockList = @()
   for (mBlockName mInstructionList mBlockTerminaisonForBlockInstruction mEndOfBlock) in self.mBlockList do
     performInlineFromInstructionList (
       !mInstructionList
@@ -45,7 +45,7 @@ override method @pic18Instruction_block performInlining
       !mBlockTerminaisonForBlockInstruction
       !mEndOfBlock
   end
-  ioInstructionList += !@pic18Instruction_block.init {
+  ioInstructionList += !@pic18Instruction_block {
     !self.mInstructionLocation
     !self.mStartBlockName
     !inlinedBlockList
@@ -68,7 +68,7 @@ override method @pic18Instruction_FOREVER performInlining
     !inCurrentlyInlinedRoutineSet
     ?let @pic18InstructionList instructionList
   )
-  ioInstructionList += !@pic18Instruction_FOREVER.init {
+  ioInstructionList += !@pic18Instruction_FOREVER {
     !self.mInstructionLocation
     !instructionList
     !self.mEndOfInstructionList}
@@ -99,7 +99,7 @@ override method @pic18Instruction_do_while performInlining
     )
     whilePartList += !mCondition !instructionList !mEndOfPartLocation
   end
-  ioInstructionList += !@pic18Instruction_do_while.init {
+  ioInstructionList += !@pic18Instruction_do_while {
     !self.mInstructionLocation
     !repeatedInstructionList
     !self.mEndOfRepeatedInstructionList
@@ -120,7 +120,7 @@ override method @pic18Instruction_savebank performInlining
     !inCurrentlyInlinedRoutineSet
     ?let @pic18InstructionList instructionList
   )
-  ioInstructionList += !@pic18Instruction_savebank.init {
+  ioInstructionList += !@pic18Instruction_savebank {
     !self.mInstructionLocation
     !self.mRegister
     !instructionList
@@ -148,7 +148,7 @@ override method @pic18Instruction_structured_if performInlining
     !inCurrentlyInlinedRoutineSet
     ?let @pic18InstructionList elseInstructionList
   )
-  ioInstructionList += !@pic18Instruction_structured_if.init {
+  ioInstructionList += !@pic18Instruction_structured_if {
     !self.mInstructionLocation
     !self.mIfCondition
     !thenInstructionList
@@ -179,7 +179,7 @@ override method @pic18Instruction_JSR performInlining
       error self.mTargetLabel: "a \"noreturn\" routine cannot be inlined" : inlineDone
     else
       if requiredBank.uint != @uint. max then
-        ioInstructionList += !@pic18Instruction_checkbank.init { !self.mInstructionLocation !requiredBank.uint}
+        ioInstructionList += !@pic18Instruction_checkbank { !self.mInstructionLocation !requiredBank.uint}
       end
       var @stringset currentlyInlinedRoutineSet = inCurrentlyInlinedRoutineSet
       currentlyInlinedRoutineSet += !self.mTargetLabel.string

@@ -391,7 +391,7 @@ dict @branchOverflowMapDictionary : @string {
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 struct @branchOverflowMap {
-  private(set) var @branchOverflowMapDictionary dictionary = ()
+  private(set) var @branchOverflowMapDictionary dictionary = @()
 
   //·····························································································
 
@@ -402,7 +402,7 @@ struct @branchOverflowMap {
       [!?aList append !inValue]
       self.dictionary += !inKey !aList
     else
-      self.dictionary += !inKey !§[.init (inValue)]
+      self.dictionary += !inKey !@[@(inValue)]
     end
   }
 
@@ -412,7 +412,7 @@ struct @branchOverflowMap {
     if [self.dictionary hasKey !inKey] then
       [self.dictionary searchKey !inKey ?result]
    else
-      result = ()
+      result = @()
     end
   }
 

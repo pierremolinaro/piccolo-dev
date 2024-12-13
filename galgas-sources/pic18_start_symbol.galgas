@@ -39,13 +39,13 @@ rule <start_symbol> {
   $:$
   var interruptDefinitionList =@pic18InterruptDefinitionList ()
   var routineDefinitionList =@pic18RoutineDefinitionList ()
-  var @pic18MacroDefinitionList macroDefinitionList = ()
+  var @pic18MacroDefinitionList macroDefinitionList = @()
   var unusedRoutineList =@lstringlist ()
   var ramDefinitionList =@ramDefinitionList ()
   var unusedRegisterList =@lstringlist ()
   var configDefinitionList =@configDefinitionList ()
   var constantDefinitionList =@constantDefinitionList ()
-  var dataList =@dataList ()
+  var dataList = @dataList ()
   var checkpicList =@checkpicList ()
   var inlinedRoutineList =@lstringlist ()
   var @bool needsComputedGoto2 = false
@@ -67,7 +67,7 @@ rule <start_symbol> {
   $end$
 #--- Semantic analysis
   if @uint. errorCount == 0 then
-    let piccoloModel = @pic18AST.init{
+    let piccoloModel = @pic18AST {
       !programName
       !programKind
       !deviceNameOrBootloaderReference

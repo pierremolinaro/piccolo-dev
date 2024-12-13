@@ -34,7 +34,7 @@ override method @byteDeclarationInRam handleDeclaration
   elsif size > 4096 then
     error self.mName: "size expression should be < 4096"
   else
-    var @uintlist addressList = §[.init (firstFreeAddress)]
+    var @uintlist addressList = @[@(firstFreeAddress)]
     for (mValue) in  mirrorOffsetList do
       addressList += !firstFreeAddress + mValue
     end
@@ -77,7 +77,7 @@ proc analyze_ram_sections
   ?!@registerTable ioAllRegisters
   !@declaredByteMap outDeclaredByteMap
 {
-  outDeclaredByteMap = ()
+  outDeclaredByteMap = @()
   for (mBankName mDeclaration) in  inRamDefinitionList do
     for (mDeclarationInRAM) in  mDeclaration do
       [mDeclarationInRAM handleDeclaration

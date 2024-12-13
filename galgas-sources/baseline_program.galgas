@@ -33,7 +33,7 @@ rule <start_symbol> {
   $end$
 #--- Semantic analysis
   if @uint. errorCount == 0 then
-    let piccoloModel = @baseline_model.init{
+    let piccoloModel = @baseline_model {
       !programName
       !deviceName
       !configDefinitionList

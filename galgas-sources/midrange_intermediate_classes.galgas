@@ -82,7 +82,7 @@ method @registerExpression resolveMidrangeAccess
     end
   end
 #---
-  outIPICregisterDescription = @midrange_intermediate_registerExpression.init {
+  outIPICregisterDescription = @midrange_intermediate_registerExpression {
     !assemblyString
     !registerAddress + [offset uint]}
 }

@@ -15,7 +15,7 @@ before {
   #--- Parse them
     for (mValue) in  allDevices do
       let @string name = [[mValue lastPathComponent] stringByDeletingPathExtension]
-      parseDeviceDefinition ( !@lstring.init { !name !@location.here} ? let @piccoloDeviceModel piccoloDeviceModel )
+      parseDeviceDefinition ( !@lstring { !name !@location.here} ? let @piccoloDeviceModel piccoloDeviceModel )
       switch piccoloDeviceModel.mProcessorType
       case pic18_60, pic18_80 :
         pic18_devices += !name
@@ -100,7 +100,7 @@ before {
   if [deviceForMemoryDescription count] > 0 then
     let @string devicePath = "/" + deviceForMemoryDescription + ".piccoloDevice"
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
-      parseDeviceDefinition (!@lstring.init { !deviceForMemoryDescription !@location.here} ?let piccoloDeviceModel)
+      parseDeviceDefinition (!@lstring { !deviceForMemoryDescription !@location.here} ?let piccoloDeviceModel)
       var @uint totalRam = 0
       for (* * mFirstFreeAddress mLastAddressPlusOne *) in  piccoloDeviceModel.mRamBankTable do
         totalRam  = totalRam  + mLastAddressPlusOne - mFirstFreeAddress
@@ -147,7 +147,7 @@ before {
   if [deviceForRegistersDescription count] > 0 then
     let @string devicePath = "/" + deviceForRegistersDescription + ".piccoloDevice"
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
-      parseDeviceDefinition (!@lstring.init { ! deviceForRegistersDescription !@location.here} ?let piccoloDeviceModel)
+      parseDeviceDefinition (!@lstring { ! deviceForRegistersDescription !@location.here} ?let piccoloDeviceModel)
       print (!deviceForRegistersDescription + " has " + [[piccoloDeviceModel.mRegisterTable count] string] + " special registers:\n")
       for register in  piccoloDeviceModel.mRegisterTable do
         var @string s = "  '" + register.lkey + "' at "
@@ -167,7 +167,7 @@ before {
   if [deviceForConfigDescription count] > 0 then
     let @string devicePath = "/" + deviceForConfigDescription + ".piccoloDevice"
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
-      parseDeviceDefinition (!@lstring.init { ! deviceForConfigDescription !@location.here} ?let piccoloDeviceModel)
+      parseDeviceDefinition (!@lstring { ! deviceForConfigDescription !@location.here} ?let piccoloDeviceModel)
       print (!deviceForConfigDescription + " has " + [[piccoloDeviceModel.mConfigRegisterMap count] string] + " configuration registers:\n")
       for (lkey mRegisterAddress mRegisterWidth mConfigRegisterMaskMap mIllegalMaskList) in  piccoloDeviceModel.mConfigRegisterMap do
         var @string s = "REGISTER '" + lkey + "' at " + [mRegisterAddress.uint hexString] + ", width " + [mRegisterWidth.uint string] + "\n"

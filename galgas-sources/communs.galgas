@@ -42,7 +42,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
   $identifier$ ?let @lstring name indexing variableDeclaration
   let @immediatExpression sizeExpression
   select
-    sizeExpression = @immediatInteger.init {!.init {!1 !.here}}
+    sizeExpression = @immediatInteger {! @{!1 !.here}}
   or
     $[$
     <immediate_expression> ?sizeExpression
@@ -117,7 +117,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
     $>$
     bitDefinitionString += ">"
   end
-  outDeclaration = @byteDeclarationInRam.init {!name !sizeExpression !bitSliceTable !bitDefinitionString !protection}
+  outDeclaration = @byteDeclarationInRam {!name !sizeExpression !bitSliceTable !bitDefinitionString !protection}
 }
 
 #----------------------------------------------------*
@@ -157,11 +157,11 @@ rule <immediate_expression> !@immediatExpression outExpression {
   while
     $|$
     <immediate_bitwise_term> ?let @immediatExpression rightExpression
-    outExpression = @immediatOr.init { !outExpression! rightExpression}
+    outExpression = @immediatOr { !outExpression! rightExpression}
   while
     $^$
     <immediate_bitwise_term> ?let @immediatExpression rightExpression
-    outExpression = @immediatXor.init { !outExpression! rightExpression}
+    outExpression = @immediatXor { !outExpression! rightExpression}
   end
 }
 
@@ -173,7 +173,7 @@ rule  <immediate_bitwise_term> !@immediatExpression outExpression {
   while
     $&$
     <immediate_bitwise_factor> ?let rightExpression
-    outExpression = @immediatAnd.init { !outExpression! rightExpression}
+    outExpression = @immediatAnd { !outExpression! rightExpression}
   end
 }
 
@@ -185,27 +185,27 @@ rule <immediate_bitwise_factor> !@immediatExpression outExpression {
   or
     $==$ 
     <immediate_term> ?let rightExpression
-    outExpression = @immediatEqualTest.init { !outExpression! rightExpression}
+    outExpression = @immediatEqualTest { !outExpression! rightExpression}
   or
     $!=$ 
     <immediate_term> ?let rightExpression
-    outExpression = @immediatNotEqualTest.init { !outExpression! rightExpression}
+    outExpression = @immediatNotEqualTest { !outExpression! rightExpression}
   or
     $>=$ 
     <immediate_term> ?let rightExpression
-    outExpression = @immediatGreaterOrEqualTest.init { !outExpression! rightExpression}
+    outExpression = @immediatGreaterOrEqualTest { !outExpression! rightExpression}
   or
     $<=$ 
     <immediate_term> ?let rightExpression
-    outExpression = @immediatLowerOrEqualTest.init { !outExpression! rightExpression}
+    outExpression = @immediatLowerOrEqualTest { !outExpression! rightExpression}
   or
     $>$ 
     <immediate_term> ?let rightExpression
-    outExpression = @immediatGreaterTest.init { !outExpression! rightExpression}
+    outExpression = @immediatGreaterTest { !outExpression! rightExpression}
   or
     $<$ 
     <immediate_term> ?let rightExpression
-    outExpression = @immediatLowerTest.init { !outExpression! rightExpression}
+    outExpression = @immediatLowerTest { !outExpression! rightExpression}
   end
 }
 
@@ -217,19 +217,19 @@ rule <immediate_term> !@immediatExpression outExpression {
   while
     $+$
     <immediate_factor> ?let rightExpression
-    outExpression = @immediatAdd.init { !outExpression! rightExpression}
+    outExpression = @immediatAdd { !outExpression! rightExpression}
   while
     $-$
     <immediate_factor> ?let rightExpression
-    outExpression = @immediatSub.init { !outExpression! rightExpression}
+    outExpression = @immediatSub { !outExpression! rightExpression}
   while
     $<<$
     <immediate_factor> ?let rightExpression
-    outExpression = @immediatLeftShift.init { !outExpression! rightExpression}
+    outExpression = @immediatLeftShift { !outExpression! rightExpression}
   while
     $>>$
     <immediate_factor> ?let rightExpression
-    outExpression = @immediatRightShift.init { !outExpression! rightExpression}
+    outExpression = @immediatRightShift { !outExpression! rightExpression}
   end
 }
 
@@ -241,15 +241,15 @@ rule <immediate_factor> !@immediatExpression outExpression {
   while
     $*$
     <immediate_primary> ?let rightExpression
-    outExpression = @immediatMul.init { !outExpression! rightExpression}
+    outExpression = @immediatMul { !outExpression! rightExpression}
   while
     $%$
     <immediate_primary> ?let rightExpression
-    outExpression = @immediatMod.init { !outExpression! rightExpression}
+    outExpression = @immediatMod { !outExpression! rightExpression}
   while
     $/$
     <immediate_primary> ?let rightExpression
-    outExpression = @immediatDiv.init { !outExpression! rightExpression}
+    outExpression = @immediatDiv { !outExpression! rightExpression}
   end
 }
 
@@ -260,23 +260,23 @@ rule <immediate_primary> !@immediatExpression outExpression {
   select
     $-$
     <immediate_primary> ?let expression
-    outExpression = @immediatNegate.init { !expression}
+    outExpression = @immediatNegate { !expression}
   or
     $~$
     <immediate_primary> ?let expression
-    outExpression = @immediatComplement.init { !expression}
+    outExpression = @immediatComplement { !expression}
   or
     $integer$ ?let @luint constant
-    outExpression = @immediatInteger.init { !constant}
+    outExpression = @immediatInteger { !constant}
   or
     $literal_char$ ?let @lchar literalCharValue
-    outExpression = @immediatInteger.init { !@luint.init { ![literalCharValue.char uint] !literalCharValue.location}}
+    outExpression = @immediatInteger { !@luint { ![literalCharValue.char uint] !literalCharValue.location}}
   or
     $identifier$ ?let @lstring registerName indexing variableUse
     let @immediatExpression offset
     let @location endOfOffsetExpression
     select
-      offset = @immediatInteger.init {!.init {!0 !.here}}
+      offset = @immediatInteger {! @{!0 !.here}}
       endOfOffsetExpression = .here
     or
       $[$
@@ -284,12 +284,12 @@ rule <immediate_primary> !@immediatExpression outExpression {
       endOfOffsetExpression = .here
       $]$
     end
-    let registerExpression = @registerExpression.init{
+    let registerExpression = @registerExpression {
       !registerName
       !offset
       !endOfOffsetExpression
     }
-    outExpression = @immediatRegister.init { !registerExpression}
+    outExpression = @immediatRegister { !registerExpression}
   or
     $($
     <immediate_expression> ?outExpression
@@ -307,7 +307,7 @@ rule <immediate_primary> !@immediatExpression outExpression {
       $,$
     end
     $)$
-    outExpression = @immediatSlice.init {!registerName !sliceExpressionList}
+    outExpression = @immediatSlice {!registerName !sliceExpressionList}
   end
 }
 
@@ -318,7 +318,7 @@ rule <register_parsing> !@registerExpression outRegisterExpression {
   let @immediatExpression offset
   let @location endOfOffsetExpression
   select
-    offset = @immediatInteger.init {!.init {!0 !.here}}
+    offset = @immediatInteger {! @{!0 !.here}}
     endOfOffsetExpression = .here
   or
     $[$
@@ -326,7 +326,7 @@ rule <register_parsing> !@registerExpression outRegisterExpression {
     endOfOffsetExpression = .here
     $]$
   end
-  outRegisterExpression = @registerExpression.init {
+  outRegisterExpression = @registerExpression {
     !registerName
     !offset
     !endOfOffsetExpression
@@ -339,20 +339,20 @@ rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
   $identifier$ ?let @lstring bitNumberLabel
   let @luint bitIndex
   select
-    bitIndex = @luint.init { !0 !@location.here}
+    bitIndex = @luint { !0 !@location.here}
   or
     $[$
     $integer$ ? bitIndex
     $]$
   end
-  outBitNumber = @bitNumberLabelValue.init {!bitNumberLabel !bitIndex}
+  outBitNumber = @bitNumberLabelValue {!bitNumberLabel !bitIndex}
 }
 
 #----------------------------------------------------*
 
 rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
   $integer$ ?let bitIndex
-  outBitNumber = @bitNumberLiteralValue.init {!bitIndex}
+  outBitNumber = @bitNumberLiteralValue {!bitIndex}
 }
 
 #----------------------------------------------------*
@@ -362,7 +362,7 @@ rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
   <immediate_expression> ?let bitNumberExpression
   let endOfExpression = @location.here
   $)$
-  outBitNumber = @bitNumberLiteralExpression.init {!bitNumberExpression !endOfExpression}
+  outBitNumber = @bitNumberLiteralExpression {!bitNumberExpression !endOfExpression}
 }
 
 #----------------------------------------------------*

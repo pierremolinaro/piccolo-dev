@@ -4874,27 +4874,27 @@ void cPtr_ipic_31__38_AbstractConditionTerminator::method_getOptimizedTerminator
                                                                                    GGS_bool & outArgument_outIdenticalTerminators,
                                                                                    Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_ipic_31__38_AbstractBlockTerminator var_optimizedTrueTerminator_7318 ;
+  GGS_ipic_31__38_AbstractBlockTerminator var_optimizedTrueTerminator_7308 ;
   const GGS_ipic_31__38_AbstractConditionTerminator temp_0 = this ;
-  callExtensionMethod_optimizeTerminator ((cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inSymbolTable, constinArgument_inOptimizeFlagStruct, constinArgument_inBlockList, constinArgument_inBlockLabel, ioArgument_ioOptimizationDone, ioArgument_ioListFileContents, var_optimizedTrueTerminator_7318, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 169)) ;
+  callExtensionMethod_optimizeTerminator ((cPtr_ipic_31__38_SingleInstructionTerminator *) temp_0.readProperty_mSingleInstructionTerminatorIfConditionTrue ().ptr (), constinArgument_inSymbolTable, constinArgument_inOptimizeFlagStruct, constinArgument_inBlockList, constinArgument_inBlockLabel, ioArgument_ioOptimizationDone, ioArgument_ioListFileContents, var_optimizedTrueTerminator_7308, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 169)) ;
   GGS_ipic_31__38_SingleInstructionTerminator temp_1 ;
-  if (var_optimizedTrueTerminator_7318.isValid ()) {
-    if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_optimizedTrueTerminator_7318.ptr ())) {
-      temp_1 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_optimizedTrueTerminator_7318.ptr () ;
+  if (var_optimizedTrueTerminator_7308.isValid ()) {
+    if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_optimizedTrueTerminator_7308.ptr ())) {
+      temp_1 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_optimizedTrueTerminator_7308.ptr () ;
     }else{
-      inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_optimizedTrueTerminator_7318.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 178)) ;
+      inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_optimizedTrueTerminator_7308.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 178)) ;
     }
   }
   outArgument_outOptimizedTrueTerminator = temp_1 ;
-  GGS_ipic_31__38_AbstractBlockTerminator var_optimizedFalseTerminator_7689 ;
+  GGS_ipic_31__38_AbstractBlockTerminator var_optimizedFalseTerminator_7679 ;
   const GGS_ipic_31__38_AbstractConditionTerminator temp_2 = this ;
-  callExtensionMethod_optimizeTerminator ((cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inSymbolTable, constinArgument_inOptimizeFlagStruct, constinArgument_inBlockList, constinArgument_inBlockLabel, ioArgument_ioOptimizationDone, ioArgument_ioListFileContents, var_optimizedFalseTerminator_7689, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 180)) ;
+  callExtensionMethod_optimizeTerminator ((cPtr_ipic_31__38_SingleInstructionTerminator *) temp_2.readProperty_mSingleInstructionTerminatorIfConditionFalse ().ptr (), constinArgument_inSymbolTable, constinArgument_inOptimizeFlagStruct, constinArgument_inBlockList, constinArgument_inBlockLabel, ioArgument_ioOptimizationDone, ioArgument_ioListFileContents, var_optimizedFalseTerminator_7679, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 180)) ;
   GGS_ipic_31__38_SingleInstructionTerminator temp_3 ;
-  if (var_optimizedFalseTerminator_7689.isValid ()) {
-    if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_optimizedFalseTerminator_7689.ptr ())) {
-      temp_3 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_optimizedFalseTerminator_7689.ptr () ;
+  if (var_optimizedFalseTerminator_7679.isValid ()) {
+    if (nullptr != dynamic_cast <const cPtr_ipic_31__38_SingleInstructionTerminator *> (var_optimizedFalseTerminator_7679.ptr ())) {
+      temp_3 = (cPtr_ipic_31__38_SingleInstructionTerminator *) var_optimizedFalseTerminator_7679.ptr () ;
     }else{
-      inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_optimizedFalseTerminator_7689.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 189)) ;
+      inCompiler->castError ("ipic_31__38_SingleInstructionTerminator", var_optimizedFalseTerminator_7679.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 189)) ;
     }
   }
   outArgument_outOptimizedFalseTerminator = temp_3 ;
@@ -4918,7 +4918,7 @@ void cPtr_ipic_31__38_AbstractConditionTerminator::method_getOptimizedTerminator
             inCompiler->castError ("ipic_31__38_RetlwTerminator", outArgument_outOptimizedTrueTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 194)) ;
           }
         }
-        GGS_ipic_31__38_RetlwTerminator var_t_8171 = temp_6 ;
+        GGS_ipic_31__38_RetlwTerminator var_t_8161 = temp_6 ;
         GGS_ipic_31__38_RetlwTerminator temp_7 ;
         if (outArgument_outOptimizedFalseTerminator.isValid ()) {
           if (nullptr != dynamic_cast <const cPtr_ipic_31__38_RetlwTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) {
@@ -4927,8 +4927,8 @@ void cPtr_ipic_31__38_AbstractConditionTerminator::method_getOptimizedTerminator
             inCompiler->castError ("ipic_31__38_RetlwTerminator", outArgument_outOptimizedFalseTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 195)) ;
           }
         }
-        GGS_ipic_31__38_RetlwTerminator var_f_8262 = temp_7 ;
-        outArgument_outIdenticalTerminators = GGS_bool (ComparisonKind::equal, var_t_8171.readProperty_mLiteralValue ().objectCompare (var_f_8262.readProperty_mLiteralValue ())) ;
+        GGS_ipic_31__38_RetlwTerminator var_f_8252 = temp_7 ;
+        outArgument_outIdenticalTerminators = GGS_bool (ComparisonKind::equal, var_t_8161.readProperty_mLiteralValue ().objectCompare (var_f_8252.readProperty_mLiteralValue ())) ;
       }
     }
     if (kBoolFalse == test_5) {
@@ -4944,7 +4944,7 @@ void cPtr_ipic_31__38_AbstractConditionTerminator::method_getOptimizedTerminator
               inCompiler->castError ("ipic_31__38_JumpTerminator", outArgument_outOptimizedTrueTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 198)) ;
             }
           }
-          GGS_ipic_31__38_JumpTerminator var_t_8548 = temp_9 ;
+          GGS_ipic_31__38_JumpTerminator var_t_8538 = temp_9 ;
           GGS_ipic_31__38_JumpTerminator temp_10 ;
           if (outArgument_outOptimizedFalseTerminator.isValid ()) {
             if (nullptr != dynamic_cast <const cPtr_ipic_31__38_JumpTerminator *> (outArgument_outOptimizedFalseTerminator.ptr ())) {
@@ -4953,8 +4953,8 @@ void cPtr_ipic_31__38_AbstractConditionTerminator::method_getOptimizedTerminator
               inCompiler->castError ("ipic_31__38_JumpTerminator", outArgument_outOptimizedFalseTerminator.ptr ()->classDescriptor () COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 199)) ;
             }
           }
-          GGS_ipic_31__38_JumpTerminator var_f_8637 = temp_10 ;
-          outArgument_outIdenticalTerminators = GGS_bool (ComparisonKind::equal, var_t_8548.readProperty_mLabel ().objectCompare (var_f_8637.readProperty_mLabel ())) ;
+          GGS_ipic_31__38_JumpTerminator var_f_8627 = temp_10 ;
+          outArgument_outIdenticalTerminators = GGS_bool (ComparisonKind::equal, var_t_8538.readProperty_mLabel ().objectCompare (var_f_8627.readProperty_mLabel ())) ;
         }
       }
       if (kBoolFalse == test_8) {
@@ -5087,10 +5087,10 @@ void extensionMethod_enterInstructionReferencedLabels (const GGS_ipic_31__38_Seq
                                                        Compiler * inCompiler
                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_ipic_31__38_SequentialInstructionList temp_0 = inObject ;
-  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_35966 (temp_0, EnumerationOrder::up) ;
-  while (enumerator_35966.hasCurrentObject ()) {
-    callExtensionMethod_enterInstructionReferencedLabels ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_35966.current_mInstruction (HERE).ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 943)) ;
-    enumerator_35966.gotoNextObject () ;
+  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_35902 (temp_0, EnumerationOrder::up) ;
+  while (enumerator_35902.hasCurrentObject ()) {
+    callExtensionMethod_enterInstructionReferencedLabels ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_35902.current_mInstruction (HERE).ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 943)) ;
+    enumerator_35902.gotoNextObject () ;
   }
 }
 
@@ -12407,63 +12407,63 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   if (kBoolTrue == test_24) {
     test_24 = GGS_bool (ComparisonKind::equal, var_processorName_427.readProperty_string ().objectCompare (GGS_string ("pic18_60"))).operator_or (GGS_bool (ComparisonKind::equal, var_processorName_427.readProperty_string ().objectCompare (GGS_string ("pic18_80"))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).boolEnum () ;
     if (kBoolTrue == test_24) {
-      GGS_uintlist joker_6043_5 ; // Joker input parameter
-      GGS_uint joker_6043_4 ; // Joker input parameter
-      GGS_bitSliceTable joker_6043_3 ; // Joker input parameter
-      GGS_string joker_6043_2 ; // Joker input parameter
-      GGS_registerProtection joker_6043_1 ; // Joker input parameter
-      var_registerTable_2149.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("BSR"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), inCompiler COMMA_HERE), joker_6043_5, joker_6043_4, joker_6043_3, joker_6043_2, joker_6043_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)) ;
-      GGS_uintlist joker_6119_5 ; // Joker input parameter
-      GGS_uint joker_6119_4 ; // Joker input parameter
-      GGS_bitSliceTable joker_6119_3 ; // Joker input parameter
-      GGS_string joker_6119_2 ; // Joker input parameter
-      GGS_registerProtection joker_6119_1 ; // Joker input parameter
-      var_registerTable_2149.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSL"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), inCompiler COMMA_HERE), joker_6119_5, joker_6119_4, joker_6119_3, joker_6119_2, joker_6119_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
-      GGS_uintlist joker_6195_5 ; // Joker input parameter
-      GGS_uint joker_6195_4 ; // Joker input parameter
-      GGS_bitSliceTable joker_6195_3 ; // Joker input parameter
-      GGS_string joker_6195_2 ; // Joker input parameter
-      GGS_registerProtection joker_6195_1 ; // Joker input parameter
-      var_registerTable_2149.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSH"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), inCompiler COMMA_HERE), joker_6195_5, joker_6195_4, joker_6195_3, joker_6195_2, joker_6195_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
-      GGS_uintlist joker_6271_5 ; // Joker input parameter
-      GGS_uint joker_6271_4 ; // Joker input parameter
-      GGS_bitSliceTable joker_6271_3 ; // Joker input parameter
-      GGS_string joker_6271_2 ; // Joker input parameter
-      GGS_registerProtection joker_6271_1 ; // Joker input parameter
-      var_registerTable_2149.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSU"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), inCompiler COMMA_HERE), joker_6271_5, joker_6271_4, joker_6271_3, joker_6271_2, joker_6271_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
+      GGS_uintlist joker_6038_5 ; // Joker input parameter
+      GGS_uint joker_6038_4 ; // Joker input parameter
+      GGS_bitSliceTable joker_6038_3 ; // Joker input parameter
+      GGS_string joker_6038_2 ; // Joker input parameter
+      GGS_registerProtection joker_6038_1 ; // Joker input parameter
+      var_registerTable_2149.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("BSR"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), inCompiler COMMA_HERE), joker_6038_5, joker_6038_4, joker_6038_3, joker_6038_2, joker_6038_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)) ;
+      GGS_uintlist joker_6109_5 ; // Joker input parameter
+      GGS_uint joker_6109_4 ; // Joker input parameter
+      GGS_bitSliceTable joker_6109_3 ; // Joker input parameter
+      GGS_string joker_6109_2 ; // Joker input parameter
+      GGS_registerProtection joker_6109_1 ; // Joker input parameter
+      var_registerTable_2149.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSL"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), inCompiler COMMA_HERE), joker_6109_5, joker_6109_4, joker_6109_3, joker_6109_2, joker_6109_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
+      GGS_uintlist joker_6180_5 ; // Joker input parameter
+      GGS_uint joker_6180_4 ; // Joker input parameter
+      GGS_bitSliceTable joker_6180_3 ; // Joker input parameter
+      GGS_string joker_6180_2 ; // Joker input parameter
+      GGS_registerProtection joker_6180_1 ; // Joker input parameter
+      var_registerTable_2149.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSH"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), inCompiler COMMA_HERE), joker_6180_5, joker_6180_4, joker_6180_3, joker_6180_2, joker_6180_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
+      GGS_uintlist joker_6251_5 ; // Joker input parameter
+      GGS_uint joker_6251_4 ; // Joker input parameter
+      GGS_bitSliceTable joker_6251_3 ; // Joker input parameter
+      GGS_string joker_6251_2 ; // Joker input parameter
+      GGS_registerProtection joker_6251_1 ; // Joker input parameter
+      var_registerTable_2149.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSU"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), inCompiler COMMA_HERE), joker_6251_5, joker_6251_4, joker_6251_3, joker_6251_2, joker_6251_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
     }
   }
-  GGS_string var_sharedBankName_6339 = GGS_string::makeEmptyString () ;
+  GGS_string var_sharedBankName_6319 = GGS_string::makeEmptyString () ;
   enumGalgasBool test_25 = kBoolTrue ;
   if (kBoolTrue == test_25) {
     test_25 = GGS_bool (ComparisonKind::equal, var_processorName_427.readProperty_string ().objectCompare (GGS_string ("mid-range"))).boolEnum () ;
     if (kBoolTrue == test_25) {
-      cEnumerator_ramBankTable enumerator_6469 (var_ramBankTable_1521, EnumerationOrder::up) ;
-      bool bool_26 = GGS_bool (ComparisonKind::equal, var_sharedBankName_6339.objectCompare (GGS_string::makeEmptyString ())).isValidAndTrue () ;
-      if (enumerator_6469.hasCurrentObject () && bool_26) {
-        while (enumerator_6469.hasCurrentObject () && bool_26) {
-          GGS_uint var_bankAccessibility_6552 = GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)).left_shift_operation (enumerator_6469.current_mFirstFreeAddress (HERE).right_shift_operation (GGS_bigint ("7", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)).getter_uint (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) ;
-          cEnumerator_uintlist enumerator_6613 (enumerator_6469.current_mMirrorOffsetList (HERE), EnumerationOrder::up) ;
-          while (enumerator_6613.hasCurrentObject ()) {
-            var_bankAccessibility_6552 = var_bankAccessibility_6552.operator_or (GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).left_shift_operation (enumerator_6469.current_mFirstFreeAddress (HERE).add_operation (enumerator_6613.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).right_shift_operation (GGS_bigint ("7", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).getter_uint (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) ;
-            enumerator_6613.gotoNextObject () ;
+      cEnumerator_ramBankTable enumerator_6449 (var_ramBankTable_1521, EnumerationOrder::up) ;
+      bool bool_26 = GGS_bool (ComparisonKind::equal, var_sharedBankName_6319.objectCompare (GGS_string::makeEmptyString ())).isValidAndTrue () ;
+      if (enumerator_6449.hasCurrentObject () && bool_26) {
+        while (enumerator_6449.hasCurrentObject () && bool_26) {
+          GGS_uint var_bankAccessibility_6532 = GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)).left_shift_operation (enumerator_6449.current_mFirstFreeAddress (HERE).right_shift_operation (GGS_bigint ("7", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)).getter_uint (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) ;
+          cEnumerator_uintlist enumerator_6593 (enumerator_6449.current_mMirrorOffsetList (HERE), EnumerationOrder::up) ;
+          while (enumerator_6593.hasCurrentObject ()) {
+            var_bankAccessibility_6532 = var_bankAccessibility_6532.operator_or (GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).left_shift_operation (enumerator_6449.current_mFirstFreeAddress (HERE).add_operation (enumerator_6593.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).right_shift_operation (GGS_bigint ("7", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).getter_uint (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) ;
+            enumerator_6593.gotoNextObject () ;
           }
           enumGalgasBool test_27 = kBoolTrue ;
           if (kBoolTrue == test_27) {
-            test_27 = GGS_bool (ComparisonKind::equal, GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).left_shift_operation (var_bankCount_1312.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).objectCompare (var_bankAccessibility_6552.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).getter_bigint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)))).boolEnum () ;
+            test_27 = GGS_bool (ComparisonKind::equal, GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).left_shift_operation (var_bankCount_1312.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).objectCompare (var_bankAccessibility_6532.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).getter_bigint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)))).boolEnum () ;
             if (kBoolTrue == test_27) {
-              var_sharedBankName_6339 = enumerator_6469.current_lkey (HERE).readProperty_string () ;
+              var_sharedBankName_6319 = enumerator_6449.current_lkey (HERE).readProperty_string () ;
             }
           }
-          enumerator_6469.gotoNextObject () ;
-          if (enumerator_6469.hasCurrentObject ()) {
-            bool_26 = GGS_bool (ComparisonKind::equal, var_sharedBankName_6339.objectCompare (GGS_string::makeEmptyString ())).isValidAndTrue () ;
+          enumerator_6449.gotoNextObject () ;
+          if (enumerator_6449.hasCurrentObject ()) {
+            bool_26 = GGS_bool (ComparisonKind::equal, var_sharedBankName_6319.objectCompare (GGS_string::makeEmptyString ())).isValidAndTrue () ;
           }
         }
       }
     }
   }
-  outArgument_outPiccoloDeviceModel = GGS_piccoloDeviceModel::init_21__21__21__21__21__21__21__21__21__21_ (var_deviceName_336, var_processorType_388, var_romSize_964, var_bankCount_1312, var_registerTable_2149, var_ramBankTable_1521, var_eepromSize_990, var_eepromAddress_1013, var_configRegisterMap_4155, var_sharedBankName_6339, inCompiler COMMA_HERE) ;
+  outArgument_outPiccoloDeviceModel = GGS_piccoloDeviceModel::init_21__21__21__21__21__21__21__21__21__21_ (var_deviceName_336, var_processorType_388, var_romSize_964, var_bankCount_1312, var_registerTable_2149, var_ramBankTable_1521, var_eepromSize_990, var_eepromAddress_1013, var_configRegisterMap_4155, var_sharedBankName_6319, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------

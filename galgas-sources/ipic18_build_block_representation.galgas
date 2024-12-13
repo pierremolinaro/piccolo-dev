@@ -62,7 +62,7 @@ method @registerExpression analyzeRegisterExpression
     end
   end
 #---
-  outIPICregisterDescription = @ipic18_intermediate_registerExpression.init {
+  outIPICregisterDescription = @ipic18_intermediate_registerExpression {
     !assemblyString
     !registerAddress + [offset uint]
     !needsBSRaccess
@@ -94,7 +94,7 @@ method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
     error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
   end
 #---
-  outIPICregisterDescription = @ipic18_intermediate_registerExpressionWithoutBSRIndication.init {
+  outIPICregisterDescription = @ipic18_intermediate_registerExpressionWithoutBSRIndication {
     !assemblyString
     !registerAddress + [offset uint]
   }
@@ -152,7 +152,7 @@ override method @pic18Instruction_withNoOperand analyzeSimpleInstruction
   ?let @bool unused inShouldPreserveBSR
   ?!@stringset unused ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction {
-  outInstruction = @ipic18InstructionWithNoOperand.init {
+  outInstruction = @ipic18InstructionWithNoOperand {
     !self.mInstructionLocation
     !self.mKind}
 }
@@ -180,7 +180,7 @@ override method @pic18Instruction_FDA analyzeSimpleInstruction
     ?*
     !?ioUsedRegisters
   ]
-  outInstruction = @ipic18_intermediate_instruction_FDA.init {
+  outInstruction = @ipic18_intermediate_instruction_FDA {
     !self.mInstructionLocation
     !self.mInstruction_FDA_base_code
     !IPICregisterDescription
@@ -220,7 +220,7 @@ override method @pic18Instruction_FA analyzeSimpleInstruction
   case CPFSEQ, CPFSGT, CPFSLT, TSTFSZ :
     error @location. nowhere : "*** INTERNAL ERROR ***" : code
   end
-  outInstruction = @ipic18_intermediate_instruction_FA.init {
+  outInstruction = @ipic18_intermediate_instruction_FA {
     !self.mInstructionLocation
     !code
     !IPICregisterDescription}
@@ -252,7 +252,7 @@ override method @pic18Instruction_MOVFF analyzeSimpleInstruction
     ?let @ipic18_intermediate_registerExpressionWithoutBSRIndication destinationIPICregisterDescription
     !?ioUsedRegisters
   ]
-  outInstruction = @ipic18_intermediate_instruction_MOVFF.init {
+  outInstruction = @ipic18_intermediate_instruction_MOVFF {
     !self.mInstructionLocation
     !sourceIPICregisterDescription
     !destinationIPICregisterDescription}
@@ -287,7 +287,7 @@ override method @pic18Instruction_FBA analyzeSimpleInstruction
     !bitSliceTable
     ?let @uint bitNumber
   ]
-  outInstruction = @ipic18_intermediate_instruction_FBA.init {
+  outInstruction = @ipic18_intermediate_instruction_FBA {
     !self.mInstructionLocation
     !self.mBitOrientedOp
     !IPICregisterDescription
@@ -312,7 +312,7 @@ override method @pic18Instruction_literalOperation analyzeSimpleInstruction
      error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between -128 and 255)"
    end
 #---  
-  outInstruction = @ipic18_intermediate_instruction_literalOperation.init {
+  outInstruction = @ipic18_intermediate_instruction_literalOperation {
     !self.mInstructionLocation
     !self.mLiteralInstruction
     ![result & 0x000000FF uint]}
@@ -336,7 +336,7 @@ override method @pic18Instruction_fnop analyzeSimpleInstruction
      error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 4095)"
    end
 #---  
-  outInstruction = @ipic18_intermediate_instruction_FNOP.init {
+  outInstruction = @ipic18_intermediate_instruction_FNOP {
     !self.mInstructionLocation
     ![result uint]}
 }
@@ -362,7 +362,7 @@ override method @pic18Instruction_LFSR analyzeSimpleInstruction
   if (result > 0xFFF) | (result < 0) then
     error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 4095)"
   end
-  outInstruction = @ipic18_intermediate_instruction_LFSR.init {
+  outInstruction = @ipic18_intermediate_instruction_LFSR {
     !self.mInstructionLocation
     !self.mFSRindex
     ![result uint]}
@@ -402,7 +402,7 @@ override method @pic18Instruction_JSR analyzeSimpleInstruction
     end
   end
 #---
-  outInstruction = @ipic18_intermediate_JSR.init {
+  outInstruction = @ipic18_intermediate_JSR {
     !self.mInstructionLocation
     !self.mTargetLabel
     !self.mKind}
@@ -544,14 +544,14 @@ override method @pic18Instruction_FOREVER analyze
   end
   let @uint finalBank = ioCurrentBank
 #--- Get loop label
-  let loopLabel = @lstring.init { !".L" + ioLocalLabelIndex !self.mInstructionLocation} 
+  let loopLabel = @lstring { !".L" + ioLocalLabelIndex !self.mInstructionLocation} 
   ioLocalLabelIndex += 1
 #--- Store current block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
-    !@ipic18JumpTerminator.init { !self.mInstructionLocation !loopLabel !@jumpInstructionKind. ipicRelative}
+    !@ipic18JumpTerminator { !self.mInstructionLocation !loopLabel !@jumpInstructionKind. ipicRelative}
     !@uint.max
     !0
   }
@@ -580,11 +580,11 @@ override method @pic18Instruction_FOREVER analyze
   if ioBlockLabel.string == "" then
     error self.mEndOfInstructionList:"\"forever\" instruction list execution is endless"
   else
-    ioGeneratedBlockList += !@ipic18Block.init {
+    ioGeneratedBlockList += !@ipic18Block {
       !@uint. max # relocatable
       !ioBlockLabel
       !ioGeneratedInstructionList
-      !@ipic18JumpTerminator.init { !self.mInstructionLocation !loopLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !self.mInstructionLocation !loopLabel !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
    }
@@ -642,9 +642,9 @@ override method @pic18Instruction_savebank analyze
   ?!@stringset ioUsedRegisters
 {
 #--- Get values for BSR register
-  let BSRregister = @registerExpression.init {
-    !.init { !"BSR" !.here}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let BSRregister = @registerExpression {
+    ! @{ !"BSR" !.here}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [BSRregister analyzeRegisterExpressionWithoutCheckingBank
@@ -663,7 +663,7 @@ override method @pic18Instruction_savebank analyze
     !?ioUsedRegisters
   ]
 #--- Generate "MOVFF BSR, save_register" instruction
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVFF.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVFF {
     !self.mInstructionLocation
     !BSR_IPICregisterDescription
     !save_IPICregisterDescription
@@ -694,7 +694,7 @@ override method @pic18Instruction_savebank analyze
     error self.mEndOfSaveBankInstruction:"useless saving: execution does not reach the end of \"savebank\" instruction list"
   end
 #--- Generate "MOVFF save_register, BSR" instruction
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVFF.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVFF {
     !self.mInstructionLocation
     !save_IPICregisterDescription
     !BSR_IPICregisterDescription
@@ -811,7 +811,7 @@ override method @pic18Instruction_banksel analyze
     ioCurrentBank = @uint. max # No selected bank
   elsif self.mBankIndex.uint != ioCurrentBank then
     ioCurrentBank = self.mBankIndex.uint
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVLB.init { !self.mInstructionLocation !self.mBankIndex} !@uint.max !0
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVLB { !self.mInstructionLocation !self.mBankIndex} !@uint.max !0
   elsif self.mWarningOnUselessBanksel then
     warning self.mBankIndex:"useless instruction: the bank " + [ioCurrentBank string] + " is already selected"
   end
@@ -850,9 +850,9 @@ override method @pic18Instruction_banksel_register analyze
   let @uint newBank = registerAddress >> 8
   if ioCurrentBank != newBank then
     ioCurrentBank = newBank
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVLB.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVLB {
       !self.mInstructionLocation
-      !@luint.init { !newBank !self.mRegisterExpression.mRegisterName.location}
+      !@luint { !newBank !self.mRegisterExpression.mRegisterName.location}
     }
     !@uint.max
     !0
@@ -874,7 +874,7 @@ override method @pic18Instruction_TBLRD analyzeSimpleInstruction
   ?!@stringset unused ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 {
-  outInstruction = @ipic18_intermediate_instruction_TBLRD.init {
+  outInstruction = @ipic18_intermediate_instruction_TBLRD {
     !self.mInstructionLocation
     !self.mOption}
 }
@@ -892,7 +892,7 @@ override method @pic18Instruction_TBLWT analyzeSimpleInstruction
   ?!@stringset unused ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction
 {
-  outInstruction = @ipic18_intermediate_instruction_TBLWT.init {
+  outInstruction = @ipic18_intermediate_instruction_TBLWT {
     !self.mInstructionLocation
     !self.mOption}
 }
@@ -920,7 +920,7 @@ override method @pic18Instruction_MNOP analyze
     warning self.mOccurrenceFactor:"occurrence argument is zero: no generated code"
   end
 #---
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MNOP.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MNOP {
     !self.mInstructionLocation
     !self.mOccurrenceFactor
   }
@@ -951,7 +951,7 @@ override method @pic18Instruction_NOPBRA analyze
     warning self.mOccurrenceFactor:"occurrence argument is zero: no generated code"
   end
 #---
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_NOPBRA.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_NOPBRA {
     !self.mInstructionLocation
     !self.mOccurrenceFactor
   }
@@ -984,9 +984,9 @@ override method @pic18Instruction_LTBLPTR analyze
   end
   let @uint address = [result uint]
 #--- Upper byte
-  let TBLPTRU = @registerExpression.init {
-    !@lstring.init { !"TBLPTRU" !self.mInstructionLocation}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TBLPTRU = @registerExpression {
+    !@lstring { !"TBLPTRU" !self.mInstructionLocation}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TBLPTRU analyzeRegisterExpression
@@ -1001,7 +1001,7 @@ override method @pic18Instruction_LTBLPTR analyze
   ]
   let @uint upper = address >> 16
   if upper == 0 then
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. CLRF
       !outIPICregisterDescription
@@ -1009,7 +1009,7 @@ override method @pic18Instruction_LTBLPTR analyze
     !@uint.max
     !0
   elsif upper == 0xFF then
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. SETF
       !outIPICregisterDescription
@@ -1017,14 +1017,14 @@ override method @pic18Instruction_LTBLPTR analyze
     !@uint.max
     !0
   else
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation {
       !self.mInstructionLocation
       !@literal_instruction_opcode. MOVLW
       !upper
     }
     !@uint.max
     !0
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. MOVWF
       !outIPICregisterDescription
@@ -1033,9 +1033,9 @@ override method @pic18Instruction_LTBLPTR analyze
     !0
   end
 #--- High byte
-  let TBLPTRH = @registerExpression.init {
-    !@lstring.init { !"TBLPTRH" !self.mInstructionLocation}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TBLPTRH = @registerExpression {
+    !@lstring { !"TBLPTRH" !self.mInstructionLocation}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TBLPTRH analyzeRegisterExpression
@@ -1050,7 +1050,7 @@ override method @pic18Instruction_LTBLPTR analyze
   ]
   let @uint high = (address >> 8) & 0xFF
   if high == 0 then
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. CLRF
       !outIPICregisterDescription
@@ -1058,7 +1058,7 @@ override method @pic18Instruction_LTBLPTR analyze
     !@uint.max
     !0
   elsif high == 0xFF then
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. SETF
       !outIPICregisterDescription
@@ -1066,14 +1066,14 @@ override method @pic18Instruction_LTBLPTR analyze
     !@uint.max
     !0
   else
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation {
       !self.mInstructionLocation
       !@literal_instruction_opcode. MOVLW
       !high
     }
     !@uint.max
     !0
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. MOVWF
       !outIPICregisterDescription
@@ -1082,9 +1082,9 @@ override method @pic18Instruction_LTBLPTR analyze
     !0
   end
 #--- Low byte
-  let TBLPTRL = @registerExpression.init {
-    !@lstring.init {!"TBLPTRL" !self.mInstructionLocation}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TBLPTRL = @registerExpression {
+    !@lstring {!"TBLPTRL" !self.mInstructionLocation}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TBLPTRL analyzeRegisterExpression
@@ -1099,7 +1099,7 @@ override method @pic18Instruction_LTBLPTR analyze
   ]
   let @uint low = address & 0xFF
   if low == 0 then
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. CLRF
       !outIPICregisterDescription
@@ -1107,7 +1107,7 @@ override method @pic18Instruction_LTBLPTR analyze
     !@uint.max
     !0
   elsif low == 0xFF then
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. SETF
       !outIPICregisterDescription
@@ -1115,14 +1115,14 @@ override method @pic18Instruction_LTBLPTR analyze
     !@uint.max
     !0
   else
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation {
       !self.mInstructionLocation
       !@literal_instruction_opcode. MOVLW
       !low
     }
     !@uint.max
     !0
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. MOVWF
       !outIPICregisterDescription
@@ -1160,9 +1160,9 @@ override method @pic18Instruction_LDATA16PTR analyze
     error self.mDataIndex: "index should be < " + [data count]
   end
 #--- Upper byte
-  let TBLPTRU = @registerExpression.init {
-    !@lstring.init { !"TBLPTRU" !self.mInstructionLocation}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TBLPTRU = @registerExpression {
+    !@lstring { !"TBLPTRU" !self.mInstructionLocation}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TBLPTRU analyzeRegisterExpression
@@ -1175,7 +1175,7 @@ override method @pic18Instruction_LDATA16PTR analyze
     ?*
     !?ioUsedRegisters
   ]
-  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W {
     !self.mInstructionLocation
     !self.mDataName
     !self.mDataIndex.uint * 2
@@ -1183,7 +1183,7 @@ override method @pic18Instruction_LDATA16PTR analyze
   }
   !@uint.max
   !0
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
@@ -1191,9 +1191,9 @@ override method @pic18Instruction_LDATA16PTR analyze
   !@uint.max
   !0
 #--- High byte
-  let TBLPTRH = @registerExpression.init {
-    !@lstring.init {!"TBLPTRH" !self.mInstructionLocation}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TBLPTRH = @registerExpression {
+    !@lstring {!"TBLPTRH" !self.mInstructionLocation}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TBLPTRH analyzeRegisterExpression
@@ -1206,7 +1206,7 @@ override method @pic18Instruction_LDATA16PTR analyze
     ?*
     !?ioUsedRegisters
   ]
-  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W {
     !self.mInstructionLocation
     !self.mDataName
     !self.mDataIndex.uint * 2
@@ -1214,7 +1214,7 @@ override method @pic18Instruction_LDATA16PTR analyze
   }
   !@uint.max
   !0
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
@@ -1222,9 +1222,9 @@ override method @pic18Instruction_LDATA16PTR analyze
   !@uint.max
   !0
 #--- Low byte
-  let TBLPTRL = @registerExpression.init {
-    !@lstring.init { !"TBLPTRL" !self.mInstructionLocation}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TBLPTRL = @registerExpression {
+    !@lstring { !"TBLPTRL" !self.mInstructionLocation}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TBLPTRL analyzeRegisterExpression
@@ -1237,7 +1237,7 @@ override method @pic18Instruction_LDATA16PTR analyze
     ?*
     !?ioUsedRegisters
   ]
-  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W {
     !self.mInstructionLocation
     !self.mDataName
     !self.mDataIndex.uint * 2
@@ -1245,7 +1245,7 @@ override method @pic18Instruction_LDATA16PTR analyze
   }
   !@uint.max
   !0
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
@@ -1282,9 +1282,9 @@ override method @pic18Instruction_LDATA8PTR analyze
     error self.mDataIndex: "index should be < " + ([data count] * 2)
   end
 #--- Upper byte
-  let TBLPTRU = @registerExpression.init {
-    !@lstring.init { !"TBLPTRU" !self.mInstructionLocation}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TBLPTRU = @registerExpression {
+    !@lstring { !"TBLPTRU" !self.mInstructionLocation}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TBLPTRU analyzeRegisterExpression
@@ -1297,7 +1297,7 @@ override method @pic18Instruction_LDATA8PTR analyze
     ?*
     !?ioUsedRegisters
   ]
-  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W {
     !self.mInstructionLocation
     !self.mDataName
     !self.mDataIndex.uint
@@ -1305,7 +1305,7 @@ override method @pic18Instruction_LDATA8PTR analyze
   }
   !@uint.max
   !0
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
@@ -1313,9 +1313,9 @@ override method @pic18Instruction_LDATA8PTR analyze
   !@uint.max
   !0
 #--- High byte
-  let TBLPTRH = @registerExpression.init {
-    !@lstring.init {!"TBLPTRH" !self.mInstructionLocation}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TBLPTRH = @registerExpression {
+    !@lstring {!"TBLPTRH" !self.mInstructionLocation}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TBLPTRH analyzeRegisterExpression
@@ -1328,7 +1328,7 @@ override method @pic18Instruction_LDATA8PTR analyze
     ?*
     !?ioUsedRegisters
   ]
-  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W {
     !self.mInstructionLocation
     !self.mDataName
     !self.mDataIndex.uint
@@ -1336,7 +1336,7 @@ override method @pic18Instruction_LDATA8PTR analyze
   }
   !@uint.max
   !0
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
@@ -1344,9 +1344,9 @@ override method @pic18Instruction_LDATA8PTR analyze
   !@uint.max
   !0
 #--- Low byte
-  let TBLPTRL = @registerExpression.init {
-    !@lstring.init { !"TBLPTRL" !self.mInstructionLocation}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TBLPTRL = @registerExpression {
+    !@lstring { !"TBLPTRL" !self.mInstructionLocation}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TBLPTRL analyzeRegisterExpression
@@ -1359,7 +1359,7 @@ override method @pic18Instruction_LDATA8PTR analyze
     ?*
     !?ioUsedRegisters
   ]
-  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_MOV_LABEL_W {
     !self.mInstructionLocation
     !self.mDataName
     !self.mDataIndex.uint
@@ -1367,7 +1367,7 @@ override method @pic18Instruction_LDATA8PTR analyze
   }
   !@uint.max
   !0
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_FA {
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
@@ -1410,11 +1410,11 @@ override method @pic18Instruction_JUMP analyze
     error self.mTargetLabel:"a regular routine should be called with a RCALL, CALL or JSR instruction"
   end
 #--- Build block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
-    !@ipic18JumpTerminator.init { !self.mInstructionLocation !self.mTargetLabel !@jumpInstructionKind. ipicRelative}
+    !@ipic18JumpTerminator { !self.mInstructionLocation !self.mTargetLabel !@jumpInstructionKind. ipicRelative}
     !@uint.max
     !0
   }
@@ -1497,10 +1497,10 @@ override method @pic18Instruction_computed_rcall analyze
 #---
   var targetInstructionList =@ipic18SequentialInstructionList ()
   for (mValue) in  self.mTargetLabels do
-    targetInstructionList += !@ipic18_intermediate_JSR.init {!mValue.location !mValue !@jumpInstructionKind. relative} !@uint.max !0
+    targetInstructionList += !@ipic18_intermediate_JSR {!mValue.location !mValue !@jumpInstructionKind. relative} !@uint.max !0
   end
 #---
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_computed_rcall.init {
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_computed_rcall {
     !self.mInstructionLocation
     !targetInstructionList
     !self.mUsesRelativeCall
@@ -1561,11 +1561,11 @@ override method @pic18Instruction_computed_goto analyze
     error self.mInstructionLocation:"the routine name list length (" + [[self.mTargetLabels count] string] + ") should be equal to the computed range (" + [size string] + ")"
   end
 #--- Build block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
-    !@ipic18ComputedGotoTerminator.init {
+    !@ipic18ComputedGotoTerminator {
       !self.mInstructionLocation
       !self.mTargetLabels
       !self.mUsesRelativeCall}
@@ -1652,11 +1652,11 @@ override method @pic18Instruction_computed_bra analyze
     error self.mInstructionLocation:"the routine name list length (" + [[self.mTargetLabels count] string] + ") should be equal to the computed range (" + [size string] + ")"
   end
 #--- Build block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
-    !@ipic18ComputedBraTerminator.init {
+    !@ipic18ComputedBraTerminator {
       !self.mInstructionLocation
       !self.mTargetLabels
       !self.mUsesRelativeCall}
@@ -1712,11 +1712,11 @@ override method @pic18Instruction_computed_retlw analyze
     literalValues += ![v & 0x000000FF uint]
   end
 #--- Build block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
-    !@ipic18ComputedRETLWTerminator.init {
+    !@ipic18ComputedRETLWTerminator {
       !self.mInstructionLocation
       !literalValues
       !self.mUsesRelativeCall}
@@ -1768,14 +1768,14 @@ override method @pic18Instruction_JUMPCC analyze
     mode = @conditionalBranchMode. ipicBRA
   end
 #--- Create the continuation label
-  let label0 = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let label0 = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   ioLocalLabelIndex += 1
 #--- Build block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
-    !@ipic18ConditionalJumpTerminator.init {
+    !@ipic18ConditionalJumpTerminator {
       !self.mInstructionLocation
       !self.mConditionalBranch
       !self.mTargetLabel
@@ -1844,7 +1844,7 @@ override method @pic18Instruction_IF_BitTest analyze
     error self.mEmbeddedInstruction.mInstructionLocation : "this instruction does not preserve bank setting"
   end
 #--- Generate instruction
-  ioGeneratedInstructionList += !@ipic18_skip_instruction_BitTestSkip.init {
+  ioGeneratedInstructionList += !@ipic18_skip_instruction_BitTestSkip {
     !self.mInstructionLocation
     !embeddedInstruction
     !self.mSkipIfSet
@@ -1908,7 +1908,7 @@ override method @pic18Instruction_IF_FA_SEMI_COLON analyze
     error self.mEmbeddedInstruction.mInstructionLocation : "this instruction does not preserve bank setting"
   end
 #--- Generate instruction
-  ioGeneratedInstructionList += !@ipic18_skip_instruction_compare_register.init {
+  ioGeneratedInstructionList += !@ipic18_skip_instruction_compare_register {
     !self.mInstructionLocation
     !embeddedInstruction
     !baseCode
@@ -1976,7 +1976,7 @@ override method @pic18Instruction_IF_IncDec analyze
     error self.mEmbeddedInstruction.mInstructionLocation : "this instruction does not preserve bank setting"
   end
 #--- Generate instruction
-  ioGeneratedInstructionList += !@ipic18_skip_instruction_FDA.init {
+  ioGeneratedInstructionList += !@ipic18_skip_instruction_FDA {
     !self.mInstructionLocation
     !embeddedInstruction
     !baseCode
@@ -2009,11 +2009,11 @@ override method @pic18Instruction_structured_if analyze
   var @uint elseBranchFinalBank = ioCurrentBank
   var @uint thenBranchFinalBank = ioCurrentBank
 #--- Labels
-  let conditionTrueLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let conditionTrueLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   ioLocalLabelIndex += 1
-  let conditionFalseLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let conditionFalseLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   ioLocalLabelIndex += 1
-  let exitLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let exitLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   ioLocalLabelIndex += 1
 #---- Analyze condition
   [self.mIfCondition analyzeCondition
@@ -2029,7 +2029,7 @@ override method @pic18Instruction_structured_if analyze
     ?let @ipic18AbstractBlockTerminator testTerminator
   ]
 #--- Save current block block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
@@ -2060,11 +2060,11 @@ override method @pic18Instruction_structured_if analyze
   )
   let @bool thenContinuesInSequence = ioBlockLabel.string != ""
   if thenContinuesInSequence then
-    ioGeneratedBlockList += !@ipic18Block.init {
+    ioGeneratedBlockList += !@ipic18Block {
       !@uint. max # relocatable
       !ioBlockLabel
       !ioGeneratedInstructionList
-      !@ipic18JumpTerminator.init { !self.mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !self.mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -2092,11 +2092,11 @@ override method @pic18Instruction_structured_if analyze
   )
   let @bool elseContinuesInSequence = ioBlockLabel.string != ""
   if elseContinuesInSequence then
-    ioGeneratedBlockList += !@ipic18Block.init {
+    ioGeneratedBlockList += !@ipic18Block {
       !@uint. max # relocatable
       !ioBlockLabel
       !ioGeneratedInstructionList
-      !@ipic18JumpTerminator.init { !self.mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !self.mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -2186,14 +2186,14 @@ override method @pic18Instruction_do_while analyze
   ?let @routineKind inRoutineKind
   ?!@stringset ioUsedRegisters {
 #--- Labels
-  let startLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let startLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
   ioLocalLabelIndex += 1
 #--- Save current block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
-    !@ipic18JumpTerminator.init { !self.mInstructionLocation !startLabel !@jumpInstructionKind. ipicRelative}
+    !@ipic18JumpTerminator { !self.mInstructionLocation !startLabel !@jumpInstructionKind. ipicRelative}
     !@uint.max
     !0
   }
@@ -2229,9 +2229,9 @@ override method @pic18Instruction_do_while analyze
 #--- While branches
   for (mCondition mInstructionList mEndOfPartLocation) in  self.mWhilePartList do
   #--- Labels
-    let conditionTrueLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+    let conditionTrueLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
     ioLocalLabelIndex += 1
-   let conditionFalseLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+   let conditionFalseLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
    ioLocalLabelIndex += 1
   #---- Analyze condition
     [mCondition analyzeCondition
@@ -2246,7 +2246,7 @@ override method @pic18Instruction_do_while analyze
       !?ioUsedRegisters
       ?let @ipic18AbstractBlockTerminator testTerminator
     ]
-    ioGeneratedBlockList += !@ipic18Block.init {
+    ioGeneratedBlockList += !@ipic18Block {
       !@uint. max # relocatable
       !ioBlockLabel
       !ioGeneratedInstructionList
@@ -2281,11 +2281,11 @@ override method @pic18Instruction_do_while analyze
     if ioBlockLabel.string == "" then
       error mEndOfPartLocation:"This branch makes the next code unreachable"
     end
-    ioGeneratedBlockList += !@ipic18Block.init {
+    ioGeneratedBlockList += !@ipic18Block {
       !@uint. max # relocatable
       !ioBlockLabel
       !ioGeneratedInstructionList
-      !@ipic18JumpTerminator.init { !self.mInstructionLocation !startLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !self.mInstructionLocation !startLabel !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -2437,9 +2437,9 @@ override method @gotoTerminationForBlockInstruction generateBlock
   ?!@stringset unused ioUsedRegisters
   ?let @string inLabelForBlock
   !@ipic18AbstractBlockTerminator outTerminator {
-  outTerminator = @ipic18JumpTerminator.init {
+  outTerminator = @ipic18JumpTerminator {
     !self.mNextBlock.location
-    !@lstring.init { !inLabelForBlock + self.mNextBlock !self.mNextBlock.location}
+    !@lstring { !inLabelForBlock + self.mNextBlock !self.mNextBlock.location}
     !@jumpInstructionKind. ipicRelative}
 }
 
@@ -2456,9 +2456,9 @@ override method @exitBlockTerminationForBlockInstruction generateBlock
   ?let @string inLabelForBlock
   !@ipic18AbstractBlockTerminator outTerminator
 {
-  outTerminator = @ipic18JumpTerminator.init {
+  outTerminator = @ipic18JumpTerminator {
     !self.mLocation
-    !@lstring.init { !inLabelForBlock + "_exit" !self.mLocation}
+    !@lstring { !inLabelForBlock + "_exit" !self.mLocation}
     !@jumpInstructionKind. ipicRelative
   }
 }
@@ -2475,9 +2475,9 @@ override method @testTerminationForBlockInstruction generateBlock
   ?!@stringset ioUsedRegisters
   ?let @string inLabelForBlock
   !@ipic18AbstractBlockTerminator outTerminator {
-  let conditionTrueLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mLocation} 
+  let conditionTrueLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mLocation} 
   ioLocalLabelIndex += 1
-  let conditionFalseLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !self.mLocation} 
+  let conditionFalseLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mLocation} 
   ioLocalLabelIndex += 1
 #--- Generate condition
   [self.mCondition analyzeCondition
@@ -2504,7 +2504,7 @@ override method @testTerminationForBlockInstruction generateBlock
     !inLabelForBlock
     ?let @ipic18AbstractBlockTerminator trueTerminator
   ]
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !conditionTrueLabel
     !@ipic18SequentialInstructionList ()
@@ -2524,7 +2524,7 @@ override method @testTerminationForBlockInstruction generateBlock
     !inLabelForBlock
     ?let @ipic18AbstractBlockTerminator falseTerminator
   ]
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !conditionFalseLabel
     !@ipic18SequentialInstructionList ()
@@ -2557,13 +2557,13 @@ override method @pic18Instruction_block analyze
   let @string labelForBlock = ".L" + [ioLocalLabelIndex string] + "_" 
   ioLocalLabelIndex += 1
 #---------------- Save current block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
-    !@ipic18JumpTerminator.init {
+    !@ipic18JumpTerminator {
       !self.mStartBlockName.location
-      !@lstring.init { !labelForBlock + self.mStartBlockName !self.mStartBlockName.location}
+      !@lstring { !labelForBlock + self.mStartBlockName !self.mStartBlockName.location}
       !@jumpInstructionKind. ipicRelative}
     !@uint.max
     !0
@@ -2595,7 +2595,7 @@ override method @pic18Instruction_block analyze
       ]
     #--- Generate code
       [blockInitialBankSelectionMap searchKey ![currentBlockName nowhere] ?var @uint currentBank ?*]
-      ioBlockLabel = @lstring.init { !labelForBlock + currentBlockName ![blockMap locationForKey !currentBlockName]}
+      ioBlockLabel = @lstring { !labelForBlock + currentBlockName ![blockMap locationForKey !currentBlockName]}
       analyzeInstructionList (
         !instructionList
         !?ioGeneratedBlockList
@@ -2628,7 +2628,7 @@ override method @pic18Instruction_block analyze
       if ioBlockLabel.string == "" then
         error endOfBlock : "execution will not reach the end of the block, but endless block is not allowed"
       end
-      ioGeneratedBlockList += !@ipic18Block.init {
+      ioGeneratedBlockList += !@ipic18Block {
         !@uint. max # relocatable
         !ioBlockLabel
         !ioGeneratedInstructionList
@@ -2649,7 +2649,7 @@ override method @pic18Instruction_block analyze
   end
 #---
   if continuesInSequence then
-    ioBlockLabel = @lstring.init { !labelForBlock + "_exit" !self.mStartBlockName.location}
+    ioBlockLabel = @lstring { !labelForBlock + "_exit" !self.mStartBlockName.location}
     [blockInitialBankSelectionMap searchKey !["-" nowhere] ?ioCurrentBank ?*]
   else
     ioBlockLabel = ["" nowhere]
@@ -2688,7 +2688,7 @@ override method @pic18BccInStructuredCondition analyzeCondition
   ?!@stringset unused ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
 #--- Save terminator of current block
-  outCurrentBlockTerminator = @ipic18ConditionalJumpTerminator.init {
+  outCurrentBlockTerminator = @ipic18ConditionalJumpTerminator {
     !self.mConditionLocation
     !self.mCondition
     !inConditionTrueLabel
@@ -2746,17 +2746,17 @@ override method @pic18RegisterComparisonCondition analyzeCondition
 #--- Save terminator of current block
   let @location location = self.mRegisterExpression.mRegisterName.location
   if complementaryBranch then
-    outCurrentBlockTerminator = @pic18RegisterComparisonTerminator.init {
+    outCurrentBlockTerminator = @pic18RegisterComparisonTerminator {
       !location
-      !@ipic18JumpTerminator.init { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
-      !@ipic18JumpTerminator.init { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
       !IPICregisterDescription
       !ipicComparison}
   else
-    outCurrentBlockTerminator = @pic18RegisterComparisonTerminator.init {
+    outCurrentBlockTerminator = @pic18RegisterComparisonTerminator {
       !location
-      !@ipic18JumpTerminator.init { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
-      !@ipic18JumpTerminator.init { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
       !IPICregisterDescription
       !ipicComparison}
   end
@@ -2788,18 +2788,18 @@ override method @pic18IncDecRegisterInCondition analyzeCondition
 #--- Save terminator of current block
   let @location location = self.mRegisterExpression.mRegisterName.location
   if self.mBranchIfZero then
-    outCurrentBlockTerminator = @ipic18IncDecRegisterTerminator.init {
+    outCurrentBlockTerminator = @ipic18IncDecRegisterTerminator {
       !location
-      !@ipic18JumpTerminator.init { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
-      !@ipic18JumpTerminator.init { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
       !IPICregisterDescription
       !self.mIncrement
       !self.m_W_isDestination}
   else
-    outCurrentBlockTerminator = @ipic18IncDecRegisterTerminator.init {
+    outCurrentBlockTerminator = @ipic18IncDecRegisterTerminator {
       !location
-      !@ipic18JumpTerminator.init { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
-      !@ipic18JumpTerminator.init { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
       !IPICregisterDescription
       !self.mIncrement
       !self.m_W_isDestination}
@@ -2832,16 +2832,16 @@ override method @pic18RegisterTestCondition analyzeCondition
 #--- Save terminator of current block
   let @location location = self.mRegisterExpression.mRegisterName.location
   if self.mBranchIfZero then
-    outCurrentBlockTerminator = @pic18TestRegisterTerminator.init {
+    outCurrentBlockTerminator = @pic18TestRegisterTerminator {
       !location
-      !@ipic18JumpTerminator.init { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
-      !@ipic18JumpTerminator.init { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
       !IPICregisterDescription}
   else
-    outCurrentBlockTerminator = @pic18TestRegisterTerminator.init {
+    outCurrentBlockTerminator = @pic18TestRegisterTerminator {
       !location
-      !@ipic18JumpTerminator.init { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
-      !@ipic18JumpTerminator.init { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionFalseLabel !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !location !inConditionTrueLabel !@jumpInstructionKind. ipicRelative}
       !IPICregisterDescription}
   end
 }
@@ -2878,10 +2878,10 @@ override method @pic18BitTestInStructuredCondition analyzeCondition
   ]
 #--- Save terminator of current block
   let @location location = self.mRegisterExpression.mRegisterName.location
-  outCurrentBlockTerminator = @pic18BitTestTerminator.init {
+  outCurrentBlockTerminator = @pic18BitTestTerminator {
     !location
-    !@ipic18JumpTerminator.init {!location !inConditionFalseLabel !@jumpInstructionKind.ipicRelative}
-    !@ipic18JumpTerminator.init {!location !inConditionTrueLabel !@jumpInstructionKind.ipicRelative}
+    !@ipic18JumpTerminator {!location !inConditionFalseLabel !@jumpInstructionKind.ipicRelative}
+    !@ipic18JumpTerminator {!location !inConditionTrueLabel !@jumpInstructionKind.ipicRelative}
     !IPICregisterDescription
     !bitNumber
   }
@@ -2928,7 +2928,7 @@ override method @pic18AndCondition analyzeCondition
   ?!@stringset ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
 #--- Create an intermédiate label for handling true condition of left expression
-  let conditionTrueLabel = @lstring.init { !".L" + [ioLocalLabelIndex string] !inConditionTrueLabel.location} 
+  let conditionTrueLabel = @lstring { !".L" + [ioLocalLabelIndex string] !inConditionTrueLabel.location} 
   ioLocalLabelIndex += 1
 #--- Left expression
   [self.mLeftExpression analyzeCondition
@@ -2957,7 +2957,7 @@ override method @pic18AndCondition analyzeCondition
     ?let @ipic18AbstractBlockTerminator secondTestBlockTerminator
   ]
 #--- Create a new block
-  ioGeneratedBlockList += !@ipic18Block.init {
+  ioGeneratedBlockList += !@ipic18Block {
     !@uint. max # relocatable
     !conditionTrueLabel
     !@ipic18SequentialInstructionList ()
@@ -3030,21 +3030,21 @@ proc pic18_analyze_data_sections
   ?!@constantMap ioConstantMap
   ?!@stringset ioUsedRegisters
 {
-  outDataMap = ()
+  outDataMap = @()
   for (name valueList isData8) in  inDataDefinitionList
   before
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     ioListFileContents += "*" + ["DATA DECLARATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   do
-    var @uintlist data = ()
+    var @uintlist data = @()
     if isData8 then
       if ([valueList count] & 1) != 0 then
         error name : "the data8 byte count should be even"
       end
       ioListFileContents += "Data8 '" + name + "', " + ([valueList count] / 2)
         + " words (" + [valueList count] + " bytes).\n" 
-      [!?ioConstantMap insertKey !.init { !name.string + "_BYTE_COUNT" !name} ![[valueList count] sint64]]
+      [!?ioConstantMap insertKey ! @{ !name.string + "_BYTE_COUNT" !name} ![[valueList count] sint64]]
       var @sint byte = 0
       for (expression errorLocation) in  valueList do (idx)
         [expression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
@@ -3061,7 +3061,7 @@ proc pic18_analyze_data_sections
     else
       ioListFileContents += "Data16 '" + name + "', " + [valueList count]
         + " words (" + [valueList count] * 2 + " bytes).\n" 
-      [!?ioConstantMap insertKey !.init { !name.string + "_BYTE_COUNT" !name} ![[valueList count] * 2 sint64]]
+      [!?ioConstantMap insertKey ! @{ !name.string + "_BYTE_COUNT" !name} ![[valueList count] * 2 sint64]]
       for (mExpression mErrorLocation) in  valueList do
         [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
         if value < 0 then
@@ -3164,7 +3164,7 @@ proc build_ipic18_block_representation_list
 #-------------------------------- Check the "main" routine is declared
   if inProgramKind != @programKind. userProgram then
     if [routineMap hasKey !"main"] then
-      [routineMap searchKey !@lstring.init { !"main" !@location.here} ?let isNoReturn ?let requiredBank ?* ?*]
+      [routineMap searchKey !@lstring { !"main" !@location.here} ?let isNoReturn ?let requiredBank ?* ?*]
       if not isNoReturn then
         error @location.here :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main requiresbank 0\""
       end
@@ -3179,11 +3179,11 @@ proc build_ipic18_block_representation_list
   var generatedBlockList =@ipic18BlockList ()
   var @uint entryPoint = 0x04
   for (mRoutineName * * * *) in  inBootloaderRoutineDeclarationListForUserProgramImplementation do
-    generatedBlockList += !@ipic18Block.init {
+    generatedBlockList += !@ipic18Block {
       !entryPoint
       !mRoutineName
       !@ipic18SequentialInstructionList ()
-      !@ipic18ReturnTerminator.init { !@location. nowhere}
+      !@ipic18ReturnTerminator { !@location. nowhere}
       !@uint.max
       !0
     }
@@ -3197,11 +3197,11 @@ proc build_ipic18_block_representation_list
 #-------------------------------- Generate user program entry points for user program
   entryPoint = inBootloaderReservedROMsize.uint
   for (mRoutineName * * * *) in  inUserRoutineDeclarationListForUserProgramImplementation do
-    generatedBlockList += !@ipic18Block.init {
+    generatedBlockList += !@ipic18Block {
       !entryPoint
       !["_entry_user_" + [entryPoint xString] nowhere]
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator.init { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -3209,11 +3209,11 @@ proc build_ipic18_block_representation_list
   end
 #-------------------------------- At zero, generate 'jump main' block
   if inProgramKind != @programKind. userProgram then
-    generatedBlockList += !@ipic18Block.init {
+    generatedBlockList += !@ipic18Block {
       !0
       ![".START" nowhere]
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator.init { !@location. nowhere !["main" nowhere] !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !@location. nowhere !["main" nowhere] !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -3222,22 +3222,22 @@ proc build_ipic18_block_representation_list
   var @routineDeclarationList tempBootloaderRoutineDeclarationList = inBootloaderRoutineDeclarationListForBootloaderImplementation
   if [tempBootloaderRoutineDeclarationList count] > 0 then
     [!?tempBootloaderRoutineDeclarationList popFirst ?let @lstring routineName ?* ?* ?* ?*]
-    generatedBlockList += !@ipic18Block.init {
+    generatedBlockList += !@ipic18Block {
       !0x04
       !["_entry_bootloader_04" nowhere]
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator.init { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
   end
 #-------------------------------- At 0x08, generate 'bra _high_interrupt' instruction, if fast interrupt is defined
   if inHasHighInterrupt then
-    generatedBlockList += !@ipic18Block.init {
+    generatedBlockList += !@ipic18Block {
       !0x08
       ![".HIGH_INTERRUPT" nowhere]
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator.init { !@location. nowhere !["_high_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !@location. nowhere !["_high_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -3248,11 +3248,11 @@ proc build_ipic18_block_representation_list
   while ([tempBootloaderRoutineDeclarationList count] > 0) & (entryPoint < 0x18) 
   do
     [!?tempBootloaderRoutineDeclarationList popFirst ?let @lstring routineName ?* ?* ?* ?*]
-    generatedBlockList += !@ipic18Block.init {
+    generatedBlockList += !@ipic18Block {
       !entryPoint
       !["_entry_bootloader_" + [entryPoint xString] nowhere]
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator.init { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -3260,11 +3260,11 @@ proc build_ipic18_block_representation_list
   end
 #-------------------------------- Generate JUMP to low interrupt (if any)
   if inHasLowInterrupt then
-    generatedBlockList += !@ipic18Block.init {
+    generatedBlockList += !@ipic18Block {
       !0x18
       ![".LOW_INTERRUPT" nowhere]
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator.init { !@location. nowhere !["_low_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !@location. nowhere !["_low_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -3272,11 +3272,11 @@ proc build_ipic18_block_representation_list
 #-------------------------------- Generate entry points for remaining bootloader routines
   entryPoint = 0x1C
   for (mRoutineName * * * *) in  tempBootloaderRoutineDeclarationList do
-    generatedBlockList += !@ipic18Block.init {
+    generatedBlockList += !@ipic18Block {
       !entryPoint
       !["_entry_bootloader_" + [entryPoint xString] nowhere]
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator.init { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -3290,7 +3290,7 @@ proc build_ipic18_block_representation_list
       if mInterruptName.string == "low" then
         var currentBank =@uint.max # No bank
         var generatedInstructionList =@ipic18SequentialInstructionList ()
-        var currentBlockLabel =@lstring.init{ !"_low_interrupt" !mInterruptName.location}
+        var currentBlockLabel = @lstring { !"_low_interrupt" !mInterruptName.location}
         analyzeInstructionList (
           !mInstructionList
           !?generatedBlockList
@@ -3313,11 +3313,11 @@ proc build_ipic18_block_representation_list
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine"
         end
       #--- Enter last block
-        generatedBlockList += !@ipic18Block.init {
+        generatedBlockList += !@ipic18Block {
           !@uint. max # relocatable
           !currentBlockLabel
           !generatedInstructionList
-          !@ipic18RetfieTerminator.init { !mInterruptName.location !mFastReturn}
+          !@ipic18RetfieTerminator { !mInterruptName.location !mFastReturn}
           !@uint.max
           !0
         }
@@ -3330,7 +3330,7 @@ proc build_ipic18_block_representation_list
       if mInterruptName.string == "high" then
         var currentBank =@uint.max # No bank
         var generatedInstructionList =@ipic18SequentialInstructionList ()
-        var currentBlockLabel =@lstring.init{ !"_high_interrupt" !mInterruptName.location}
+        var currentBlockLabel = @lstring { !"_high_interrupt" !mInterruptName.location}
         analyzeInstructionList (
           !mInstructionList
           !?generatedBlockList
@@ -3353,11 +3353,11 @@ proc build_ipic18_block_representation_list
           error mEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine"
         end
       #--- Enter last block
-        generatedBlockList += !@ipic18Block.init {
+        generatedBlockList += !@ipic18Block {
           !@uint. max # relocatable
           !currentBlockLabel
           !generatedInstructionList
-          !@ipic18RetfieTerminator.init { !mInterruptName.location !true}
+          !@ipic18RetfieTerminator { !mInterruptName.location !true}
           !@uint.max
           !0
         }
@@ -3396,11 +3396,11 @@ proc build_ipic18_block_representation_list
     let @bool continuesInSequence = currentBlockLabel.string != ""
     #--- Enter last block
     if continuesInSequence then
-      generatedBlockList += !@ipic18Block.init {
+      generatedBlockList += !@ipic18Block {
         !@uint. max # relocatable
         !currentBlockLabel
         !generatedInstructionList
-        !@ipic18ReturnTerminator.init { !mRoutineName.location}
+        !@ipic18ReturnTerminator { !mRoutineName.location}
         !@uint.max
         !0
       }
@@ -3416,9 +3416,9 @@ proc build_ipic18_block_representation_list
 #-------------------------------- Add computed goto, rcall, ... utility routines
 #  They wil be removed by optimizer if there are useless
 #--- Description of register WREG
-  let WREGregister = @registerExpression.init {
-    !@lstring.init {!"WREG" !.here}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let WREGregister = @registerExpression {
+    !@lstring {!"WREG" !.here}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
    }
   [WREGregister analyzeRegisterExpression
@@ -3432,9 +3432,9 @@ proc build_ipic18_block_representation_list
     !?usedRegisters
   ]
 #--- Description of register TOSL
-  let TOSLregister = @registerExpression.init {
-    !@lstring.init { !"TOSL" !.here}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TOSLregister = @registerExpression {
+    !@lstring { !"TOSL" !.here}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TOSLregister analyzeRegisterExpression
@@ -3448,9 +3448,9 @@ proc build_ipic18_block_representation_list
     !?usedRegisters
   ]
 #--- Description of register TOSH
-  let TOSHregister = @registerExpression.init {
-    !@lstring.init {!"TOSH" !.here} 
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TOSHregister = @registerExpression {
+    !@lstring {!"TOSH" !.here} 
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TOSHregister analyzeRegisterExpression
@@ -3464,9 +3464,9 @@ proc build_ipic18_block_representation_list
     !?usedRegisters
   ]
 #--- Description of register TOSU
-  let TOSUregister = @registerExpression.init {
-    !@lstring.init {!"TOSU" !.here}
-    !@immediatInteger.init {!.init {!0 !.here}}
+  let TOSUregister = @registerExpression {
+    !@lstring {!"TOSU" !.here}
+    !@immediatInteger {! @{!0 !.here}}
     !.here
   }
   [TOSUregister analyzeRegisterExpression
@@ -3480,18 +3480,18 @@ proc build_ipic18_block_representation_list
     !?usedRegisters
   ]
 #---
-  let @ipic18SequentialInstruction ADDWF_WREG = @ipic18_intermediate_instruction_FDA.init {
+  let @ipic18SequentialInstruction ADDWF_WREG = @ipic18_intermediate_instruction_FDA {
     !@location.here
     !@pic18Instruction_FDA_base_code_AST. ADDWF
     !WREG_IPICregisterDescription
     !true} # ADDWF WREG, W
 
 #--- computed_goto4
-  let goto4Block = @ipic18Block.init {
+  let goto4Block = @ipic18Block {
     !@uint. max # Relocatable
     !["_computed_goto_4" nowhere]
     !@ipic18SequentialInstructionList. listWithValue { !ADDWF_WREG !@uint.max !0}
-    !@ipic18JumpTerminator.init { !@location. nowhere !["_computed_goto_2" nowhere] !@jumpInstructionKind. ipicRelative}
+    !@ipic18JumpTerminator { !@location. nowhere !["_computed_goto_2" nowhere] !@jumpInstructionKind. ipicRelative}
     !@uint.max
     !0
   }
@@ -3499,21 +3499,21 @@ proc build_ipic18_block_representation_list
 #--- computed_goto2
   var goto2InstructionList =@ipic18SequentialInstructionList ()
   goto2InstructionList += !ADDWF_WREG !@uint.max !0
-  goto2InstructionList += !@ipic18_intermediate_instruction_FDA.init {
+  goto2InstructionList += !@ipic18_intermediate_instruction_FDA {
     !@location.here
     !@pic18Instruction_FDA_base_code_AST. ADDWF
     !TOSL_IPICregisterDescription
     !false}!@uint.max !0 # ADDWF TOSL, F
-  goto2InstructionList += !@ipic18_intermediate_instruction_literalOperation.init {
+  goto2InstructionList += !@ipic18_intermediate_instruction_literalOperation {
     !@location.here
     !@literal_instruction_opcode. MOVLW
     !0}!@uint.max !0 # MOVLW 0
-  goto2InstructionList += !@ipic18_intermediate_instruction_FDA.init {
+  goto2InstructionList += !@ipic18_intermediate_instruction_FDA {
     !@location.here
     !@pic18Instruction_FDA_base_code_AST. ADDWFC
     !TOSH_IPICregisterDescription
     !false}!@uint.max !0 # ADDWFC TOSH, F
-  goto2InstructionList += !@ipic18_intermediate_instruction_FDA.init {
+  goto2InstructionList += !@ipic18_intermediate_instruction_FDA {
     !@location.here
     !@pic18Instruction_FDA_base_code_AST. ADDWFC
     !TOSU_IPICregisterDescription
@@ -3522,11 +3522,11 @@ proc build_ipic18_block_representation_list
     !@uint.max
     !0 # ADDWFC TOSU, F
 #--- computed_goto2
-  let goto2Block = @ipic18Block.init {
+  let goto2Block = @ipic18Block {
     !@uint. max # Relocatable
     !["_computed_goto_2" nowhere]
     !goto2InstructionList
-    !@ipic18ReturnTerminator.init { !@location. nowhere}
+    !@ipic18ReturnTerminator { !@location. nowhere}
     !@uint.max
     !0
   }
@@ -3535,24 +3535,24 @@ proc build_ipic18_block_representation_list
   entryPoint = inBootloaderReservedROMsize.uint
   for (mRoutineName * mReturnedBank * mIsNoReturn) in  inUserRoutineDeclarationListForBootloaderImplementation do
     if mIsNoReturn then
-      generatedBlockList += !@ipic18Block.init {
+      generatedBlockList += !@ipic18Block {
         !entryPoint
         !mRoutineName
         !@ipic18SequentialInstructionList ()
-        !@ipic18JumpTerminator.init { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
+        !@ipic18JumpTerminator { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
         !@uint.max
         !0
       }
     else
       var instructionList =@ipic18SequentialInstructionList ()
       if mReturnedBank.uint != @uint. max then
-        instructionList += !@ipic18_intermediate_instruction_MOVLB.init { !@location.here !mReturnedBank} !@uint.max !0
+        instructionList += !@ipic18_intermediate_instruction_MOVLB { !@location.here !mReturnedBank} !@uint.max !0
       end
-      generatedBlockList += !@ipic18Block.init {
+      generatedBlockList += !@ipic18Block {
         !entryPoint
         !mRoutineName
         !instructionList
-        !@ipic18ReturnTerminator.init { !@location. nowhere}
+        !@ipic18ReturnTerminator { !@location. nowhere}
         !@uint.max
         !0
       }
@@ -3606,7 +3606,7 @@ proc build_ipic18_block_representation_list
     )
   end
 #----------------------------------------------------------- Compute durations
-  var @blockDurationMap blockDurationMap = ()
+  var @blockDurationMap blockDurationMap = @()
   if @uint.errorCount == 0 then
     ipic18DurationComputations (!?generatedBlockList ?blockDurationMap)
   end

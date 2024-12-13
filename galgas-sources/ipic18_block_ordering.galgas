@@ -386,7 +386,7 @@ proc buildOrderedGraph
     [!?symbolTable insertKey !mBlock.mLabel !blockIndex]
   end
 #---
-  var g = @blockInvocationGraph.init
+  var g = @blockInvocationGraph ()
   for (mBlock) in  ioBlockList do
     if mBlock.mAddress == @uint. max then # Only relocatable block
       [!?g addNode !mBlock.mLabel !mBlock.mLabel.string]

@@ -135,7 +135,7 @@ override method @midrange_intermediate_JUMP compute
    end
 #--- Change ?
   if (bit11 != self.mBit11) | (bit12 != self.mBit12) then
-    let @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JUMP.init {
+    let @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JUMP {
       !self.mInstructionLocation
       !self.mTargetLabel
       !bit11
@@ -178,7 +178,7 @@ override method @midrange_intermediate_JSR compute
    end
 #--- Change ?
   if (bit11 != self.mBit11) | (bit12 != self.mBit12) then
-    let @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JSR.init {
+    let @midrange_intermediate_actualInstruction instruction = @midrange_intermediate_JSR {
       !self.mInstructionLocation
       !self.mTargetLabel
       !bit11

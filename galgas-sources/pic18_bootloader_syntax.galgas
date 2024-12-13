@@ -42,7 +42,7 @@ rule <parse_bootloader>
   ${$
   outBootloaderRoutineDeclarationList = @routineDeclarationList ()
   outBootloaderReservedRAMmap = @bootloaderReservedRAMmap ()
-  outReservedRomSize = @luint.init { !0 !@location.here}
+  outReservedRomSize = @luint { !0 !@location.here}
   repeat
   while
     <routine_declaration> !?outBootloaderRoutineDeclarationList
@@ -175,8 +175,8 @@ rule <routine_declaration>
   let @luint returnedBank
   let @bool preservesBank
   select
-    requiredBank = @luint.init { !@uint. max !@location.here}
-    returnedBank = @luint.init { !@uint. max !@location.here}
+    requiredBank = @luint { !@uint. max !@location.here}
+    returnedBank = @luint { !@uint. max !@location.here}
     preservesBank = false
   or
     $bank$
@@ -187,14 +187,14 @@ rule <routine_declaration>
         error @location.here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting"
       end
       preservesBank = true
-      requiredBank = @luint.init { !@uint. max !@location.here}
-      returnedBank = @luint.init { !@uint. max !@location.here}
+      requiredBank = @luint { !@uint. max !@location.here}
+      returnedBank = @luint { !@uint. max !@location.here}
     or
       $requires$
       $integer$ ? requiredBank
       preservesBank = false
       select
-        returnedBank = @luint.init { !@uint. max !@location.here}
+        returnedBank = @luint { !@uint. max !@location.here}
       or
         $ensures$
         $integer$ ? returnedBank
@@ -209,7 +209,7 @@ rule <routine_declaration>
         error @location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting"
       end
       preservesBank = false
-      requiredBank = @luint.init { !@uint. max !@location.here}
+      requiredBank = @luint { !@uint. max !@location.here}
     end
   end
 #---

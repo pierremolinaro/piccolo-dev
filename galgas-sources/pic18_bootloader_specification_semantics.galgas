@@ -97,8 +97,8 @@ proc pic18BootloaderSpecificationAnalysis
   analyze_ram_sections (
     !"SHARED VARIABLES"
     !inSharedRamDefinitionList
-    !()
-    !? %from ()
+    !@()
+    !? %from @()
     !?outRamBank
     !outPiccoloDeviceModel.mRegisterTable
     !?outListFileContents
