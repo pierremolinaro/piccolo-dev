@@ -4,63 +4,64 @@
 //--- END OF USER ZONE 1
 
 import AppKit
+import MyAutoLayoutKit
 
 //--------------------------------------------------------------------------------------------------
 //   LEXIQUE piccoloDevice_lexique
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gFont_piccoloDevice_lexique = EBGenericPreferenceProperty <NSFont> (
+@MainActor fileprivate let gFont_piccoloDevice_lexique = EBPreferenceProperty <NSFont> (
   defaultValue: NSFont.monospacedSystemFont (ofSize: 13.0, weight: .regular),
   prefKey: "FontFor_" + piccoloDevice_lexique_lexiqueIdentifier ()
 )
 
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gLineHeight_piccoloDevice_lexique = EBGenericPreferenceProperty <Int> (
+@MainActor fileprivate let gLineHeight_piccoloDevice_lexique = EBPreferenceProperty <Int> (
   defaultValue: 12,
   prefKey: "LineHeightFor_" + piccoloDevice_lexique_lexiqueIdentifier ()
 )
 
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gColors_piccoloDevice_lexique : [EBGenericPreferenceProperty <NSColor>] = [
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-keywordStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-instructionStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-delimitersStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-integerStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-stringStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-commentStyle"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .red, prefKey: "ColorFor_piccoloDevice_lexique_lexical_error"),
-  EBGenericPreferenceProperty <NSColor> (defaultValue: .gray, prefKey: "ColorFor_piccoloDevice_lexique_template")
+@MainActor fileprivate let gColors_piccoloDevice_lexique : [EBPreferenceProperty <NSColor>] = [
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-keywordStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-instructionStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-delimitersStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-integerStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-stringStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .black, prefKey: "ColorFor_piccoloDevice_lexique-commentStyle"),
+  EBPreferenceProperty <NSColor> (defaultValue: .red, prefKey: "ColorFor_piccoloDevice_lexique_lexical_error"),
+  EBPreferenceProperty <NSColor> (defaultValue: .gray, prefKey: "ColorFor_piccoloDevice_lexique_template")
 ]
 
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gBoldStyle_piccoloDevice_lexique : [EBGenericPreferenceProperty <Bool>] = [
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-keywordStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-instructionStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-delimitersStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-integerStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-stringStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-commentStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: true, prefKey: "BoldFor_piccoloDevice_lexique_lexical_error"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique_template")
+@MainActor fileprivate let gBoldStyle_piccoloDevice_lexique : [EBPreferenceProperty <Bool>] = [
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-keywordStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-instructionStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-delimitersStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-integerStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-stringStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique-commentStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: true, prefKey: "BoldFor_piccoloDevice_lexique_lexical_error"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "BoldFor_piccoloDevice_lexique_template")
 ]
 
 //--------------------------------------------------------------------------------------------------
 
-fileprivate let gItalicStyle_piccoloDevice_lexique : [EBGenericPreferenceProperty <Bool>] = [
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-keywordStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-instructionStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-delimitersStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-integerStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-stringStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-commentStyle"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique_lexical_error"),
-  EBGenericPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique_template")
+@MainActor fileprivate let gItalicStyle_piccoloDevice_lexique : [EBPreferenceProperty <Bool>] = [
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-keywordStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-instructionStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-delimitersStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-integerStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-stringStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique-commentStyle"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique_lexical_error"),
+  EBPreferenceProperty <Bool> (defaultValue: false, prefKey: "ItalicFor_piccoloDevice_lexique_template")
 ]
 
 //--------------------------------------------------------------------------------------------------
@@ -189,27 +190,27 @@ class SWIFT_Lexique_piccoloDevice_lexique : SWIFT_Lexique {
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  var font : EBGenericPreferenceProperty <NSFont> { return gFont_piccoloDevice_lexique }
+  var font : EBPreferenceProperty <NSFont> { return gFont_piccoloDevice_lexique }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  var lineHeight : EBGenericPreferenceProperty <Int> { return gLineHeight_piccoloDevice_lexique }
+  var lineHeight : EBPreferenceProperty <Int> { return gLineHeight_piccoloDevice_lexique }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func color (forStyle inStyleIndex : UInt8) -> EBGenericPreferenceProperty <NSColor> {
+  func color (forStyle inStyleIndex : UInt8) -> EBPreferenceProperty <NSColor> {
     return gColors_piccoloDevice_lexique [Int (inStyleIndex)]
   }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func bold (forStyle inStyleIndex : UInt8) -> EBGenericPreferenceProperty <Bool> {
+  func bold (forStyle inStyleIndex : UInt8) -> EBPreferenceProperty <Bool> {
     return gBoldStyle_piccoloDevice_lexique [Int (inStyleIndex)]
   }
 
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func italic (forStyle inStyleIndex : UInt8) -> EBGenericPreferenceProperty <Bool> {
+  func italic (forStyle inStyleIndex : UInt8) -> EBPreferenceProperty <Bool> {
     return gItalicStyle_piccoloDevice_lexique [Int (inStyleIndex)]
   }
 
@@ -478,6 +479,7 @@ class SWIFT_Lexique_piccoloDevice_lexique : SWIFT_Lexique {
   //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
+
 
 //--------------------------------------------------------------------------------------------------
 
