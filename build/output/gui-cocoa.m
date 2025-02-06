@@ -213,7 +213,8 @@ static const UInt16 * gPopUpData_0_piccolo_5F_lexique [8] = {
 
 OC_Lexique * tokenizerForExtension (const NSString * inExtension) {
   OC_Lexique * result = nil ;
-  if ([inExtension isEqualToString:@"piccolo"]) {
+  NSString * uppercasedExtension = [inExtension uppercaseString] ;
+  if ([uppercasedExtension isEqualToString:@"PICCOLO"]) {
     result = [OC_Tokenizer_0_piccolo_lexique new] ;
   }
   return result ;
