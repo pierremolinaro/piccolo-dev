@@ -20,16 +20,16 @@ void routine_parseDeviceDefinition_3F__21_ (const GGS_lstring constinArgument_in
   outArgument_outPiccoloDeviceModel.drop () ; // Release 'out' argument
   GGS_filewrapper var_fw_319 = GGS_filewrapper (gWrapperDirectory_0_embeddedDevices) ;
   GGS_string var_deviceFullName_368 = constinArgument_inDeviceName.readProperty_string ().add_operation (GGS_string (".piccoloDevice"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 17)) ;
-  enumGalgasBool test_0 = kBoolTrue ;
-  if (kBoolTrue == test_0) {
+  GalgasBool test_0 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_0) {
     test_0 = var_fw_319.getter_fileExistsAtPath (var_deviceFullName_368, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 18)).boolEnum () ;
-    if (kBoolTrue == test_0) {
+    if (GalgasBool::boolTrue == test_0) {
       GGS_string var_definitionString_488 = var_fw_319.getter_textFileContentsAtPath (var_deviceFullName_368, inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 19)) ;
       outArgument_outPiccoloDeviceModel.drop () ;
       cGrammar_piccoloDevice_5F_grammar::_performSourceStringParsing_ (inCompiler, var_definitionString_488, var_deviceFullName_368, outArgument_outPiccoloDeviceModel  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 20)) ;
     }
   }
-  if (kBoolFalse == test_0) {
+  if (GalgasBool::boolFalse == test_0) {
     TC_Array <FixItDescription> fixItArray1 ;
     inCompiler->emitSemanticError (constinArgument_inDeviceName.readProperty_location (), GGS_string ("The '").add_operation (constinArgument_inDeviceName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)).add_operation (GGS_string ("' definition file is not defined"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)), fixItArray1  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)) ;
     outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
@@ -83,10 +83,10 @@ const char * projectVersionString (void) {
 static void routine_before (Compiler * inCompiler
                             COMMA_UNUSED_LOCATION_ARGS) {
   {
-    enumGalgasBool test_0 = kBoolTrue ;
-    if (kBoolTrue == test_0) {
+    GalgasBool test_0 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_0) {
       test_0 = GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList.readProperty_value ()).operator_or (GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputPic_31__38_DeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 6)).operator_or (GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputBaselineDeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 7)).operator_or (GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputMidrangeDeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 8)).boolEnum () ;
-      if (kBoolTrue == test_0) {
+      if (GalgasBool::boolTrue == test_0) {
         GGS_stringlist var_allDevices_446 = GGS_filewrapper (gWrapperDirectory_0_embeddedDevices).getter_allTextFilePathes (SOURCE_FILE ("piccolo_program.galgas", 11)) ;
         GGS_stringlist var_pic_31__38__5F_devices_517 = GGS_stringlist::init (inCompiler COMMA_HERE) ;
         GGS_stringlist var_midrange_5F_devices_555 = GGS_stringlist::init (inCompiler COMMA_HERE) ;
@@ -120,10 +120,10 @@ static void routine_before (Compiler * inCompiler
           }
           enumerator_656.gotoNextObject () ;
         }
-        enumGalgasBool test_1 = kBoolTrue ;
-        if (kBoolTrue == test_1) {
+        GalgasBool test_1 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_1) {
           test_1 = GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList.readProperty_value ()).operator_or (GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputBaselineDeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 35)).boolEnum () ;
-          if (kBoolTrue == test_1) {
+          if (GalgasBool::boolTrue == test_1) {
             {
             routine_print_3F_ (var_baseline_5F_devices_596.getter_count (SOURCE_FILE ("piccolo_program.galgas", 36)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GGS_string (" baseline devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GGS_application::class_func_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 36)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)).add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 36)) ;
             }
@@ -134,10 +134,10 @@ static void routine_before (Compiler * inCompiler
               routine_print_3F_ (enumerator_1785.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 39)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 39)) ;
               }
               var_idx_1766.plusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 40)) ;
-              enumGalgasBool test_2 = kBoolTrue ;
-              if (kBoolTrue == test_2) {
+              GalgasBool test_2 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_2) {
                 test_2 = GGS_bool (ComparisonKind::equal, var_idx_1766.objectCompare (GGS_uint (uint32_t (5U)))).boolEnum () ;
-                if (kBoolTrue == test_2) {
+                if (GalgasBool::boolTrue == test_2) {
                   var_idx_1766 = GGS_uint (uint32_t (0U)) ;
                   {
                   routine_print_3F_ (GGS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 43)) ;
@@ -146,10 +146,10 @@ static void routine_before (Compiler * inCompiler
               }
               enumerator_1785.gotoNextObject () ;
             }
-            enumGalgasBool test_3 = kBoolTrue ;
-            if (kBoolTrue == test_3) {
+            GalgasBool test_3 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_3) {
               test_3 = GGS_bool (ComparisonKind::notEqual, var_idx_1766.objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-              if (kBoolTrue == test_3) {
+              if (GalgasBool::boolTrue == test_3) {
                 {
                 routine_print_3F_ (GGS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 47)) ;
                 }
@@ -157,10 +157,10 @@ static void routine_before (Compiler * inCompiler
             }
           }
         }
-        enumGalgasBool test_4 = kBoolTrue ;
-        if (kBoolTrue == test_4) {
+        GalgasBool test_4 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_4) {
           test_4 = GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList.readProperty_value ()).operator_or (GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputMidrangeDeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 51)).boolEnum () ;
-          if (kBoolTrue == test_4) {
+          if (GalgasBool::boolTrue == test_4) {
             {
             routine_print_3F_ (var_midrange_5F_devices_555.getter_count (SOURCE_FILE ("piccolo_program.galgas", 52)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GGS_string (" mid-range devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GGS_application::class_func_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)).add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 52)) ;
             }
@@ -171,10 +171,10 @@ static void routine_before (Compiler * inCompiler
               routine_print_3F_ (enumerator_2394.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 55)) ;
               }
               var_idx_2375.plusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 56)) ;
-              enumGalgasBool test_5 = kBoolTrue ;
-              if (kBoolTrue == test_5) {
+              GalgasBool test_5 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_5) {
                 test_5 = GGS_bool (ComparisonKind::equal, var_idx_2375.objectCompare (GGS_uint (uint32_t (5U)))).boolEnum () ;
-                if (kBoolTrue == test_5) {
+                if (GalgasBool::boolTrue == test_5) {
                   var_idx_2375 = GGS_uint (uint32_t (0U)) ;
                   {
                   routine_print_3F_ (GGS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 59)) ;
@@ -183,10 +183,10 @@ static void routine_before (Compiler * inCompiler
               }
               enumerator_2394.gotoNextObject () ;
             }
-            enumGalgasBool test_6 = kBoolTrue ;
-            if (kBoolTrue == test_6) {
+            GalgasBool test_6 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_6) {
               test_6 = GGS_bool (ComparisonKind::notEqual, var_idx_2375.objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-              if (kBoolTrue == test_6) {
+              if (GalgasBool::boolTrue == test_6) {
                 {
                 routine_print_3F_ (GGS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 63)) ;
                 }
@@ -194,10 +194,10 @@ static void routine_before (Compiler * inCompiler
             }
           }
         }
-        enumGalgasBool test_7 = kBoolTrue ;
-        if (kBoolTrue == test_7) {
+        GalgasBool test_7 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_7) {
           test_7 = GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList.readProperty_value ()).operator_or (GGS_bool (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputPic_31__38_DeviceList.readProperty_value ()) COMMA_SOURCE_FILE ("piccolo_program.galgas", 67)).boolEnum () ;
-          if (kBoolTrue == test_7) {
+          if (GalgasBool::boolTrue == test_7) {
             {
             routine_print_3F_ (var_pic_31__38__5F_devices_517.getter_count (SOURCE_FILE ("piccolo_program.galgas", 68)).getter_string (SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GGS_string (" pic18 devices supported by Piccolo "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GGS_application::class_func_projectVersionString (SOURCE_FILE ("piccolo_program.galgas", 68)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)).add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 68)) ;
             }
@@ -208,10 +208,10 @@ static void routine_before (Compiler * inCompiler
               routine_print_3F_ (enumerator_2989.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 71)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 71)) ;
               }
               var_idx_2970.plusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 72)) ;
-              enumGalgasBool test_8 = kBoolTrue ;
-              if (kBoolTrue == test_8) {
+              GalgasBool test_8 = GalgasBool::boolTrue ;
+              if (GalgasBool::boolTrue == test_8) {
                 test_8 = GGS_bool (ComparisonKind::equal, var_idx_2970.objectCompare (GGS_uint (uint32_t (5U)))).boolEnum () ;
-                if (kBoolTrue == test_8) {
+                if (GalgasBool::boolTrue == test_8) {
                   var_idx_2970 = GGS_uint (uint32_t (0U)) ;
                   {
                   routine_print_3F_ (GGS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 75)) ;
@@ -220,10 +220,10 @@ static void routine_before (Compiler * inCompiler
               }
               enumerator_2989.gotoNextObject () ;
             }
-            enumGalgasBool test_9 = kBoolTrue ;
-            if (kBoolTrue == test_9) {
+            GalgasBool test_9 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_9) {
               test_9 = GGS_bool (ComparisonKind::notEqual, var_idx_2970.objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-              if (kBoolTrue == test_9) {
+              if (GalgasBool::boolTrue == test_9) {
                 {
                 routine_print_3F_ (GGS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 79)) ;
                 }
@@ -233,15 +233,15 @@ static void routine_before (Compiler * inCompiler
         }
       }
     }
-    enumGalgasBool test_10 = kBoolTrue ;
-    if (kBoolTrue == test_10) {
+    GalgasBool test_10 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_10) {
       test_10 = GGS_bool (ComparisonKind::greaterThan, GGS_string (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_exportDeviceFiles.readProperty_value ()).getter_count (SOURCE_FILE ("piccolo_program.galgas", 85)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-      if (kBoolTrue == test_10) {
+      if (GalgasBool::boolTrue == test_10) {
         GGS_string var_dir_3437 = GGS_string (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_exportDeviceFiles.readProperty_value ()) ;
-        enumGalgasBool test_11 = kBoolTrue ;
-        if (kBoolTrue == test_11) {
+        GalgasBool test_11 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_11) {
           test_11 = var_dir_3437.getter_directoryExists (SOURCE_FILE ("piccolo_program.galgas", 87)).operator_not (SOURCE_FILE ("piccolo_program.galgas", 87)).boolEnum () ;
-          if (kBoolTrue == test_11) {
+          if (GalgasBool::boolTrue == test_11) {
             var_dir_3437.method_makeDirectory (inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 88)) ;
           }
         }
@@ -259,15 +259,15 @@ static void routine_before (Compiler * inCompiler
       }
     }
     GGS_string var_deviceForMemoryDescription_4065 = GGS_string (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_memoryDescription.readProperty_value ()) ;
-    enumGalgasBool test_12 = kBoolTrue ;
-    if (kBoolTrue == test_12) {
+    GalgasBool test_12 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_12) {
       test_12 = GGS_bool (ComparisonKind::greaterThan, var_deviceForMemoryDescription_4065.getter_count (SOURCE_FILE ("piccolo_program.galgas", 100)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-      if (kBoolTrue == test_12) {
+      if (GalgasBool::boolTrue == test_12) {
         GGS_string var_devicePath_4221 = GGS_string ("/").add_operation (var_deviceForMemoryDescription_4065, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 101)).add_operation (GGS_string (".piccoloDevice"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 101)) ;
-        enumGalgasBool test_13 = kBoolTrue ;
-        if (kBoolTrue == test_13) {
+        GalgasBool test_13 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_13) {
           test_13 = GGS_filewrapper (gWrapperDirectory_0_embeddedDevices).getter_fileExistsAtPath (var_devicePath_4221, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 102)).boolEnum () ;
-          if (kBoolTrue == test_13) {
+          if (GalgasBool::boolTrue == test_13) {
             GGS_piccoloDeviceModel var_piccoloDeviceModel_4450 ;
             {
             routine_parseDeviceDefinition_3F__21_ (GGS_lstring::init_21__21_ (var_deviceForMemoryDescription_4065, GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 103)), inCompiler COMMA_HERE), var_piccoloDeviceModel_4450, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 103)) ;
@@ -327,10 +327,10 @@ static void routine_before (Compiler * inCompiler
               {
                 GGS_uint var_pageCount_5616 = var_piccoloDeviceModel_4450.readProperty_mRomSize ().readProperty_uint ().add_operation (GGS_uint (uint32_t (2047U)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 125)).divide_operation (GGS_uint (uint32_t (2048U)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 125)) ;
                 GGS_string var_s_5697 = GGS_string::makeEmptyString () ;
-                enumGalgasBool test_15 = kBoolTrue ;
-                if (kBoolTrue == test_15) {
+                GalgasBool test_15 = GalgasBool::boolTrue ;
+                if (GalgasBool::boolTrue == test_15) {
                   test_15 = GGS_bool (ComparisonKind::greaterThan, var_pageCount_5616.objectCompare (GGS_uint (uint32_t (1U)))).boolEnum () ;
-                  if (kBoolTrue == test_15) {
+                  if (GalgasBool::boolTrue == test_15) {
                     var_s_5697 = GGS_string ("s") ;
                   }
                 }
@@ -347,38 +347,38 @@ static void routine_before (Compiler * inCompiler
               }
               break ;
             }
-            enumGalgasBool test_16 = kBoolTrue ;
-            if (kBoolTrue == test_16) {
+            GalgasBool test_16 = GalgasBool::boolTrue ;
+            if (GalgasBool::boolTrue == test_16) {
               test_16 = GGS_bool (ComparisonKind::equal, var_piccoloDeviceModel_4450.readProperty_mEepromSize ().objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-              if (kBoolTrue == test_16) {
+              if (GalgasBool::boolTrue == test_16) {
                 {
                 routine_print_3F_ (GGS_string ("  No EEPROM\n"), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 136)) ;
                 }
               }
             }
-            if (kBoolFalse == test_16) {
+            if (GalgasBool::boolFalse == test_16) {
               {
               routine_print_3F_ (GGS_string ("  EEPROM size: ").add_operation (var_piccoloDeviceModel_4450.readProperty_mEepromSize ().getter_string (SOURCE_FILE ("piccolo_program.galgas", 138)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 138)).add_operation (GGS_string (" bytes (at "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 138)).add_operation (var_piccoloDeviceModel_4450.readProperty_mEepromAddress ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 139)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 138)).add_operation (GGS_string (")\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 139)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 138)) ;
               }
             }
           }
         }
-        if (kBoolFalse == test_13) {
+        if (GalgasBool::boolFalse == test_13) {
           TC_Array <FixItDescription> fixItArray17 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)), GGS_string ("The ").add_operation (var_deviceForMemoryDescription_4065, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)).add_operation (GGS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)), fixItArray17  COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)) ;
         }
       }
     }
     GGS_string var_deviceForRegistersDescription_6518 = GGS_string (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_registerDescription.readProperty_value ()) ;
-    enumGalgasBool test_18 = kBoolTrue ;
-    if (kBoolTrue == test_18) {
+    GalgasBool test_18 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_18) {
       test_18 = GGS_bool (ComparisonKind::greaterThan, var_deviceForRegistersDescription_6518.getter_count (SOURCE_FILE ("piccolo_program.galgas", 147)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-      if (kBoolTrue == test_18) {
+      if (GalgasBool::boolTrue == test_18) {
         GGS_string var_devicePath_6682 = GGS_string ("/").add_operation (var_deviceForRegistersDescription_6518, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 148)).add_operation (GGS_string (".piccoloDevice"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 148)) ;
-        enumGalgasBool test_19 = kBoolTrue ;
-        if (kBoolTrue == test_19) {
+        GalgasBool test_19 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_19) {
           test_19 = GGS_filewrapper (gWrapperDirectory_0_embeddedDevices).getter_fileExistsAtPath (var_devicePath_6682, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 149)).boolEnum () ;
-          if (kBoolTrue == test_19) {
+          if (GalgasBool::boolTrue == test_19) {
             GGS_piccoloDeviceModel var_piccoloDeviceModel_6918 ;
             {
             routine_parseDeviceDefinition_3F__21_ (GGS_lstring::init_21__21_ (var_deviceForRegistersDescription_6518, GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 150)), inCompiler COMMA_HERE), var_piccoloDeviceModel_6918, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 150)) ;
@@ -405,22 +405,22 @@ static void routine_before (Compiler * inCompiler
             }
           }
         }
-        if (kBoolFalse == test_19) {
+        if (GalgasBool::boolFalse == test_19) {
           TC_Array <FixItDescription> fixItArray20 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)), GGS_string ("The ").add_operation (var_deviceForRegistersDescription_6518, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)).add_operation (GGS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)), fixItArray20  COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)) ;
         }
       }
     }
     GGS_string var_deviceForConfigDescription_7625 = GGS_string (gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_configDescription.readProperty_value ()) ;
-    enumGalgasBool test_21 = kBoolTrue ;
-    if (kBoolTrue == test_21) {
+    GalgasBool test_21 = GalgasBool::boolTrue ;
+    if (GalgasBool::boolTrue == test_21) {
       test_21 = GGS_bool (ComparisonKind::greaterThan, var_deviceForConfigDescription_7625.getter_count (SOURCE_FILE ("piccolo_program.galgas", 167)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
-      if (kBoolTrue == test_21) {
+      if (GalgasBool::boolTrue == test_21) {
         GGS_string var_devicePath_7781 = GGS_string ("/").add_operation (var_deviceForConfigDescription_7625, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 168)).add_operation (GGS_string (".piccoloDevice"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 168)) ;
-        enumGalgasBool test_22 = kBoolTrue ;
-        if (kBoolTrue == test_22) {
+        GalgasBool test_22 = GalgasBool::boolTrue ;
+        if (GalgasBool::boolTrue == test_22) {
           test_22 = GGS_filewrapper (gWrapperDirectory_0_embeddedDevices).getter_fileExistsAtPath (var_devicePath_7781, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 169)).boolEnum () ;
-          if (kBoolTrue == test_22) {
+          if (GalgasBool::boolTrue == test_22) {
             GGS_piccoloDeviceModel var_piccoloDeviceModel_8011 ;
             {
             routine_parseDeviceDefinition_3F__21_ (GGS_lstring::init_21__21_ (var_deviceForConfigDescription_7625, GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 170)), inCompiler COMMA_HERE), var_piccoloDeviceModel_8011, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 170)) ;
@@ -453,7 +453,7 @@ static void routine_before (Compiler * inCompiler
             }
           }
         }
-        if (kBoolFalse == test_22) {
+        if (GalgasBool::boolFalse == test_22) {
           TC_Array <FixItDescription> fixItArray23 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)), GGS_string ("The ").add_operation (var_deviceForConfigDescription_7625, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)).add_operation (GGS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)), fixItArray23  COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)) ;
         }

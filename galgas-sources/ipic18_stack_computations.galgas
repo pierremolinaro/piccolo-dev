@@ -283,7 +283,7 @@ proc ipic18StackComputations
 #--- Recursive routines
   let @bool noRecursiveRoutine = [routineCallMap count] == 0
   if not noRecursiveRoutine then
-    if not [option piccolo_options.doNotWarnRecursive value] then
+    if not [option piccoloOptions.doNotWarnRecursive value] then
       warning @location. nowhere: "There are recursive routines"
     end
     ioListFileContents += "The following routines are recursive:\n"

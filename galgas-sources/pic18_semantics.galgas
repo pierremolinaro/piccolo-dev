@@ -281,7 +281,7 @@ proc pic18_analyze
     !?listFileContents
   )
 #-------------------------------- Write listing file
-  if [option piccolo_options.ouputListingFile value] then
+  if [option piccoloOptions.ouputListingFile value] then
     listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     let @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]

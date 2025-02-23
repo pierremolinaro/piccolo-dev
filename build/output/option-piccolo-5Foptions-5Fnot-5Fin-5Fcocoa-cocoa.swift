@@ -5,7 +5,7 @@
 
 //--------------------------------------------------------------------------------------------------
 
-func enterOptions () -> [SWIFT_CommandLineOption] {
+func enterOptionsFor_piccolo_5F_options_5F_not_5F_in_5F_cocoa () -> [SWIFT_CommandLineOption] {
   var array = [SWIFT_CommandLineOption] ()
   array.append (SWIFT_CommandLineOption (
     domainName: "piccolo_options_not_in_cocoa",

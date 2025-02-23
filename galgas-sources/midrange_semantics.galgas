@@ -129,7 +129,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     end
   end
 #-------------------------------- Perform Code Optimization
-  if (@uint. errorCount == 0) & [option piccolo_options.performOptimizations value] then
+  if (@uint. errorCount == 0) & [option piccoloOptions.performOptimizations value] then
     perform_midrange_optimizations ( !?generatedInstructionList !?listFileContents )
   end
 #-------------------------------- Compute inter-pages JUMP and JSR
@@ -154,7 +154,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     getGeneratedContents ( ?contents )
     var @string destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
     [contents writeToFileWhenDifferentContents !destinationFile ?*]
-    if [option piccolo_options.output_C_Array value] then
+    if [option piccoloOptions.output_C_Array value] then
       let @string baseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
       get_C_ArrayImplementation ( !baseName ?contents )
       destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".c"
@@ -179,7 +179,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
       print (!verboseMessage)
     end
   #--- Generate asm file, if corresponding option enabled
-    if [option piccolo_options.generateAssembly value] then
+    if [option piccoloOptions.generateAssembly value] then
       let @string assemblyCode
       midrange_build_assembly_code (
         !piccoloDeviceModel.mDeviceName.string
@@ -203,7 +203,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     end
   end
 #-------------------------------- Listing file
-  if [option piccolo_options.ouputListingFile value] then
+  if [option piccoloOptions.ouputListingFile value] then
     let @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end

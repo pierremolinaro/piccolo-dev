@@ -146,7 +146,7 @@ proc baseline_analysis
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage]
   end
 #-------------------------------- Print constant map
-  if [option piccolo_options.ouputListingFile value] then
+  if [option piccoloOptions.ouputListingFile value] then
     print_constant_definition (
       !constantMap
       !?listFileContents
@@ -302,7 +302,7 @@ proc baseline_analysis
     end
   end
 #-------------------------------- Print intermediate Instruction List
-  if (@uint. errorCount == 0) & [option piccolo_options.ouputListingFile value] then
+  if (@uint. errorCount == 0) & [option piccoloOptions.ouputListingFile value] then
     listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     listFileContents += "*" + ["INTERMEDIATE INSTRUCTION LIST" stringByLeftAndRightPadding !117 !' '] + "*\n"
     listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
@@ -320,7 +320,7 @@ proc baseline_analysis
     listFileContents += "Code size without optimization: " + [currentAddress string] + " words.\n\n"
   end
 #-------------------------------- Perform Code Optimization
-  if (@uint. errorCount == 0) & [option piccolo_options.performOptimizations value] then
+  if (@uint. errorCount == 0) & [option piccoloOptions.performOptimizations value] then
     perform_baseline_optimizations ( !?intermediateInstructionList !?listFileContents )
   end
 #-------------------------------- Build assembly instruction list
@@ -361,7 +361,7 @@ proc baseline_analysis
     )
   end
 #-------------------------------- Listing file
-  if [option piccolo_options.ouputListingFile value] then
+  if [option piccoloOptions.ouputListingFile value] then
     let @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
@@ -381,7 +381,7 @@ proc baseline_analysis
     getGeneratedContents (?var @string contents)
     var @string destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
     [contents writeToFileWhenDifferentContents !destinationFile ?*]
-    if [option piccolo_options.output_C_Array value] then
+    if [option piccoloOptions.output_C_Array value] then
       let @string baseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
       get_C_ArrayImplementation ( !baseName ?contents )
       destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".c"
@@ -406,7 +406,7 @@ proc baseline_analysis
 #      message verboseMessage ;
 #    end if ;
   #--- Generate asm file, if corresponding option enabled
-    if [option piccolo_options.generateAssembly value] then
+    if [option piccoloOptions.generateAssembly value] then
       var @string assemblyCode = "  processor " + inPiccoloModel.mDeviceName + "\n\n"
       for (mInstruction) in  assemblyInstructionList do
         [mInstruction print !?assemblyCode]

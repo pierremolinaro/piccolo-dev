@@ -1,10 +1,10 @@
 gui cocoa {
-with option piccolo_options
+with option piccoloOptions
 
 project "piccolo" indexing in "PICCOLO_INDEXES"
 
-nibAndMainClass : "PMPiccoloCocoa"
-nibAndMainClass : "installCLITools"
+//nibAndMainClass : "PMPiccoloCocoa"
+//nibAndMainClass : "installCLITools"
 
 with lexique piccolo_lexique {
   blockComment : "#"

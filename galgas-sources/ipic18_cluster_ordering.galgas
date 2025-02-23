@@ -32,11 +32,11 @@ proc perform_cluster_ordering
   ?let @clusterList inInitialClusterList
   ?!@ipic18BlockList ioBlockList
   ?!@string ioListFileContents {
-  let @bool optimize = [option piccolo_options.performOptimizations value]
-    & ([option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'B'])
-    & not [option piccolo_options.doNotReorderCluster value]
+  let @bool optimize = [option piccoloOptions.performOptimizations value]
+    & ([option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'B'])
+    & not [option piccoloOptions.doNotReorderCluster value]
   if not optimize then
-    ioListFileContents += "Option '--" + [option piccolo_options.doNotReorderCluster string] + "': this optimization is not performed.n\n"
+    ioListFileContents += "Option '--" + [option piccoloOptions.doNotReorderCluster string] + "': this optimization is not performed.n\n"
   else
     let @uint clusterCount = [inInitialClusterList count]
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"

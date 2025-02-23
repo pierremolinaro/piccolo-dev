@@ -90,7 +90,7 @@ proc analyze_ram_sections
       ]
     end
   end
-  if [option piccolo_options.ouputListingFile value] then
+  if [option piccoloOptions.ouputListingFile value] then
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     ioListFileContents += "*" + [inListingTitle stringByLeftAndRightPadding !117 !' '] + "*\n"
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"

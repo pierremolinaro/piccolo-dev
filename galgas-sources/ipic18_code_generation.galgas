@@ -333,7 +333,7 @@ proc ipic18GenerateCode
   var destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
   [contents writeToFileWhenDifferentContents !destinationFile ?*]
 #--- Generate contents in C file ?
-  if [option piccolo_options.output_C_Array value] then
+  if [option piccoloOptions.output_C_Array value] then
     let baseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
     get_C_ArrayImplementation (!baseName ?let @string cContents)
     destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".c"
@@ -343,7 +343,7 @@ proc ipic18GenerateCode
     [hContents writeToFileWhenDifferentContents !destinationFile ?*]
   end
 #----------------------------- Generate assembly file ?
-  if [option piccolo_options.generateAssembly value] & (@uint. errorCount == 0) then
+  if [option piccoloOptions.generateAssembly value] & (@uint. errorCount == 0) then
     pic18GenerateAssemblyFile (
       !inSourceFileName
       !inProcessorName

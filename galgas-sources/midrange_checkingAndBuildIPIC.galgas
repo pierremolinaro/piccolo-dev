@@ -282,7 +282,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
     end
     ioCurrentBank = self.mBankIndex.uint
   else
-    let @bool optimize = [option piccolo_options.performOptimizations value]
+    let @bool optimize = [option piccoloOptions.performOptimizations value]
     var @uint shiftedBank = self.mBankIndex.uint
     var @uint shiftedXorBank = self.mBankIndex.uint ^ ioCurrentBank
     var @uint idx = 0
@@ -395,7 +395,7 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
     end
     ioCurrentBank = newBank
   else
-    let @bool optimize = [option piccolo_options.performOptimizations value]
+    let @bool optimize = [option piccoloOptions.performOptimizations value]
     var @uint shiftedBank = newBank
     var @uint shiftedXorBank = newBank ^ ioCurrentBank
     var @uint idx = 0
@@ -1307,7 +1307,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
   ?!@stringset ioUsedRegisters {
   var @bool generateComplementaryCondition = false
 #--- Direct Test Instruction Count
-  if [option piccolo_options.performOptimizations value] then
+  if [option piccoloOptions.performOptimizations value] then
     var @uint directCount ; [self.mIfCondition computeInstructionCountForCondition !true ?directCount]
     if [self.mElseInstructionList count] > 0 then
       directCount += 1
@@ -1648,7 +1648,7 @@ proc build_midrange_assembly_instruction_list
 #    end
 #  end
 #-------------------------------- Print constant map
-  if [option piccolo_options.ouputListingFile value] then
+  if [option piccoloOptions.ouputListingFile value] then
     print_constant_definition (
       !inConstantMap
       !?ioListFileContents
@@ -1732,7 +1732,7 @@ proc build_midrange_assembly_instruction_list
     currentPage += 1
   end
 #--- Output a listing ?
-  if [option piccolo_options.ouputListingFile value] then
+  if [option piccoloOptions.ouputListingFile value] then
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     ioListFileContents += "*" + ["IPIC INSTRUCTION LIST" stringByLeftAndRightPadding !117 !' '] + "*\n"
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"

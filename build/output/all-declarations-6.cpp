@@ -8440,18 +8440,18 @@ GGS_bool extensionGetter_isEqualToRegister (const GGS_ipic_31__38__5F_intermedia
   GGS_bool result_outResult ; // Returned variable
   const GGS_ipic_31__38__5F_intermediate_5F_registerExpression temp_0 = inObject ;
   result_outResult = GGS_bool (ComparisonKind::equal, temp_0.readProperty_mAssemblyString ().objectCompare (constinArgument_inRegister.readProperty_mAssemblyString ())) ;
-  enumGalgasBool test_1 = kBoolTrue ;
-  if (kBoolTrue == test_1) {
+  GalgasBool test_1 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_1) {
     test_1 = result_outResult.boolEnum () ;
-    if (kBoolTrue == test_1) {
+    if (GalgasBool::boolTrue == test_1) {
       const GGS_ipic_31__38__5F_intermediate_5F_registerExpression temp_2 = inObject ;
       result_outResult = GGS_bool (ComparisonKind::equal, temp_2.readProperty_mRegisterAddress ().objectCompare (constinArgument_inRegister.readProperty_mRegisterAddress ())) ;
     }
   }
-  enumGalgasBool test_3 = kBoolTrue ;
-  if (kBoolTrue == test_3) {
+  GalgasBool test_3 = GalgasBool::boolTrue ;
+  if (GalgasBool::boolTrue == test_3) {
     test_3 = result_outResult.boolEnum () ;
-    if (kBoolTrue == test_3) {
+    if (GalgasBool::boolTrue == test_3) {
       const GGS_ipic_31__38__5F_intermediate_5F_registerExpression temp_4 = inObject ;
       result_outResult = GGS_bool (ComparisonKind::equal, temp_4.readProperty_mNeedsBSR ().objectCompare (constinArgument_inRegister.readProperty_mNeedsBSR ())) ;
     }

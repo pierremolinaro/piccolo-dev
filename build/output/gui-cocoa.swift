@@ -11,11 +11,7 @@ import AppKit
 
 /*
 NSArray * nibsAndClasses (void) {
-  return [NSArray arrayWithObjects:
-    [NSArray arrayWithObjects:@"PMPiccoloCocoa", [PMPiccoloCocoa class], nil],
-    [NSArray arrayWithObjects:@"installCLITools", [installCLITools class], nil],
-    nil
-  ] ;
+  return [NSArray array] ;
 }
 
 
@@ -24,9 +20,9 @@ NSArray * nibsAndClasses (void) {
 //    Project file extensions
 //--------------------------------------------------------------------------------------------------
 
-/* NSDictionary * indexingDescriptorDictionary (void) {
-  return [NSDictionary dictionaryWithObjectsAndKeys: @"PICCOLO_INDEXES", @"piccolo", nil] ;
-} */
+func indexingDescriptorDictionary () -> [String : String] {
+  return [  "piccolo" : "PICCOLO_INDEXES",]
+}
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -34,28 +30,29 @@ NSArray * nibsAndClasses (void) {
 //
 //--------------------------------------------------------------------------------------------------
 
-// #import "option-piccolo-5Foptions-cocoa.h"
-
-//--------------------------------------------------------------------------------------------------
-
-/*
-void enterOptions (NSMutableArray * ioBoolOptionArray,
-                   NSMutableArray * ioUIntOptionArray,
-                   NSMutableArray * ioStringOptionArray,
-                   NSMutableArray * ioStringListOptionArray) {
-  enterOptionsFor_piccolo_5F_options (ioBoolOptionArray, ioUIntOptionArray, ioStringOptionArray, ioStringListOptionArray) ;
-  OC_GGS_CommandLineOption * option = [[OC_GGS_CommandLineOption alloc]
+func enterOptions () -> [SWIFT_CommandLineOption] {
+  var array = [SWIFT_CommandLineOption] ()
+  array += enterOptionsFor_piccoloOptions ()
+  array.append (SWIFT_CommandLineOption (
+    domainName: "galgas_cli_options",
+    type: .bool,
+    identifier: "quiet_output",
+    commandChar: "q",
+    commandString: "quiet",
+    comment: "Quiet output"
+  ))
+/*  OC_GGS_CommandLineOption * option = [[OC_GGS_CommandLineOption alloc]
     initWithDomainName:@"galgas_cli_options"
     identifier:@"quiet_output"
     commandChar:'q'
     commandString:@"quiet"
     comment:@"Quiet output"
     defaultValue:@""
-  ] ;
-  [ioBoolOptionArray addObject:option] ;
+  ] ; */
+  return array
 }
 
-*/
+
 
 //--------------------------------------------------------------------------------------------------
 //                     P O P    U P    L I S T    D A T A

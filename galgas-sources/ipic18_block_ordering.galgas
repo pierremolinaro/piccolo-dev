@@ -479,7 +479,7 @@ proc buildOrderedGraph
     print (![n string] + " -> " + p + ".\n\n")
   end
 #--- Write Graphviz file
-  if [option piccolo_options.generateGraphvizFiles value] then
+  if [option piccoloOptions.generateGraphvizFiles value] then
     [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName+ ".blockOrderingConstraints.dot" ?*]
   end
 #--- Check block definition
@@ -569,13 +569,13 @@ proc ipic18OptimizeBlockOrdering
   ?let @string inSourceFileName
   ?!@string ioListFileContents
   ?!@ipic18BlockList ioGeneratedBlockList {
-  if [option piccolo_options.generateGraphvizFiles value] then
+  if [option piccoloOptions.generateGraphvizFiles value] then
     buildInvocationGraph ( !ioGeneratedBlockList ?let @string invocationGraph )
     [invocationGraph writeToFileWhenDifferentContents !inSourceFileName+ ".blockInvocation.dot" ?*]
   end
 #---
-  let @bool optimize = [option piccolo_options.performOptimizations value]
-    | [[option piccolo_options.optimizationFlags value] containsCharacter !'B']
+  let @bool optimize = [option piccoloOptions.performOptimizations value]
+    | [[option piccoloOptions.optimizationFlags value] containsCharacter !'B']
   if optimize then
     buildOrderedGraph ( !?ioGeneratedBlockList !inSourceFileName !?ioListFileContents )
   end

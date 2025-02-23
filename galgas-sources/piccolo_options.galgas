@@ -1,4 +1,4 @@
-option piccolo_options {
+option piccoloOptions {
 
 @bool generateAssembly : 'S', "asm" -> "Generate also an assembly language text file (with .asm extension)"
 @bool output_C_Array : 'C', "output-c-files" -> "Generate output code in a C header file and C source file"

@@ -1052,7 +1052,7 @@ extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_sint_36__34_ ;
 //
 //--------------------------------------------------------------------------------------------------
 
-typedef enum {kBoolNotValid, kBoolFalse, kBoolTrue} enumGalgasBool ;
+enum class GalgasBool {boolNotValid, boolFalse, boolTrue} ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1065,7 +1065,7 @@ class GGS_bool : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override { return mIsValid ; }
   public: inline bool isValidAndTrue (void) const { return mIsValid && mBoolValue ; }
   public: inline bool boolValue (void) const { return mBoolValue ; }
-  public: enumGalgasBool boolEnum (void) const ;
+  public: GalgasBool boolEnum (void) const ;
 
 //--------------------------------- Drop
   public: VIRTUAL_IN_DEBUG inline void drop (void) override { mIsValid = false ; }

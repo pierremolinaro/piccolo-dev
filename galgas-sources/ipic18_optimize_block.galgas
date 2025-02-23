@@ -1081,14 +1081,14 @@ proc ipic18OptimizeBlocks
   ?!@ipic18BlockList ioGeneratedBlockList {
 #--- Optimization flags
   let optimizeFlagStruct = @optimizeFlagStruct {
-    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'E'] # [E]
-    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'R'] # [R]
-    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'J'] # [J]
-    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'M'] # [M]
-    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'I'] # [I]
-    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'i'] # [i]
-    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'e'] # [e]
-#    ![option piccolo_options.performOptimizations value] | [[option piccolo_options.optimizationFlags value] containsCharacter !'c'] # [c]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'E'] # [E]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'R'] # [R]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'J'] # [J]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'M'] # [M]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'I'] # [I]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'i'] # [i]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'e'] # [e]
+#    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'c'] # [c]
   }
 #---
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
