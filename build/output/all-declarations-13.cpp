@@ -9,6 +9,45 @@
 
 //--------------------------------------------------------------------------------------------------
 //
+//Overriding extension method '@pic18Instruction_IF_BitTest addUsedRoutines'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest::method_addUsedRoutines (const GGS_pic_31__38_MacroMap constinArgument_inMacroMap,
+                                                                           GGS_stringset & ioArgument_ioUsedRoutines,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_pic_31__38_Instruction_5F_IF_5F_BitTest temp_0 = this ;
+  callExtensionMethod_addUsedRoutines ((cPtr_pic_31__38_PiccoloSimpleInstruction *) temp_0.readProperty_mEmbeddedInstruction ().ptr (), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 15)) ;
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@pic18Instruction_IF_FA_SEMI_COLON addUsedRoutines'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::method_addUsedRoutines (const GGS_pic_31__38_MacroMap constinArgument_inMacroMap,
+                                                                                       GGS_stringset & ioArgument_ioUsedRoutines,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON temp_0 = this ;
+  callExtensionMethod_addUsedRoutines ((cPtr_pic_31__38_PiccoloSimpleInstruction *) temp_0.readProperty_mEmbeddedInstruction ().ptr (), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 24)) ;
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Overriding extension method '@pic18Instruction_IF_IncDec addUsedRoutines'
+//
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec::method_addUsedRoutines (const GGS_pic_31__38_MacroMap constinArgument_inMacroMap,
+                                                                          GGS_stringset & ioArgument_ioUsedRoutines,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_UNUSED_LOCATION_ARGS) {
+  const GGS_pic_31__38_Instruction_5F_IF_5F_IncDec temp_0 = this ;
+  callExtensionMethod_addUsedRoutines ((cPtr_pic_31__38_PiccoloSimpleInstruction *) temp_0.readProperty_mEmbeddedInstruction ().ptr (), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 33)) ;
+}
+//--------------------------------------------------------------------------------------------------
+//
 //Overriding extension method '@pic18Instruction_JUMP addUsedRoutines'
 //
 //--------------------------------------------------------------------------------------------------
@@ -173,7 +212,7 @@ void cPtr_pic_31__38_Instruction_5F_computed_5F_bra::method_addUsedRoutines (con
                                                                              Compiler * /* inCompiler */
                                                                              COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_pic_31__38_Instruction_5F_computed_5F_bra temp_0 = this ;
-  cEnumerator_lstringlist enumerator_4391 (temp_0.readProperty_mTargetLabels (), EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_4391 (temp_0.readProperty_mTargetLabels ()) ;
   while (enumerator_4391.hasCurrentObject ()) {
     ioArgument_ioUsedRoutines.addAssign_operation (enumerator_4391.current_mValue (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 151)) ;
     enumerator_4391.gotoNextObject () ;
@@ -190,7 +229,7 @@ void cPtr_pic_31__38_Instruction_5F_computed_5F_goto::method_addUsedRoutines (co
                                                                               Compiler * /* inCompiler */
                                                                               COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_pic_31__38_Instruction_5F_computed_5F_goto temp_0 = this ;
-  cEnumerator_lstringlist enumerator_4693 (temp_0.readProperty_mTargetLabels (), EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_4693 (temp_0.readProperty_mTargetLabels ()) ;
   while (enumerator_4693.hasCurrentObject ()) {
     ioArgument_ioUsedRoutines.addAssign_operation (enumerator_4693.current_mValue (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 162)) ;
     enumerator_4693.gotoNextObject () ;
@@ -207,7 +246,7 @@ void cPtr_pic_31__38_Instruction_5F_computed_5F_rcall::method_addUsedRoutines (c
                                                                                Compiler * /* inCompiler */
                                                                                COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_pic_31__38_Instruction_5F_computed_5F_rcall temp_0 = this ;
-  cEnumerator_lstringlist enumerator_4996 (temp_0.readProperty_mTargetLabels (), EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_4996 (temp_0.readProperty_mTargetLabels ()) ;
   while (enumerator_4996.hasCurrentObject ()) {
     ioArgument_ioUsedRoutines.addAssign_operation (enumerator_4996.current_mValue (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 173)) ;
     enumerator_4996.gotoNextObject () ;
@@ -239,7 +278,7 @@ void cPtr_pic_31__38_Instruction_5F_do_5F_while::method_addUsedRoutines (const G
   routine_addPic_31__38_UsedRoutinesFromInstructionList_3F__3F__26_ (temp_0.readProperty_mRepeatedInstructionList (), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 191)) ;
   }
   const GGS_pic_31__38_Instruction_5F_do_5F_while temp_1 = this ;
-  cEnumerator_pic_31__38_DoWhilePartList enumerator_5636 (temp_1.readProperty_mWhilePartList (), EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_DoWhilePartList enumerator_5636 (temp_1.readProperty_mWhilePartList ()) ;
   while (enumerator_5636.hasCurrentObject ()) {
     {
     routine_addPic_31__38_UsedRoutinesFromInstructionList_3F__3F__26_ (enumerator_5636.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 193)) ;
@@ -444,7 +483,7 @@ void cPtr_pic_31__38_Instruction_5F_block::method_addUsedRoutines (const GGS_pic
                                                                    Compiler * inCompiler
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_pic_31__38_Instruction_5F_block temp_0 = this ;
-  cEnumerator_pic_31__38_BlockInstructionBlockList enumerator_9728 (temp_0.readProperty_mBlockList (), EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_BlockInstructionBlockList enumerator_9728 (temp_0.readProperty_mBlockList ()) ;
   while (enumerator_9728.hasCurrentObject ()) {
     {
     routine_addPic_31__38_UsedRoutinesFromInstructionList_3F__3F__26_ (enumerator_9728.current_mInstructionList (HERE), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 330)) ;
@@ -463,7 +502,7 @@ void routine_addPic_31__38_UsedRoutinesFromInstructionList_3F__3F__26_ (const GG
                                                                         GGS_stringset & ioArgument_ioUsedRoutines,
                                                                         Compiler * inCompiler
                                                                         COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_pic_31__38_InstructionList enumerator_10100 (constinArgument_inInstructionList, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_InstructionList enumerator_10100 (constinArgument_inInstructionList) ;
   while (enumerator_10100.hasCurrentObject ()) {
     callExtensionMethod_addUsedRoutines ((cPtr_pic_31__38_PiccoloInstruction *) enumerator_10100.current_mInstruction (HERE).ptr (), constinArgument_inMacroMap, ioArgument_ioUsedRoutines, inCompiler COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 342)) ;
     enumerator_10100.gotoNextObject () ;
@@ -486,19 +525,19 @@ GGS_stringset function_pic_31__38__5F_computeUsedRoutines (const GGS_pic_31__38_
                                                            COMMA_UNUSED_LOCATION_ARGS) {
   GGS_stringset result_outUsedRoutineSet ; // Returned variable
   result_outUsedRoutineSet = GGS_stringset::class_func_setWithString (GGS_string ("main")  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 356)) ;
-  cEnumerator_pic_31__38_InterruptDefinitionList enumerator_10859 (constinArgument_inInterruptDefinitionList, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_InterruptDefinitionList enumerator_10859 (constinArgument_inInterruptDefinitionList) ;
   while (enumerator_10859.hasCurrentObject ()) {
     {
     routine_addPic_31__38_UsedRoutinesFromInstructionList_3F__3F__26_ (enumerator_10859.current_mInstructionList (HERE), constinArgument_inMacroMap, result_outUsedRoutineSet, inCompiler  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 359)) ;
     }
     enumerator_10859.gotoNextObject () ;
   }
-  cEnumerator_routineDeclarationList enumerator_11083 (constinArgument_inBootloaderRoutineDeclarationListForBootloaderImplementation, EnumerationOrder::up) ;
+  UpEnumerator_routineDeclarationList enumerator_11083 (constinArgument_inBootloaderRoutineDeclarationListForBootloaderImplementation) ;
   while (enumerator_11083.hasCurrentObject ()) {
     result_outUsedRoutineSet.addAssign_operation (enumerator_11083.current_mRoutineName (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 367)) ;
     enumerator_11083.gotoNextObject () ;
   }
-  cEnumerator_routineDeclarationList enumerator_11261 (constinArgument_inUserRoutineDeclarationListForUserProgramImplementation, EnumerationOrder::up) ;
+  UpEnumerator_routineDeclarationList enumerator_11261 (constinArgument_inUserRoutineDeclarationListForUserProgramImplementation) ;
   while (enumerator_11261.hasCurrentObject ()) {
     result_outUsedRoutineSet.addAssign_operation (enumerator_11261.current_mRoutineName (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("pic18_used_routines.galgas", 371)) ;
     enumerator_11261.gotoNextObject () ;
@@ -519,7 +558,7 @@ GGS_stringset function_pic_31__38__5F_computeUsedRoutines (const GGS_pic_31__38_
       if (loop_11446) {
         variant_11446 -- ;
         var_s_11427 = result_outUsedRoutineSet ;
-        cEnumerator_pic_31__38_RoutineDefinitionList enumerator_11592 (constinArgument_inRoutineDefinitionList, EnumerationOrder::up) ;
+        UpEnumerator_pic_31__38_RoutineDefinitionList enumerator_11592 (constinArgument_inRoutineDefinitionList) ;
         while (enumerator_11592.hasCurrentObject ()) {
           GalgasBool test_0 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_0) {
@@ -605,7 +644,7 @@ void cPtr_pic_31__38_Instruction_5F_block::method_performInlining (const GGS_str
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   GGS_pic_31__38_BlockInstructionBlockList var_inlinedBlockList_1147 = GGS_pic_31__38_BlockInstructionBlockList::init (inCompiler COMMA_HERE) ;
   const GGS_pic_31__38_Instruction_5F_block temp_0 = this ;
-  cEnumerator_pic_31__38_BlockInstructionBlockList enumerator_1242 (temp_0.readProperty_mBlockList (), EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_BlockInstructionBlockList enumerator_1242 (temp_0.readProperty_mBlockList ()) ;
   while (enumerator_1242.hasCurrentObject ()) {
     GGS_pic_31__38_InstructionList var_instructionList_1464 ;
     {
@@ -659,7 +698,7 @@ void cPtr_pic_31__38_Instruction_5F_do_5F_while::method_performInlining (const G
   }
   GGS_pic_31__38_DoWhilePartList var_whilePartList_2985 = GGS_pic_31__38_DoWhilePartList::init (inCompiler COMMA_HERE) ;
   const GGS_pic_31__38_Instruction_5F_do_5F_while temp_1 = this ;
-  cEnumerator_pic_31__38_DoWhilePartList enumerator_3060 (temp_1.readProperty_mWhilePartList (), EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_DoWhilePartList enumerator_3060 (temp_1.readProperty_mWhilePartList ()) ;
   while (enumerator_3060.hasCurrentObject ()) {
     GGS_pic_31__38_InstructionList var_instructionList_3294 ;
     {
@@ -770,7 +809,7 @@ void cPtr_pic_31__38_Instruction_5F_JSR::method_performInlining (const GGS_strin
         GGS_stringset var_currentlyInlinedRoutineSet_6343 = constinArgument_inCurrentlyInlinedRoutineSet ;
         const GGS_pic_31__38_Instruction_5F_JSR temp_10 = this ;
         var_currentlyInlinedRoutineSet_6343.addAssign_operation (temp_10.readProperty_mTargetLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("pic18_routine_inlining.galgas", 185)) ;
-        cEnumerator_pic_31__38_InstructionList enumerator_6520 (var_instructionList_6018, EnumerationOrder::up) ;
+        UpEnumerator_pic_31__38_InstructionList enumerator_6520 (var_instructionList_6018) ;
         while (enumerator_6520.hasCurrentObject ()) {
           callExtensionMethod_performInlining ((cPtr_pic_31__38_PiccoloInstruction *) enumerator_6520.current_mInstruction (HERE).ptr (), constinArgument_inInlinedRoutineSet, constinArgument_inDeclaredRoutineMap, var_currentlyInlinedRoutineSet_6343, ioArgument_ioInstructionList, inCompiler COMMA_SOURCE_FILE ("pic18_routine_inlining.galgas", 188)) ;
           enumerator_6520.gotoNextObject () ;
@@ -806,7 +845,7 @@ void routine_performInlineFromInstructionList_3F__3F__3F__3F__21_ (const GGS_pic
                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outInstructionList.drop () ; // Release 'out' argument
   outArgument_outInstructionList = GGS_pic_31__38_InstructionList::init (inCompiler COMMA_HERE) ;
-  cEnumerator_pic_31__38_InstructionList enumerator_7278 (constinArgument_inInstructionList, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_InstructionList enumerator_7278 (constinArgument_inInstructionList) ;
   while (enumerator_7278.hasCurrentObject ()) {
     callExtensionMethod_performInlining ((cPtr_pic_31__38_PiccoloInstruction *) enumerator_7278.current_mInstruction (HERE).ptr (), constinArgument_inInlinedRoutineSet, constinArgument_inDeclaredRoutineMap, constinArgument_inCurrentlyInlinedRoutineSet, outArgument_outInstructionList, inCompiler COMMA_SOURCE_FILE ("pic18_routine_inlining.galgas", 215)) ;
     enumerator_7278.gotoNextObject () ;
@@ -827,7 +866,7 @@ void routine_pic_31__38_PerformRoutineInline_3F__3F__26__26_ (const GGS_stringse
                                                               Compiler * inCompiler
                                                               COMMA_UNUSED_LOCATION_ARGS) {
   GGS_pic_31__38_InterruptDefinitionList var_interruptDefinitionList_7827 = GGS_pic_31__38_InterruptDefinitionList::init (inCompiler COMMA_HERE) ;
-  cEnumerator_pic_31__38_InterruptDefinitionList enumerator_7936 (ioArgument_ioInterruptDefinitionList, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_InterruptDefinitionList enumerator_7936 (ioArgument_ioInterruptDefinitionList) ;
   while (enumerator_7936.hasCurrentObject ()) {
     GGS_pic_31__38_InstructionList var_instructionList_8173 ;
     {
@@ -838,7 +877,7 @@ void routine_pic_31__38_PerformRoutineInline_3F__3F__26__26_ (const GGS_stringse
   }
   ioArgument_ioInterruptDefinitionList = var_interruptDefinitionList_7827 ;
   GGS_pic_31__38_RoutineDefinitionList var_routineDefinitionList_8409 = GGS_pic_31__38_RoutineDefinitionList::init (inCompiler COMMA_HERE) ;
-  cEnumerator_pic_31__38_RoutineDefinitionList enumerator_8555 (ioArgument_ioRoutineDefinitionList, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_RoutineDefinitionList enumerator_8555 (ioArgument_ioRoutineDefinitionList) ;
   while (enumerator_8555.hasCurrentObject ()) {
     GGS_pic_31__38_InstructionList var_instructionList_8788 ;
     {
@@ -865,7 +904,7 @@ void routine_displayBlockList_3F__26__3F_ (const GGS_string constinArgument_inTi
   ioArgument_ioListFileContents.plusAssign_operation(GGS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GGS_uint (uint32_t (119U)), GGS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 40)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 40)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 40)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("*").add_operation (constinArgument_inTitle.getter_stringByLeftAndRightPadding (GGS_uint (uint32_t (117U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 41)), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 41)).add_operation (GGS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 41)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 41)) ;
   ioArgument_ioListFileContents.plusAssign_operation(GGS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GGS_uint (uint32_t (119U)), GGS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 42)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 42)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 42)) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_1388 (constinArgument_inGeneratedBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_1388 (constinArgument_inGeneratedBlockList) ;
   GGS_uint index_1383 (uint32_t (0)) ;
   while (enumerator_1388.hasCurrentObject ()) {
     GGS_string var_nextBlockLabel_1452 ;
@@ -2248,7 +2287,7 @@ void cPtr_pic_31__38_Instruction_5F_computed_5F_rcall::method_analyze (const GGS
   GGS_bool var_someReturnsBank_48173 = GGS_bool (false) ;
   GGS_uint var_returnedBankSelection_48209 = ioArgument_ioCurrentBank ;
   const GGS_pic_31__38_Instruction_5F_computed_5F_rcall temp_0 = this ;
-  cEnumerator_lstringlist enumerator_48254 (temp_0.readProperty_mTargetLabels (), EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_48254 (temp_0.readProperty_mTargetLabels ()) ;
   while (enumerator_48254.hasCurrentObject ()) {
     GGS_bool var_isNoReturn_48335 ;
     GGS_uint var_requiredBank_48357 ;
@@ -2388,7 +2427,7 @@ void cPtr_pic_31__38_Instruction_5F_computed_5F_rcall::method_analyze (const GGS
   }
   GGS_ipic_31__38_SequentialInstructionList var_targetInstructionList_50719 = GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE) ;
   const GGS_pic_31__38_Instruction_5F_computed_5F_rcall temp_27 = this ;
-  cEnumerator_lstringlist enumerator_50785 (temp_27.readProperty_mTargetLabels (), EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_50785 (temp_27.readProperty_mTargetLabels ()) ;
   while (enumerator_50785.hasCurrentObject ()) {
     var_targetInstructionList_50719.addAssign_operation (GGS_ipic_31__38__5F_intermediate_5F_JSR::init_21__21__21_ (enumerator_50785.current_mValue (HERE).readProperty_location (), enumerator_50785.current_mValue (HERE), GGS_jumpInstructionKind::class_func_relative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1500)), inCompiler COMMA_HERE), GGS_uint::class_func_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1500)), GGS_uint (uint32_t (0U))  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 1500)) ;
     enumerator_50785.gotoNextObject () ;
@@ -2421,7 +2460,7 @@ void cPtr_pic_31__38_Instruction_5F_computed_5F_goto::method_analyze (const GGS_
                                                                       Compiler * inCompiler
                                                                       COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_pic_31__38_Instruction_5F_computed_5F_goto temp_0 = this ;
-  cEnumerator_lstringlist enumerator_51844 (temp_0.readProperty_mTargetLabels (), EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_51844 (temp_0.readProperty_mTargetLabels ()) ;
   while (enumerator_51844.hasCurrentObject ()) {
     GGS_bool var_isNoReturn_51925 ;
     GGS_uint var_requiredBank_51947 ;
@@ -2543,7 +2582,7 @@ void cPtr_pic_31__38_Instruction_5F_computed_5F_bra::method_analyze (const GGS_u
   GGS_bool var_allReturnBank_54610 = GGS_bool (true) ;
   GGS_uint var_returnedBankValue_54637 = GGS_uint::class_func_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 1601)) ;
   const GGS_pic_31__38_Instruction_5F_computed_5F_bra temp_0 = this ;
-  cEnumerator_lstringlist enumerator_54673 (temp_0.readProperty_mTargetLabels (), EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_54673 (temp_0.readProperty_mTargetLabels ()) ;
   while (enumerator_54673.hasCurrentObject ()) {
     GGS_bool var_isNoReturn_54754 ;
     GGS_uint var_requiredBank_54776 ;
@@ -2767,7 +2806,7 @@ void cPtr_pic_31__38_Instruction_5F_computed_5F_retlw::method_analyze (const GGS
   }
   GGS_uintlist var_literalValues_59365 = GGS_uintlist::init (inCompiler COMMA_HERE) ;
   const GGS_pic_31__38_Instruction_5F_computed_5F_retlw temp_16 = this ;
-  cEnumerator_immediatExpressionList enumerator_59412 (temp_16.readProperty_mImmediateExpressionList (), EnumerationOrder::up) ;
+  UpEnumerator_immediatExpressionList enumerator_59412 (temp_16.readProperty_mImmediateExpressionList ()) ;
   GGS_uint index_59395 (uint32_t (0)) ;
   while (enumerator_59412.hasCurrentObject ()) {
     GGS_sint_36__34_ var_v_59524 ;
@@ -3200,8 +3239,8 @@ void cPtr_pic_31__38_Instruction_5F_macro::method_analyze (const GGS_uint consti
   }
   GGS_constantMap var_constantMap_73472 = constinArgument_inConstantMap ;
   const GGS_pic_31__38_Instruction_5F_macro temp_5 = this ;
-  cEnumerator_immediatExpressionList enumerator_73519 (temp_5.readProperty_mExpressionList (), EnumerationOrder::up) ;
-  cEnumerator_lstringlist enumerator_73548 (var_constantNameList_73239, EnumerationOrder::up) ;
+  UpEnumerator_immediatExpressionList enumerator_73519 (temp_5.readProperty_mExpressionList ()) ;
+  UpEnumerator_lstringlist enumerator_73548 (var_constantNameList_73239) ;
   while (enumerator_73519.hasCurrentObject () && enumerator_73548.hasCurrentObject ()) {
     GGS_sint_36__34_ var_expressionValue_73650 ;
     callExtensionMethod_eval ((cPtr_immediatExpression *) enumerator_73519.current_mExpression (HERE).ptr (), constinArgument_inRegisterTable, var_constantMap_73472, var_expressionValue_73650, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2146)) ;
@@ -3270,7 +3309,7 @@ void cPtr_pic_31__38_Instruction_5F_do_5F_while::method_analyze (const GGS_uint 
     }
   }
   const GGS_pic_31__38_Instruction_5F_do_5F_while temp_9 = this ;
-  cEnumerator_pic_31__38_DoWhilePartList enumerator_76263 (temp_9.readProperty_mWhilePartList (), EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_DoWhilePartList enumerator_76263 (temp_9.readProperty_mWhilePartList ()) ;
   while (enumerator_76263.hasCurrentObject ()) {
     const GGS_pic_31__38_Instruction_5F_do_5F_while temp_10 = this ;
     GGS_lstring var_conditionTrueLabel_76332 = GGS_lstring::init_21__21_ (GGS_string (".L").add_operation (ioArgument_ioLocalLabelIndex.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2232)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2232)), temp_10.readProperty_mInstructionLocation (), inCompiler COMMA_HERE) ;
@@ -3565,7 +3604,7 @@ void cPtr_pic_31__38_Instruction_5F_block::method_analyze (const GGS_uint consti
   ioArgument_ioGeneratedInstructionList = GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE) ;
   GGS_blockInstructionBlockMap var_blockMap_88332 = GGS_blockInstructionBlockMap::init (inCompiler COMMA_HERE) ;
   const GGS_pic_31__38_Instruction_5F_block temp_3 = this ;
-  cEnumerator_pic_31__38_BlockInstructionBlockList enumerator_88443 (temp_3.readProperty_mBlockList (), EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_BlockInstructionBlockList enumerator_88443 (temp_3.readProperty_mBlockList ()) ;
   while (enumerator_88443.hasCurrentObject ()) {
     {
     var_blockMap_88332.setter_insertKey (enumerator_88443.current_mBlockName (HERE), enumerator_88443.current_mInstructionList (HERE), enumerator_88443.current_mBlockTerminaisonForBlockInstruction (HERE), enumerator_88443.current_mEndOfBlock (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2575)) ;
@@ -3603,7 +3642,7 @@ void cPtr_pic_31__38_Instruction_5F_block::method_analyze (const GGS_uint consti
       if (loop_89082) {
         variant_89082 -- ;
         var_continueAccessibilityExploration_89000 = GGS_bool (false) ;
-        cEnumerator_stringset enumerator_89253 (var_accessibleBlockSet_88875.substract_operation (var_handledBlockSet_88957, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2588)), EnumerationOrder::up) ;
+        UpEnumerator_stringset enumerator_89253 (var_accessibleBlockSet_88875.substract_operation (var_handledBlockSet_88957, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2588))) ;
         while (enumerator_89253.hasCurrentObject ()) {
           var_handledBlockSet_88957.addAssign_operation (enumerator_89253.current (HERE)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2589)) ;
           GGS_pic_31__38_InstructionList var_instructionList_89412 ;
@@ -3636,7 +3675,7 @@ void cPtr_pic_31__38_Instruction_5F_block::method_analyze (const GGS_uint consti
     }
   }
   const GGS_pic_31__38_Instruction_5F_block temp_10 = this ;
-  cEnumerator_pic_31__38_BlockInstructionBlockList enumerator_91231 (temp_10.readProperty_mBlockList (), EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_BlockInstructionBlockList enumerator_91231 (temp_10.readProperty_mBlockList ()) ;
   while (enumerator_91231.hasCurrentObject ()) {
     GalgasBool test_11 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_11) {
@@ -3940,7 +3979,7 @@ void routine_analyzeInstructionList_3F__26__3F__3F__3F__3F__3F__3F__26__26__26__
                                                                                                      GGS_stringset & ioArgument_ioUsedRegisters,
                                                                                                      Compiler * inCompiler
                                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
-  cEnumerator_pic_31__38_InstructionList enumerator_103289 (constinArgument_inInstructionList, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_InstructionList enumerator_103289 (constinArgument_inInstructionList) ;
   while (enumerator_103289.hasCurrentObject ()) {
     GalgasBool test_0 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_0) {
@@ -3974,7 +4013,7 @@ void routine_pic_31__38__5F_analyze_5F_data_5F_sections_3F__3F__3F__26__21__26__
                                                                                      COMMA_UNUSED_LOCATION_ARGS) {
   outArgument_outDataMap.drop () ; // Release 'out' argument
   outArgument_outDataMap = GGS_pic_31__38__5F_dataMap::init (inCompiler COMMA_HERE) ;
-  cEnumerator_dataList enumerator_104583 (constinArgument_inDataDefinitionList, EnumerationOrder::up) ;
+  UpEnumerator_dataList enumerator_104583 (constinArgument_inDataDefinitionList) ;
   const bool bool_0 = true ;
   if (enumerator_104583.hasCurrentObject () && bool_0) {
     ioArgument_ioListFileContents.plusAssign_operation(GGS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GGS_uint (uint32_t (119U)), GGS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3036)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3036)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3036)) ;
@@ -3999,7 +4038,7 @@ void routine_pic_31__38__5F_analyze_5F_data_5F_sections_3F__3F__3F__26__21__26__
           ioArgument_ioConstantMap.setter_insertKey (GGS_lstring::init_21__21_ (enumerator_104583.current_mDataName (HERE).readProperty_string ().add_operation (GGS_string ("_BYTE_COUNT"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3047)), enumerator_104583.current_mDataName (HERE).readProperty_location (), inCompiler COMMA_HERE), enumerator_104583.current_mValueList (HERE).getter_count (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3047)).getter_sint_36__34_ (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3047)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3047)) ;
           }
           GGS_sint var_byte_105300 = GGS_sint (int32_t (0L)) ;
-          cEnumerator_immediatExpressionList enumerator_105331 (enumerator_104583.current_mValueList (HERE), EnumerationOrder::up) ;
+          UpEnumerator_immediatExpressionList enumerator_105331 (enumerator_104583.current_mValueList (HERE)) ;
           GGS_uint index_105315 (uint32_t (0)) ;
           while (enumerator_105331.hasCurrentObject ()) {
             GGS_sint_36__34_ var_value_105439 ;
@@ -4044,7 +4083,7 @@ void routine_pic_31__38__5F_analyze_5F_data_5F_sections_3F__3F__3F__26__21__26__
         {
         ioArgument_ioConstantMap.setter_insertKey (GGS_lstring::init_21__21_ (enumerator_104583.current_mDataName (HERE).readProperty_string ().add_operation (GGS_string ("_BYTE_COUNT"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3064)), enumerator_104583.current_mDataName (HERE).readProperty_location (), inCompiler COMMA_HERE), enumerator_104583.current_mValueList (HERE).getter_count (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3064)).multiply_operation (GGS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3064)).getter_sint_36__34_ (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3064)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3064)) ;
         }
-        cEnumerator_immediatExpressionList enumerator_106086 (enumerator_104583.current_mValueList (HERE), EnumerationOrder::up) ;
+        UpEnumerator_immediatExpressionList enumerator_106086 (enumerator_104583.current_mValueList (HERE)) ;
         while (enumerator_106086.hasCurrentObject ()) {
           GGS_sint_36__34_ var_value_106190 ;
           callExtensionMethod_eval ((cPtr_immediatExpression *) enumerator_106086.current_mExpression (HERE).ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_value_106190, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3066)) ;
@@ -4118,21 +4157,21 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
   GGS_constantMap var_constantMap_107894 = constinArgument_inConstantMap ;
   GGS_stringset var_usedRegisters_107928 = constinArgument_inUsedRegisters ;
   GGS_routineMap var_routineMap_108018 = GGS_routineMap::init (inCompiler COMMA_HERE) ;
-  cEnumerator_routineDeclarationList enumerator_108108 (constinArgument_inUserRoutineDeclarationListForBootloaderImplementation, EnumerationOrder::up) ;
+  UpEnumerator_routineDeclarationList enumerator_108108 (constinArgument_inUserRoutineDeclarationListForBootloaderImplementation) ;
   while (enumerator_108108.hasCurrentObject ()) {
     {
     var_routineMap_108018.setter_insertKey (enumerator_108108.current_mRoutineName (HERE), enumerator_108108.current_mIsNoReturn (HERE), enumerator_108108.current_mRequiredBank (HERE).readProperty_uint (), enumerator_108108.current_mReturnedBank (HERE).readProperty_uint (), enumerator_108108.current_mPreservesBank (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3115)) ;
     }
     enumerator_108108.gotoNextObject () ;
   }
-  cEnumerator_routineDeclarationList enumerator_108365 (constinArgument_inBootloaderRoutineDeclarationListForUserProgramImplementation, EnumerationOrder::up) ;
+  UpEnumerator_routineDeclarationList enumerator_108365 (constinArgument_inBootloaderRoutineDeclarationListForUserProgramImplementation) ;
   while (enumerator_108365.hasCurrentObject ()) {
     {
     var_routineMap_108018.setter_insertKey (enumerator_108365.current_mRoutineName (HERE), enumerator_108365.current_mIsNoReturn (HERE), enumerator_108365.current_mRequiredBank (HERE).readProperty_uint (), enumerator_108365.current_mReturnedBank (HERE).readProperty_uint (), enumerator_108365.current_mPreservesBank (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3118)) ;
     }
     enumerator_108365.gotoNextObject () ;
   }
-  cEnumerator_pic_31__38_RoutineDefinitionList enumerator_108643 (constinArgument_inRoutineDefinitionList, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_RoutineDefinitionList enumerator_108643 (constinArgument_inRoutineDefinitionList) ;
   while (enumerator_108643.hasCurrentObject ()) {
     GalgasBool test_0 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_0) {
@@ -4201,7 +4240,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
   }
   GGS_ipic_31__38_BlockList var_generatedBlockList_111347 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
   GGS_uint var_entryPoint_111399 = GGS_uint (uint32_t (4U)) ;
-  cEnumerator_routineDeclarationList enumerator_111443 (constinArgument_inBootloaderRoutineDeclarationListForUserProgramImplementation, EnumerationOrder::up) ;
+  UpEnumerator_routineDeclarationList enumerator_111443 (constinArgument_inBootloaderRoutineDeclarationListForUserProgramImplementation) ;
   while (enumerator_111443.hasCurrentObject ()) {
     var_generatedBlockList_111347.addAssign_operation (GGS_ipic_31__38_Block::init_21__21__21__21__21__21_ (var_entryPoint_111399, enumerator_111443.current_mRoutineName (HERE), GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE), GGS_ipic_31__38_ReturnTerminator::init_21_ (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3186)), inCompiler COMMA_HERE), GGS_uint::class_func_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3187)), GGS_uint (uint32_t (0U)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3182)) ;
     var_entryPoint_111399 = var_entryPoint_111399.add_operation (GGS_uint (uint32_t (4U)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3190)) ;
@@ -4224,7 +4263,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
     enumerator_111443.gotoNextObject () ;
   }
   var_entryPoint_111399 = constinArgument_inBootloaderReservedROMsize.readProperty_uint () ;
-  cEnumerator_routineDeclarationList enumerator_112044 (constinArgument_inUserRoutineDeclarationListForUserProgramImplementation, EnumerationOrder::up) ;
+  UpEnumerator_routineDeclarationList enumerator_112044 (constinArgument_inUserRoutineDeclarationListForUserProgramImplementation) ;
   while (enumerator_112044.hasCurrentObject ()) {
     var_generatedBlockList_111347.addAssign_operation (GGS_ipic_31__38_Block::init_21__21__21__21__21__21_ (var_entryPoint_111399, GGS_string ("_entry_user_").add_operation (var_entryPoint_111399.getter_xString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3202)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3202)).getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3202)), GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE), GGS_ipic_31__38_JumpTerminator::init_21__21__21_ (enumerator_112044.current_mRoutineName (HERE).readProperty_location (), enumerator_112044.current_mRoutineName (HERE), GGS_jumpInstructionKind::class_func_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3204)), inCompiler COMMA_HERE), GGS_uint::class_func_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3205)), GGS_uint (uint32_t (0U)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3200)) ;
     var_entryPoint_111399 = var_entryPoint_111399.add_operation (GGS_uint (uint32_t (4U)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3208)) ;
@@ -4296,7 +4335,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
     }
   }
   var_entryPoint_111399 = GGS_uint (uint32_t (28U)) ;
-  cEnumerator_routineDeclarationList enumerator_115141 (var_tempBootloaderRoutineDeclarationList_112955, EnumerationOrder::up) ;
+  UpEnumerator_routineDeclarationList enumerator_115141 (var_tempBootloaderRoutineDeclarationList_112955) ;
   while (enumerator_115141.hasCurrentObject ()) {
     var_generatedBlockList_111347.addAssign_operation (GGS_ipic_31__38_Block::init_21__21__21__21__21__21_ (var_entryPoint_111399, GGS_string ("_entry_bootloader_").add_operation (var_entryPoint_111399.getter_xString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3277)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3277)).getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3277)), GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE), GGS_ipic_31__38_JumpTerminator::init_21__21__21_ (enumerator_115141.current_mRoutineName (HERE).readProperty_location (), enumerator_115141.current_mRoutineName (HERE), GGS_jumpInstructionKind::class_func_ipicRelative (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3279)), inCompiler COMMA_HERE), GGS_uint::class_func_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3280)), GGS_uint (uint32_t (0U)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3275)) ;
     var_entryPoint_111399 = var_entryPoint_111399.add_operation (GGS_uint (uint32_t (4U)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3283)) ;
@@ -4307,7 +4346,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
   if (GalgasBool::boolTrue == test_17) {
     test_17 = constinArgument_inHasLowInterrupt.boolEnum () ;
     if (GalgasBool::boolTrue == test_17) {
-      cEnumerator_pic_31__38_InterruptDefinitionList enumerator_115761 (constinArgument_inInterruptDefinitionList, EnumerationOrder::up) ;
+      UpEnumerator_pic_31__38_InterruptDefinitionList enumerator_115761 (constinArgument_inInterruptDefinitionList) ;
       while (enumerator_115761.hasCurrentObject ()) {
         GalgasBool test_18 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_18) {
@@ -4338,7 +4377,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
   if (GalgasBool::boolTrue == test_21) {
     test_21 = constinArgument_inHasHighInterrupt.boolEnum () ;
     if (GalgasBool::boolTrue == test_21) {
-      cEnumerator_pic_31__38_InterruptDefinitionList enumerator_117227 (constinArgument_inInterruptDefinitionList, EnumerationOrder::up) ;
+      UpEnumerator_pic_31__38_InterruptDefinitionList enumerator_117227 (constinArgument_inInterruptDefinitionList) ;
       while (enumerator_117227.hasCurrentObject ()) {
         GalgasBool test_22 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_22) {
@@ -4365,7 +4404,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
       }
     }
   }
-  cEnumerator_pic_31__38_RoutineDefinitionList enumerator_118675 (constinArgument_inRoutineDefinitionList, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_RoutineDefinitionList enumerator_118675 (constinArgument_inRoutineDefinitionList) ;
   while (enumerator_118675.hasCurrentObject ()) {
     GGS_uint var_currentBank_118723 = enumerator_118675.current_mRequiredBank (HERE).readProperty_uint () ;
     GGS_routineKind var_routineKind_118777 ;
@@ -4438,7 +4477,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
   GGS_ipic_31__38_Block var_goto_32_Block_123594 = GGS_ipic_31__38_Block::init_21__21__21__21__21__21_ (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3526)), GGS_string ("_computed_goto_2").getter_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3527)), var_goto_32_InstructionList_122643, GGS_ipic_31__38_ReturnTerminator::init_21_ (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3529)), inCompiler COMMA_HERE), GGS_uint::class_func_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3530)), GGS_uint (uint32_t (0U)), inCompiler COMMA_HERE) ;
   var_generatedBlockList_111347.addAssign_operation (var_goto_32_Block_123594  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3533)) ;
   var_entryPoint_111399 = constinArgument_inBootloaderReservedROMsize.readProperty_uint () ;
-  cEnumerator_routineDeclarationList enumerator_123977 (constinArgument_inUserRoutineDeclarationListForBootloaderImplementation, EnumerationOrder::up) ;
+  UpEnumerator_routineDeclarationList enumerator_123977 (constinArgument_inUserRoutineDeclarationListForBootloaderImplementation) ;
   while (enumerator_123977.hasCurrentObject ()) {
     GalgasBool test_31 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_31) {
@@ -4462,7 +4501,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
     enumerator_123977.gotoNextObject () ;
   }
   GGS_stringset var_unusedDeclarationUnicity_124947 = GGS_stringset::init (inCompiler COMMA_HERE) ;
-  cEnumerator_lstringlist enumerator_124994 (constinArgument_inUnusedRegisterList, EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_124994 (constinArgument_inUnusedRegisterList) ;
   while (enumerator_124994.hasCurrentObject ()) {
     GalgasBool test_33 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_33) {
@@ -4495,7 +4534,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
     var_unusedDeclarationUnicity_124947.addAssign_operation (enumerator_124994.current_mValue (HERE).readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3572)) ;
     enumerator_124994.gotoNextObject () ;
   }
-  cEnumerator_declaredByteMap enumerator_125503 (constinArgument_inDeclaredByteMap, EnumerationOrder::up) ;
+  UpEnumerator_declaredByteMap enumerator_125503 (constinArgument_inDeclaredByteMap) ;
   while (enumerator_125503.hasCurrentObject ()) {
     GalgasBool test_39 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_39) {
@@ -4576,7 +4615,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
           var_verboseMessage_127788.plusAssign_operation(GGS_string ("  ROM, used ").add_operation (var_usedROMsize_127585.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3633)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3633)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3633)) ;
           var_verboseMessage_127788.plusAssign_operation(GGS_string (" / ").add_operation (constinArgument_inROMSize.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3634)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3634)).add_operation (GGS_string (" bytes ("), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3634)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3634)) ;
           var_verboseMessage_127788.plusAssign_operation(var_usedROMsize_127585.multiply_operation (GGS_uint (uint32_t (100U)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3635)).divide_operation (constinArgument_inROMSize.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3635)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3635)).getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3635)).add_operation (GGS_string ("%)\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3635)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3635)) ;
-          cEnumerator_ramBankTable enumerator_128084 (constinArgument_inRamBank, EnumerationOrder::up) ;
+          UpEnumerator_ramBankTable enumerator_128084 (constinArgument_inRamBank) ;
           while (enumerator_128084.hasCurrentObject ()) {
             GGS_uint var_bankSize_128121 = enumerator_128084.current_mLastAddressPlusOne (HERE).substract_operation (enumerator_128084.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3637)) ;
             GGS_uint var_usedSize_128186 = enumerator_128084.current_mFirstFreeAddress (HERE).substract_operation (enumerator_128084.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 3638)) ;
@@ -5204,7 +5243,7 @@ void cPtr_ipic_31__38_ComputedBraTerminator::method_enterTerminatorReferencedLab
   routine_enterGoto_32_block_3F__3F__26_ (constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 484)) ;
   }
   const GGS_ipic_31__38_ComputedBraTerminator temp_0 = this ;
-  cEnumerator_lstringlist enumerator_18849 (temp_0.readProperty_mTargetLabels (), EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_18849 (temp_0.readProperty_mTargetLabels ()) ;
   while (enumerator_18849.hasCurrentObject ()) {
     GalgasBool test_1 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_1) {
@@ -5235,7 +5274,7 @@ void cPtr_ipic_31__38_ComputedGotoTerminator::method_enterTerminatorReferencedLa
   routine_enterGoto_34_block_3F__3F__26_ (constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 509)) ;
   }
   const GGS_ipic_31__38_ComputedGotoTerminator temp_0 = this ;
-  cEnumerator_lstringlist enumerator_19630 (temp_0.readProperty_mTargetLabels (), EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_19630 (temp_0.readProperty_mTargetLabels ()) ;
   while (enumerator_19630.hasCurrentObject ()) {
     GalgasBool test_1 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_1) {
@@ -5386,7 +5425,7 @@ void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::meth
   routine_enterGoto_34_block_3F__3F__26_ (constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 628)) ;
   }
   const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall temp_0 = this ;
-  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_24129 (temp_0.readProperty_mTargetInstructions (), EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_24129 (temp_0.readProperty_mTargetInstructions ()) ;
   while (enumerator_24129.hasCurrentObject ()) {
     callExtensionMethod_enterInstructionReferencedLabels ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_24129.current_mInstruction (HERE).ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 634)) ;
     enumerator_24129.gotoNextObject () ;
@@ -5503,7 +5542,7 @@ void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::meth
   outArgument_outNOPsubstitution = GGS_bool (false) ;
   GGS_ipic_31__38_SequentialInstructionList var_optimizedInstructionList_28878 = GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE) ;
   const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall temp_0 = this ;
-  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_28931 (temp_0.readProperty_mTargetInstructions (), EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_28931 (temp_0.readProperty_mTargetInstructions ()) ;
   while (enumerator_28931.hasCurrentObject ()) {
     GGS_bool var_opt_28980 = GGS_bool (false) ;
     GalgasBool test_1 = GalgasBool::boolTrue ;
@@ -5716,7 +5755,7 @@ void routine_instructionListOptimization_3F__3F__3F__3F__3F__21__26__21_ (const 
   outArgument_outOptimizedInstructionList.drop () ; // Release 'out' argument
   outArgument_outOptimizationDone = GGS_bool (false) ;
   outArgument_outOptimizedInstructionList = GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE) ;
-  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_34990 (constinArgument_inInstructionList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_34990 (constinArgument_inInstructionList) ;
   while (enumerator_34990.hasCurrentObject ()) {
     GGS_bool var_optimizationDone_35161 ;
     GGS_ipic_31__38_SequentialInstruction var_optimizedInstruction_35245 ;
@@ -5805,7 +5844,7 @@ void routine_ipic_31__38_OptimizeBlocks_26__26_ (GGS_string & ioArgument_ioListF
           }
         }
         GGS_symbolTableForBlockOptimization var_symbolTable_44754 = GGS_symbolTableForBlockOptimization::init (inCompiler COMMA_HERE) ;
-        cEnumerator_ipic_31__38_BlockList enumerator_44812 (ioArgument_ioGeneratedBlockList, EnumerationOrder::up) ;
+        UpEnumerator_ipic_31__38_BlockList enumerator_44812 (ioArgument_ioGeneratedBlockList) ;
         GGS_uint index_44807 (uint32_t (0)) ;
         while (enumerator_44812.hasCurrentObject ()) {
           {
@@ -5815,7 +5854,7 @@ void routine_ipic_31__38_OptimizeBlocks_26__26_ (GGS_string & ioArgument_ioListF
           index_44807.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1126)) ;
         }
         GGS_stringset var_referencedBlockSet_44998 = GGS_stringset::init (inCompiler COMMA_HERE) ;
-        cEnumerator_ipic_31__38_BlockList enumerator_45041 (ioArgument_ioGeneratedBlockList, EnumerationOrder::up) ;
+        UpEnumerator_ipic_31__38_BlockList enumerator_45041 (ioArgument_ioGeneratedBlockList) ;
         while (enumerator_45041.hasCurrentObject ()) {
           GalgasBool test_2 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_2) {
@@ -5827,7 +5866,7 @@ void routine_ipic_31__38_OptimizeBlocks_26__26_ (GGS_string & ioArgument_ioListF
           enumerator_45041.gotoNextObject () ;
         }
         GGS_ipic_31__38_BlockList var_optimizedBlockList_45356 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
-        cEnumerator_ipic_31__38_BlockList enumerator_45405 (ioArgument_ioGeneratedBlockList, EnumerationOrder::up) ;
+        UpEnumerator_ipic_31__38_BlockList enumerator_45405 (ioArgument_ioGeneratedBlockList) ;
         while (enumerator_45405.hasCurrentObject ()) {
           GalgasBool test_3 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_3) {
@@ -5886,7 +5925,7 @@ void cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::meth
                                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   ioArgument_ioGraphVizString.plusAssign_operation(GGS_string ("  \"").add_operation (constinArgument_inBlockLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 37)).add_operation (GGS_string ("\" -> \"_computed_goto_4\" [color=red] ;\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 37)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 37)) ;
   const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall temp_0 = this ;
-  cEnumerator_ipic_31__38_SequentialInstructionList enumerator_1314 (temp_0.readProperty_mTargetInstructions (), EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_1314 (temp_0.readProperty_mTargetInstructions ()) ;
   while (enumerator_1314.hasCurrentObject ()) {
     callExtensionMethod_buildInstructionInvocationGraph ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_1314.current_mInstruction (HERE).ptr (), constinArgument_inBlockLabel, ioArgument_ioGraphVizString, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 39)) ;
     enumerator_1314.gotoNextObject () ;
@@ -6380,7 +6419,7 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
     }
   }
   GGS_symbolTableForBlockOptimization var_symbolTable_13292 = GGS_symbolTableForBlockOptimization::init (inCompiler COMMA_HERE) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_13348 (ioArgument_ioBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_13348 (ioArgument_ioBlockList) ;
   GGS_uint index_13343 (uint32_t (0)) ;
   while (enumerator_13348.hasCurrentObject ()) {
     {
@@ -6390,7 +6429,7 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
     index_13343.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 385)) ;
   }
   GGS_blockInvocationGraph var_g_13461 = GGS_blockInvocationGraph::init (inCompiler COMMA_HERE) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_13497 (ioArgument_ioBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_13497 (ioArgument_ioBlockList) ;
   while (enumerator_13497.hasCurrentObject ()) {
     GalgasBool test_1 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_1) {
@@ -6410,10 +6449,10 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
   GGS_stringlist var_newOrderedLabelList_13807 = GGS_stringlist::init (inCompiler COMMA_HERE) ;
   GGS_stringset var_visitedNodeSet_13849 = GGS_stringset::init (inCompiler COMMA_HERE) ;
   GGS_clusterList var_clusterList_13885 = GGS_clusterList::init (inCompiler COMMA_HERE) ;
-  cEnumerator_lstringlist enumerator_13921 (var_nodeList_13791, EnumerationOrder::up) ;
+  UpEnumerator_lstringlist enumerator_13921 (var_nodeList_13791) ;
   while (enumerator_13921.hasCurrentObject ()) {
     GGS_blockInvocationGraph var_gg_13975 = var_g_13461.getter_subgraphFromNodes (GGS_lstringlist::class_func_listWithValue (enumerator_13921.current_mValue (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 403)), var_visitedNodeSet_13849, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 402)) ;
-    cEnumerator_stringlist enumerator_14084 (var_gg_13975.getter_keyList (SOURCE_FILE ("ipic18_block_ordering.galgas", 406)), EnumerationOrder::up) ;
+    UpEnumerator_stringlist enumerator_14084 (var_gg_13975.getter_keyList (SOURCE_FILE ("ipic18_block_ordering.galgas", 406))) ;
     while (enumerator_14084.hasCurrentObject ()) {
       var_visitedNodeSet_13849.addAssign_operation (enumerator_14084.current_mValue (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 407)) ;
       enumerator_14084.gotoNextObject () ;
@@ -6428,7 +6467,7 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
     var_gg_13975.getter_reversedGraph (SOURCE_FILE ("ipic18_block_ordering.galgas", 410)).method_depthFirstTopologicalSort (var_partialOrderedLabelList_14265, joker_14295_3, joker_14295_2, joker_14295_1, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 410)) ;
     var_newOrderedLabelList_13807.plusAssign_operation(var_partialOrderedLabelList_14265, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 414)) ;
     GGS_ipic_31__38_BlockList var_cluster_14364 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
-    cEnumerator_stringlist enumerator_14402 (var_partialOrderedLabelList_14265, EnumerationOrder::up) ;
+    UpEnumerator_stringlist enumerator_14402 (var_partialOrderedLabelList_14265) ;
     while (enumerator_14402.hasCurrentObject ()) {
       GGS_uint var_blockIndex_14499 ;
       var_symbolTable_13292.method_searchKey (enumerator_14402.current_mValue (HERE).getter_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 417)), var_blockIndex_14499, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 417)) ;
@@ -6439,14 +6478,14 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
     var_clusterList_13885.addAssign_operation (var_cluster_14364  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 421)) ;
     enumerator_13921.gotoNextObject () ;
   }
-  cEnumerator_ipic_31__38_BlockList enumerator_14725 (ioArgument_ioBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_14725 (ioArgument_ioBlockList) ;
   while (enumerator_14725.hasCurrentObject ()) {
     GalgasBool test_2 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_2) {
       test_2 = GGS_bool (ComparisonKind::equal, enumerator_14725.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 425)))).operator_and (var_visitedNodeSet_13849.getter_hasKey (enumerator_14725.current_mBlock (HERE).readProperty_mLabel ().readProperty_string () COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 426)).operator_not (SOURCE_FILE ("ipic18_block_ordering.galgas", 426)) COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 425)).boolEnum () ;
       if (GalgasBool::boolTrue == test_2) {
         GGS_blockInvocationGraph var_gg_14910 = var_g_13461.getter_subgraphFromNodes (GGS_lstringlist::class_func_listWithValue (enumerator_14725.current_mBlock (HERE).readProperty_mLabel ()  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 428)), var_visitedNodeSet_13849, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 427)) ;
-        cEnumerator_stringlist enumerator_15034 (var_gg_14910.getter_keyList (SOURCE_FILE ("ipic18_block_ordering.galgas", 431)), EnumerationOrder::up) ;
+        UpEnumerator_stringlist enumerator_15034 (var_gg_14910.getter_keyList (SOURCE_FILE ("ipic18_block_ordering.galgas", 431))) ;
         while (enumerator_15034.hasCurrentObject ()) {
           var_visitedNodeSet_13849.addAssign_operation (enumerator_15034.current_mValue (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 432)) ;
           enumerator_15034.gotoNextObject () ;
@@ -6464,7 +6503,7 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
         var_gg_14910.getter_reversedGraph (SOURCE_FILE ("ipic18_block_ordering.galgas", 436)).method_depthFirstTopologicalSort (var_partialOrderedLabelList_15274, joker_15306_3, joker_15306_2, joker_15306_1, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 436)) ;
         var_newOrderedLabelList_13807.plusAssign_operation(var_partialOrderedLabelList_15274, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 440)) ;
         GGS_ipic_31__38_BlockList var_cluster_15381 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
-        cEnumerator_stringlist enumerator_15421 (var_partialOrderedLabelList_15274, EnumerationOrder::up) ;
+        UpEnumerator_stringlist enumerator_15421 (var_partialOrderedLabelList_15274) ;
         while (enumerator_15421.hasCurrentObject ()) {
           GGS_uint var_blockIndex_15520 ;
           var_symbolTable_13292.method_searchKey (enumerator_15421.current_mValue (HERE).getter_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 443)), var_blockIndex_15520, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 443)) ;
@@ -6479,7 +6518,7 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
   }
   GGS_ipic_31__38_BlockList var_orderedBlockList_15732 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
   GGS_bool var_continue_15823 = GGS_bool (true) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_15846 (ioArgument_ioBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_15846 (ioArgument_ioBlockList) ;
   bool bool_3 = var_continue_15823.isValidAndTrue () ;
   if (enumerator_15846.hasCurrentObject () && bool_3) {
     while (enumerator_15846.hasCurrentObject () && bool_3) {
@@ -6497,7 +6536,7 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
       }
     }
   }
-  cEnumerator_stringlist enumerator_16037 (var_newOrderedLabelList_13807, EnumerationOrder::up) ;
+  UpEnumerator_stringlist enumerator_16037 (var_newOrderedLabelList_13807) ;
   while (enumerator_16037.hasCurrentObject ()) {
     GGS_uint var_blockIndex_16128 ;
     var_symbolTable_13292.method_searchKey (enumerator_16037.current_mValue (HERE).getter_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 462)), var_blockIndex_16128, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 462)) ;
@@ -6507,7 +6546,7 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
   }
   GGS_uint var_insertionIndex_16297 = var_orderedBlockList_15732.getter_count (SOURCE_FILE ("ipic18_block_ordering.galgas", 467)) ;
   var_continue_15823 = GGS_bool (true) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_16366 (ioArgument_ioBlockList, EnumerationOrder::down) ;
+  DownEnumerator_ipic_31__38_BlockList enumerator_16366 (ioArgument_ioBlockList) ;
   bool bool_5 = var_continue_15823.isValidAndTrue () ;
   if (enumerator_16366.hasCurrentObject () && bool_5) {
     while (enumerator_16366.hasCurrentObject () && bool_5) {
@@ -6548,7 +6587,7 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
   }
   GGS_stringset var_newSymbolSet_17046 = GGS_stringset::init (inCompiler COMMA_HERE) ;
   GGS_bool var_ok_17086 = GGS_bool (true) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_17103 (var_orderedBlockList_15732, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_17103 (var_orderedBlockList_15732) ;
   while (enumerator_17103.hasCurrentObject ()) {
     GalgasBool test_9 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_9) {
@@ -6566,7 +6605,7 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
     }
     enumerator_17103.gotoNextObject () ;
   }
-  cEnumerator_symbolTableForBlockOptimization enumerator_17472 (var_symbolTable_13292, EnumerationOrder::up) ;
+  UpEnumerator_symbolTableForBlockOptimization enumerator_17472 (var_symbolTable_13292) ;
   while (enumerator_17472.hasCurrentObject ()) {
     GalgasBool test_11 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_11) {
@@ -6625,7 +6664,7 @@ void routine_buildInvocationGraph_3F__21_ (const GGS_ipic_31__38_BlockList const
   outArgument_outGraphVizString.drop () ; // Release 'out' argument
   outArgument_outGraphVizString = GGS_string ("digraph G {\n") ;
   outArgument_outGraphVizString.plusAssign_operation(GGS_string ("  node [fontname=courier]\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 534)) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_18745 (constinArgument_inBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_18745 (constinArgument_inBlockList) ;
   while (enumerator_18745.hasCurrentObject ()) {
     GalgasBool test_0 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_0) {
@@ -6634,7 +6673,7 @@ void routine_buildInvocationGraph_3F__21_ (const GGS_ipic_31__38_BlockList const
         outArgument_outGraphVizString.plusAssign_operation(GGS_string ("  \"").add_operation (enumerator_18745.current_mBlock (HERE).readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 537)).add_operation (GGS_string ("\" [shape=rectangle]\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 537)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 537)) ;
       }
     }
-    cEnumerator_ipic_31__38_SequentialInstructionList enumerator_18939 (enumerator_18745.current_mBlock (HERE).readProperty_mInstructionList (), EnumerationOrder::up) ;
+    UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_18939 (enumerator_18745.current_mBlock (HERE).readProperty_mInstructionList ()) ;
     while (enumerator_18939.hasCurrentObject ()) {
       callExtensionMethod_buildInstructionInvocationGraph ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_18939.current_mInstruction (HERE).ptr (), enumerator_18745.current_mBlock (HERE).readProperty_mLabel (), outArgument_outGraphVizString, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 540)) ;
       enumerator_18939.gotoNextObject () ;
@@ -6657,7 +6696,7 @@ GGS_uint function_blockDiscontinuityCount (const GGS_ipic_31__38_BlockList & con
                                            COMMA_UNUSED_LOCATION_ARGS) {
   GGS_uint result_outResult ; // Returned variable
   result_outResult = GGS_uint (uint32_t (0U)) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_19392 (constinArgument_inBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_19392 (constinArgument_inBlockList) ;
   GGS_uint index_19387 (uint32_t (0)) ;
   while (enumerator_19392.hasCurrentObject ()) {
     GalgasBool test_0 = GalgasBool::boolTrue ;
@@ -6770,13 +6809,13 @@ GGS_string function_sortKey (const GGS_clusterList & constinArgument_inClusterLi
                              COMMA_UNUSED_LOCATION_ARGS) {
   GGS_string result_outKey ; // Returned variable
   result_outKey = GGS_string::makeEmptyString () ;
-  cEnumerator_clusterList enumerator_604 (constinArgument_inClusterList, EnumerationOrder::up) ;
+  UpEnumerator_clusterList enumerator_604 (constinArgument_inClusterList) ;
   while (enumerator_604.hasCurrentObject ()) {
     result_outKey.plusAssign_operation(enumerator_604.current_mBlockList (HERE).getter_mBlockAtIndex (GGS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 23)).readProperty_mLabel ().readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 23)) ;
-    if (enumerator_604.hasNextObject ()) {
+    enumerator_604.gotoNextObject () ;
+    if (enumerator_604.hasCurrentObject ()) {
       result_outKey.plusAssign_operation(GGS_string ("."), inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 25)) ;
     }
-    enumerator_604.gotoNextObject () ;
   }
 //---
   return result_outKey ;
@@ -6878,11 +6917,11 @@ void routine_perform_5F_cluster_5F_ordering_3F__26__26_ (const GGS_clusterList c
           ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("Pass ").add_operation (var_pass_2170.getter_string (SOURCE_FILE ("ipic18_cluster_ordering.galgas", 59)), inCompiler COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 59)).add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 59)), inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 59)) ;
           GGS_ipic_31__38_BlockList var_workingBlockList_2382 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
           GGS_symbolTableForClusterOrdering var_symbolTable_2430 = GGS_symbolTableForClusterOrdering::init (inCompiler COMMA_HERE) ;
-          cEnumerator_clusterList enumerator_2488 (var_clusterList_2014, EnumerationOrder::up) ;
+          UpEnumerator_clusterList enumerator_2488 (var_clusterList_2014) ;
           GGS_uint index_2483 (uint32_t (0)) ;
           while (enumerator_2488.hasCurrentObject ()) {
             var_workingBlockList_2382.plusAssign_operation(enumerator_2488.current_mBlockList (HERE), inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 64)) ;
-            cEnumerator_ipic_31__38_BlockList enumerator_2585 (enumerator_2488.current_mBlockList (HERE), EnumerationOrder::up) ;
+            UpEnumerator_ipic_31__38_BlockList enumerator_2585 (enumerator_2488.current_mBlockList (HERE)) ;
             while (enumerator_2585.hasCurrentObject ()) {
               {
               var_symbolTable_2430.setter_insertKey (enumerator_2585.current_mBlock (HERE).readProperty_mLabel (), index_2483, inCompiler COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 66)) ;
@@ -6893,7 +6932,7 @@ void routine_perform_5F_cluster_5F_ordering_3F__26__26_ (const GGS_clusterList c
             index_2483.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 63)) ;
           }
           GGS_uint var_insertionIdx_2764 = var_workingBlockList_2382.getter_count (SOURCE_FILE ("ipic18_cluster_ordering.galgas", 70)) ;
-          cEnumerator_ipic_31__38_BlockList enumerator_2817 (ioArgument_ioBlockList, EnumerationOrder::down) ;
+          DownEnumerator_ipic_31__38_BlockList enumerator_2817 (ioArgument_ioBlockList) ;
           bool bool_4 = var_continue_2140.isValidAndTrue () ;
           if (enumerator_2817.hasCurrentObject () && bool_4) {
             while (enumerator_2817.hasCurrentObject () && bool_4) {
@@ -6921,9 +6960,9 @@ void routine_perform_5F_cluster_5F_ordering_3F__26__26_ (const GGS_clusterList c
           routine_ipic_31__38_RelativeBranchOverflow_3F__3F__21_ (var_workingBlockList_2382, ioArgument_ioBlockList, var_overflowMap_3262, inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 79)) ;
           }
           GGS_uint var_overflowCount_3298 = GGS_uint (uint32_t (0U)) ;
-          cEnumerator_branchOverflowMapDictionary enumerator_3331 (var_overflowMap_3262.readProperty_dictionary (), EnumerationOrder::up) ;
+          UpEnumerator_branchOverflowMapDictionary enumerator_3331 (var_overflowMap_3262.readProperty_dictionary ()) ;
           while (enumerator_3331.hasCurrentObject ()) {
-            cEnumerator_stringlist enumerator_3380 (enumerator_3331.current_mList (HERE), EnumerationOrder::up) ;
+            UpEnumerator_stringlist enumerator_3380 (enumerator_3331.current_mList (HERE)) ;
             while (enumerator_3380.hasCurrentObject ()) {
               var_overflowCount_3298.plusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 87)) ;
               GGS_uint var_sourceCluster_3489 ;
@@ -6968,11 +7007,11 @@ void routine_perform_5F_cluster_5F_ordering_3F__26__26_ (const GGS_clusterList c
             }
           }
           GGS_bool var_correctionLoop_4245 = GGS_bool (true) ;
-          cEnumerator_branchOverflowMapDictionary enumerator_4282 (var_overflowMap_3262.readProperty_dictionary (), EnumerationOrder::up) ;
+          UpEnumerator_branchOverflowMapDictionary enumerator_4282 (var_overflowMap_3262.readProperty_dictionary ()) ;
           bool bool_9 = var_correctionLoop_4245.isValidAndTrue () ;
           if (enumerator_4282.hasCurrentObject () && bool_9) {
             while (enumerator_4282.hasCurrentObject () && bool_9) {
-              cEnumerator_stringlist enumerator_4352 (enumerator_4282.current_mList (HERE), EnumerationOrder::up) ;
+              UpEnumerator_stringlist enumerator_4352 (enumerator_4282.current_mList (HERE)) ;
               bool bool_10 = var_correctionLoop_4245.isValidAndTrue () ;
               if (enumerator_4352.hasCurrentObject () && bool_10) {
                 while (enumerator_4352.hasCurrentObject () && bool_10) {
@@ -7156,7 +7195,7 @@ void routine_perform_5F_cluster_5F_ordering_3F__26__26_ (const GGS_clusterList c
     ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 176)) ;
     GGS_ipic_31__38_BlockList var_newBlockList_7694 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
     var_continue_2140 = GGS_bool (true) ;
-    cEnumerator_ipic_31__38_BlockList enumerator_7800 (ioArgument_ioBlockList, EnumerationOrder::up) ;
+    UpEnumerator_ipic_31__38_BlockList enumerator_7800 (ioArgument_ioBlockList) ;
     bool bool_24 = var_continue_2140.isValidAndTrue () ;
     if (enumerator_7800.hasCurrentObject () && bool_24) {
       while (enumerator_7800.hasCurrentObject () && bool_24) {
@@ -7174,14 +7213,14 @@ void routine_perform_5F_cluster_5F_ordering_3F__26__26_ (const GGS_clusterList c
         }
       }
     }
-    cEnumerator_clusterList enumerator_8001 (var_clusterList_2014, EnumerationOrder::up) ;
+    UpEnumerator_clusterList enumerator_8001 (var_clusterList_2014) ;
     while (enumerator_8001.hasCurrentObject ()) {
       var_newBlockList_7694.plusAssign_operation(enumerator_8001.current_mBlockList (HERE), inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 189)) ;
       enumerator_8001.gotoNextObject () ;
     }
     GGS_uint var_insertionIndex_8130 = var_newBlockList_7694.getter_count (SOURCE_FILE ("ipic18_cluster_ordering.galgas", 192)) ;
     var_continue_2140 = GGS_bool (true) ;
-    cEnumerator_ipic_31__38_BlockList enumerator_8199 (ioArgument_ioBlockList, EnumerationOrder::down) ;
+    DownEnumerator_ipic_31__38_BlockList enumerator_8199 (ioArgument_ioBlockList) ;
     bool bool_26 = var_continue_2140.isValidAndTrue () ;
     if (enumerator_8199.hasCurrentObject () && bool_26) {
       while (enumerator_8199.hasCurrentObject () && bool_26) {
@@ -7220,7 +7259,7 @@ void routine_performRelativesResolution_3F__26__26__26_ (const GGS_symbolTableFo
                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GGS_ipic_31__38_BlockList var_modifiedBlockList_1588 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
   GGS_uint var_blockStartAddress_1639 = GGS_uint (uint32_t (0U)) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_1668 (ioArgument_ioBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_1668 (ioArgument_ioBlockList) ;
   GGS_uint index_1663 (uint32_t (0)) ;
   while (enumerator_1668.hasCurrentObject ()) {
     GGS_string var_nextBlockLabel_1723 ;
@@ -7270,7 +7309,7 @@ void routine_computeLabelAbsoluteAddressMap_3F__3F__21__21_ (const GGS_ipic_31__
   outArgument_outSymbolTable = GGS_symbolTableForRelativesResolution::init (inCompiler COMMA_HERE) ;
   outArgument_outFreeAddress = GGS_uint::class_func_max (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 106)) ;
   GGS_uint var_blockStartAddress_3325 = GGS_uint (uint32_t (0U)) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_3354 (constinArgument_inGeneratedBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_3354 (constinArgument_inGeneratedBlockList) ;
   GGS_uint index_3349 (uint32_t (0)) ;
   while (enumerator_3354.hasCurrentObject ()) {
     GGS_string var_nextBlockLabel_3418 ;
@@ -7306,7 +7345,7 @@ void routine_computeLabelAbsoluteAddressMap_3F__3F__21__21_ (const GGS_ipic_31__
     enumerator_3354.gotoNextObject () ;
     index_3349.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 109)) ;
   }
-  cEnumerator_ipic_31__38_BlockList enumerator_4042 (constinArgument_inInitialBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_4042 (constinArgument_inInitialBlockList) ;
   while (enumerator_4042.hasCurrentObject ()) {
     GalgasBool test_3 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_3) {
@@ -7442,7 +7481,7 @@ void routine_ipic_31__38_RelativeBranchOverflow_3F__3F__21_ (const GGS_ipic_31__
   }
   outArgument_outOverflowMap = GGS_branchOverflowMap::init (inCompiler COMMA_HERE) ;
   GGS_uint var_blockStartAddress_7277 = GGS_uint (uint32_t (0U)) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_7306 (constinArgument_inBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_7306 (constinArgument_inBlockList) ;
   GGS_uint index_7301 (uint32_t (0)) ;
   while (enumerator_7306.hasCurrentObject ()) {
     GGS_string var_nextBlockLabel_7361 ;
@@ -7507,13 +7546,13 @@ void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const GGS_uint consti
   }
   GGS_uint var_address_1529 = constinArgument_inAddress ;
   GGS_bool var_first_1555 = GGS_bool (true) ;
-  cEnumerator_stringlist enumerator_1575 (var_ipicText_1391, EnumerationOrder::up) ;
-  cEnumerator_codeList enumerator_1612 (constinArgument_inCode, EnumerationOrder::up) ;
+  UpEnumerator_stringlist enumerator_1575 (var_ipicText_1391) ;
+  UpEnumerator_codeList enumerator_1612 (constinArgument_inCode) ;
   while (enumerator_1575.hasCurrentObject () && enumerator_1612.hasCurrentObject ()) {
     ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_x_36_string (var_address_1529, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 49)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 49)) ;
     var_address_1529 = var_address_1529.add_operation (GGS_uint (uint32_t (2U)).multiply_operation (enumerator_1612.current_mBinaryCode (HERE).getter_count (SOURCE_FILE ("ipic18_code_generation.galgas", 50)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 50)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 50)) ;
     GGS_string var_s_1748 = GGS_string (" ") ;
-    cEnumerator_uintlist enumerator_1765 (enumerator_1612.current_mBinaryCode (HERE), EnumerationOrder::up) ;
+    UpEnumerator_uintlist enumerator_1765 (enumerator_1612.current_mBinaryCode (HERE)) ;
     while (enumerator_1765.hasCurrentObject ()) {
       var_s_1748.plusAssign_operation(GGS_string (" ").add_operation (extensionGetter_x_34_string (enumerator_1765.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 53)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 53)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 53)) ;
       enumerator_1765.gotoNextObject () ;
@@ -7561,7 +7600,7 @@ void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const GGS_uint consti
     enumerator_1575.gotoNextObject () ;
     enumerator_1612.gotoNextObject () ;
   }
-  cEnumerator_stringlist enumerator_2480 (var_ipicText_1391.getter_subListFromIndex (constinArgument_inCode.getter_count (SOURCE_FILE ("ipic18_code_generation.galgas", 79)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 79)), EnumerationOrder::up) ;
+  UpEnumerator_stringlist enumerator_2480 (var_ipicText_1391.getter_subListFromIndex (constinArgument_inCode.getter_count (SOURCE_FILE ("ipic18_code_generation.galgas", 79)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 79))) ;
   while (enumerator_2480.hasCurrentObject ()) {
     ioArgument_ioListFileContents.plusAssign_operation(extensionGetter_x_36_string (var_address_1529, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 80)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 80)) ;
     ioArgument_ioListFileContents.plusAssign_operation(GGS_string::makeEmptyString ().getter_stringByRightPadding (GGS_uint (uint32_t (76U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 81)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 81)) ;
@@ -7614,7 +7653,7 @@ void routine_ipic_31__38_GenerateCode_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__3F
   }
   GGS_uint var_dataAddress_7741 = var_firstDataAddress_7650 ;
   GGS_pic_31__38__5F_dataAddressMap var_dataAddressMap_7800 = GGS_pic_31__38__5F_dataAddressMap::init (inCompiler COMMA_HERE) ;
-  cEnumerator_pic_31__38__5F_dataMap enumerator_7839 (constinArgument_inDataMap, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38__5F_dataMap enumerator_7839 (constinArgument_inDataMap) ;
   while (enumerator_7839.hasCurrentObject ()) {
     {
     var_dataAddressMap_7800.setter_insertKey (enumerator_7839.current_lkey (HERE), var_dataAddress_7741, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 236)) ;
@@ -7629,7 +7668,7 @@ void routine_ipic_31__38_GenerateCode_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__3F
   GGS_bigint var_relocatableCodeSize_8074 = GGS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 242)) ;
   GGS_bigint var_blockStartAddress_8104 = GGS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 243)) ;
   outArgument_outGeneratedCodeMap = GGS_generatedCodeMap::init (inCompiler COMMA_HERE) ;
-  cEnumerator_ipic_31__38_BlockList enumerator_8161 (constinArgument_inGeneratedBlockList, EnumerationOrder::up) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_8161 (constinArgument_inGeneratedBlockList) ;
   GGS_uint index_8156 (uint32_t (0)) ;
   while (enumerator_8161.hasCurrentObject ()) {
     GGS_string var_nextBlockLabel_8225 ;
@@ -7667,7 +7706,7 @@ void routine_ipic_31__38_GenerateCode_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__3F
     index_8156.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 245)) ;
   }
   var_dataAddress_7741 = var_firstDataAddress_7650 ;
-  cEnumerator_pic_31__38__5F_dataMap enumerator_9077 (constinArgument_inDataMap, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38__5F_dataMap enumerator_9077 (constinArgument_inDataMap) ;
   const bool bool_4 = true ;
   if (enumerator_9077.hasCurrentObject () && bool_4) {
     {
@@ -7690,7 +7729,7 @@ void routine_ipic_31__38_GenerateCode_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__3F
       routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (var_dataAddress_7741, temp_7, temp_8, GGS_uint::class_func_max (SOURCE_FILE ("ipic18_code_generation.galgas", 290)), GGS_uint (uint32_t (0U)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 286)) ;
       }
       var_assemblyString_8048.plusAssign_operation(GGS_string ("_data_").add_operation (enumerator_9077.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 294)).add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 294)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 294)) ;
-      cEnumerator_uintlist enumerator_9666 (enumerator_9077.current_mData (HERE), EnumerationOrder::up) ;
+      UpEnumerator_uintlist enumerator_9666 (enumerator_9077.current_mData (HERE)) ;
       while (enumerator_9666.hasCurrentObject ()) {
         var_assemblyString_8048.plusAssign_operation(GGS_string ("    DW ").add_operation (enumerator_9666.current_mValue (HERE).getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 296)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 296)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 296)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 296)) ;
         {
@@ -7751,7 +7790,7 @@ void routine_ipic_31__38_GenerateCode_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__3F
     }
     break ;
   }
-  cEnumerator_actualConfigurationMap enumerator_10845 (constinArgument_inActualConfigurationMap, EnumerationOrder::up) ;
+  UpEnumerator_actualConfigurationMap enumerator_10845 (constinArgument_inActualConfigurationMap) ;
   while (enumerator_10845.hasCurrentObject ()) {
     {
     routine_setEmitAddress_3F_ (enumerator_10845.current_mRegisterAddress (HERE), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 328)) ;
@@ -7819,7 +7858,7 @@ void routine_pic_31__38_GenerateAssemblyFile_3F__3F__3F__3F__3F__3F_ (const GGS_
   var_assemblyString_12795.plusAssign_operation(GGS_string (";--- Code\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 373)) ;
   var_assemblyString_12795.plusAssign_operation(constinArgument_inAssemblyCode, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 374)) ;
   var_assemblyString_12795.plusAssign_operation(GGS_string (";--- Prefefined registers\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 376)) ;
-  cEnumerator_registerTable enumerator_13044 (constinArgument_inPredefinedRegisters, EnumerationOrder::up) ;
+  UpEnumerator_registerTable enumerator_13044 (constinArgument_inPredefinedRegisters) ;
   while (enumerator_13044.hasCurrentObject ()) {
     GGS_uint var_firstRegister_13119 ;
     enumerator_13044.current_mRegisterAddressList (HERE).method_first (var_firstRegister_13119, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 378)) ;
@@ -7828,7 +7867,7 @@ void routine_pic_31__38_GenerateAssemblyFile_3F__3F__3F__3F__3F__3F_ (const GGS_
   }
   var_assemblyString_12795.plusAssign_operation(GGS_string ("\n\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 381)) ;
   var_assemblyString_12795.plusAssign_operation(GGS_string (";--- User defined registers (in RAM)\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 383)) ;
-  cEnumerator_registerTable enumerator_13381 (constinArgument_inAllRegisters, EnumerationOrder::up) ;
+  UpEnumerator_registerTable enumerator_13381 (constinArgument_inAllRegisters) ;
   while (enumerator_13381.hasCurrentObject ()) {
     GalgasBool test_0 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_0) {
@@ -7851,7 +7890,7 @@ void routine_pic_31__38_GenerateAssemblyFile_3F__3F__3F__3F__3F__3F_ (const GGS_
     test_1 = GGS_bool (ComparisonKind::greaterThan, constinArgument_inActualConfigurationMap.getter_count (SOURCE_FILE ("ipic18_code_generation.galgas", 397)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
       var_assemblyString_12795.plusAssign_operation(GGS_string (";--- Configuration\n\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 398)) ;
-      cEnumerator_actualConfigurationMap enumerator_14014 (constinArgument_inActualConfigurationMap, EnumerationOrder::up) ;
+      UpEnumerator_actualConfigurationMap enumerator_14014 (constinArgument_inActualConfigurationMap) ;
       while (enumerator_14014.hasCurrentObject ()) {
         var_assemblyString_12795.plusAssign_operation(GGS_string ("  __config ").add_operation (enumerator_14014.current_mRegisterAddress (HERE).getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 400)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 400)).add_operation (GGS_string (", "), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 400)).add_operation (enumerator_14014.current_mRegisterValue (HERE).operator_and (GGS_uint (uint32_t (255U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 400)).getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 400)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 400)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 400)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 400)) ;
         enumerator_14014.gotoNextObject () ;

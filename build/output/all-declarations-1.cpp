@@ -8,6 +8,407 @@
 #include "all-declarations-1.h"
 
 //--------------------------------------------------------------------------------------------------
+
+cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GGS_fieldSettingMap_2E_element & inValue
+                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mValue (inValue.mProperty_mValue),
+mProperty_mMask (inValue.mProperty_mMask) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GGS_lstring & inKey,
+                                                          const GGS_uint & in_mValue,
+                                                          const GGS_uint & in_mMask
+                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mProperty_mValue (in_mValue),
+mProperty_mMask (in_mMask) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool cMapElement_fieldSettingMap::isValid (void) const {
+  return mProperty_lkey.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement * cMapElement_fieldSettingMap::copy (void) {
+  cMapElement * result = nullptr ;
+  macroMyNew (result, cMapElement_fieldSettingMap (mProperty_lkey, mProperty_mValue, mProperty_mMask COMMA_HERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cMapElement_fieldSettingMap::description (String & ioString, const int32_t inIndentation) const {
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mValue" ":") ;
+  mProperty_mValue.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mMask" ":") ;
+  mProperty_mMask.description (ioString, inIndentation) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap::GGS_fieldSettingMap (void) :
+AC_GALGAS_map () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap::GGS_fieldSettingMap (const GGS_fieldSettingMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap & GGS_fieldSettingMap::operator = (const GGS_fieldSettingMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GGS_fieldSettingMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::class_func_emptyMap (LOCATION_ARGS) {
+  GGS_fieldSettingMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap_2E_element_3F_ GGS_fieldSettingMap
+::readSubscript__3F_ (const class GGS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_fieldSettingMap_2E_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GGS_fieldSettingMap_2E_element_3F_::init_nil () ;
+    }else{
+      GGS_fieldSettingMap_2E_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mValue = p->mProperty_mValue ;
+      element.mProperty_mMask = p->mProperty_mMask ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::class_func_mapWithMapToOverride (const GGS_fieldSettingMap & inMapToOverride
+                                                                          COMMA_LOCATION_ARGS) {
+  GGS_fieldSettingMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::getter_overriddenMap (Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const {
+  GGS_fieldSettingMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::enterElement (const GGS_fieldSettingMap_2E_element & inValue,
+                                        Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) {
+  cMapElement_fieldSettingMap * p = nullptr ;
+  macroMyNew (p, cMapElement_fieldSettingMap (inValue COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@fieldSettingMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::addAssign_operation (const GGS_lstring & inKey,
+                                               const GGS_uint & inArgument0,
+                                               const GGS_uint & inArgument1,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) {
+  cMapElement_fieldSettingMap * p = nullptr ;
+  macroMyNew (p, cMapElement_fieldSettingMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "@fieldSettingMap insert error: '%K' already in map" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::add_operation (const GGS_fieldSettingMap & inOperand,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) const {
+  GGS_fieldSettingMap result = *this ;
+  UpEnumerator_fieldSettingMap enumerator (inOperand) ;
+  while (enumerator.hasCurrentObject ()) {
+    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mValue (HERE), enumerator.current_mMask (HERE), inCompiler COMMA_THERE) ;
+    enumerator.gotoNextObject () ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::setter_insertKey (GGS_lstring inKey,
+                                            GGS_uint inArgument0,
+                                            GGS_uint inArgument1,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
+  cMapElement_fieldSettingMap * p = nullptr ;
+  macroMyNew (p, cMapElement_fieldSettingMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' configuration register setting is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const char * kSearchErrorMessage_fieldSettingMap_searchKey = "the '%K' configuration register setting is not declared" ;
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::method_searchKey (GGS_lstring inKey,
+                                            GGS_uint & outArgument0,
+                                            GGS_uint & outArgument1,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) performSearch (inKey,
+                                                                                               inCompiler,
+                                                                                               kSearchErrorMessage_fieldSettingMap_searchKey
+                                                                                               COMMA_THERE) ;
+  if (nullptr == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    outArgument0 = p->mProperty_mValue ;
+    outArgument1 = p->mProperty_mMask ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint GGS_fieldSettingMap::getter_mValueForKey (const GGS_string & inKey,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
+  GGS_uint result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    result = p->mProperty_mValue ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint GGS_fieldSettingMap::getter_mMaskForKey (const GGS_string & inKey,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
+  GGS_uint result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    result = p->mProperty_mMask ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::setter_setMValueForKey (GGS_uint inAttributeValue,
+                                                  GGS_string inKey,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    p->mProperty_mValue = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::setter_setMMaskForKey (GGS_uint inAttributeValue,
+                                                 GGS_string inKey,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    p->mProperty_mMask = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_fieldSettingMap * GGS_fieldSettingMap::readWriteAccessForWithInstruction (Compiler * inCompiler,
+                                                                                      const GGS_string & inKey
+                                                                                      COMMA_LOCATION_ARGS) {
+  cMapElement_fieldSettingMap * result = (cMapElement_fieldSettingMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_fieldSettingMap) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @fieldSettingMap
+//--------------------------------------------------------------------------------------------------
+
+DownEnumerator_fieldSettingMap::DownEnumerator_fieldSettingMap (const GGS_fieldSettingMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap_2E_element DownEnumerator_fieldSettingMap::current (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return GGS_fieldSettingMap_2E_element (p->mProperty_lkey, p->mProperty_mValue, p->mProperty_mMask) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring DownEnumerator_fieldSettingMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint DownEnumerator_fieldSettingMap::current_mValue (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return p->mProperty_mValue ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint DownEnumerator_fieldSettingMap::current_mMask (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return p->mProperty_mMask ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Up Enumerator for @fieldSettingMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_fieldSettingMap::UpEnumerator_fieldSettingMap (const GGS_fieldSettingMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap_2E_element UpEnumerator_fieldSettingMap::current (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return GGS_fieldSettingMap_2E_element (p->mProperty_lkey, p->mProperty_mValue, p->mProperty_mMask) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_fieldSettingMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_fieldSettingMap::current_mValue (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return p->mProperty_mValue ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_fieldSettingMap::current_mMask (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return p->mProperty_mMask ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//     @fieldSettingMap generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap ("fieldSettingMap",
+                                                                       nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_fieldSettingMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_fieldSettingMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_fieldSettingMap::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_fieldSettingMap (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::extractObject (const GGS_object & inObject,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
+  GGS_fieldSettingMap result ;
+  const GGS_fieldSettingMap * p = (const GGS_fieldSettingMap *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_fieldSettingMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("fieldSettingMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
 //  Enum baseline_instruction_FD_base_code
 //--------------------------------------------------------------------------------------------------
 
@@ -286,9 +687,7 @@ ComparisonResult GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code::objectCompar
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_FD_base_code generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code ("baseline_instruction_FD_base_code",
@@ -328,9 +727,7 @@ GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code GGS_baseline_5F_instruction_5F
 }
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@baseline_instruction_FD_base_code mnemonic'
-//
+//  Extension Getter '@baseline_instruction_FD_base_code mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inObject,
@@ -479,9 +876,7 @@ void GGS_baseline_5F_F_5F_instruction_5F_base_5F_code::description (String & ioS
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_F_instruction_base_code generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code ("baseline_F_instruction_base_code",
@@ -521,9 +916,7 @@ GGS_baseline_5F_F_5F_instruction_5F_base_5F_code GGS_baseline_5F_F_5F_instructio
 }
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@baseline_F_instruction_base_code mnemonic'
-//
+//  Extension Getter '@baseline_F_instruction_base_code mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & inObject,
@@ -612,9 +1005,7 @@ void GGS_baseline_5F_bit_5F_oriented_5F_op::description (String & ioString,
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_bit_oriented_op generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_bit_5F_oriented_5F_op ("baseline_bit_oriented_op",
@@ -654,9 +1045,7 @@ GGS_baseline_5F_bit_5F_oriented_5F_op GGS_baseline_5F_bit_5F_oriented_5F_op::ext
 }
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@baseline_bit_oriented_op mnemonic'
-//
+//  Extension Getter '@baseline_bit_oriented_op mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_baseline_5F_bit_5F_oriented_5F_op & inObject,
@@ -811,9 +1200,7 @@ ComparisonResult GGS_baseline_5F_literal_5F_instruction_5F_opcode::objectCompare
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_literal_instruction_opcode generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_literal_5F_instruction_5F_opcode ("baseline_literal_instruction_opcode",
@@ -853,9 +1240,7 @@ GGS_baseline_5F_literal_5F_instruction_5F_opcode GGS_baseline_5F_literal_5F_inst
 }
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@baseline_literal_instruction_opcode mnemonic'
-//
+//  Extension Getter '@baseline_literal_instruction_opcode mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_baseline_5F_literal_5F_instruction_5F_opcode & inObject,
@@ -1010,9 +1395,7 @@ void GGS_baseline_5F_WO_5F_OPERAND_5F_group::description (String & ioString,
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_WO_OPERAND_group generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_WO_5F_OPERAND_5F_group ("baseline_WO_OPERAND_group",
@@ -1052,9 +1435,7 @@ GGS_baseline_5F_WO_5F_OPERAND_5F_group GGS_baseline_5F_WO_5F_OPERAND_5F_group::e
 }
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@baseline_WO_OPERAND_group mnemonic'
-//
+//  Extension Getter '@baseline_WO_OPERAND_group mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_baseline_5F_WO_5F_OPERAND_5F_group & inObject,
@@ -1182,9 +1563,7 @@ mProperty_mInstructionLocation () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction ("baseline_instruction",
@@ -1293,9 +1672,7 @@ GGS_baseline_5F_instruction GGS_baseline_5F_instruction_2E_weak::bang_baseline_5
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_2E_weak ("baseline_instruction.weak",
@@ -1674,16 +2051,17 @@ GGS_baseline_5F_instruction GGS_baseline_5F_instructionList::getter_mInstruction
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @baseline_5F_instructionList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_baseline_5F_instructionList::cEnumerator_baseline_5F_instructionList (const GGS_baseline_5F_instructionList & inEnumeratedObject,
-                                                                                  const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_baseline_5F_instructionList::DownEnumerator_baseline_5F_instructionList (const GGS_baseline_5F_instructionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_instructionList_2E_element cEnumerator_baseline_5F_instructionList::current (LOCATION_ARGS) const {
+GGS_baseline_5F_instructionList_2E_element DownEnumerator_baseline_5F_instructionList::current (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_instructionList * p = (const cCollectionElement_baseline_5F_instructionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_instructionList) ;
   return p->mObject ;
@@ -1692,7 +2070,35 @@ GGS_baseline_5F_instructionList_2E_element cEnumerator_baseline_5F_instructionLi
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_instruction cEnumerator_baseline_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
+GGS_baseline_5F_instruction DownEnumerator_baseline_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_instructionList * p = (const cCollectionElement_baseline_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_instructionList) ;
+  return p->mObject.mProperty_mInstruction ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @baseline_5F_instructionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_baseline_5F_instructionList::UpEnumerator_baseline_5F_instructionList (const GGS_baseline_5F_instructionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_instructionList_2E_element UpEnumerator_baseline_5F_instructionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_instructionList * p = (const cCollectionElement_baseline_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_instructionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_instruction UpEnumerator_baseline_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_instructionList * p = (const cCollectionElement_baseline_5F_instructionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_instructionList) ;
   return p->mObject.mProperty_mInstruction ;
@@ -1702,9 +2108,7 @@ GGS_baseline_5F_instruction cEnumerator_baseline_5F_instructionList::current_mIn
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instructionList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instructionList ("baseline_instructionList",
@@ -1813,9 +2217,7 @@ GGS_baseline_5F_instruction_5F_FD GGS_baseline_5F_instruction_5F_FD_2E_weak::ban
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_FD.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD_2E_weak ("baseline_instruction_FD.weak",
@@ -1924,9 +2326,7 @@ GGS_baseline_5F_instruction_5F_F GGS_baseline_5F_instruction_5F_F_2E_weak::bang_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_F.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_F_2E_weak ("baseline_instruction_F.weak",
@@ -2035,9 +2435,7 @@ GGS_baseline_5F_instruction_5F_FB GGS_baseline_5F_instruction_5F_FB_2E_weak::ban
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_FB.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FB_2E_weak ("baseline_instruction_FB.weak",
@@ -2146,9 +2544,7 @@ GGS_baseline_5F_instruction_5F_CALL GGS_baseline_5F_instruction_5F_CALL_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_CALL.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL_2E_weak ("baseline_instruction_CALL.weak",
@@ -2257,9 +2653,7 @@ GGS_baseline_5F_instruction_5F_JSR GGS_baseline_5F_instruction_5F_JSR_2E_weak::b
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_JSR.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JSR_2E_weak ("baseline_instruction_JSR.weak",
@@ -2368,9 +2762,7 @@ GGS_baseline_5F_instruction_5F_GOTO GGS_baseline_5F_instruction_5F_GOTO_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_GOTO.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_GOTO_2E_weak ("baseline_instruction_GOTO.weak",
@@ -2479,9 +2871,7 @@ GGS_baseline_5F_instruction_5F_JUMP GGS_baseline_5F_instruction_5F_JUMP_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_JUMP.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JUMP_2E_weak ("baseline_instruction_JUMP.weak",
@@ -2665,9 +3055,7 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND::duplicate (Compiler
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_WO_OPERAND generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND ("baseline_instruction_WO_OPERAND",
@@ -2776,9 +3164,7 @@ GGS_baseline_5F_instruction_5F_WO_5F_OPERAND GGS_baseline_5F_instruction_5F_WO_5
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_WO_OPERAND.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak ("baseline_instruction_WO_OPERAND.weak",
@@ -2887,9 +3273,7 @@ GGS_baseline_5F_instruction_5F_TRIS GGS_baseline_5F_instruction_5F_TRIS_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_TRIS.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_TRIS_2E_weak ("baseline_instruction_TRIS.weak",
@@ -3106,9 +3490,7 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_literalOperation::duplicate (Compi
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_literalOperation generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_literalOperation ("baseline_instruction_literalOperation",
@@ -3217,9 +3599,7 @@ GGS_baseline_5F_instruction_5F_literalOperation GGS_baseline_5F_instruction_5F_l
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_literalOperation.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_literalOperation_2E_weak ("baseline_instruction_literalOperation.weak",
@@ -3403,9 +3783,7 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_MNOP::duplicate (Compiler * inComp
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_MNOP generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_MNOP ("baseline_instruction_MNOP",
@@ -3514,9 +3892,7 @@ GGS_baseline_5F_instruction_5F_MNOP GGS_baseline_5F_instruction_5F_MNOP_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_MNOP.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_MNOP_2E_weak ("baseline_instruction_MNOP.weak",
@@ -3733,9 +4109,7 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_FOREVER::duplicate (Compiler * inC
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_FOREVER generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FOREVER ("baseline_instruction_FOREVER",
@@ -3844,9 +4218,7 @@ GGS_baseline_5F_instruction_5F_FOREVER GGS_baseline_5F_instruction_5F_FOREVER_2E
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_FOREVER.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FOREVER_2E_weak ("baseline_instruction_FOREVER.weak",
@@ -3955,9 +4327,7 @@ GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT GGS_baseline_5F_instruction_5F_S
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_STATIC_REPEAT.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak ("baseline_instruction_STATIC_REPEAT.weak",
@@ -4082,9 +4452,7 @@ mProperty_mInstruction () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_IF_SEMI_COLON generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON ("baseline_instruction_IF_SEMI_COLON",
@@ -4193,9 +4561,7 @@ GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON GGS_baseline_5F_instruction_5
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_IF_SEMI_COLON.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak ("baseline_instruction_IF_SEMI_COLON.weak",
@@ -4304,9 +4670,7 @@ GGS_baseline_5F_instruction_5F_IF_5F_BitTest GGS_baseline_5F_instruction_5F_IF_5
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_IF_BitTest.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak ("baseline_instruction_IF_BitTest.weak",
@@ -4415,9 +4779,7 @@ GGS_baseline_5F_instruction_5F_IF_5F_IncDec GGS_baseline_5F_instruction_5F_IF_5F
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_IF_IncDec.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak ("baseline_instruction_IF_IncDec.weak",
@@ -4510,9 +4872,7 @@ acStrongPtr_class (inCompiler COMMA_THERE) {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_conditionExpression generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_conditionExpression ("baseline_conditionExpression",
@@ -4621,9 +4981,7 @@ GGS_baseline_5F_conditionExpression GGS_baseline_5F_conditionExpression_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_conditionExpression.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_conditionExpression_2E_weak ("baseline_conditionExpression.weak",
@@ -4732,9 +5090,7 @@ GGS_baseline_5F_incDecRegisterInCondition GGS_baseline_5F_incDecRegisterInCondit
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_incDecRegisterInCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_incDecRegisterInCondition_2E_weak ("baseline_incDecRegisterInCondition.weak",
@@ -4910,9 +5266,7 @@ acPtr_class * cPtr_baseline_5F_negateCondition::duplicate (Compiler * inCompiler
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_negateCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_negateCondition ("baseline_negateCondition",
@@ -5021,9 +5375,7 @@ GGS_baseline_5F_negateCondition GGS_baseline_5F_negateCondition_2E_weak::bang_ba
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_negateCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_negateCondition_2E_weak ("baseline_negateCondition.weak",
@@ -5232,9 +5584,7 @@ acPtr_class * cPtr_baseline_5F_andCondition::duplicate (Compiler * inCompiler CO
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_andCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition ("baseline_andCondition",
@@ -5343,9 +5693,7 @@ GGS_baseline_5F_andCondition GGS_baseline_5F_andCondition_2E_weak::bang_baseline
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_andCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition_2E_weak ("baseline_andCondition.weak",
@@ -5454,9 +5802,7 @@ GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition GGS_baseline_5F_b
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_bitTest_in_structured_if_condition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak ("baseline_bitTest_in_structured_if_condition.weak",
@@ -5739,9 +6085,7 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_structured_5F_if::duplicate (Compi
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_structured_if generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_structured_5F_if ("baseline_instruction_structured_if",
@@ -5850,9 +6194,7 @@ GGS_baseline_5F_instruction_5F_structured_5F_if GGS_baseline_5F_instruction_5F_s
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_structured_if.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_structured_5F_if_2E_weak ("baseline_instruction_structured_if.weak",
@@ -6343,16 +6685,17 @@ GGS_location GGS_baseline_5F_partList::getter_mEndOfPartLocationAtIndex (const G
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @baseline_5F_partList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_baseline_5F_partList::cEnumerator_baseline_5F_partList (const GGS_baseline_5F_partList & inEnumeratedObject,
-                                                                    const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_baseline_5F_partList::DownEnumerator_baseline_5F_partList (const GGS_baseline_5F_partList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_partList_2E_element cEnumerator_baseline_5F_partList::current (LOCATION_ARGS) const {
+GGS_baseline_5F_partList_2E_element DownEnumerator_baseline_5F_partList::current (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_partList * p = (const cCollectionElement_baseline_5F_partList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_partList) ;
   return p->mObject ;
@@ -6361,7 +6704,7 @@ GGS_baseline_5F_partList_2E_element cEnumerator_baseline_5F_partList::current (L
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_conditionExpression cEnumerator_baseline_5F_partList::current_mCondition (LOCATION_ARGS) const {
+GGS_baseline_5F_conditionExpression DownEnumerator_baseline_5F_partList::current_mCondition (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_partList * p = (const cCollectionElement_baseline_5F_partList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_partList) ;
   return p->mObject.mProperty_mCondition ;
@@ -6369,7 +6712,7 @@ GGS_baseline_5F_conditionExpression cEnumerator_baseline_5F_partList::current_mC
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_instructionList cEnumerator_baseline_5F_partList::current_mInstructionList (LOCATION_ARGS) const {
+GGS_baseline_5F_instructionList DownEnumerator_baseline_5F_partList::current_mInstructionList (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_partList * p = (const cCollectionElement_baseline_5F_partList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_partList) ;
   return p->mObject.mProperty_mInstructionList ;
@@ -6377,7 +6720,51 @@ GGS_baseline_5F_instructionList cEnumerator_baseline_5F_partList::current_mInstr
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_location cEnumerator_baseline_5F_partList::current_mEndOfPartLocation (LOCATION_ARGS) const {
+GGS_location DownEnumerator_baseline_5F_partList::current_mEndOfPartLocation (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_partList * p = (const cCollectionElement_baseline_5F_partList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_partList) ;
+  return p->mObject.mProperty_mEndOfPartLocation ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @baseline_5F_partList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_baseline_5F_partList::UpEnumerator_baseline_5F_partList (const GGS_baseline_5F_partList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_partList_2E_element UpEnumerator_baseline_5F_partList::current (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_partList * p = (const cCollectionElement_baseline_5F_partList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_partList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_conditionExpression UpEnumerator_baseline_5F_partList::current_mCondition (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_partList * p = (const cCollectionElement_baseline_5F_partList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_partList) ;
+  return p->mObject.mProperty_mCondition ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_instructionList UpEnumerator_baseline_5F_partList::current_mInstructionList (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_partList * p = (const cCollectionElement_baseline_5F_partList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_partList) ;
+  return p->mObject.mProperty_mInstructionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location UpEnumerator_baseline_5F_partList::current_mEndOfPartLocation (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_partList * p = (const cCollectionElement_baseline_5F_partList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_partList) ;
   return p->mObject.mProperty_mEndOfPartLocation ;
@@ -6387,9 +6774,7 @@ GGS_location cEnumerator_baseline_5F_partList::current_mEndOfPartLocation (LOCAT
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_partList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_partList ("baseline_partList",
@@ -6639,9 +7024,7 @@ acPtr_class * cPtr_baseline_5F_instruction_5F_do_5F_while::duplicate (Compiler *
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_do_while generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_do_5F_while ("baseline_instruction_do_while",
@@ -6750,9 +7133,7 @@ GGS_baseline_5F_instruction_5F_do_5F_while GGS_baseline_5F_instruction_5F_do_5F_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_instruction_do_while.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_do_5F_while_2E_weak ("baseline_instruction_do_while.weak",
@@ -7355,16 +7736,17 @@ GGS_location GGS_baseline_5F_routineDefinitionList::getter_mEndOfRoutineLocation
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @baseline_5F_routineDefinitionList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_baseline_5F_routineDefinitionList::cEnumerator_baseline_5F_routineDefinitionList (const GGS_baseline_5F_routineDefinitionList & inEnumeratedObject,
-                                                                                              const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_baseline_5F_routineDefinitionList::DownEnumerator_baseline_5F_routineDefinitionList (const GGS_baseline_5F_routineDefinitionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_routineDefinitionList_2E_element cEnumerator_baseline_5F_routineDefinitionList::current (LOCATION_ARGS) const {
+GGS_baseline_5F_routineDefinitionList_2E_element DownEnumerator_baseline_5F_routineDefinitionList::current (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
   return p->mObject ;
@@ -7373,7 +7755,7 @@ GGS_baseline_5F_routineDefinitionList_2E_element cEnumerator_baseline_5F_routine
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_baseline_5F_routineDefinitionList::current_mRoutineName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_baseline_5F_routineDefinitionList::current_mRoutineName (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
   return p->mObject.mProperty_mRoutineName ;
@@ -7381,7 +7763,7 @@ GGS_lstring cEnumerator_baseline_5F_routineDefinitionList::current_mRoutineName 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luint cEnumerator_baseline_5F_routineDefinitionList::current_mPage (LOCATION_ARGS) const {
+GGS_luint DownEnumerator_baseline_5F_routineDefinitionList::current_mPage (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
   return p->mObject.mProperty_mPage ;
@@ -7389,7 +7771,7 @@ GGS_luint cEnumerator_baseline_5F_routineDefinitionList::current_mPage (LOCATION
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_baseline_5F_routineDefinitionList::current_mIsNoReturn (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_baseline_5F_routineDefinitionList::current_mIsNoReturn (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
   return p->mObject.mProperty_mIsNoReturn ;
@@ -7397,7 +7779,7 @@ GGS_bool cEnumerator_baseline_5F_routineDefinitionList::current_mIsNoReturn (LOC
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_instructionList cEnumerator_baseline_5F_routineDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+GGS_baseline_5F_instructionList DownEnumerator_baseline_5F_routineDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
   return p->mObject.mProperty_mInstructionList ;
@@ -7405,7 +7787,67 @@ GGS_baseline_5F_instructionList cEnumerator_baseline_5F_routineDefinitionList::c
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_location cEnumerator_baseline_5F_routineDefinitionList::current_mEndOfRoutineLocation (LOCATION_ARGS) const {
+GGS_location DownEnumerator_baseline_5F_routineDefinitionList::current_mEndOfRoutineLocation (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
+  return p->mObject.mProperty_mEndOfRoutineLocation ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @baseline_5F_routineDefinitionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_baseline_5F_routineDefinitionList::UpEnumerator_baseline_5F_routineDefinitionList (const GGS_baseline_5F_routineDefinitionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_routineDefinitionList_2E_element UpEnumerator_baseline_5F_routineDefinitionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_baseline_5F_routineDefinitionList::current_mRoutineName (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
+  return p->mObject.mProperty_mRoutineName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint UpEnumerator_baseline_5F_routineDefinitionList::current_mPage (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
+  return p->mObject.mProperty_mPage ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_baseline_5F_routineDefinitionList::current_mIsNoReturn (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
+  return p->mObject.mProperty_mIsNoReturn ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_instructionList UpEnumerator_baseline_5F_routineDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
+  return p->mObject.mProperty_mInstructionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location UpEnumerator_baseline_5F_routineDefinitionList::current_mEndOfRoutineLocation (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_routineDefinitionList * p = (const cCollectionElement_baseline_5F_routineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_routineDefinitionList) ;
   return p->mObject.mProperty_mEndOfRoutineLocation ;
@@ -7415,9 +7857,7 @@ GGS_location cEnumerator_baseline_5F_routineDefinitionList::current_mEndOfRoutin
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_routineDefinitionList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_routineDefinitionList ("baseline_routineDefinitionList",
@@ -7615,7 +8055,7 @@ GGS_baseline_5F_declaredRoutineMap GGS_baseline_5F_declaredRoutineMap::add_opera
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) const {
   GGS_baseline_5F_declaredRoutineMap result = *this ;
-  cEnumerator_baseline_5F_declaredRoutineMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_baseline_5F_declaredRoutineMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -7668,16 +8108,17 @@ cMapElement_baseline_5F_declaredRoutineMap * GGS_baseline_5F_declaredRoutineMap:
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @baseline_5F_declaredRoutineMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_baseline_5F_declaredRoutineMap::cEnumerator_baseline_5F_declaredRoutineMap (const GGS_baseline_5F_declaredRoutineMap & inEnumeratedObject,
-                                                                                        const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_baseline_5F_declaredRoutineMap::DownEnumerator_baseline_5F_declaredRoutineMap (const GGS_baseline_5F_declaredRoutineMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_declaredRoutineMap_2E_element cEnumerator_baseline_5F_declaredRoutineMap::current (LOCATION_ARGS) const {
+GGS_baseline_5F_declaredRoutineMap_2E_element DownEnumerator_baseline_5F_declaredRoutineMap::current (LOCATION_ARGS) const {
   const cMapElement_baseline_5F_declaredRoutineMap * p = (const cMapElement_baseline_5F_declaredRoutineMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_baseline_5F_declaredRoutineMap) ;
   return GGS_baseline_5F_declaredRoutineMap_2E_element (p->mProperty_lkey) ;
@@ -7685,16 +8126,40 @@ GGS_baseline_5F_declaredRoutineMap_2E_element cEnumerator_baseline_5F_declaredRo
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_baseline_5F_declaredRoutineMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_baseline_5F_declaredRoutineMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @baseline_5F_declaredRoutineMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_baseline_5F_declaredRoutineMap::UpEnumerator_baseline_5F_declaredRoutineMap (const GGS_baseline_5F_declaredRoutineMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_declaredRoutineMap_2E_element UpEnumerator_baseline_5F_declaredRoutineMap::current (LOCATION_ARGS) const {
+  const cMapElement_baseline_5F_declaredRoutineMap * p = (const cMapElement_baseline_5F_declaredRoutineMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_baseline_5F_declaredRoutineMap) ;
+  return GGS_baseline_5F_declaredRoutineMap_2E_element (p->mProperty_lkey) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_baseline_5F_declaredRoutineMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @baseline_declaredRoutineMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap ("baseline_declaredRoutineMap",
@@ -7792,7 +8257,17 @@ mProperty_mRegisterAddress () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_registerExpression::~ GGS_baseline_5F_intermediate_5F_registerExpression (void) {
+GGS_baseline_5F_intermediate_5F_registerExpression::GGS_baseline_5F_intermediate_5F_registerExpression (const GGS_baseline_5F_intermediate_5F_registerExpression & inSource) :
+mProperty_mAssemblyString (inSource.mProperty_mAssemblyString),
+mProperty_mRegisterAddress (inSource.mProperty_mRegisterAddress) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_intermediate_5F_registerExpression & GGS_baseline_5F_intermediate_5F_registerExpression::operator = (const GGS_baseline_5F_intermediate_5F_registerExpression & inSource) {
+  mProperty_mAssemblyString = inSource.mProperty_mAssemblyString ;
+  mProperty_mRegisterAddress = inSource.mProperty_mRegisterAddress ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -7863,9 +8338,7 @@ void GGS_baseline_5F_intermediate_5F_registerExpression::description (String & i
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_registerExpression generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_registerExpression ("baseline_intermediate_registerExpression",
@@ -7958,9 +8431,7 @@ acStrongPtr_class (inCompiler COMMA_THERE) {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction ("baseline_intermediate_instruction",
@@ -8069,9 +8540,7 @@ GGS_baseline_5F_intermediate_5F_instruction GGS_baseline_5F_intermediate_5F_inst
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_2E_weak ("baseline_intermediate_instruction.weak",
@@ -8450,16 +8919,17 @@ GGS_baseline_5F_intermediate_5F_instruction GGS_baseline_5F_intermediate_5F_inst
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @baseline_5F_intermediate_5F_instructionList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_baseline_5F_intermediate_5F_instructionList::cEnumerator_baseline_5F_intermediate_5F_instructionList (const GGS_baseline_5F_intermediate_5F_instructionList & inEnumeratedObject,
-                                                                                                                  const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_baseline_5F_intermediate_5F_instructionList::DownEnumerator_baseline_5F_intermediate_5F_instructionList (const GGS_baseline_5F_intermediate_5F_instructionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_instructionList_2E_element cEnumerator_baseline_5F_intermediate_5F_instructionList::current (LOCATION_ARGS) const {
+GGS_baseline_5F_intermediate_5F_instructionList_2E_element DownEnumerator_baseline_5F_intermediate_5F_instructionList::current (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (const cCollectionElement_baseline_5F_intermediate_5F_instructionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
   return p->mObject ;
@@ -8468,7 +8938,35 @@ GGS_baseline_5F_intermediate_5F_instructionList_2E_element cEnumerator_baseline_
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_instruction cEnumerator_baseline_5F_intermediate_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
+GGS_baseline_5F_intermediate_5F_instruction DownEnumerator_baseline_5F_intermediate_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (const cCollectionElement_baseline_5F_intermediate_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+  return p->mObject.mProperty_mInstruction ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @baseline_5F_intermediate_5F_instructionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_baseline_5F_intermediate_5F_instructionList::UpEnumerator_baseline_5F_intermediate_5F_instructionList (const GGS_baseline_5F_intermediate_5F_instructionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_intermediate_5F_instructionList_2E_element UpEnumerator_baseline_5F_intermediate_5F_instructionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (const cCollectionElement_baseline_5F_intermediate_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_intermediate_5F_instruction UpEnumerator_baseline_5F_intermediate_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
   const cCollectionElement_baseline_5F_intermediate_5F_instructionList * p = (const cCollectionElement_baseline_5F_intermediate_5F_instructionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList) ;
   return p->mObject.mProperty_mInstruction ;
@@ -8478,9 +8976,7 @@ GGS_baseline_5F_intermediate_5F_instruction cEnumerator_baseline_5F_intermediate
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instructionList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList ("baseline_intermediate_instructionList",
@@ -8619,9 +9115,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_NULL::duplicate (Compiler * inCom
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_NULL generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_NULL ("baseline_intermediate_NULL",
@@ -8730,9 +9224,7 @@ GGS_baseline_5F_intermediate_5F_NULL GGS_baseline_5F_intermediate_5F_NULL_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_NULL.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_NULL_2E_weak ("baseline_intermediate_NULL.weak",
@@ -8825,9 +9317,7 @@ cPtr_baseline_5F_intermediate_5F_instruction (inCompiler COMMA_THERE) {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_pseudo generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo ("baseline_intermediate_pseudo",
@@ -8936,9 +9426,7 @@ GGS_baseline_5F_intermediate_5F_pseudo GGS_baseline_5F_intermediate_5F_pseudo_2E
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_pseudo.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_2E_weak ("baseline_intermediate_pseudo.weak",
@@ -9114,9 +9602,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE::duplicate (Compil
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_pseudo_PAGE generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE ("baseline_intermediate_pseudo_PAGE",
@@ -9225,9 +9711,7 @@ GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE GGS_baseline_5F_intermediate_5F_p
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_pseudo_PAGE.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak ("baseline_intermediate_pseudo_PAGE.weak",
@@ -9336,9 +9820,7 @@ GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL GGS_baseline_5F_intermediate_5F_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_pseudo_LABEL.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak ("baseline_intermediate_pseudo_LABEL.weak",
@@ -9447,9 +9929,7 @@ GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE GGS_baseline_5F_inter
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_pseudo_BEGIN_ROUTINE.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak ("baseline_intermediate_pseudo_BEGIN_ROUTINE.weak",
@@ -9558,9 +10038,7 @@ GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE GGS_baseline_5F_interme
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_pseudo_END_ROUTINE.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak ("baseline_intermediate_pseudo_END_ROUTINE.weak",
@@ -9683,9 +10161,7 @@ mProperty_mInstructionLocation () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_actualInstruction generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_actualInstruction ("baseline_intermediate_actualInstruction",
@@ -9794,9 +10270,7 @@ GGS_baseline_5F_intermediate_5F_actualInstruction GGS_baseline_5F_intermediate_5
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_actualInstruction.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_actualInstruction_2E_weak ("baseline_intermediate_actualInstruction.weak",
@@ -10046,9 +10520,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_FD::duplicate (Com
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_FD generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD ("baseline_intermediate_instruction_FD",
@@ -10157,9 +10629,7 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_FD GGS_baseline_5F_intermediate_5
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_FD.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak ("baseline_intermediate_instruction_FD.weak",
@@ -10376,9 +10846,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_F::duplicate (Comp
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_F generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_F ("baseline_intermediate_instruction_F",
@@ -10487,9 +10955,7 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_F GGS_baseline_5F_intermediate_5F
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_F.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak ("baseline_intermediate_instruction_F.weak",
@@ -10739,9 +11205,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_FB::duplicate (Com
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_FB generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB ("baseline_intermediate_instruction_FB",
@@ -10850,9 +11314,7 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_FB GGS_baseline_5F_intermediate_5
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_FB.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak ("baseline_intermediate_instruction_FB.weak",
@@ -11102,9 +11564,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::dupli
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_BitTestSkip generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip ("baseline_intermediate_instruction_BitTestSkip",
@@ -11213,9 +11673,7 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip GGS_baseline_5F_inter
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_BitTestSkip.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak ("baseline_intermediate_instruction_BitTestSkip.weak",
@@ -11324,9 +11782,7 @@ GGS_baseline_5F_intermediate_5F_GOTO GGS_baseline_5F_intermediate_5F_GOTO_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_GOTO.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO_2E_weak ("baseline_intermediate_GOTO.weak",
@@ -11435,9 +11891,7 @@ GGS_baseline_5F_intermediate_5F_JUMP GGS_baseline_5F_intermediate_5F_JUMP_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_JUMP.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP_2E_weak ("baseline_intermediate_JUMP.weak",
@@ -11546,9 +12000,7 @@ GGS_baseline_5F_intermediate_5F_CALL GGS_baseline_5F_intermediate_5F_CALL_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_CALL.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_CALL_2E_weak ("baseline_intermediate_CALL.weak",
@@ -11657,9 +12109,7 @@ GGS_baseline_5F_intermediate_5F_JSR GGS_baseline_5F_intermediate_5F_JSR_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_JSR.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JSR_2E_weak ("baseline_intermediate_JSR.weak",
@@ -11843,9 +12293,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND::duplicate (Compile
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_WO_OPERAND generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND ("baseline_intermediate_WO_OPERAND",
@@ -11954,9 +12402,7 @@ GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND GGS_baseline_5F_intermediate_5F_WO
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_WO_OPERAND.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak ("baseline_intermediate_WO_OPERAND.weak",
@@ -12065,9 +12511,7 @@ GGS_baseline_5F_intermediate_5F_TRIS GGS_baseline_5F_intermediate_5F_TRIS_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_TRIS.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_TRIS_2E_weak ("baseline_intermediate_TRIS.weak",
@@ -12284,9 +12728,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation::
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_literalOperation generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation ("baseline_intermediate_instruction_literalOperation",
@@ -12395,9 +12837,7 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation GGS_baseline_5F_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_literalOperation.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak ("baseline_intermediate_instruction_literalOperation.weak",
@@ -12581,9 +13021,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::duplicate (C
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_MNOP generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP ("baseline_intermediate_instruction_MNOP",
@@ -12692,9 +13130,7 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP GGS_baseline_5F_intermediate
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_instruction_MNOP.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak ("baseline_intermediate_instruction_MNOP.weak",
@@ -13010,9 +13446,7 @@ acPtr_class * cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::duplic
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_incDecRegisterInCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition ("baseline_intermediate_incDecRegisterInCondition",
@@ -13121,9 +13555,7 @@ GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition GGS_baseline_5F_interm
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_intermediate_incDecRegisterInCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak ("baseline_intermediate_incDecRegisterInCondition.weak",
@@ -13322,7 +13754,7 @@ GGS_baselineRoutineMap GGS_baselineRoutineMap::add_operation (const GGS_baseline
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) const {
   GGS_baselineRoutineMap result = *this ;
-  cEnumerator_baselineRoutineMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_baselineRoutineMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mIsNoReturn (HERE), enumerator.current_mPage (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -13441,16 +13873,17 @@ cMapElement_baselineRoutineMap * GGS_baselineRoutineMap::readWriteAccessForWithI
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @baselineRoutineMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_baselineRoutineMap::cEnumerator_baselineRoutineMap (const GGS_baselineRoutineMap & inEnumeratedObject,
-                                                                const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_baselineRoutineMap::DownEnumerator_baselineRoutineMap (const GGS_baselineRoutineMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baselineRoutineMap_2E_element cEnumerator_baselineRoutineMap::current (LOCATION_ARGS) const {
+GGS_baselineRoutineMap_2E_element DownEnumerator_baselineRoutineMap::current (LOCATION_ARGS) const {
   const cMapElement_baselineRoutineMap * p = (const cMapElement_baselineRoutineMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_baselineRoutineMap) ;
   return GGS_baselineRoutineMap_2E_element (p->mProperty_lkey, p->mProperty_mIsNoReturn, p->mProperty_mPage) ;
@@ -13458,7 +13891,7 @@ GGS_baselineRoutineMap_2E_element cEnumerator_baselineRoutineMap::current (LOCAT
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_baselineRoutineMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_baselineRoutineMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
@@ -13466,7 +13899,7 @@ GGS_lstring cEnumerator_baselineRoutineMap::current_lkey (LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_baselineRoutineMap::current_mIsNoReturn (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_baselineRoutineMap::current_mIsNoReturn (LOCATION_ARGS) const {
   const cMapElement_baselineRoutineMap * p = (const cMapElement_baselineRoutineMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_baselineRoutineMap) ;
   return p->mProperty_mIsNoReturn ;
@@ -13474,16 +13907,56 @@ GGS_bool cEnumerator_baselineRoutineMap::current_mIsNoReturn (LOCATION_ARGS) con
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luint cEnumerator_baselineRoutineMap::current_mPage (LOCATION_ARGS) const {
+GGS_luint DownEnumerator_baselineRoutineMap::current_mPage (LOCATION_ARGS) const {
   const cMapElement_baselineRoutineMap * p = (const cMapElement_baselineRoutineMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_baselineRoutineMap) ;
   return p->mProperty_mPage ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @baselineRoutineMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_baselineRoutineMap::UpEnumerator_baselineRoutineMap (const GGS_baselineRoutineMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baselineRoutineMap_2E_element UpEnumerator_baselineRoutineMap::current (LOCATION_ARGS) const {
+  const cMapElement_baselineRoutineMap * p = (const cMapElement_baselineRoutineMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_baselineRoutineMap) ;
+  return GGS_baselineRoutineMap_2E_element (p->mProperty_lkey, p->mProperty_mIsNoReturn, p->mProperty_mPage) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_baselineRoutineMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_baselineRoutineMap::current_mIsNoReturn (LOCATION_ARGS) const {
+  const cMapElement_baselineRoutineMap * p = (const cMapElement_baselineRoutineMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_baselineRoutineMap) ;
+  return p->mProperty_mIsNoReturn ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint UpEnumerator_baselineRoutineMap::current_mPage (LOCATION_ARGS) const {
+  const cMapElement_baselineRoutineMap * p = (const cMapElement_baselineRoutineMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_baselineRoutineMap) ;
+  return p->mProperty_mPage ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @baselineRoutineMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineRoutineMap ("baselineRoutineMap",
@@ -13758,7 +14231,7 @@ GGS_baselineSymbolTableForOptimizations GGS_baselineSymbolTableForOptimizations:
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const {
   GGS_baselineSymbolTableForOptimizations result = *this ;
-  cEnumerator_baselineSymbolTableForOptimizations enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_baselineSymbolTableForOptimizations enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mDefinitionLineIndex (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -13862,16 +14335,17 @@ cMapElement_baselineSymbolTableForOptimizations * GGS_baselineSymbolTableForOpti
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @baselineSymbolTableForOptimizations
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_baselineSymbolTableForOptimizations::cEnumerator_baselineSymbolTableForOptimizations (const GGS_baselineSymbolTableForOptimizations & inEnumeratedObject,
-                                                                                                  const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_baselineSymbolTableForOptimizations::DownEnumerator_baselineSymbolTableForOptimizations (const GGS_baselineSymbolTableForOptimizations & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baselineSymbolTableForOptimizations_2E_element cEnumerator_baselineSymbolTableForOptimizations::current (LOCATION_ARGS) const {
+GGS_baselineSymbolTableForOptimizations_2E_element DownEnumerator_baselineSymbolTableForOptimizations::current (LOCATION_ARGS) const {
   const cMapElement_baselineSymbolTableForOptimizations * p = (const cMapElement_baselineSymbolTableForOptimizations *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_baselineSymbolTableForOptimizations) ;
   return GGS_baselineSymbolTableForOptimizations_2E_element (p->mProperty_lkey, p->mProperty_mDefinitionLineIndex) ;
@@ -13879,7 +14353,7 @@ GGS_baselineSymbolTableForOptimizations_2E_element cEnumerator_baselineSymbolTab
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_baselineSymbolTableForOptimizations::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_baselineSymbolTableForOptimizations::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
@@ -13887,16 +14361,48 @@ GGS_lstring cEnumerator_baselineSymbolTableForOptimizations::current_lkey (LOCAT
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint cEnumerator_baselineSymbolTableForOptimizations::current_mDefinitionLineIndex (LOCATION_ARGS) const {
+GGS_uint DownEnumerator_baselineSymbolTableForOptimizations::current_mDefinitionLineIndex (LOCATION_ARGS) const {
   const cMapElement_baselineSymbolTableForOptimizations * p = (const cMapElement_baselineSymbolTableForOptimizations *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_baselineSymbolTableForOptimizations) ;
   return p->mProperty_mDefinitionLineIndex ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @baselineSymbolTableForOptimizations
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_baselineSymbolTableForOptimizations::UpEnumerator_baselineSymbolTableForOptimizations (const GGS_baselineSymbolTableForOptimizations & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baselineSymbolTableForOptimizations_2E_element UpEnumerator_baselineSymbolTableForOptimizations::current (LOCATION_ARGS) const {
+  const cMapElement_baselineSymbolTableForOptimizations * p = (const cMapElement_baselineSymbolTableForOptimizations *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_baselineSymbolTableForOptimizations) ;
+  return GGS_baselineSymbolTableForOptimizations_2E_element (p->mProperty_lkey, p->mProperty_mDefinitionLineIndex) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_baselineSymbolTableForOptimizations::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_baselineSymbolTableForOptimizations::current_mDefinitionLineIndex (LOCATION_ARGS) const {
+  const cMapElement_baselineSymbolTableForOptimizations * p = (const cMapElement_baselineSymbolTableForOptimizations *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_baselineSymbolTableForOptimizations) ;
+  return p->mProperty_mDefinitionLineIndex ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @baselineSymbolTableForOptimizations generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineSymbolTableForOptimizations ("baselineSymbolTableForOptimizations",
@@ -14261,9 +14767,7 @@ acStrongPtr_class (inCompiler COMMA_THERE) {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_assembly_instruction generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction ("baseline_assembly_instruction",
@@ -14372,9 +14876,7 @@ GGS_baseline_5F_assembly_5F_instruction GGS_baseline_5F_assembly_5F_instruction_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @baseline_assembly_instruction.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_2E_weak ("baseline_assembly_instruction.weak",
@@ -14408,704 +14910,6 @@ GGS_baseline_5F_assembly_5F_instruction_2E_weak GGS_baseline_5F_assembly_5F_inst
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//Class for element of '@baseline_5F_assembly_5F_instructionList' list
-//
-//--------------------------------------------------------------------------------------------------
-
-class cCollectionElement_baseline_5F_assembly_5F_instructionList : public cCollectionElement {
-  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element mObject ;
-
-//--- Class functions
-  public: cCollectionElement_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instruction & in_mInstruction
-                                                                      COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
-
-//--- Description
-  public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement_baseline_5F_assembly_5F_instructionList::cCollectionElement_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instruction & in_mInstruction
-                                                                                                                        COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (in_mInstruction) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement_baseline_5F_assembly_5F_instructionList::cCollectionElement_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
-mObject (inElement.mProperty_mInstruction) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool cCollectionElement_baseline_5F_assembly_5F_instructionList::isValid (void) const {
-  return true ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cCollectionElement * cCollectionElement_baseline_5F_assembly_5F_instructionList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_baseline_5F_assembly_5F_instructionList (mObject.mProperty_mInstruction COMMA_HERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cCollectionElement_baseline_5F_assembly_5F_instructionList::description (String & ioString, const int32_t inIndentation) const {
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mInstruction" ":") ;
-  mObject.mProperty_mInstruction.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList::GGS_baseline_5F_assembly_5F_instructionList (void) :
-AC_GALGAS_list () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList::GGS_baseline_5F_assembly_5F_instructionList (const capCollectionElementArray & inSharedArray) :
-AC_GALGAS_list (inSharedArray) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  return GGS_baseline_5F_assembly_5F_instructionList (capCollectionElementArray ()) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
-  return GGS_baseline_5F_assembly_5F_instructionList (capCollectionElementArray ()) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::enterElement (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inValue,
-                                                                Compiler * /* inCompiler */
-                                                                COMMA_LOCATION_ARGS) {
-  cCollectionElement * p = nullptr ;
-  macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inValue COMMA_THERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  appendObject (attributes) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::class_func_listWithValue (const GGS_baseline_5F_assembly_5F_instruction & inOperand0
-                                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_assembly_5F_instructionList result ;
-  if (inOperand0.isValid ()) {
-    result = GGS_baseline_5F_assembly_5F_instructionList (capCollectionElementArray ()) ;
-    capCollectionElement attributes ;
-    GGS_baseline_5F_assembly_5F_instructionList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
-    result.appendObject (attributes) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                                             const GGS_baseline_5F_assembly_5F_instruction & in_mInstruction
-                                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (in_mInstruction COMMA_THERE)) ;
-  outAttributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::addAssign_operation (const GGS_baseline_5F_assembly_5F_instruction & inOperand0
-                                                                       COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inOperand0 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::setter_append (const GGS_baseline_5F_assembly_5F_instruction inOperand0,
-                                                                 Compiler * /* inCompiler */
-                                                                 COMMA_LOCATION_ARGS) {
-  if (isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inOperand0 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    appendObject (attributes) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::setter_insertAtIndex (const GGS_baseline_5F_assembly_5F_instruction inOperand0,
-                                                                        const GGS_uint inInsertionIndex,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  if (isValid () && inInsertionIndex.isValid ()) {
-    cCollectionElement * p = nullptr ;
-    macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inOperand0 COMMA_THERE)) ;
-    capCollectionElement attributes ;
-    attributes.setPointer (p) ;
-    macroDetachSharedObject (p) ;
-    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::setter_removeAtIndex (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
-                                                                        const GGS_uint inRemoveIndex,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) {
-  outOperand0.drop () ;
-  if (isValid () && inRemoveIndex.isValid ()) {
-    capCollectionElement attributes ;
-    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
-    cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
-    if (nullptr == p) {
-      drop () ;
-    }else{
-      macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
-      outOperand0 = p->mObject.mProperty_mInstruction ;
-    }
-  }else{
-    drop () ;    
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::setter_popFirst (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
-    outOperand0 = p->mObject.mProperty_mInstruction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::setter_popLast (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) {
-  capCollectionElement attributes ;
-  removeLastObject (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
-    outOperand0 = p->mObject.mProperty_mInstruction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::method_first (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readFirst (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
-    outOperand0 = p->mObject.mProperty_mInstruction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::method_last (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes ;
-  readLast (attributes, inCompiler COMMA_THERE) ;
-  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
-  if (nullptr == p) {
-    outOperand0.drop () ;
-  }else{
-    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
-    outOperand0 = p->mObject.mProperty_mInstruction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::add_operation (const GGS_baseline_5F_assembly_5F_instructionList & inOperand,
-                                                                                                        Compiler * /* inCompiler */
-                                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
-  GGS_baseline_5F_assembly_5F_instructionList result ;
-  if (isValid () && inOperand.isValid ()) {
-    result = *this ;
-    result.appendList (inOperand) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::getter_subListWithRange (const GGS_range & inRange,
-                                                                                                                  Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) const {
-  GGS_baseline_5F_assembly_5F_instructionList result = GGS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (THERE) ;
-  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::getter_subListFromIndex (const GGS_uint & inIndex,
-                                                                                                                  Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) const {
-  GGS_baseline_5F_assembly_5F_instructionList result = GGS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (THERE) ;
-  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::getter_subListToIndex (const GGS_uint & inIndex,
-                                                                                                                Compiler * inCompiler
-                                                                                                                COMMA_LOCATION_ARGS) const {
-  GGS_baseline_5F_assembly_5F_instructionList result = GGS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (THERE) ;
-  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::plusAssign_operation (const GGS_baseline_5F_assembly_5F_instructionList inOperand,
-                                                                        Compiler * /* inCompiler */
-                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  appendList (inOperand) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_instructionList::setter_setMInstructionAtIndex (GGS_baseline_5F_assembly_5F_instruction inOperand,
-                                                                                 GGS_uint inIndex,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) {
-  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
-    macroUniqueSharedObject (p) ;
-    p->mObject.mProperty_mInstruction = inOperand ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instruction GGS_baseline_5F_assembly_5F_instructionList::getter_mInstructionAtIndex (const GGS_uint & inIndex,
-                                                                                                                 Compiler * inCompiler
-                                                                                                                 COMMA_LOCATION_ARGS) const {
-  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
-  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
-  GGS_baseline_5F_assembly_5F_instruction result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
-    result = p->mObject.mProperty_mInstruction ;
-  }
-  return result ;
-}
-
-
-
-//--------------------------------------------------------------------------------------------------
-
-cEnumerator_baseline_5F_assembly_5F_instructionList::cEnumerator_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instructionList & inEnumeratedObject,
-                                                                                                          const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList_2E_element cEnumerator_baseline_5F_assembly_5F_instructionList::current (LOCATION_ARGS) const {
-  const cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (const cCollectionElement_baseline_5F_assembly_5F_instructionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
-  return p->mObject ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instruction cEnumerator_baseline_5F_assembly_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
-  const cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (const cCollectionElement_baseline_5F_assembly_5F_instructionList *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
-  return p->mObject.mProperty_mInstruction ;
-}
-
-
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @baseline_assembly_instructionList generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList ("baseline_assembly_instructionList",
-                                                                                               nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_baseline_5F_assembly_5F_instructionList::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_baseline_5F_assembly_5F_instructionList::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_baseline_5F_assembly_5F_instructionList (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::extractObject (const GGS_object & inObject,
-                                                                                                        Compiler * inCompiler
-                                                                                                        COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_assembly_5F_instructionList result ;
-  const GGS_baseline_5F_assembly_5F_instructionList * p = (const GGS_baseline_5F_assembly_5F_instructionList *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_baseline_5F_assembly_5F_instructionList *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("baseline_assembly_instructionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-// @baseline_5F_assembly_5F_pseudo_5F_ORG reference class
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    const size_t myObjectPtr = size_t (mObjectPtr) ;
-    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (void) :
-GGS_baseline_5F_assembly_5F_instruction () {
-}
-
-//--- Synthetized initializer ----------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::
-init_21_ (const GGS_uint & in_mOrigin,
-          Compiler * inCompiler
-          COMMA_LOCATION_ARGS) {
-  cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * object = nullptr ;
-  macroMyNew (object, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (inCompiler COMMA_THERE)) ;
-  object->baseline_5F_assembly_5F_pseudo_5F_ORG_init_21_ (in_mOrigin, inCompiler) ;
-  const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result (object) ;
-  macroDetachSharedObject (object) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::
-baseline_5F_assembly_5F_pseudo_5F_ORG_init_21_ (const GGS_uint & in_mOrigin,
-                                                Compiler * /* inCompiler */) {
-  mProperty_mOrigin = in_mOrigin ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * inSourcePtr) :
-GGS_baseline_5F_assembly_5F_instruction (inSourcePtr) {
-  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::class_func_new (const GGS_uint & in_mOrigin,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (in_mOrigin,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::readProperty_mOrigin (void) const {
-  if (nullptr == mObjectPtr) {
-    return GGS_uint () ;
-  }else{
-    cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
-    return p->mProperty_mOrigin ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::setProperty_mOrigin (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
-    p->mProperty_mOrigin = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-//Pointer class for @baseline_assembly_pseudo_ORG class
-//--------------------------------------------------------------------------------------------------
-
-cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_assembly_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mOrigin () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (const GGS_uint & in_mOrigin,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) :
-cPtr_baseline_5F_assembly_5F_instruction (inCompiler COMMA_THERE),
-mProperty_mOrigin () {
-  mProperty_mOrigin = in_mOrigin ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::classDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG ;
-}
-
-void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::description (String & ioString,
-                                                              const int32_t inIndentation) const {
-  ioString.appendCString ("[@baseline_assembly_pseudo_ORG:") ;
-  mProperty_mOrigin.description (ioString, inIndentation+1) ;
-  ioString.appendCString ("]") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
-  macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (mProperty_mOrigin, inCompiler COMMA_THERE)) ;
-  return ptr ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-#ifndef DO_NOT_GENERATE_CHECKINGS
-  void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::printNonNullClassInstanceProperties (void) const {
-    cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties () ;
-    mProperty_mOrigin.printNonNullClassInstanceProperties ("mOrigin") ;
-  }
-#endif
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @baseline_assembly_pseudo_ORG generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG ("baseline_assembly_pseudo_ORG",
-                                                                                             & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::extractObject (const GGS_object & inObject,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
-  const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("baseline_assembly_pseudo_ORG", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (void) :
-GGS_baseline_5F_assembly_5F_instruction_2E_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak & GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::operator = (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) :
-GGS_baseline_5F_assembly_5F_instruction_2E_weak (inSource) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::class_func_nil (LOCATION_ARGS) {
-  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::bang_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
-      result = GGS_baseline_5F_assembly_5F_pseudo_5F_ORG ((cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @baseline_assembly_pseudo_ORG.weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak ("baseline_assembly_pseudo_ORG.weak",
-                                                                                                     & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_2E_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::extractObject (const GGS_object & inObject,
-                                                                                                                    Compiler * inCompiler
-                                                                                                                    COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak result ;
-  const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak * p = (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("baseline_assembly_pseudo_ORG.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

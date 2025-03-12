@@ -83,9 +83,45 @@ class cParser_pic_31__38__5F_start_5F_symbol {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
+// Phase 1: @ramBankTable map enumerator
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_ramBankTable final : public cGenericAbstractEnumerator {
+  public: DownEnumerator_ramBankTable (const class GGS_ramBankTable & inEnumeratedObject) ;
+
+//    public: bool hasCurrentObject (void) const ;
+//    public: void gotoNextObject (void) ;
+//    public: void rewind (void) ;
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mFirstAddress (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mFirstFreeAddress (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mLastAddressPlusOne (LOCATION_ARGS) const ;
+  public: class GGS_uintlist current_mMirrorOffsetList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_ramBankTable_2E_element current (LOCATION_ARGS) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_ramBankTable final : public cGenericAbstractEnumerator {
+  public: UpEnumerator_ramBankTable (const class GGS_ramBankTable & inEnumeratedObject) ;
+
+//    public: bool hasCurrentObject (void) const ;
+//    public: void gotoNextObject (void) ;
+//    public: void rewind (void) ;
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mFirstAddress (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mFirstFreeAddress (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mLastAddressPlusOne (LOCATION_ARGS) const ;
+  public: class GGS_uintlist current_mMirrorOffsetList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_ramBankTable_2E_element current (LOCATION_ARGS) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
 // Phase 1: @ramBankTable map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_ramBankTable ;
@@ -219,26 +255,9 @@ class GGS_ramBankTable : public AC_GALGAS_map {
                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Friend
-  friend class cEnumerator_ramBankTable ;
+  friend class UpEnumerator_ramBankTable ;
+  friend class DownEnumerator_ramBankTable ;
  
-} ; // End of GGS_ramBankTable class
-
-//--------------------------------------------------------------------------------------------------
-//   Enumerator declaration                                                                      
-//--------------------------------------------------------------------------------------------------
-
-class cEnumerator_ramBankTable : public cGenericAbstractEnumerator {
-  public: cEnumerator_ramBankTable (const GGS_ramBankTable & inEnumeratedObject,
-                                    const EnumerationOrder inOrder) ;
-
-//--- Current element access
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_uint current_mFirstAddress (LOCATION_ARGS) const ;
-  public: class GGS_uint current_mFirstFreeAddress (LOCATION_ARGS) const ;
-  public: class GGS_uint current_mLastAddressPlusOne (LOCATION_ARGS) const ;
-  public: class GGS_uintlist current_mMirrorOffsetList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_ramBankTable_2E_element current (LOCATION_ARGS) const ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -293,9 +312,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const class GGS_pic_31__38_AST cons
                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @pic_31__38_AST struct
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_pic_31__38_AST : public AC_GALGAS_root {
@@ -461,9 +478,6 @@ class GGS_pic_31__38_AST : public AC_GALGAS_root {
     mProperty_mEndOfProgram = inValue ;
   }
 
-//--------------------------------- Virtual destructor
-  public: virtual ~ GGS_pic_31__38_AST (void) ;
-
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
@@ -485,6 +499,12 @@ class GGS_pic_31__38_AST : public AC_GALGAS_root {
                               const GGS_bool & in_mNeedsComputedGoto_32_,
                               const GGS_bool & in_mNeedsComputedGoto_34_,
                               const GGS_location & in_mEndOfProgram) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_pic_31__38_AST (const GGS_pic_31__38_AST & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_pic_31__38_AST & operator = (const GGS_pic_31__38_AST & inSource) ;
 
 //-- Start of type generic part
 
@@ -554,8 +574,7 @@ class GGS_pic_31__38_AST : public AC_GALGAS_root {
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
-} ; // End of GGS_pic_31__38_AST class
-
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -641,17 +660,52 @@ class GGS_processorType : public AC_GALGAS_root {
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
-} ; // End of GGS_processorType class
-
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_processorType ;
 
 //--------------------------------------------------------------------------------------------------
-//
+// Phase 1: @configRegisterMap map enumerator
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_configRegisterMap final : public cGenericAbstractEnumerator {
+  public: DownEnumerator_configRegisterMap (const class GGS_configRegisterMap & inEnumeratedObject) ;
+
+//    public: bool hasCurrentObject (void) const ;
+//    public: void gotoNextObject (void) ;
+//    public: void rewind (void) ;
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mRegisterAddress (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mRegisterWidth (LOCATION_ARGS) const ;
+  public: class GGS_configRegisterMaskMap current_mConfigRegisterMaskMap (LOCATION_ARGS) const ;
+  public: class GGS_illegalMaskList current_mIllegalMaskList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_configRegisterMap_2E_element current (LOCATION_ARGS) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_configRegisterMap final : public cGenericAbstractEnumerator {
+  public: UpEnumerator_configRegisterMap (const class GGS_configRegisterMap & inEnumeratedObject) ;
+
+//    public: bool hasCurrentObject (void) const ;
+//    public: void gotoNextObject (void) ;
+//    public: void rewind (void) ;
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mRegisterAddress (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mRegisterWidth (LOCATION_ARGS) const ;
+  public: class GGS_configRegisterMaskMap current_mConfigRegisterMaskMap (LOCATION_ARGS) const ;
+  public: class GGS_illegalMaskList current_mIllegalMaskList (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_configRegisterMap_2E_element current (LOCATION_ARGS) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
 // Phase 1: @configRegisterMap map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_configRegisterMap ;
@@ -785,26 +839,9 @@ class GGS_configRegisterMap : public AC_GALGAS_map {
                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Friend
-  friend class cEnumerator_configRegisterMap ;
+  friend class UpEnumerator_configRegisterMap ;
+  friend class DownEnumerator_configRegisterMap ;
  
-} ; // End of GGS_configRegisterMap class
-
-//--------------------------------------------------------------------------------------------------
-//   Enumerator declaration                                                                      
-//--------------------------------------------------------------------------------------------------
-
-class cEnumerator_configRegisterMap : public cGenericAbstractEnumerator {
-  public: cEnumerator_configRegisterMap (const GGS_configRegisterMap & inEnumeratedObject,
-                                         const EnumerationOrder inOrder) ;
-
-//--- Current element access
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_luint current_mRegisterAddress (LOCATION_ARGS) const ;
-  public: class GGS_luint current_mRegisterWidth (LOCATION_ARGS) const ;
-  public: class GGS_configRegisterMaskMap current_mConfigRegisterMaskMap (LOCATION_ARGS) const ;
-  public: class GGS_illegalMaskList current_mIllegalMaskList (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_configRegisterMap_2E_element current (LOCATION_ARGS) const ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
@@ -812,9 +849,7 @@ class cEnumerator_configRegisterMap : public cGenericAbstractEnumerator {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configRegisterMap ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @piccoloDeviceModel struct
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_piccoloDeviceModel : public AC_GALGAS_root {
@@ -917,9 +952,6 @@ class GGS_piccoloDeviceModel : public AC_GALGAS_root {
     mProperty_mSharedBankName = inValue ;
   }
 
-//--------------------------------- Virtual destructor
-  public: virtual ~ GGS_piccoloDeviceModel (void) ;
-
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
@@ -934,6 +966,12 @@ class GGS_piccoloDeviceModel : public AC_GALGAS_root {
                                   const GGS_uint & in_mEepromAddress,
                                   const GGS_configRegisterMap & in_mConfigRegisterMap,
                                   const GGS_string & in_mSharedBankName) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_piccoloDeviceModel (const GGS_piccoloDeviceModel & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_piccoloDeviceModel & operator = (const GGS_piccoloDeviceModel & inSource) ;
 
 //-- Start of type generic part
 
@@ -989,8 +1027,7 @@ class GGS_piccoloDeviceModel : public AC_GALGAS_root {
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
-} ; // End of GGS_piccoloDeviceModel class
-
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1361,9 +1398,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const class GGS_midrange_5F_model cons
                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @midrange_5F_model struct
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_midrange_5F_model : public AC_GALGAS_root {
@@ -1484,9 +1519,6 @@ class GGS_midrange_5F_model : public AC_GALGAS_root {
     mProperty_mEndOfProgram = inValue ;
   }
 
-//--------------------------------- Virtual destructor
-  public: virtual ~ GGS_midrange_5F_model (void) ;
-
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
@@ -1503,6 +1535,12 @@ class GGS_midrange_5F_model : public AC_GALGAS_root {
                                  const GGS_bool & in_mNeedsComputedGoto_32_,
                                  const GGS_bool & in_mNeedsComputedGoto_34_,
                                  const GGS_location & in_mEndOfProgram) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_midrange_5F_model (const GGS_midrange_5F_model & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_midrange_5F_model & operator = (const GGS_midrange_5F_model & inSource) ;
 
 //-- Start of type generic part
 
@@ -1562,8 +1600,7 @@ class GGS_midrange_5F_model : public AC_GALGAS_root {
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
-} ; // End of GGS_midrange_5F_model class
-
+} ;
 
 //--------------------------------------------------------------------------------------------------
 
@@ -1938,9 +1975,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const class GGS_baseline_5F_model con
                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_model struct
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_model : public AC_GALGAS_root {
@@ -2034,9 +2069,6 @@ class GGS_baseline_5F_model : public AC_GALGAS_root {
     mProperty_mEndOfProgram = inValue ;
   }
 
-//--------------------------------- Virtual destructor
-  public: virtual ~ GGS_baseline_5F_model (void) ;
-
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
@@ -2050,6 +2082,12 @@ class GGS_baseline_5F_model : public AC_GALGAS_root {
                                  const GGS_baseline_5F_routineDefinitionList & in_mRoutineDefinitionList,
                                  const GGS_lstringlist & in_mUnusedRoutineList,
                                  const GGS_location & in_mEndOfProgram) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_baseline_5F_model (const GGS_baseline_5F_model & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_baseline_5F_model & operator = (const GGS_baseline_5F_model & inSource) ;
 
 //-- Start of type generic part
 
@@ -2103,8 +2141,7 @@ class GGS_baseline_5F_model : public AC_GALGAS_root {
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
-} ; // End of GGS_baseline_5F_model class
-
+} ;
 
 //--------------------------------------------------------------------------------------------------
 

@@ -177,9 +177,7 @@ acPtr_class * cPtr_pic_31__38_SimpleConstantCaseItem::duplicate (Compiler * inCo
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18SimpleConstantCaseItem generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SimpleConstantCaseItem ("pic18SimpleConstantCaseItem",
@@ -288,9 +286,7 @@ GGS_pic_31__38_SimpleConstantCaseItem GGS_pic_31__38_SimpleConstantCaseItem_2E_w
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18SimpleConstantCaseItem.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SimpleConstantCaseItem_2E_weak ("pic18SimpleConstantCaseItem.weak",
@@ -532,9 +528,7 @@ acPtr_class * cPtr_pic_31__38_IntervalCaseItem::duplicate (Compiler * inCompiler
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18IntervalCaseItem generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IntervalCaseItem ("pic18IntervalCaseItem",
@@ -643,9 +637,7 @@ GGS_pic_31__38_IntervalCaseItem GGS_pic_31__38_IntervalCaseItem_2E_weak::bang_pi
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18IntervalCaseItem.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IntervalCaseItem_2E_weak ("pic18IntervalCaseItem.weak",
@@ -1024,16 +1016,17 @@ GGS_pic_31__38_AbstractCaseItem GGS_pic_31__38_CaseExpressionList::getter_mCaseI
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @pic_31__38_CaseExpressionList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_pic_31__38_CaseExpressionList::cEnumerator_pic_31__38_CaseExpressionList (const GGS_pic_31__38_CaseExpressionList & inEnumeratedObject,
-                                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_pic_31__38_CaseExpressionList::DownEnumerator_pic_31__38_CaseExpressionList (const GGS_pic_31__38_CaseExpressionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_CaseExpressionList_2E_element cEnumerator_pic_31__38_CaseExpressionList::current (LOCATION_ARGS) const {
+GGS_pic_31__38_CaseExpressionList_2E_element DownEnumerator_pic_31__38_CaseExpressionList::current (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_CaseExpressionList * p = (const cCollectionElement_pic_31__38_CaseExpressionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_CaseExpressionList) ;
   return p->mObject ;
@@ -1042,7 +1035,35 @@ GGS_pic_31__38_CaseExpressionList_2E_element cEnumerator_pic_31__38_CaseExpressi
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_AbstractCaseItem cEnumerator_pic_31__38_CaseExpressionList::current_mCaseItem (LOCATION_ARGS) const {
+GGS_pic_31__38_AbstractCaseItem DownEnumerator_pic_31__38_CaseExpressionList::current_mCaseItem (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_CaseExpressionList * p = (const cCollectionElement_pic_31__38_CaseExpressionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_CaseExpressionList) ;
+  return p->mObject.mProperty_mCaseItem ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @pic_31__38_CaseExpressionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_pic_31__38_CaseExpressionList::UpEnumerator_pic_31__38_CaseExpressionList (const GGS_pic_31__38_CaseExpressionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_CaseExpressionList_2E_element UpEnumerator_pic_31__38_CaseExpressionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_CaseExpressionList * p = (const cCollectionElement_pic_31__38_CaseExpressionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_CaseExpressionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_AbstractCaseItem UpEnumerator_pic_31__38_CaseExpressionList::current_mCaseItem (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_CaseExpressionList * p = (const cCollectionElement_pic_31__38_CaseExpressionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_CaseExpressionList) ;
   return p->mObject.mProperty_mCaseItem ;
@@ -1052,9 +1073,7 @@ GGS_pic_31__38_AbstractCaseItem cEnumerator_pic_31__38_CaseExpressionList::curre
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18CaseExpressionList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList ("pic18CaseExpressionList",
@@ -1545,16 +1564,17 @@ GGS_pic_31__38_InstructionList GGS_pic_31__38_SwitchInstructionCaseList::getter_
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @pic_31__38_SwitchInstructionCaseList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_pic_31__38_SwitchInstructionCaseList::cEnumerator_pic_31__38_SwitchInstructionCaseList (const GGS_pic_31__38_SwitchInstructionCaseList & inEnumeratedObject,
-                                                                                                    const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_pic_31__38_SwitchInstructionCaseList::DownEnumerator_pic_31__38_SwitchInstructionCaseList (const GGS_pic_31__38_SwitchInstructionCaseList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_SwitchInstructionCaseList_2E_element cEnumerator_pic_31__38_SwitchInstructionCaseList::current (LOCATION_ARGS) const {
+GGS_pic_31__38_SwitchInstructionCaseList_2E_element DownEnumerator_pic_31__38_SwitchInstructionCaseList::current (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (const cCollectionElement_pic_31__38_SwitchInstructionCaseList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
   return p->mObject ;
@@ -1563,7 +1583,7 @@ GGS_pic_31__38_SwitchInstructionCaseList_2E_element cEnumerator_pic_31__38_Switc
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_location cEnumerator_pic_31__38_SwitchInstructionCaseList::current_mStartOfCase (LOCATION_ARGS) const {
+GGS_location DownEnumerator_pic_31__38_SwitchInstructionCaseList::current_mStartOfCase (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (const cCollectionElement_pic_31__38_SwitchInstructionCaseList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
   return p->mObject.mProperty_mStartOfCase ;
@@ -1571,7 +1591,7 @@ GGS_location cEnumerator_pic_31__38_SwitchInstructionCaseList::current_mStartOfC
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_CaseExpressionList cEnumerator_pic_31__38_SwitchInstructionCaseList::current_mCaseExpressionList (LOCATION_ARGS) const {
+GGS_pic_31__38_CaseExpressionList DownEnumerator_pic_31__38_SwitchInstructionCaseList::current_mCaseExpressionList (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (const cCollectionElement_pic_31__38_SwitchInstructionCaseList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
   return p->mObject.mProperty_mCaseExpressionList ;
@@ -1579,7 +1599,51 @@ GGS_pic_31__38_CaseExpressionList cEnumerator_pic_31__38_SwitchInstructionCaseLi
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_SwitchInstructionCaseList::current_mInstructionList (LOCATION_ARGS) const {
+GGS_pic_31__38_InstructionList DownEnumerator_pic_31__38_SwitchInstructionCaseList::current_mInstructionList (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (const cCollectionElement_pic_31__38_SwitchInstructionCaseList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
+  return p->mObject.mProperty_mInstructionList ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @pic_31__38_SwitchInstructionCaseList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_pic_31__38_SwitchInstructionCaseList::UpEnumerator_pic_31__38_SwitchInstructionCaseList (const GGS_pic_31__38_SwitchInstructionCaseList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_SwitchInstructionCaseList_2E_element UpEnumerator_pic_31__38_SwitchInstructionCaseList::current (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (const cCollectionElement_pic_31__38_SwitchInstructionCaseList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location UpEnumerator_pic_31__38_SwitchInstructionCaseList::current_mStartOfCase (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (const cCollectionElement_pic_31__38_SwitchInstructionCaseList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
+  return p->mObject.mProperty_mStartOfCase ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_CaseExpressionList UpEnumerator_pic_31__38_SwitchInstructionCaseList::current_mCaseExpressionList (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (const cCollectionElement_pic_31__38_SwitchInstructionCaseList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
+  return p->mObject.mProperty_mCaseExpressionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_InstructionList UpEnumerator_pic_31__38_SwitchInstructionCaseList::current_mInstructionList (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_SwitchInstructionCaseList * p = (const cCollectionElement_pic_31__38_SwitchInstructionCaseList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList) ;
   return p->mObject.mProperty_mInstructionList ;
@@ -1589,9 +1653,7 @@ GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_SwitchInstructionCaseList:
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18SwitchInstructionCaseList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList ("pic18SwitchInstructionCaseList",
@@ -1841,9 +1903,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_switch::duplicate (Compiler * inCom
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_switch generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_switch ("pic18Instruction_switch",
@@ -1952,9 +2012,7 @@ GGS_pic_31__38_Instruction_5F_switch GGS_pic_31__38_Instruction_5F_switch_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_switch.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_switch_2E_weak ("pic18Instruction_switch.weak",
@@ -2135,7 +2193,7 @@ GGS_caseConstantMap GGS_caseConstantMap::add_operation (const GGS_caseConstantMa
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) const {
   GGS_caseConstantMap result = *this ;
-  cEnumerator_caseConstantMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_caseConstantMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -2169,16 +2227,17 @@ cMapElement_caseConstantMap * GGS_caseConstantMap::readWriteAccessForWithInstruc
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @caseConstantMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_caseConstantMap::cEnumerator_caseConstantMap (const GGS_caseConstantMap & inEnumeratedObject,
-                                                          const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_caseConstantMap::DownEnumerator_caseConstantMap (const GGS_caseConstantMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_caseConstantMap_2E_element cEnumerator_caseConstantMap::current (LOCATION_ARGS) const {
+GGS_caseConstantMap_2E_element DownEnumerator_caseConstantMap::current (LOCATION_ARGS) const {
   const cMapElement_caseConstantMap * p = (const cMapElement_caseConstantMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_caseConstantMap) ;
   return GGS_caseConstantMap_2E_element (p->mProperty_lkey) ;
@@ -2186,16 +2245,40 @@ GGS_caseConstantMap_2E_element cEnumerator_caseConstantMap::current (LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_caseConstantMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_caseConstantMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @caseConstantMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_caseConstantMap::UpEnumerator_caseConstantMap (const GGS_caseConstantMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_caseConstantMap_2E_element UpEnumerator_caseConstantMap::current (LOCATION_ARGS) const {
+  const cMapElement_caseConstantMap * p = (const cMapElement_caseConstantMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_caseConstantMap) ;
+  return GGS_caseConstantMap_2E_element (p->mProperty_lkey) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_caseConstantMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @caseConstantMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_caseConstantMap ("caseConstantMap",
@@ -2420,7 +2503,7 @@ GGS_pic_31__38__5F_dataMap GGS_pic_31__38__5F_dataMap::add_operation (const GGS_
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const {
   GGS_pic_31__38__5F_dataMap result = *this ;
-  cEnumerator_pic_31__38__5F_dataMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38__5F_dataMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mData (HERE), enumerator.current_mIsData_38_ (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -2539,16 +2622,17 @@ cMapElement_pic_31__38__5F_dataMap * GGS_pic_31__38__5F_dataMap::readWriteAccess
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @pic_31__38__5F_dataMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_pic_31__38__5F_dataMap::cEnumerator_pic_31__38__5F_dataMap (const GGS_pic_31__38__5F_dataMap & inEnumeratedObject,
-                                                                        const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_pic_31__38__5F_dataMap::DownEnumerator_pic_31__38__5F_dataMap (const GGS_pic_31__38__5F_dataMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38__5F_dataMap_2E_element cEnumerator_pic_31__38__5F_dataMap::current (LOCATION_ARGS) const {
+GGS_pic_31__38__5F_dataMap_2E_element DownEnumerator_pic_31__38__5F_dataMap::current (LOCATION_ARGS) const {
   const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
   return GGS_pic_31__38__5F_dataMap_2E_element (p->mProperty_lkey, p->mProperty_mData, p->mProperty_mIsData_38_) ;
@@ -2556,7 +2640,7 @@ GGS_pic_31__38__5F_dataMap_2E_element cEnumerator_pic_31__38__5F_dataMap::curren
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_pic_31__38__5F_dataMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_pic_31__38__5F_dataMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
@@ -2564,7 +2648,7 @@ GGS_lstring cEnumerator_pic_31__38__5F_dataMap::current_lkey (LOCATION_ARGS) con
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uintlist cEnumerator_pic_31__38__5F_dataMap::current_mData (LOCATION_ARGS) const {
+GGS_uintlist DownEnumerator_pic_31__38__5F_dataMap::current_mData (LOCATION_ARGS) const {
   const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
   return p->mProperty_mData ;
@@ -2572,16 +2656,56 @@ GGS_uintlist cEnumerator_pic_31__38__5F_dataMap::current_mData (LOCATION_ARGS) c
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_pic_31__38__5F_dataMap::current_mIsData_38_ (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_pic_31__38__5F_dataMap::current_mIsData_38_ (LOCATION_ARGS) const {
   const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
   return p->mProperty_mIsData_38_ ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @pic_31__38__5F_dataMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_pic_31__38__5F_dataMap::UpEnumerator_pic_31__38__5F_dataMap (const GGS_pic_31__38__5F_dataMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataMap_2E_element UpEnumerator_pic_31__38__5F_dataMap::current (LOCATION_ARGS) const {
+  const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
+  return GGS_pic_31__38__5F_dataMap_2E_element (p->mProperty_lkey, p->mProperty_mData, p->mProperty_mIsData_38_) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_pic_31__38__5F_dataMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uintlist UpEnumerator_pic_31__38__5F_dataMap::current_mData (LOCATION_ARGS) const {
+  const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
+  return p->mProperty_mData ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_pic_31__38__5F_dataMap::current_mIsData_38_ (LOCATION_ARGS) const {
+  const cMapElement_pic_31__38__5F_dataMap * p = (const cMapElement_pic_31__38__5F_dataMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_pic_31__38__5F_dataMap) ;
+  return p->mProperty_mIsData_38_ ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @pic18_dataMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataMap ("pic18_dataMap",
@@ -2704,9 +2828,7 @@ mProperty_mInstructionLocation () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18SequentialInstruction generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction ("ipic18SequentialInstruction",
@@ -2815,9 +2937,7 @@ GGS_ipic_31__38_SequentialInstruction GGS_ipic_31__38_SequentialInstruction_2E_w
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18SequentialInstruction.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2E_weak ("ipic18SequentialInstruction.weak",
@@ -3308,16 +3428,17 @@ GGS_uint GGS_ipic_31__38_SequentialInstructionList::getter_mMaxAtIndex (const GG
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @ipic_31__38_SequentialInstructionList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_ipic_31__38_SequentialInstructionList::cEnumerator_ipic_31__38_SequentialInstructionList (const GGS_ipic_31__38_SequentialInstructionList & inEnumeratedObject,
-                                                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_ipic_31__38_SequentialInstructionList::DownEnumerator_ipic_31__38_SequentialInstructionList (const GGS_ipic_31__38_SequentialInstructionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38_SequentialInstructionList_2E_element cEnumerator_ipic_31__38_SequentialInstructionList::current (LOCATION_ARGS) const {
+GGS_ipic_31__38_SequentialInstructionList_2E_element DownEnumerator_ipic_31__38_SequentialInstructionList::current (LOCATION_ARGS) const {
   const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
   return p->mObject ;
@@ -3326,7 +3447,7 @@ GGS_ipic_31__38_SequentialInstructionList_2E_element cEnumerator_ipic_31__38_Seq
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38_SequentialInstruction cEnumerator_ipic_31__38_SequentialInstructionList::current_mInstruction (LOCATION_ARGS) const {
+GGS_ipic_31__38_SequentialInstruction DownEnumerator_ipic_31__38_SequentialInstructionList::current_mInstruction (LOCATION_ARGS) const {
   const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
   return p->mObject.mProperty_mInstruction ;
@@ -3334,7 +3455,7 @@ GGS_ipic_31__38_SequentialInstruction cEnumerator_ipic_31__38_SequentialInstruct
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint cEnumerator_ipic_31__38_SequentialInstructionList::current_mMin (LOCATION_ARGS) const {
+GGS_uint DownEnumerator_ipic_31__38_SequentialInstructionList::current_mMin (LOCATION_ARGS) const {
   const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
   return p->mObject.mProperty_mMin ;
@@ -3342,7 +3463,51 @@ GGS_uint cEnumerator_ipic_31__38_SequentialInstructionList::current_mMin (LOCATI
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_uint cEnumerator_ipic_31__38_SequentialInstructionList::current_mMax (LOCATION_ARGS) const {
+GGS_uint DownEnumerator_ipic_31__38_SequentialInstructionList::current_mMax (LOCATION_ARGS) const {
+  const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+  return p->mObject.mProperty_mMax ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @ipic_31__38_SequentialInstructionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_ipic_31__38_SequentialInstructionList::UpEnumerator_ipic_31__38_SequentialInstructionList (const GGS_ipic_31__38_SequentialInstructionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_SequentialInstructionList_2E_element UpEnumerator_ipic_31__38_SequentialInstructionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_SequentialInstruction UpEnumerator_ipic_31__38_SequentialInstructionList::current_mInstruction (LOCATION_ARGS) const {
+  const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+  return p->mObject.mProperty_mInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_ipic_31__38_SequentialInstructionList::current_mMin (LOCATION_ARGS) const {
+  const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
+  return p->mObject.mProperty_mMin ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_ipic_31__38_SequentialInstructionList::current_mMax (LOCATION_ARGS) const {
   const cCollectionElement_ipic_31__38_SequentialInstructionList * p = (const cCollectionElement_ipic_31__38_SequentialInstructionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ipic_31__38_SequentialInstructionList) ;
   return p->mObject.mProperty_mMax ;
@@ -3352,9 +3517,7 @@ GGS_uint cEnumerator_ipic_31__38_SequentialInstructionList::current_mMax (LOCATI
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18SequentialInstructionList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList ("ipic18SequentialInstructionList",
@@ -3477,9 +3640,7 @@ mProperty_mInstructionLocation () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18AbstractBlockTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator ("ipic18AbstractBlockTerminator",
@@ -3588,9 +3749,7 @@ GGS_ipic_31__38_AbstractBlockTerminator GGS_ipic_31__38_AbstractBlockTerminator_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18AbstractBlockTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2E_weak ("ipic18AbstractBlockTerminator.weak",
@@ -3969,16 +4128,17 @@ GGS_ipic_31__38_Block GGS_ipic_31__38_BlockList::getter_mBlockAtIndex (const GGS
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @ipic_31__38_BlockList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_ipic_31__38_BlockList::cEnumerator_ipic_31__38_BlockList (const GGS_ipic_31__38_BlockList & inEnumeratedObject,
-                                                                      const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_ipic_31__38_BlockList::DownEnumerator_ipic_31__38_BlockList (const GGS_ipic_31__38_BlockList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38_BlockList_2E_element cEnumerator_ipic_31__38_BlockList::current (LOCATION_ARGS) const {
+GGS_ipic_31__38_BlockList_2E_element DownEnumerator_ipic_31__38_BlockList::current (LOCATION_ARGS) const {
   const cCollectionElement_ipic_31__38_BlockList * p = (const cCollectionElement_ipic_31__38_BlockList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ipic_31__38_BlockList) ;
   return p->mObject ;
@@ -3987,7 +4147,35 @@ GGS_ipic_31__38_BlockList_2E_element cEnumerator_ipic_31__38_BlockList::current 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38_Block cEnumerator_ipic_31__38_BlockList::current_mBlock (LOCATION_ARGS) const {
+GGS_ipic_31__38_Block DownEnumerator_ipic_31__38_BlockList::current_mBlock (LOCATION_ARGS) const {
+  const cCollectionElement_ipic_31__38_BlockList * p = (const cCollectionElement_ipic_31__38_BlockList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ipic_31__38_BlockList) ;
+  return p->mObject.mProperty_mBlock ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @ipic_31__38_BlockList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_ipic_31__38_BlockList::UpEnumerator_ipic_31__38_BlockList (const GGS_ipic_31__38_BlockList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_BlockList_2E_element UpEnumerator_ipic_31__38_BlockList::current (LOCATION_ARGS) const {
+  const cCollectionElement_ipic_31__38_BlockList * p = (const cCollectionElement_ipic_31__38_BlockList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_ipic_31__38_BlockList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_Block UpEnumerator_ipic_31__38_BlockList::current_mBlock (LOCATION_ARGS) const {
   const cCollectionElement_ipic_31__38_BlockList * p = (const cCollectionElement_ipic_31__38_BlockList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_ipic_31__38_BlockList) ;
   return p->mObject.mProperty_mBlock ;
@@ -3997,9 +4185,7 @@ GGS_ipic_31__38_Block cEnumerator_ipic_31__38_BlockList::current_mBlock (LOCATIO
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18BlockList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_BlockList ("ipic18BlockList",
@@ -4097,9 +4283,7 @@ cPtr_ipic_31__38_AbstractBlockTerminator (in_mInstructionLocation, inCompiler CO
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18SingleInstructionTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator ("ipic18SingleInstructionTerminator",
@@ -4208,9 +4392,7 @@ GGS_ipic_31__38_SingleInstructionTerminator GGS_ipic_31__38_SingleInstructionTer
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18SingleInstructionTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2E_weak ("ipic18SingleInstructionTerminator.weak",
@@ -4361,9 +4543,7 @@ acPtr_class * cPtr_ipic_31__38_ReturnTerminator::duplicate (Compiler * inCompile
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18ReturnTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ReturnTerminator ("ipic18ReturnTerminator",
@@ -4472,9 +4652,7 @@ GGS_ipic_31__38_ReturnTerminator GGS_ipic_31__38_ReturnTerminator_2E_weak::bang_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18ReturnTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ReturnTerminator_2E_weak ("ipic18ReturnTerminator.weak",
@@ -4658,9 +4836,7 @@ acPtr_class * cPtr_ipic_31__38_RetlwTerminator::duplicate (Compiler * inCompiler
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18RetlwTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetlwTerminator ("ipic18RetlwTerminator",
@@ -4769,9 +4945,7 @@ GGS_ipic_31__38_RetlwTerminator GGS_ipic_31__38_RetlwTerminator_2E_weak::bang_ip
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18RetlwTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetlwTerminator_2E_weak ("ipic18RetlwTerminator.weak",
@@ -4955,9 +5129,7 @@ acPtr_class * cPtr_ipic_31__38_RetfieTerminator::duplicate (Compiler * inCompile
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18RetfieTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetfieTerminator ("ipic18RetfieTerminator",
@@ -5066,9 +5238,7 @@ GGS_ipic_31__38_RetfieTerminator GGS_ipic_31__38_RetfieTerminator_2E_weak::bang_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18RetfieTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RetfieTerminator_2E_weak ("ipic18RetfieTerminator.weak",
@@ -5177,9 +5347,7 @@ GGS_ipic_31__38_JumpTerminator GGS_ipic_31__38_JumpTerminator_2E_weak::bang_ipic
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18JumpTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_JumpTerminator_2E_weak ("ipic18JumpTerminator.weak",
@@ -5396,9 +5564,7 @@ acPtr_class * cPtr_ipic_31__38_ComputedGotoTerminator::duplicate (Compiler * inC
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18ComputedGotoTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator ("ipic18ComputedGotoTerminator",
@@ -5507,9 +5673,7 @@ GGS_ipic_31__38_ComputedGotoTerminator GGS_ipic_31__38_ComputedGotoTerminator_2E
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18ComputedGotoTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator_2E_weak ("ipic18ComputedGotoTerminator.weak",
@@ -5726,9 +5890,7 @@ acPtr_class * cPtr_ipic_31__38_ComputedRETLWTerminator::duplicate (Compiler * in
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18ComputedRETLWTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator ("ipic18ComputedRETLWTerminator",
@@ -5837,9 +5999,7 @@ GGS_ipic_31__38_ComputedRETLWTerminator GGS_ipic_31__38_ComputedRETLWTerminator_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18ComputedRETLWTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator_2E_weak ("ipic18ComputedRETLWTerminator.weak",
@@ -5970,9 +6130,7 @@ ComparisonResult GGS_conditionalBranchMode::objectCompare (const GGS_conditional
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @conditionalBranchMode generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_conditionalBranchMode ("conditionalBranchMode",
@@ -6081,9 +6239,7 @@ GGS_ipic_31__38_ConditionalJumpTerminator GGS_ipic_31__38_ConditionalJumpTermina
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18ConditionalJumpTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator_2E_weak ("ipic18ConditionalJumpTerminator.weak",
@@ -6300,9 +6456,7 @@ acPtr_class * cPtr_ipic_31__38_ComputedBraTerminator::duplicate (Compiler * inCo
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18ComputedBraTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator ("ipic18ComputedBraTerminator",
@@ -6411,9 +6565,7 @@ GGS_ipic_31__38_ComputedBraTerminator GGS_ipic_31__38_ComputedBraTerminator_2E_w
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18ComputedBraTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator_2E_weak ("ipic18ComputedBraTerminator.weak",
@@ -6544,9 +6696,7 @@ ComparisonResult GGS_ipic_31__38_RegisterComparison::objectCompare (const GGS_ip
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18RegisterComparison generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_RegisterComparison ("ipic18RegisterComparison",
@@ -6698,9 +6848,7 @@ mProperty_mSingleInstructionTerminatorIfConditionFalse () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18AbstractConditionTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator ("ipic18AbstractConditionTerminator",
@@ -6809,9 +6957,7 @@ GGS_ipic_31__38_AbstractConditionTerminator GGS_ipic_31__38_AbstractConditionTer
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18AbstractConditionTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2E_weak ("ipic18AbstractConditionTerminator.weak",
@@ -6860,7 +7006,19 @@ mProperty_mNeedsBSR () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_registerExpression::~ GGS_ipic_31__38__5F_intermediate_5F_registerExpression (void) {
+GGS_ipic_31__38__5F_intermediate_5F_registerExpression::GGS_ipic_31__38__5F_intermediate_5F_registerExpression (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inSource) :
+mProperty_mAssemblyString (inSource.mProperty_mAssemblyString),
+mProperty_mRegisterAddress (inSource.mProperty_mRegisterAddress),
+mProperty_mNeedsBSR (inSource.mProperty_mNeedsBSR) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_intermediate_5F_registerExpression & GGS_ipic_31__38__5F_intermediate_5F_registerExpression::operator = (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inSource) {
+  mProperty_mAssemblyString = inSource.mProperty_mAssemblyString ;
+  mProperty_mRegisterAddress = inSource.mProperty_mRegisterAddress ;
+  mProperty_mNeedsBSR = inSource.mProperty_mNeedsBSR ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -6940,9 +7098,7 @@ void GGS_ipic_31__38__5F_intermediate_5F_registerExpression::description (String
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_registerExpression generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression ("ipic18_intermediate_registerExpression",
@@ -7051,9 +7207,7 @@ GGS_pic_31__38_RegisterComparisonTerminator GGS_pic_31__38_RegisterComparisonTer
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18RegisterComparisonTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonTerminator_2E_weak ("pic18RegisterComparisonTerminator.weak",
@@ -7319,9 +7473,7 @@ acPtr_class * cPtr_ipic_31__38_IncDecRegisterTerminator::duplicate (Compiler * i
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18IncDecRegisterTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator ("ipic18IncDecRegisterTerminator",
@@ -7430,9 +7582,7 @@ GGS_ipic_31__38_IncDecRegisterTerminator GGS_ipic_31__38_IncDecRegisterTerminato
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18IncDecRegisterTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator_2E_weak ("ipic18IncDecRegisterTerminator.weak",
@@ -7632,9 +7782,7 @@ acPtr_class * cPtr_pic_31__38_TestRegisterTerminator::duplicate (Compiler * inCo
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18TestRegisterTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_TestRegisterTerminator ("pic18TestRegisterTerminator",
@@ -7743,9 +7891,7 @@ GGS_pic_31__38_TestRegisterTerminator GGS_pic_31__38_TestRegisterTerminator_2E_w
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18TestRegisterTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_TestRegisterTerminator_2E_weak ("pic18TestRegisterTerminator.weak",
@@ -7978,9 +8124,7 @@ acPtr_class * cPtr_pic_31__38_BitTestTerminator::duplicate (Compiler * inCompile
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18BitTestTerminator generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestTerminator ("pic18BitTestTerminator",
@@ -8089,9 +8233,7 @@ GGS_pic_31__38_BitTestTerminator GGS_pic_31__38_BitTestTerminator_2E_weak::bang_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18BitTestTerminator.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestTerminator_2E_weak ("pic18BitTestTerminator.weak",
@@ -8275,9 +8417,7 @@ acPtr_class * cPtr_ipic_31__38_InstructionWithNoOperand::duplicate (Compiler * i
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18InstructionWithNoOperand generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand ("ipic18InstructionWithNoOperand",
@@ -8386,9 +8526,7 @@ GGS_ipic_31__38_InstructionWithNoOperand GGS_ipic_31__38_InstructionWithNoOperan
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18InstructionWithNoOperand.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand_2E_weak ("ipic18InstructionWithNoOperand.weak",
@@ -8428,9 +8566,7 @@ GGS_ipic_31__38_InstructionWithNoOperand_2E_weak GGS_ipic_31__38_InstructionWith
 }
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@ipic18_intermediate_registerExpression isEqualToRegister'
-//
+//  Extension Getter '@ipic18_intermediate_registerExpression isEqualToRegister'
 //--------------------------------------------------------------------------------------------------
 
 GGS_bool extensionGetter_isEqualToRegister (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inObject,
@@ -8674,9 +8810,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::duplicate
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_FDA generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA ("ipic18_intermediate_instruction_FDA",
@@ -8785,9 +8919,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA GGS_ipic_31__38__5F_inter
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_FDA.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak ("ipic18_intermediate_instruction_FDA.weak",
@@ -8937,9 +9069,7 @@ void GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::description (String & 
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @FA_sequential_instruction_base_code generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code ("FA_sequential_instruction_base_code",
@@ -9156,9 +9286,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::duplicate 
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_FA generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA ("ipic18_intermediate_instruction_FA",
@@ -9267,9 +9395,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA GGS_ipic_31__38__5F_interm
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_FA.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak ("ipic18_intermediate_instruction_FA.weak",
@@ -9317,7 +9443,17 @@ mProperty_mRegisterAddress () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::~ GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (void) {
+GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inSource) :
+mProperty_mAssemblyString (inSource.mProperty_mAssemblyString),
+mProperty_mRegisterAddress (inSource.mProperty_mRegisterAddress) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::operator = (const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inSource) {
+  mProperty_mAssemblyString = inSource.mProperty_mAssemblyString ;
+  mProperty_mRegisterAddress = inSource.mProperty_mRegisterAddress ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -9388,9 +9524,7 @@ void GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_registerExpressionWithoutBSRIndication generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication ("ipic18_intermediate_registerExpressionWithoutBSRIndication",
@@ -9607,9 +9741,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::duplica
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_MOVFF generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF ("ipic18_intermediate_instruction_MOVFF",
@@ -9718,9 +9850,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF GGS_ipic_31__38__5F_int
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_MOVFF.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak ("ipic18_intermediate_instruction_MOVFF.weak",
@@ -9937,9 +10067,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperati
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_literalOperation generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation ("ipic18_intermediate_instruction_literalOperation",
@@ -10048,9 +10176,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation GGS_ipic_31_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_literalOperation.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak ("ipic18_intermediate_instruction_literalOperation.weak",
@@ -10267,9 +10393,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::duplicat
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_LFSR generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR ("ipic18_intermediate_instruction_LFSR",
@@ -10378,9 +10502,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR GGS_ipic_31__38__5F_inte
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_LFSR.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak ("ipic18_intermediate_instruction_LFSR.weak",
@@ -10630,9 +10752,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::duplicate
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_FBA generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA ("ipic18_intermediate_instruction_FBA",
@@ -10741,9 +10861,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA GGS_ipic_31__38__5F_inter
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_FBA.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak ("ipic18_intermediate_instruction_FBA.weak",
@@ -10852,9 +10970,7 @@ GGS_ipic_31__38__5F_intermediate_5F_JSR GGS_ipic_31__38__5F_intermediate_5F_JSR_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_JSR.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak ("ipic18_intermediate_JSR.weak",
@@ -11038,9 +11154,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::duplica
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_MOVLB generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB ("ipic18_intermediate_instruction_MOVLB",
@@ -11149,9 +11263,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB GGS_ipic_31__38__5F_int
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_MOVLB.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak ("ipic18_intermediate_instruction_MOVLB.weak",
@@ -11335,9 +11447,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::duplicat
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_FNOP generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP ("ipic18_intermediate_instruction_FNOP",
@@ -11446,9 +11556,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP GGS_ipic_31__38__5F_inte
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_FNOP.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak ("ipic18_intermediate_instruction_FNOP.weak",
@@ -11632,9 +11740,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::duplica
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_BLANK generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK ("ipic18_intermediate_instruction_BLANK",
@@ -11743,9 +11849,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK GGS_ipic_31__38__5F_int
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_BLANK.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak ("ipic18_intermediate_instruction_BLANK.weak",
@@ -11929,9 +12033,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::duplica
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_TBLRD generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD ("ipic18_intermediate_instruction_TBLRD",
@@ -12040,9 +12142,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD GGS_ipic_31__38__5F_int
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_TBLRD.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak ("ipic18_intermediate_instruction_TBLRD.weak",
@@ -12226,9 +12326,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::duplica
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_TBLWT generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT ("ipic18_intermediate_instruction_TBLWT",
@@ -12337,9 +12435,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT GGS_ipic_31__38__5F_int
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_TBLWT.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak ("ipic18_intermediate_instruction_TBLWT.weak",
@@ -12523,9 +12619,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::duplicat
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_MNOP generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP ("ipic18_intermediate_instruction_MNOP",
@@ -12634,9 +12728,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP GGS_ipic_31__38__5F_inte
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_MNOP.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak ("ipic18_intermediate_instruction_MNOP.weak",
@@ -12820,9 +12912,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::duplic
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_NOPBRA generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA ("ipic18_intermediate_instruction_NOPBRA",
@@ -12931,9 +13021,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA GGS_ipic_31__38__5F_in
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_NOPBRA.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak ("ipic18_intermediate_instruction_NOPBRA.weak",
@@ -13042,9 +13130,7 @@ GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W GGS_ipic_31__38__5F_interm
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_MOV_LABEL_W.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak ("ipic18_intermediate_MOV_LABEL_W.weak",
@@ -13261,9 +13347,7 @@ acPtr_class * cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rc
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_computed_rcall generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall ("ipic18_intermediate_instruction_computed_rcall",
@@ -13372,9 +13456,7 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall GGS_ipic_31
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_intermediate_instruction_computed_rcall.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak ("ipic18_intermediate_instruction_computed_rcall.weak",
@@ -13499,9 +13581,7 @@ mProperty_mEmbeddedInstruction () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_condition_skip_instruction generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction ("ipic18_condition_skip_instruction",
@@ -13610,9 +13690,7 @@ GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction GGS_ipic_31__38__5F_conditi
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_condition_skip_instruction.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak ("ipic18_condition_skip_instruction.weak",
@@ -13870,9 +13948,7 @@ acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::duplicate
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_skip_instruction_BitTestSkip generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ("ipic18_skip_instruction_BitTestSkip",
@@ -13981,9 +14057,7 @@ GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip GGS_ipic_31__38__5F_skip_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_skip_instruction_BitTestSkip.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak ("ipic18_skip_instruction_BitTestSkip.weak",
@@ -14116,9 +14190,7 @@ void GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code::des
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_compare_register_instruction_base_code generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ("ipic18_compare_register_instruction_base_code",
@@ -14343,9 +14415,7 @@ acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::d
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @ipic18_skip_instruction_compare_register generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register ("ipic18_skip_instruction_compare_register",
@@ -14379,252 +14449,6 @@ GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GGS_ipic_31__38__
       result = *p ;
     }else{
       inCompiler->castError ("ipic18_skip_instruction_compare_register", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-ComparisonResult GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak & inOperand) const {
-  ComparisonResult result = ComparisonResult::invalid ;
-  if (isValid () && inOperand.isValid ()) {
-    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
-    const size_t myObjectPtr = size_t (myPtr) ;
-    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
-    const size_t operandObjectPtr = size_t (operandPtr) ;
-    if (myObjectPtr < operandObjectPtr) {
-      result = ComparisonResult::firstOperandLowerThanSecond ;
-    }else if (myObjectPtr > operandObjectPtr) {
-      result = ComparisonResult::firstOperandGreaterThanSecond ;
-    }else{
-      result = ComparisonResult::operandEqual ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak (void) :
-GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak & GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::operator = (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inSource) {
-  cPtr_weakReference_proxy * proxyPtr = nullptr ;
-  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
-  if (p != nullptr) {
-    proxyPtr = p->getProxy () ;
-  }
-  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
-  return *this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inSource) :
-GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak (inSource) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::class_func_nil (LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak result ;
-  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::bang_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register result ;
-  if (mProxyPtr != nullptr) {
-    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
-    if (strongPtr == nullptr) {
-      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
-    }else{
-      macroValidSharedObject (strongPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-      result = GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register ((cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) strongPtr) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @ipic18_skip_instruction_compare_register.weak generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak ("ipic18_skip_instruction_compare_register.weak",
-                                                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::extractObject (const GGS_object & inObject,
-                                                                                                                                                              Compiler * inCompiler
-                                                                                                                                                              COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak result ;
-  const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak * p = (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("ipic18_skip_instruction_compare_register.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//  Enum skip_instruction_FDA_base_code
-//--------------------------------------------------------------------------------------------------
-
-GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code (void) :
-mEnum (Enumeration::invalid) {
-}
-
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_DECFSZ (UNUSED_LOCATION_ARGS) {
-  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  result.mEnum = Enumeration::enum_DECFSZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_DCFSNZ (UNUSED_LOCATION_ARGS) {
-  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  result.mEnum = Enumeration::enum_DCFSNZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_INCFSZ (UNUSED_LOCATION_ARGS) {
-  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  result.mEnum = Enumeration::enum_INCFSZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_INFSNZ (UNUSED_LOCATION_ARGS) {
-  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  result.mEnum = Enumeration::enum_INFSNZ ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-//--------------------------------------------------------------------------------------------------
-
-static const char * gEnumNameArrayFor_skip_5F_instruction_5F_FDA_5F_base_5F_code [5] = {
-  "(not built)",
-  "DECFSZ",
-  "DCFSNZ",
-  "INCFSZ",
-  "INFSNZ"
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isDECFSZ (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_DECFSZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isDCFSNZ (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_DCFSNZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isINCFSZ (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_INCFSZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isINFSNZ (UNUSED_LOCATION_ARGS) const {
-  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_INFSNZ == mEnum) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::description (String & ioString,
-                                                                  const int32_t /* inIndentation */) const {
-  ioString.appendCString ("<enum @skip_instruction_FDA_base_code: ") ;
-  ioString.appendCString (gEnumNameArrayFor_skip_5F_instruction_5F_FDA_5F_base_5F_code [size_t (mEnum)]) ;
-  ioString.appendCString (">") ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//
-//     @skip_instruction_FDA_base_code generic code implementation
-//
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code ("skip_instruction_FDA_base_code",
-                                                                                                  nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::extractObject (const GGS_object & inObject,
-                                                                                                              Compiler * inCompiler
-                                                                                                              COMMA_LOCATION_ARGS) {
-  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
-  const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code * p = (const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("skip_instruction_FDA_base_code", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

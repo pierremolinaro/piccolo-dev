@@ -5593,13 +5593,13 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GGS_declaration
             inCompiler->emitSemanticError (var_bitCount_2788.readProperty_location (), GGS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 102)) ;
           }
         }
-        cEnumerator_range enumerator_2941 (GGS_range (GGS_uint (uint32_t (0U)), var_bitCount_2788.readProperty_uint ().substract_operation (GGS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104))), EnumerationOrder::up) ;
+        UpEnumerator_range enumerator_2941 (GGS_range (GGS_uint (uint32_t (0U)), var_bitCount_2788.readProperty_uint ().substract_operation (GGS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104)))) ;
         while (enumerator_2941.hasCurrentObject ()) {
           var_bitDefinitionString_1200.plusAssign_operation(GGS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 105)) ;
-          if (enumerator_2941.hasNextObject ()) {
+          enumerator_2941.gotoNextObject () ;
+          if (enumerator_2941.hasCurrentObject ()) {
             var_bitDefinitionString_1200.plusAssign_operation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 106)) ;
           }
-          enumerator_2941.gotoNextObject () ;
         }
         var_sliceIndex_1316 = var_sliceIndex_1316.substract_operation (var_bitCount_2788.readProperty_uint ().getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)) ;
       } break ;

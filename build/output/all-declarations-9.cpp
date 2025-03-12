@@ -8,6 +8,1023 @@
 #include "all-declarations-9.h"
 
 //--------------------------------------------------------------------------------------------------
+// @pic_31__38_Instruction_5F_repetitionStatique reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_pic_31__38_Instruction_5F_repetitionStatique::objectCompare (const GGS_pic_31__38_Instruction_5F_repetitionStatique & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_repetitionStatique::GGS_pic_31__38_Instruction_5F_repetitionStatique (void) :
+GGS_pic_31__38_PiccoloInstruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_repetitionStatique GGS_pic_31__38_Instruction_5F_repetitionStatique::
+init_21__21__21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                              const GGS_lstring & in_mConstantName,
+                              const GGS_immediatExpression & in_mLowerBoundExpression,
+                              const GGS_immediatExpression & in_mUpperBoundExpression,
+                              const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                              const GGS_location & in_mEndOfInstruction,
+                              Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) {
+  cPtr_pic_31__38_Instruction_5F_repetitionStatique * object = nullptr ;
+  macroMyNew (object, cPtr_pic_31__38_Instruction_5F_repetitionStatique (inCompiler COMMA_THERE)) ;
+  object->pic_31__38_Instruction_5F_repetitionStatique_init_21__21__21__21__21__21_ (in_mInstructionLocation, in_mConstantName, in_mLowerBoundExpression, in_mUpperBoundExpression, in_mInstructionList, in_mEndOfInstruction, inCompiler) ;
+  const GGS_pic_31__38_Instruction_5F_repetitionStatique result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_pic_31__38_Instruction_5F_repetitionStatique::
+pic_31__38_Instruction_5F_repetitionStatique_init_21__21__21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                                                                           const GGS_lstring & in_mConstantName,
+                                                                           const GGS_immediatExpression & in_mLowerBoundExpression,
+                                                                           const GGS_immediatExpression & in_mUpperBoundExpression,
+                                                                           const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                           const GGS_location & in_mEndOfInstruction,
+                                                                           Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mConstantName = in_mConstantName ;
+  mProperty_mLowerBoundExpression = in_mLowerBoundExpression ;
+  mProperty_mUpperBoundExpression = in_mUpperBoundExpression ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mEndOfInstruction = in_mEndOfInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_repetitionStatique::GGS_pic_31__38_Instruction_5F_repetitionStatique (const cPtr_pic_31__38_Instruction_5F_repetitionStatique * inSourcePtr) :
+GGS_pic_31__38_PiccoloInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_repetitionStatique GGS_pic_31__38_Instruction_5F_repetitionStatique::class_func_new (const GGS_location & in_mInstructionLocation,
+                                                                                                                   const GGS_lstring & in_mConstantName,
+                                                                                                                   const GGS_immediatExpression & in_mLowerBoundExpression,
+                                                                                                                   const GGS_immediatExpression & in_mUpperBoundExpression,
+                                                                                                                   const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                   const GGS_location & in_mEndOfInstruction,
+                                                                                                                   Compiler * inCompiler
+                                                                                                                   COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_repetitionStatique result ;
+  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_repetitionStatique (in_mInstructionLocation, in_mConstantName, in_mLowerBoundExpression, in_mUpperBoundExpression, in_mInstructionList, in_mEndOfInstruction,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mConstantName (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    return p->mProperty_mConstantName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_repetitionStatique::setProperty_mConstantName (const GGS_lstring & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    p->mProperty_mConstantName = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_immediatExpression GGS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mLowerBoundExpression (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_immediatExpression () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    return p->mProperty_mLowerBoundExpression ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_repetitionStatique::setProperty_mLowerBoundExpression (const GGS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    p->mProperty_mLowerBoundExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_immediatExpression GGS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mUpperBoundExpression (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_immediatExpression () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    return p->mProperty_mUpperBoundExpression ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_repetitionStatique::setProperty_mUpperBoundExpression (const GGS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    p->mProperty_mUpperBoundExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_InstructionList GGS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mInstructionList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_pic_31__38_InstructionList () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    return p->mProperty_mInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_repetitionStatique::setProperty_mInstructionList (const GGS_pic_31__38_InstructionList & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    p->mProperty_mInstructionList = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location GGS_pic_31__38_Instruction_5F_repetitionStatique::readProperty_mEndOfInstruction (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_location () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    return p->mProperty_mEndOfInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_repetitionStatique::setProperty_mEndOfInstruction (const GGS_location & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_repetitionStatique * p = (cPtr_pic_31__38_Instruction_5F_repetitionStatique *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_repetitionStatique) ;
+    p->mProperty_mEndOfInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @pic18Instruction_repetitionStatique class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_repetitionStatique::cPtr_pic_31__38_Instruction_5F_repetitionStatique (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (inCompiler COMMA_THERE),
+mProperty_mConstantName (),
+mProperty_mLowerBoundExpression (),
+mProperty_mUpperBoundExpression (),
+mProperty_mInstructionList (),
+mProperty_mEndOfInstruction () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_repetitionStatique::cPtr_pic_31__38_Instruction_5F_repetitionStatique (const GGS_location & in_mInstructionLocation,
+                                                                                                      const GGS_lstring & in_mConstantName,
+                                                                                                      const GGS_immediatExpression & in_mLowerBoundExpression,
+                                                                                                      const GGS_immediatExpression & in_mUpperBoundExpression,
+                                                                                                      const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                      const GGS_location & in_mEndOfInstruction,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
+mProperty_mConstantName (),
+mProperty_mLowerBoundExpression (),
+mProperty_mUpperBoundExpression (),
+mProperty_mInstructionList (),
+mProperty_mEndOfInstruction () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mConstantName = in_mConstantName ;
+  mProperty_mLowerBoundExpression = in_mLowerBoundExpression ;
+  mProperty_mUpperBoundExpression = in_mUpperBoundExpression ;
+  mProperty_mInstructionList = in_mInstructionList ;
+  mProperty_mEndOfInstruction = in_mEndOfInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_repetitionStatique::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_repetitionStatique ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_repetitionStatique::description (String & ioString,
+                                                                     const int32_t inIndentation) const {
+  ioString.appendCString ("[@pic18Instruction_repetitionStatique:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mConstantName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mLowerBoundExpression.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mUpperBoundExpression.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mEndOfInstruction.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_repetitionStatique::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_repetitionStatique (mProperty_mInstructionLocation, mProperty_mConstantName, mProperty_mLowerBoundExpression, mProperty_mUpperBoundExpression, mProperty_mInstructionList, mProperty_mEndOfInstruction, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_repetitionStatique::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mConstantName.printNonNullClassInstanceProperties ("mConstantName") ;
+    mProperty_mLowerBoundExpression.printNonNullClassInstanceProperties ("mLowerBoundExpression") ;
+    mProperty_mUpperBoundExpression.printNonNullClassInstanceProperties ("mUpperBoundExpression") ;
+    mProperty_mInstructionList.printNonNullClassInstanceProperties ("mInstructionList") ;
+    mProperty_mEndOfInstruction.printNonNullClassInstanceProperties ("mEndOfInstruction") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_repetitionStatique generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_repetitionStatique ("pic18Instruction_repetitionStatique",
+                                                                                                    & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_repetitionStatique::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_repetitionStatique ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_repetitionStatique::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_repetitionStatique (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_repetitionStatique GGS_pic_31__38_Instruction_5F_repetitionStatique::extractObject (const GGS_object & inObject,
+                                                                                                                  Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_repetitionStatique result ;
+  const GGS_pic_31__38_Instruction_5F_repetitionStatique * p = (const GGS_pic_31__38_Instruction_5F_repetitionStatique *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_repetitionStatique *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_repetitionStatique", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @gotoTerminationForBlockInstruction reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_gotoTerminationForBlockInstruction::objectCompare (const GGS_gotoTerminationForBlockInstruction & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_gotoTerminationForBlockInstruction::GGS_gotoTerminationForBlockInstruction (void) :
+GGS_abstractBlockTerminationForBlockInstruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_gotoTerminationForBlockInstruction GGS_gotoTerminationForBlockInstruction::
+init_21_ (const GGS_lstring & in_mNextBlock,
+          Compiler * inCompiler
+          COMMA_LOCATION_ARGS) {
+  cPtr_gotoTerminationForBlockInstruction * object = nullptr ;
+  macroMyNew (object, cPtr_gotoTerminationForBlockInstruction (inCompiler COMMA_THERE)) ;
+  object->gotoTerminationForBlockInstruction_init_21_ (in_mNextBlock, inCompiler) ;
+  const GGS_gotoTerminationForBlockInstruction result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_gotoTerminationForBlockInstruction::
+gotoTerminationForBlockInstruction_init_21_ (const GGS_lstring & in_mNextBlock,
+                                             Compiler * /* inCompiler */) {
+  mProperty_mNextBlock = in_mNextBlock ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_gotoTerminationForBlockInstruction::GGS_gotoTerminationForBlockInstruction (const cPtr_gotoTerminationForBlockInstruction * inSourcePtr) :
+GGS_abstractBlockTerminationForBlockInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_gotoTerminationForBlockInstruction) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_gotoTerminationForBlockInstruction GGS_gotoTerminationForBlockInstruction::class_func_new (const GGS_lstring & in_mNextBlock,
+                                                                                               Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) {
+  GGS_gotoTerminationForBlockInstruction result ;
+  macroMyNew (result.mObjectPtr, cPtr_gotoTerminationForBlockInstruction (in_mNextBlock,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_gotoTerminationForBlockInstruction::readProperty_mNextBlock (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_gotoTerminationForBlockInstruction * p = (cPtr_gotoTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_gotoTerminationForBlockInstruction) ;
+    return p->mProperty_mNextBlock ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_gotoTerminationForBlockInstruction::setProperty_mNextBlock (const GGS_lstring & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_gotoTerminationForBlockInstruction * p = (cPtr_gotoTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_gotoTerminationForBlockInstruction) ;
+    p->mProperty_mNextBlock = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @gotoTerminationForBlockInstruction class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_gotoTerminationForBlockInstruction::cPtr_gotoTerminationForBlockInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_abstractBlockTerminationForBlockInstruction (inCompiler COMMA_THERE),
+mProperty_mNextBlock () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_gotoTerminationForBlockInstruction::cPtr_gotoTerminationForBlockInstruction (const GGS_lstring & in_mNextBlock,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_abstractBlockTerminationForBlockInstruction (inCompiler COMMA_THERE),
+mProperty_mNextBlock () {
+  mProperty_mNextBlock = in_mNextBlock ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_gotoTerminationForBlockInstruction::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_gotoTerminationForBlockInstruction ;
+}
+
+void cPtr_gotoTerminationForBlockInstruction::description (String & ioString,
+                                                           const int32_t inIndentation) const {
+  ioString.appendCString ("[@gotoTerminationForBlockInstruction:") ;
+  mProperty_mNextBlock.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_gotoTerminationForBlockInstruction::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_gotoTerminationForBlockInstruction (mProperty_mNextBlock, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_gotoTerminationForBlockInstruction::printNonNullClassInstanceProperties (void) const {
+    cPtr_abstractBlockTerminationForBlockInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mNextBlock.printNonNullClassInstanceProperties ("mNextBlock") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @gotoTerminationForBlockInstruction generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_gotoTerminationForBlockInstruction ("gotoTerminationForBlockInstruction",
+                                                                                          & kTypeDescriptor_GALGAS_abstractBlockTerminationForBlockInstruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_gotoTerminationForBlockInstruction::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_gotoTerminationForBlockInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_gotoTerminationForBlockInstruction::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_gotoTerminationForBlockInstruction (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_gotoTerminationForBlockInstruction GGS_gotoTerminationForBlockInstruction::extractObject (const GGS_object & inObject,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_gotoTerminationForBlockInstruction result ;
+  const GGS_gotoTerminationForBlockInstruction * p = (const GGS_gotoTerminationForBlockInstruction *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_gotoTerminationForBlockInstruction *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("gotoTerminationForBlockInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @testTerminationForBlockInstruction reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_testTerminationForBlockInstruction::objectCompare (const GGS_testTerminationForBlockInstruction & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_testTerminationForBlockInstruction::GGS_testTerminationForBlockInstruction (void) :
+GGS_abstractBlockTerminationForBlockInstruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_testTerminationForBlockInstruction GGS_testTerminationForBlockInstruction::
+init_21__21__21__21_ (const GGS_pic_31__38_ConditionExpression & in_mCondition,
+                      const GGS_abstractBlockTerminationForBlockInstruction & in_mTrueTermination,
+                      const GGS_abstractBlockTerminationForBlockInstruction & in_mFalseTermination,
+                      const GGS_location & in_mLocation,
+                      Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) {
+  cPtr_testTerminationForBlockInstruction * object = nullptr ;
+  macroMyNew (object, cPtr_testTerminationForBlockInstruction (inCompiler COMMA_THERE)) ;
+  object->testTerminationForBlockInstruction_init_21__21__21__21_ (in_mCondition, in_mTrueTermination, in_mFalseTermination, in_mLocation, inCompiler) ;
+  const GGS_testTerminationForBlockInstruction result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_testTerminationForBlockInstruction::
+testTerminationForBlockInstruction_init_21__21__21__21_ (const GGS_pic_31__38_ConditionExpression & in_mCondition,
+                                                         const GGS_abstractBlockTerminationForBlockInstruction & in_mTrueTermination,
+                                                         const GGS_abstractBlockTerminationForBlockInstruction & in_mFalseTermination,
+                                                         const GGS_location & in_mLocation,
+                                                         Compiler * /* inCompiler */) {
+  mProperty_mCondition = in_mCondition ;
+  mProperty_mTrueTermination = in_mTrueTermination ;
+  mProperty_mFalseTermination = in_mFalseTermination ;
+  mProperty_mLocation = in_mLocation ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_testTerminationForBlockInstruction::GGS_testTerminationForBlockInstruction (const cPtr_testTerminationForBlockInstruction * inSourcePtr) :
+GGS_abstractBlockTerminationForBlockInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_testTerminationForBlockInstruction) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_testTerminationForBlockInstruction GGS_testTerminationForBlockInstruction::class_func_new (const GGS_pic_31__38_ConditionExpression & in_mCondition,
+                                                                                               const GGS_abstractBlockTerminationForBlockInstruction & in_mTrueTermination,
+                                                                                               const GGS_abstractBlockTerminationForBlockInstruction & in_mFalseTermination,
+                                                                                               const GGS_location & in_mLocation,
+                                                                                               Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) {
+  GGS_testTerminationForBlockInstruction result ;
+  macroMyNew (result.mObjectPtr, cPtr_testTerminationForBlockInstruction (in_mCondition, in_mTrueTermination, in_mFalseTermination, in_mLocation,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_ConditionExpression GGS_testTerminationForBlockInstruction::readProperty_mCondition (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_pic_31__38_ConditionExpression () ;
+  }else{
+    cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
+    return p->mProperty_mCondition ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_testTerminationForBlockInstruction::setProperty_mCondition (const GGS_pic_31__38_ConditionExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
+    p->mProperty_mCondition = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractBlockTerminationForBlockInstruction GGS_testTerminationForBlockInstruction::readProperty_mTrueTermination (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_abstractBlockTerminationForBlockInstruction () ;
+  }else{
+    cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
+    return p->mProperty_mTrueTermination ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_testTerminationForBlockInstruction::setProperty_mTrueTermination (const GGS_abstractBlockTerminationForBlockInstruction & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
+    p->mProperty_mTrueTermination = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_abstractBlockTerminationForBlockInstruction GGS_testTerminationForBlockInstruction::readProperty_mFalseTermination (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_abstractBlockTerminationForBlockInstruction () ;
+  }else{
+    cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
+    return p->mProperty_mFalseTermination ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_testTerminationForBlockInstruction::setProperty_mFalseTermination (const GGS_abstractBlockTerminationForBlockInstruction & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
+    p->mProperty_mFalseTermination = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location GGS_testTerminationForBlockInstruction::readProperty_mLocation (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_location () ;
+  }else{
+    cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
+    return p->mProperty_mLocation ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_testTerminationForBlockInstruction::setProperty_mLocation (const GGS_location & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_testTerminationForBlockInstruction * p = (cPtr_testTerminationForBlockInstruction *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_testTerminationForBlockInstruction) ;
+    p->mProperty_mLocation = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @testTerminationForBlockInstruction class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_testTerminationForBlockInstruction::cPtr_testTerminationForBlockInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_abstractBlockTerminationForBlockInstruction (inCompiler COMMA_THERE),
+mProperty_mCondition (),
+mProperty_mTrueTermination (),
+mProperty_mFalseTermination (),
+mProperty_mLocation () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_testTerminationForBlockInstruction::cPtr_testTerminationForBlockInstruction (const GGS_pic_31__38_ConditionExpression & in_mCondition,
+                                                                                  const GGS_abstractBlockTerminationForBlockInstruction & in_mTrueTermination,
+                                                                                  const GGS_abstractBlockTerminationForBlockInstruction & in_mFalseTermination,
+                                                                                  const GGS_location & in_mLocation,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_abstractBlockTerminationForBlockInstruction (inCompiler COMMA_THERE),
+mProperty_mCondition (),
+mProperty_mTrueTermination (),
+mProperty_mFalseTermination (),
+mProperty_mLocation () {
+  mProperty_mCondition = in_mCondition ;
+  mProperty_mTrueTermination = in_mTrueTermination ;
+  mProperty_mFalseTermination = in_mFalseTermination ;
+  mProperty_mLocation = in_mLocation ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_testTerminationForBlockInstruction::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_testTerminationForBlockInstruction ;
+}
+
+void cPtr_testTerminationForBlockInstruction::description (String & ioString,
+                                                           const int32_t inIndentation) const {
+  ioString.appendCString ("[@testTerminationForBlockInstruction:") ;
+  mProperty_mCondition.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mTrueTermination.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mFalseTermination.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_testTerminationForBlockInstruction::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_testTerminationForBlockInstruction (mProperty_mCondition, mProperty_mTrueTermination, mProperty_mFalseTermination, mProperty_mLocation, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_testTerminationForBlockInstruction::printNonNullClassInstanceProperties (void) const {
+    cPtr_abstractBlockTerminationForBlockInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mCondition.printNonNullClassInstanceProperties ("mCondition") ;
+    mProperty_mTrueTermination.printNonNullClassInstanceProperties ("mTrueTermination") ;
+    mProperty_mFalseTermination.printNonNullClassInstanceProperties ("mFalseTermination") ;
+    mProperty_mLocation.printNonNullClassInstanceProperties ("mLocation") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @testTerminationForBlockInstruction generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_testTerminationForBlockInstruction ("testTerminationForBlockInstruction",
+                                                                                          & kTypeDescriptor_GALGAS_abstractBlockTerminationForBlockInstruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_testTerminationForBlockInstruction::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_testTerminationForBlockInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_testTerminationForBlockInstruction::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_testTerminationForBlockInstruction (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_testTerminationForBlockInstruction GGS_testTerminationForBlockInstruction::extractObject (const GGS_object & inObject,
+                                                                                              Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_testTerminationForBlockInstruction result ;
+  const GGS_testTerminationForBlockInstruction * p = (const GGS_testTerminationForBlockInstruction *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_testTerminationForBlockInstruction *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("testTerminationForBlockInstruction", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @pic_31__38_Instruction_5F_block reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_pic_31__38_Instruction_5F_block::objectCompare (const GGS_pic_31__38_Instruction_5F_block & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_block::GGS_pic_31__38_Instruction_5F_block (void) :
+GGS_pic_31__38_PiccoloInstruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_block GGS_pic_31__38_Instruction_5F_block::
+init_21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                      const GGS_lstring & in_mStartBlockName,
+                      const GGS_pic_31__38_BlockInstructionBlockList & in_mBlockList,
+                      const GGS_location & in_mEndOfBlockInstruction,
+                      Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) {
+  cPtr_pic_31__38_Instruction_5F_block * object = nullptr ;
+  macroMyNew (object, cPtr_pic_31__38_Instruction_5F_block (inCompiler COMMA_THERE)) ;
+  object->pic_31__38_Instruction_5F_block_init_21__21__21__21_ (in_mInstructionLocation, in_mStartBlockName, in_mBlockList, in_mEndOfBlockInstruction, inCompiler) ;
+  const GGS_pic_31__38_Instruction_5F_block result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_pic_31__38_Instruction_5F_block::
+pic_31__38_Instruction_5F_block_init_21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                                                      const GGS_lstring & in_mStartBlockName,
+                                                      const GGS_pic_31__38_BlockInstructionBlockList & in_mBlockList,
+                                                      const GGS_location & in_mEndOfBlockInstruction,
+                                                      Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mStartBlockName = in_mStartBlockName ;
+  mProperty_mBlockList = in_mBlockList ;
+  mProperty_mEndOfBlockInstruction = in_mEndOfBlockInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_block::GGS_pic_31__38_Instruction_5F_block (const cPtr_pic_31__38_Instruction_5F_block * inSourcePtr) :
+GGS_pic_31__38_PiccoloInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_block) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_block GGS_pic_31__38_Instruction_5F_block::class_func_new (const GGS_location & in_mInstructionLocation,
+                                                                                         const GGS_lstring & in_mStartBlockName,
+                                                                                         const GGS_pic_31__38_BlockInstructionBlockList & in_mBlockList,
+                                                                                         const GGS_location & in_mEndOfBlockInstruction,
+                                                                                         Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_block result ;
+  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_block (in_mInstructionLocation, in_mStartBlockName, in_mBlockList, in_mEndOfBlockInstruction,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring GGS_pic_31__38_Instruction_5F_block::readProperty_mStartBlockName (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_lstring () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
+    return p->mProperty_mStartBlockName ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_block::setProperty_mStartBlockName (const GGS_lstring & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
+    p->mProperty_mStartBlockName = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_BlockInstructionBlockList GGS_pic_31__38_Instruction_5F_block::readProperty_mBlockList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_pic_31__38_BlockInstructionBlockList () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
+    return p->mProperty_mBlockList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_block::setProperty_mBlockList (const GGS_pic_31__38_BlockInstructionBlockList & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
+    p->mProperty_mBlockList = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location GGS_pic_31__38_Instruction_5F_block::readProperty_mEndOfBlockInstruction (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_location () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
+    return p->mProperty_mEndOfBlockInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_block::setProperty_mEndOfBlockInstruction (const GGS_location & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_block * p = (cPtr_pic_31__38_Instruction_5F_block *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_block) ;
+    p->mProperty_mEndOfBlockInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @pic18Instruction_block class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_block::cPtr_pic_31__38_Instruction_5F_block (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (inCompiler COMMA_THERE),
+mProperty_mStartBlockName (),
+mProperty_mBlockList (),
+mProperty_mEndOfBlockInstruction () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_block::cPtr_pic_31__38_Instruction_5F_block (const GGS_location & in_mInstructionLocation,
+                                                                            const GGS_lstring & in_mStartBlockName,
+                                                                            const GGS_pic_31__38_BlockInstructionBlockList & in_mBlockList,
+                                                                            const GGS_location & in_mEndOfBlockInstruction,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
+mProperty_mStartBlockName (),
+mProperty_mBlockList (),
+mProperty_mEndOfBlockInstruction () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mStartBlockName = in_mStartBlockName ;
+  mProperty_mBlockList = in_mBlockList ;
+  mProperty_mEndOfBlockInstruction = in_mEndOfBlockInstruction ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_block::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_block ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_block::description (String & ioString,
+                                                        const int32_t inIndentation) const {
+  ioString.appendCString ("[@pic18Instruction_block:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mStartBlockName.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mBlockList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mEndOfBlockInstruction.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_block::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_block (mProperty_mInstructionLocation, mProperty_mStartBlockName, mProperty_mBlockList, mProperty_mEndOfBlockInstruction, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_block::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mStartBlockName.printNonNullClassInstanceProperties ("mStartBlockName") ;
+    mProperty_mBlockList.printNonNullClassInstanceProperties ("mBlockList") ;
+    mProperty_mEndOfBlockInstruction.printNonNullClassInstanceProperties ("mEndOfBlockInstruction") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_block generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_block ("pic18Instruction_block",
+                                                                                       & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_block::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_block ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_block::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_block (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_block GGS_pic_31__38_Instruction_5F_block::extractObject (const GGS_object & inObject,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_block result ;
+  const GGS_pic_31__38_Instruction_5F_block * p = (const GGS_pic_31__38_Instruction_5F_block *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_block *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_block", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
 // @pic_31__38_Instruction_5F_FDA reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -218,9 +1235,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_FDA::duplicate (Compiler * inCompil
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_FDA generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_FDA ("pic18Instruction_FDA",
@@ -437,9 +1452,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_FA::duplicate (Compiler * inCompile
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_FA generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_FA ("pic18Instruction_FA",
@@ -656,9 +1669,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_MOVFF::duplicate (Compiler * inComp
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_MOVFF generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_MOVFF ("pic18Instruction_MOVFF",
@@ -908,9 +1919,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_FBA::duplicate (Compiler * inCompil
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_FBA generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_FBA ("pic18Instruction_FBA",
@@ -1127,9 +2136,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_JSR::duplicate (Compiler * inCompil
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_JSR generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_JSR ("pic18Instruction_JSR",
@@ -1346,9 +2353,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_macro::duplicate (Compiler * inComp
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_macro generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_macro ("pic18Instruction_macro",
@@ -1565,9 +2570,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_JUMP::duplicate (Compiler * inCompi
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_JUMP generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_JUMP ("pic18Instruction_JUMP",
@@ -1817,9 +2820,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_JUMPCC::duplicate (Compiler * inCom
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_JUMPCC generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_JUMPCC ("pic18Instruction_JUMPCC",
@@ -2036,9 +3037,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR::duplicate (Compiler *
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_LDATA8PTR generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR ("pic18Instruction_LDATA8PTR",
@@ -2255,9 +3254,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR::duplicate (Compil
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_LDATA16PTR generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR ("pic18Instruction_LDATA16PTR",
@@ -2482,9 +3479,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON::duplicat
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_IF_FA_SEMI_COLON generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON ("pic18Instruction_IF_FA_SEMI_COLON",
@@ -2742,9 +3737,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest::duplicate (Compiler 
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_IF_BitTest generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest ("pic18Instruction_IF_BitTest",
@@ -3035,9 +4028,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec::duplicate (Compiler *
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_IF_IncDec generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec ("pic18Instruction_IF_IncDec",
@@ -3246,9 +4237,7 @@ acPtr_class * cPtr_pic_31__38_RegisterTestCondition::duplicate (Compiler * inCom
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18RegisterTestCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterTestCondition ("pic18RegisterTestCondition",
@@ -3457,9 +4446,7 @@ acPtr_class * cPtr_pic_31__38_RegisterComparisonCondition::duplicate (Compiler *
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18RegisterComparisonCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonCondition ("pic18RegisterComparisonCondition",
@@ -3734,9 +4721,7 @@ acPtr_class * cPtr_pic_31__38_IncDecRegisterInCondition::duplicate (Compiler * i
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18IncDecRegisterInCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IncDecRegisterInCondition ("pic18IncDecRegisterInCondition",
@@ -3945,9 +4930,7 @@ acPtr_class * cPtr_pic_31__38_BitTestInStructuredCondition::duplicate (Compiler 
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18BitTestInStructuredCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestInStructuredCondition ("pic18BitTestInStructuredCondition",
@@ -4010,7 +4993,47 @@ mProperty_mEndOfProgram () {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_AST::~ GGS_pic_31__38_AST (void) {
+GGS_pic_31__38_AST::GGS_pic_31__38_AST (const GGS_pic_31__38_AST & inSource) :
+mProperty_mProgramName (inSource.mProperty_mProgramName),
+mProperty_mProgramKind (inSource.mProperty_mProgramKind),
+mProperty_mDeviceNameOrBootLoaderReference (inSource.mProperty_mDeviceNameOrBootLoaderReference),
+mProperty_mConfigDefinitionList (inSource.mProperty_mConfigDefinitionList),
+mProperty_mRamDefinitionList (inSource.mProperty_mRamDefinitionList),
+mProperty_mUnusedRegisterList (inSource.mProperty_mUnusedRegisterList),
+mProperty_mCheckpicList (inSource.mProperty_mCheckpicList),
+mProperty_mDataList (inSource.mProperty_mDataList),
+mProperty_mInterruptDefinitionList (inSource.mProperty_mInterruptDefinitionList),
+mProperty_mConstantDefinitionList (inSource.mProperty_mConstantDefinitionList),
+mProperty_mRoutineDefinitionList (inSource.mProperty_mRoutineDefinitionList),
+mProperty_mMacroDefinitionList (inSource.mProperty_mMacroDefinitionList),
+mProperty_mUnusedRoutineList (inSource.mProperty_mUnusedRoutineList),
+mProperty_mInlinedRoutineList (inSource.mProperty_mInlinedRoutineList),
+mProperty_mNeedsComputedGoto_32_ (inSource.mProperty_mNeedsComputedGoto_32_),
+mProperty_mNeedsComputedGoto_34_ (inSource.mProperty_mNeedsComputedGoto_34_),
+mProperty_mEndOfProgram (inSource.mProperty_mEndOfProgram) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_AST & GGS_pic_31__38_AST::operator = (const GGS_pic_31__38_AST & inSource) {
+  mProperty_mProgramName = inSource.mProperty_mProgramName ;
+  mProperty_mProgramKind = inSource.mProperty_mProgramKind ;
+  mProperty_mDeviceNameOrBootLoaderReference = inSource.mProperty_mDeviceNameOrBootLoaderReference ;
+  mProperty_mConfigDefinitionList = inSource.mProperty_mConfigDefinitionList ;
+  mProperty_mRamDefinitionList = inSource.mProperty_mRamDefinitionList ;
+  mProperty_mUnusedRegisterList = inSource.mProperty_mUnusedRegisterList ;
+  mProperty_mCheckpicList = inSource.mProperty_mCheckpicList ;
+  mProperty_mDataList = inSource.mProperty_mDataList ;
+  mProperty_mInterruptDefinitionList = inSource.mProperty_mInterruptDefinitionList ;
+  mProperty_mConstantDefinitionList = inSource.mProperty_mConstantDefinitionList ;
+  mProperty_mRoutineDefinitionList = inSource.mProperty_mRoutineDefinitionList ;
+  mProperty_mMacroDefinitionList = inSource.mProperty_mMacroDefinitionList ;
+  mProperty_mUnusedRoutineList = inSource.mProperty_mUnusedRoutineList ;
+  mProperty_mInlinedRoutineList = inSource.mProperty_mInlinedRoutineList ;
+  mProperty_mNeedsComputedGoto_32_ = inSource.mProperty_mNeedsComputedGoto_32_ ;
+  mProperty_mNeedsComputedGoto_34_ = inSource.mProperty_mNeedsComputedGoto_34_ ;
+  mProperty_mEndOfProgram = inSource.mProperty_mEndOfProgram ;
+  return *this ;
 }
 
 //---Synthetized initializer -----------------------------------------------------------------------
@@ -4216,9 +5239,7 @@ void GGS_pic_31__38_AST::description (String & ioString,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18AST generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_AST ("pic18AST",

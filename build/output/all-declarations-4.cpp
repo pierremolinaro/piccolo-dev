@@ -9,6 +9,1443 @@
 
 //--------------------------------------------------------------------------------------------------
 
+ComparisonResult GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak::objectCompare (const GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak::GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak (void) :
+GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak & GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak::operator = (const GGS_pic_31__38_Instruction_5F_withNoOperand & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak::GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak (const GGS_pic_31__38_Instruction_5F_withNoOperand & inSource) :
+GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_withNoOperand GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak::bang_pic_31__38_Instruction_5F_withNoOperand_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_pic_31__38_Instruction_5F_withNoOperand result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_pic_31__38_Instruction_5F_withNoOperand) ;
+      result = GGS_pic_31__38_Instruction_5F_withNoOperand ((cPtr_pic_31__38_Instruction_5F_withNoOperand *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_withNoOperand.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_withNoOperand_2E_weak ("pic18Instruction_withNoOperand.weak",
+                                                                                                       & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_withNoOperand_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                        Compiler * inCompiler
+                                                                                                                        COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak result ;
+  const GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak * p = (const GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_withNoOperand.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Enum literal_instruction_opcode
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode::GGS_literal_5F_instruction_5F_opcode (void) :
+mEnum (Enumeration::invalid) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode GGS_literal_5F_instruction_5F_opcode::class_func_ADDLW (UNUSED_LOCATION_ARGS) {
+  GGS_literal_5F_instruction_5F_opcode result ;
+  result.mEnum = Enumeration::enum_ADDLW ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode GGS_literal_5F_instruction_5F_opcode::class_func_ANDLW (UNUSED_LOCATION_ARGS) {
+  GGS_literal_5F_instruction_5F_opcode result ;
+  result.mEnum = Enumeration::enum_ANDLW ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode GGS_literal_5F_instruction_5F_opcode::class_func_IORLW (UNUSED_LOCATION_ARGS) {
+  GGS_literal_5F_instruction_5F_opcode result ;
+  result.mEnum = Enumeration::enum_IORLW ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode GGS_literal_5F_instruction_5F_opcode::class_func_MOVLW (UNUSED_LOCATION_ARGS) {
+  GGS_literal_5F_instruction_5F_opcode result ;
+  result.mEnum = Enumeration::enum_MOVLW ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode GGS_literal_5F_instruction_5F_opcode::class_func_MULLW (UNUSED_LOCATION_ARGS) {
+  GGS_literal_5F_instruction_5F_opcode result ;
+  result.mEnum = Enumeration::enum_MULLW ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode GGS_literal_5F_instruction_5F_opcode::class_func_SUBLW (UNUSED_LOCATION_ARGS) {
+  GGS_literal_5F_instruction_5F_opcode result ;
+  result.mEnum = Enumeration::enum_SUBLW ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode GGS_literal_5F_instruction_5F_opcode::class_func_XORLW (UNUSED_LOCATION_ARGS) {
+  GGS_literal_5F_instruction_5F_opcode result ;
+  result.mEnum = Enumeration::enum_XORLW ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+static const char * gEnumNameArrayFor_literal_5F_instruction_5F_opcode [8] = {
+  "(not built)",
+  "ADDLW",
+  "ANDLW",
+  "IORLW",
+  "MOVLW",
+  "MULLW",
+  "SUBLW",
+  "XORLW"
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_literal_5F_instruction_5F_opcode::getter_isADDLW (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_ADDLW == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_literal_5F_instruction_5F_opcode::getter_isANDLW (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_ANDLW == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_literal_5F_instruction_5F_opcode::getter_isIORLW (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_IORLW == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_literal_5F_instruction_5F_opcode::getter_isMOVLW (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_MOVLW == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_literal_5F_instruction_5F_opcode::getter_isMULLW (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_MULLW == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_literal_5F_instruction_5F_opcode::getter_isSUBLW (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_SUBLW == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_literal_5F_instruction_5F_opcode::getter_isXORLW (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_XORLW == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_literal_5F_instruction_5F_opcode::description (String & ioString,
+                                                        const int32_t /* inIndentation */) const {
+  ioString.appendCString ("<enum @literal_instruction_opcode: ") ;
+  ioString.appendCString (gEnumNameArrayFor_literal_5F_instruction_5F_opcode [size_t (mEnum)]) ;
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_literal_5F_instruction_5F_opcode::objectCompare (const GGS_literal_5F_instruction_5F_opcode & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    if (mEnum < inOperand.mEnum) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (mEnum > inOperand.mEnum) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @literal_instruction_opcode generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_literal_5F_instruction_5F_opcode ("literal_instruction_opcode",
+                                                                                        nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_literal_5F_instruction_5F_opcode::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_literal_5F_instruction_5F_opcode ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_literal_5F_instruction_5F_opcode::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_literal_5F_instruction_5F_opcode (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode GGS_literal_5F_instruction_5F_opcode::extractObject (const GGS_object & inObject,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) {
+  GGS_literal_5F_instruction_5F_opcode result ;
+  const GGS_literal_5F_instruction_5F_opcode * p = (const GGS_literal_5F_instruction_5F_opcode *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_literal_5F_instruction_5F_opcode *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("literal_instruction_opcode", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @pic_31__38_Instruction_5F_literalOperation reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_pic_31__38_Instruction_5F_literalOperation::objectCompare (const GGS_pic_31__38_Instruction_5F_literalOperation & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation::GGS_pic_31__38_Instruction_5F_literalOperation (void) :
+GGS_pic_31__38_PiccoloSimpleInstruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation GGS_pic_31__38_Instruction_5F_literalOperation::
+init_21__21__21_ (const GGS_location & in_mInstructionLocation,
+                  const GGS_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
+                  const GGS_immediatExpression & in_mImmediatExpression,
+                  Compiler * inCompiler
+                  COMMA_LOCATION_ARGS) {
+  cPtr_pic_31__38_Instruction_5F_literalOperation * object = nullptr ;
+  macroMyNew (object, cPtr_pic_31__38_Instruction_5F_literalOperation (inCompiler COMMA_THERE)) ;
+  object->pic_31__38_Instruction_5F_literalOperation_init_21__21__21_ (in_mInstructionLocation, in_mLiteralInstruction, in_mImmediatExpression, inCompiler) ;
+  const GGS_pic_31__38_Instruction_5F_literalOperation result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_pic_31__38_Instruction_5F_literalOperation::
+pic_31__38_Instruction_5F_literalOperation_init_21__21__21_ (const GGS_location & in_mInstructionLocation,
+                                                             const GGS_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
+                                                             const GGS_immediatExpression & in_mImmediatExpression,
+                                                             Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mLiteralInstruction = in_mLiteralInstruction ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation::GGS_pic_31__38_Instruction_5F_literalOperation (const cPtr_pic_31__38_Instruction_5F_literalOperation * inSourcePtr) :
+GGS_pic_31__38_PiccoloSimpleInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_literalOperation) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation GGS_pic_31__38_Instruction_5F_literalOperation::class_func_new (const GGS_location & in_mInstructionLocation,
+                                                                                                               const GGS_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
+                                                                                                               const GGS_immediatExpression & in_mImmediatExpression,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_literalOperation result ;
+  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_literalOperation (in_mInstructionLocation, in_mLiteralInstruction, in_mImmediatExpression,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_literal_5F_instruction_5F_opcode GGS_pic_31__38_Instruction_5F_literalOperation::readProperty_mLiteralInstruction (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_literal_5F_instruction_5F_opcode () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_literalOperation * p = (cPtr_pic_31__38_Instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_literalOperation) ;
+    return p->mProperty_mLiteralInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_literalOperation::setProperty_mLiteralInstruction (const GGS_literal_5F_instruction_5F_opcode & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_literalOperation * p = (cPtr_pic_31__38_Instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_literalOperation) ;
+    p->mProperty_mLiteralInstruction = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_immediatExpression GGS_pic_31__38_Instruction_5F_literalOperation::readProperty_mImmediatExpression (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_immediatExpression () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_literalOperation * p = (cPtr_pic_31__38_Instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_literalOperation) ;
+    return p->mProperty_mImmediatExpression ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_literalOperation::setProperty_mImmediatExpression (const GGS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_literalOperation * p = (cPtr_pic_31__38_Instruction_5F_literalOperation *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_literalOperation) ;
+    p->mProperty_mImmediatExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @pic18Instruction_literalOperation class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_literalOperation::cPtr_pic_31__38_Instruction_5F_literalOperation (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloSimpleInstruction (inCompiler COMMA_THERE),
+mProperty_mLiteralInstruction (),
+mProperty_mImmediatExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_literalOperation::cPtr_pic_31__38_Instruction_5F_literalOperation (const GGS_location & in_mInstructionLocation,
+                                                                                                  const GGS_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
+                                                                                                  const GGS_immediatExpression & in_mImmediatExpression,
+                                                                                                  Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloSimpleInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
+mProperty_mLiteralInstruction (),
+mProperty_mImmediatExpression () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mLiteralInstruction = in_mLiteralInstruction ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_literalOperation::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_literalOperation ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_literalOperation::description (String & ioString,
+                                                                   const int32_t inIndentation) const {
+  ioString.appendCString ("[@pic18Instruction_literalOperation:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mLiteralInstruction.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mImmediatExpression.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_literalOperation::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_literalOperation (mProperty_mInstructionLocation, mProperty_mLiteralInstruction, mProperty_mImmediatExpression, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_literalOperation::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mLiteralInstruction.printNonNullClassInstanceProperties ("mLiteralInstruction") ;
+    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_literalOperation generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_literalOperation ("pic18Instruction_literalOperation",
+                                                                                                  & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_literalOperation::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_literalOperation ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_literalOperation::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_literalOperation (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation GGS_pic_31__38_Instruction_5F_literalOperation::extractObject (const GGS_object & inObject,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_literalOperation result ;
+  const GGS_pic_31__38_Instruction_5F_literalOperation * p = (const GGS_pic_31__38_Instruction_5F_literalOperation *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_literalOperation *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_literalOperation", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak::objectCompare (const GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak::GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak (void) :
+GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak & GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak::operator = (const GGS_pic_31__38_Instruction_5F_literalOperation & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak::GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak (const GGS_pic_31__38_Instruction_5F_literalOperation & inSource) :
+GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak::bang_pic_31__38_Instruction_5F_literalOperation_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_pic_31__38_Instruction_5F_literalOperation result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_pic_31__38_Instruction_5F_literalOperation) ;
+      result = GGS_pic_31__38_Instruction_5F_literalOperation ((cPtr_pic_31__38_Instruction_5F_literalOperation *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_literalOperation.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_literalOperation_2E_weak ("pic18Instruction_literalOperation.weak",
+                                                                                                          & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_literalOperation_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                              Compiler * inCompiler
+                                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak result ;
+  const GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak * p = (const GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_literalOperation.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @pic_31__38_Instruction_5F_fnop reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_pic_31__38_Instruction_5F_fnop::objectCompare (const GGS_pic_31__38_Instruction_5F_fnop & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop::GGS_pic_31__38_Instruction_5F_fnop (void) :
+GGS_pic_31__38_PiccoloSimpleInstruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop GGS_pic_31__38_Instruction_5F_fnop::
+init_21__21_ (const GGS_location & in_mInstructionLocation,
+              const GGS_immediatExpression & in_mImmediatExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
+  cPtr_pic_31__38_Instruction_5F_fnop * object = nullptr ;
+  macroMyNew (object, cPtr_pic_31__38_Instruction_5F_fnop (inCompiler COMMA_THERE)) ;
+  object->pic_31__38_Instruction_5F_fnop_init_21__21_ (in_mInstructionLocation, in_mImmediatExpression, inCompiler) ;
+  const GGS_pic_31__38_Instruction_5F_fnop result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_pic_31__38_Instruction_5F_fnop::
+pic_31__38_Instruction_5F_fnop_init_21__21_ (const GGS_location & in_mInstructionLocation,
+                                             const GGS_immediatExpression & in_mImmediatExpression,
+                                             Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop::GGS_pic_31__38_Instruction_5F_fnop (const cPtr_pic_31__38_Instruction_5F_fnop * inSourcePtr) :
+GGS_pic_31__38_PiccoloSimpleInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_fnop) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop GGS_pic_31__38_Instruction_5F_fnop::class_func_new (const GGS_location & in_mInstructionLocation,
+                                                                                       const GGS_immediatExpression & in_mImmediatExpression,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_fnop result ;
+  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_fnop (in_mInstructionLocation, in_mImmediatExpression,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_immediatExpression GGS_pic_31__38_Instruction_5F_fnop::readProperty_mImmediatExpression (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_immediatExpression () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_fnop * p = (cPtr_pic_31__38_Instruction_5F_fnop *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_fnop) ;
+    return p->mProperty_mImmediatExpression ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_fnop::setProperty_mImmediatExpression (const GGS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_fnop * p = (cPtr_pic_31__38_Instruction_5F_fnop *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_fnop) ;
+    p->mProperty_mImmediatExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @pic18Instruction_fnop class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_fnop::cPtr_pic_31__38_Instruction_5F_fnop (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloSimpleInstruction (inCompiler COMMA_THERE),
+mProperty_mImmediatExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_fnop::cPtr_pic_31__38_Instruction_5F_fnop (const GGS_location & in_mInstructionLocation,
+                                                                          const GGS_immediatExpression & in_mImmediatExpression,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloSimpleInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
+mProperty_mImmediatExpression () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_fnop::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_fnop::description (String & ioString,
+                                                       const int32_t inIndentation) const {
+  ioString.appendCString ("[@pic18Instruction_fnop:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mImmediatExpression.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_fnop::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_fnop (mProperty_mInstructionLocation, mProperty_mImmediatExpression, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_fnop::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_fnop generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop ("pic18Instruction_fnop",
+                                                                                      & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_fnop::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_fnop::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_fnop (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop GGS_pic_31__38_Instruction_5F_fnop::extractObject (const GGS_object & inObject,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_fnop result ;
+  const GGS_pic_31__38_Instruction_5F_fnop * p = (const GGS_pic_31__38_Instruction_5F_fnop *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_fnop *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_fnop", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_pic_31__38_Instruction_5F_fnop_2E_weak::objectCompare (const GGS_pic_31__38_Instruction_5F_fnop_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop_2E_weak::GGS_pic_31__38_Instruction_5F_fnop_2E_weak (void) :
+GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop_2E_weak & GGS_pic_31__38_Instruction_5F_fnop_2E_weak::operator = (const GGS_pic_31__38_Instruction_5F_fnop & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop_2E_weak::GGS_pic_31__38_Instruction_5F_fnop_2E_weak (const GGS_pic_31__38_Instruction_5F_fnop & inSource) :
+GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop_2E_weak GGS_pic_31__38_Instruction_5F_fnop_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_fnop_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop GGS_pic_31__38_Instruction_5F_fnop_2E_weak::bang_pic_31__38_Instruction_5F_fnop_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_pic_31__38_Instruction_5F_fnop result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_pic_31__38_Instruction_5F_fnop) ;
+      result = GGS_pic_31__38_Instruction_5F_fnop ((cPtr_pic_31__38_Instruction_5F_fnop *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_fnop.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop_2E_weak ("pic18Instruction_fnop.weak",
+                                                                                              & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_fnop_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_fnop_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_fnop_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_fnop_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_fnop_2E_weak GGS_pic_31__38_Instruction_5F_fnop_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_fnop_2E_weak result ;
+  const GGS_pic_31__38_Instruction_5F_fnop_2E_weak * p = (const GGS_pic_31__38_Instruction_5F_fnop_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_fnop_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_fnop.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @pic_31__38_Instruction_5F_LFSR reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_pic_31__38_Instruction_5F_LFSR::objectCompare (const GGS_pic_31__38_Instruction_5F_LFSR & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR::GGS_pic_31__38_Instruction_5F_LFSR (void) :
+GGS_pic_31__38_PiccoloSimpleInstruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR GGS_pic_31__38_Instruction_5F_LFSR::
+init_21__21__21_ (const GGS_location & in_mInstructionLocation,
+                  const GGS_luint & in_mFSRindex,
+                  const GGS_immediatExpression & in_mImmediatExpression,
+                  Compiler * inCompiler
+                  COMMA_LOCATION_ARGS) {
+  cPtr_pic_31__38_Instruction_5F_LFSR * object = nullptr ;
+  macroMyNew (object, cPtr_pic_31__38_Instruction_5F_LFSR (inCompiler COMMA_THERE)) ;
+  object->pic_31__38_Instruction_5F_LFSR_init_21__21__21_ (in_mInstructionLocation, in_mFSRindex, in_mImmediatExpression, inCompiler) ;
+  const GGS_pic_31__38_Instruction_5F_LFSR result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_pic_31__38_Instruction_5F_LFSR::
+pic_31__38_Instruction_5F_LFSR_init_21__21__21_ (const GGS_location & in_mInstructionLocation,
+                                                 const GGS_luint & in_mFSRindex,
+                                                 const GGS_immediatExpression & in_mImmediatExpression,
+                                                 Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mFSRindex = in_mFSRindex ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR::GGS_pic_31__38_Instruction_5F_LFSR (const cPtr_pic_31__38_Instruction_5F_LFSR * inSourcePtr) :
+GGS_pic_31__38_PiccoloSimpleInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_LFSR) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR GGS_pic_31__38_Instruction_5F_LFSR::class_func_new (const GGS_location & in_mInstructionLocation,
+                                                                                       const GGS_luint & in_mFSRindex,
+                                                                                       const GGS_immediatExpression & in_mImmediatExpression,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_LFSR result ;
+  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_LFSR (in_mInstructionLocation, in_mFSRindex, in_mImmediatExpression,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint GGS_pic_31__38_Instruction_5F_LFSR::readProperty_mFSRindex (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_luint () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
+    return p->mProperty_mFSRindex ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_LFSR::setProperty_mFSRindex (const GGS_luint & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
+    p->mProperty_mFSRindex = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_immediatExpression GGS_pic_31__38_Instruction_5F_LFSR::readProperty_mImmediatExpression (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_immediatExpression () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
+    return p->mProperty_mImmediatExpression ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_LFSR::setProperty_mImmediatExpression (const GGS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_LFSR * p = (cPtr_pic_31__38_Instruction_5F_LFSR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LFSR) ;
+    p->mProperty_mImmediatExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @pic18Instruction_LFSR class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_LFSR::cPtr_pic_31__38_Instruction_5F_LFSR (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloSimpleInstruction (inCompiler COMMA_THERE),
+mProperty_mFSRindex (),
+mProperty_mImmediatExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_LFSR::cPtr_pic_31__38_Instruction_5F_LFSR (const GGS_location & in_mInstructionLocation,
+                                                                          const GGS_luint & in_mFSRindex,
+                                                                          const GGS_immediatExpression & in_mImmediatExpression,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloSimpleInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
+mProperty_mFSRindex (),
+mProperty_mImmediatExpression () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mFSRindex = in_mFSRindex ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_LFSR::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_LFSR::description (String & ioString,
+                                                       const int32_t inIndentation) const {
+  ioString.appendCString ("[@pic18Instruction_LFSR:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mFSRindex.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mImmediatExpression.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_LFSR::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_LFSR (mProperty_mInstructionLocation, mProperty_mFSRindex, mProperty_mImmediatExpression, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_LFSR::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloSimpleInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mFSRindex.printNonNullClassInstanceProperties ("mFSRindex") ;
+    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_LFSR generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ("pic18Instruction_LFSR",
+                                                                                      & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_LFSR::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_LFSR::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_LFSR (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR GGS_pic_31__38_Instruction_5F_LFSR::extractObject (const GGS_object & inObject,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_LFSR result ;
+  const GGS_pic_31__38_Instruction_5F_LFSR * p = (const GGS_pic_31__38_Instruction_5F_LFSR *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_LFSR *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_LFSR", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_pic_31__38_Instruction_5F_LFSR_2E_weak::objectCompare (const GGS_pic_31__38_Instruction_5F_LFSR_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR_2E_weak::GGS_pic_31__38_Instruction_5F_LFSR_2E_weak (void) :
+GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR_2E_weak & GGS_pic_31__38_Instruction_5F_LFSR_2E_weak::operator = (const GGS_pic_31__38_Instruction_5F_LFSR & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR_2E_weak::GGS_pic_31__38_Instruction_5F_LFSR_2E_weak (const GGS_pic_31__38_Instruction_5F_LFSR & inSource) :
+GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR_2E_weak GGS_pic_31__38_Instruction_5F_LFSR_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_LFSR_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR GGS_pic_31__38_Instruction_5F_LFSR_2E_weak::bang_pic_31__38_Instruction_5F_LFSR_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_pic_31__38_Instruction_5F_LFSR result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_pic_31__38_Instruction_5F_LFSR) ;
+      result = GGS_pic_31__38_Instruction_5F_LFSR ((cPtr_pic_31__38_Instruction_5F_LFSR *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_LFSR.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR_2E_weak ("pic18Instruction_LFSR.weak",
+                                                                                              & kTypeDescriptor_GALGAS_pic_31__38_PiccoloSimpleInstruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_LFSR_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LFSR_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_LFSR_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_LFSR_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LFSR_2E_weak GGS_pic_31__38_Instruction_5F_LFSR_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_LFSR_2E_weak result ;
+  const GGS_pic_31__38_Instruction_5F_LFSR_2E_weak * p = (const GGS_pic_31__38_Instruction_5F_LFSR_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_LFSR_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_LFSR.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @pic_31__38_Instruction_5F_LTBLPTR reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_pic_31__38_Instruction_5F_LTBLPTR::objectCompare (const GGS_pic_31__38_Instruction_5F_LTBLPTR & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LTBLPTR::GGS_pic_31__38_Instruction_5F_LTBLPTR (void) :
+GGS_pic_31__38_PiccoloInstruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LTBLPTR GGS_pic_31__38_Instruction_5F_LTBLPTR::
+init_21__21_ (const GGS_location & in_mInstructionLocation,
+              const GGS_immediatExpression & in_mImmediatExpression,
+              Compiler * inCompiler
+              COMMA_LOCATION_ARGS) {
+  cPtr_pic_31__38_Instruction_5F_LTBLPTR * object = nullptr ;
+  macroMyNew (object, cPtr_pic_31__38_Instruction_5F_LTBLPTR (inCompiler COMMA_THERE)) ;
+  object->pic_31__38_Instruction_5F_LTBLPTR_init_21__21_ (in_mInstructionLocation, in_mImmediatExpression, inCompiler) ;
+  const GGS_pic_31__38_Instruction_5F_LTBLPTR result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_pic_31__38_Instruction_5F_LTBLPTR::
+pic_31__38_Instruction_5F_LTBLPTR_init_21__21_ (const GGS_location & in_mInstructionLocation,
+                                                const GGS_immediatExpression & in_mImmediatExpression,
+                                                Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LTBLPTR::GGS_pic_31__38_Instruction_5F_LTBLPTR (const cPtr_pic_31__38_Instruction_5F_LTBLPTR * inSourcePtr) :
+GGS_pic_31__38_PiccoloInstruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_Instruction_5F_LTBLPTR) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LTBLPTR GGS_pic_31__38_Instruction_5F_LTBLPTR::class_func_new (const GGS_location & in_mInstructionLocation,
+                                                                                             const GGS_immediatExpression & in_mImmediatExpression,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_LTBLPTR result ;
+  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_Instruction_5F_LTBLPTR (in_mInstructionLocation, in_mImmediatExpression,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_immediatExpression GGS_pic_31__38_Instruction_5F_LTBLPTR::readProperty_mImmediatExpression (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_immediatExpression () ;
+  }else{
+    cPtr_pic_31__38_Instruction_5F_LTBLPTR * p = (cPtr_pic_31__38_Instruction_5F_LTBLPTR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LTBLPTR) ;
+    return p->mProperty_mImmediatExpression ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_Instruction_5F_LTBLPTR::setProperty_mImmediatExpression (const GGS_immediatExpression & inValue) {
+  if (nullptr != mObjectPtr) {
+    cPtr_pic_31__38_Instruction_5F_LTBLPTR * p = (cPtr_pic_31__38_Instruction_5F_LTBLPTR *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_LTBLPTR) ;
+    p->mProperty_mImmediatExpression = inValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @pic18Instruction_LTBLPTR class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_LTBLPTR::cPtr_pic_31__38_Instruction_5F_LTBLPTR (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (inCompiler COMMA_THERE),
+mProperty_mImmediatExpression () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_pic_31__38_Instruction_5F_LTBLPTR::cPtr_pic_31__38_Instruction_5F_LTBLPTR (const GGS_location & in_mInstructionLocation,
+                                                                                const GGS_immediatExpression & in_mImmediatExpression,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) :
+cPtr_pic_31__38_PiccoloInstruction (in_mInstructionLocation, inCompiler COMMA_THERE),
+mProperty_mImmediatExpression () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mImmediatExpression = in_mImmediatExpression ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_pic_31__38_Instruction_5F_LTBLPTR::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LTBLPTR ;
+}
+
+void cPtr_pic_31__38_Instruction_5F_LTBLPTR::description (String & ioString,
+                                                          const int32_t inIndentation) const {
+  ioString.appendCString ("[@pic18Instruction_LTBLPTR:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mImmediatExpression.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_pic_31__38_Instruction_5F_LTBLPTR::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_pic_31__38_Instruction_5F_LTBLPTR (mProperty_mInstructionLocation, mProperty_mImmediatExpression, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_pic_31__38_Instruction_5F_LTBLPTR::printNonNullClassInstanceProperties (void) const {
+    cPtr_pic_31__38_PiccoloInstruction::printNonNullClassInstanceProperties () ;
+    mProperty_mImmediatExpression.printNonNullClassInstanceProperties ("mImmediatExpression") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18Instruction_LTBLPTR generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LTBLPTR ("pic18Instruction_LTBLPTR",
+                                                                                         & kTypeDescriptor_GALGAS_pic_31__38_PiccoloInstruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_Instruction_5F_LTBLPTR::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LTBLPTR ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_Instruction_5F_LTBLPTR::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_Instruction_5F_LTBLPTR (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_Instruction_5F_LTBLPTR GGS_pic_31__38_Instruction_5F_LTBLPTR::extractObject (const GGS_object & inObject,
+                                                                                            Compiler * inCompiler
+                                                                                            COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_Instruction_5F_LTBLPTR result ;
+  const GGS_pic_31__38_Instruction_5F_LTBLPTR * p = (const GGS_pic_31__38_Instruction_5F_LTBLPTR *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_Instruction_5F_LTBLPTR *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18Instruction_LTBLPTR", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
 ComparisonResult GGS_pic_31__38_Instruction_5F_LTBLPTR_2E_weak::objectCompare (const GGS_pic_31__38_Instruction_5F_LTBLPTR_2E_weak & inOperand) const {
   ComparisonResult result = ComparisonResult::invalid ;
   if (isValid () && inOperand.isValid ()) {
@@ -77,9 +1514,7 @@ GGS_pic_31__38_Instruction_5F_LTBLPTR GGS_pic_31__38_Instruction_5F_LTBLPTR_2E_w
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_LTBLPTR.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LTBLPTR_2E_weak ("pic18Instruction_LTBLPTR.weak",
@@ -188,9 +1623,7 @@ GGS_pic_31__38_Instruction_5F_LDATA_38_PTR GGS_pic_31__38_Instruction_5F_LDATA_3
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_LDATA8PTR.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_38_PTR_2E_weak ("pic18Instruction_LDATA8PTR.weak",
@@ -299,9 +1732,7 @@ GGS_pic_31__38_Instruction_5F_LDATA_31__36_PTR GGS_pic_31__38_Instruction_5F_LDA
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_LDATA16PTR.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2E_weak ("pic18Instruction_LDATA16PTR.weak",
@@ -434,9 +1865,7 @@ void GGS_tableAccessOption::description (String & ioString,
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @tableAccessOption generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_tableAccessOption ("tableAccessOption",
@@ -620,9 +2049,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_TBLRD::duplicate (Compiler * inComp
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_TBLRD generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLRD ("pic18Instruction_TBLRD",
@@ -731,9 +2158,7 @@ GGS_pic_31__38_Instruction_5F_TBLRD GGS_pic_31__38_Instruction_5F_TBLRD_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_TBLRD.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLRD_2E_weak ("pic18Instruction_TBLRD.weak",
@@ -917,9 +2342,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_TBLWT::duplicate (Compiler * inComp
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_TBLWT generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLWT ("pic18Instruction_TBLWT",
@@ -1028,9 +2451,7 @@ GGS_pic_31__38_Instruction_5F_TBLWT GGS_pic_31__38_Instruction_5F_TBLWT_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_TBLWT.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_TBLWT_2E_weak ("pic18Instruction_TBLWT.weak",
@@ -1214,9 +2635,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_MNOP::duplicate (Compiler * inCompi
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_MNOP generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_MNOP ("pic18Instruction_MNOP",
@@ -1325,9 +2744,7 @@ GGS_pic_31__38_Instruction_5F_MNOP GGS_pic_31__38_Instruction_5F_MNOP_2E_weak::b
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_MNOP.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_MNOP_2E_weak ("pic18Instruction_MNOP.weak",
@@ -1511,9 +2928,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_NOPBRA::duplicate (Compiler * inCom
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_NOPBRA generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_NOPBRA ("pic18Instruction_NOPBRA",
@@ -1622,9 +3037,7 @@ GGS_pic_31__38_Instruction_5F_NOPBRA GGS_pic_31__38_Instruction_5F_NOPBRA_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_NOPBRA.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_NOPBRA_2E_weak ("pic18Instruction_NOPBRA.weak",
@@ -1841,9 +3254,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_FOREVER::duplicate (Compiler * inCo
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_FOREVER generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_FOREVER ("pic18Instruction_FOREVER",
@@ -1952,9 +3363,7 @@ GGS_pic_31__38_Instruction_5F_FOREVER GGS_pic_31__38_Instruction_5F_FOREVER_2E_w
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_FOREVER.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_FOREVER_2E_weak ("pic18Instruction_FOREVER.weak",
@@ -2087,9 +3496,7 @@ void GGS_if_5F_semi_5F_colon_5F_op::description (String & ioString,
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @if_semi_colon_op generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_if_5F_semi_5F_colon_5F_op ("if_semi_colon_op",
@@ -2214,9 +3621,7 @@ mProperty_mEmbeddedInstruction () {
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_IF_SEMI_COLON generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON ("pic18Instruction_IF_SEMI_COLON",
@@ -2325,9 +3730,7 @@ GGS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON GGS_pic_31__38_Instruction_5F_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_IF_SEMI_COLON.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak ("pic18Instruction_IF_SEMI_COLON.weak",
@@ -2436,9 +3839,7 @@ GGS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON GGS_pic_31__38_Instructi
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_IF_FA_SEMI_COLON.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2E_weak ("pic18Instruction_IF_FA_SEMI_COLON.weak",
@@ -2547,9 +3948,7 @@ GGS_pic_31__38_Instruction_5F_IF_5F_BitTest GGS_pic_31__38_Instruction_5F_IF_5F_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_IF_BitTest.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_BitTest_2E_weak ("pic18Instruction_IF_BitTest.weak",
@@ -2658,9 +4057,7 @@ GGS_pic_31__38_Instruction_5F_IF_5F_IncDec GGS_pic_31__38_Instruction_5F_IF_5F_I
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_IF_IncDec.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_IF_5F_IncDec_2E_weak ("pic18Instruction_IF_IncDec.weak",
@@ -2910,9 +4307,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_computed_5F_retlw::duplicate (Compi
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_computed_retlw generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw ("pic18Instruction_computed_retlw",
@@ -3021,9 +4416,7 @@ GGS_pic_31__38_Instruction_5F_computed_5F_retlw GGS_pic_31__38_Instruction_5F_co
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_computed_retlw.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak ("pic18Instruction_computed_retlw.weak",
@@ -3273,9 +4666,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_computed_5F_bra::duplicate (Compile
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_computed_bra generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_bra ("pic18Instruction_computed_bra",
@@ -3384,9 +4775,7 @@ GGS_pic_31__38_Instruction_5F_computed_5F_bra GGS_pic_31__38_Instruction_5F_comp
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_computed_bra.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak ("pic18Instruction_computed_bra.weak",
@@ -3636,9 +5025,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_computed_5F_goto::duplicate (Compil
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_computed_goto generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_goto ("pic18Instruction_computed_goto",
@@ -3747,9 +5134,7 @@ GGS_pic_31__38_Instruction_5F_computed_5F_goto GGS_pic_31__38_Instruction_5F_com
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_computed_goto.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak ("pic18Instruction_computed_goto.weak",
@@ -3999,9 +5384,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_computed_5F_rcall::duplicate (Compi
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_computed_rcall generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall ("pic18Instruction_computed_rcall",
@@ -4110,9 +5493,7 @@ GGS_pic_31__38_Instruction_5F_computed_5F_rcall GGS_pic_31__38_Instruction_5F_co
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_computed_rcall.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak ("pic18Instruction_computed_rcall.weak",
@@ -4221,9 +5602,7 @@ GGS_pic_31__38_ConditionExpression GGS_pic_31__38_ConditionExpression_2E_weak::b
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18ConditionExpression.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_ConditionExpression_2E_weak ("pic18ConditionExpression.weak",
@@ -4332,9 +5711,7 @@ GGS_pic_31__38_RegisterTestCondition GGS_pic_31__38_RegisterTestCondition_2E_wea
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18RegisterTestCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterTestCondition_2E_weak ("pic18RegisterTestCondition.weak",
@@ -4501,9 +5878,7 @@ void GGS_pic_31__38_RegisterComparison::description (String & ioString,
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18RegisterComparison generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparison ("pic18RegisterComparison",
@@ -4612,9 +5987,7 @@ GGS_pic_31__38_RegisterComparisonCondition GGS_pic_31__38_RegisterComparisonCond
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18RegisterComparisonCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonCondition_2E_weak ("pic18RegisterComparisonCondition.weak",
@@ -4723,9 +6096,7 @@ GGS_pic_31__38_IncDecRegisterInCondition GGS_pic_31__38_IncDecRegisterInConditio
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18IncDecRegisterInCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_IncDecRegisterInCondition_2E_weak ("pic18IncDecRegisterInCondition.weak",
@@ -4934,9 +6305,7 @@ acPtr_class * cPtr_pic_31__38_BccInStructuredCondition::duplicate (Compiler * in
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18BccInStructuredCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BccInStructuredCondition ("pic18BccInStructuredCondition",
@@ -5045,9 +6414,7 @@ GGS_pic_31__38_BccInStructuredCondition GGS_pic_31__38_BccInStructuredCondition_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18BccInStructuredCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BccInStructuredCondition_2E_weak ("pic18BccInStructuredCondition.weak",
@@ -5223,9 +6590,7 @@ acPtr_class * cPtr_pic_31__38_NegateCondition::duplicate (Compiler * inCompiler 
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18NegateCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_NegateCondition ("pic18NegateCondition",
@@ -5334,9 +6699,7 @@ GGS_pic_31__38_NegateCondition GGS_pic_31__38_NegateCondition_2E_weak::bang_pic_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18NegateCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_NegateCondition_2E_weak ("pic18NegateCondition.weak",
@@ -5545,9 +6908,7 @@ acPtr_class * cPtr_pic_31__38_AndCondition::duplicate (Compiler * inCompiler COM
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18AndCondition generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_AndCondition ("pic18AndCondition",
@@ -5656,9 +7017,7 @@ GGS_pic_31__38_AndCondition GGS_pic_31__38_AndCondition_2E_weak::bang_pic_31__38
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18AndCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_AndCondition_2E_weak ("pic18AndCondition.weak",
@@ -5767,9 +7126,7 @@ GGS_pic_31__38_BitTestInStructuredCondition GGS_pic_31__38_BitTestInStructuredCo
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18BitTestInStructuredCondition.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestInStructuredCondition_2E_weak ("pic18BitTestInStructuredCondition.weak",
@@ -6052,9 +7409,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_structured_5F_if::duplicate (Compil
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_structured_if generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_structured_5F_if ("pic18Instruction_structured_if",
@@ -6163,9 +7518,7 @@ GGS_pic_31__38_Instruction_5F_structured_5F_if GGS_pic_31__38_Instruction_5F_str
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_structured_if.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak ("pic18Instruction_structured_if.weak",
@@ -6656,16 +8009,17 @@ GGS_location GGS_pic_31__38_DoWhilePartList::getter_mEndOfPartLocationAtIndex (c
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @pic_31__38_DoWhilePartList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_pic_31__38_DoWhilePartList::cEnumerator_pic_31__38_DoWhilePartList (const GGS_pic_31__38_DoWhilePartList & inEnumeratedObject,
-                                                                                const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_pic_31__38_DoWhilePartList::DownEnumerator_pic_31__38_DoWhilePartList (const GGS_pic_31__38_DoWhilePartList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_DoWhilePartList_2E_element cEnumerator_pic_31__38_DoWhilePartList::current (LOCATION_ARGS) const {
+GGS_pic_31__38_DoWhilePartList_2E_element DownEnumerator_pic_31__38_DoWhilePartList::current (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_DoWhilePartList * p = (const cCollectionElement_pic_31__38_DoWhilePartList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_DoWhilePartList) ;
   return p->mObject ;
@@ -6674,7 +8028,7 @@ GGS_pic_31__38_DoWhilePartList_2E_element cEnumerator_pic_31__38_DoWhilePartList
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_ConditionExpression cEnumerator_pic_31__38_DoWhilePartList::current_mCondition (LOCATION_ARGS) const {
+GGS_pic_31__38_ConditionExpression DownEnumerator_pic_31__38_DoWhilePartList::current_mCondition (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_DoWhilePartList * p = (const cCollectionElement_pic_31__38_DoWhilePartList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_DoWhilePartList) ;
   return p->mObject.mProperty_mCondition ;
@@ -6682,7 +8036,7 @@ GGS_pic_31__38_ConditionExpression cEnumerator_pic_31__38_DoWhilePartList::curre
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_DoWhilePartList::current_mInstructionList (LOCATION_ARGS) const {
+GGS_pic_31__38_InstructionList DownEnumerator_pic_31__38_DoWhilePartList::current_mInstructionList (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_DoWhilePartList * p = (const cCollectionElement_pic_31__38_DoWhilePartList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_DoWhilePartList) ;
   return p->mObject.mProperty_mInstructionList ;
@@ -6690,7 +8044,51 @@ GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_DoWhilePartList::current_m
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_location cEnumerator_pic_31__38_DoWhilePartList::current_mEndOfPartLocation (LOCATION_ARGS) const {
+GGS_location DownEnumerator_pic_31__38_DoWhilePartList::current_mEndOfPartLocation (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_DoWhilePartList * p = (const cCollectionElement_pic_31__38_DoWhilePartList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_DoWhilePartList) ;
+  return p->mObject.mProperty_mEndOfPartLocation ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @pic_31__38_DoWhilePartList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_pic_31__38_DoWhilePartList::UpEnumerator_pic_31__38_DoWhilePartList (const GGS_pic_31__38_DoWhilePartList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_DoWhilePartList_2E_element UpEnumerator_pic_31__38_DoWhilePartList::current (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_DoWhilePartList * p = (const cCollectionElement_pic_31__38_DoWhilePartList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_DoWhilePartList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_ConditionExpression UpEnumerator_pic_31__38_DoWhilePartList::current_mCondition (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_DoWhilePartList * p = (const cCollectionElement_pic_31__38_DoWhilePartList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_DoWhilePartList) ;
+  return p->mObject.mProperty_mCondition ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_InstructionList UpEnumerator_pic_31__38_DoWhilePartList::current_mInstructionList (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_DoWhilePartList * p = (const cCollectionElement_pic_31__38_DoWhilePartList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_DoWhilePartList) ;
+  return p->mObject.mProperty_mInstructionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location UpEnumerator_pic_31__38_DoWhilePartList::current_mEndOfPartLocation (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_DoWhilePartList * p = (const cCollectionElement_pic_31__38_DoWhilePartList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_DoWhilePartList) ;
   return p->mObject.mProperty_mEndOfPartLocation ;
@@ -6700,9 +8098,7 @@ GGS_location cEnumerator_pic_31__38_DoWhilePartList::current_mEndOfPartLocation 
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18DoWhilePartList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_DoWhilePartList ("pic18DoWhilePartList",
@@ -6952,9 +8348,7 @@ acPtr_class * cPtr_pic_31__38_Instruction_5F_do_5F_while::duplicate (Compiler * 
 #endif
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_do_while generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while ("pic18Instruction_do_while",
@@ -7063,9 +8457,7 @@ GGS_pic_31__38_Instruction_5F_do_5F_while GGS_pic_31__38_Instruction_5F_do_5F_wh
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18Instruction_do_while.weak generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while_2E_weak ("pic18Instruction_do_while.weak",
@@ -7612,16 +9004,17 @@ GGS_location GGS_pic_31__38_InterruptDefinitionList::getter_mEndOfInterruptLocat
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @pic_31__38_InterruptDefinitionList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_pic_31__38_InterruptDefinitionList::cEnumerator_pic_31__38_InterruptDefinitionList (const GGS_pic_31__38_InterruptDefinitionList & inEnumeratedObject,
-                                                                                                const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_pic_31__38_InterruptDefinitionList::DownEnumerator_pic_31__38_InterruptDefinitionList (const GGS_pic_31__38_InterruptDefinitionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_InterruptDefinitionList_2E_element cEnumerator_pic_31__38_InterruptDefinitionList::current (LOCATION_ARGS) const {
+GGS_pic_31__38_InterruptDefinitionList_2E_element DownEnumerator_pic_31__38_InterruptDefinitionList::current (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
   return p->mObject ;
@@ -7630,7 +9023,7 @@ GGS_pic_31__38_InterruptDefinitionList_2E_element cEnumerator_pic_31__38_Interru
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_pic_31__38_InterruptDefinitionList::current_mInterruptName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_pic_31__38_InterruptDefinitionList::current_mInterruptName (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
   return p->mObject.mProperty_mInterruptName ;
@@ -7638,7 +9031,7 @@ GGS_lstring cEnumerator_pic_31__38_InterruptDefinitionList::current_mInterruptNa
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_pic_31__38_InterruptDefinitionList::current_mFastReturn (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_pic_31__38_InterruptDefinitionList::current_mFastReturn (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
   return p->mObject.mProperty_mFastReturn ;
@@ -7646,7 +9039,7 @@ GGS_bool cEnumerator_pic_31__38_InterruptDefinitionList::current_mFastReturn (LO
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_InterruptDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+GGS_pic_31__38_InstructionList DownEnumerator_pic_31__38_InterruptDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
   return p->mObject.mProperty_mInstructionList ;
@@ -7654,7 +9047,59 @@ GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_InterruptDefinitionList::c
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_location cEnumerator_pic_31__38_InterruptDefinitionList::current_mEndOfInterruptLocation (LOCATION_ARGS) const {
+GGS_location DownEnumerator_pic_31__38_InterruptDefinitionList::current_mEndOfInterruptLocation (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
+  return p->mObject.mProperty_mEndOfInterruptLocation ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @pic_31__38_InterruptDefinitionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_pic_31__38_InterruptDefinitionList::UpEnumerator_pic_31__38_InterruptDefinitionList (const GGS_pic_31__38_InterruptDefinitionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_InterruptDefinitionList_2E_element UpEnumerator_pic_31__38_InterruptDefinitionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_pic_31__38_InterruptDefinitionList::current_mInterruptName (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
+  return p->mObject.mProperty_mInterruptName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_pic_31__38_InterruptDefinitionList::current_mFastReturn (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
+  return p->mObject.mProperty_mFastReturn ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_InstructionList UpEnumerator_pic_31__38_InterruptDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
+  return p->mObject.mProperty_mInstructionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location UpEnumerator_pic_31__38_InterruptDefinitionList::current_mEndOfInterruptLocation (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_InterruptDefinitionList * p = (const cCollectionElement_pic_31__38_InterruptDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_InterruptDefinitionList) ;
   return p->mObject.mProperty_mEndOfInterruptLocation ;
@@ -7664,9 +9109,7 @@ GGS_location cEnumerator_pic_31__38_InterruptDefinitionList::current_mEndOfInter
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18InterruptDefinitionList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_InterruptDefinitionList ("pic18InterruptDefinitionList",
@@ -8381,16 +9824,17 @@ GGS_location GGS_pic_31__38_RoutineDefinitionList::getter_mEndOfRoutineLocationA
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @pic_31__38_RoutineDefinitionList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_pic_31__38_RoutineDefinitionList::cEnumerator_pic_31__38_RoutineDefinitionList (const GGS_pic_31__38_RoutineDefinitionList & inEnumeratedObject,
-                                                                                            const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_pic_31__38_RoutineDefinitionList::DownEnumerator_pic_31__38_RoutineDefinitionList (const GGS_pic_31__38_RoutineDefinitionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_RoutineDefinitionList_2E_element cEnumerator_pic_31__38_RoutineDefinitionList::current (LOCATION_ARGS) const {
+GGS_pic_31__38_RoutineDefinitionList_2E_element DownEnumerator_pic_31__38_RoutineDefinitionList::current (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
   return p->mObject ;
@@ -8399,7 +9843,7 @@ GGS_pic_31__38_RoutineDefinitionList_2E_element cEnumerator_pic_31__38_RoutineDe
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_pic_31__38_RoutineDefinitionList::current_mRoutineName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_pic_31__38_RoutineDefinitionList::current_mRoutineName (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
   return p->mObject.mProperty_mRoutineName ;
@@ -8407,7 +9851,7 @@ GGS_lstring cEnumerator_pic_31__38_RoutineDefinitionList::current_mRoutineName (
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luint cEnumerator_pic_31__38_RoutineDefinitionList::current_mRequiredBank (LOCATION_ARGS) const {
+GGS_luint DownEnumerator_pic_31__38_RoutineDefinitionList::current_mRequiredBank (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
   return p->mObject.mProperty_mRequiredBank ;
@@ -8415,7 +9859,7 @@ GGS_luint cEnumerator_pic_31__38_RoutineDefinitionList::current_mRequiredBank (L
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luint cEnumerator_pic_31__38_RoutineDefinitionList::current_mReturnedBank (LOCATION_ARGS) const {
+GGS_luint DownEnumerator_pic_31__38_RoutineDefinitionList::current_mReturnedBank (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
   return p->mObject.mProperty_mReturnedBank ;
@@ -8423,7 +9867,7 @@ GGS_luint cEnumerator_pic_31__38_RoutineDefinitionList::current_mReturnedBank (L
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_pic_31__38_RoutineDefinitionList::current_mPreservesBank (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_pic_31__38_RoutineDefinitionList::current_mPreservesBank (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
   return p->mObject.mProperty_mPreservesBank ;
@@ -8431,7 +9875,7 @@ GGS_bool cEnumerator_pic_31__38_RoutineDefinitionList::current_mPreservesBank (L
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_pic_31__38_RoutineDefinitionList::current_mIsNoReturn (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_pic_31__38_RoutineDefinitionList::current_mIsNoReturn (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
   return p->mObject.mProperty_mIsNoReturn ;
@@ -8439,7 +9883,7 @@ GGS_bool cEnumerator_pic_31__38_RoutineDefinitionList::current_mIsNoReturn (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_RoutineDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+GGS_pic_31__38_InstructionList DownEnumerator_pic_31__38_RoutineDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
   return p->mObject.mProperty_mInstructionList ;
@@ -8447,7 +9891,83 @@ GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_RoutineDefinitionList::cur
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_location cEnumerator_pic_31__38_RoutineDefinitionList::current_mEndOfRoutineLocation (LOCATION_ARGS) const {
+GGS_location DownEnumerator_pic_31__38_RoutineDefinitionList::current_mEndOfRoutineLocation (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
+  return p->mObject.mProperty_mEndOfRoutineLocation ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @pic_31__38_RoutineDefinitionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_pic_31__38_RoutineDefinitionList::UpEnumerator_pic_31__38_RoutineDefinitionList (const GGS_pic_31__38_RoutineDefinitionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_RoutineDefinitionList_2E_element UpEnumerator_pic_31__38_RoutineDefinitionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_pic_31__38_RoutineDefinitionList::current_mRoutineName (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
+  return p->mObject.mProperty_mRoutineName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint UpEnumerator_pic_31__38_RoutineDefinitionList::current_mRequiredBank (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
+  return p->mObject.mProperty_mRequiredBank ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint UpEnumerator_pic_31__38_RoutineDefinitionList::current_mReturnedBank (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
+  return p->mObject.mProperty_mReturnedBank ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_pic_31__38_RoutineDefinitionList::current_mPreservesBank (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
+  return p->mObject.mProperty_mPreservesBank ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_pic_31__38_RoutineDefinitionList::current_mIsNoReturn (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
+  return p->mObject.mProperty_mIsNoReturn ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_InstructionList UpEnumerator_pic_31__38_RoutineDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
+  return p->mObject.mProperty_mInstructionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location UpEnumerator_pic_31__38_RoutineDefinitionList::current_mEndOfRoutineLocation (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_RoutineDefinitionList * p = (const cCollectionElement_pic_31__38_RoutineDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_RoutineDefinitionList) ;
   return p->mObject.mProperty_mEndOfRoutineLocation ;
@@ -8457,9 +9977,7 @@ GGS_location cEnumerator_pic_31__38_RoutineDefinitionList::current_mEndOfRoutine
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18RoutineDefinitionList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_RoutineDefinitionList ("pic18RoutineDefinitionList",
@@ -8950,16 +10468,17 @@ GGS_pic_31__38_InstructionList GGS_pic_31__38_MacroDefinitionList::getter_mInstr
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @pic_31__38_MacroDefinitionList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_pic_31__38_MacroDefinitionList::cEnumerator_pic_31__38_MacroDefinitionList (const GGS_pic_31__38_MacroDefinitionList & inEnumeratedObject,
-                                                                                        const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_pic_31__38_MacroDefinitionList::DownEnumerator_pic_31__38_MacroDefinitionList (const GGS_pic_31__38_MacroDefinitionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_MacroDefinitionList_2E_element cEnumerator_pic_31__38_MacroDefinitionList::current (LOCATION_ARGS) const {
+GGS_pic_31__38_MacroDefinitionList_2E_element DownEnumerator_pic_31__38_MacroDefinitionList::current (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_MacroDefinitionList * p = (const cCollectionElement_pic_31__38_MacroDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_MacroDefinitionList) ;
   return p->mObject ;
@@ -8968,7 +10487,7 @@ GGS_pic_31__38_MacroDefinitionList_2E_element cEnumerator_pic_31__38_MacroDefini
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_pic_31__38_MacroDefinitionList::current_mMacroName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_pic_31__38_MacroDefinitionList::current_mMacroName (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_MacroDefinitionList * p = (const cCollectionElement_pic_31__38_MacroDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_MacroDefinitionList) ;
   return p->mObject.mProperty_mMacroName ;
@@ -8976,7 +10495,7 @@ GGS_lstring cEnumerator_pic_31__38_MacroDefinitionList::current_mMacroName (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstringlist cEnumerator_pic_31__38_MacroDefinitionList::current_mConstantNameList (LOCATION_ARGS) const {
+GGS_lstringlist DownEnumerator_pic_31__38_MacroDefinitionList::current_mConstantNameList (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_MacroDefinitionList * p = (const cCollectionElement_pic_31__38_MacroDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_MacroDefinitionList) ;
   return p->mObject.mProperty_mConstantNameList ;
@@ -8984,7 +10503,51 @@ GGS_lstringlist cEnumerator_pic_31__38_MacroDefinitionList::current_mConstantNam
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_MacroDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+GGS_pic_31__38_InstructionList DownEnumerator_pic_31__38_MacroDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_MacroDefinitionList * p = (const cCollectionElement_pic_31__38_MacroDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_MacroDefinitionList) ;
+  return p->mObject.mProperty_mInstructionList ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @pic_31__38_MacroDefinitionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_pic_31__38_MacroDefinitionList::UpEnumerator_pic_31__38_MacroDefinitionList (const GGS_pic_31__38_MacroDefinitionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_MacroDefinitionList_2E_element UpEnumerator_pic_31__38_MacroDefinitionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_MacroDefinitionList * p = (const cCollectionElement_pic_31__38_MacroDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_MacroDefinitionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_pic_31__38_MacroDefinitionList::current_mMacroName (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_MacroDefinitionList * p = (const cCollectionElement_pic_31__38_MacroDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_MacroDefinitionList) ;
+  return p->mObject.mProperty_mMacroName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstringlist UpEnumerator_pic_31__38_MacroDefinitionList::current_mConstantNameList (LOCATION_ARGS) const {
+  const cCollectionElement_pic_31__38_MacroDefinitionList * p = (const cCollectionElement_pic_31__38_MacroDefinitionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_pic_31__38_MacroDefinitionList) ;
+  return p->mObject.mProperty_mConstantNameList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_InstructionList UpEnumerator_pic_31__38_MacroDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
   const cCollectionElement_pic_31__38_MacroDefinitionList * p = (const cCollectionElement_pic_31__38_MacroDefinitionList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_pic_31__38_MacroDefinitionList) ;
   return p->mObject.mProperty_mInstructionList ;
@@ -8994,9 +10557,7 @@ GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_MacroDefinitionList::curre
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @pic18MacroDefinitionList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroDefinitionList ("pic18MacroDefinitionList",
@@ -9195,7 +10756,7 @@ GGS_pic_31__38_MacroMap GGS_pic_31__38_MacroMap::add_operation (const GGS_pic_31
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
   GGS_pic_31__38_MacroMap result = *this ;
-  cEnumerator_pic_31__38_MacroMap enumerator (inOperand, EnumerationOrder::up) ;
+  UpEnumerator_pic_31__38_MacroMap enumerator (inOperand) ;
   while (enumerator.hasCurrentObject ()) {
     result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mConstantNameList (HERE), enumerator.current_mInstructionList (HERE), inCompiler COMMA_THERE) ;
     enumerator.gotoNextObject () ;
@@ -9314,16 +10875,17 @@ cMapElement_pic_31__38_MacroMap * GGS_pic_31__38_MacroMap::readWriteAccessForWit
 }
 
 //--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @pic_31__38_MacroMap
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_pic_31__38_MacroMap::cEnumerator_pic_31__38_MacroMap (const GGS_pic_31__38_MacroMap & inEnumeratedObject,
-                                                                  const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_pic_31__38_MacroMap::DownEnumerator_pic_31__38_MacroMap (const GGS_pic_31__38_MacroMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_MacroMap_2E_element cEnumerator_pic_31__38_MacroMap::current (LOCATION_ARGS) const {
+GGS_pic_31__38_MacroMap_2E_element DownEnumerator_pic_31__38_MacroMap::current (LOCATION_ARGS) const {
   const cMapElement_pic_31__38_MacroMap * p = (const cMapElement_pic_31__38_MacroMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
   return GGS_pic_31__38_MacroMap_2E_element (p->mProperty_lkey, p->mProperty_mConstantNameList, p->mProperty_mInstructionList) ;
@@ -9331,7 +10893,7 @@ GGS_pic_31__38_MacroMap_2E_element cEnumerator_pic_31__38_MacroMap::current (LOC
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_pic_31__38_MacroMap::current_lkey (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_pic_31__38_MacroMap::current_lkey (LOCATION_ARGS) const {
   const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement) ;
   return p->mProperty_lkey ;
@@ -9339,7 +10901,7 @@ GGS_lstring cEnumerator_pic_31__38_MacroMap::current_lkey (LOCATION_ARGS) const 
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstringlist cEnumerator_pic_31__38_MacroMap::current_mConstantNameList (LOCATION_ARGS) const {
+GGS_lstringlist DownEnumerator_pic_31__38_MacroMap::current_mConstantNameList (LOCATION_ARGS) const {
   const cMapElement_pic_31__38_MacroMap * p = (const cMapElement_pic_31__38_MacroMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
   return p->mProperty_mConstantNameList ;
@@ -9347,16 +10909,56 @@ GGS_lstringlist cEnumerator_pic_31__38_MacroMap::current_mConstantNameList (LOCA
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_InstructionList cEnumerator_pic_31__38_MacroMap::current_mInstructionList (LOCATION_ARGS) const {
+GGS_pic_31__38_InstructionList DownEnumerator_pic_31__38_MacroMap::current_mInstructionList (LOCATION_ARGS) const {
   const cMapElement_pic_31__38_MacroMap * p = (const cMapElement_pic_31__38_MacroMap *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
   return p->mProperty_mInstructionList ;
 }
 
 //--------------------------------------------------------------------------------------------------
-//
+//  Up Enumerator for @pic_31__38_MacroMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_pic_31__38_MacroMap::UpEnumerator_pic_31__38_MacroMap (const GGS_pic_31__38_MacroMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_MacroMap_2E_element UpEnumerator_pic_31__38_MacroMap::current (LOCATION_ARGS) const {
+  const cMapElement_pic_31__38_MacroMap * p = (const cMapElement_pic_31__38_MacroMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
+  return GGS_pic_31__38_MacroMap_2E_element (p->mProperty_lkey, p->mProperty_mConstantNameList, p->mProperty_mInstructionList) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_pic_31__38_MacroMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstringlist UpEnumerator_pic_31__38_MacroMap::current_mConstantNameList (LOCATION_ARGS) const {
+  const cMapElement_pic_31__38_MacroMap * p = (const cMapElement_pic_31__38_MacroMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
+  return p->mProperty_mConstantNameList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_InstructionList UpEnumerator_pic_31__38_MacroMap::current_mInstructionList (LOCATION_ARGS) const {
+  const cMapElement_pic_31__38_MacroMap * p = (const cMapElement_pic_31__38_MacroMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_pic_31__38_MacroMap) ;
+  return p->mProperty_mInstructionList ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
 //     @pic18MacroMap generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_MacroMap ("pic18MacroMap",
@@ -9959,16 +11561,17 @@ GGS_bool GGS_routineDeclarationList::getter_mIsNoReturnAtIndex (const GGS_uint &
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @routineDeclarationList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_routineDeclarationList::cEnumerator_routineDeclarationList (const GGS_routineDeclarationList & inEnumeratedObject,
-                                                                        const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_routineDeclarationList::DownEnumerator_routineDeclarationList (const GGS_routineDeclarationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_routineDeclarationList_2E_element cEnumerator_routineDeclarationList::current (LOCATION_ARGS) const {
+GGS_routineDeclarationList_2E_element DownEnumerator_routineDeclarationList::current (LOCATION_ARGS) const {
   const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
   return p->mObject ;
@@ -9977,7 +11580,7 @@ GGS_routineDeclarationList_2E_element cEnumerator_routineDeclarationList::curren
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_routineDeclarationList::current_mRoutineName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_routineDeclarationList::current_mRoutineName (LOCATION_ARGS) const {
   const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
   return p->mObject.mProperty_mRoutineName ;
@@ -9985,7 +11588,7 @@ GGS_lstring cEnumerator_routineDeclarationList::current_mRoutineName (LOCATION_A
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luint cEnumerator_routineDeclarationList::current_mRequiredBank (LOCATION_ARGS) const {
+GGS_luint DownEnumerator_routineDeclarationList::current_mRequiredBank (LOCATION_ARGS) const {
   const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
   return p->mObject.mProperty_mRequiredBank ;
@@ -9993,7 +11596,7 @@ GGS_luint cEnumerator_routineDeclarationList::current_mRequiredBank (LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_luint cEnumerator_routineDeclarationList::current_mReturnedBank (LOCATION_ARGS) const {
+GGS_luint DownEnumerator_routineDeclarationList::current_mReturnedBank (LOCATION_ARGS) const {
   const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
   return p->mObject.mProperty_mReturnedBank ;
@@ -10001,7 +11604,7 @@ GGS_luint cEnumerator_routineDeclarationList::current_mReturnedBank (LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_routineDeclarationList::current_mPreservesBank (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_routineDeclarationList::current_mPreservesBank (LOCATION_ARGS) const {
   const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
   return p->mObject.mProperty_mPreservesBank ;
@@ -10009,7 +11612,67 @@ GGS_bool cEnumerator_routineDeclarationList::current_mPreservesBank (LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_routineDeclarationList::current_mIsNoReturn (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_routineDeclarationList::current_mIsNoReturn (LOCATION_ARGS) const {
+  const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
+  return p->mObject.mProperty_mIsNoReturn ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @routineDeclarationList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_routineDeclarationList::UpEnumerator_routineDeclarationList (const GGS_routineDeclarationList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_routineDeclarationList_2E_element UpEnumerator_routineDeclarationList::current (LOCATION_ARGS) const {
+  const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_routineDeclarationList::current_mRoutineName (LOCATION_ARGS) const {
+  const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
+  return p->mObject.mProperty_mRoutineName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint UpEnumerator_routineDeclarationList::current_mRequiredBank (LOCATION_ARGS) const {
+  const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
+  return p->mObject.mProperty_mRequiredBank ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_luint UpEnumerator_routineDeclarationList::current_mReturnedBank (LOCATION_ARGS) const {
+  const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
+  return p->mObject.mProperty_mReturnedBank ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_routineDeclarationList::current_mPreservesBank (LOCATION_ARGS) const {
+  const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
+  return p->mObject.mProperty_mPreservesBank ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_routineDeclarationList::current_mIsNoReturn (LOCATION_ARGS) const {
   const cCollectionElement_routineDeclarationList * p = (const cCollectionElement_routineDeclarationList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_routineDeclarationList) ;
   return p->mObject.mProperty_mIsNoReturn ;
@@ -10019,9 +11682,7 @@ GGS_bool cEnumerator_routineDeclarationList::current_mIsNoReturn (LOCATION_ARGS)
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @routineDeclarationList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_routineDeclarationList ("routineDeclarationList",
@@ -10152,9 +11813,7 @@ ComparisonResult GGS_programKind::objectCompare (const GGS_programKind & inOpera
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @programKind generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_programKind ("programKind",
@@ -10645,16 +12304,17 @@ GGS_bool GGS_dataList::getter_mIsByteListAtIndex (const GGS_uint & inIndex,
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @dataList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_dataList::cEnumerator_dataList (const GGS_dataList & inEnumeratedObject,
-                                            const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_dataList::DownEnumerator_dataList (const GGS_dataList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_dataList_2E_element cEnumerator_dataList::current (LOCATION_ARGS) const {
+GGS_dataList_2E_element DownEnumerator_dataList::current (LOCATION_ARGS) const {
   const cCollectionElement_dataList * p = (const cCollectionElement_dataList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_dataList) ;
   return p->mObject ;
@@ -10663,7 +12323,7 @@ GGS_dataList_2E_element cEnumerator_dataList::current (LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstring cEnumerator_dataList::current_mDataName (LOCATION_ARGS) const {
+GGS_lstring DownEnumerator_dataList::current_mDataName (LOCATION_ARGS) const {
   const cCollectionElement_dataList * p = (const cCollectionElement_dataList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_dataList) ;
   return p->mObject.mProperty_mDataName ;
@@ -10671,7 +12331,7 @@ GGS_lstring cEnumerator_dataList::current_mDataName (LOCATION_ARGS) const {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_immediatExpressionList cEnumerator_dataList::current_mValueList (LOCATION_ARGS) const {
+GGS_immediatExpressionList DownEnumerator_dataList::current_mValueList (LOCATION_ARGS) const {
   const cCollectionElement_dataList * p = (const cCollectionElement_dataList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_dataList) ;
   return p->mObject.mProperty_mValueList ;
@@ -10679,7 +12339,51 @@ GGS_immediatExpressionList cEnumerator_dataList::current_mValueList (LOCATION_AR
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_bool cEnumerator_dataList::current_mIsByteList (LOCATION_ARGS) const {
+GGS_bool DownEnumerator_dataList::current_mIsByteList (LOCATION_ARGS) const {
+  const cCollectionElement_dataList * p = (const cCollectionElement_dataList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_dataList) ;
+  return p->mObject.mProperty_mIsByteList ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @dataList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_dataList::UpEnumerator_dataList (const GGS_dataList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_dataList_2E_element UpEnumerator_dataList::current (LOCATION_ARGS) const {
+  const cCollectionElement_dataList * p = (const cCollectionElement_dataList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_dataList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_dataList::current_mDataName (LOCATION_ARGS) const {
+  const cCollectionElement_dataList * p = (const cCollectionElement_dataList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_dataList) ;
+  return p->mObject.mProperty_mDataName ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_immediatExpressionList UpEnumerator_dataList::current_mValueList (LOCATION_ARGS) const {
+  const cCollectionElement_dataList * p = (const cCollectionElement_dataList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_dataList) ;
+  return p->mObject.mProperty_mValueList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool UpEnumerator_dataList::current_mIsByteList (LOCATION_ARGS) const {
   const cCollectionElement_dataList * p = (const cCollectionElement_dataList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_dataList) ;
   return p->mObject.mProperty_mIsByteList ;
@@ -10689,9 +12393,7 @@ GGS_bool cEnumerator_dataList::current_mIsByteList (LOCATION_ARGS) const {
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @dataList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_dataList ("dataList",
@@ -11126,16 +12828,17 @@ GGS_lstringlist GGS_checkpicList::getter_mValueListAtIndex (const GGS_uint & inI
 
 
 //--------------------------------------------------------------------------------------------------
+// Down Enumerator for @checkpicList
+//--------------------------------------------------------------------------------------------------
 
-cEnumerator_checkpicList::cEnumerator_checkpicList (const GGS_checkpicList & inEnumeratedObject,
-                                                    const EnumerationOrder inOrder) :
-cGenericAbstractEnumerator (inOrder) {
+DownEnumerator_checkpicList::DownEnumerator_checkpicList (const GGS_checkpicList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
   inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_checkpicList_2E_element cEnumerator_checkpicList::current (LOCATION_ARGS) const {
+GGS_checkpicList_2E_element DownEnumerator_checkpicList::current (LOCATION_ARGS) const {
   const cCollectionElement_checkpicList * p = (const cCollectionElement_checkpicList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_checkpicList) ;
   return p->mObject ;
@@ -11144,7 +12847,7 @@ GGS_checkpicList_2E_element cEnumerator_checkpicList::current (LOCATION_ARGS) co
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_location cEnumerator_checkpicList::current_mErrorLocation (LOCATION_ARGS) const {
+GGS_location DownEnumerator_checkpicList::current_mErrorLocation (LOCATION_ARGS) const {
   const cCollectionElement_checkpicList * p = (const cCollectionElement_checkpicList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_checkpicList) ;
   return p->mObject.mProperty_mErrorLocation ;
@@ -11152,7 +12855,43 @@ GGS_location cEnumerator_checkpicList::current_mErrorLocation (LOCATION_ARGS) co
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_lstringlist cEnumerator_checkpicList::current_mValueList (LOCATION_ARGS) const {
+GGS_lstringlist DownEnumerator_checkpicList::current_mValueList (LOCATION_ARGS) const {
+  const cCollectionElement_checkpicList * p = (const cCollectionElement_checkpicList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_checkpicList) ;
+  return p->mObject.mProperty_mValueList ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @checkpicList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_checkpicList::UpEnumerator_checkpicList (const GGS_checkpicList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_checkpicList_2E_element UpEnumerator_checkpicList::current (LOCATION_ARGS) const {
+  const cCollectionElement_checkpicList * p = (const cCollectionElement_checkpicList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_checkpicList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location UpEnumerator_checkpicList::current_mErrorLocation (LOCATION_ARGS) const {
+  const cCollectionElement_checkpicList * p = (const cCollectionElement_checkpicList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_checkpicList) ;
+  return p->mObject.mProperty_mErrorLocation ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstringlist UpEnumerator_checkpicList::current_mValueList (LOCATION_ARGS) const {
   const cCollectionElement_checkpicList * p = (const cCollectionElement_checkpicList *) currentObjectPtr (THERE) ;
   macroValidSharedObject (p, cCollectionElement_checkpicList) ;
   return p->mObject.mProperty_mValueList ;
@@ -11162,9 +12901,7 @@ GGS_lstringlist cEnumerator_checkpicList::current_mValueList (LOCATION_ARGS) con
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //     @checkpicList generic code implementation
-//
 //--------------------------------------------------------------------------------------------------
 
 const C_galgas_type_descriptor kTypeDescriptor_GALGAS_checkpicList ("checkpicList",
@@ -11204,9 +12941,7 @@ GGS_checkpicList GGS_checkpicList::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@pic18RegisterComparison mnemonic'
-//
+//  Extension Getter '@pic18RegisterComparison mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_pic_31__38_RegisterComparison & inObject,
@@ -11256,9 +12991,7 @@ GGS_string extensionGetter_mnemonic (const GGS_pic_31__38_RegisterComparison & i
 
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@conditional_branch condition'
-//
+//  Extension Getter '@conditional_branch condition'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_condition (const GGS_conditional_5F_branch & inObject,
@@ -11318,9 +13051,7 @@ GGS_string extensionGetter_condition (const GGS_conditional_5F_branch & inObject
 
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@pic18InstructionWithNoOperandKind assemblyCode'
-//
+//  Extension Getter '@pic18InstructionWithNoOperandKind assemblyCode'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_assemblyCode (const GGS_pic_31__38_InstructionWithNoOperandKind & inObject,
@@ -11375,9 +13106,7 @@ GGS_string extensionGetter_assemblyCode (const GGS_pic_31__38_InstructionWithNoO
 
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@FA_instruction_base_code mnemonic'
-//
+//  Extension Getter '@FA_instruction_base_code mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_FA_5F_instruction_5F_base_5F_code & inObject,
@@ -11442,9 +13171,7 @@ GGS_string extensionGetter_mnemonic (const GGS_FA_5F_instruction_5F_base_5F_code
 
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@bit_oriented_op mnemonic'
-//
+//  Extension Getter '@bit_oriented_op mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_bit_5F_oriented_5F_op & inObject,
@@ -11479,9 +13206,7 @@ GGS_string extensionGetter_mnemonic (const GGS_bit_5F_oriented_5F_op & inObject,
 
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@conditional_branch mnemonic'
-//
+//  Extension Getter '@conditional_branch mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_conditional_5F_branch & inObject,
@@ -11541,9 +13266,7 @@ GGS_string extensionGetter_mnemonic (const GGS_conditional_5F_branch & inObject,
 
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@literal_instruction_opcode mnemonic'
-//
+//  Extension Getter '@literal_instruction_opcode mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_literal_5F_instruction_5F_opcode & inObject,
@@ -11598,9 +13321,7 @@ GGS_string extensionGetter_mnemonic (const GGS_literal_5F_instruction_5F_opcode 
 
 
 //--------------------------------------------------------------------------------------------------
-//
-//Extension Getter '@tableAccessOption mnemonic'
-//
+//  Extension Getter '@tableAccessOption mnemonic'
 //--------------------------------------------------------------------------------------------------
 
 GGS_string extensionGetter_mnemonic (const GGS_tableAccessOption & inObject,
@@ -12012,7 +13733,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_data_5F_definitio
   case 1: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_data COMMA_SOURCE_FILE ("pic18_syntax.galgas", 155)) ;
     TC_Array <FixItDescription> fixItArray0 ;
-    appendFixItActions (fixItArray0, kFixItReplace, GGS_string ("data16")) ;
+    appendFixItActions (fixItArray0, EnumFixItKind::fixItReplace, GGS_string ("data16")) ;
     inCompiler->emitSemanticWarning (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 156)), GGS_string ("obsolete keyword"), fixItArray0  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 156)) ;
   } break ;
   case 2: {
@@ -13397,7 +15118,7 @@ void cParser_pic_31__38__5F_syntax::rule_pic_31__38__5F_syntax_structured_5F_ins
     case 1: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ldataptr COMMA_SOURCE_FILE ("pic18_syntax.galgas", 662)) ;
       TC_Array <FixItDescription> fixItArray19 ;
-      appendFixItActions (fixItArray19, kFixItReplace, GGS_string ("ldata16ptr")) ;
+      appendFixItActions (fixItArray19, EnumFixItKind::fixItReplace, GGS_string ("ldata16ptr")) ;
       inCompiler->emitSemanticWarning (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 663)), GGS_string ("obsolete keyword"), fixItArray19  COMMA_SOURCE_FILE ("pic18_syntax.galgas", 663)) ;
     } break ;
     case 2: {
