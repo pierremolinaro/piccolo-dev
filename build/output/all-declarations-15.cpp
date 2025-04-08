@@ -104,17 +104,17 @@ static void routine_before (Compiler * inCompiler
           case GGS_processorType::Enumeration::enum_pic_31__38__5F__36__30_:
           case GGS_processorType::Enumeration::enum_pic_31__38__5F__38__30_:
             {
-              var_pic_31__38__5F_devices_517.addAssign_operation (var_name_700  COMMA_SOURCE_FILE ("piccolo_program.galgas", 21)) ;
+              var_pic_31__38__5F_devices_517.addAssignOperation (var_name_700  COMMA_SOURCE_FILE ("piccolo_program.galgas", 21)) ;
             }
             break ;
           case GGS_processorType::Enumeration::enum_midrange:
             {
-              var_midrange_5F_devices_555.addAssign_operation (var_name_700  COMMA_SOURCE_FILE ("piccolo_program.galgas", 23)) ;
+              var_midrange_5F_devices_555.addAssignOperation (var_name_700  COMMA_SOURCE_FILE ("piccolo_program.galgas", 23)) ;
             }
             break ;
           case GGS_processorType::Enumeration::enum_baseline:
             {
-              var_baseline_5F_devices_596.addAssign_operation (var_name_700  COMMA_SOURCE_FILE ("piccolo_program.galgas", 31)) ;
+              var_baseline_5F_devices_596.addAssignOperation (var_name_700  COMMA_SOURCE_FILE ("piccolo_program.galgas", 31)) ;
             }
             break ;
           }
@@ -133,7 +133,7 @@ static void routine_before (Compiler * inCompiler
               {
               routine_print_3F_ (enumerator_1785.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 39)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 39)) ;
               }
-              var_idx_1766.plusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 40)) ;
+              var_idx_1766.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 40)) ;
               GalgasBool test_2 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_2) {
                 test_2 = GGS_bool (ComparisonKind::equal, var_idx_1766.objectCompare (GGS_uint (uint32_t (5U)))).boolEnum () ;
@@ -170,7 +170,7 @@ static void routine_before (Compiler * inCompiler
               {
               routine_print_3F_ (enumerator_2394.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 55)) ;
               }
-              var_idx_2375.plusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 56)) ;
+              var_idx_2375.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 56)) ;
               GalgasBool test_5 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_5) {
                 test_5 = GGS_bool (ComparisonKind::equal, var_idx_2375.objectCompare (GGS_uint (uint32_t (5U)))).boolEnum () ;
@@ -207,7 +207,7 @@ static void routine_before (Compiler * inCompiler
               {
               routine_print_3F_ (enumerator_2989.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 71)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 71)) ;
               }
-              var_idx_2970.plusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 72)) ;
+              var_idx_2970.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 72)) ;
               GalgasBool test_8 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_8) {
                 test_8 = GGS_bool (ComparisonKind::equal, var_idx_2970.objectCompare (GGS_uint (uint32_t (5U)))).boolEnum () ;
@@ -391,13 +391,13 @@ static void routine_before (Compiler * inCompiler
               GGS_string var_s_7152 = GGS_string ("  '").add_operation (enumerator_7114.current (HERE).readProperty_lkey ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 153)).add_operation (GGS_string ("' at "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 153)) ;
               UpEnumerator_uintlist enumerator_7221 (enumerator_7114.current (HERE).readProperty_mRegisterAddressList ()) ;
               while (enumerator_7221.hasCurrentObject ()) {
-                var_s_7152.plusAssign_operation(enumerator_7221.current (HERE).readProperty_mValue ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 155)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 155)) ;
+                var_s_7152.plusAssignOperation(enumerator_7221.current (HERE).readProperty_mValue ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 155)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 155)) ;
                 enumerator_7221.gotoNextObject () ;
                 if (enumerator_7221.hasCurrentObject ()) {
-                  var_s_7152.plusAssign_operation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 156)) ;
+                  var_s_7152.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 156)) ;
                 }
               }
-              var_s_7152.plusAssign_operation(enumerator_7114.current (HERE).readProperty_mBitDefinitionString ().add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 158)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 158)) ;
+              var_s_7152.plusAssignOperation(enumerator_7114.current (HERE).readProperty_mBitDefinitionString ().add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 158)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 158)) ;
               {
               routine_print_3F_ (var_s_7152, inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 159)) ;
               }
@@ -433,15 +433,15 @@ static void routine_before (Compiler * inCompiler
               GGS_string var_s_8326 = GGS_string ("REGISTER '").add_operation (enumerator_8243.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 173)).add_operation (GGS_string ("' at "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 173)).add_operation (enumerator_8243.current_mRegisterAddress (HERE).readProperty_uint ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 173)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 173)).add_operation (GGS_string (", width "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 173)).add_operation (enumerator_8243.current_mRegisterWidth (HERE).readProperty_uint ().getter_string (SOURCE_FILE ("piccolo_program.galgas", 173)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 173)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 173)) ;
               UpEnumerator_illegalMaskList enumerator_8487 (enumerator_8243.current_mIllegalMaskList (HERE)) ;
               while (enumerator_8487.hasCurrentObject ()) {
-                var_s_8326.plusAssign_operation(GGS_string ("  illegal value ").add_operation (enumerator_8487.current_mIllegalValue (HERE).readProperty_uint ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 175)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (GGS_string (" mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (enumerator_8487.current_mIllegalMask (HERE).readProperty_uint ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 175)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (GGS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (enumerator_8487.current_mDescription (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (GGS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)) ;
+                var_s_8326.plusAssignOperation(GGS_string ("  illegal value ").add_operation (enumerator_8487.current_mIllegalValue (HERE).readProperty_uint ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 175)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (GGS_string (" mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (enumerator_8487.current_mIllegalMask (HERE).readProperty_uint ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 175)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (GGS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (enumerator_8487.current_mDescription (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)).add_operation (GGS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 175)) ;
                 enumerator_8487.gotoNextObject () ;
               }
               UpEnumerator_configRegisterMaskMap enumerator_8754 (enumerator_8243.current_mConfigRegisterMaskMap (HERE)) ;
               while (enumerator_8754.hasCurrentObject ()) {
-                var_s_8326.plusAssign_operation(GGS_string ("  setting '").add_operation (enumerator_8754.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GGS_string ("': mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8754.current_mMaskValue (HERE).readProperty_uint ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GGS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8754.current_mDescription (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GGS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)) ;
+                var_s_8326.plusAssignOperation(GGS_string ("  setting '").add_operation (enumerator_8754.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GGS_string ("': mask "), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8754.current_mMaskValue (HERE).readProperty_uint ().getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GGS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (enumerator_8754.current_mDescription (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)).add_operation (GGS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 178)) ;
                 UpEnumerator_fieldSettingMap enumerator_8994 (enumerator_8754.current_mFieldSettingMap (HERE)) ;
                 while (enumerator_8994.hasCurrentObject ()) {
-                  var_s_8326.plusAssign_operation(GGS_string ("    value ").add_operation (enumerator_8994.current_mValue (HERE).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 180)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)).add_operation (GGS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)).add_operation (enumerator_8994.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)).add_operation (GGS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)) ;
+                  var_s_8326.plusAssignOperation(GGS_string ("    value ").add_operation (enumerator_8994.current_mValue (HERE).getter_hexString (SOURCE_FILE ("piccolo_program.galgas", 180)), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)).add_operation (GGS_string (" description \""), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)).add_operation (enumerator_8994.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)).add_operation (GGS_string ("\"\n"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 180)) ;
                   enumerator_8994.gotoNextObject () ;
                 }
                 enumerator_8754.gotoNextObject () ;

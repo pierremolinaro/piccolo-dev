@@ -131,52 +131,6 @@ GGS_fieldSettingMap GGS_fieldSettingMap::getter_overriddenMap (Compiler * inComp
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_fieldSettingMap::enterElement (const GGS_fieldSettingMap_2E_element & inValue,
-                                        Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * p = nullptr ;
-  macroMyNew (p, cMapElement_fieldSettingMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@fieldSettingMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_fieldSettingMap::addAssign_operation (const GGS_lstring & inKey,
-                                               const GGS_uint & inArgument0,
-                                               const GGS_uint & inArgument1,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * p = nullptr ;
-  macroMyNew (p, cMapElement_fieldSettingMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@fieldSettingMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap GGS_fieldSettingMap::add_operation (const GGS_fieldSettingMap & inOperand,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const {
-  GGS_fieldSettingMap result = *this ;
-  UpEnumerator_fieldSettingMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mValue (HERE), enumerator.current_mMask (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_fieldSettingMap::setter_insertKey (GGS_lstring inKey,
                                             GGS_uint inArgument0,
                                             GGS_uint inArgument1,
@@ -1505,6 +1459,13 @@ GGS_baseline_5F_instruction::GGS_baseline_5F_instruction (void) :
 AC_GALGAS_reference_class () {
 }
 
+
+void cPtr_baseline_5F_instruction::
+baseline_5F_instruction_init_21_ (const GGS_location & in_mInstructionLocation,
+                                  Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+}
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_instruction::GGS_baseline_5F_instruction (const cPtr_baseline_5F_instruction * inSourcePtr) :
@@ -1712,9 +1673,7 @@ GGS_baseline_5F_instruction_2E_weak GGS_baseline_5F_instruction_2E_weak::extract
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@baseline_5F_instructionList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_baseline_5F_instructionList : public cCollectionElement {
@@ -1801,9 +1760,8 @@ GGS_baseline_5F_instructionList GGS_baseline_5F_instructionList::init (Compiler 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_instructionList::enterElement (const GGS_baseline_5F_instructionList_2E_element & inValue,
-                                                    Compiler * /* inCompiler */
-                                                    COMMA_LOCATION_ARGS) {
+void GGS_baseline_5F_instructionList::plusPlusAssignOperation (const GGS_baseline_5F_instructionList_2E_element & inValue
+                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_baseline_5F_instructionList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -1839,8 +1797,8 @@ void GGS_baseline_5F_instructionList::makeAttributesFromObjects (capCollectionEl
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_instructionList::addAssign_operation (const GGS_baseline_5F_instruction & inOperand0
-                                                           COMMA_LOCATION_ARGS) {
+void GGS_baseline_5F_instructionList::addAssignOperation (const GGS_baseline_5F_instruction & inOperand0
+                                                          COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_baseline_5F_instructionList (inOperand0 COMMA_THERE)) ;
@@ -2013,9 +1971,9 @@ GGS_baseline_5F_instructionList GGS_baseline_5F_instructionList::getter_subListT
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_instructionList::plusAssign_operation (const GGS_baseline_5F_instructionList inOperand,
-                                                            Compiler * /* inCompiler */
-                                                            COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_baseline_5F_instructionList::plusAssignOperation (const GGS_baseline_5F_instructionList inOperand,
+                                                           Compiler * /* inCompiler */
+                                                           COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -4392,6 +4350,15 @@ GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::GGS_baseline_5F_instruction_
 GGS_baseline_5F_instruction () {
 }
 
+
+void cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::
+baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_init_21__21_ (const GGS_location & in_mInstructionLocation,
+                                                             const GGS_baseline_5F_instruction & in_mInstruction,
+                                                             Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mInstruction = in_mInstruction ;
+}
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (const cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * inSourcePtr) :
@@ -4842,6 +4809,11 @@ ComparisonResult GGS_baseline_5F_conditionExpression::objectCompare (const GGS_b
 
 GGS_baseline_5F_conditionExpression::GGS_baseline_5F_conditionExpression (void) :
 AC_GALGAS_reference_class () {
+}
+
+
+void cPtr_baseline_5F_conditionExpression::
+baseline_5F_conditionExpression_init (Compiler * /* inCompiler */) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6234,9 +6206,7 @@ GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak GGS_baseline_5F_instruct
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@baseline_5F_partList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_baseline_5F_partList : public cCollectionElement {
@@ -6335,9 +6305,8 @@ GGS_baseline_5F_partList GGS_baseline_5F_partList::init (Compiler * COMMA_UNUSED
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_partList::enterElement (const GGS_baseline_5F_partList_2E_element & inValue,
-                                             Compiler * /* inCompiler */
-                                             COMMA_LOCATION_ARGS) {
+void GGS_baseline_5F_partList::plusPlusAssignOperation (const GGS_baseline_5F_partList_2E_element & inValue
+                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_baseline_5F_partList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -6379,10 +6348,10 @@ void GGS_baseline_5F_partList::makeAttributesFromObjects (capCollectionElement &
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_partList::addAssign_operation (const GGS_baseline_5F_conditionExpression & inOperand0,
-                                                    const GGS_baseline_5F_instructionList & inOperand1,
-                                                    const GGS_location & inOperand2
-                                                    COMMA_LOCATION_ARGS) {
+void GGS_baseline_5F_partList::addAssignOperation (const GGS_baseline_5F_conditionExpression & inOperand0,
+                                                   const GGS_baseline_5F_instructionList & inOperand1,
+                                                   const GGS_location & inOperand2
+                                                   COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_baseline_5F_partList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -6589,9 +6558,9 @@ GGS_baseline_5F_partList GGS_baseline_5F_partList::getter_subListToIndex (const 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_partList::plusAssign_operation (const GGS_baseline_5F_partList inOperand,
-                                                     Compiler * /* inCompiler */
-                                                     COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_baseline_5F_partList::plusAssignOperation (const GGS_baseline_5F_partList inOperand,
+                                                    Compiler * /* inCompiler */
+                                                    COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -7173,9 +7142,7 @@ GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak GGS_baseline_5F_instruction_5
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@baseline_5F_routineDefinitionList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_baseline_5F_routineDefinitionList : public cCollectionElement {
@@ -7286,9 +7253,8 @@ GGS_baseline_5F_routineDefinitionList GGS_baseline_5F_routineDefinitionList::ini
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_routineDefinitionList::enterElement (const GGS_baseline_5F_routineDefinitionList_2E_element & inValue,
-                                                          Compiler * /* inCompiler */
-                                                          COMMA_LOCATION_ARGS) {
+void GGS_baseline_5F_routineDefinitionList::plusPlusAssignOperation (const GGS_baseline_5F_routineDefinitionList_2E_element & inValue
+                                                                     COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_baseline_5F_routineDefinitionList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -7336,12 +7302,12 @@ void GGS_baseline_5F_routineDefinitionList::makeAttributesFromObjects (capCollec
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_routineDefinitionList::addAssign_operation (const GGS_lstring & inOperand0,
-                                                                 const GGS_luint & inOperand1,
-                                                                 const GGS_bool & inOperand2,
-                                                                 const GGS_baseline_5F_instructionList & inOperand3,
-                                                                 const GGS_location & inOperand4
-                                                                 COMMA_LOCATION_ARGS) {
+void GGS_baseline_5F_routineDefinitionList::addAssignOperation (const GGS_lstring & inOperand0,
+                                                                const GGS_luint & inOperand1,
+                                                                const GGS_bool & inOperand2,
+                                                                const GGS_baseline_5F_instructionList & inOperand3,
+                                                                const GGS_location & inOperand4
+                                                                COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_baseline_5F_routineDefinitionList (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4 COMMA_THERE)) ;
@@ -7582,9 +7548,9 @@ GGS_baseline_5F_routineDefinitionList GGS_baseline_5F_routineDefinitionList::get
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_routineDefinitionList::plusAssign_operation (const GGS_baseline_5F_routineDefinitionList inOperand,
-                                                                  Compiler * /* inCompiler */
-                                                                  COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_baseline_5F_routineDefinitionList::plusAssignOperation (const GGS_baseline_5F_routineDefinitionList inOperand,
+                                                                 Compiler * /* inCompiler */
+                                                                 COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -8021,50 +7987,6 @@ GGS_baseline_5F_declaredRoutineMap GGS_baseline_5F_declaredRoutineMap::getter_ov
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_declaredRoutineMap::enterElement (const GGS_baseline_5F_declaredRoutineMap_2E_element & inValue,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) {
-  cMapElement_baseline_5F_declaredRoutineMap * p = nullptr ;
-  macroMyNew (p, cMapElement_baseline_5F_declaredRoutineMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@baseline_5F_declaredRoutineMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_declaredRoutineMap::addAssign_operation (const GGS_lstring & inKey,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) {
-  cMapElement_baseline_5F_declaredRoutineMap * p = nullptr ;
-  macroMyNew (p, cMapElement_baseline_5F_declaredRoutineMap (inKey COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@baseline_5F_declaredRoutineMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_declaredRoutineMap GGS_baseline_5F_declaredRoutineMap::add_operation (const GGS_baseline_5F_declaredRoutineMap & inOperand,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) const {
-  GGS_baseline_5F_declaredRoutineMap result = *this ;
-  UpEnumerator_baseline_5F_declaredRoutineMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_baseline_5F_declaredRoutineMap::setter_insertKey (GGS_lstring inKey,
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
@@ -8199,9 +8121,7 @@ GGS_baseline_5F_declaredRoutineMap GGS_baseline_5F_declaredRoutineMap::extractOb
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@baseline_instruction shouldTerminateWithMOVLW'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_instruction::method_shouldTerminateWithMOVLW (const GGS_string constinArgument_inErrorMessage,
@@ -8220,13 +8140,12 @@ void callExtensionMethod_shouldTerminateWithMOVLW (cPtr_baseline_5F_instruction 
                                                    COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_instruction) ;
-    inObject->method_shouldTerminateWithMOVLW  (constin_inErrorMessage, inCompiler COMMA_THERE) ;
+    inObject->method_shouldTerminateWithMOVLW (constin_inErrorMessage, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@baseline_instruction shouldNotContinueInSequence'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_instruction::method_shouldNotContinueInSequence (const GGS_string constinArgument_inErrorMessage,
@@ -8245,9 +8164,10 @@ void callExtensionMethod_shouldNotContinueInSequence (cPtr_baseline_5F_instructi
                                                       COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_instruction) ;
-    inObject->method_shouldNotContinueInSequence  (constin_inErrorMessage, inCompiler COMMA_THERE) ;
+    inObject->method_shouldNotContinueInSequence (constin_inErrorMessage, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_intermediate_5F_registerExpression::GGS_baseline_5F_intermediate_5F_registerExpression (void) :
@@ -8401,6 +8321,11 @@ ComparisonResult GGS_baseline_5F_intermediate_5F_instruction::objectCompare (con
 
 GGS_baseline_5F_intermediate_5F_instruction::GGS_baseline_5F_intermediate_5F_instruction (void) :
 AC_GALGAS_reference_class () {
+}
+
+
+void cPtr_baseline_5F_intermediate_5F_instruction::
+baseline_5F_intermediate_5F_instruction_init (Compiler * /* inCompiler */) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8580,9 +8505,7 @@ GGS_baseline_5F_intermediate_5F_instruction_2E_weak GGS_baseline_5F_intermediate
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@baseline_5F_intermediate_5F_instructionList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_baseline_5F_intermediate_5F_instructionList : public cCollectionElement {
@@ -8669,9 +8592,8 @@ GGS_baseline_5F_intermediate_5F_instructionList GGS_baseline_5F_intermediate_5F_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instructionList::enterElement (const GGS_baseline_5F_intermediate_5F_instructionList_2E_element & inValue,
-                                                                    Compiler * /* inCompiler */
-                                                                    COMMA_LOCATION_ARGS) {
+void GGS_baseline_5F_intermediate_5F_instructionList::plusPlusAssignOperation (const GGS_baseline_5F_intermediate_5F_instructionList_2E_element & inValue
+                                                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -8707,8 +8629,8 @@ void GGS_baseline_5F_intermediate_5F_instructionList::makeAttributesFromObjects 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instructionList::addAssign_operation (const GGS_baseline_5F_intermediate_5F_instruction & inOperand0
-                                                                           COMMA_LOCATION_ARGS) {
+void GGS_baseline_5F_intermediate_5F_instructionList::addAssignOperation (const GGS_baseline_5F_intermediate_5F_instruction & inOperand0
+                                                                          COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_baseline_5F_intermediate_5F_instructionList (inOperand0 COMMA_THERE)) ;
@@ -8881,9 +8803,9 @@ GGS_baseline_5F_intermediate_5F_instructionList GGS_baseline_5F_intermediate_5F_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instructionList::plusAssign_operation (const GGS_baseline_5F_intermediate_5F_instructionList inOperand,
-                                                                            Compiler * /* inCompiler */
-                                                                            COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_baseline_5F_intermediate_5F_instructionList::plusAssignOperation (const GGS_baseline_5F_intermediate_5F_instructionList inOperand,
+                                                                           Compiler * /* inCompiler */
+                                                                           COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -9287,6 +9209,11 @@ ComparisonResult GGS_baseline_5F_intermediate_5F_pseudo::objectCompare (const GG
 
 GGS_baseline_5F_intermediate_5F_pseudo::GGS_baseline_5F_intermediate_5F_pseudo (void) :
 GGS_baseline_5F_intermediate_5F_instruction () {
+}
+
+
+void cPtr_baseline_5F_intermediate_5F_pseudo::
+baseline_5F_intermediate_5F_pseudo_init (Compiler * /* inCompiler */) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -10101,6 +10028,13 @@ ComparisonResult GGS_baseline_5F_intermediate_5F_actualInstruction::objectCompar
 
 GGS_baseline_5F_intermediate_5F_actualInstruction::GGS_baseline_5F_intermediate_5F_actualInstruction (void) :
 GGS_baseline_5F_intermediate_5F_instruction () {
+}
+
+
+void cPtr_baseline_5F_intermediate_5F_actualInstruction::
+baseline_5F_intermediate_5F_actualInstruction_init_21_ (const GGS_location & in_mInstructionLocation,
+                                                        Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13718,52 +13652,6 @@ GGS_baselineRoutineMap GGS_baselineRoutineMap::getter_overriddenMap (Compiler * 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baselineRoutineMap::enterElement (const GGS_baselineRoutineMap_2E_element & inValue,
-                                           Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) {
-  cMapElement_baselineRoutineMap * p = nullptr ;
-  macroMyNew (p, cMapElement_baselineRoutineMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@baselineRoutineMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baselineRoutineMap::addAssign_operation (const GGS_lstring & inKey,
-                                                  const GGS_bool & inArgument0,
-                                                  const GGS_luint & inArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
-  cMapElement_baselineRoutineMap * p = nullptr ;
-  macroMyNew (p, cMapElement_baselineRoutineMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@baselineRoutineMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baselineRoutineMap GGS_baselineRoutineMap::add_operation (const GGS_baselineRoutineMap & inOperand,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const {
-  GGS_baselineRoutineMap result = *this ;
-  UpEnumerator_baselineRoutineMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mIsNoReturn (HERE), enumerator.current_mPage (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_baselineRoutineMap::setter_insertKey (GGS_lstring inKey,
                                                GGS_bool inArgument0,
                                                GGS_luint inArgument1,
@@ -14196,51 +14084,6 @@ GGS_baselineSymbolTableForOptimizations GGS_baselineSymbolTableForOptimizations:
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baselineSymbolTableForOptimizations::enterElement (const GGS_baselineSymbolTableForOptimizations_2E_element & inValue,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
-  cMapElement_baselineSymbolTableForOptimizations * p = nullptr ;
-  macroMyNew (p, cMapElement_baselineSymbolTableForOptimizations (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@baselineSymbolTableForOptimizations insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baselineSymbolTableForOptimizations::addAssign_operation (const GGS_lstring & inKey,
-                                                                   const GGS_uint & inArgument0,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) {
-  cMapElement_baselineSymbolTableForOptimizations * p = nullptr ;
-  macroMyNew (p, cMapElement_baselineSymbolTableForOptimizations (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@baselineSymbolTableForOptimizations insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_baselineSymbolTableForOptimizations GGS_baselineSymbolTableForOptimizations::add_operation (const GGS_baselineSymbolTableForOptimizations & inOperand,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) const {
-  GGS_baselineSymbolTableForOptimizations result = *this ;
-  UpEnumerator_baselineSymbolTableForOptimizations enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mDefinitionLineIndex (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_baselineSymbolTableForOptimizations::setter_insertKey (GGS_lstring inKey,
                                                                 GGS_uint inArgument0,
                                                                 Compiler * inCompiler
@@ -14442,9 +14285,7 @@ GGS_baselineSymbolTableForOptimizations GGS_baselineSymbolTableForOptimizations:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@baseline_intermediate_instruction setCurrentAddress'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction::method_setCurrentAddress (GGS_uint & ioArgument_ioCurrentWordAdress,
@@ -14462,9 +14303,10 @@ void callExtensionMethod_setCurrentAddress (cPtr_baseline_5F_intermediate_5F_ins
                                             COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
-    inObject->method_setCurrentAddress  (io_ioCurrentWordAdress, inCompiler COMMA_THERE) ;
+    inObject->method_setCurrentAddress (io_ioCurrentWordAdress, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Extension getter '@baseline_intermediate_instruction isLABEL'
@@ -14578,9 +14420,7 @@ GGS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_baseline_5F_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@baseline_intermediate_instruction enterReferencedLabel'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction::method_enterReferencedLabel (GGS_stringset & /* ioArgument_ioReferencedLabelSet */,
@@ -14596,13 +14436,12 @@ void callExtensionMethod_enterReferencedLabel (cPtr_baseline_5F_intermediate_5F_
                                                COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
-    inObject->method_enterReferencedLabel  (io_ioReferencedLabelSet, inCompiler COMMA_THERE) ;
+    inObject->method_enterReferencedLabel (io_ioReferencedLabelSet, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@baseline_intermediate_instruction defineLabel'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction::method_defineLabel (GGS_baselineSymbolTableForOptimizations & /* ioArgument_ioRoutineSymbolTable */,
@@ -14620,13 +14459,12 @@ void callExtensionMethod_defineLabel (cPtr_baseline_5F_intermediate_5F_instructi
                                       COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
-    inObject->method_defineLabel  (io_ioRoutineSymbolTable, constin_inLineIndex, inCompiler COMMA_THERE) ;
+    inObject->method_defineLabel (io_ioRoutineSymbolTable, constin_inLineIndex, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimizeTestDecInc (const GGS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -14659,27 +14497,27 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
       ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_goto_19903.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 491)) ;
       }
       ioArgument_ioOptimizationsDone = GGS_bool (true) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)).add_operation (GGS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("GOTO "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 503)) ;
+      ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)).add_operation (GGS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 502)) ;
+      ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("GOTO "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 503)) ;
       GalgasBool test_7 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_7) {
         const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_8 = this ;
         test_7 = temp_8.readProperty_mIncrement ().boolEnum () ;
         if (GalgasBool::boolTrue == test_7) {
-          ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 505)) ;
+          ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("INCF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 505)) ;
         }
       }
       if (GalgasBool::boolFalse == test_7) {
-        ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 507)) ;
+        ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("DECF "), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 507)) ;
       }
       const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_9 = this ;
-      ioArgument_ioListFileContents.plusAssign_operation(temp_9.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 509)) ;
+      ioArgument_ioListFileContents.plusAssignOperation(temp_9.readProperty_mRegisterDescription ().readProperty_mAssemblyString (), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 509)) ;
       GalgasBool test_10 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_10) {
         const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_11 = this ;
         test_10 = temp_11.readProperty_m_5F_W_5F_isDestination ().boolEnum () ;
         if (GalgasBool::boolTrue == test_10) {
-          ioArgument_ioListFileContents.plusAssign_operation(GGS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 511)) ;
+          ioArgument_ioListFileContents.plusAssignOperation(GGS_string (", W"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 511)) ;
         }
       }
       GalgasBool test_12 = GalgasBool::boolTrue ;
@@ -14687,13 +14525,13 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
         const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_13 = this ;
         test_12 = temp_13.readProperty_mBranchIfZero ().boolEnum () ;
         if (GalgasBool::boolTrue == test_12) {
-          ioArgument_ioListFileContents.plusAssign_operation(GGS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 514)) ;
+          ioArgument_ioListFileContents.plusAssignOperation(GGS_string (" Z"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 514)) ;
         }
       }
       if (GalgasBool::boolFalse == test_12) {
-        ioArgument_ioListFileContents.plusAssign_operation(GGS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 516)) ;
+        ioArgument_ioListFileContents.plusAssignOperation(GGS_string (" NZ"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 516)) ;
       }
-      ioArgument_ioListFileContents.plusAssign_operation(GGS_string (": branching to GOTO replaced by second GOTO label\n"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 518)) ;
+      ioArgument_ioListFileContents.plusAssignOperation(GGS_string (": branching to GOTO replaced by second GOTO label\n"), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 518)) ;
     }
   }
 }
@@ -14710,9 +14548,10 @@ void callExtensionMethod_optimizeTestDecInc (cPtr_baseline_5F_intermediate_5F_in
                                              COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    inObject->method_optimizeTestDecInc  (constin_inSymbolTable, constin_inLineIndex, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioOptimizationsDone, inCompiler COMMA_THERE) ;
+    inObject->method_optimizeTestDecInc (constin_inSymbolTable, constin_inLineIndex, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioOptimizationsDone, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 // @baseline_5F_assembly_5F_instruction reference class
 //--------------------------------------------------------------------------------------------------
@@ -14737,6 +14576,11 @@ ComparisonResult GGS_baseline_5F_assembly_5F_instruction::objectCompare (const G
 
 GGS_baseline_5F_assembly_5F_instruction::GGS_baseline_5F_assembly_5F_instruction (void) :
 AC_GALGAS_reference_class () {
+}
+
+
+void cPtr_baseline_5F_assembly_5F_instruction::
+baseline_5F_assembly_5F_instruction_init (Compiler * /* inCompiler */) {
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -14910,6 +14754,439 @@ GGS_baseline_5F_assembly_5F_instruction_2E_weak GGS_baseline_5F_assembly_5F_inst
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instruction.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Class for element of '@baseline_5F_assembly_5F_instructionList' list
+//--------------------------------------------------------------------------------------------------
+
+class cCollectionElement_baseline_5F_assembly_5F_instructionList : public cCollectionElement {
+  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element mObject ;
+
+//--- Class functions
+  public: cCollectionElement_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instruction & in_mInstruction
+                                                                      COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+
+//--- Virtual method that checks that all attributes are valid
+  public: virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public: virtual cCollectionElement * copy (void) ;
+
+//--- Description
+  public: virtual void description (String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement_baseline_5F_assembly_5F_instructionList::cCollectionElement_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instruction & in_mInstruction
+                                                                                                                        COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mInstruction) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement_baseline_5F_assembly_5F_instructionList::cCollectionElement_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mInstruction) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool cCollectionElement_baseline_5F_assembly_5F_instructionList::isValid (void) const {
+  return true ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement * cCollectionElement_baseline_5F_assembly_5F_instructionList::copy (void) {
+  cCollectionElement * result = nullptr ;
+  macroMyNew (result, cCollectionElement_baseline_5F_assembly_5F_instructionList (mObject.mProperty_mInstruction COMMA_HERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cCollectionElement_baseline_5F_assembly_5F_instructionList::description (String & ioString, const int32_t inIndentation) const {
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mInstruction" ":") ;
+  mObject.mProperty_mInstruction.description (ioString, inIndentation) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList::GGS_baseline_5F_assembly_5F_instructionList (void) :
+AC_GALGAS_list () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList::GGS_baseline_5F_assembly_5F_instructionList (const capCollectionElementArray & inSharedArray) :
+AC_GALGAS_list (inSharedArray) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
+  return GGS_baseline_5F_assembly_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  return GGS_baseline_5F_assembly_5F_instructionList (capCollectionElementArray ()) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::plusPlusAssignOperation (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inValue
+                                                                           COMMA_LOCATION_ARGS) {
+  cCollectionElement * p = nullptr ;
+  macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inValue COMMA_THERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  appendObject (attributes) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::class_func_listWithValue (const GGS_baseline_5F_assembly_5F_instruction & inOperand0
+                                                                                                                   COMMA_LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_instructionList result ;
+  if (inOperand0.isValid ()) {
+    result = GGS_baseline_5F_assembly_5F_instructionList (capCollectionElementArray ()) ;
+    capCollectionElement attributes ;
+    GGS_baseline_5F_assembly_5F_instructionList::makeAttributesFromObjects (attributes, inOperand0 COMMA_THERE) ;
+    result.appendObject (attributes) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                                             const GGS_baseline_5F_assembly_5F_instruction & in_mInstruction
+                                                                             COMMA_LOCATION_ARGS) {
+  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = nullptr ;
+  macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (in_mInstruction COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::addAssignOperation (const GGS_baseline_5F_assembly_5F_instruction & inOperand0
+                                                                      COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::setter_append (const GGS_baseline_5F_assembly_5F_instruction inOperand0,
+                                                                 Compiler * /* inCompiler */
+                                                                 COMMA_LOCATION_ARGS) {
+  if (isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    appendObject (attributes) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::setter_insertAtIndex (const GGS_baseline_5F_assembly_5F_instruction inOperand0,
+                                                                        const GGS_uint inInsertionIndex,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  if (isValid () && inInsertionIndex.isValid ()) {
+    cCollectionElement * p = nullptr ;
+    macroMyNew (p, cCollectionElement_baseline_5F_assembly_5F_instructionList (inOperand0 COMMA_THERE)) ;
+    capCollectionElement attributes ;
+    attributes.setPointer (p) ;
+    macroDetachSharedObject (p) ;
+    insertObjectAtIndex (attributes, inInsertionIndex.uintValue (), inCompiler COMMA_THERE) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::setter_removeAtIndex (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
+                                                                        const GGS_uint inRemoveIndex,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  outOperand0.drop () ;
+  if (isValid () && inRemoveIndex.isValid ()) {
+    capCollectionElement attributes ;
+    removeObjectAtIndex (attributes, inRemoveIndex.uintValue (), inCompiler COMMA_THERE) ;
+    cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
+    if (nullptr == p) {
+      drop () ;
+    }else{
+      macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+      outOperand0 = p->mObject.mProperty_mInstruction ;
+    }
+  }else{
+    drop () ;    
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::setter_popFirst (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeFirstObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+    outOperand0 = p->mObject.mProperty_mInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::setter_popLast (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) {
+  capCollectionElement attributes ;
+  removeLastObject (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+    outOperand0 = p->mObject.mProperty_mInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::method_first (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readFirst (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+    outOperand0 = p->mObject.mProperty_mInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::method_last (GGS_baseline_5F_assembly_5F_instruction & outOperand0,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes ;
+  readLast (attributes, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
+  if (nullptr == p) {
+    outOperand0.drop () ;
+  }else{
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+    outOperand0 = p->mObject.mProperty_mInstruction ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::add_operation (const GGS_baseline_5F_assembly_5F_instructionList & inOperand,
+                                                                                                        Compiler * /* inCompiler */
+                                                                                                        COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_baseline_5F_assembly_5F_instructionList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.appendList (inOperand) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::getter_subListWithRange (const GGS_range & inRange,
+                                                                                                                  Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) const {
+  GGS_baseline_5F_assembly_5F_instructionList result = GGS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (THERE) ;
+  subListWithRange (result, inRange, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::getter_subListFromIndex (const GGS_uint & inIndex,
+                                                                                                                  Compiler * inCompiler
+                                                                                                                  COMMA_LOCATION_ARGS) const {
+  GGS_baseline_5F_assembly_5F_instructionList result = GGS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (THERE) ;
+  subListFromIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::getter_subListToIndex (const GGS_uint & inIndex,
+                                                                                                                Compiler * inCompiler
+                                                                                                                COMMA_LOCATION_ARGS) const {
+  GGS_baseline_5F_assembly_5F_instructionList result = GGS_baseline_5F_assembly_5F_instructionList::class_func_emptyList (THERE) ;
+  subListToIndex (result, inIndex, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::plusAssignOperation (const GGS_baseline_5F_assembly_5F_instructionList inOperand,
+                                                                       Compiler * /* inCompiler */
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  appendList (inOperand) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_baseline_5F_assembly_5F_instructionList::setter_setMInstructionAtIndex (GGS_baseline_5F_assembly_5F_instruction inOperand,
+                                                                                 GGS_uint inIndex,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) uniquelyReferencedPointerAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+    macroUniqueSharedObject (p) ;
+    p->mObject.mProperty_mInstruction = inOperand ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instruction GGS_baseline_5F_assembly_5F_instructionList::getter_mInstructionAtIndex (const GGS_uint & inIndex,
+                                                                                                                 Compiler * inCompiler
+                                                                                                                 COMMA_LOCATION_ARGS) const {
+  capCollectionElement attributes = readObjectAtIndex (inIndex, inCompiler COMMA_THERE) ;
+  cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (cCollectionElement_baseline_5F_assembly_5F_instructionList *) attributes.ptr () ;
+  GGS_baseline_5F_assembly_5F_instruction result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+    result = p->mObject.mProperty_mInstruction ;
+  }
+  return result ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Down Enumerator for @baseline_5F_assembly_5F_instructionList
+//--------------------------------------------------------------------------------------------------
+
+DownEnumerator_baseline_5F_assembly_5F_instructionList::DownEnumerator_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instructionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList_2E_element DownEnumerator_baseline_5F_assembly_5F_instructionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (const cCollectionElement_baseline_5F_assembly_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instruction DownEnumerator_baseline_5F_assembly_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (const cCollectionElement_baseline_5F_assembly_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+  return p->mObject.mProperty_mInstruction ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @baseline_5F_assembly_5F_instructionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_baseline_5F_assembly_5F_instructionList::UpEnumerator_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instructionList & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList_2E_element UpEnumerator_baseline_5F_assembly_5F_instructionList::current (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (const cCollectionElement_baseline_5F_assembly_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+  return p->mObject ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instruction UpEnumerator_baseline_5F_assembly_5F_instructionList::current_mInstruction (LOCATION_ARGS) const {
+  const cCollectionElement_baseline_5F_assembly_5F_instructionList * p = (const cCollectionElement_baseline_5F_assembly_5F_instructionList *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cCollectionElement_baseline_5F_assembly_5F_instructionList) ;
+  return p->mObject.mProperty_mInstruction ;
+}
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+//     @baseline_assembly_instructionList generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList ("baseline_assembly_instructionList",
+                                                                                               nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_baseline_5F_assembly_5F_instructionList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_baseline_5F_assembly_5F_instructionList::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_baseline_5F_assembly_5F_instructionList (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instructionList::extractObject (const GGS_object & inObject,
+                                                                                                        Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_instructionList result ;
+  const GGS_baseline_5F_assembly_5F_instructionList * p = (const GGS_baseline_5F_assembly_5F_instructionList *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_baseline_5F_assembly_5F_instructionList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_instructionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

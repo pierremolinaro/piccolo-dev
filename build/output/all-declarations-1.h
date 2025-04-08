@@ -9,9 +9,7 @@
 #include "all-declarations-0.h"
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: class for element of '@fieldSettingMap' map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_fieldSettingMap : public cMapElement {
@@ -132,6 +130,7 @@ class GGS_fieldSettingMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -142,9 +141,7 @@ class GGS_fieldSettingMap_2E_element : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: fieldSettingMap.element? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_fieldSettingMap_2E_element_3F_ : public AC_GALGAS_root {
@@ -209,6 +206,7 @@ class GGS_fieldSettingMap_2E_element_3F_ : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -348,6 +346,7 @@ class GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code : public AC_GALGAS_root 
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -434,6 +433,7 @@ class GGS_baseline_5F_F_5F_instruction_5F_base_5F_code : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -519,6 +519,7 @@ class GGS_baseline_5F_bit_5F_oriented_5F_op : public AC_GALGAS_root {
 
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -623,6 +624,7 @@ class GGS_baseline_5F_literal_5F_instruction_5F_opcode : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -724,6 +726,7 @@ class GGS_baseline_5F_WO_5F_OPERAND_5F_group : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -744,9 +747,7 @@ class GGS_string extensionGetter_mnemonic (const class GGS_baseline_5F_WO_5F_OPE
                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction : public AC_GALGAS_reference_class {
@@ -787,6 +788,7 @@ class GGS_baseline_5F_instruction : public AC_GALGAS_reference_class {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -797,9 +799,7 @@ class GGS_baseline_5F_instruction : public AC_GALGAS_reference_class {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction : public acStrongPtr_class {
@@ -862,9 +862,7 @@ class cPtr_baseline_5F_instruction : public acStrongPtr_class {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
@@ -940,6 +938,7 @@ class GGS_baseline_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -1017,13 +1016,17 @@ class GGS_baseline_5F_instructionList : public AC_GALGAS_list {
                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_baseline_5F_instructionList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_baseline_5F_instructionList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_baseline_5F_instruction & inOperand0
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_baseline_5F_instruction & inOperand0
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_baseline_5F_instructionList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_baseline_5F_instructionList add_operation (const GGS_baseline_5F_instructionList & inOperand,
                                                                           Compiler * inCompiler
@@ -1090,14 +1093,9 @@ class GGS_baseline_5F_instructionList : public AC_GALGAS_list {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_baseline_5F_instructionList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_instructionList ;
   friend class DownEnumerator_baseline_5F_instructionList ;
@@ -1176,6 +1174,7 @@ class GGS_baseline_5F_instructionList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1186,9 +1185,7 @@ class GGS_baseline_5F_instructionList_2E_element : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instructionList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_FD reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_FD : public GGS_baseline_5F_instruction {
@@ -1246,6 +1243,7 @@ class GGS_baseline_5F_instruction_5F_FD : public GGS_baseline_5F_instruction {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1256,9 +1254,7 @@ class GGS_baseline_5F_instruction_5F_FD : public GGS_baseline_5F_instruction {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_FD class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_FD : public cPtr_baseline_5F_instruction {
@@ -1324,9 +1320,7 @@ class cPtr_baseline_5F_instruction_5F_FD : public cPtr_baseline_5F_instruction {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_FD_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_FD_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -1403,6 +1397,7 @@ class GGS_baseline_5F_instruction_5F_FD_2E_weak : public GGS_baseline_5F_instruc
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1413,9 +1408,7 @@ class GGS_baseline_5F_instruction_5F_FD_2E_weak : public GGS_baseline_5F_instruc
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_F reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_F : public GGS_baseline_5F_instruction {
@@ -1468,6 +1461,7 @@ class GGS_baseline_5F_instruction_5F_F : public GGS_baseline_5F_instruction {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1478,9 +1472,7 @@ class GGS_baseline_5F_instruction_5F_F : public GGS_baseline_5F_instruction {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_F ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_F class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_F : public cPtr_baseline_5F_instruction {
@@ -1543,9 +1535,7 @@ class cPtr_baseline_5F_instruction_5F_F : public cPtr_baseline_5F_instruction {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_F_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_F_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -1622,6 +1612,7 @@ class GGS_baseline_5F_instruction_5F_F_2E_weak : public GGS_baseline_5F_instruct
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1632,9 +1623,7 @@ class GGS_baseline_5F_instruction_5F_F_2E_weak : public GGS_baseline_5F_instruct
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_F_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_FB reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_FB : public GGS_baseline_5F_instruction {
@@ -1692,6 +1681,7 @@ class GGS_baseline_5F_instruction_5F_FB : public GGS_baseline_5F_instruction {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1702,9 +1692,7 @@ class GGS_baseline_5F_instruction_5F_FB : public GGS_baseline_5F_instruction {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FB ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_FB class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_FB : public cPtr_baseline_5F_instruction {
@@ -1770,9 +1758,7 @@ class cPtr_baseline_5F_instruction_5F_FB : public cPtr_baseline_5F_instruction {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_FB_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_FB_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -1849,6 +1835,7 @@ class GGS_baseline_5F_instruction_5F_FB_2E_weak : public GGS_baseline_5F_instruc
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1859,9 +1846,7 @@ class GGS_baseline_5F_instruction_5F_FB_2E_weak : public GGS_baseline_5F_instruc
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FB_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_CALL reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_CALL : public GGS_baseline_5F_instruction {
@@ -1909,6 +1894,7 @@ class GGS_baseline_5F_instruction_5F_CALL : public GGS_baseline_5F_instruction {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -1919,9 +1905,7 @@ class GGS_baseline_5F_instruction_5F_CALL : public GGS_baseline_5F_instruction {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_CALL class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_CALL : public cPtr_baseline_5F_instruction {
@@ -1985,9 +1969,7 @@ class cPtr_baseline_5F_instruction_5F_CALL : public cPtr_baseline_5F_instruction
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_CALL_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_CALL_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -2064,6 +2046,7 @@ class GGS_baseline_5F_instruction_5F_CALL_2E_weak : public GGS_baseline_5F_instr
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2074,9 +2057,7 @@ class GGS_baseline_5F_instruction_5F_CALL_2E_weak : public GGS_baseline_5F_instr
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_JSR reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_JSR : public GGS_baseline_5F_instruction {
@@ -2124,6 +2105,7 @@ class GGS_baseline_5F_instruction_5F_JSR : public GGS_baseline_5F_instruction {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2134,9 +2116,7 @@ class GGS_baseline_5F_instruction_5F_JSR : public GGS_baseline_5F_instruction {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JSR ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_JSR class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_JSR : public cPtr_baseline_5F_instruction {
@@ -2196,9 +2176,7 @@ class cPtr_baseline_5F_instruction_5F_JSR : public cPtr_baseline_5F_instruction 
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_JSR_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_JSR_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -2275,6 +2253,7 @@ class GGS_baseline_5F_instruction_5F_JSR_2E_weak : public GGS_baseline_5F_instru
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2285,9 +2264,7 @@ class GGS_baseline_5F_instruction_5F_JSR_2E_weak : public GGS_baseline_5F_instru
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JSR_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_GOTO reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_GOTO : public GGS_baseline_5F_instruction {
@@ -2335,6 +2312,7 @@ class GGS_baseline_5F_instruction_5F_GOTO : public GGS_baseline_5F_instruction {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2345,9 +2323,7 @@ class GGS_baseline_5F_instruction_5F_GOTO : public GGS_baseline_5F_instruction {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_GOTO ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_GOTO class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_GOTO : public cPtr_baseline_5F_instruction {
@@ -2411,9 +2387,7 @@ class cPtr_baseline_5F_instruction_5F_GOTO : public cPtr_baseline_5F_instruction
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_GOTO_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_GOTO_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -2490,6 +2464,7 @@ class GGS_baseline_5F_instruction_5F_GOTO_2E_weak : public GGS_baseline_5F_instr
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2500,9 +2475,7 @@ class GGS_baseline_5F_instruction_5F_GOTO_2E_weak : public GGS_baseline_5F_instr
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_GOTO_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_JUMP reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_JUMP : public GGS_baseline_5F_instruction {
@@ -2550,6 +2523,7 @@ class GGS_baseline_5F_instruction_5F_JUMP : public GGS_baseline_5F_instruction {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2560,9 +2534,7 @@ class GGS_baseline_5F_instruction_5F_JUMP : public GGS_baseline_5F_instruction {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JUMP ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_JUMP class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction {
@@ -2626,9 +2598,7 @@ class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_JUMP_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_JUMP_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -2705,6 +2675,7 @@ class GGS_baseline_5F_instruction_5F_JUMP_2E_weak : public GGS_baseline_5F_instr
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2715,9 +2686,7 @@ class GGS_baseline_5F_instruction_5F_JUMP_2E_weak : public GGS_baseline_5F_instr
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JUMP_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_WO_5F_OPERAND reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND : public GGS_baseline_5F_instruction {
@@ -2765,6 +2734,7 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND : public GGS_baseline_5F_inst
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2775,9 +2745,7 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND : public GGS_baseline_5F_inst
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_WO_OPERAND class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND : public cPtr_baseline_5F_instruction {
@@ -2837,9 +2805,7 @@ class cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND : public cPtr_baseline_5F_in
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -2916,6 +2882,7 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak : public GGS_baseline
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2926,9 +2893,7 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak : public GGS_baseline
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_TRIS reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_TRIS : public GGS_baseline_5F_instruction {
@@ -2976,6 +2941,7 @@ class GGS_baseline_5F_instruction_5F_TRIS : public GGS_baseline_5F_instruction {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -2986,9 +2952,7 @@ class GGS_baseline_5F_instruction_5F_TRIS : public GGS_baseline_5F_instruction {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_TRIS ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_TRIS class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_TRIS : public cPtr_baseline_5F_instruction {
@@ -3048,9 +3012,7 @@ class cPtr_baseline_5F_instruction_5F_TRIS : public cPtr_baseline_5F_instruction
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_TRIS_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_TRIS_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -3127,6 +3089,7 @@ class GGS_baseline_5F_instruction_5F_TRIS_2E_weak : public GGS_baseline_5F_instr
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3137,9 +3100,7 @@ class GGS_baseline_5F_instruction_5F_TRIS_2E_weak : public GGS_baseline_5F_instr
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_TRIS_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_literalOperation reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_literalOperation : public GGS_baseline_5F_instruction {
@@ -3192,6 +3153,7 @@ class GGS_baseline_5F_instruction_5F_literalOperation : public GGS_baseline_5F_i
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3202,9 +3164,7 @@ class GGS_baseline_5F_instruction_5F_literalOperation : public GGS_baseline_5F_i
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_literalOperation ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_literalOperation class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_literalOperation : public cPtr_baseline_5F_instruction {
@@ -3271,9 +3231,7 @@ class cPtr_baseline_5F_instruction_5F_literalOperation : public cPtr_baseline_5F
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_literalOperation_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_literalOperation_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -3350,6 +3308,7 @@ class GGS_baseline_5F_instruction_5F_literalOperation_2E_weak : public GGS_basel
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3360,9 +3319,7 @@ class GGS_baseline_5F_instruction_5F_literalOperation_2E_weak : public GGS_basel
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_literalOperation_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_MNOP reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_MNOP : public GGS_baseline_5F_instruction {
@@ -3410,6 +3367,7 @@ class GGS_baseline_5F_instruction_5F_MNOP : public GGS_baseline_5F_instruction {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3420,9 +3378,7 @@ class GGS_baseline_5F_instruction_5F_MNOP : public GGS_baseline_5F_instruction {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_MNOP ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_MNOP class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_MNOP : public cPtr_baseline_5F_instruction {
@@ -3482,9 +3438,7 @@ class cPtr_baseline_5F_instruction_5F_MNOP : public cPtr_baseline_5F_instruction
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_MNOP_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_MNOP_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -3561,6 +3515,7 @@ class GGS_baseline_5F_instruction_5F_MNOP_2E_weak : public GGS_baseline_5F_instr
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3571,9 +3526,7 @@ class GGS_baseline_5F_instruction_5F_MNOP_2E_weak : public GGS_baseline_5F_instr
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_MNOP_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_FOREVER reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_FOREVER : public GGS_baseline_5F_instruction {
@@ -3626,6 +3579,7 @@ class GGS_baseline_5F_instruction_5F_FOREVER : public GGS_baseline_5F_instructio
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3636,9 +3590,7 @@ class GGS_baseline_5F_instruction_5F_FOREVER : public GGS_baseline_5F_instructio
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FOREVER ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_FOREVER class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_FOREVER : public cPtr_baseline_5F_instruction {
@@ -3705,9 +3657,7 @@ class cPtr_baseline_5F_instruction_5F_FOREVER : public cPtr_baseline_5F_instruct
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_FOREVER_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_FOREVER_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -3784,6 +3734,7 @@ class GGS_baseline_5F_instruction_5F_FOREVER_2E_weak : public GGS_baseline_5F_in
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3794,9 +3745,7 @@ class GGS_baseline_5F_instruction_5F_FOREVER_2E_weak : public GGS_baseline_5F_in
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FOREVER_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_STATIC_5F_REPEAT reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public GGS_baseline_5F_instruction {
@@ -3864,6 +3813,7 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public GGS_baseline_5F_i
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -3874,9 +3824,7 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public GGS_baseline_5F_i
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_STATIC_REPEAT class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F_instruction {
@@ -3948,9 +3896,7 @@ class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -4027,6 +3973,7 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak : public GGS_basel
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4037,9 +3984,7 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak : public GGS_basel
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public GGS_baseline_5F_instruction {
@@ -4081,6 +4026,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public GGS_baseline_5
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4091,9 +4037,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public GGS_baseline_5
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_IF_SEMI_COLON class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_baseline_5F_instruction {
@@ -4136,9 +4080,7 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_baseline
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -4215,6 +4157,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak : public GGS_ba
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4225,9 +4168,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak : public GGS_ba
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_IF_5F_BitTest reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_IF_5F_BitTest : public GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
@@ -4287,6 +4228,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest : public GGS_baseline_5F_inst
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4297,9 +4239,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest : public GGS_baseline_5F_inst
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_IF_BitTest class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest : public cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
@@ -4375,9 +4315,7 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest : public cPtr_baseline_5F_in
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak : public GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak {
@@ -4454,6 +4392,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak : public GGS_baseline
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4464,9 +4403,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak : public GGS_baseline
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_IF_5F_IncDec reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_IF_5F_IncDec : public GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
@@ -4526,6 +4463,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec : public GGS_baseline_5F_instr
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4536,9 +4474,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec : public GGS_baseline_5F_instr
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_IF_IncDec class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_IF_5F_IncDec : public cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON {
@@ -4606,9 +4542,7 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_IncDec : public cPtr_baseline_5F_ins
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak : public GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak {
@@ -4685,6 +4619,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak : public GGS_baseline_
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4695,9 +4630,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak : public GGS_baseline_
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_conditionExpression reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_conditionExpression : public AC_GALGAS_reference_class {
@@ -4734,6 +4667,7 @@ class GGS_baseline_5F_conditionExpression : public AC_GALGAS_reference_class {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4744,9 +4678,7 @@ class GGS_baseline_5F_conditionExpression : public AC_GALGAS_reference_class {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_conditionExpression ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_conditionExpression class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_conditionExpression : public acStrongPtr_class {
@@ -4790,9 +4722,7 @@ class cPtr_baseline_5F_conditionExpression : public acStrongPtr_class {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_conditionExpression_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_conditionExpression_2E_weak : public AC_GALGAS_weak_reference {
@@ -4869,6 +4799,7 @@ class GGS_baseline_5F_conditionExpression_2E_weak : public AC_GALGAS_weak_refere
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4879,9 +4810,7 @@ class GGS_baseline_5F_conditionExpression_2E_weak : public AC_GALGAS_weak_refere
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_conditionExpression_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_incDecRegisterInCondition reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_incDecRegisterInCondition : public GGS_baseline_5F_conditionExpression {
@@ -4942,6 +4871,7 @@ class GGS_baseline_5F_incDecRegisterInCondition : public GGS_baseline_5F_conditi
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -4952,9 +4882,7 @@ class GGS_baseline_5F_incDecRegisterInCondition : public GGS_baseline_5F_conditi
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_incDecRegisterInCondition ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_incDecRegisterInCondition class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_incDecRegisterInCondition : public cPtr_baseline_5F_conditionExpression {
@@ -5015,9 +4943,7 @@ class cPtr_baseline_5F_incDecRegisterInCondition : public cPtr_baseline_5F_condi
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_incDecRegisterInCondition_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_incDecRegisterInCondition_2E_weak : public GGS_baseline_5F_conditionExpression_2E_weak {
@@ -5094,6 +5020,7 @@ class GGS_baseline_5F_incDecRegisterInCondition_2E_weak : public GGS_baseline_5F
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5104,9 +5031,7 @@ class GGS_baseline_5F_incDecRegisterInCondition_2E_weak : public GGS_baseline_5F
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_incDecRegisterInCondition_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_negateCondition reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_negateCondition : public GGS_baseline_5F_conditionExpression {
@@ -5152,6 +5077,7 @@ class GGS_baseline_5F_negateCondition : public GGS_baseline_5F_conditionExpressi
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5162,9 +5088,7 @@ class GGS_baseline_5F_negateCondition : public GGS_baseline_5F_conditionExpressi
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_negateCondition ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_negateCondition class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpression {
@@ -5216,9 +5140,7 @@ class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpres
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_negateCondition_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_negateCondition_2E_weak : public GGS_baseline_5F_conditionExpression_2E_weak {
@@ -5295,6 +5217,7 @@ class GGS_baseline_5F_negateCondition_2E_weak : public GGS_baseline_5F_condition
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5305,9 +5228,7 @@ class GGS_baseline_5F_negateCondition_2E_weak : public GGS_baseline_5F_condition
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_negateCondition_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_andCondition reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_andCondition : public GGS_baseline_5F_conditionExpression {
@@ -5358,6 +5279,7 @@ class GGS_baseline_5F_andCondition : public GGS_baseline_5F_conditionExpression 
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5368,9 +5290,7 @@ class GGS_baseline_5F_andCondition : public GGS_baseline_5F_conditionExpression 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_andCondition class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_andCondition : public cPtr_baseline_5F_conditionExpression {
@@ -5425,9 +5345,7 @@ class cPtr_baseline_5F_andCondition : public cPtr_baseline_5F_conditionExpressio
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_andCondition_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_andCondition_2E_weak : public GGS_baseline_5F_conditionExpression_2E_weak {
@@ -5504,6 +5422,7 @@ class GGS_baseline_5F_andCondition_2E_weak : public GGS_baseline_5F_conditionExp
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5514,9 +5433,7 @@ class GGS_baseline_5F_andCondition_2E_weak : public GGS_baseline_5F_conditionExp
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public GGS_baseline_5F_conditionExpression {
@@ -5567,6 +5484,7 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public GG
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5577,9 +5495,7 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public GG
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_bitTest_in_structured_if_condition class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public cPtr_baseline_5F_conditionExpression {
@@ -5634,9 +5550,7 @@ class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak : public GGS_baseline_5F_conditionExpression_2E_weak {
@@ -5713,6 +5627,7 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak : p
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5723,9 +5638,7 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak : p
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_structured_5F_if reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_structured_5F_if : public GGS_baseline_5F_instruction {
@@ -5788,6 +5701,7 @@ class GGS_baseline_5F_instruction_5F_structured_5F_if : public GGS_baseline_5F_i
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -5798,9 +5712,7 @@ class GGS_baseline_5F_instruction_5F_structured_5F_if : public GGS_baseline_5F_i
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_structured_5F_if ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_structured_if class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_structured_5F_if : public cPtr_baseline_5F_instruction {
@@ -5873,9 +5785,7 @@ class cPtr_baseline_5F_instruction_5F_structured_5F_if : public cPtr_baseline_5F
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_structured_5F_if_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -5951,6 +5861,7 @@ class GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak : public GGS_basel
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -6036,15 +5947,19 @@ class GGS_baseline_5F_partList : public AC_GALGAS_list {
                                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_baseline_5F_partList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_baseline_5F_partList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_baseline_5F_conditionExpression & inOperand0,
-                                                     const class GGS_baseline_5F_instructionList & inOperand1,
-                                                     const class GGS_location & inOperand2
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_baseline_5F_conditionExpression & inOperand0,
+                                                    const class GGS_baseline_5F_instructionList & inOperand1,
+                                                    const class GGS_location & inOperand2
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_baseline_5F_partList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_baseline_5F_partList add_operation (const GGS_baseline_5F_partList & inOperand,
                                                                    Compiler * inCompiler
@@ -6143,14 +6058,9 @@ class GGS_baseline_5F_partList : public AC_GALGAS_list {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_baseline_5F_partList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_partList ;
   friend class DownEnumerator_baseline_5F_partList ;
@@ -6253,6 +6163,7 @@ class GGS_baseline_5F_partList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -6263,9 +6174,7 @@ class GGS_baseline_5F_partList_2E_element : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_partList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_do_5F_while reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_do_5F_while : public GGS_baseline_5F_instruction {
@@ -6323,6 +6232,7 @@ class GGS_baseline_5F_instruction_5F_do_5F_while : public GGS_baseline_5F_instru
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -6333,9 +6243,7 @@ class GGS_baseline_5F_instruction_5F_do_5F_while : public GGS_baseline_5F_instru
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_do_5F_while ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_instruction_do_while class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_instruction_5F_do_5F_while : public cPtr_baseline_5F_instruction {
@@ -6401,9 +6309,7 @@ class cPtr_baseline_5F_instruction_5F_do_5F_while : public cPtr_baseline_5F_inst
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_instruction_5F_do_5F_while_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak : public GGS_baseline_5F_instruction_2E_weak {
@@ -6479,6 +6385,7 @@ class GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak : public GGS_baseline_5
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -6572,17 +6479,21 @@ class GGS_baseline_5F_routineDefinitionList : public AC_GALGAS_list {
                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_baseline_5F_routineDefinitionList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_baseline_5F_routineDefinitionList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_lstring & inOperand0,
-                                                     const class GGS_luint & inOperand1,
-                                                     const class GGS_bool & inOperand2,
-                                                     const class GGS_baseline_5F_instructionList & inOperand3,
-                                                     const class GGS_location & inOperand4
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_lstring & inOperand0,
+                                                    const class GGS_luint & inOperand1,
+                                                    const class GGS_bool & inOperand2,
+                                                    const class GGS_baseline_5F_instructionList & inOperand3,
+                                                    const class GGS_location & inOperand4
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_baseline_5F_routineDefinitionList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_baseline_5F_routineDefinitionList add_operation (const GGS_baseline_5F_routineDefinitionList & inOperand,
                                                                                 Compiler * inCompiler
@@ -6713,14 +6624,9 @@ class GGS_baseline_5F_routineDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_baseline_5F_routineDefinitionList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_routineDefinitionList ;
   friend class DownEnumerator_baseline_5F_routineDefinitionList ;
@@ -6847,6 +6753,7 @@ class GGS_baseline_5F_routineDefinitionList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -6937,15 +6844,6 @@ class GGS_baseline_5F_declaredRoutineMap : public AC_GALGAS_map {
   public: static class GGS_baseline_5F_declaredRoutineMap class_func_mapWithMapToOverride (const class GGS_baseline_5F_declaredRoutineMap & inOperand0
                                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_lstring & inOperand0,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_baseline_5F_declaredRoutineMap add_operation (const GGS_baseline_5F_declaredRoutineMap & inOperand,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
-
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
@@ -6971,17 +6869,12 @@ class GGS_baseline_5F_declaredRoutineMap : public AC_GALGAS_map {
                                                                                                        COMMA_LOCATION_ARGS) const ;
 
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_baseline_5F_declaredRoutineMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
                                                                                                            const GGS_string & inKey
                                                                                                            COMMA_LOCATION_ARGS) ;
-
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_baseline_5F_declaredRoutineMap_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_declaredRoutineMap ;
@@ -6994,9 +6887,7 @@ class GGS_baseline_5F_declaredRoutineMap : public AC_GALGAS_map {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: class for element of '@baseline_declaredRoutineMap' map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_baseline_5F_declaredRoutineMap : public cMapElement {
@@ -7089,6 +6980,7 @@ class GGS_baseline_5F_declaredRoutineMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7099,9 +6991,7 @@ class GGS_baseline_5F_declaredRoutineMap_2E_element : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: baseline_declaredRoutineMap.element? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_declaredRoutineMap_2E_element_3F_ : public AC_GALGAS_root {
@@ -7166,6 +7056,7 @@ class GGS_baseline_5F_declaredRoutineMap_2E_element_3F_ : public AC_GALGAS_root 
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -7278,6 +7169,7 @@ class GGS_baseline_5F_intermediate_5F_registerExpression : public AC_GALGAS_root
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7288,9 +7180,7 @@ class GGS_baseline_5F_intermediate_5F_registerExpression : public AC_GALGAS_root
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_registerExpression ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction : public AC_GALGAS_reference_class {
@@ -7327,6 +7217,7 @@ class GGS_baseline_5F_intermediate_5F_instruction : public AC_GALGAS_reference_c
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7337,9 +7228,7 @@ class GGS_baseline_5F_intermediate_5F_instruction : public AC_GALGAS_reference_c
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_instruction class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_instruction : public acStrongPtr_class {
@@ -7409,9 +7298,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction : public acStrongPtr_class {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
@@ -7487,6 +7374,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_2E_weak : public AC_GALGAS_wea
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -7564,13 +7452,17 @@ class GGS_baseline_5F_intermediate_5F_instructionList : public AC_GALGAS_list {
                                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssign_operation (const GGS_baseline_5F_intermediate_5F_instructionList inOperand,
-                                                       class Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_baseline_5F_intermediate_5F_instructionList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_baseline_5F_intermediate_5F_instruction & inOperand0
-                                                     COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_baseline_5F_intermediate_5F_instruction & inOperand0
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_baseline_5F_intermediate_5F_instructionList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
   public: VIRTUAL_IN_DEBUG GGS_baseline_5F_intermediate_5F_instructionList add_operation (const GGS_baseline_5F_intermediate_5F_instructionList & inOperand,
                                                                                           Compiler * inCompiler
@@ -7637,14 +7529,9 @@ class GGS_baseline_5F_intermediate_5F_instructionList : public AC_GALGAS_list {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_baseline_5F_intermediate_5F_instructionList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_intermediate_5F_instructionList ;
   friend class DownEnumerator_baseline_5F_intermediate_5F_instructionList ;
@@ -7723,6 +7610,7 @@ class GGS_baseline_5F_intermediate_5F_instructionList_2E_element : public AC_GAL
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7733,9 +7621,7 @@ class GGS_baseline_5F_intermediate_5F_instructionList_2E_element : public AC_GAL
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_NULL reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_NULL : public GGS_baseline_5F_intermediate_5F_instruction {
@@ -7776,6 +7662,7 @@ class GGS_baseline_5F_intermediate_5F_NULL : public GGS_baseline_5F_intermediate
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7786,9 +7673,7 @@ class GGS_baseline_5F_intermediate_5F_NULL : public GGS_baseline_5F_intermediate
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_NULL ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_NULL class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_NULL : public cPtr_baseline_5F_intermediate_5F_instruction {
@@ -7839,9 +7724,7 @@ class cPtr_baseline_5F_intermediate_5F_NULL : public cPtr_baseline_5F_intermedia
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_NULL_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_NULL_2E_weak : public GGS_baseline_5F_intermediate_5F_instruction_2E_weak {
@@ -7918,6 +7801,7 @@ class GGS_baseline_5F_intermediate_5F_NULL_2E_weak : public GGS_baseline_5F_inte
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7928,9 +7812,7 @@ class GGS_baseline_5F_intermediate_5F_NULL_2E_weak : public GGS_baseline_5F_inte
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_NULL_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo : public GGS_baseline_5F_intermediate_5F_instruction {
@@ -7967,6 +7849,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo : public GGS_baseline_5F_intermedia
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -7977,9 +7860,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo : public GGS_baseline_5F_intermedia
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_pseudo class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_pseudo : public cPtr_baseline_5F_intermediate_5F_instruction {
@@ -8011,9 +7892,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo : public cPtr_baseline_5F_intermed
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo_2E_weak : public GGS_baseline_5F_intermediate_5F_instruction_2E_weak {
@@ -8090,6 +7969,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_2E_weak : public GGS_baseline_5F_in
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8100,9 +7980,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_2E_weak : public GGS_baseline_5F_in
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_PAGE reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public GGS_baseline_5F_intermediate_5F_pseudo {
@@ -8148,6 +8026,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public GGS_baseline_5F_in
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8158,9 +8037,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public GGS_baseline_5F_in
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_pseudo_PAGE class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public cPtr_baseline_5F_intermediate_5F_pseudo {
@@ -8220,9 +8097,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public cPtr_baseline_5F_
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak : public GGS_baseline_5F_intermediate_5F_pseudo_2E_weak {
@@ -8299,6 +8174,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak : public GGS_baseli
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8309,9 +8185,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak : public GGS_baseli
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_LABEL reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public GGS_baseline_5F_intermediate_5F_pseudo {
@@ -8357,6 +8231,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public GGS_baseline_5F_i
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8367,9 +8242,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public GGS_baseline_5F_i
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_pseudo_LABEL class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public cPtr_baseline_5F_intermediate_5F_pseudo {
@@ -8430,9 +8303,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public cPtr_baseline_5F
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak : public GGS_baseline_5F_intermediate_5F_pseudo_2E_weak {
@@ -8509,6 +8380,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak : public GGS_basel
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8519,9 +8391,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak : public GGS_basel
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public GGS_baseline_5F_intermediate_5F_pseudo {
@@ -8572,6 +8442,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public GGS_ba
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8582,9 +8453,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public GGS_ba
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_pseudo_BEGIN_ROUTINE class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public cPtr_baseline_5F_intermediate_5F_pseudo {
@@ -8647,9 +8516,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public cPtr_
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak : public GGS_baseline_5F_intermediate_5F_pseudo_2E_weak {
@@ -8726,6 +8593,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak : publi
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8736,9 +8604,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak : publi
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public GGS_baseline_5F_intermediate_5F_pseudo {
@@ -8789,6 +8655,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public GGS_base
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8799,9 +8666,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public GGS_base
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_pseudo_END_ROUTINE class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public cPtr_baseline_5F_intermediate_5F_pseudo {
@@ -8863,9 +8728,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public cPtr_ba
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak : public GGS_baseline_5F_intermediate_5F_pseudo_2E_weak {
@@ -8942,6 +8805,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak : public 
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -8952,9 +8816,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak : public 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_actualInstruction reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_actualInstruction : public GGS_baseline_5F_intermediate_5F_instruction {
@@ -8995,6 +8857,7 @@ class GGS_baseline_5F_intermediate_5F_actualInstruction : public GGS_baseline_5F
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9005,9 +8868,7 @@ class GGS_baseline_5F_intermediate_5F_actualInstruction : public GGS_baseline_5F
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_actualInstruction ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_actualInstruction class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_actualInstruction : public cPtr_baseline_5F_intermediate_5F_instruction {
@@ -9047,9 +8908,7 @@ class cPtr_baseline_5F_intermediate_5F_actualInstruction : public cPtr_baseline_
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_actualInstruction_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak : public GGS_baseline_5F_intermediate_5F_instruction_2E_weak {
@@ -9126,6 +8985,7 @@ class GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak : public GGS_bas
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9136,9 +8996,7 @@ class GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak : public GGS_bas
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_actualInstruction_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_FD reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_FD : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -9196,6 +9054,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD : public GGS_baseline_5F
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9206,9 +9065,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD : public GGS_baseline_5F
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_instruction_FD class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_instruction_5F_FD : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -9266,9 +9123,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_FD : public cPtr_baseline_
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -9345,6 +9200,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak : public GGS_bas
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9355,9 +9211,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak : public GGS_bas
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_F reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_F : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -9410,6 +9264,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F : public GGS_baseline_5F_
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9420,9 +9275,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F : public GGS_baseline_5F_
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_F ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_instruction_F class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_instruction_5F_F : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -9477,9 +9330,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_F : public cPtr_baseline_5
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_F_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -9556,6 +9407,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak : public GGS_base
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9566,9 +9418,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak : public GGS_base
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_FB reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_FB : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -9626,6 +9476,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB : public GGS_baseline_5F
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9636,9 +9487,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB : public GGS_baseline_5F
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_instruction_FB class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_instruction_5F_FB : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -9696,9 +9545,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_FB : public cPtr_baseline_
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -9775,6 +9622,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak : public GGS_bas
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9785,9 +9633,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak : public GGS_bas
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_BitTestSkip reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -9845,6 +9691,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public GGS_ba
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -9855,9 +9702,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public GGS_ba
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_instruction_BitTestSkip class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -9918,9 +9763,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public cPtr_
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -9997,6 +9840,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak : publi
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10007,9 +9851,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak : publi
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_GOTO reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_GOTO : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -10057,6 +9899,7 @@ class GGS_baseline_5F_intermediate_5F_GOTO : public GGS_baseline_5F_intermediate
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10067,9 +9910,7 @@ class GGS_baseline_5F_intermediate_5F_GOTO : public GGS_baseline_5F_intermediate
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_GOTO class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_GOTO : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -10136,9 +9977,7 @@ class cPtr_baseline_5F_intermediate_5F_GOTO : public cPtr_baseline_5F_intermedia
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_GOTO_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_GOTO_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -10215,6 +10054,7 @@ class GGS_baseline_5F_intermediate_5F_GOTO_2E_weak : public GGS_baseline_5F_inte
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10225,9 +10065,7 @@ class GGS_baseline_5F_intermediate_5F_GOTO_2E_weak : public GGS_baseline_5F_inte
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_JUMP reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_JUMP : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -10285,6 +10123,7 @@ class GGS_baseline_5F_intermediate_5F_JUMP : public GGS_baseline_5F_intermediate
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10295,9 +10134,7 @@ class GGS_baseline_5F_intermediate_5F_JUMP : public GGS_baseline_5F_intermediate
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_JUMP class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_JUMP : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -10373,9 +10210,7 @@ class cPtr_baseline_5F_intermediate_5F_JUMP : public cPtr_baseline_5F_intermedia
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_JUMP_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_JUMP_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -10452,6 +10287,7 @@ class GGS_baseline_5F_intermediate_5F_JUMP_2E_weak : public GGS_baseline_5F_inte
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10462,9 +10298,7 @@ class GGS_baseline_5F_intermediate_5F_JUMP_2E_weak : public GGS_baseline_5F_inte
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_CALL reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_CALL : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -10512,6 +10346,7 @@ class GGS_baseline_5F_intermediate_5F_CALL : public GGS_baseline_5F_intermediate
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10522,9 +10357,7 @@ class GGS_baseline_5F_intermediate_5F_CALL : public GGS_baseline_5F_intermediate
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_CALL ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_CALL class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_CALL : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -10588,9 +10421,7 @@ class cPtr_baseline_5F_intermediate_5F_CALL : public cPtr_baseline_5F_intermedia
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_CALL_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_CALL_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -10667,6 +10498,7 @@ class GGS_baseline_5F_intermediate_5F_CALL_2E_weak : public GGS_baseline_5F_inte
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10677,9 +10509,7 @@ class GGS_baseline_5F_intermediate_5F_CALL_2E_weak : public GGS_baseline_5F_inte
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_CALL_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_JSR reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_JSR : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -10737,6 +10567,7 @@ class GGS_baseline_5F_intermediate_5F_JSR : public GGS_baseline_5F_intermediate_
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10747,9 +10578,7 @@ class GGS_baseline_5F_intermediate_5F_JSR : public GGS_baseline_5F_intermediate_
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JSR ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_JSR class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_JSR : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -10822,9 +10651,7 @@ class cPtr_baseline_5F_intermediate_5F_JSR : public cPtr_baseline_5F_intermediat
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_JSR_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_JSR_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -10901,6 +10728,7 @@ class GGS_baseline_5F_intermediate_5F_JSR_2E_weak : public GGS_baseline_5F_inter
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10911,9 +10739,7 @@ class GGS_baseline_5F_intermediate_5F_JSR_2E_weak : public GGS_baseline_5F_inter
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JSR_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_WO_5F_OPERAND reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -10961,6 +10787,7 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND : public GGS_baseline_5F_int
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -10971,9 +10798,7 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND : public GGS_baseline_5F_int
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_WO_OPERAND class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -11025,9 +10850,7 @@ class cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND : public cPtr_baseline_5F_i
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -11104,6 +10927,7 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak : public GGS_baselin
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -11114,9 +10938,7 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak : public GGS_baselin
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_TRIS reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_TRIS : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -11169,6 +10991,7 @@ class GGS_baseline_5F_intermediate_5F_TRIS : public GGS_baseline_5F_intermediate
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -11179,9 +11002,7 @@ class GGS_baseline_5F_intermediate_5F_TRIS : public GGS_baseline_5F_intermediate
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_TRIS ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_TRIS class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_TRIS : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -11236,9 +11057,7 @@ class cPtr_baseline_5F_intermediate_5F_TRIS : public cPtr_baseline_5F_intermedia
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_TRIS_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_TRIS_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -11315,6 +11134,7 @@ class GGS_baseline_5F_intermediate_5F_TRIS_2E_weak : public GGS_baseline_5F_inte
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -11325,9 +11145,7 @@ class GGS_baseline_5F_intermediate_5F_TRIS_2E_weak : public GGS_baseline_5F_inte
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_TRIS_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_literalOperation reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -11380,6 +11198,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public G
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -11390,9 +11209,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public G
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_instruction_literalOperation class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -11450,9 +11267,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public 
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -11529,6 +11344,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak : 
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -11539,9 +11355,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak : 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_MNOP reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -11589,6 +11403,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP : public GGS_baseline_
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -11599,9 +11414,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP : public GGS_baseline_
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_instruction_MNOP class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -11656,9 +11469,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP : public cPtr_baselin
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -11735,6 +11546,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak : public GGS_b
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -11745,9 +11557,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak : public GGS_b
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_incDecRegisterInCondition reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition : public GGS_baseline_5F_intermediate_5F_actualInstruction {
@@ -11815,6 +11625,7 @@ class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition : public GGS_bas
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -11825,9 +11636,7 @@ class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition : public GGS_bas
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_intermediate_incDecRegisterInCondition class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition : public cPtr_baseline_5F_intermediate_5F_actualInstruction {
@@ -11906,9 +11715,7 @@ class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition : public cPtr_b
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
@@ -11984,6 +11791,7 @@ class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak : public
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -12068,17 +11876,6 @@ class GGS_baselineRoutineMap : public AC_GALGAS_map {
   public: static class GGS_baselineRoutineMap class_func_mapWithMapToOverride (const class GGS_baselineRoutineMap & inOperand0
                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_lstring & inOperand0,
-                                                     const class GGS_bool & inOperand1,
-                                                     const class GGS_luint & inOperand2,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_baselineRoutineMap add_operation (const GGS_baselineRoutineMap & inOperand,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
-
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
@@ -12126,17 +11923,12 @@ class GGS_baselineRoutineMap : public AC_GALGAS_map {
                                                                                            COMMA_LOCATION_ARGS) const ;
 
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_baselineRoutineMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
                                                                                                const GGS_string & inKey
                                                                                                COMMA_LOCATION_ARGS) ;
-
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_baselineRoutineMap_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Friend
   friend class UpEnumerator_baselineRoutineMap ;
@@ -12149,9 +11941,7 @@ class GGS_baselineRoutineMap : public AC_GALGAS_map {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineRoutineMap ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: class for element of '@baselineRoutineMap' map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_baselineRoutineMap : public cMapElement {
@@ -12272,6 +12062,7 @@ class GGS_baselineRoutineMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -12282,9 +12073,7 @@ class GGS_baselineRoutineMap_2E_element : public AC_GALGAS_root {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineRoutineMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: baselineRoutineMap.element? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baselineRoutineMap_2E_element_3F_ : public AC_GALGAS_root {
@@ -12349,6 +12138,7 @@ class GGS_baselineRoutineMap_2E_element_3F_ : public AC_GALGAS_root {
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -12492,16 +12282,6 @@ class GGS_baselineSymbolTableForOptimizations : public AC_GALGAS_map {
   public: static class GGS_baselineSymbolTableForOptimizations class_func_mapWithMapToOverride (const class GGS_baselineSymbolTableForOptimizations & inOperand0
                                                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssign_operation (const class GGS_lstring & inOperand0,
-                                                     const class GGS_uint & inOperand1,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_baselineSymbolTableForOptimizations add_operation (const GGS_baselineSymbolTableForOptimizations & inOperand,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
-
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
@@ -12543,17 +12323,12 @@ class GGS_baselineSymbolTableForOptimizations : public AC_GALGAS_map {
                                                                                                             COMMA_LOCATION_ARGS) const ;
 
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
   public: VIRTUAL_IN_DEBUG cMapElement_baselineSymbolTableForOptimizations * readWriteAccessForWithInstruction (Compiler * inCompiler,
                                                                                                                 const GGS_string & inKey
                                                                                                                 COMMA_LOCATION_ARGS) ;
-
-
-//--- Append element
-  public: VIRTUAL_IN_DEBUG void enterElement (const class GGS_baselineSymbolTableForOptimizations_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Friend
   friend class UpEnumerator_baselineSymbolTableForOptimizations ;
@@ -12566,9 +12341,7 @@ class GGS_baselineSymbolTableForOptimizations : public AC_GALGAS_map {
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineSymbolTableForOptimizations ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: class for element of '@baselineSymbolTableForOptimizations' map
-//
 //--------------------------------------------------------------------------------------------------
 
 class cMapElement_baselineSymbolTableForOptimizations : public cMapElement {
@@ -12675,6 +12448,7 @@ class GGS_baselineSymbolTableForOptimizations_2E_element : public AC_GALGAS_root
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -12685,9 +12459,7 @@ class GGS_baselineSymbolTableForOptimizations_2E_element : public AC_GALGAS_root
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineSymbolTableForOptimizations_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: baselineSymbolTableForOptimizations.element? optional
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baselineSymbolTableForOptimizations_2E_element_3F_ : public AC_GALGAS_root {
@@ -12752,6 +12524,7 @@ class GGS_baselineSymbolTableForOptimizations_2E_element_3F_ : public AC_GALGAS_
 //--------------------------------- Getters
 
 //--------------------------------- Read subscripts
+
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
@@ -12864,9 +12637,7 @@ void routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (const class GG
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_assembly_5F_instruction reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_assembly_5F_instruction : public AC_GALGAS_reference_class {
@@ -12903,6 +12674,7 @@ class GGS_baseline_5F_assembly_5F_instruction : public AC_GALGAS_reference_class
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -12913,9 +12685,7 @@ class GGS_baseline_5F_assembly_5F_instruction : public AC_GALGAS_reference_class
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 2: pointer class for @baseline_assembly_instruction class
-//
 //--------------------------------------------------------------------------------------------------
 
 class cPtr_baseline_5F_assembly_5F_instruction : public acStrongPtr_class {
@@ -12965,9 +12735,7 @@ class cPtr_baseline_5F_assembly_5F_instruction : public acStrongPtr_class {
 } ;
 
 //--------------------------------------------------------------------------------------------------
-//
 // Phase 1: @baseline_5F_assembly_5F_instruction_2E_weak weak reference class
-//
 //--------------------------------------------------------------------------------------------------
 
 class GGS_baseline_5F_assembly_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
@@ -13044,6 +12812,7 @@ class GGS_baseline_5F_assembly_5F_instruction_2E_weak : public AC_GALGAS_weak_re
 
 //--------------------------------- Read subscripts
 
+
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
  
@@ -13052,4 +12821,239 @@ class GGS_baseline_5F_assembly_5F_instruction_2E_weak : public AC_GALGAS_weak_re
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @baseline_5F_assembly_5F_instructionList list enumerator
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_baseline_5F_assembly_5F_instructionList final : public cGenericAbstractEnumerator {
+  public: DownEnumerator_baseline_5F_assembly_5F_instructionList (const class GGS_baseline_5F_assembly_5F_instructionList & inEnumeratedObject) ;
+
+//    public: bool hasCurrentObject (void) const ;
+//    public: void gotoNextObject (void) ;
+//    public: void rewind (void) ;
+
+  public: class GGS_baseline_5F_assembly_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_baseline_5F_assembly_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_baseline_5F_assembly_5F_instructionList final : public cGenericAbstractEnumerator {
+  public: UpEnumerator_baseline_5F_assembly_5F_instructionList (const class GGS_baseline_5F_assembly_5F_instructionList & inEnumeratedObject) ;
+
+//    public: bool hasCurrentObject (void) const ;
+//    public: void gotoNextObject (void) ;
+//    public: void rewind (void) ;
+
+  public: class GGS_baseline_5F_assembly_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_baseline_5F_assembly_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @baseline_assembly_instructionList list
+//--------------------------------------------------------------------------------------------------
+
+class GGS_baseline_5F_assembly_5F_instructionList : public AC_GALGAS_list {
+//--------------------------------- Default constructor
+  public: GGS_baseline_5F_assembly_5F_instructionList (void) ;
+
+//--------------------------------- List constructor by graph
+  public: GGS_baseline_5F_assembly_5F_instructionList (const capCollectionElementArray & inSharedArray) ;
+
+//--------------------------------- Element constructor
+  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                 const class GGS_baseline_5F_assembly_5F_instruction & in_mInstruction
+                                                 COMMA_LOCATION_ARGS) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_baseline_5F_assembly_5F_instructionList init (Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_baseline_5F_assembly_5F_instructionList extractObject (const GGS_object & inObject,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_baseline_5F_assembly_5F_instructionList class_func_emptyList (LOCATION_ARGS) ;
+
+  public: static class GGS_baseline_5F_assembly_5F_instructionList class_func_listWithValue (const class GGS_baseline_5F_assembly_5F_instruction & inOperand0
+                                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with expression)
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_baseline_5F_assembly_5F_instructionList inOperand,
+                                                     class Compiler * inCompiler
+                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- += operator (with list of field expressions)
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_baseline_5F_assembly_5F_instruction & inOperand0
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- ++= operator, collection value
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inOperand
+                                                         COMMA_LOCATION_ARGS) ;
+//--------------------------------- + operator
+  public: VIRTUAL_IN_DEBUG GGS_baseline_5F_assembly_5F_instructionList add_operation (const GGS_baseline_5F_assembly_5F_instructionList & inOperand,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_baseline_5F_assembly_5F_instruction constinArgument0,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_baseline_5F_assembly_5F_instruction constinArgument0,
+                                                      class GGS_uint constinArgument1,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
+                                                      class GGS_uint constinArgument1,
+                                                      Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMInstructionAtIndex (class GGS_baseline_5F_assembly_5F_instruction constinArgument0,
+                                                               class GGS_uint constinArgument1,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_first (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG void method_last (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_assembly_5F_instruction getter_mInstructionAtIndex (const class GGS_uint & constinOperand0,
+                                                                                                     Compiler * inCompiler
+                                                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_assembly_5F_instructionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_assembly_5F_instructionList getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                                                    Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_assembly_5F_instructionList getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_baseline_5F_assembly_5F_instructionList ;
+  friend class DownEnumerator_baseline_5F_assembly_5F_instructionList ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @baseline_5F_assembly_5F_instructionList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_baseline_5F_assembly_5F_instructionList_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_baseline_5F_assembly_5F_instruction mProperty_mInstruction ;
+  public: inline GGS_baseline_5F_assembly_5F_instruction readProperty_mInstruction (void) const {
+    return mProperty_mInstruction ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMInstruction (const GGS_baseline_5F_assembly_5F_instruction & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInstruction = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element (const GGS_baseline_5F_assembly_5F_instruction & in_mInstruction) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element & operator = (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_baseline_5F_assembly_5F_instructionList_2E_element init_21_ (const class GGS_baseline_5F_assembly_5F_instruction & inOperand0,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_baseline_5F_assembly_5F_instructionList_2E_element extractObject (const GGS_object & inObject,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_baseline_5F_assembly_5F_instructionList_2E_element class_func_new (const class GGS_baseline_5F_assembly_5F_instruction & inOperand0,
+                                                                                              class Compiler * inCompiler
+                                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList_2E_element ;
 

@@ -39,7 +39,7 @@ override method @pic18Instruction_JUMP addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  ioUsedRoutines += !self.mTargetLabel.string
+  ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
@@ -48,7 +48,7 @@ override method @pic18Instruction_JUMPCC addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  ioUsedRoutines += !self.mTargetLabel.string
+  ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
@@ -148,7 +148,7 @@ override method @pic18Instruction_computed_bra addUsedRoutines
   ?!@stringset ioUsedRoutines
 {
   for (mValue) in  self.mTargetLabels do
-    ioUsedRoutines += !mValue.string
+    ioUsedRoutines ++= mValue.string
   end
 }
 
@@ -159,7 +159,7 @@ override method @pic18Instruction_computed_goto addUsedRoutines
   ?!@stringset ioUsedRoutines
 {
   for (mValue) in  self.mTargetLabels do
-    ioUsedRoutines += !mValue.string
+    ioUsedRoutines ++= mValue.string
   end
 }
 
@@ -170,7 +170,7 @@ override method @pic18Instruction_computed_rcall addUsedRoutines
   ?!@stringset ioUsedRoutines
 {
   for (mValue) in  self.mTargetLabels do
-    ioUsedRoutines += !mValue.string
+    ioUsedRoutines ++= mValue.string
   end
 }
 
@@ -261,7 +261,7 @@ override method @pic18Instruction_JSR addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
   ?!@stringset ioUsedRoutines
 {
-  ioUsedRoutines += !self.mTargetLabel.string
+  ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
@@ -364,11 +364,11 @@ func pic18_computeUsedRoutines
   end
 #--- bootloader routines are used
   for (mRoutineName * * * *) in  inBootloaderRoutineDeclarationListForBootloaderImplementation do
-    outUsedRoutineSet += !mRoutineName.string
+    outUsedRoutineSet ++= mRoutineName.string
   end
 #--- user routines are used
   for (mRoutineName * * * *) in  inUserRoutineDeclarationListForUserProgramImplementation do
-    outUsedRoutineSet += !mRoutineName.string
+    outUsedRoutineSet ++= mRoutineName.string
   end
 #--- Loop for accumulating used routines
   var s =@stringset ()

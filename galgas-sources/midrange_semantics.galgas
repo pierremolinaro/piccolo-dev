@@ -104,7 +104,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     elsif [usedRoutineSet hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' routine is declared as unused, but is used"
     end
-    unusedRoutineDeclarationUnicity += !mValue.string
+    unusedRoutineDeclarationUnicity ++= mValue.string
   end
   for (lkey) in  declaredRoutineMap do
     if (not [usedRoutineSet hasKey !lkey.string]) & (not [unusedRoutineDeclarationUnicity hasKey !lkey.string]) then
@@ -121,7 +121,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     elsif [usedRegisters hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' byte is declared as unused, but is used"
     end
-    unusedByteDeclarationUnicity += !mValue.string
+    unusedByteDeclarationUnicity ++= mValue.string
   end
   for (lkey) in  declaredByteMap do
     if (not [usedRegisters hasKey !lkey.string]) & (not [unusedByteDeclarationUnicity hasKey !lkey.string]) then

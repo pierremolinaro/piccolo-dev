@@ -182,7 +182,7 @@ override method @pic18Instruction_JSR performInlining
         ioInstructionList += !@pic18Instruction_checkbank { !self.mInstructionLocation !requiredBank.uint}
       end
       var @stringset currentlyInlinedRoutineSet = inCurrentlyInlinedRoutineSet
-      currentlyInlinedRoutineSet += !self.mTargetLabel.string
+      currentlyInlinedRoutineSet ++= self.mTargetLabel.string
       #ioInstructionList .= instructionList ;
       for (mInstruction) in  instructionList do
         [mInstruction performInlining

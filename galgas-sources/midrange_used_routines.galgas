@@ -30,21 +30,21 @@ override method @midrange_instruction_IF_IncDec addUsedRoutines
 
 override method @midrange_instruction_JUMP addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !self.mTargetLabel.string
+  ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_GOTO addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !self.mTargetLabel.string
+  ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
 
 override method @midrange_instruction_CALL addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !self.mTargetLabel.string
+  ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*
@@ -168,7 +168,7 @@ override method @midrange_instruction_FD addUsedRoutines
 
 override method @midrange_instruction_JSR addUsedRoutines
   ?!@stringset ioUsedRoutines {
-  ioUsedRoutines += !self.mTargetLabel.string
+  ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 #---------------------------------------------------------------------------*

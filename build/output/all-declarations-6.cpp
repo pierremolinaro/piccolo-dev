@@ -677,9 +677,7 @@ GGS_pic_31__38_IntervalCaseItem_2E_weak GGS_pic_31__38_IntervalCaseItem_2E_weak:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@pic_31__38_CaseExpressionList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_pic_31__38_CaseExpressionList : public cCollectionElement {
@@ -766,9 +764,8 @@ GGS_pic_31__38_CaseExpressionList GGS_pic_31__38_CaseExpressionList::init (Compi
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_CaseExpressionList::enterElement (const GGS_pic_31__38_CaseExpressionList_2E_element & inValue,
-                                                      Compiler * /* inCompiler */
-                                                      COMMA_LOCATION_ARGS) {
+void GGS_pic_31__38_CaseExpressionList::plusPlusAssignOperation (const GGS_pic_31__38_CaseExpressionList_2E_element & inValue
+                                                                 COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_pic_31__38_CaseExpressionList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -804,8 +801,8 @@ void GGS_pic_31__38_CaseExpressionList::makeAttributesFromObjects (capCollection
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_CaseExpressionList::addAssign_operation (const GGS_pic_31__38_AbstractCaseItem & inOperand0
-                                                             COMMA_LOCATION_ARGS) {
+void GGS_pic_31__38_CaseExpressionList::addAssignOperation (const GGS_pic_31__38_AbstractCaseItem & inOperand0
+                                                            COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_pic_31__38_CaseExpressionList (inOperand0 COMMA_THERE)) ;
@@ -978,9 +975,9 @@ GGS_pic_31__38_CaseExpressionList GGS_pic_31__38_CaseExpressionList::getter_subL
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_CaseExpressionList::plusAssign_operation (const GGS_pic_31__38_CaseExpressionList inOperand,
-                                                              Compiler * /* inCompiler */
-                                                              COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_pic_31__38_CaseExpressionList::plusAssignOperation (const GGS_pic_31__38_CaseExpressionList inOperand,
+                                                             Compiler * /* inCompiler */
+                                                             COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -1113,9 +1110,7 @@ GGS_pic_31__38_CaseExpressionList GGS_pic_31__38_CaseExpressionList::extractObje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@pic_31__38_SwitchInstructionCaseList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_pic_31__38_SwitchInstructionCaseList : public cCollectionElement {
@@ -1214,9 +1209,8 @@ GGS_pic_31__38_SwitchInstructionCaseList GGS_pic_31__38_SwitchInstructionCaseLis
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_SwitchInstructionCaseList::enterElement (const GGS_pic_31__38_SwitchInstructionCaseList_2E_element & inValue,
-                                                             Compiler * /* inCompiler */
-                                                             COMMA_LOCATION_ARGS) {
+void GGS_pic_31__38_SwitchInstructionCaseList::plusPlusAssignOperation (const GGS_pic_31__38_SwitchInstructionCaseList_2E_element & inValue
+                                                                        COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -1258,10 +1252,10 @@ void GGS_pic_31__38_SwitchInstructionCaseList::makeAttributesFromObjects (capCol
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_SwitchInstructionCaseList::addAssign_operation (const GGS_location & inOperand0,
-                                                                    const GGS_pic_31__38_CaseExpressionList & inOperand1,
-                                                                    const GGS_pic_31__38_InstructionList & inOperand2
-                                                                    COMMA_LOCATION_ARGS) {
+void GGS_pic_31__38_SwitchInstructionCaseList::addAssignOperation (const GGS_location & inOperand0,
+                                                                   const GGS_pic_31__38_CaseExpressionList & inOperand1,
+                                                                   const GGS_pic_31__38_InstructionList & inOperand2
+                                                                   COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_pic_31__38_SwitchInstructionCaseList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -1468,9 +1462,9 @@ GGS_pic_31__38_SwitchInstructionCaseList GGS_pic_31__38_SwitchInstructionCaseLis
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_SwitchInstructionCaseList::plusAssign_operation (const GGS_pic_31__38_SwitchInstructionCaseList inOperand,
-                                                                     Compiler * /* inCompiler */
-                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_pic_31__38_SwitchInstructionCaseList::plusAssignOperation (const GGS_pic_31__38_SwitchInstructionCaseList inOperand,
+                                                                    Compiler * /* inCompiler */
+                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -2159,50 +2153,6 @@ GGS_caseConstantMap GGS_caseConstantMap::getter_overriddenMap (Compiler * inComp
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_caseConstantMap::enterElement (const GGS_caseConstantMap_2E_element & inValue,
-                                        Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) {
-  cMapElement_caseConstantMap * p = nullptr ;
-  macroMyNew (p, cMapElement_caseConstantMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@caseConstantMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_caseConstantMap::addAssign_operation (const GGS_lstring & inKey,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
-  cMapElement_caseConstantMap * p = nullptr ;
-  macroMyNew (p, cMapElement_caseConstantMap (inKey COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@caseConstantMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_caseConstantMap GGS_caseConstantMap::add_operation (const GGS_caseConstantMap & inOperand,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const {
-  GGS_caseConstantMap result = *this ;
-  UpEnumerator_caseConstantMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_caseConstantMap::setter_insertKey (GGS_lstring inKey,
                                             Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) {
@@ -2467,52 +2417,6 @@ GGS_pic_31__38__5F_dataMap GGS_pic_31__38__5F_dataMap::getter_overriddenMap (Com
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38__5F_dataMap::enterElement (const GGS_pic_31__38__5F_dataMap_2E_element & inValue,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
-  cMapElement_pic_31__38__5F_dataMap * p = nullptr ;
-  macroMyNew (p, cMapElement_pic_31__38__5F_dataMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@pic_31__38__5F_dataMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataMap::addAssign_operation (const GGS_lstring & inKey,
-                                                      const GGS_uintlist & inArgument0,
-                                                      const GGS_bool & inArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_pic_31__38__5F_dataMap * p = nullptr ;
-  macroMyNew (p, cMapElement_pic_31__38__5F_dataMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@pic_31__38__5F_dataMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataMap GGS_pic_31__38__5F_dataMap::add_operation (const GGS_pic_31__38__5F_dataMap & inOperand,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) const {
-  GGS_pic_31__38__5F_dataMap result = *this ;
-  UpEnumerator_pic_31__38__5F_dataMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mData (HERE), enumerator.current_mIsData_38_ (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_pic_31__38__5F_dataMap::setter_insertKey (GGS_lstring inKey,
                                                    GGS_uintlist inArgument0,
                                                    GGS_bool inArgument1,
@@ -2770,6 +2674,13 @@ GGS_ipic_31__38_SequentialInstruction::GGS_ipic_31__38_SequentialInstruction (vo
 AC_GALGAS_reference_class () {
 }
 
+
+void cPtr_ipic_31__38_SequentialInstruction::
+ipic_31__38_SequentialInstruction_init_21_ (const GGS_location & in_mInstructionLocation,
+                                            Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+}
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_ipic_31__38_SequentialInstruction::GGS_ipic_31__38_SequentialInstruction (const cPtr_ipic_31__38_SequentialInstruction * inSourcePtr) :
@@ -2977,9 +2888,7 @@ GGS_ipic_31__38_SequentialInstruction_2E_weak GGS_ipic_31__38_SequentialInstruct
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@ipic_31__38_SequentialInstructionList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_ipic_31__38_SequentialInstructionList : public cCollectionElement {
@@ -3078,9 +2987,8 @@ GGS_ipic_31__38_SequentialInstructionList GGS_ipic_31__38_SequentialInstructionL
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_SequentialInstructionList::enterElement (const GGS_ipic_31__38_SequentialInstructionList_2E_element & inValue,
-                                                              Compiler * /* inCompiler */
-                                                              COMMA_LOCATION_ARGS) {
+void GGS_ipic_31__38_SequentialInstructionList::plusPlusAssignOperation (const GGS_ipic_31__38_SequentialInstructionList_2E_element & inValue
+                                                                         COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -3122,10 +3030,10 @@ void GGS_ipic_31__38_SequentialInstructionList::makeAttributesFromObjects (capCo
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_SequentialInstructionList::addAssign_operation (const GGS_ipic_31__38_SequentialInstruction & inOperand0,
-                                                                     const GGS_uint & inOperand1,
-                                                                     const GGS_uint & inOperand2
-                                                                     COMMA_LOCATION_ARGS) {
+void GGS_ipic_31__38_SequentialInstructionList::addAssignOperation (const GGS_ipic_31__38_SequentialInstruction & inOperand0,
+                                                                    const GGS_uint & inOperand1,
+                                                                    const GGS_uint & inOperand2
+                                                                    COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_ipic_31__38_SequentialInstructionList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -3332,9 +3240,9 @@ GGS_ipic_31__38_SequentialInstructionList GGS_ipic_31__38_SequentialInstructionL
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_SequentialInstructionList::plusAssign_operation (const GGS_ipic_31__38_SequentialInstructionList inOperand,
-                                                                      Compiler * /* inCompiler */
-                                                                      COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_ipic_31__38_SequentialInstructionList::plusAssignOperation (const GGS_ipic_31__38_SequentialInstructionList inOperand,
+                                                                     Compiler * /* inCompiler */
+                                                                     COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -3582,6 +3490,13 @@ GGS_ipic_31__38_AbstractBlockTerminator::GGS_ipic_31__38_AbstractBlockTerminator
 AC_GALGAS_reference_class () {
 }
 
+
+void cPtr_ipic_31__38_AbstractBlockTerminator::
+ipic_31__38_AbstractBlockTerminator_init_21_ (const GGS_location & in_mInstructionLocation,
+                                              Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+}
+
 //--------------------------------------------------------------------------------------------------
 
 GGS_ipic_31__38_AbstractBlockTerminator::GGS_ipic_31__38_AbstractBlockTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inSourcePtr) :
@@ -3789,9 +3704,7 @@ GGS_ipic_31__38_AbstractBlockTerminator_2E_weak GGS_ipic_31__38_AbstractBlockTer
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@ipic_31__38_BlockList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_ipic_31__38_BlockList : public cCollectionElement {
@@ -3878,9 +3791,8 @@ GGS_ipic_31__38_BlockList GGS_ipic_31__38_BlockList::init (Compiler * COMMA_UNUS
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_BlockList::enterElement (const GGS_ipic_31__38_BlockList_2E_element & inValue,
-                                              Compiler * /* inCompiler */
-                                              COMMA_LOCATION_ARGS) {
+void GGS_ipic_31__38_BlockList::plusPlusAssignOperation (const GGS_ipic_31__38_BlockList_2E_element & inValue
+                                                         COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_ipic_31__38_BlockList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -3916,8 +3828,8 @@ void GGS_ipic_31__38_BlockList::makeAttributesFromObjects (capCollectionElement 
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_BlockList::addAssign_operation (const GGS_ipic_31__38_Block & inOperand0
-                                                     COMMA_LOCATION_ARGS) {
+void GGS_ipic_31__38_BlockList::addAssignOperation (const GGS_ipic_31__38_Block & inOperand0
+                                                    COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_ipic_31__38_BlockList (inOperand0 COMMA_THERE)) ;
@@ -4090,9 +4002,9 @@ GGS_ipic_31__38_BlockList GGS_ipic_31__38_BlockList::getter_subListToIndex (cons
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_BlockList::plusAssign_operation (const GGS_ipic_31__38_BlockList inOperand,
-                                                      Compiler * /* inCompiler */
-                                                      COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_ipic_31__38_BlockList::plusAssignOperation (const GGS_ipic_31__38_BlockList inOperand,
+                                                     Compiler * /* inCompiler */
+                                                     COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -4248,6 +4160,13 @@ ComparisonResult GGS_ipic_31__38_SingleInstructionTerminator::objectCompare (con
 
 GGS_ipic_31__38_SingleInstructionTerminator::GGS_ipic_31__38_SingleInstructionTerminator (void) :
 GGS_ipic_31__38_AbstractBlockTerminator () {
+}
+
+
+void cPtr_ipic_31__38_SingleInstructionTerminator::
+ipic_31__38_SingleInstructionTerminator_init_21_ (const GGS_location & in_mInstructionLocation,
+                                                  Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -6759,6 +6678,17 @@ ComparisonResult GGS_ipic_31__38_AbstractConditionTerminator::objectCompare (con
 
 GGS_ipic_31__38_AbstractConditionTerminator::GGS_ipic_31__38_AbstractConditionTerminator (void) :
 GGS_ipic_31__38_AbstractBlockTerminator () {
+}
+
+
+void cPtr_ipic_31__38_AbstractConditionTerminator::
+ipic_31__38_AbstractConditionTerminator_init_21__21__21_ (const GGS_location & in_mInstructionLocation,
+                                                          const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
+                                                          const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
+                                                          Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mSingleInstructionTerminatorIfConditionTrue = in_mSingleInstructionTerminatorIfConditionTrue ;
+  mProperty_mSingleInstructionTerminatorIfConditionFalse = in_mSingleInstructionTerminatorIfConditionFalse ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -13519,6 +13449,15 @@ ComparisonResult GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction::objectCom
 
 GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction::GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction (void) :
 GGS_ipic_31__38_SequentialInstruction () {
+}
+
+
+void cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction::
+ipic_31__38__5F_condition_5F_skip_5F_instruction_init_21__21_ (const GGS_location & in_mInstructionLocation,
+                                                               const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                               Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mEmbeddedInstruction = in_mEmbeddedInstruction ;
 }
 
 //--------------------------------------------------------------------------------------------------

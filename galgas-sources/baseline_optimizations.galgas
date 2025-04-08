@@ -140,35 +140,35 @@ method @baseline_intermediate_instruction enterReferencedLabel
 
 override method @baseline_intermediate_GOTO enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += !self.mTargetLabel.string
+  ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_JUMP enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += !self.mTargetLabel.string
+  ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_CALL enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += !self.mTargetLabel.string
+  ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_JSR enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += !self.mTargetLabel.string
+  ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 #----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_incDecRegisterInCondition enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
-  ioReferencedLabelSet += !self.mTargetLabel
+  ioReferencedLabelSet ++= self.mTargetLabel
 }
 
 #----------------------------------------------------------------------------*
@@ -245,7 +245,7 @@ proc findBaselineFirstInstructionOrLabelFromAddress
     elsif let instr = instruction as @baseline_intermediate_pseudo_LABEL then
 #    case == @baseline_intermediate_pseudo_LABEL instr :
       outFirstInstruction = instr
-      outReachedLabelSet += !instr.mLabel.string
+      outReachedLabelSet ++= instr.mLabel.string
       currentAddress += 1
     else
       currentAddress += 1

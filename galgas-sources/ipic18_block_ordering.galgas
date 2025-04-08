@@ -404,7 +404,7 @@ proc buildOrderedGraph
       !visitedNodeSet
     ]
     for (mValue) in  [gg keyList] do
-      visitedNodeSet += ! mValue
+      visitedNodeSet ++=  mValue
     end    
     [!?gg removeEdgesToDominators]
     [[gg reversedGraph] depthFirstTopologicalSort
@@ -429,7 +429,7 @@ proc buildOrderedGraph
         !visitedNodeSet
       ]
       for (mValue) in  [gg keyList] do
-        visitedNodeSet += ! mValue
+        visitedNodeSet ++=  mValue
       end
       [!?gg removeEdgesToNode !mBlock.mLabel.string]
       [!?gg removeEdgesToDominators]
@@ -493,7 +493,7 @@ proc buildOrderedGraph
       ioListFileContents += s + ".\n\n"
       ok = false
     else
-      newSymbolSet += !mBlock.mLabel.string
+      newSymbolSet ++= mBlock.mLabel.string
     end
   end
   for (lkey *) in  symbolTable do

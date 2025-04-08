@@ -426,7 +426,7 @@ proc enterGoto2block
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
   if not [ioReferencedBlockSet hasKey !"_computed_goto_2"] then
-    ioReferencedBlockSet += !"_computed_goto_2"
+    ioReferencedBlockSet ++= "_computed_goto_2"
     [inSymbolTable searchKey !["_computed_goto_2" nowhere] ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels
@@ -444,7 +444,7 @@ proc enterGoto4block
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
   if not [ioReferencedBlockSet hasKey !"_computed_goto_4"] then
-    ioReferencedBlockSet += !"_computed_goto_4"
+    ioReferencedBlockSet ++= "_computed_goto_4"
     [inSymbolTable searchKey !["_computed_goto_4" nowhere] ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels
@@ -488,7 +488,7 @@ override method @ipic18ComputedBraTerminator enterTerminatorReferencedLabels
   )
   for (mValue) in  self.mTargetLabels do
     if not [ioReferencedBlockSet hasKey !mValue.string] then
-      ioReferencedBlockSet += !mValue.string
+      ioReferencedBlockSet ++= mValue.string
       [inSymbolTable searchKey !mValue ?let @uint blockIndex]
       let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
       [b enterReferencedLabels
@@ -513,7 +513,7 @@ override method @ipic18ComputedGotoTerminator enterTerminatorReferencedLabels
   )
   for (mValue) in  self.mTargetLabels do
     if not [ioReferencedBlockSet hasKey !mValue.string] then
-      ioReferencedBlockSet += !mValue.string
+      ioReferencedBlockSet ++= mValue.string
       [inSymbolTable searchKey !mValue ?let @uint blockIndex]
       let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
       [b enterReferencedLabels
@@ -532,7 +532,7 @@ override method @ipic18JumpTerminator enterTerminatorReferencedLabels
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
   if not [ioReferencedBlockSet hasKey !self.mLabel.string] then
-    ioReferencedBlockSet += !self.mLabel.string
+    ioReferencedBlockSet ++= self.mLabel.string
     [inSymbolTable searchKey !self.mLabel ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels
@@ -550,7 +550,7 @@ override method @ipic18ConditionalJumpTerminator enterTerminatorReferencedLabels
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
   if not [ioReferencedBlockSet hasKey !self.mTargetLabelWhenTrue.string] then
-    ioReferencedBlockSet += !self.mTargetLabelWhenTrue.string
+    ioReferencedBlockSet ++= self.mTargetLabelWhenTrue.string
     [inSymbolTable searchKey !self.mTargetLabelWhenTrue ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels
@@ -560,7 +560,7 @@ override method @ipic18ConditionalJumpTerminator enterTerminatorReferencedLabels
     ]
   end
   if not [ioReferencedBlockSet hasKey !self.mTargetLabelWhenFalse.string] then
-    ioReferencedBlockSet += !self.mTargetLabelWhenFalse.string
+    ioReferencedBlockSet ++= self.mTargetLabelWhenFalse.string
     [inSymbolTable searchKey !self.mTargetLabelWhenFalse ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels
@@ -608,7 +608,7 @@ override method @ipic18_intermediate_JSR enterInstructionReferencedLabels
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet {
   if not [ioReferencedBlockSet hasKey !self.mTargetLabel.string] then
-    ioReferencedBlockSet += !self.mTargetLabel.string
+    ioReferencedBlockSet ++= self.mTargetLabel.string
     [inSymbolTable searchKey !self.mTargetLabel ?let @uint blockIndex]
     let @ipic18Block b = [inBlockList mBlockAtIndex !blockIndex]
     [b enterReferencedLabels

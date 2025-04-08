@@ -60,7 +60,7 @@ override method @ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComp
 {
   for (mValue) in  self.mTargetLabels do
     if not [ioExploredBlockSet hasKey !mValue.string] then
-      ioBlockToExploreSet += !mValue.string
+      ioBlockToExploreSet ++= mValue.string
     end
   end
   outStackNeeds = 1
@@ -75,7 +75,7 @@ override method @ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackCom
 {
   for (mValue) in  self.mTargetLabels do
     if not [ioExploredBlockSet hasKey !mValue.string] then
-      ioBlockToExploreSet += !mValue.string
+      ioBlockToExploreSet ++= mValue.string
     end
   end
   outStackNeeds = 1
@@ -89,7 +89,7 @@ override method @ipic18JumpTerminator exploreAccessibleBlocksForStackComputation
   !@uint outStackNeeds
 {
   if not [ioExploredBlockSet hasKey !self.mLabel.string] then
-    ioBlockToExploreSet += !self.mLabel.string
+    ioBlockToExploreSet ++= self.mLabel.string
   end
   outStackNeeds = 0
 }
@@ -102,10 +102,10 @@ override method @ipic18ConditionalJumpTerminator exploreAccessibleBlocksForStack
   !@uint outStackNeeds
 {
   if not [ioExploredBlockSet hasKey !self.mTargetLabelWhenTrue.string] then
-    ioBlockToExploreSet += !self.mTargetLabelWhenTrue.string
+    ioBlockToExploreSet ++= self.mTargetLabelWhenTrue.string
   end
   if not [ioExploredBlockSet hasKey !self.mTargetLabelWhenFalse.string] then
-    ioBlockToExploreSet += !self.mTargetLabelWhenFalse.string
+    ioBlockToExploreSet ++= self.mTargetLabelWhenFalse.string
   end
   outStackNeeds = 0
 }
@@ -165,7 +165,7 @@ method @ipic18SequentialInstruction buildCalledRoutineSetForStackComputations
 
 override method @ipic18_intermediate_JSR buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
-  ioRoutineCalledSet += !self.mTargetLabel.string
+  ioRoutineCalledSet ++= self.mTargetLabel.string
 }
 
 #----------------------------------------------------------------------------*
@@ -202,7 +202,7 @@ proc ipic18StackComputations
   var blockMapForStackComputation =@blockMapForStackComputation ()
   for (mBlock) in  inBlockList do
     if mBlock.mAddress != @uint. max then # Absolute block
-      startLabelsToExplore += !mBlock.mLabel.string    
+      startLabelsToExplore ++= mBlock.mLabel.string    
     end  
     [!?blockMapForStackComputation insertKey !mBlock.mLabel !mBlock]
   end
@@ -215,7 +215,7 @@ proc ipic18StackComputations
     [!?startLabelsToExplore removeKey !startLabel]
   #--- Explore accessible blocks
     var blockToExploreSet =@stringset ()
-    blockToExploreSet += !startLabel
+    blockToExploreSet ++= startLabel
     var @stringset exploredBlockSet = @()
     var @stringset calledRoutineSet = @()
     var @uint terminatorStackNeeds = 0
@@ -224,7 +224,7 @@ proc ipic18StackComputations
     do
       let @string b = [blockToExploreSet anyString]
       [!?blockToExploreSet removeKey !b]
-      exploredBlockSet += !b
+      exploredBlockSet ++= b
       [blockMapForStackComputation searchKey ![b nowhere] ?let @ipic18Block aBlock]
       [aBlock.mTerminator exploreAccessibleBlocksForStackComputations
         !?blockToExploreSet
@@ -241,7 +241,7 @@ proc ipic18StackComputations
     [!?routineCallMap insertKey ![startLabel nowhere] !calledRoutineSet !terminatorStackNeeds]
     for (key) in  calledRoutineSet do
       if not [routineCallMap hasKey !key] then
-        startLabelsToExplore += !key
+        startLabelsToExplore ++= key
       end
     end
   end

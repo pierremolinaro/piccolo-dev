@@ -106,7 +106,7 @@ override method @immediatRegister eval
   ?!@stringset ioUsedRegisters
 {
   if [inRegisterTable hasKey !self.mRegister.mRegisterName.string] then
-    ioUsedRegisters += !self.mRegister.mRegisterName.string
+    ioUsedRegisters ++= self.mRegister.mRegisterName.string
     [inRegisterTable searchKey !self.mRegister.mRegisterName ?let registerAddressList ?let size ?2* ?let protection]
     [inRegisterTable checkPrivateAccess !self.mRegister.mRegisterName !write:false !protection]
     [registerAddressList first ?let @uint registerAddress]
@@ -379,7 +379,7 @@ override method @immediatSlice eval
 {
   let @bitSliceTable bitSliceTable
   outResult = 0
-  ioUsedRegisters += !self.mRegisterName.string
+  ioUsedRegisters ++= self.mRegisterName.string
   [inRegisterTable searchKey !self.mRegisterName ?* ?* ? bitSliceTable ?* ?let protection]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:false !protection]
   var sliceNameSet = @stringset ()
@@ -387,7 +387,7 @@ override method @immediatSlice eval
     if [sliceNameSet hasKey !mSliceName.string] then
       error mSliceName:"the '" + mSliceName + "' bit field has been already defined"
     else
-      sliceNameSet += !mSliceName.string
+      sliceNameSet ++= mSliceName.string
       [bitSliceTable searchKey !mSliceName ?let sliceIndex ?let sliceSize]
       [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
       if (result < 0) | (result > ((1 << sliceSize) - 1)) then

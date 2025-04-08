@@ -113,7 +113,7 @@ proc pic18_analyze
     elsif [usedRoutineSet hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' routine is declared as unused, but is used"
     end
-    unusedDeclarationUnicity += !mValue.string
+    unusedDeclarationUnicity ++= mValue.string
   end
   for (lkey * * * * *) in  declaredRoutineMap do
     if (not [usedRoutineSet hasKey !lkey.string]) & (not [unusedDeclarationUnicity hasKey !lkey.string]) then
@@ -128,7 +128,7 @@ proc pic18_analyze
     elsif not [usedRoutineSet hasKey !mValue.string] then
       warning mValue : "useless declaration, the '" + mValue + "' routine is unused"
     else
-      inlinedRoutineSet += !mValue.string
+      inlinedRoutineSet ++= mValue.string
     end
   end
   var @pic18InterruptDefinitionList interruptDefinitionList = inPiccoloModel.mInterruptDefinitionList

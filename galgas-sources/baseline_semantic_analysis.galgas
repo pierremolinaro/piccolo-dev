@@ -19,7 +19,7 @@ method @registerExpression resolveBaselineAccess
   ?!@stringset ioUsedRegisters
 {
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-  ioUsedRegisters += !self.mRegisterName.string
+  ioUsedRegisters ++= self.mRegisterName.string
 #--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
   if offset > 0 then
@@ -129,13 +129,13 @@ override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_ins
 #----------------------------------------------------------------------------*
 
 func %once acceptableTRISoperand -> @stringset set {
-  set = @stringset. emptySet
-  set += !"GPIO"
-  set += !"PORTA"
-  set += !"PORTB"
-  set += !"PORTC"
-  set += !"PORTD"
-  set += !"PORTE"
+  set = @stringset ()
+  set ++= "GPIO"
+  set ++= "PORTA"
+  set ++= "PORTB"
+  set ++= "PORTC"
+  set ++= "PORTD"
+  set ++= "PORTE"
 }
 
 #----------------------------------------------------------------------------*

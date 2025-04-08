@@ -38,7 +38,7 @@ proc actualBuildConfig
       if [actualSettingNameSet hasKey !mSettingName.string] then
         error mSettingName: "the '" + mSettingName + "' setting is already defined"
       end
-      actualSettingNameSet += !mSettingName.string
+      actualSettingNameSet ++= mSettingName.string
       [configFieldMap searchKey !mSettingName ?let registerName ?2* ?let fieldSettingMap]
       if [fieldSettingMap hasKey !mSettingValue.string] then
         [fieldSettingMap searchKey !mSettingValue ?let settingValue ?let settingMask]

@@ -19,7 +19,7 @@ method @registerExpression resolveMidrangeAccess
   ?!@stringset ioUsedRegisters
 {
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-  ioUsedRegisters += !self.mRegisterName.string
+  ioUsedRegisters ++= self.mRegisterName.string
 #--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
   if offset > 0 then

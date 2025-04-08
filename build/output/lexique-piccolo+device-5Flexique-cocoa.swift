@@ -162,58 +162,58 @@ func piccoloDevice_lexique_styleIdentifierFor (styleIndex inIndex : UInt8) -> St
 
 class SWIFT_Lexique_piccoloDevice_lexique : SWIFT_Lexique {
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   private var mLexicalAttribute_charValue : UInt32 = 0
   private var mLexicalAttribute_identifierString : String = ""
   private var mLexicalAttribute_tokenString : String = ""
   private var mLexicalAttribute_uint32value : UInt32 = 0
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func lexiqueIdentifier () -> String {
     return piccoloDevice_lexique_lexiqueIdentifier ()
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func isTemplateLexique () -> Bool {
     return false
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func terminalVocabularyCount () -> Int {
     return 33
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   var font : EBPreferenceProperty <NSFont> { return gFont_piccoloDevice_lexique }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   var lineHeight : EBPreferenceProperty <Int> { return gLineHeight_piccoloDevice_lexique }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func color (forStyle inStyleIndex : UInt8) -> EBPreferenceProperty <NSColor> {
     return gColors_piccoloDevice_lexique [Int (inStyleIndex)]
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func bold (forStyle inStyleIndex : UInt8) -> EBPreferenceProperty <Bool> {
     return gBoldStyle_piccoloDevice_lexique [Int (inStyleIndex)]
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func italic (forStyle inStyleIndex : UInt8) -> EBPreferenceProperty <Bool> {
     return gItalicStyle_piccoloDevice_lexique [Int (inStyleIndex)]
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func styleIndexFor (token inTokenIndex : UInt16) -> UInt8 {
     let kTerminalSymbolStyles : [UInt8] = [
@@ -257,7 +257,7 @@ class SWIFT_Lexique_piccoloDevice_lexique : SWIFT_Lexique {
     return kTerminalSymbolStyles [Int (inTokenIndex)]
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func atomicSelectionFor (token inTokenIndex : UInt16) -> Bool {
     let kTerminalAtomicSelection : [Bool] = [
@@ -301,36 +301,36 @@ class SWIFT_Lexique_piccoloDevice_lexique : SWIFT_Lexique {
     return kTerminalAtomicSelection [Int (inTokenIndex)]
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func indexingTitles () -> [String] {
 
     return []
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //  S T Y L E S
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func styleCount () -> UInt8 {
     return 6
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func styleNameFor (styleIndex inIndex : UInt8) -> String {
     return piccoloDevice_lexique_styleNameFor (styleIndex: inIndex)
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func styleIdentifierFor (styleIndex inIndex : UInt8) -> String {
     return piccoloDevice_lexique_styleIdentifierFor (styleIndex: inIndex)
   }
 
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //   Lexical analysis
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   func parseLexicalTokenForLexicalColoring () -> SWIFT_Token {
     var loop = true
@@ -475,7 +475,7 @@ class SWIFT_Lexique_piccoloDevice_lexique : SWIFT_Lexique {
     )
   }
   
-  //- - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
 }
 

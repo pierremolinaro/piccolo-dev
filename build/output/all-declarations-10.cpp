@@ -1439,13 +1439,13 @@ void extensionSetter_insertKey (GGS_branchOverflowMap & ioObject,
       {
       var_aList_14744.setter_append (constinArgument_inValue, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 402)) ;
       }
-      ioObject.mProperty_dictionary.addAssign_operation (constinArgument_inKey, var_aList_14744, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 403)) ;
+      ioObject.mProperty_dictionary.addAssignOperation (constinArgument_inKey, var_aList_14744, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 403)) ;
     }
   }
   if (GalgasBool::boolFalse == test_0) {
     GGS_stringlist temp_3 = GGS_stringlist::init (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 405)) ;
-    temp_3.enterElement (GGS_stringlist_2E_element::init_21_ (constinArgument_inValue, inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 405)) ;
-    ioObject.mProperty_dictionary.addAssign_operation (constinArgument_inKey, temp_3, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 405)) ;
+    temp_3.plusPlusAssignOperation (GGS_stringlist_2E_element::init_21_ (constinArgument_inValue, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 405)) ;
+    ioObject.mProperty_dictionary.addAssignOperation (constinArgument_inKey, temp_3, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 405)) ;
   }
 }
 
@@ -1462,39 +1462,37 @@ void extensionMethod_display (const GGS_ipic_31__38_Block inObject,
                               Compiler * inCompiler
                               COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_ipic_31__38_Block temp_0 = inObject ;
-  ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("LABEL ").add_operation (temp_0.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 12)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 12)) ;
+  ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("LABEL ").add_operation (temp_0.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 12)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 12)) ;
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
     const GGS_ipic_31__38_Block temp_2 = inObject ;
     test_1 = GGS_bool (ComparisonKind::notEqual, temp_2.readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_display_block_list.galgas", 13)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
       const GGS_ipic_31__38_Block temp_3 = inObject ;
-      ioArgument_ioListFileContents.plusAssign_operation(GGS_string (", ORG ").add_operation (temp_3.readProperty_mAddress ().getter_hexString (SOURCE_FILE ("ipic18_display_block_list.galgas", 14)), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14)) ;
+      ioArgument_ioListFileContents.plusAssignOperation(GGS_string (", ORG ").add_operation (temp_3.readProperty_mAddress ().getter_hexString (SOURCE_FILE ("ipic18_display_block_list.galgas", 14)), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 14)) ;
     }
   }
-  ioArgument_ioListFileContents.plusAssign_operation(GGS_string (":\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 16)) ;
+  ioArgument_ioListFileContents.plusAssignOperation(GGS_string (":\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 16)) ;
   const GGS_ipic_31__38_Block temp_4 = inObject ;
   UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_501 (temp_4.readProperty_mInstructionList ()) ;
   while (enumerator_501.hasCurrentObject ()) {
     GGS_stringlist var_d_553 = callExtensionGetter_instructionDisplay ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_501.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 19)) ;
     UpEnumerator_stringlist enumerator_600 (var_d_553) ;
     while (enumerator_600.hasCurrentObject ()) {
-      ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("  ").add_operation (enumerator_600.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)) ;
+      ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  ").add_operation (enumerator_600.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 21)) ;
       enumerator_600.gotoNextObject () ;
     }
     enumerator_501.gotoNextObject () ;
   }
-  ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 25)) ;
+  ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  "), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 25)) ;
   const GGS_ipic_31__38_Block temp_5 = inObject ;
-  ioArgument_ioListFileContents.plusAssign_operation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_5.readProperty_mTerminator ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 26)) ;
-  ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("\n\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 27)) ;
+  ioArgument_ioListFileContents.plusAssignOperation(callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_5.readProperty_mTerminator ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 26)) ;
+  ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("\n\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_display_block_list.galgas", 27)) ;
 }
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@registerExpression analyzeRegisterExpression'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_registerExpression::method_analyzeRegisterExpression (const GGS_uint constinArgument_inAccessBankSplitOffset,
@@ -1511,14 +1509,14 @@ void cPtr_registerExpression::method_analyzeRegisterExpression (const GGS_uint c
   const GGS_registerExpression temp_0 = this ;
   callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mOffset ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_offset_615, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 19)) ;
   const GGS_registerExpression temp_1 = this ;
-  ioArgument_ioUsedRegisters.addAssign_operation (temp_1.readProperty_mRegisterName ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 20)) ;
+  ioArgument_ioUsedRegisters.plusPlusAssignOperation (temp_1.readProperty_mRegisterName ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 20)) ;
   const GGS_registerExpression temp_2 = this ;
   GGS_string var_assemblyString_730 = temp_2.readProperty_mRegisterName ().readProperty_string () ;
   GalgasBool test_3 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_3) {
     test_3 = GGS_bool (ComparisonKind::greaterThan, var_offset_615.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_3) {
-      var_assemblyString_730.plusAssign_operation(GGS_string (" + ").add_operation (var_offset_615.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 24)).getter_hexString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 24)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 24)) ;
+      var_assemblyString_730.plusAssignOperation(GGS_string (" + ").add_operation (var_offset_615.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 24)).getter_hexString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 24)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 24)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 24)) ;
     }
   }
   GGS_uint var_registerAddress_874 = GGS_uint (uint32_t (0U)) ;
@@ -1581,11 +1579,11 @@ void cPtr_registerExpression::method_analyzeRegisterExpression (const GGS_uint c
           if (GalgasBool::boolTrue == test_16) {
             test_16 = GGS_bool (ComparisonKind::equal, constinArgument_inCurrentBank.objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_build_block_representation.galgas", 56)))).boolEnum () ;
             if (GalgasBool::boolTrue == test_16) {
-              var_errorMessage_1851.plusAssign_operation(GGS_string (", but current bank selection cannot be known"), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 57)) ;
+              var_errorMessage_1851.plusAssignOperation(GGS_string (", but current bank selection cannot be known"), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 57)) ;
             }
           }
           if (GalgasBool::boolFalse == test_16) {
-            var_errorMessage_1851.plusAssign_operation(GGS_string (", but current bank selection is set to ").add_operation (constinArgument_inCurrentBank.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 59)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 59)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 59)) ;
+            var_errorMessage_1851.plusAssignOperation(GGS_string (", but current bank selection is set to ").add_operation (constinArgument_inCurrentBank.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 59)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 59)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 59)) ;
           }
           const GGS_registerExpression temp_17 = this ;
           TC_Array <FixItDescription> fixItArray18 ;
@@ -1614,13 +1612,12 @@ void callExtensionMethod_analyzeRegisterExpression (cPtr_registerExpression * in
   out_outBitSliceTable.drop () ;
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_registerExpression) ;
-    inObject->method_analyzeRegisterExpression  (constin_inAccessBankSplitOffset, constin_inCurrentBank, constin_inRegisterTable, constin_inConstantMap, constin_inWriteAccess, out_outIPICregisterDescription, out_outBitSliceTable, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
+    inObject->method_analyzeRegisterExpression (constin_inAccessBankSplitOffset, constin_inCurrentBank, constin_inRegisterTable, constin_inConstantMap, constin_inWriteAccess, out_outIPICregisterDescription, out_outBitSliceTable, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@registerExpression analyzeRegisterExpressionWithoutCheckingBank'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_registerExpression::method_analyzeRegisterExpressionWithoutCheckingBank (const GGS_registerTable constinArgument_inRegisterTable,
@@ -1631,7 +1628,7 @@ void cPtr_registerExpression::method_analyzeRegisterExpressionWithoutCheckingBan
                                                                                    Compiler * inCompiler
                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_registerExpression temp_0 = this ;
-  ioArgument_ioUsedRegisters.addAssign_operation (temp_0.readProperty_mRegisterName ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 81)) ;
+  ioArgument_ioUsedRegisters.plusPlusAssignOperation (temp_0.readProperty_mRegisterName ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 81)) ;
   const GGS_registerExpression temp_1 = this ;
   GGS_string var_assemblyString_2887 = temp_1.readProperty_mRegisterName ().readProperty_string () ;
   GGS_sint_36__34_ var_offset_2996 ;
@@ -1641,7 +1638,7 @@ void cPtr_registerExpression::method_analyzeRegisterExpressionWithoutCheckingBan
   if (GalgasBool::boolTrue == test_3) {
     test_3 = GGS_bool (ComparisonKind::greaterThan, var_offset_2996.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_3) {
-      var_assemblyString_2887.plusAssign_operation(GGS_string (" + ").add_operation (var_offset_2996.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 86)).getter_hexString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 86)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 86)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 86)) ;
+      var_assemblyString_2887.plusAssignOperation(GGS_string (" + ").add_operation (var_offset_2996.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 86)).getter_hexString (SOURCE_FILE ("ipic18_build_block_representation.galgas", 86)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 86)), inCompiler  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 86)) ;
     }
   }
   GGS_uintlist var_registerAddressList_3175 ;
@@ -1680,13 +1677,12 @@ void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (cPtr_regi
   out_outIPICregisterDescription.drop () ;
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_registerExpression) ;
-    inObject->method_analyzeRegisterExpressionWithoutCheckingBank  (constin_inRegisterTable, constin_inConstantMap, constin_inWriteAccess, out_outIPICregisterDescription, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
+    inObject->method_analyzeRegisterExpressionWithoutCheckingBank (constin_inRegisterTable, constin_inConstantMap, constin_inWriteAccess, out_outIPICregisterDescription, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@registerExpression getRegisterAddress'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_registerExpression::method_getRegisterAddress (const GGS_registerTable constinArgument_inRegisterTable,
@@ -1749,9 +1745,10 @@ void callExtensionMethod_getRegisterAddress (cPtr_registerExpression * inObject,
   out_outRegisterAddress.drop () ;
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_registerExpression) ;
-    inObject->method_getRegisterAddress  (constin_inRegisterTable, constin_inConstantMap, constin_inWriteAccess, io_ioUsedRegisters, out_outRegisterAddress, inCompiler COMMA_THERE) ;
+    inObject->method_getRegisterAddress (constin_inRegisterTable, constin_inConstantMap, constin_inWriteAccess, io_ioUsedRegisters, out_outRegisterAddress, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Extension method '@ipic18Block enterReferencedLabels'
@@ -1825,7 +1822,7 @@ void extensionMethod_optimize (const GGS_ipic_31__38_Block inObject,
               var_optimizedTerminator_37264 = GGS_ipic_31__38_RetlwTerminator::init_21__21_ (var_op_37504.readProperty_mInstructionLocation (), var_op_37504.readProperty_mLiteralValue (), inCompiler COMMA_HERE) ;
               var_optimized_37080 = GGS_bool (true) ;
               const GGS_ipic_31__38_Block temp_7 = inObject ;
-              ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("  [M] ").add_operation (temp_7.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 999)).add_operation (GGS_string (": MOVLW k ; RETURN --> RETLW k\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 999)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 999)) ;
+              ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  [M] ").add_operation (temp_7.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 999)).add_operation (GGS_string (": MOVLW k ; RETURN --> RETLW k\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 999)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 999)) ;
             }
           }
         }
@@ -1851,7 +1848,7 @@ void extensionMethod_optimize (const GGS_ipic_31__38_Block inObject,
                 var_optimizedTerminator_37264 = GGS_ipic_31__38_JumpTerminator::init_21__21__21_ (var_jsr_38123.readProperty_mInstructionLocation (), var_jsr_38123.readProperty_mTargetLabel (), var_jsr_38123.readProperty_mKind (), inCompiler COMMA_HERE) ;
                 var_optimized_37080 = GGS_bool (true) ;
                 const GGS_ipic_31__38_Block temp_10 = inObject ;
-                ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("  [J] ").add_operation (temp_10.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (GGS_string (": JSR "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (var_jsr_38123.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (GGS_string (" ; RETURN --> JUMP "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (var_jsr_38123.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)) ;
+                ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  [J] ").add_operation (temp_10.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (GGS_string (": JSR "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (var_jsr_38123.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (GGS_string (" ; RETURN --> JUMP "), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (var_jsr_38123.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1008)) ;
               }
             }
           }
@@ -1909,7 +1906,7 @@ void extensionMethod_performRelativesResolution (const GGS_ipic_31__38_Block inO
     GGS_ipic_31__38_SequentialInstruction var_modifiedInstruction_740 ;
     const GGS_ipic_31__38_Block temp_1 = inObject ;
     callExtensionMethod_performInstructionRelativeBranchResolution ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_492.current_mInstruction (HERE).ptr (), var_address_440, temp_1.readProperty_mLabel ().readProperty_string (), constinArgument_inSymbolTable, ioArgument_ioConversionCount, ioArgument_ioListFileContents, var_modifiedInstruction_740, inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 17)) ;
-    var_modifiedInstructionList_367.addAssign_operation (var_modifiedInstruction_740, GGS_uint::class_func_max (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 25)), GGS_uint (uint32_t (0U))  COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 25)) ;
+    var_modifiedInstructionList_367.addAssignOperation (var_modifiedInstruction_740, GGS_uint::class_func_max (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 25)), GGS_uint (uint32_t (0U))  COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 25)) ;
     var_address_440 = var_address_440.add_operation (callExtensionGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_492.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 26)), inCompiler COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 26)) ;
     enumerator_492.gotoNextObject () ;
   }
@@ -1991,7 +1988,7 @@ void extensionMethod_generateCodeForBlock (const GGS_ipic_31__38_Block inObject,
                                            GGS_generatedCodeMap & ioArgument_ioGeneratedCodeMap,
                                            Compiler * inCompiler
                                            COMMA_UNUSED_LOCATION_ARGS) {
-  ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("Addr.  Code       Duration    Assembly                                           Intermediate Representation\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 98)) ;
+  ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("Addr.  Code       Duration    Assembly                                           Intermediate Representation\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 98)) ;
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
     const GGS_ipic_31__38_Block temp_1 = inObject ;
@@ -2000,30 +1997,30 @@ void extensionMethod_generateCodeForBlock (const GGS_ipic_31__38_Block inObject,
       {
       GGS_codeList temp_2 = GGS_codeList::init (inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)) ;
       const GGS_ipic_31__38_Block temp_3 = inObject ;
-      temp_2.enterElement (GGS_codeList_2E_element::init_21__21_ (temp_3.readProperty_mLabel ().readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)), GGS_uintlist::init (inCompiler COMMA_HERE), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)) ;
+      temp_2.plusPlusAssignOperation (GGS_codeList_2E_element::init_21__21_ (temp_3.readProperty_mLabel ().readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)), GGS_uintlist::init (inCompiler COMMA_HERE), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 103)) ;
       GGS_stringlist temp_4 = GGS_stringlist::init (inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 104)) ;
       const GGS_ipic_31__38_Block temp_5 = inObject ;
-      temp_4.enterElement (GGS_stringlist_2E_element::init_21_ (GGS_string ("LABEL ").add_operation (temp_5.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 104)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 104)) ;
+      temp_4.plusPlusAssignOperation (GGS_stringlist_2E_element::init_21_ (GGS_string ("LABEL ").add_operation (temp_5.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 104)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 104)) ;
       routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (constinArgument_inBlockAddress, temp_2, temp_4, GGS_uint::class_func_max (SOURCE_FILE ("ipic18_code_generation.galgas", 105)), GGS_uint (uint32_t (0U)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 101)) ;
       }
       const GGS_ipic_31__38_Block temp_6 = inObject ;
-      ioArgument_ioAssemblyString.plusAssign_operation(temp_6.readProperty_mLabel ().readProperty_string ().add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 109)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 109)) ;
+      ioArgument_ioAssemblyString.plusAssignOperation(temp_6.readProperty_mLabel ().readProperty_string ().add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 109)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 109)) ;
     }
   }
   if (GalgasBool::boolFalse == test_0) {
     GGS_codeList var_cd_3550 = GGS_codeList::init (inCompiler COMMA_HERE) ;
-    var_cd_3550.addAssign_operation (GGS_string ("ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 112)), GGS_uintlist::init (inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 112)) ;
+    var_cd_3550.addAssignOperation (GGS_string ("ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 112)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 112)), GGS_uintlist::init (inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 112)) ;
     const GGS_ipic_31__38_Block temp_7 = inObject ;
-    var_cd_3550.addAssign_operation (temp_7.readProperty_mLabel ().readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 113)), GGS_uintlist::init (inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 113)) ;
+    var_cd_3550.addAssignOperation (temp_7.readProperty_mLabel ().readProperty_string ().add_operation (GGS_string (":"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 113)), GGS_uintlist::init (inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 113)) ;
     {
     GGS_stringlist temp_8 = GGS_stringlist::init (inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)) ;
     const GGS_ipic_31__38_Block temp_9 = inObject ;
-    temp_8.enterElement (GGS_stringlist_2E_element::init_21_ (GGS_string ("LABEL ").add_operation (temp_9.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)).add_operation (GGS_string (", ORG "), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)).add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 117)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)) ;
+    temp_8.plusPlusAssignOperation (GGS_stringlist_2E_element::init_21_ (GGS_string ("LABEL ").add_operation (temp_9.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)).add_operation (GGS_string (", ORG "), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)).add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 117)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 117)) ;
     routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (constinArgument_inBlockAddress, var_cd_3550, temp_8, GGS_uint::class_func_max (SOURCE_FILE ("ipic18_code_generation.galgas", 118)), GGS_uint (uint32_t (0U)), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 114)) ;
     }
-    ioArgument_ioAssemblyString.plusAssign_operation(GGS_string ("    ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)) ;
+    ioArgument_ioAssemblyString.plusAssignOperation(GGS_string ("    ORG ").add_operation (constinArgument_inBlockAddress.getter_hexString (SOURCE_FILE ("ipic18_code_generation.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 122)) ;
     const GGS_ipic_31__38_Block temp_10 = inObject ;
-    ioArgument_ioAssemblyString.plusAssign_operation(temp_10.readProperty_mLabel ().readProperty_string ().add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 123)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 123)) ;
+    ioArgument_ioAssemblyString.plusAssignOperation(temp_10.readProperty_mLabel ().readProperty_string ().add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 123)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 123)) ;
   }
   GGS_uint var_address_4015 = constinArgument_inBlockAddress ;
   const GGS_ipic_31__38_Block temp_11 = inObject ;
@@ -2046,7 +2043,7 @@ void extensionMethod_generateCodeForBlock (const GGS_ipic_31__38_Block inObject,
         }
         enumerator_4510.gotoNextObject () ;
       }
-      ioArgument_ioAssemblyString.plusAssign_operation(enumerator_4475.current_mAssemblyCode (HERE).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 147)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 147)) ;
+      ioArgument_ioAssemblyString.plusAssignOperation(enumerator_4475.current_mAssemblyCode (HERE).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 147)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 147)) ;
       enumerator_4475.gotoNextObject () ;
     }
     var_address_4015 = var_address_4015.add_operation (callExtensionGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_4065.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 149)) ;
@@ -2063,7 +2060,7 @@ void extensionMethod_generateCodeForBlock (const GGS_ipic_31__38_Block inObject,
         GGS_string var_s_4968 = GGS_string ("*** INTERNAL ERROR ** generated code size (").add_operation (var_generatedCodeSize_4759.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 156)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 156)).add_operation (GGS_string (") != instruction size ("), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 157)).add_operation (callExtensionGetter_instructionSize ((const cPtr_ipic_31__38_SequentialInstruction *) enumerator_4065.current_mInstruction (HERE).ptr (), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 157)).getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 157)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 157)).add_operation (GGS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 157)) ;
         TC_Array <FixItDescription> fixItArray13 ;
         inCompiler->emitSemanticError (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 158)), var_s_4968, fixItArray13  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 158)) ;
-        ioArgument_ioListFileContents.plusAssign_operation(var_s_4968.add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 159)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 159)) ;
+        ioArgument_ioListFileContents.plusAssignOperation(var_s_4968.add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 159)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 159)) ;
       }
     }
     enumerator_4065.gotoNextObject () ;
@@ -2074,7 +2071,7 @@ void extensionMethod_generateCodeForBlock (const GGS_ipic_31__38_Block inObject,
   {
   GGS_stringlist temp_15 = GGS_stringlist::init (inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 172)) ;
   const GGS_ipic_31__38_Block temp_16 = inObject ;
-  temp_15.enterElement (GGS_stringlist_2E_element::init_21_ (callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_16.readProperty_mTerminator ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 172)), inCompiler COMMA_HERE), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 172)) ;
+  temp_15.plusPlusAssignOperation (GGS_stringlist_2E_element::init_21_ (callExtensionGetter_terminatorDisplay ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_16.readProperty_mTerminator ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 172)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 172)) ;
   const GGS_ipic_31__38_Block temp_17 = inObject ;
   const GGS_ipic_31__38_Block temp_18 = inObject ;
   routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (var_address_4015, var_code_5334, temp_15, temp_17.readProperty_mTerminatorMin (), temp_18.readProperty_mTerminatorMax (), ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 169)) ;
@@ -2088,7 +2085,7 @@ void extensionMethod_generateCodeForBlock (const GGS_ipic_31__38_Block inObject,
       }
       enumerator_5590.gotoNextObject () ;
     }
-    ioArgument_ioAssemblyString.plusAssign_operation(enumerator_5557.current_mAssemblyCode (HERE).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 181)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 181)) ;
+    ioArgument_ioAssemblyString.plusAssignOperation(enumerator_5557.current_mAssemblyCode (HERE).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 181)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 181)) ;
     enumerator_5557.gotoNextObject () ;
   }
   GGS_bigint var_generatedCodeSize_5769 = GGS_bigint ("0", inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 184)) ;
@@ -2106,10 +2103,10 @@ void extensionMethod_generateCodeForBlock (const GGS_ipic_31__38_Block inObject,
       GGS_string var_s_5999 = GGS_string ("*** INTERNAL ERROR ** generated code size (").add_operation (var_generatedCodeSize_5769.getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 189)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 189)).add_operation (GGS_string (") != instruction size ("), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 190)).add_operation (callExtensionGetter_terminatorSize ((const cPtr_ipic_31__38_AbstractBlockTerminator *) temp_21.readProperty_mTerminator ().ptr (), constinArgument_inNextBlockLabel, inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 190)).getter_string (SOURCE_FILE ("ipic18_code_generation.galgas", 190)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 190)).add_operation (GGS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 190)) ;
       TC_Array <FixItDescription> fixItArray22 ;
       inCompiler->emitSemanticError (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_code_generation.galgas", 191)), var_s_5999, fixItArray22  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 191)) ;
-      ioArgument_ioListFileContents.plusAssign_operation(var_s_5999.add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 192)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 192)) ;
+      ioArgument_ioListFileContents.plusAssignOperation(var_s_5999.add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 192)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 192)) ;
     }
   }
-  ioArgument_ioListFileContents.plusAssign_operation(GGS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 195)) ;
+  ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 195)) ;
 }
 
 
@@ -3399,9 +3396,7 @@ GGS_bitSliceTable_2E_element GGS_bitSliceTable_2E_element::extractObject (const 
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @bitSliceTable_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_bitSliceTable_2E_element_3F_::GGS_bitSliceTable_2E_element_3F_ (void) :
@@ -4176,9 +4171,7 @@ GGS_actualConfigurationMap_2E_element GGS_actualConfigurationMap_2E_element::ext
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @actualConfigurationMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_actualConfigurationMap_2E_element_3F_::GGS_actualConfigurationMap_2E_element_3F_ (void) :
@@ -4413,9 +4406,7 @@ GGS_labelMap_2E_element GGS_labelMap_2E_element::extractObject (const GGS_object
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @labelMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_labelMap_2E_element_3F_::GGS_labelMap_2E_element_3F_ (void) :
@@ -4662,9 +4653,7 @@ GGS_constantMap_2E_element GGS_constantMap_2E_element::extractObject (const GGS_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @constantMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_constantMap_2E_element_3F_::GGS_constantMap_2E_element_3F_ (void) :
@@ -4947,9 +4936,7 @@ GGS_routineMap_2E_element GGS_routineMap_2E_element::extractObject (const GGS_ob
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @routineMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_routineMap_2E_element_3F_::GGS_routineMap_2E_element_3F_ (void) :
@@ -5208,9 +5195,7 @@ GGS_symbolTableForOptimizations_2E_element GGS_symbolTableForOptimizations_2E_el
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @symbolTableForOptimizations_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_symbolTableForOptimizations_2E_element_3F_::GGS_symbolTableForOptimizations_2E_element_3F_ (void) :
@@ -5493,9 +5478,7 @@ GGS_configFieldMap_2E_element GGS_configFieldMap_2E_element::extractObject (cons
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @configFieldMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_configFieldMap_2E_element_3F_::GGS_configFieldMap_2E_element_3F_ (void) :
@@ -5895,9 +5878,7 @@ GGS_baseline_5F_declaredRoutineMap_2E_element GGS_baseline_5F_declaredRoutineMap
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @baseline_5F_declaredRoutineMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_declaredRoutineMap_2E_element_3F_::GGS_baseline_5F_declaredRoutineMap_2E_element_3F_ (void) :
@@ -6156,9 +6137,7 @@ GGS_baselineRoutineMap_2E_element GGS_baselineRoutineMap_2E_element::extractObje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @baselineRoutineMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_baselineRoutineMap_2E_element_3F_::GGS_baselineRoutineMap_2E_element_3F_ (void) :
@@ -6405,9 +6384,7 @@ GGS_baselineSymbolTableForOptimizations_2E_element GGS_baselineSymbolTableForOpt
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @baselineSymbolTableForOptimizations_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_baselineSymbolTableForOptimizations_2E_element_3F_::GGS_baselineSymbolTableForOptimizations_2E_element_3F_ (void) :
@@ -6654,9 +6631,7 @@ GGS_baseline_5F_symbolTable_2E_element GGS_baseline_5F_symbolTable_2E_element::e
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @baseline_5F_symbolTable_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_symbolTable_2E_element_3F_::GGS_baseline_5F_symbolTable_2E_element_3F_ (void) :
@@ -7269,9 +7244,7 @@ GGS_midrange_5F_symbolTableForConvertingRelatives_2E_element GGS_midrange_5F_sym
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @midrange_5F_symbolTableForConvertingRelatives_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_midrange_5F_symbolTableForConvertingRelatives_2E_element_3F_::GGS_midrange_5F_symbolTableForConvertingRelatives_2E_element_3F_ (void) :
@@ -7518,9 +7491,7 @@ GGS_midrange_5F_symbolTable_2E_element GGS_midrange_5F_symbolTable_2E_element::e
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @midrange_5F_symbolTable_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_midrange_5F_symbolTable_2E_element_3F_::GGS_midrange_5F_symbolTable_2E_element_3F_ (void) :
@@ -7755,9 +7726,7 @@ GGS_midrange_5F_declaredRoutineMap_2E_element GGS_midrange_5F_declaredRoutineMap
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @midrange_5F_declaredRoutineMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_midrange_5F_declaredRoutineMap_2E_element_3F_::GGS_midrange_5F_declaredRoutineMap_2E_element_3F_ (void) :
@@ -8004,9 +7973,7 @@ GGS_bootloaderReservedRAMmap_2E_element GGS_bootloaderReservedRAMmap_2E_element:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @bootloaderReservedRAMmap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_bootloaderReservedRAMmap_2E_element_3F_::GGS_bootloaderReservedRAMmap_2E_element_3F_ (void) :
@@ -8901,9 +8868,7 @@ GGS_pic_31__38_MacroMap_2E_element GGS_pic_31__38_MacroMap_2E_element::extractOb
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @pic_31__38_MacroMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_pic_31__38_MacroMap_2E_element_3F_::GGS_pic_31__38_MacroMap_2E_element_3F_ (void) :
@@ -9444,9 +9409,7 @@ GGS_caseConstantMap_2E_element GGS_caseConstantMap_2E_element::extractObject (co
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @caseConstantMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_caseConstantMap_2E_element_3F_::GGS_caseConstantMap_2E_element_3F_ (void) :
@@ -9705,9 +9668,7 @@ GGS_pic_31__38__5F_dataMap_2E_element GGS_pic_31__38__5F_dataMap_2E_element::ext
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @pic_31__38__5F_dataMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_pic_31__38__5F_dataMap_2E_element_3F_::GGS_pic_31__38__5F_dataMap_2E_element_3F_ (void) :
@@ -10071,9 +10032,7 @@ GGS_symbolTableForBlockOptimization_2E_element GGS_symbolTableForBlockOptimizati
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @symbolTableForBlockOptimization_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_symbolTableForBlockOptimization_2E_element_3F_::GGS_symbolTableForBlockOptimization_2E_element_3F_ (void) :
@@ -10320,9 +10279,7 @@ GGS_symbolTableForClusterOrdering_2E_element GGS_symbolTableForClusterOrdering_2
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @symbolTableForClusterOrdering_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_symbolTableForClusterOrdering_2E_element_3F_::GGS_symbolTableForClusterOrdering_2E_element_3F_ (void) :
@@ -10569,9 +10526,7 @@ GGS_symbolTableForRelativesResolution_2E_element GGS_symbolTableForRelativesReso
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @symbolTableForRelativesResolution_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_symbolTableForRelativesResolution_2E_element_3F_::GGS_symbolTableForRelativesResolution_2E_element_3F_ (void) :
@@ -10818,9 +10773,7 @@ GGS_pic_31__38__5F_dataAddressMap_2E_element GGS_pic_31__38__5F_dataAddressMap_2
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @pic_31__38__5F_dataAddressMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_::GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ (void) :
@@ -11115,9 +11068,7 @@ GGS_declaredRoutineMap_2E_element GGS_declaredRoutineMap_2E_element::extractObje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @declaredRoutineMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_declaredRoutineMap_2E_element_3F_::GGS_declaredRoutineMap_2E_element_3F_ (void) :
@@ -11388,9 +11339,7 @@ GGS_blockInstructionBlockMap_2E_element GGS_blockInstructionBlockMap_2E_element:
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @blockInstructionBlockMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_blockInstructionBlockMap_2E_element_3F_::GGS_blockInstructionBlockMap_2E_element_3F_ (void) :
@@ -11649,9 +11598,7 @@ GGS_blockInitialBankSelectionMap_2E_element GGS_blockInitialBankSelectionMap_2E_
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @blockInitialBankSelectionMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_blockInitialBankSelectionMap_2E_element_3F_::GGS_blockInitialBankSelectionMap_2E_element_3F_ (void) :
@@ -11898,9 +11845,7 @@ GGS_neededConversionForClusterOrder_2E_element GGS_neededConversionForClusterOrd
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @neededConversionForClusterOrder_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_neededConversionForClusterOrder_2E_element_3F_::GGS_neededConversionForClusterOrder_2E_element_3F_ (void) :
@@ -12159,9 +12104,7 @@ GGS_generatedCodeMap_2E_element GGS_generatedCodeMap_2E_element::extractObject (
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @generatedCodeMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_generatedCodeMap_2E_element_3F_::GGS_generatedCodeMap_2E_element_3F_ (void) :
@@ -12408,9 +12351,7 @@ GGS_blockMapForStackComputation_2E_element GGS_blockMapForStackComputation_2E_el
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @blockMapForStackComputation_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_blockMapForStackComputation_2E_element_3F_::GGS_blockMapForStackComputation_2E_element_3F_ (void) :
@@ -12669,9 +12610,7 @@ GGS_routineCallMap_2E_element GGS_routineCallMap_2E_element::extractObject (cons
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @routineCallMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_routineCallMap_2E_element_3F_::GGS_routineCallMap_2E_element_3F_ (void) :
@@ -12918,9 +12857,7 @@ GGS_routineStackRequirementMap_2E_element GGS_routineStackRequirementMap_2E_elem
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @routineStackRequirementMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_routineStackRequirementMap_2E_element_3F_::GGS_routineStackRequirementMap_2E_element_3F_ (void) :
@@ -13179,9 +13116,7 @@ GGS_blockDurationMap_2E_element GGS_blockDurationMap_2E_element::extractObject (
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @blockDurationMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_blockDurationMap_2E_element_3F_::GGS_blockDurationMap_2E_element_3F_ (void) :
@@ -13416,9 +13351,7 @@ GGS_declaredByteMap_2E_element GGS_declaredByteMap_2E_element::extractObject (co
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @declaredByteMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_declaredByteMap_2E_element_3F_::GGS_declaredByteMap_2E_element_3F_ (void) :
@@ -13713,9 +13646,7 @@ GGS_registerTable_2E_element GGS_registerTable_2E_element::extractObject (const 
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @registerTable_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_registerTable_2E_element_3F_::GGS_registerTable_2E_element_3F_ (void) :
@@ -13998,9 +13929,7 @@ GGS_ramBankTable_2E_element GGS_ramBankTable_2E_element::extractObject (const GG
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @ramBankTable_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_ramBankTable_2E_element_3F_::GGS_ramBankTable_2E_element_3F_ (void) :
@@ -14400,9 +14329,7 @@ GGS_fieldSettingMap_2E_element GGS_fieldSettingMap_2E_element::extractObject (co
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @fieldSettingMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_fieldSettingMap_2E_element_3F_::GGS_fieldSettingMap_2E_element_3F_ (void) :
@@ -14673,9 +14600,7 @@ GGS_configRegisterMaskMap_2E_element GGS_configRegisterMaskMap_2E_element::extra
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @configRegisterMaskMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_configRegisterMaskMap_2E_element_3F_::GGS_configRegisterMaskMap_2E_element_3F_ (void) :
@@ -14958,9 +14883,7 @@ GGS_configRegisterMap_2E_element GGS_configRegisterMap_2E_element::extractObject
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Optional @configRegisterMap_2E_element_3F_
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_configRegisterMap_2E_element_3F_::GGS_configRegisterMap_2E_element_3F_ (void) :
@@ -15257,9 +15180,7 @@ void routine_checkCurrentEmitAddress_3F_ (const GGS_uint constinArgument_inCurre
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@immediatInteger eval'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_immediatInteger::method_eval (const GGS_registerTable /* constinArgument_inRegisterTable */,
@@ -15271,10 +15192,9 @@ void cPtr_immediatInteger::method_eval (const GGS_registerTable /* constinArgume
   const GGS_immediatInteger temp_0 = this ;
   outArgument_outResult = temp_0.readProperty_mValue ().readProperty_uint ().getter_sint_36__34_ (SOURCE_FILE ("intermediate_generic.galgas", 97)) ;
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Overriding extension method '@immediatRegister eval'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_immediatRegister::method_eval (const GGS_registerTable constinArgument_inRegisterTable,
@@ -15289,7 +15209,7 @@ void cPtr_immediatRegister::method_eval (const GGS_registerTable constinArgument
     test_0 = constinArgument_inRegisterTable.getter_hasKey (temp_1.readProperty_mRegister ().readProperty_mRegisterName ().readProperty_string () COMMA_SOURCE_FILE ("intermediate_generic.galgas", 108)).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
       const GGS_immediatRegister temp_2 = this ;
-      ioArgument_ioUsedRegisters.addAssign_operation (temp_2.readProperty_mRegister ().readProperty_mRegisterName ().readProperty_string ()  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 109)) ;
+      ioArgument_ioUsedRegisters.plusPlusAssignOperation (temp_2.readProperty_mRegister ().readProperty_mRegisterName ().readProperty_string ()  COMMA_SOURCE_FILE ("intermediate_generic.galgas", 109)) ;
       GGS_uintlist var_registerAddressList_4032 ;
       GGS_uint var_size_4057 ;
       GGS_registerProtection var_protection_4071 ;
@@ -15358,3 +15278,4 @@ void cPtr_immediatRegister::method_eval (const GGS_registerTable constinArgument
     }
   }
 }
+

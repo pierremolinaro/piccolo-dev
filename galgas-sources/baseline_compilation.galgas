@@ -277,7 +277,7 @@ proc baseline_analysis
     elsif [usedRoutineSet hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' routine is declared as unused, but is used"
     end
-    unusedRoutineDeclarationUnicity += !mValue.string
+    unusedRoutineDeclarationUnicity ++= mValue.string
   end
   for (lkey) in  declaredRoutineMap do
     if (not [usedRoutineSet hasKey !lkey.string]) & (not [unusedRoutineDeclarationUnicity hasKey !lkey.string]) then
@@ -294,7 +294,7 @@ proc baseline_analysis
     elsif [usedRegisters hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' byte is declared as unused, but is used"
     end
-    unusedDeclarationUnicity += !mValue.string
+    unusedDeclarationUnicity ++= mValue.string
   end
   for (lkey) in  declaredByteMap do
     if (not [usedRegisters hasKey !lkey.string]) & (not [unusedDeclarationUnicity hasKey !lkey.string]) then

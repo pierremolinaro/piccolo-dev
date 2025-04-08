@@ -732,51 +732,6 @@ GGS_symbolTableForBlockOptimization GGS_symbolTableForBlockOptimization::getter_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_symbolTableForBlockOptimization::enterElement (const GGS_symbolTableForBlockOptimization_2E_element & inValue,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
-  cMapElement_symbolTableForBlockOptimization * p = nullptr ;
-  macroMyNew (p, cMapElement_symbolTableForBlockOptimization (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@symbolTableForBlockOptimization insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_symbolTableForBlockOptimization::addAssign_operation (const GGS_lstring & inKey,
-                                                               const GGS_uint & inArgument0,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
-  cMapElement_symbolTableForBlockOptimization * p = nullptr ;
-  macroMyNew (p, cMapElement_symbolTableForBlockOptimization (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@symbolTableForBlockOptimization insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_symbolTableForBlockOptimization GGS_symbolTableForBlockOptimization::add_operation (const GGS_symbolTableForBlockOptimization & inOperand,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const {
-  GGS_symbolTableForBlockOptimization result = *this ;
-  UpEnumerator_symbolTableForBlockOptimization enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mDefinitionBlockIndex (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_symbolTableForBlockOptimization::setter_insertKey (GGS_lstring inKey,
                                                             GGS_uint inArgument0,
                                                             Compiler * inCompiler
@@ -1075,51 +1030,6 @@ GGS_symbolTableForClusterOrdering GGS_symbolTableForClusterOrdering::getter_over
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_symbolTableForClusterOrdering::enterElement (const GGS_symbolTableForClusterOrdering_2E_element & inValue,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_symbolTableForClusterOrdering * p = nullptr ;
-  macroMyNew (p, cMapElement_symbolTableForClusterOrdering (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@symbolTableForClusterOrdering insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_symbolTableForClusterOrdering::addAssign_operation (const GGS_lstring & inKey,
-                                                             const GGS_uint & inArgument0,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
-  cMapElement_symbolTableForClusterOrdering * p = nullptr ;
-  macroMyNew (p, cMapElement_symbolTableForClusterOrdering (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@symbolTableForClusterOrdering insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_symbolTableForClusterOrdering GGS_symbolTableForClusterOrdering::add_operation (const GGS_symbolTableForClusterOrdering & inOperand,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) const {
-  GGS_symbolTableForClusterOrdering result = *this ;
-  UpEnumerator_symbolTableForClusterOrdering enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mCluster (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_symbolTableForClusterOrdering::setter_insertKey (GGS_lstring inKey,
                                                           GGS_uint inArgument0,
                                                           Compiler * inCompiler
@@ -1393,9 +1303,8 @@ readSubscript__3F_ (const class GGS_string & inKey,
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_branchOverflowMapDictionary::enterElement (const GGS_branchOverflowMapDictionary_2E_element & inValue,
-                                                    Compiler * /* inCompiler */
-                                                    COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_branchOverflowMapDictionary::plusPlusAssignOperation (const GGS_branchOverflowMapDictionary_2E_element & inValue
+                                                               COMMA_UNUSED_LOCATION_ARGS) {
   if (isValid () && inValue.mProperty_key.isValid ()) {
     mDictionary [inValue.mProperty_key] = inValue ;
   }
@@ -1403,10 +1312,10 @@ void GGS_branchOverflowMapDictionary::enterElement (const GGS_branchOverflowMapD
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_branchOverflowMapDictionary::addAssign_operation (const GGS_string & inKey,
-                                                           const GGS_stringlist & inArgument0,
-                                                           Compiler * /* inCompiler */
-                                                           COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_branchOverflowMapDictionary::addAssignOperation (const GGS_string & inKey,
+                                                          const GGS_stringlist & inArgument0,
+                                                          Compiler * /* inCompiler */
+                                                          COMMA_UNUSED_LOCATION_ARGS) {
   GGS_branchOverflowMapDictionary_2E_element newElement (inKey, inArgument0) ;
   if (isValid () && inKey.isValid ()) {
     mDictionary [inKey] = newElement ;
@@ -1724,9 +1633,7 @@ GGS_stringlist extensionGetter_listForKey (const GGS_branchOverflowMap & inObjec
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18SequentialInstruction instructionRelativeBranchOverflow'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_instructionRelativeBranchOverflow (const GGS_uint /* constinArgument_inAddress */,
@@ -1748,13 +1655,12 @@ void callExtensionMethod_instructionRelativeBranchOverflow (cPtr_ipic_31__38_Seq
                                                             COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
-    inObject->method_instructionRelativeBranchOverflow  (constin_inAddress, constin_inBlockLabel, constin_inSymbolTable, io_ioOverflowMap, inCompiler COMMA_THERE) ;
+    inObject->method_instructionRelativeBranchOverflow (constin_inAddress, constin_inBlockLabel, constin_inSymbolTable, io_ioOverflowMap, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_AbstractBlockTerminator::method_terminatorRelativeBranchOverflow (const GGS_uint /* constinArgument_inAddress */,
@@ -1778,13 +1684,12 @@ void callExtensionMethod_terminatorRelativeBranchOverflow (cPtr_ipic_31__38_Abst
                                                            COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
-    inObject->method_terminatorRelativeBranchOverflow  (constin_inAddress, constin_inBlockLabel, constin_inSymbolTable, constin_inNextBlockLabel, io_ioOverflowMap, inCompiler COMMA_THERE) ;
+    inObject->method_terminatorRelativeBranchOverflow (constin_inAddress, constin_inBlockLabel, constin_inSymbolTable, constin_inNextBlockLabel, io_ioOverflowMap, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_AbstractBlockTerminator::method_performTerminatorRelativeBranchResolution (const GGS_uint /* constinArgument_inAddress */,
@@ -1815,9 +1720,10 @@ void callExtensionMethod_performTerminatorRelativeBranchResolution (cPtr_ipic_31
   out_outModifiedTerminator.drop () ;
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
-    inObject->method_performTerminatorRelativeBranchResolution  (constin_inAddress, constin_inBlockLabel, constin_inSymbolTable, constin_inNextBlockLabel, io_ioConversionCount, io_ioListFileContents, out_outModifiedTerminator, inCompiler COMMA_THERE) ;
+    inObject->method_performTerminatorRelativeBranchResolution (constin_inAddress, constin_inBlockLabel, constin_inSymbolTable, constin_inNextBlockLabel, io_ioConversionCount, io_ioListFileContents, out_outModifiedTerminator, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 
 cMapElement_symbolTableForRelativesResolution::cMapElement_symbolTableForRelativesResolution (const GGS_symbolTableForRelativesResolution_2E_element & inValue
@@ -1929,51 +1835,6 @@ GGS_symbolTableForRelativesResolution GGS_symbolTableForRelativesResolution::get
                                                                                                    COMMA_LOCATION_ARGS) const {
   GGS_symbolTableForRelativesResolution result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_symbolTableForRelativesResolution::enterElement (const GGS_symbolTableForRelativesResolution_2E_element & inValue,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
-  cMapElement_symbolTableForRelativesResolution * p = nullptr ;
-  macroMyNew (p, cMapElement_symbolTableForRelativesResolution (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@symbolTableForRelativesResolution insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_symbolTableForRelativesResolution::addAssign_operation (const GGS_lstring & inKey,
-                                                                 const GGS_uint & inArgument0,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) {
-  cMapElement_symbolTableForRelativesResolution * p = nullptr ;
-  macroMyNew (p, cMapElement_symbolTableForRelativesResolution (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@symbolTableForRelativesResolution insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_symbolTableForRelativesResolution GGS_symbolTableForRelativesResolution::add_operation (const GGS_symbolTableForRelativesResolution & inOperand,
-                                                                                            Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) const {
-  GGS_symbolTableForRelativesResolution result = *this ;
-  UpEnumerator_symbolTableForRelativesResolution enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mLabelAddress (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -2162,9 +2023,7 @@ GGS_symbolTableForRelativesResolution GGS_symbolTableForRelativesResolution::ext
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@codeList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_codeList : public cCollectionElement {
@@ -2257,9 +2116,8 @@ GGS_codeList GGS_codeList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_codeList::enterElement (const GGS_codeList_2E_element & inValue,
-                                 Compiler * /* inCompiler */
-                                 COMMA_LOCATION_ARGS) {
+void GGS_codeList::plusPlusAssignOperation (const GGS_codeList_2E_element & inValue
+                                            COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_codeList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -2298,9 +2156,9 @@ void GGS_codeList::makeAttributesFromObjects (capCollectionElement & outAttribut
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_codeList::addAssign_operation (const GGS_string & inOperand0,
-                                        const GGS_uintlist & inOperand1
-                                        COMMA_LOCATION_ARGS) {
+void GGS_codeList::addAssignOperation (const GGS_string & inOperand0,
+                                       const GGS_uintlist & inOperand1
+                                       COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_codeList (inOperand0, inOperand1 COMMA_THERE)) ;
@@ -2490,9 +2348,9 @@ GGS_codeList GGS_codeList::getter_subListToIndex (const GGS_uint & inIndex,
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_codeList::plusAssign_operation (const GGS_codeList inOperand,
-                                         Compiler * /* inCompiler */
-                                         COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_codeList::plusAssignOperation (const GGS_codeList inOperand,
+                                        Compiler * /* inCompiler */
+                                        COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -2780,51 +2638,6 @@ GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::getter_over
                                                                                            COMMA_LOCATION_ARGS) const {
   GGS_pic_31__38__5F_dataAddressMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::enterElement (const GGS_pic_31__38__5F_dataAddressMap_2E_element & inValue,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_pic_31__38__5F_dataAddressMap * p = nullptr ;
-  macroMyNew (p, cMapElement_pic_31__38__5F_dataAddressMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@pic_31__38__5F_dataAddressMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::addAssign_operation (const GGS_lstring & inKey,
-                                                             const GGS_uint & inArgument0,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) {
-  cMapElement_pic_31__38__5F_dataAddressMap * p = nullptr ;
-  macroMyNew (p, cMapElement_pic_31__38__5F_dataAddressMap (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@pic_31__38__5F_dataAddressMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::add_operation (const GGS_pic_31__38__5F_dataAddressMap & inOperand,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) const {
-  GGS_pic_31__38__5F_dataAddressMap result = *this ;
-  UpEnumerator_pic_31__38__5F_dataAddressMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mDataAddress (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -3134,9 +2947,7 @@ GGS_uint callExtensionGetter_instructionSize (const cPtr_ipic_31__38_SequentialI
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18SequentialInstruction performInstructionRelativeBranchResolution'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_performInstructionRelativeBranchResolution (const GGS_uint /* constinArgument_inAddress */,
@@ -3165,9 +2976,10 @@ void callExtensionMethod_performInstructionRelativeBranchResolution (cPtr_ipic_3
   out_outModifiedInstruction.drop () ;
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
-    inObject->method_performInstructionRelativeBranchResolution  (constin_inAddress, constin_inBlockLabel, constin_inSymbolTable, io_ioConversionCount, io_ioListFileContents, out_outModifiedInstruction, inCompiler COMMA_THERE) ;
+    inObject->method_performInstructionRelativeBranchResolution (constin_inAddress, constin_inBlockLabel, constin_inSymbolTable, io_ioConversionCount, io_ioListFileContents, out_outModifiedInstruction, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Abstract extension getter '@ipic18SequentialInstruction instructionDisplay'
@@ -3400,55 +3212,6 @@ GGS_declaredRoutineMap GGS_declaredRoutineMap::getter_overriddenMap (Compiler * 
                                                                      COMMA_LOCATION_ARGS) const {
   GGS_declaredRoutineMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_declaredRoutineMap::enterElement (const GGS_declaredRoutineMap_2E_element & inValue,
-                                           Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) {
-  cMapElement_declaredRoutineMap * p = nullptr ;
-  macroMyNew (p, cMapElement_declaredRoutineMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@declaredRoutineMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_declaredRoutineMap::addAssign_operation (const GGS_lstring & inKey,
-                                                  const GGS_luint & inArgument0,
-                                                  const GGS_luint & inArgument1,
-                                                  const GGS_bool & inArgument2,
-                                                  const GGS_bool & inArgument3,
-                                                  const GGS_pic_31__38_InstructionList & inArgument4,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
-  cMapElement_declaredRoutineMap * p = nullptr ;
-  macroMyNew (p, cMapElement_declaredRoutineMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@declaredRoutineMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_declaredRoutineMap GGS_declaredRoutineMap::add_operation (const GGS_declaredRoutineMap & inOperand,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const {
-  GGS_declaredRoutineMap result = *this ;
-  UpEnumerator_declaredRoutineMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRequiredBank (HERE), enumerator.current_mReturnedBank (HERE), enumerator.current_mPreservesBank (HERE), enumerator.current_mIsNoReturn (HERE), enumerator.current_mInstructionList (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -3833,9 +3596,7 @@ GGS_declaredRoutineMap GGS_declaredRoutineMap::extractObject (const GGS_object &
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@pic18PiccoloInstruction performInlining'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_pic_31__38_PiccoloInstruction::method_performInlining (const GGS_stringset /* constinArgument_inInlinedRoutineSet */,
@@ -3845,7 +3606,7 @@ void cPtr_pic_31__38_PiccoloInstruction::method_performInlining (const GGS_strin
                                                                  Compiler * /* inCompiler */
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_pic_31__38_PiccoloInstruction temp_0 = this ;
-  ioArgument_ioInstructionList.addAssign_operation (temp_0  COMMA_SOURCE_FILE ("pic18_routine_inlining.galgas", 22)) ;
+  ioArgument_ioInstructionList.addAssignOperation (temp_0  COMMA_SOURCE_FILE ("pic18_routine_inlining.galgas", 22)) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -3859,9 +3620,10 @@ void callExtensionMethod_performInlining (cPtr_pic_31__38_PiccoloInstruction * i
                                           COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_pic_31__38_PiccoloInstruction) ;
-    inObject->method_performInlining  (constin_inInlinedRoutineSet, constin_inDeclaredRoutineMap, constin_inCurrentlyInlinedRoutineSet, io_ioInstructionList, inCompiler COMMA_THERE) ;
+    inObject->method_performInlining (constin_inInlinedRoutineSet, constin_inDeclaredRoutineMap, constin_inCurrentlyInlinedRoutineSet, io_ioInstructionList, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Abstract extension method '@pic18PiccoloSimpleInstruction analyzeSimpleInstruction'
@@ -4046,53 +3808,6 @@ GGS_blockInstructionBlockMap GGS_blockInstructionBlockMap::getter_overriddenMap 
                                                                                  COMMA_LOCATION_ARGS) const {
   GGS_blockInstructionBlockMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_blockInstructionBlockMap::enterElement (const GGS_blockInstructionBlockMap_2E_element & inValue,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) {
-  cMapElement_blockInstructionBlockMap * p = nullptr ;
-  macroMyNew (p, cMapElement_blockInstructionBlockMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockInstructionBlockMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_blockInstructionBlockMap::addAssign_operation (const GGS_lstring & inKey,
-                                                        const GGS_pic_31__38_InstructionList & inArgument0,
-                                                        const GGS_abstractBlockTerminationForBlockInstruction & inArgument1,
-                                                        const GGS_location & inArgument2,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
-  cMapElement_blockInstructionBlockMap * p = nullptr ;
-  macroMyNew (p, cMapElement_blockInstructionBlockMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockInstructionBlockMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_blockInstructionBlockMap GGS_blockInstructionBlockMap::add_operation (const GGS_blockInstructionBlockMap & inOperand,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) const {
-  GGS_blockInstructionBlockMap result = *this ;
-  UpEnumerator_blockInstructionBlockMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mInstructionList (HERE), enumerator.current_mBlockTerminaisonForBlockInstruction (HERE), enumerator.current_mEndOfBlock (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -4502,52 +4217,6 @@ GGS_blockInitialBankSelectionMap GGS_blockInitialBankSelectionMap::getter_overri
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_blockInitialBankSelectionMap::enterElement (const GGS_blockInitialBankSelectionMap_2E_element & inValue,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
-  cMapElement_blockInitialBankSelectionMap * p = nullptr ;
-  macroMyNew (p, cMapElement_blockInitialBankSelectionMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockInitialBankSelectionMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_blockInitialBankSelectionMap::addAssign_operation (const GGS_lstring & inKey,
-                                                            const GGS_uint & inArgument0,
-                                                            const GGS_string & inArgument1,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) {
-  cMapElement_blockInitialBankSelectionMap * p = nullptr ;
-  macroMyNew (p, cMapElement_blockInitialBankSelectionMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockInitialBankSelectionMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_blockInitialBankSelectionMap GGS_blockInitialBankSelectionMap::add_operation (const GGS_blockInitialBankSelectionMap & inOperand,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const {
-  GGS_blockInitialBankSelectionMap result = *this ;
-  UpEnumerator_blockInitialBankSelectionMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mInitialBankSelection (HERE), enumerator.current_mSourceBlock (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_blockInitialBankSelectionMap::setter_insertKey (GGS_lstring inKey,
                                                          GGS_uint inArgument0,
                                                          GGS_string inArgument1,
@@ -4880,9 +4549,7 @@ void callExtensionMethod_optimizeTerminator (cPtr_ipic_31__38_AbstractBlockTermi
   }
 }
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18AbstractConditionTerminator getOptimizedTerminators'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_AbstractConditionTerminator::method_getOptimizedTerminators (const GGS_symbolTableForBlockOptimization constinArgument_inSymbolTable,
@@ -5005,9 +4672,10 @@ void callExtensionMethod_getOptimizedTerminators (cPtr_ipic_31__38_AbstractCondi
   out_outIdenticalTerminators.drop () ;
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractConditionTerminator) ;
-    inObject->method_getOptimizedTerminators  (constin_inSymbolTable, constin_inOptimizeFlagStruct, constin_inBlockList, constin_inBlockLabel, io_ioOptimizationDone, io_ioListFileContents, out_outOptimizedTrueTerminator, out_outOptimizedFalseTerminator, out_outIdenticalTerminators, inCompiler COMMA_THERE) ;
+    inObject->method_getOptimizedTerminators (constin_inSymbolTable, constin_inOptimizeFlagStruct, constin_inBlockList, constin_inBlockLabel, io_ioOptimizationDone, io_ioListFileContents, out_outOptimizedTrueTerminator, out_outOptimizedFalseTerminator, out_outIdenticalTerminators, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Abstract extension method '@ipic18AbstractBlockTerminator enterTerminatorReferencedLabels'
@@ -5028,9 +4696,7 @@ void callExtensionMethod_enterTerminatorReferencedLabels (cPtr_ipic_31__38_Abstr
   }
 }
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18SequentialInstruction enterInstructionReferencedLabels'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_enterInstructionReferencedLabels (const GGS_symbolTableForBlockOptimization /* constinArgument_inSymbolTable */,
@@ -5050,13 +4716,12 @@ void callExtensionMethod_enterInstructionReferencedLabels (cPtr_ipic_31__38_Sequ
                                                            COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
-    inObject->method_enterInstructionReferencedLabels  (constin_inSymbolTable, constin_inBlockList, io_ioReferencedBlockSet, inCompiler COMMA_THERE) ;
+    inObject->method_enterInstructionReferencedLabels (constin_inSymbolTable, constin_inBlockList, io_ioReferencedBlockSet, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18SequentialInstruction optimizeInstruction'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_optimizeInstruction (const GGS_symbolTableForBlockOptimization /* constinArgument_inSymbolTable */,
@@ -5093,9 +4758,10 @@ void callExtensionMethod_optimizeInstruction (cPtr_ipic_31__38_SequentialInstruc
   out_outNOPsubstitution.drop () ;
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
-    inObject->method_optimizeInstruction  (constin_inSymbolTable, constin_inOptimizeFlagStruct, constin_inBlockList, constin_inBlockLabel, out_outOptimizationDone, io_ioListFileContents, out_outOptimizedInstruction, out_outNOPsubstitution, inCompiler COMMA_THERE) ;
+    inObject->method_optimizeInstruction (constin_inSymbolTable, constin_inOptimizeFlagStruct, constin_inBlockList, constin_inBlockLabel, out_outOptimizationDone, io_ioListFileContents, out_outOptimizedInstruction, out_outNOPsubstitution, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Extension method '@ipic18SequentialInstructionList enterInstructionReferencedLabels'
@@ -5331,9 +4997,7 @@ GGS_string extensionGetter_flagValue (const GGS_bool & inObject,
 
 
 //--------------------------------------------------------------------------------------------------
-//
 //'@blockInvocationGraph' graph
-//
 //--------------------------------------------------------------------------------------------------
 
 GGS_blockInvocationGraph::GGS_blockInvocationGraph (void) :
@@ -5519,9 +5183,7 @@ GGS_blockInvocationGraph GGS_blockInvocationGraph::extractObject (const GGS_obje
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18SequentialInstruction buildInstructionInvocationGraph'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_buildInstructionInvocationGraph (const GGS_lstring /* constinArgument_inBlockLabel */,
@@ -5539,9 +5201,10 @@ void callExtensionMethod_buildInstructionInvocationGraph (cPtr_ipic_31__38_Seque
                                                           COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
-    inObject->method_buildInstructionInvocationGraph  (constin_inBlockLabel, io_ioGraphVizString, inCompiler COMMA_THERE) ;
+    inObject->method_buildInstructionInvocationGraph (constin_inBlockLabel, io_ioGraphVizString, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Abstract extension method '@ipic18AbstractBlockTerminator buildTerminatorInvocationGraph'
@@ -5579,9 +5242,7 @@ GGS_bool callExtensionGetter_needToInsertJumpInstruction (const cPtr_ipic_31__38
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18AbstractBlockTerminator buildTerminatorOrderedGraph'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_AbstractBlockTerminator::method_buildTerminatorOrderedGraph (const GGS_lstring /* constinArgument_inBlockLabel */,
@@ -5599,13 +5260,12 @@ void callExtensionMethod_buildTerminatorOrderedGraph (cPtr_ipic_31__38_AbstractB
                                                       COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
-    inObject->method_buildTerminatorOrderedGraph  (constin_inBlockLabel, io_ioGraph, inCompiler COMMA_THERE) ;
+    inObject->method_buildTerminatorOrderedGraph (constin_inBlockLabel, io_ioGraph, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@clusterList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_clusterList : public cCollectionElement {
@@ -5692,9 +5352,8 @@ GGS_clusterList GGS_clusterList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_clusterList::enterElement (const GGS_clusterList_2E_element & inValue,
-                                    Compiler * /* inCompiler */
-                                    COMMA_LOCATION_ARGS) {
+void GGS_clusterList::plusPlusAssignOperation (const GGS_clusterList_2E_element & inValue
+                                               COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_clusterList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -5730,8 +5389,8 @@ void GGS_clusterList::makeAttributesFromObjects (capCollectionElement & outAttri
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_clusterList::addAssign_operation (const GGS_ipic_31__38_BlockList & inOperand0
-                                           COMMA_LOCATION_ARGS) {
+void GGS_clusterList::addAssignOperation (const GGS_ipic_31__38_BlockList & inOperand0
+                                          COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_clusterList (inOperand0 COMMA_THERE)) ;
@@ -5904,9 +5563,9 @@ GGS_clusterList GGS_clusterList::getter_subListToIndex (const GGS_uint & inIndex
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_clusterList::plusAssign_operation (const GGS_clusterList inOperand,
-                                            Compiler * /* inCompiler */
-                                            COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_clusterList::plusAssignOperation (const GGS_clusterList inOperand,
+                                           Compiler * /* inCompiler */
+                                           COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -6149,51 +5808,6 @@ GGS_neededConversionForClusterOrder GGS_neededConversionForClusterOrder::getter_
                                                                                                COMMA_LOCATION_ARGS) const {
   GGS_neededConversionForClusterOrder result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_neededConversionForClusterOrder::enterElement (const GGS_neededConversionForClusterOrder_2E_element & inValue,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
-  cMapElement_neededConversionForClusterOrder * p = nullptr ;
-  macroMyNew (p, cMapElement_neededConversionForClusterOrder (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@neededConversionForClusterOrder insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_neededConversionForClusterOrder::addAssign_operation (const GGS_lstring & inKey,
-                                                               const GGS_uint & inArgument0,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) {
-  cMapElement_neededConversionForClusterOrder * p = nullptr ;
-  macroMyNew (p, cMapElement_neededConversionForClusterOrder (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@neededConversionForClusterOrder insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_neededConversionForClusterOrder GGS_neededConversionForClusterOrder::add_operation (const GGS_neededConversionForClusterOrder & inOperand,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const {
-  GGS_neededConversionForClusterOrder result = *this ;
-  UpEnumerator_neededConversionForClusterOrder enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mConversions (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -6505,52 +6119,6 @@ GGS_generatedCodeMap GGS_generatedCodeMap::getter_overriddenMap (Compiler * inCo
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_generatedCodeMap::enterElement (const GGS_generatedCodeMap_2E_element & inValue,
-                                         Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) {
-  cMapElement_generatedCodeMap * p = nullptr ;
-  macroMyNew (p, cMapElement_generatedCodeMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@generatedCodeMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_generatedCodeMap::addAssign_operation (const GGS_lstring & inKey,
-                                                const GGS_codeList & inArgument0,
-                                                const GGS_ipic_31__38_SequentialInstruction & inArgument1,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) {
-  cMapElement_generatedCodeMap * p = nullptr ;
-  macroMyNew (p, cMapElement_generatedCodeMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@generatedCodeMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_generatedCodeMap GGS_generatedCodeMap::add_operation (const GGS_generatedCodeMap & inOperand,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const {
-  GGS_generatedCodeMap result = *this ;
-  UpEnumerator_generatedCodeMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mCode (HERE), enumerator.current_mInstruction (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_generatedCodeMap::setter_insertKey (GGS_lstring inKey,
                                              GGS_codeList inArgument0,
                                              GGS_ipic_31__38_SequentialInstruction inArgument1,
@@ -6793,11 +6361,11 @@ GGS_string extensionGetter_x_34_string (const GGS_uint & inObject,
   const GGS_uint temp_0 = inObject ;
   result_outResult = temp_0.divide_operation (GGS_uint (uint32_t (4096U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 13)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 13)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 13)) ;
   const GGS_uint temp_1 = inObject ;
-  result_outResult.plusAssign_operation(temp_1.divide_operation (GGS_uint (uint32_t (256U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 14)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)) ;
+  result_outResult.plusAssignOperation(temp_1.divide_operation (GGS_uint (uint32_t (256U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 14)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 14)) ;
   const GGS_uint temp_2 = inObject ;
-  result_outResult.plusAssign_operation(temp_2.divide_operation (GGS_uint (uint32_t (16U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 15)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)) ;
+  result_outResult.plusAssignOperation(temp_2.divide_operation (GGS_uint (uint32_t (16U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 15)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 15)) ;
   const GGS_uint temp_3 = inObject ;
-  result_outResult.plusAssign_operation(temp_3.operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 16)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 16)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 16)) ;
+  result_outResult.plusAssignOperation(temp_3.operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 16)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 16)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 16)) ;
 //---
   return result_outResult ;
 }
@@ -6816,13 +6384,13 @@ GGS_string extensionGetter_x_36_string (const GGS_uint & inObject,
   const GGS_uint temp_0 = inObject ;
   result_outResult = temp_0.divide_operation (GGS_uint (uint32_t (65536U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 22)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 22)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 22)) ;
   const GGS_uint temp_1 = inObject ;
-  result_outResult.plusAssign_operation(temp_1.divide_operation (GGS_uint (uint32_t (4096U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 23)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)) ;
+  result_outResult.plusAssignOperation(temp_1.divide_operation (GGS_uint (uint32_t (4096U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 23)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 23)) ;
   const GGS_uint temp_2 = inObject ;
-  result_outResult.plusAssign_operation(temp_2.divide_operation (GGS_uint (uint32_t (256U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 24)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)) ;
+  result_outResult.plusAssignOperation(temp_2.divide_operation (GGS_uint (uint32_t (256U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 24)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 24)) ;
   const GGS_uint temp_3 = inObject ;
-  result_outResult.plusAssign_operation(temp_3.divide_operation (GGS_uint (uint32_t (16U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 25)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)) ;
+  result_outResult.plusAssignOperation(temp_3.divide_operation (GGS_uint (uint32_t (16U)), inCompiler COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)).operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 25)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 25)) ;
   const GGS_uint temp_4 = inObject ;
-  result_outResult.plusAssign_operation(temp_4.operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 26)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 26)) ;
+  result_outResult.plusAssignOperation(temp_4.operator_and (GGS_uint (uint32_t (15U)) COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 26)).getter_xString (SOURCE_FILE ("ipic18_code_generation.galgas", 26)), inCompiler  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 26)) ;
 //---
   return result_outResult ;
 }
@@ -6941,51 +6509,6 @@ GGS_blockMapForStackComputation GGS_blockMapForStackComputation::getter_overridd
                                                                                        COMMA_LOCATION_ARGS) const {
   GGS_blockMapForStackComputation result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_blockMapForStackComputation::enterElement (const GGS_blockMapForStackComputation_2E_element & inValue,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) {
-  cMapElement_blockMapForStackComputation * p = nullptr ;
-  macroMyNew (p, cMapElement_blockMapForStackComputation (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockMapForStackComputation insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_blockMapForStackComputation::addAssign_operation (const GGS_lstring & inKey,
-                                                           const GGS_ipic_31__38_Block & inArgument0,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) {
-  cMapElement_blockMapForStackComputation * p = nullptr ;
-  macroMyNew (p, cMapElement_blockMapForStackComputation (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockMapForStackComputation insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_blockMapForStackComputation GGS_blockMapForStackComputation::add_operation (const GGS_blockMapForStackComputation & inOperand,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) const {
-  GGS_blockMapForStackComputation result = *this ;
-  UpEnumerator_blockMapForStackComputation enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mBlock (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -7292,52 +6815,6 @@ GGS_routineCallMap GGS_routineCallMap::getter_overriddenMap (Compiler * inCompil
                                                              COMMA_LOCATION_ARGS) const {
   GGS_routineCallMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_routineCallMap::enterElement (const GGS_routineCallMap_2E_element & inValue,
-                                       Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) {
-  cMapElement_routineCallMap * p = nullptr ;
-  macroMyNew (p, cMapElement_routineCallMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@routineCallMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_routineCallMap::addAssign_operation (const GGS_lstring & inKey,
-                                              const GGS_stringset & inArgument0,
-                                              const GGS_uint & inArgument1,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
-  cMapElement_routineCallMap * p = nullptr ;
-  macroMyNew (p, cMapElement_routineCallMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@routineCallMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_routineCallMap GGS_routineCallMap::add_operation (const GGS_routineCallMap & inOperand,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) const {
-  GGS_routineCallMap result = *this ;
-  UpEnumerator_routineCallMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mCalledRoutineSet (HERE), enumerator.current_mTerminatorStackNeeds (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -7665,51 +7142,6 @@ GGS_routineStackRequirementMap GGS_routineStackRequirementMap::getter_overridden
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_routineStackRequirementMap::enterElement (const GGS_routineStackRequirementMap_2E_element & inValue,
-                                                   Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) {
-  cMapElement_routineStackRequirementMap * p = nullptr ;
-  macroMyNew (p, cMapElement_routineStackRequirementMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@routineStackRequirementMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_routineStackRequirementMap::addAssign_operation (const GGS_lstring & inKey,
-                                                          const GGS_uint & inArgument0,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
-  cMapElement_routineStackRequirementMap * p = nullptr ;
-  macroMyNew (p, cMapElement_routineStackRequirementMap (inKey, inArgument0 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@routineStackRequirementMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_routineStackRequirementMap GGS_routineStackRequirementMap::add_operation (const GGS_routineStackRequirementMap & inOperand,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const {
-  GGS_routineStackRequirementMap result = *this ;
-  UpEnumerator_routineStackRequirementMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mLevels (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_routineStackRequirementMap::setter_insertKey (GGS_lstring inKey,
                                                        GGS_uint inArgument0,
                                                        Compiler * inCompiler
@@ -7913,9 +7345,7 @@ void callExtensionMethod_exploreAccessibleBlocksForStackComputations (cPtr_ipic_
   }
 }
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_buildCalledRoutineSetForStackComputations (GGS_stringset & /* ioArgument_ioRoutineCalledSet */,
@@ -7931,9 +7361,10 @@ void callExtensionMethod_buildCalledRoutineSetForStackComputations (cPtr_ipic_31
                                                                     COMMA_LOCATION_ARGS) {
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
-    inObject->method_buildCalledRoutineSetForStackComputations  (io_ioRoutineCalledSet, inCompiler COMMA_THERE) ;
+    inObject->method_buildCalledRoutineSetForStackComputations (io_ioRoutineCalledSet, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 
 cMapElement_blockDurationMap::cMapElement_blockDurationMap (const GGS_blockDurationMap_2E_element & inValue
@@ -8053,52 +7484,6 @@ GGS_blockDurationMap GGS_blockDurationMap::getter_overriddenMap (Compiler * inCo
                                                                  COMMA_LOCATION_ARGS) const {
   GGS_blockDurationMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_blockDurationMap::enterElement (const GGS_blockDurationMap_2E_element & inValue,
-                                         Compiler * inCompiler
-                                         COMMA_LOCATION_ARGS) {
-  cMapElement_blockDurationMap * p = nullptr ;
-  macroMyNew (p, cMapElement_blockDurationMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockDurationMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_blockDurationMap::addAssign_operation (const GGS_lstring & inKey,
-                                                const GGS_uint & inArgument0,
-                                                const GGS_uint & inArgument1,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) {
-  cMapElement_blockDurationMap * p = nullptr ;
-  macroMyNew (p, cMapElement_blockDurationMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@blockDurationMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_blockDurationMap GGS_blockDurationMap::add_operation (const GGS_blockDurationMap & inOperand,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const {
-  GGS_blockDurationMap result = *this ;
-  UpEnumerator_blockDurationMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mMinDuration (HERE), enumerator.current_mMaxDuration (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -8380,9 +7765,7 @@ void callExtensionMethod_duration (cPtr_ipic_31__38_SingleInstructionTerminator 
   }
 }
 //--------------------------------------------------------------------------------------------------
-//
 //Extension method '@ipic18SequentialInstruction minMaxDuration'
-//
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_minMaxDuration (const GGS_blockDurationMap /* constinArgument_inExploredBlockMap */,
@@ -8406,9 +7789,10 @@ void callExtensionMethod_minMaxDuration (cPtr_ipic_31__38_SequentialInstruction 
   out_outMax.drop () ;
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
-    inObject->method_minMaxDuration  (constin_inExploredBlockMap, out_outMin, out_outMax, inCompiler COMMA_THERE) ;
+    inObject->method_minMaxDuration (constin_inExploredBlockMap, out_outMin, out_outMax, inCompiler COMMA_THERE) ;
   }
 }
+
 //--------------------------------------------------------------------------------------------------
 //
 //Abstract extension method '@declarationInRam handleDeclaration'
@@ -9340,39 +8724,39 @@ GGS_luint Lexique_piccoloDevice_5F_lexique::synthetizedAttribute_uint_33__32_val
 
 GGS_stringlist Lexique_piccoloDevice_5F_lexique::symbols (LOCATION_ARGS) {
   GGS_stringlist result = GGS_stringlist::class_func_emptyList (THERE) ;
-  result.addAssign_operation (GGS_string ("identifier") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("integer") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("string") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("comment") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("controller") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("processor") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("romsize") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("eepromsize") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("bank") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("unusedregister") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("mirrorat") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("ram") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("register") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("at") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("to") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("configuration") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("width") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("description") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("mask") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("illegal") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("message") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("setting") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("<") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (">") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (",") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("-") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("/") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (";") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string (":") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("[") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("]") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("{") COMMA_HERE) ;
-  result.addAssign_operation (GGS_string ("}") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("identifier") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("integer") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("string") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("comment") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("controller") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("processor") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("romsize") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("eepromsize") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("bank") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("unusedregister") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("mirrorat") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("ram") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("register") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("at") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("to") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("configuration") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("width") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("description") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("mask") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("illegal") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("message") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("setting") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("<") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (">") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (",") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("-") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("/") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (";") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string (":") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("[") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("]") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("{") COMMA_HERE) ;
+  result.addAssignOperation (GGS_string ("}") COMMA_HERE) ;
   return result ;
 }
 
@@ -9600,50 +8984,6 @@ GGS_declaredByteMap GGS_declaredByteMap::getter_overriddenMap (Compiler * inComp
                                                                COMMA_LOCATION_ARGS) const {
   GGS_declaredByteMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_declaredByteMap::enterElement (const GGS_declaredByteMap_2E_element & inValue,
-                                        Compiler * inCompiler
-                                        COMMA_LOCATION_ARGS) {
-  cMapElement_declaredByteMap * p = nullptr ;
-  macroMyNew (p, cMapElement_declaredByteMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@declaredByteMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_declaredByteMap::addAssign_operation (const GGS_lstring & inKey,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) {
-  cMapElement_declaredByteMap * p = nullptr ;
-  macroMyNew (p, cMapElement_declaredByteMap (inKey COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@declaredByteMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_declaredByteMap GGS_declaredByteMap::add_operation (const GGS_declaredByteMap & inOperand,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) const {
-  GGS_declaredByteMap result = *this ;
-  UpEnumerator_declaredByteMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -9925,55 +9265,6 @@ GGS_registerTable GGS_registerTable::getter_overriddenMap (Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
   GGS_registerTable result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_registerTable::enterElement (const GGS_registerTable_2E_element & inValue,
-                                      Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) {
-  cMapElement_registerTable * p = nullptr ;
-  macroMyNew (p, cMapElement_registerTable (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@registerTable insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_registerTable::addAssign_operation (const GGS_lstring & inKey,
-                                             const GGS_uintlist & inArgument0,
-                                             const GGS_uint & inArgument1,
-                                             const GGS_bitSliceTable & inArgument2,
-                                             const GGS_string & inArgument3,
-                                             const GGS_registerProtection & inArgument4,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) {
-  cMapElement_registerTable * p = nullptr ;
-  macroMyNew (p, cMapElement_registerTable (inKey, inArgument0, inArgument1, inArgument2, inArgument3, inArgument4 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@registerTable insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_registerTable GGS_registerTable::add_operation (const GGS_registerTable & inOperand,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) const {
-  GGS_registerTable result = *this ;
-  UpEnumerator_registerTable enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRegisterAddressList (HERE), enumerator.current_mSize (HERE), enumerator.current_mBitSliceTable (HERE), enumerator.current_mBitDefinitionString (HERE), enumerator.current_mProtection (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -10564,54 +9855,6 @@ GGS_ramBankTable GGS_ramBankTable::getter_overriddenMap (Compiler * inCompiler
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ramBankTable::enterElement (const GGS_ramBankTable_2E_element & inValue,
-                                     Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) {
-  cMapElement_ramBankTable * p = nullptr ;
-  macroMyNew (p, cMapElement_ramBankTable (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@ramBankTable insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ramBankTable::addAssign_operation (const GGS_lstring & inKey,
-                                            const GGS_uint & inArgument0,
-                                            const GGS_uint & inArgument1,
-                                            const GGS_uint & inArgument2,
-                                            const GGS_uintlist & inArgument3,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) {
-  cMapElement_ramBankTable * p = nullptr ;
-  macroMyNew (p, cMapElement_ramBankTable (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@ramBankTable insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_ramBankTable GGS_ramBankTable::add_operation (const GGS_ramBankTable & inOperand,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const {
-  GGS_ramBankTable result = *this ;
-  UpEnumerator_ramBankTable enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mFirstAddress (HERE), enumerator.current_mFirstFreeAddress (HERE), enumerator.current_mLastAddressPlusOne (HERE), enumerator.current_mMirrorOffsetList (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 void GGS_ramBankTable::setter_insertKey (GGS_lstring inKey,
                                          GGS_uint inArgument0,
                                          GGS_uint inArgument1,
@@ -11075,9 +10318,7 @@ GGS_processorType GGS_processorType::extractObject (const GGS_object & inObject,
 }
 
 //--------------------------------------------------------------------------------------------------
-//
 //Class for element of '@illegalMaskList' list
-//
 //--------------------------------------------------------------------------------------------------
 
 class cCollectionElement_illegalMaskList : public cCollectionElement {
@@ -11176,9 +10417,8 @@ GGS_illegalMaskList GGS_illegalMaskList::init (Compiler * COMMA_UNUSED_LOCATION_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_illegalMaskList::enterElement (const GGS_illegalMaskList_2E_element & inValue,
-                                        Compiler * /* inCompiler */
-                                        COMMA_LOCATION_ARGS) {
+void GGS_illegalMaskList::plusPlusAssignOperation (const GGS_illegalMaskList_2E_element & inValue
+                                                   COMMA_LOCATION_ARGS) {
   cCollectionElement * p = nullptr ;
   macroMyNew (p, cCollectionElement_illegalMaskList (inValue COMMA_THERE)) ;
   capCollectionElement attributes ;
@@ -11220,10 +10460,10 @@ void GGS_illegalMaskList::makeAttributesFromObjects (capCollectionElement & outA
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_illegalMaskList::addAssign_operation (const GGS_luint & inOperand0,
-                                               const GGS_luint & inOperand1,
-                                               const GGS_lstring & inOperand2
-                                               COMMA_LOCATION_ARGS) {
+void GGS_illegalMaskList::addAssignOperation (const GGS_luint & inOperand0,
+                                              const GGS_luint & inOperand1,
+                                              const GGS_lstring & inOperand2
+                                              COMMA_LOCATION_ARGS) {
   if (isValid ()) {
     cCollectionElement * p = nullptr ;
     macroMyNew (p, cCollectionElement_illegalMaskList (inOperand0, inOperand1, inOperand2 COMMA_THERE)) ;
@@ -11430,9 +10670,9 @@ GGS_illegalMaskList GGS_illegalMaskList::getter_subListToIndex (const GGS_uint &
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_illegalMaskList::plusAssign_operation (const GGS_illegalMaskList inOperand,
-                                                Compiler * /* inCompiler */
-                                                COMMA_UNUSED_LOCATION_ARGS) {
+void GGS_illegalMaskList::plusAssignOperation (const GGS_illegalMaskList inOperand,
+                                               Compiler * /* inCompiler */
+                                               COMMA_UNUSED_LOCATION_ARGS) {
   appendList (inOperand) ;
 }
 
@@ -11781,53 +11021,6 @@ GGS_configRegisterMaskMap GGS_configRegisterMaskMap::getter_overriddenMap (Compi
                                                                            COMMA_LOCATION_ARGS) const {
   GGS_configRegisterMaskMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_configRegisterMaskMap::enterElement (const GGS_configRegisterMaskMap_2E_element & inValue,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) {
-  cMapElement_configRegisterMaskMap * p = nullptr ;
-  macroMyNew (p, cMapElement_configRegisterMaskMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@configRegisterMaskMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_configRegisterMaskMap::addAssign_operation (const GGS_lstring & inKey,
-                                                     const GGS_luint & inArgument0,
-                                                     const GGS_lstring & inArgument1,
-                                                     const GGS_fieldSettingMap & inArgument2,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) {
-  cMapElement_configRegisterMaskMap * p = nullptr ;
-  macroMyNew (p, cMapElement_configRegisterMaskMap (inKey, inArgument0, inArgument1, inArgument2 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@configRegisterMaskMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_configRegisterMaskMap GGS_configRegisterMaskMap::add_operation (const GGS_configRegisterMaskMap & inOperand,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const {
-  GGS_configRegisterMaskMap result = *this ;
-  UpEnumerator_configRegisterMaskMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mMaskValue (HERE), enumerator.current_mDescription (HERE), enumerator.current_mFieldSettingMap (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -12248,54 +11441,6 @@ GGS_configRegisterMap GGS_configRegisterMap::getter_overriddenMap (Compiler * in
                                                                    COMMA_LOCATION_ARGS) const {
   GGS_configRegisterMap result ;
   getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_configRegisterMap::enterElement (const GGS_configRegisterMap_2E_element & inValue,
-                                          Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) {
-  cMapElement_configRegisterMap * p = nullptr ;
-  macroMyNew (p, cMapElement_configRegisterMap (inValue COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@configRegisterMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_configRegisterMap::addAssign_operation (const GGS_lstring & inKey,
-                                                 const GGS_luint & inArgument0,
-                                                 const GGS_luint & inArgument1,
-                                                 const GGS_configRegisterMaskMap & inArgument2,
-                                                 const GGS_illegalMaskList & inArgument3,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) {
-  cMapElement_configRegisterMap * p = nullptr ;
-  macroMyNew (p, cMapElement_configRegisterMap (inKey, inArgument0, inArgument1, inArgument2, inArgument3 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "@configRegisterMap insert error: '%K' already in map" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_configRegisterMap GGS_configRegisterMap::add_operation (const GGS_configRegisterMap & inOperand,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) const {
-  GGS_configRegisterMap result = *this ;
-  UpEnumerator_configRegisterMap enumerator (inOperand) ;
-  while (enumerator.hasCurrentObject ()) {
-    result.addAssign_operation (enumerator.current_lkey (HERE), enumerator.current_mRegisterAddress (HERE), enumerator.current_mRegisterWidth (HERE), enumerator.current_mConfigRegisterMaskMap (HERE), enumerator.current_mIllegalMaskList (HERE), inCompiler COMMA_THERE) ;
-    enumerator.gotoNextObject () ;
-  }
   return result ;
 }
 
@@ -12757,7 +11902,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
         while (repeatFlag_7) {
           GGS_luint var_mirrorStartAddress_1820 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
-          var_mirrorOffsetList_1711.addAssign_operation (var_mirrorStartAddress_1820.readProperty_uint ().substract_operation (var_ramStart_1652.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)) ;
+          var_mirrorOffsetList_1711.addAssignOperation (var_mirrorStartAddress_1820.readProperty_uint ().substract_operation (var_ramStart_1652.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)) ;
           if (select_piccoloDevice_5F_syntax_5 (inCompiler) == 2) {
             inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
           }else{
@@ -12789,7 +11934,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       while (repeatFlag_9) {
         GGS_luint var_registerAddress_2348 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
-        var_registerAddressList_2275.addAssign_operation (var_registerAddress_2348.readProperty_uint ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 98)) ;
+        var_registerAddressList_2275.addAssignOperation (var_registerAddress_2348.readProperty_uint ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 98)) ;
         if (select_piccoloDevice_5F_syntax_7 (inCompiler) == 2) {
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
         }else{
@@ -12821,7 +11966,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
                 }
               }
               var_sliceWidth_2606 = GGS_uint (uint32_t (1U)) ;
-              var_bitDefinitionString_2537.plusAssign_operation(var_sliceName_2734.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 117)) ;
+              var_bitDefinitionString_2537.plusAssignOperation(var_sliceName_2734.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 117)) ;
             } break ;
             case 2: {
               inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
@@ -12838,7 +11983,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
               var_sliceWidth_2606 = var_sliceSize_3064.readProperty_uint () ;
               var_sliceBase_2674 = var_sliceBase_2674.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)).substract_operation (var_sliceSize_3064.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)) ;
               inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
-              var_bitDefinitionString_2537.plusAssign_operation(var_sliceName_2734.readProperty_string ().add_operation (GGS_string ("["), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (var_sliceSize_3064.readProperty_uint ().getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)) ;
+              var_bitDefinitionString_2537.plusAssignOperation(var_sliceName_2734.readProperty_string ().add_operation (GGS_string ("["), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (var_sliceSize_3064.readProperty_uint ().getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)) ;
             } break ;
             default:
               break ;
@@ -12848,7 +11993,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
             }
             if (select_piccoloDevice_5F_syntax_10 (inCompiler) == 2) {
               inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
-              var_bitDefinitionString_2537.plusAssign_operation(GGS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 132)) ;
+              var_bitDefinitionString_2537.plusAssignOperation(GGS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 132)) ;
             }else{
               repeatFlag_11 = false ;
             }
@@ -12857,15 +12002,15 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
         } break ;
         case 2: {
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
-          var_bitDefinitionString_2537.plusAssign_operation(GGS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 137)) ;
-          var_sliceIndex_2465.minusAssign_operation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 138)) ;
+          var_bitDefinitionString_2537.plusAssignOperation(GGS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 137)) ;
+          var_sliceIndex_2465.minusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 138)) ;
         } break ;
         default:
           break ;
         }
         if (select_piccoloDevice_5F_syntax_8 (inCompiler) == 2) {
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
-          var_bitDefinitionString_2537.plusAssign_operation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 142)) ;
+          var_bitDefinitionString_2537.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 142)) ;
         }else{
           repeatFlag_10 = false ;
         }
@@ -12878,7 +12023,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           inCompiler->emitSemanticError (var_registerName_2245.readProperty_location (), GGS_string ("Incorrect bit definition for register '").add_operation (var_registerName_2245.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), fixItArray17  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)) ;
         }
       }
-      var_bitDefinitionString_2537.plusAssign_operation(GGS_string (">"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 147)) ;
+      var_bitDefinitionString_2537.plusAssignOperation(GGS_string (">"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 147)) ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
       {
       var_registerTable_2149.setter_insertKey (var_registerName_2245, var_registerAddressList_2275, GGS_uint (uint32_t (1U)), var_bitSliceTable_2488, var_bitDefinitionString_2537, GGS_registerProtection::class_func_publicRegister (SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)) ;
@@ -12914,7 +12059,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_message COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
           GGS_lstring var_illegalDescriptionString_4619 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
-          var_illegalMaskList_4406.addAssign_operation (var_illegalValue_4508, var_illegalMask_4562, var_illegalDescriptionString_4619  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 170)) ;
+          var_illegalMaskList_4406.addAssignOperation (var_illegalValue_4508, var_illegalMask_4562, var_illegalDescriptionString_4619  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 170)) ;
         }else{
           repeatFlag_19 = false ;
         }
@@ -12935,7 +12080,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
               inCompiler->emitSemanticError (var_maskName_4887.readProperty_location (), GGS_string ("The '").add_operation (var_maskName_4887.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)).add_operation (GGS_string ("' setting is already defined"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), fixItArray22  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)) ;
             }
           }
-          var_settingNameSet_4803.addAssign_operation (var_maskName_4887.readProperty_string ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 181)) ;
+          var_settingNameSet_4803.plusPlusAssignOperation (var_maskName_4887.readProperty_string ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 181)) ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
           GGS_luint var_maskValue_5118 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
@@ -14927,6 +14072,910 @@ GGS_pic_31__38_DoWhilePartList_2E_element GGS_pic_31__38_DoWhilePartList_2E_elem
       result = *p ;
     }else{
       inCompiler->castError ("pic18DoWhilePartList.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_checkpicList_2E_element::GGS_checkpicList_2E_element (void) :
+mProperty_mErrorLocation (),
+mProperty_mValueList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_checkpicList_2E_element::GGS_checkpicList_2E_element (const GGS_checkpicList_2E_element & inSource) :
+mProperty_mErrorLocation (inSource.mProperty_mErrorLocation),
+mProperty_mValueList (inSource.mProperty_mValueList) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_checkpicList_2E_element & GGS_checkpicList_2E_element::operator = (const GGS_checkpicList_2E_element & inSource) {
+  mProperty_mErrorLocation = inSource.mProperty_mErrorLocation ;
+  mProperty_mValueList = inSource.mProperty_mValueList ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_checkpicList_2E_element GGS_checkpicList_2E_element::init_21__21_ (const GGS_location & in_mErrorLocation,
+                                                                       const GGS_lstringlist & in_mValueList,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_checkpicList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mErrorLocation = in_mErrorLocation ;
+  result.mProperty_mValueList = in_mValueList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_checkpicList_2E_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_checkpicList_2E_element::GGS_checkpicList_2E_element (const GGS_location & inOperand0,
+                                                          const GGS_lstringlist & inOperand1) :
+mProperty_mErrorLocation (inOperand0),
+mProperty_mValueList (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_checkpicList_2E_element GGS_checkpicList_2E_element::class_func_new (const GGS_location & in_mErrorLocation,
+                                                                         const GGS_lstringlist & in_mValueList,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_checkpicList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mErrorLocation = in_mErrorLocation ;
+  result.mProperty_mValueList = in_mValueList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_checkpicList_2E_element::isValid (void) const {
+  return mProperty_mErrorLocation.isValid () && mProperty_mValueList.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_checkpicList_2E_element::drop (void) {
+  mProperty_mErrorLocation.drop () ;
+  mProperty_mValueList.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_checkpicList_2E_element::description (String & ioString,
+                                               const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @checkpicList.element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mErrorLocation.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mValueList.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @checkpicList.element generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_checkpicList_2E_element ("checkpicList.element",
+                                                                               nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_checkpicList_2E_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_checkpicList_2E_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_checkpicList_2E_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_checkpicList_2E_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_checkpicList_2E_element GGS_checkpicList_2E_element::extractObject (const GGS_object & inObject,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) {
+  GGS_checkpicList_2E_element result ;
+  const GGS_checkpicList_2E_element * p = (const GGS_checkpicList_2E_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_checkpicList_2E_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("checkpicList.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_CaseExpressionList_2E_element::GGS_pic_31__38_CaseExpressionList_2E_element (void) :
+mProperty_mCaseItem () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_CaseExpressionList_2E_element::GGS_pic_31__38_CaseExpressionList_2E_element (const GGS_pic_31__38_CaseExpressionList_2E_element & inSource) :
+mProperty_mCaseItem (inSource.mProperty_mCaseItem) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_CaseExpressionList_2E_element & GGS_pic_31__38_CaseExpressionList_2E_element::operator = (const GGS_pic_31__38_CaseExpressionList_2E_element & inSource) {
+  mProperty_mCaseItem = inSource.mProperty_mCaseItem ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_pic_31__38_CaseExpressionList_2E_element GGS_pic_31__38_CaseExpressionList_2E_element::init_21_ (const GGS_pic_31__38_AbstractCaseItem & in_mCaseItem,
+                                                                                                     Compiler * inCompiler
+                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_pic_31__38_CaseExpressionList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mCaseItem = in_mCaseItem ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_CaseExpressionList_2E_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_CaseExpressionList_2E_element::GGS_pic_31__38_CaseExpressionList_2E_element (const GGS_pic_31__38_AbstractCaseItem & inOperand0) :
+mProperty_mCaseItem (inOperand0) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_CaseExpressionList_2E_element GGS_pic_31__38_CaseExpressionList_2E_element::class_func_new (const GGS_pic_31__38_AbstractCaseItem & in_mCaseItem,
+                                                                                                           Compiler * inCompiler
+                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_pic_31__38_CaseExpressionList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mCaseItem = in_mCaseItem ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_pic_31__38_CaseExpressionList_2E_element::isValid (void) const {
+  return mProperty_mCaseItem.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_CaseExpressionList_2E_element::drop (void) {
+  mProperty_mCaseItem.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_CaseExpressionList_2E_element::description (String & ioString,
+                                                                const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @pic18CaseExpressionList.element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mCaseItem.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18CaseExpressionList.element generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList_2E_element ("pic18CaseExpressionList.element",
+                                                                                                nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_CaseExpressionList_2E_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList_2E_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_CaseExpressionList_2E_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_CaseExpressionList_2E_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_CaseExpressionList_2E_element GGS_pic_31__38_CaseExpressionList_2E_element::extractObject (const GGS_object & inObject,
+                                                                                                          Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_CaseExpressionList_2E_element result ;
+  const GGS_pic_31__38_CaseExpressionList_2E_element * p = (const GGS_pic_31__38_CaseExpressionList_2E_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_CaseExpressionList_2E_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18CaseExpressionList.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_SwitchInstructionCaseList_2E_element::GGS_pic_31__38_SwitchInstructionCaseList_2E_element (void) :
+mProperty_mStartOfCase (),
+mProperty_mCaseExpressionList (),
+mProperty_mInstructionList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_SwitchInstructionCaseList_2E_element::GGS_pic_31__38_SwitchInstructionCaseList_2E_element (const GGS_pic_31__38_SwitchInstructionCaseList_2E_element & inSource) :
+mProperty_mStartOfCase (inSource.mProperty_mStartOfCase),
+mProperty_mCaseExpressionList (inSource.mProperty_mCaseExpressionList),
+mProperty_mInstructionList (inSource.mProperty_mInstructionList) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_SwitchInstructionCaseList_2E_element & GGS_pic_31__38_SwitchInstructionCaseList_2E_element::operator = (const GGS_pic_31__38_SwitchInstructionCaseList_2E_element & inSource) {
+  mProperty_mStartOfCase = inSource.mProperty_mStartOfCase ;
+  mProperty_mCaseExpressionList = inSource.mProperty_mCaseExpressionList ;
+  mProperty_mInstructionList = inSource.mProperty_mInstructionList ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_pic_31__38_SwitchInstructionCaseList_2E_element GGS_pic_31__38_SwitchInstructionCaseList_2E_element::init_21__21__21_ (const GGS_location & in_mStartOfCase,
+                                                                                                                           const GGS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
+                                                                                                                           const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                           Compiler * inCompiler
+                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_pic_31__38_SwitchInstructionCaseList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mStartOfCase = in_mStartOfCase ;
+  result.mProperty_mCaseExpressionList = in_mCaseExpressionList ;
+  result.mProperty_mInstructionList = in_mInstructionList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_SwitchInstructionCaseList_2E_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_SwitchInstructionCaseList_2E_element::GGS_pic_31__38_SwitchInstructionCaseList_2E_element (const GGS_location & inOperand0,
+                                                                                                          const GGS_pic_31__38_CaseExpressionList & inOperand1,
+                                                                                                          const GGS_pic_31__38_InstructionList & inOperand2) :
+mProperty_mStartOfCase (inOperand0),
+mProperty_mCaseExpressionList (inOperand1),
+mProperty_mInstructionList (inOperand2) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_SwitchInstructionCaseList_2E_element GGS_pic_31__38_SwitchInstructionCaseList_2E_element::class_func_new (const GGS_location & in_mStartOfCase,
+                                                                                                                         const GGS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
+                                                                                                                         const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                                                                                                                         Compiler * inCompiler
+                                                                                                                         COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_pic_31__38_SwitchInstructionCaseList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mStartOfCase = in_mStartOfCase ;
+  result.mProperty_mCaseExpressionList = in_mCaseExpressionList ;
+  result.mProperty_mInstructionList = in_mInstructionList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_pic_31__38_SwitchInstructionCaseList_2E_element::isValid (void) const {
+  return mProperty_mStartOfCase.isValid () && mProperty_mCaseExpressionList.isValid () && mProperty_mInstructionList.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_SwitchInstructionCaseList_2E_element::drop (void) {
+  mProperty_mStartOfCase.drop () ;
+  mProperty_mCaseExpressionList.drop () ;
+  mProperty_mInstructionList.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38_SwitchInstructionCaseList_2E_element::description (String & ioString,
+                                                                       const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @pic18SwitchInstructionCaseList.element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mStartOfCase.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mCaseExpressionList.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mInstructionList.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18SwitchInstructionCaseList.element generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList_2E_element ("pic18SwitchInstructionCaseList.element",
+                                                                                                       nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_pic_31__38_SwitchInstructionCaseList_2E_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList_2E_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38_SwitchInstructionCaseList_2E_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38_SwitchInstructionCaseList_2E_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38_SwitchInstructionCaseList_2E_element GGS_pic_31__38_SwitchInstructionCaseList_2E_element::extractObject (const GGS_object & inObject,
+                                                                                                                        Compiler * inCompiler
+                                                                                                                        COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38_SwitchInstructionCaseList_2E_element result ;
+  const GGS_pic_31__38_SwitchInstructionCaseList_2E_element * p = (const GGS_pic_31__38_SwitchInstructionCaseList_2E_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38_SwitchInstructionCaseList_2E_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18SwitchInstructionCaseList.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_SequentialInstructionList_2E_element::GGS_ipic_31__38_SequentialInstructionList_2E_element (void) :
+mProperty_mInstruction (),
+mProperty_mMin (),
+mProperty_mMax () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_SequentialInstructionList_2E_element::GGS_ipic_31__38_SequentialInstructionList_2E_element (const GGS_ipic_31__38_SequentialInstructionList_2E_element & inSource) :
+mProperty_mInstruction (inSource.mProperty_mInstruction),
+mProperty_mMin (inSource.mProperty_mMin),
+mProperty_mMax (inSource.mProperty_mMax) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_SequentialInstructionList_2E_element & GGS_ipic_31__38_SequentialInstructionList_2E_element::operator = (const GGS_ipic_31__38_SequentialInstructionList_2E_element & inSource) {
+  mProperty_mInstruction = inSource.mProperty_mInstruction ;
+  mProperty_mMin = inSource.mProperty_mMin ;
+  mProperty_mMax = inSource.mProperty_mMax ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_ipic_31__38_SequentialInstructionList_2E_element GGS_ipic_31__38_SequentialInstructionList_2E_element::init_21__21__21_ (const GGS_ipic_31__38_SequentialInstruction & in_mInstruction,
+                                                                                                                             const GGS_uint & in_mMin,
+                                                                                                                             const GGS_uint & in_mMax,
+                                                                                                                             Compiler * inCompiler
+                                                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_ipic_31__38_SequentialInstructionList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mInstruction = in_mInstruction ;
+  result.mProperty_mMin = in_mMin ;
+  result.mProperty_mMax = in_mMax ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_ipic_31__38_SequentialInstructionList_2E_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_SequentialInstructionList_2E_element::GGS_ipic_31__38_SequentialInstructionList_2E_element (const GGS_ipic_31__38_SequentialInstruction & inOperand0,
+                                                                                                            const GGS_uint & inOperand1,
+                                                                                                            const GGS_uint & inOperand2) :
+mProperty_mInstruction (inOperand0),
+mProperty_mMin (inOperand1),
+mProperty_mMax (inOperand2) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_SequentialInstructionList_2E_element GGS_ipic_31__38_SequentialInstructionList_2E_element::class_func_new (const GGS_ipic_31__38_SequentialInstruction & in_mInstruction,
+                                                                                                                           const GGS_uint & in_mMin,
+                                                                                                                           const GGS_uint & in_mMax,
+                                                                                                                           Compiler * inCompiler
+                                                                                                                           COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_ipic_31__38_SequentialInstructionList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mInstruction = in_mInstruction ;
+  result.mProperty_mMin = in_mMin ;
+  result.mProperty_mMax = in_mMax ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_ipic_31__38_SequentialInstructionList_2E_element::isValid (void) const {
+  return mProperty_mInstruction.isValid () && mProperty_mMin.isValid () && mProperty_mMax.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_ipic_31__38_SequentialInstructionList_2E_element::drop (void) {
+  mProperty_mInstruction.drop () ;
+  mProperty_mMin.drop () ;
+  mProperty_mMax.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_ipic_31__38_SequentialInstructionList_2E_element::description (String & ioString,
+                                                                        const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @ipic18SequentialInstructionList.element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mInstruction.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mMin.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mMax.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @ipic18SequentialInstructionList.element generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList_2E_element ("ipic18SequentialInstructionList.element",
+                                                                                                        nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_ipic_31__38_SequentialInstructionList_2E_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList_2E_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_ipic_31__38_SequentialInstructionList_2E_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_ipic_31__38_SequentialInstructionList_2E_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38_SequentialInstructionList_2E_element GGS_ipic_31__38_SequentialInstructionList_2E_element::extractObject (const GGS_object & inObject,
+                                                                                                                          Compiler * inCompiler
+                                                                                                                          COMMA_LOCATION_ARGS) {
+  GGS_ipic_31__38_SequentialInstructionList_2E_element result ;
+  const GGS_ipic_31__38_SequentialInstructionList_2E_element * p = (const GGS_ipic_31__38_SequentialInstructionList_2E_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_ipic_31__38_SequentialInstructionList_2E_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("ipic18SequentialInstructionList.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element::GGS_branchOverflowMapDictionary_2E_element (void) :
+mProperty_key (),
+mProperty_mList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element::GGS_branchOverflowMapDictionary_2E_element (const GGS_branchOverflowMapDictionary_2E_element & inSource) :
+mProperty_key (inSource.mProperty_key),
+mProperty_mList (inSource.mProperty_mList) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element & GGS_branchOverflowMapDictionary_2E_element::operator = (const GGS_branchOverflowMapDictionary_2E_element & inSource) {
+  mProperty_key = inSource.mProperty_key ;
+  mProperty_mList = inSource.mProperty_mList ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element GGS_branchOverflowMapDictionary_2E_element::init_21__21_ (const GGS_string & in_key,
+                                                                                                     const GGS_stringlist & in_mList,
+                                                                                                     Compiler * inCompiler
+                                                                                                     COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_branchOverflowMapDictionary_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_key = in_key ;
+  result.mProperty_mList = in_mList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_branchOverflowMapDictionary_2E_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element::GGS_branchOverflowMapDictionary_2E_element (const GGS_string & inOperand0,
+                                                                                        const GGS_stringlist & inOperand1) :
+mProperty_key (inOperand0),
+mProperty_mList (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element GGS_branchOverflowMapDictionary_2E_element::class_func_new (const GGS_string & in_key,
+                                                                                                       const GGS_stringlist & in_mList,
+                                                                                                       Compiler * inCompiler
+                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_branchOverflowMapDictionary_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_key = in_key ;
+  result.mProperty_mList = in_mList ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_branchOverflowMapDictionary_2E_element::isValid (void) const {
+  return mProperty_key.isValid () && mProperty_mList.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_branchOverflowMapDictionary_2E_element::drop (void) {
+  mProperty_key.drop () ;
+  mProperty_mList.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_branchOverflowMapDictionary_2E_element::description (String & ioString,
+                                                              const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @branchOverflowMapDictionary.element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_key.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mList.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @branchOverflowMapDictionary.element generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2E_element ("branchOverflowMapDictionary.element",
+                                                                                              nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_branchOverflowMapDictionary_2E_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2E_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_branchOverflowMapDictionary_2E_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_branchOverflowMapDictionary_2E_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element GGS_branchOverflowMapDictionary_2E_element::extractObject (const GGS_object & inObject,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_branchOverflowMapDictionary_2E_element result ;
+  const GGS_branchOverflowMapDictionary_2E_element * p = (const GGS_branchOverflowMapDictionary_2E_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_branchOverflowMapDictionary_2E_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("branchOverflowMapDictionary.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Optional @branchOverflowMapDictionary_2E_element_3F_
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element_3F_::GGS_branchOverflowMapDictionary_2E_element_3F_ (void) :
+AC_GALGAS_root (),
+mValue (),
+mState (OptionalState::invalid) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element_3F_::GGS_branchOverflowMapDictionary_2E_element_3F_ (const GGS_branchOverflowMapDictionary_2E_element & inSource) :
+AC_GALGAS_root (),
+mValue (inSource),
+mState (OptionalState::valuated) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element_3F_ GGS_branchOverflowMapDictionary_2E_element_3F_::init_nil (void) {
+  GGS_branchOverflowMapDictionary_2E_element_3F_ result ;
+  result.mState = OptionalState::isNil ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_branchOverflowMapDictionary_2E_element_3F_::isValid (void) const {
+  bool result = false ;
+  switch (mState) {
+  case OptionalState::invalid :
+    break ;
+  case OptionalState::isNil :
+    result = true ;
+    break ;
+  case OptionalState::valuated :
+    result = mValue.isValid () ;
+    break ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_branchOverflowMapDictionary_2E_element_3F_::isValuated (void) const {
+  return (mState == OptionalState::valuated) && mValue.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_branchOverflowMapDictionary_2E_element_3F_::drop (void) {
+  mState = OptionalState::invalid ;
+  mValue = GGS_branchOverflowMapDictionary_2E_element () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_branchOverflowMapDictionary_2E_element_3F_::description (String & ioString,
+                                                                  const int32_t inIndentation) const {
+  ioString.appendCString ("<optional @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (": ") ;
+  switch (mState) {
+  case OptionalState::invalid :
+    ioString.appendCString ("invalid") ;
+    break ;
+  case OptionalState::isNil :
+    ioString.appendCString ("nil") ;
+    break ;
+  case OptionalState::valuated :
+    mValue.description (ioString, inIndentation) ;
+    break ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @branchOverflowMapDictionary.element? generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2E_element_3F_ ("branchOverflowMapDictionary.element?",
+                                                                                                  nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_branchOverflowMapDictionary_2E_element_3F_::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_branchOverflowMapDictionary_2E_element_3F_ ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_branchOverflowMapDictionary_2E_element_3F_::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_branchOverflowMapDictionary_2E_element_3F_ (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_branchOverflowMapDictionary_2E_element_3F_ GGS_branchOverflowMapDictionary_2E_element_3F_::extractObject (const GGS_object & inObject,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_branchOverflowMapDictionary_2E_element_3F_ result ;
+  const GGS_branchOverflowMapDictionary_2E_element_3F_ * p = (const GGS_branchOverflowMapDictionary_2E_element_3F_ *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_branchOverflowMapDictionary_2E_element_3F_ *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("branchOverflowMapDictionary.element?", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_codeList_2E_element::GGS_codeList_2E_element (void) :
+mProperty_mAssemblyCode (),
+mProperty_mBinaryCode () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_codeList_2E_element::GGS_codeList_2E_element (const GGS_codeList_2E_element & inSource) :
+mProperty_mAssemblyCode (inSource.mProperty_mAssemblyCode),
+mProperty_mBinaryCode (inSource.mProperty_mBinaryCode) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_codeList_2E_element & GGS_codeList_2E_element::operator = (const GGS_codeList_2E_element & inSource) {
+  mProperty_mAssemblyCode = inSource.mProperty_mAssemblyCode ;
+  mProperty_mBinaryCode = inSource.mProperty_mBinaryCode ;
+  return *this ;
+}
+
+//---Synthetized initializer -----------------------------------------------------------------------
+
+GGS_codeList_2E_element GGS_codeList_2E_element::init_21__21_ (const GGS_string & in_mAssemblyCode,
+                                                               const GGS_uintlist & in_mBinaryCode,
+                                                               Compiler * inCompiler
+                                                               COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_codeList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mAssemblyCode = in_mAssemblyCode ;
+  result.mProperty_mBinaryCode = in_mBinaryCode ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_codeList_2E_element::setInitializedProperties (Compiler * /* inCompiler */) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_codeList_2E_element::GGS_codeList_2E_element (const GGS_string & inOperand0,
+                                                  const GGS_uintlist & inOperand1) :
+mProperty_mAssemblyCode (inOperand0),
+mProperty_mBinaryCode (inOperand1) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_codeList_2E_element GGS_codeList_2E_element::class_func_new (const GGS_string & in_mAssemblyCode,
+                                                                 const GGS_uintlist & in_mBinaryCode,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_codeList_2E_element result ;
+  result.setInitializedProperties (inCompiler) ;
+  result.mProperty_mAssemblyCode = in_mAssemblyCode ;
+  result.mProperty_mBinaryCode = in_mBinaryCode ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_codeList_2E_element::isValid (void) const {
+  return mProperty_mAssemblyCode.isValid () && mProperty_mBinaryCode.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_codeList_2E_element::drop (void) {
+  mProperty_mAssemblyCode.drop () ;
+  mProperty_mBinaryCode.drop () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_codeList_2E_element::description (String & ioString,
+                                           const int32_t inIndentation) const {
+  ioString.appendCString ("<struct @codeList.element:") ;
+  if (! isValid ()) {
+    ioString.appendCString (" not built") ;
+  }else{
+    mProperty_mAssemblyCode.description (ioString, inIndentation+1) ;
+    ioString.appendCString (", ") ;
+    mProperty_mBinaryCode.description (ioString, inIndentation+1) ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @codeList.element generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_codeList_2E_element ("codeList.element",
+                                                                           nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_codeList_2E_element::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_codeList_2E_element ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_codeList_2E_element::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_codeList_2E_element (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_codeList_2E_element GGS_codeList_2E_element::extractObject (const GGS_object & inObject,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) {
+  GGS_codeList_2E_element result ;
+  const GGS_codeList_2E_element * p = (const GGS_codeList_2E_element *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_codeList_2E_element *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("codeList.element", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

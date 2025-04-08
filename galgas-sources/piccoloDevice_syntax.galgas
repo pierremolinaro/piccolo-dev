@@ -178,7 +178,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       if [settingNameSet hasKey !maskName.string] then
         error maskName:"The '" + maskName + "' setting is already defined"
       end
-      settingNameSet += !maskName.string
+      settingNameSet ++= maskName.string
       $mask$
       $integer$ ?let @luint maskValue
       $description$

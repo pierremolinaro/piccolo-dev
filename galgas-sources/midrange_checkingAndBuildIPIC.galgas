@@ -2078,7 +2078,7 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
   ?!@stringset ioUsedRegisters
 {
 #--- Check firstSaveRegister register is defined in RAM, is accessible from bank 0, and has a size of 1
-  ioUsedRegisters += !inFirstSaveRegister.string
+  ioUsedRegisters ++= inFirstSaveRegister.string
   [inRegisterTable searchKey !inFirstSaveRegister ?var registerAddressList ?@uint size ?2* ?let firstProtection]
   [inRegisterTable checkPrivateAccess !inFirstSaveRegister !write:true !firstProtection]
   var @bool accessibleFromBank0 = false
@@ -2097,7 +2097,7 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
   end
 #--- Check secondSaveRegister register is defined in RAM, is accessible from bank 1, and has a size of 1
   var @uintlist saveStatusRegisterAddressList = registerAddressList
-  ioUsedRegisters += !inSecondSaveRegister.string
+  ioUsedRegisters ++= inSecondSaveRegister.string
   [inRegisterTable searchKey !inSecondSaveRegister ?registerAddressList ?size ?2* ?let secondProtection]
   [inRegisterTable checkPrivateAccess !inSecondSaveRegister !write:true !secondProtection]
   saveStatusRegisterAddressList = saveStatusRegisterAddressList + registerAddressList

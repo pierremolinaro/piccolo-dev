@@ -67,7 +67,7 @@ proc pic18BootloaderSpecificationAnalysis
     if [routineNameSet hasKey !mRoutineName.string] then
       error mRoutineName:"This routine is already declared"
     end
-    routineNameSet += !mRoutineName.string
+    routineNameSet ++= mRoutineName.string
     outListFileContents += [mRoutineName.string stringByLeftPadding !40 !' '] + " " + [entryPointAddress hexString] + "\n"
     entryPointAddress = entryPointAddress + 4
     if entryPointAddress == 0x08 then
@@ -87,7 +87,7 @@ proc pic18BootloaderSpecificationAnalysis
     if [routineNameSet hasKey !mRoutineName.string] then
       error mRoutineName:"This routine is already declared"
     end
-    routineNameSet += !mRoutineName.string
+    routineNameSet ++= mRoutineName.string
     outListFileContents += [mRoutineName.string stringByLeftPadding !40 !' '] + " " + [entryPointAddress hexString] + "\n"
     entryPointAddress = entryPointAddress + 4
   end

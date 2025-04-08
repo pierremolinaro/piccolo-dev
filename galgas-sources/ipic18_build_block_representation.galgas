@@ -17,7 +17,7 @@ method @registerExpression analyzeRegisterExpression
   ?!@stringset ioUsedRegisters
 {
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
-  ioUsedRegisters += !self.mRegisterName.string
+  ioUsedRegisters ++= self.mRegisterName.string
 #--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
   if offset > 0 then
@@ -78,7 +78,7 @@ method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
   !@ipic18_intermediate_registerExpressionWithoutBSRIndication outIPICregisterDescription
   ?!@stringset ioUsedRegisters
 {
-  ioUsedRegisters += !self.mRegisterName.string
+  ioUsedRegisters ++= self.mRegisterName.string
 #--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
@@ -2364,7 +2364,7 @@ override method @gotoTerminationForBlockInstruction addVisitedBlocks
   ?!@bool unused ioContinuesInSequence
   ?!@bool ioContinueAccessibilityExploration {
   if not [ioVisitedBlockSet hasKey !self.mNextBlock.string] then
-    ioVisitedBlockSet += !self.mNextBlock.string
+    ioVisitedBlockSet ++= self.mNextBlock.string
     ioContinueAccessibilityExploration = true
     [inBlockMap searchKey !self.mNextBlock ?* ?* ?*]
     if [ioBlockInitialBankSelectionMap hasKey !self.mNextBlock.string] then
@@ -2586,7 +2586,7 @@ override method @pic18Instruction_block analyze
   loop( [self.mBlockList count] + 1) while continueAccessibilityExploration do
     continueAccessibilityExploration = false
     for currentBlockName in accessibleBlockSet - handledBlockSet do
-      handledBlockSet += !currentBlockName
+      handledBlockSet ++= currentBlockName
       [blockMap searchKey
         ![currentBlockName nowhere]
         ?let @pic18InstructionList instructionList
@@ -3569,7 +3569,7 @@ proc build_ipic18_block_representation_list
     elsif [usedRegisters hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' byte is declared as unused, but is used"
     end
-    unusedDeclarationUnicity += !mValue.string
+    unusedDeclarationUnicity ++= mValue.string
   end
   for (lkey) in  inDeclaredByteMap do
     if (not [usedRegisters hasKey !lkey.string]) & (not [unusedDeclarationUnicity hasKey !lkey.string]) then
