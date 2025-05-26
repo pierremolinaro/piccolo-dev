@@ -89,16 +89,6 @@ GGS_immediatExpression GGS_pic_31__38_SimpleConstantCaseItem::readProperty_mCase
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_SimpleConstantCaseItem::setProperty_mCaseExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_SimpleConstantCaseItem * p = (cPtr_pic_31__38_SimpleConstantCaseItem *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_SimpleConstantCaseItem) ;
-    p->mProperty_mCaseExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_location GGS_pic_31__38_SimpleConstantCaseItem::readProperty_mCaseExpressionLocation (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_location () ;
@@ -106,16 +96,6 @@ GGS_location GGS_pic_31__38_SimpleConstantCaseItem::readProperty_mCaseExpression
     cPtr_pic_31__38_SimpleConstantCaseItem * p = (cPtr_pic_31__38_SimpleConstantCaseItem *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_SimpleConstantCaseItem) ;
     return p->mProperty_mCaseExpressionLocation ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38_SimpleConstantCaseItem::setProperty_mCaseExpressionLocation (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_SimpleConstantCaseItem * p = (cPtr_pic_31__38_SimpleConstantCaseItem *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_SimpleConstantCaseItem) ;
-    p->mProperty_mCaseExpressionLocation = inValue ;
   }
 }
 
@@ -411,16 +391,6 @@ GGS_immediatExpression GGS_pic_31__38_IntervalCaseItem::readProperty_mMinExpress
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_IntervalCaseItem::setProperty_mMinExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_IntervalCaseItem * p = (cPtr_pic_31__38_IntervalCaseItem *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_IntervalCaseItem) ;
-    p->mProperty_mMinExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_pic_31__38_IntervalCaseItem::readProperty_mMaxExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -433,16 +403,6 @@ GGS_immediatExpression GGS_pic_31__38_IntervalCaseItem::readProperty_mMaxExpress
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_IntervalCaseItem::setProperty_mMaxExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_IntervalCaseItem * p = (cPtr_pic_31__38_IntervalCaseItem *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_IntervalCaseItem) ;
-    p->mProperty_mMaxExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_location GGS_pic_31__38_IntervalCaseItem::readProperty_mCaseExpressionLocation (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_location () ;
@@ -450,16 +410,6 @@ GGS_location GGS_pic_31__38_IntervalCaseItem::readProperty_mCaseExpressionLocati
     cPtr_pic_31__38_IntervalCaseItem * p = (cPtr_pic_31__38_IntervalCaseItem *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_IntervalCaseItem) ;
     return p->mProperty_mCaseExpressionLocation ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38_IntervalCaseItem::setProperty_mCaseExpressionLocation (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_IntervalCaseItem * p = (cPtr_pic_31__38_IntervalCaseItem *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_IntervalCaseItem) ;
-    p->mProperty_mCaseExpressionLocation = inValue ;
   }
 }
 
@@ -1776,16 +1726,6 @@ GGS_pic_31__38_SwitchInstructionCaseList GGS_pic_31__38_Instruction_5F_switch::r
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_Instruction_5F_switch::setProperty_mCaseList (const GGS_pic_31__38_SwitchInstructionCaseList & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_Instruction_5F_switch * p = (cPtr_pic_31__38_Instruction_5F_switch *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_switch) ;
-    p->mProperty_mCaseList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_location GGS_pic_31__38_Instruction_5F_switch::readProperty_mElseBranchStartLocation (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_location () ;
@@ -1798,16 +1738,6 @@ GGS_location GGS_pic_31__38_Instruction_5F_switch::readProperty_mElseBranchStart
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_Instruction_5F_switch::setProperty_mElseBranchStartLocation (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_Instruction_5F_switch * p = (cPtr_pic_31__38_Instruction_5F_switch *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_switch) ;
-    p->mProperty_mElseBranchStartLocation = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_pic_31__38_InstructionList GGS_pic_31__38_Instruction_5F_switch::readProperty_mElseInstructionList (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_pic_31__38_InstructionList () ;
@@ -1815,16 +1745,6 @@ GGS_pic_31__38_InstructionList GGS_pic_31__38_Instruction_5F_switch::readPropert
     cPtr_pic_31__38_Instruction_5F_switch * p = (cPtr_pic_31__38_Instruction_5F_switch *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_switch) ;
     return p->mProperty_mElseInstructionList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38_Instruction_5F_switch::setProperty_mElseInstructionList (const GGS_pic_31__38_InstructionList & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_Instruction_5F_switch * p = (cPtr_pic_31__38_Instruction_5F_switch *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_Instruction_5F_switch) ;
-    p->mProperty_mElseInstructionList = inValue ;
   }
 }
 
@@ -2700,16 +2620,6 @@ GGS_location GGS_ipic_31__38_SequentialInstruction::readProperty_mInstructionLoc
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_SequentialInstruction::setProperty_mInstructionLocation (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_SequentialInstruction * p = (cPtr_ipic_31__38_SequentialInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_SequentialInstruction) ;
-    p->mProperty_mInstructionLocation = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @ipic18SequentialInstruction class
 //--------------------------------------------------------------------------------------------------
 
@@ -3512,16 +3422,6 @@ GGS_location GGS_ipic_31__38_AbstractBlockTerminator::readProperty_mInstructionL
     cPtr_ipic_31__38_AbstractBlockTerminator * p = (cPtr_ipic_31__38_AbstractBlockTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_AbstractBlockTerminator) ;
     return p->mProperty_mInstructionLocation ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_AbstractBlockTerminator::setProperty_mInstructionLocation (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_AbstractBlockTerminator * p = (cPtr_ipic_31__38_AbstractBlockTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_AbstractBlockTerminator) ;
-    p->mProperty_mInstructionLocation = inValue ;
   }
 }
 
@@ -4691,16 +4591,6 @@ GGS_uint GGS_ipic_31__38_RetlwTerminator::readProperty_mLiteralValue (void) cons
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_RetlwTerminator::setProperty_mLiteralValue (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_RetlwTerminator * p = (cPtr_ipic_31__38_RetlwTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_RetlwTerminator) ;
-    p->mProperty_mLiteralValue = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @ipic18RetlwTerminator class
 //--------------------------------------------------------------------------------------------------
 
@@ -4980,16 +4870,6 @@ GGS_bool GGS_ipic_31__38_RetfieTerminator::readProperty_mFastReturn (void) const
     cPtr_ipic_31__38_RetfieTerminator * p = (cPtr_ipic_31__38_RetfieTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_RetfieTerminator) ;
     return p->mProperty_mFastReturn ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_RetfieTerminator::setProperty_mFastReturn (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_RetfieTerminator * p = (cPtr_ipic_31__38_RetfieTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_RetfieTerminator) ;
-    p->mProperty_mFastReturn = inValue ;
   }
 }
 
@@ -5391,16 +5271,6 @@ GGS_lstringlist GGS_ipic_31__38_ComputedGotoTerminator::readProperty_mTargetLabe
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_ComputedGotoTerminator::setProperty_mTargetLabels (const GGS_lstringlist & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ComputedGotoTerminator * p = (cPtr_ipic_31__38_ComputedGotoTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedGotoTerminator) ;
-    p->mProperty_mTargetLabels = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_ipic_31__38_ComputedGotoTerminator::readProperty_mUsesRCALL (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -5408,16 +5278,6 @@ GGS_bool GGS_ipic_31__38_ComputedGotoTerminator::readProperty_mUsesRCALL (void) 
     cPtr_ipic_31__38_ComputedGotoTerminator * p = (cPtr_ipic_31__38_ComputedGotoTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_ComputedGotoTerminator) ;
     return p->mProperty_mUsesRCALL ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_ComputedGotoTerminator::setProperty_mUsesRCALL (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ComputedGotoTerminator * p = (cPtr_ipic_31__38_ComputedGotoTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedGotoTerminator) ;
-    p->mProperty_mUsesRCALL = inValue ;
   }
 }
 
@@ -5717,16 +5577,6 @@ GGS_uintlist GGS_ipic_31__38_ComputedRETLWTerminator::readProperty_mLiteralValue
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_ComputedRETLWTerminator::setProperty_mLiteralValues (const GGS_uintlist & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ComputedRETLWTerminator * p = (cPtr_ipic_31__38_ComputedRETLWTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
-    p->mProperty_mLiteralValues = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_ipic_31__38_ComputedRETLWTerminator::readProperty_mUsesRCALL (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -5734,16 +5584,6 @@ GGS_bool GGS_ipic_31__38_ComputedRETLWTerminator::readProperty_mUsesRCALL (void)
     cPtr_ipic_31__38_ComputedRETLWTerminator * p = (cPtr_ipic_31__38_ComputedRETLWTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
     return p->mProperty_mUsesRCALL ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_ComputedRETLWTerminator::setProperty_mUsesRCALL (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ComputedRETLWTerminator * p = (cPtr_ipic_31__38_ComputedRETLWTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
-    p->mProperty_mUsesRCALL = inValue ;
   }
 }
 
@@ -6283,16 +6123,6 @@ GGS_lstringlist GGS_ipic_31__38_ComputedBraTerminator::readProperty_mTargetLabel
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_ComputedBraTerminator::setProperty_mTargetLabels (const GGS_lstringlist & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ComputedBraTerminator * p = (cPtr_ipic_31__38_ComputedBraTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedBraTerminator) ;
-    p->mProperty_mTargetLabels = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_ipic_31__38_ComputedBraTerminator::readProperty_mUsesRCALL (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -6300,16 +6130,6 @@ GGS_bool GGS_ipic_31__38_ComputedBraTerminator::readProperty_mUsesRCALL (void) c
     cPtr_ipic_31__38_ComputedBraTerminator * p = (cPtr_ipic_31__38_ComputedBraTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_ComputedBraTerminator) ;
     return p->mProperty_mUsesRCALL ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_ComputedBraTerminator::setProperty_mUsesRCALL (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ComputedBraTerminator * p = (cPtr_ipic_31__38_ComputedBraTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ComputedBraTerminator) ;
-    p->mProperty_mUsesRCALL = inValue ;
   }
 }
 
@@ -6711,16 +6531,6 @@ GGS_ipic_31__38_SingleInstructionTerminator GGS_ipic_31__38_AbstractConditionTer
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_AbstractConditionTerminator::setProperty_mSingleInstructionTerminatorIfConditionTrue (const GGS_ipic_31__38_SingleInstructionTerminator & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_AbstractConditionTerminator * p = (cPtr_ipic_31__38_AbstractConditionTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_AbstractConditionTerminator) ;
-    p->mProperty_mSingleInstructionTerminatorIfConditionTrue = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38_SingleInstructionTerminator GGS_ipic_31__38_AbstractConditionTerminator::readProperty_mSingleInstructionTerminatorIfConditionFalse (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38_SingleInstructionTerminator () ;
@@ -6728,16 +6538,6 @@ GGS_ipic_31__38_SingleInstructionTerminator GGS_ipic_31__38_AbstractConditionTer
     cPtr_ipic_31__38_AbstractConditionTerminator * p = (cPtr_ipic_31__38_AbstractConditionTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_AbstractConditionTerminator) ;
     return p->mProperty_mSingleInstructionTerminatorIfConditionFalse ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_AbstractConditionTerminator::setProperty_mSingleInstructionTerminatorIfConditionFalse (const GGS_ipic_31__38_SingleInstructionTerminator & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_AbstractConditionTerminator * p = (cPtr_ipic_31__38_AbstractConditionTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_AbstractConditionTerminator) ;
-    p->mProperty_mSingleInstructionTerminatorIfConditionFalse = inValue ;
   }
 }
 
@@ -7274,16 +7074,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38_IncDecReg
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_IncDecRegisterTerminator::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_IncDecRegisterTerminator * p = (cPtr_ipic_31__38_IncDecRegisterTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_ipic_31__38_IncDecRegisterTerminator::readProperty_mIncrement (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -7296,16 +7086,6 @@ GGS_bool GGS_ipic_31__38_IncDecRegisterTerminator::readProperty_mIncrement (void
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_IncDecRegisterTerminator::setProperty_mIncrement (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_IncDecRegisterTerminator * p = (cPtr_ipic_31__38_IncDecRegisterTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
-    p->mProperty_mIncrement = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_ipic_31__38_IncDecRegisterTerminator::readProperty_m_5F_W_5F_isDestination (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -7313,16 +7093,6 @@ GGS_bool GGS_ipic_31__38_IncDecRegisterTerminator::readProperty_m_5F_W_5F_isDest
     cPtr_ipic_31__38_IncDecRegisterTerminator * p = (cPtr_ipic_31__38_IncDecRegisterTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
     return p->mProperty_m_5F_W_5F_isDestination ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_IncDecRegisterTerminator::setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_IncDecRegisterTerminator * p = (cPtr_ipic_31__38_IncDecRegisterTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
-    p->mProperty_m_5F_W_5F_isDestination = inValue ;
   }
 }
 
@@ -7640,16 +7410,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_pic_31__38_TestRegist
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38_TestRegisterTerminator::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_TestRegisterTerminator * p = (cPtr_pic_31__38_TestRegisterTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_TestRegisterTerminator) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @pic18TestRegisterTerminator class
 //--------------------------------------------------------------------------------------------------
 
@@ -7954,16 +7714,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_pic_31__38_BitTestTer
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_BitTestTerminator::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_BitTestTerminator * p = (cPtr_pic_31__38_BitTestTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_BitTestTerminator) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_pic_31__38_BitTestTerminator::readProperty_mBitNumber (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -7971,16 +7721,6 @@ GGS_uint GGS_pic_31__38_BitTestTerminator::readProperty_mBitNumber (void) const 
     cPtr_pic_31__38_BitTestTerminator * p = (cPtr_pic_31__38_BitTestTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_BitTestTerminator) ;
     return p->mProperty_mBitNumber ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38_BitTestTerminator::setProperty_mBitNumber (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_BitTestTerminator * p = (cPtr_pic_31__38_BitTestTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_BitTestTerminator) ;
-    p->mProperty_mBitNumber = inValue ;
   }
 }
 
@@ -8279,16 +8019,6 @@ GGS_pic_31__38_InstructionWithNoOperandKind GGS_ipic_31__38_InstructionWithNoOpe
     cPtr_ipic_31__38_InstructionWithNoOperand * p = (cPtr_ipic_31__38_InstructionWithNoOperand *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_InstructionWithNoOperand) ;
     return p->mProperty_mKind ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_InstructionWithNoOperand::setProperty_mKind (const GGS_pic_31__38_InstructionWithNoOperandKind & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_InstructionWithNoOperand * p = (cPtr_ipic_31__38_InstructionWithNoOperand *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_InstructionWithNoOperand) ;
-    p->mProperty_mKind = inValue ;
   }
 }
 
@@ -8619,16 +8349,6 @@ GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST GGS_ipic_31__38__5F_int
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::setProperty_mInstruction_5F_FDA_5F_base_5F_code (const GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
-    p->mProperty_mInstruction_5F_FDA_5F_base_5F_code = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
@@ -8641,16 +8361,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_inter
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::readProperty_m_5F_W_5F_isDestination (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -8658,16 +8368,6 @@ GGS_bool GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::readProperty_m_
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
     return p->mProperty_m_5F_W_5F_isDestination ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
-    p->mProperty_m_5F_W_5F_isDestination = inValue ;
   }
 }
 
@@ -9124,16 +8824,6 @@ GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code GGS_ipic_31__38__5F_intermed
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::setProperty_mFAinstruction (const GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA) ;
-    p->mProperty_mFAinstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
@@ -9141,16 +8831,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_inter
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA) ;
     return p->mProperty_mRegisterDescription ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA) ;
-    p->mProperty_mRegisterDescription = inValue ;
   }
 }
 
@@ -9579,16 +9259,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GGS_i
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::setProperty_mSourceRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF) ;
-    p->mProperty_mSourceRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::readProperty_mDestinationRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication () ;
@@ -9596,16 +9266,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GGS_i
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF) ;
     return p->mProperty_mDestinationRegisterDescription ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::setProperty_mDestinationRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF) ;
-    p->mProperty_mDestinationRegisterDescription = inValue ;
   }
 }
 
@@ -9905,16 +9565,6 @@ GGS_literal_5F_instruction_5F_opcode GGS_ipic_31__38__5F_intermediate_5F_instruc
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::setProperty_mLiteralInstruction (const GGS_literal_5F_instruction_5F_opcode & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mLiteralInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::readProperty_mLiteralValue (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -9922,16 +9572,6 @@ GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::re
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation) ;
     return p->mProperty_mLiteralValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::setProperty_mLiteralValue (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mLiteralValue = inValue ;
   }
 }
 
@@ -10231,16 +9871,6 @@ GGS_luint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::readProperty_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::setProperty_mFSRindex (const GGS_luint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR) ;
-    p->mProperty_mFSRindex = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::readProperty_mValue (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -10248,16 +9878,6 @@ GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::readProperty_m
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR) ;
     return p->mProperty_mValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::setProperty_mValue (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR) ;
-    p->mProperty_mValue = inValue ;
   }
 }
 
@@ -10561,16 +10181,6 @@ GGS_bit_5F_oriented_5F_op GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::setProperty_mBitOrientedOp (const GGS_bit_5F_oriented_5F_op & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA) ;
-    p->mProperty_mBitOrientedOp = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
@@ -10583,16 +10193,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_inter
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::readProperty_mBitNumber (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -10600,16 +10200,6 @@ GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::readProperty_mB
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA) ;
     return p->mProperty_mBitNumber ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::setProperty_mBitNumber (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA) ;
-    p->mProperty_mBitNumber = inValue ;
   }
 }
 
@@ -11020,16 +10610,6 @@ GGS_luint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::readProperty
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::setProperty_mBankIndex (const GGS_luint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB) ;
-    p->mProperty_mBankIndex = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @ipic18_intermediate_instruction_MOVLB class
 //--------------------------------------------------------------------------------------------------
 
@@ -11309,16 +10889,6 @@ GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::readProperty_m
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP) ;
     return p->mProperty_mBlankValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::setProperty_mBlankValue (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP) ;
-    p->mProperty_mBlankValue = inValue ;
   }
 }
 
@@ -11606,16 +11176,6 @@ GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::readProperty_
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::setProperty_mBlankValue (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK) ;
-    p->mProperty_mBlankValue = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @ipic18_intermediate_instruction_BLANK class
 //--------------------------------------------------------------------------------------------------
 
@@ -11895,16 +11455,6 @@ GGS_tableAccessOption GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD) ;
     return p->mProperty_mOption ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::setProperty_mOption (const GGS_tableAccessOption & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD) ;
-    p->mProperty_mOption = inValue ;
   }
 }
 
@@ -12192,16 +11742,6 @@ GGS_tableAccessOption GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::setProperty_mOption (const GGS_tableAccessOption & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT) ;
-    p->mProperty_mOption = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @ipic18_intermediate_instruction_TBLWT class
 //--------------------------------------------------------------------------------------------------
 
@@ -12485,16 +12025,6 @@ GGS_luint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::readProperty_
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::setProperty_mOccurrenceFactor (const GGS_luint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP) ;
-    p->mProperty_mOccurrenceFactor = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @ipic18_intermediate_instruction_MNOP class
 //--------------------------------------------------------------------------------------------------
 
@@ -12774,16 +12304,6 @@ GGS_luint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::readPropert
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA) ;
     return p->mProperty_mOccurrenceFactor ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::setProperty_mOccurrenceFactor (const GGS_luint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA) ;
-    p->mProperty_mOccurrenceFactor = inValue ;
   }
 }
 
@@ -13185,16 +12705,6 @@ GGS_ipic_31__38_SequentialInstructionList GGS_ipic_31__38__5F_intermediate_5F_in
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::setProperty_mTargetInstructions (const GGS_ipic_31__38_SequentialInstructionList & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall) ;
-    p->mProperty_mTargetInstructions = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::readProperty_mUsesRCALL (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -13202,16 +12712,6 @@ GGS_bool GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::r
     cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall) ;
     return p->mProperty_mUsesRCALL ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::setProperty_mUsesRCALL (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * p = (cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall) ;
-    p->mProperty_mUsesRCALL = inValue ;
   }
 }
 
@@ -13475,16 +12975,6 @@ GGS_ipic_31__38_SequentialInstruction GGS_ipic_31__38__5F_condition_5F_skip_5F_i
     cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * p = (cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
     return p->mProperty_mEmbeddedInstruction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction::setProperty_mEmbeddedInstruction (const GGS_ipic_31__38_SequentialInstruction & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * p = (cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
-    p->mProperty_mEmbeddedInstruction = inValue ;
   }
 }
 
@@ -13762,16 +13252,6 @@ GGS_bool GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::readProperty_mS
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::setProperty_mSkipIfSet (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-    p->mProperty_mSkipIfSet = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
@@ -13784,16 +13264,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_skip_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::readProperty_mBitNumber (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -13801,16 +13271,6 @@ GGS_uint GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::readProperty_mB
     cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
     return p->mProperty_mBitNumber ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::setProperty_mBitNumber (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip) ;
-    p->mProperty_mBitNumber = inValue ;
   }
 }
 
@@ -14258,16 +13718,6 @@ GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GGS_ipic_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::setProperty_mCompareInstruction (const GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-    p->mProperty_mCompareInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
@@ -14275,16 +13725,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_skip_
     cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
     return p->mProperty_mRegisterDescription ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
-    p->mProperty_mRegisterDescription = inValue ;
   }
 }
 
@@ -14388,6 +13828,585 @@ GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GGS_ipic_31__38__
       result = *p ;
     }else{
       inCompiler->castError ("ipic18_skip_instruction_compare_register", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak (void) :
+GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak & GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::operator = (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inSource) :
+GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::bang_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register) ;
+      result = GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register ((cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @ipic18_skip_instruction_compare_register.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak ("ipic18_skip_instruction_compare_register.weak",
+                                                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                                                              Compiler * inCompiler
+                                                                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak result ;
+  const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak * p = (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("ipic18_skip_instruction_compare_register.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Enum skip_instruction_FDA_base_code
+//--------------------------------------------------------------------------------------------------
+
+GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code (void) :
+mEnum (Enumeration::invalid) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_DECFSZ (UNUSED_LOCATION_ARGS) {
+  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
+  result.mEnum = Enumeration::enum_DECFSZ ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_DCFSNZ (UNUSED_LOCATION_ARGS) {
+  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
+  result.mEnum = Enumeration::enum_DCFSNZ ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_INCFSZ (UNUSED_LOCATION_ARGS) {
+  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
+  result.mEnum = Enumeration::enum_INCFSZ ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::class_func_INFSNZ (UNUSED_LOCATION_ARGS) {
+  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
+  result.mEnum = Enumeration::enum_INFSNZ ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+static const char * gEnumNameArrayFor_skip_5F_instruction_5F_FDA_5F_base_5F_code [5] = {
+  "(not built)",
+  "DECFSZ",
+  "DCFSNZ",
+  "INCFSZ",
+  "INFSNZ"
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isDECFSZ (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_DECFSZ == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isDCFSNZ (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_DCFSNZ == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isINCFSZ (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_INCFSZ == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::getter_isINFSNZ (UNUSED_LOCATION_ARGS) const {
+  return GGS_bool (Enumeration::invalid != mEnum, Enumeration::enum_INFSNZ == mEnum) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::description (String & ioString,
+                                                                  const int32_t /* inIndentation */) const {
+  ioString.appendCString ("<enum @skip_instruction_FDA_base_code: ") ;
+  ioString.appendCString (gEnumNameArrayFor_skip_5F_instruction_5F_FDA_5F_base_5F_code [size_t (mEnum)]) ;
+  ioString.appendCString (">") ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//     @skip_instruction_FDA_base_code generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code ("skip_instruction_FDA_base_code",
+                                                                                                  nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_skip_5F_instruction_5F_FDA_5F_base_5F_code ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code::extractObject (const GGS_object & inObject,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code result ;
+  const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code * p = (const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("skip_instruction_FDA_base_code", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @ipic_31__38__5F_skip_5F_instruction_5F_FDA reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (void) :
+GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::
+init_21__21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                          const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                          const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                          const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                          const GGS_bool & in_m_5F_W_5F_isDestination,
+                          Compiler * inCompiler
+                          COMMA_LOCATION_ARGS) {
+  cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * object = nullptr ;
+  macroMyNew (object, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (inCompiler COMMA_THERE)) ;
+  object->ipic_31__38__5F_skip_5F_instruction_5F_FDA_init_21__21__21__21__21_ (in_mInstructionLocation, in_mEmbeddedInstruction, in_mInstruction_5F_FDA_5F_base_5F_code, in_mRegisterDescription, in_m_5F_W_5F_isDestination, inCompiler) ;
+  const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::
+ipic_31__38__5F_skip_5F_instruction_5F_FDA_init_21__21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                                                                     const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                                     const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                     const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                     const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                                     Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mEmbeddedInstruction = in_mEmbeddedInstruction ;
+  mProperty_mInstruction_5F_FDA_5F_base_5F_code = in_mInstruction_5F_FDA_5F_base_5F_code ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * inSourcePtr) :
+GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::class_func_new (const GGS_location & in_mInstructionLocation,
+                                                                                                               const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                                                                               const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                                                               const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                               const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                                                                               Compiler * inCompiler
+                                                                                                               COMMA_LOCATION_ARGS) {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result ;
+  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (in_mInstructionLocation, in_mEmbeddedInstruction, in_mInstruction_5F_FDA_5F_base_5F_code, in_mRegisterDescription, in_m_5F_W_5F_isDestination,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code () ;
+  }else{
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    return p->mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_mRegisterDescription (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
+  }else{
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    return p->mProperty_mRegisterDescription ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_m_5F_W_5F_isDestination (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_bool () ;
+  }else{
+    cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+    return p->mProperty_m_5F_W_5F_isDestination ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @ipic18_skip_instruction_FDA class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mInstruction_5F_FDA_5F_base_5F_code (),
+mProperty_mRegisterDescription (),
+mProperty_m_5F_W_5F_isDestination () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (const GGS_location & in_mInstructionLocation,
+                                                                                                  const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+                                                                                                  const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
+                                                                                                  const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
+                                                                                                  const GGS_bool & in_m_5F_W_5F_isDestination,
+                                                                                                  Compiler * inCompiler
+                                                                                                  COMMA_LOCATION_ARGS) :
+cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (in_mInstructionLocation, in_mEmbeddedInstruction, inCompiler COMMA_THERE),
+mProperty_mInstruction_5F_FDA_5F_base_5F_code (),
+mProperty_mRegisterDescription (),
+mProperty_m_5F_W_5F_isDestination () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mEmbeddedInstruction = in_mEmbeddedInstruction ;
+  mProperty_mInstruction_5F_FDA_5F_base_5F_code = in_mInstruction_5F_FDA_5F_base_5F_code ;
+  mProperty_mRegisterDescription = in_mRegisterDescription ;
+  mProperty_m_5F_W_5F_isDestination = in_m_5F_W_5F_isDestination ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ;
+}
+
+void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::description (String & ioString,
+                                                                   const int32_t inIndentation) const {
+  ioString.appendCString ("[@ipic18_skip_instruction_FDA:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mEmbeddedInstruction.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mInstruction_5F_FDA_5F_base_5F_code.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mRegisterDescription.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_m_5F_W_5F_isDestination.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (mProperty_mInstructionLocation, mProperty_mEmbeddedInstruction, mProperty_mInstruction_5F_FDA_5F_base_5F_code, mProperty_mRegisterDescription, mProperty_m_5F_W_5F_isDestination, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA::printNonNullClassInstanceProperties (void) const {
+    cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mInstruction_5F_FDA_5F_base_5F_code.printNonNullClassInstanceProperties ("mInstruction_FDA_base_code") ;
+    mProperty_mRegisterDescription.printNonNullClassInstanceProperties ("mRegisterDescription") ;
+    mProperty_m_5F_W_5F_isDestination.printNonNullClassInstanceProperties ("m_W_isDestination") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @ipic18_skip_instruction_FDA generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ("ipic18_skip_instruction_FDA",
+                                                                                                  & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::extractObject (const GGS_object & inObject,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result ;
+  const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA * p = (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("ipic18_skip_instruction_FDA", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak (void) :
+GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak & GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::operator = (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inSource) :
+GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::bang_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA) ;
+      result = GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA ((cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @ipic18_skip_instruction_FDA.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak ("ipic18_skip_instruction_FDA.weak",
+                                                                                                          & kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                              Compiler * inCompiler
+                                                                                                                              COMMA_LOCATION_ARGS) {
+  GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak result ;
+  const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak * p = (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("ipic18_skip_instruction_FDA.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

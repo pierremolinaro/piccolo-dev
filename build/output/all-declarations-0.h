@@ -992,13 +992,10 @@ class GGS_registerExpression : public AC_GALGAS_reference_class {
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mRegisterName (void) const ;
-  public: void setProperty_mRegisterName (const GGS_lstring & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mOffset (void) const ;
-  public: void setProperty_mOffset (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_location readProperty_mEndOfOffsetExpression (void) const ;
-  public: void setProperty_mEndOfOffsetExpression (const GGS_location & inValue) ;
 
 //-- Start of type generic part
 
@@ -1497,19 +1494,14 @@ class GGS_byteDeclarationInRam : public GGS_declarationInRam {
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mName (void) const ;
-  public: void setProperty_mName (const GGS_lstring & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mSizeExpression (void) const ;
-  public: void setProperty_mSizeExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_bitSliceTable readProperty_mBitSliceTable (void) const ;
-  public: void setProperty_mBitSliceTable (const GGS_bitSliceTable & inValue) ;
 
   public: class GGS_string readProperty_mBitDefinitionString (void) const ;
-  public: void setProperty_mBitDefinitionString (const GGS_string & inValue) ;
 
   public: class GGS_registerProtection readProperty_mProtection (void) const ;
-  public: void setProperty_mProtection (const GGS_registerProtection & inValue) ;
 
 //-- Start of type generic part
 
@@ -3118,7 +3110,6 @@ class GGS_immediatInteger : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_luint readProperty_mValue (void) const ;
-  public: void setProperty_mValue (const GGS_luint & inValue) ;
 
 //-- Start of type generic part
 
@@ -3310,7 +3301,6 @@ class GGS_immediatRegister : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_registerExpression readProperty_mRegister (void) const ;
-  public: void setProperty_mRegister (const GGS_registerExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -3502,10 +3492,8 @@ class GGS_immediatAdd : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -3702,10 +3690,8 @@ class GGS_immediatSub : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -3902,10 +3888,8 @@ class GGS_immediatMul : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -4102,10 +4086,8 @@ class GGS_immediatDiv : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -4302,10 +4284,8 @@ class GGS_immediatMod : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -4502,10 +4482,8 @@ class GGS_immediatOr : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -4702,10 +4680,8 @@ class GGS_immediatAnd : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -4902,10 +4878,8 @@ class GGS_immediatXor : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -5102,10 +5076,8 @@ class GGS_immediatLeftShift : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -5302,10 +5274,8 @@ class GGS_immediatRightShift : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -5502,10 +5472,8 @@ class GGS_immediatEqualTest : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -5702,10 +5670,8 @@ class GGS_immediatNotEqualTest : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -5902,10 +5868,8 @@ class GGS_immediatGreaterTest : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -6102,10 +6066,8 @@ class GGS_immediatGreaterOrEqualTest : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -6302,10 +6264,8 @@ class GGS_immediatLowerTest : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -6502,10 +6462,8 @@ class GGS_immediatLowerOrEqualTest : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -6702,7 +6660,6 @@ class GGS_immediatNegate : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mExpression (void) const ;
-  public: void setProperty_mExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -6894,7 +6851,6 @@ class GGS_immediatComplement : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mExpression (void) const ;
-  public: void setProperty_mExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -7354,10 +7310,8 @@ class GGS_immediatSlice : public GGS_immediatExpression {
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mRegisterName (void) const ;
-  public: void setProperty_mRegisterName (const GGS_lstring & inValue) ;
 
   public: class GGS_immediatSliceExpressionList readProperty_mSliceExpressionList (void) const ;
-  public: void setProperty_mSliceExpressionList (const GGS_immediatSliceExpressionList & inValue) ;
 
 //-- Start of type generic part
 
@@ -8345,10 +8299,8 @@ class GGS_bitNumberLiteralExpression : public GGS_bitNumberExpression {
 
 //--------------------------------- Property access
   public: class GGS_immediatExpression readProperty_mBitNumberLiteralExpression (void) const ;
-  public: void setProperty_mBitNumberLiteralExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_location readProperty_mEndOfExpression (void) const ;
-  public: void setProperty_mEndOfExpression (const GGS_location & inValue) ;
 
 //-- Start of type generic part
 
@@ -8546,7 +8498,6 @@ class GGS_bitNumberLiteralValue : public GGS_bitNumberExpression {
 
 //--------------------------------- Property access
   public: class GGS_luint readProperty_mBitNumberLiteralValue (void) const ;
-  public: void setProperty_mBitNumberLiteralValue (const GGS_luint & inValue) ;
 
 //-- Start of type generic part
 
@@ -8739,10 +8690,8 @@ class GGS_bitNumberLabelValue : public GGS_bitNumberExpression {
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mBitNumberLabelValue (void) const ;
-  public: void setProperty_mBitNumberLabelValue (const GGS_lstring & inValue) ;
 
   public: class GGS_luint readProperty_mBitNumberIndexValue (void) const ;
-  public: void setProperty_mBitNumberIndexValue (const GGS_luint & inValue) ;
 
 //-- Start of type generic part
 
@@ -11160,4 +11109,213 @@ class GGS_configFieldMap_2E_element_3F_ : public AC_GALGAS_root {
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_configFieldMap_2E_element_3F_ ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 2: class for element of '@fieldSettingMap' map
+//--------------------------------------------------------------------------------------------------
+
+class cMapElement_fieldSettingMap : public cMapElement {
+//--- Map attributes
+  public: GGS_uint mProperty_mValue ;
+  public: GGS_uint mProperty_mMask ;
+
+//--- Constructors
+  public: cMapElement_fieldSettingMap (const GGS_fieldSettingMap_2E_element & inValue
+                                       COMMA_LOCATION_ARGS) ;
+ 
+  public: cMapElement_fieldSettingMap (const GGS_lstring & inKey,
+                                       const GGS_uint & in_mValue,
+                                       const GGS_uint & in_mMask
+                                       COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method for comparing elements
+
+//--- Virtual method that checks that all attributes are valid
+  public: virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public: virtual cMapElement * copy (void) ;
+
+//--- Description
+ public: virtual void description (String & ioString, const int32_t inIndentation) const ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @fieldSettingMap_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_fieldSettingMap_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_lkey ;
+  public: inline GGS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
+
+  public: GGS_uint mProperty_mValue ;
+  public: inline GGS_uint readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
+
+  public: GGS_uint mProperty_mMask ;
+  public: inline GGS_uint readProperty_mMask (void) const {
+    return mProperty_mMask ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_fieldSettingMap_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
+  }
+
+  public: inline void setter_setMValue (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mValue = inValue ;
+  }
+
+  public: inline void setter_setMMask (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mMask = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_fieldSettingMap_2E_element (const GGS_lstring & in_lkey,
+                                          const GGS_uint & in_mValue,
+                                          const GGS_uint & in_mMask) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_fieldSettingMap_2E_element (const GGS_fieldSettingMap_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_fieldSettingMap_2E_element & operator = (const GGS_fieldSettingMap_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_fieldSettingMap_2E_element init_21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                  const class GGS_uint & inOperand1,
+                                                                  const class GGS_uint & inOperand2,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_fieldSettingMap_2E_element extractObject (const GGS_object & inObject,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_fieldSettingMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                      const class GGS_uint & inOperand1,
+                                                                      const class GGS_uint & inOperand2,
+                                                                      class Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: fieldSettingMap.element? optional
+//--------------------------------------------------------------------------------------------------
+
+class GGS_fieldSettingMap_2E_element_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_fieldSettingMap_2E_element mValue ;
+  private: OptionalState mState ;
+
+//--------------------------------- Default constructor
+  public: GGS_fieldSettingMap_2E_element_3F_ (void) ;
+
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_fieldSettingMap_2E_element_3F_ (const GGS_fieldSettingMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_fieldSettingMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_fieldSettingMap_2E_element unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
+  
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
+
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_fieldSettingMap_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap_2E_element_3F_ ;
 

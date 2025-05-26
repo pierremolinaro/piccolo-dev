@@ -50,7 +50,7 @@ proc checkCurrentEmitAddress ?let @uint inCurrentAddress {
 #----------------------------------------------------------------------------*
 
 map @constantMap {
-  public var @sint64 mValue
+  public let @sint64 mValue
   insert insertKey error message "the '%K' constant is already declared in %L"
   search searchKey error message "the '%K' constant is not declared"
 }
@@ -60,10 +60,10 @@ map @constantMap {
 #----------------------------------------------------------------------------*
 
 map @routineMap {
-  public var @bool mIsNoReturn
-  public var @uint mRequiredBank
-  public var @uint mReturnedBank
-  public var @bool mPreservesBank
+  public let @bool mIsNoReturn
+  public let @uint mRequiredBank
+  public let @uint mReturnedBank
+  public let @bool mPreservesBank
   insert insertKey error message "the '%K' routine is already declared in %L"
   search searchKey error message "the '%K' routine is not declared"
 }
@@ -466,8 +466,8 @@ override method @bitNumberLiteralExpression getBitNumber
 #----------------------------------------------------------------------------*
 
 map @symbolTableForOptimizations {
-  public var @uint mDefinitionLineIndex
-  public var @bool mIsDeletable
+  public let @uint mDefinitionLineIndex
+  public let @bool mIsDeletable
   insert insertKey error message "the '%K' label is already declared in %L"
   search searchKey error message "the '%K' label is not declared"
   remove removeKey error message "the '%K' label is not declared"

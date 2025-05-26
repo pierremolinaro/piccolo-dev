@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------*
 
 map @midrange_symbolTableForConvertingRelatives {
-  public var @uint mRoutineAddress
+  public let @uint mRoutineAddress
   insert insertKey error message "the '%K' label is already declared in %L"
   search searchKey error message "the '%K' label is not declared"
 }

@@ -88,11 +88,11 @@ rule <start_symbol> {
     }
     pic18_analyze (!piccoloModel !@string.stringWithSourceFilePath)
   else
-    let @string hexDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".hex"
+    let @string hexDestinationFile = [@string. stringWithSourceFilePath deletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
     end
-    let @string asmDestinationFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".asm"
+    let @string asmDestinationFile = [@string. stringWithSourceFilePath deletingPathExtension] + ".asm"
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile]
     end

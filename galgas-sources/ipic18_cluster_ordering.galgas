@@ -3,13 +3,13 @@
 #----------------------------------------------------------------------------*
 
 list @clusterList {
-  public var @ipic18BlockList mBlockList
+  public let @ipic18BlockList mBlockList
 }
 
 #----------------------------------------------------------------------------*
 
 map @neededConversionForClusterOrder {
-  public var @uint mConversions
+  public let @uint mConversions
   insert insertKey error message "the '%K' key is already declared in %L"
   search searchKey error message "the '%K' key is not declared"
 }

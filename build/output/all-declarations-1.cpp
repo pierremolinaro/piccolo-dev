@@ -8,361 +8,6 @@
 #include "all-declarations-1.h"
 
 //--------------------------------------------------------------------------------------------------
-
-cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GGS_fieldSettingMap_2E_element & inValue
-                                                          COMMA_LOCATION_ARGS) :
-cMapElement (inValue.mProperty_lkey COMMA_THERE),
-mProperty_mValue (inValue.mProperty_mValue),
-mProperty_mMask (inValue.mProperty_mMask) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GGS_lstring & inKey,
-                                                          const GGS_uint & in_mValue,
-                                                          const GGS_uint & in_mMask
-                                                          COMMA_LOCATION_ARGS) :
-cMapElement (inKey COMMA_THERE),
-mProperty_mValue (in_mValue),
-mProperty_mMask (in_mMask) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool cMapElement_fieldSettingMap::isValid (void) const {
-  return mProperty_lkey.isValid () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cMapElement * cMapElement_fieldSettingMap::copy (void) {
-  cMapElement * result = nullptr ;
-  macroMyNew (result, cMapElement_fieldSettingMap (mProperty_lkey, mProperty_mValue, mProperty_mMask COMMA_HERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void cMapElement_fieldSettingMap::description (String & ioString, const int32_t inIndentation) const {
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mValue" ":") ;
-  mProperty_mValue.description (ioString, inIndentation) ;
-  ioString.appendNewLine () ;
-  ioString.appendStringMultiple ("| ", inIndentation) ;
-  ioString.appendCString ("mMask" ":") ;
-  mProperty_mMask.description (ioString, inIndentation) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap::GGS_fieldSettingMap (void) :
-AC_GALGAS_map () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap::GGS_fieldSettingMap (const GGS_fieldSettingMap & inSource) :
-AC_GALGAS_map (inSource) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap & GGS_fieldSettingMap::operator = (const GGS_fieldSettingMap & inSource) {
-  * ((AC_GALGAS_map *) this) = inSource ;
-  return * this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap GGS_fieldSettingMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_fieldSettingMap result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap GGS_fieldSettingMap::class_func_emptyMap (LOCATION_ARGS) {
-  GGS_fieldSettingMap result ;
-  result.makeNewEmptyMap (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap_2E_element_3F_ GGS_fieldSettingMap
-::readSubscript__3F_ (const class GGS_string & inKey,
-                            Compiler * /* inCompiler */
-                            COMMA_UNUSED_LOCATION_ARGS) const {
-  GGS_fieldSettingMap_2E_element_3F_ result ;
-  if (isValid () && inKey.isValid ()) {
-    cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) searchForKey (inKey) ;
-    if (nullptr == p) {
-      result = GGS_fieldSettingMap_2E_element_3F_::init_nil () ;
-    }else{
-      GGS_fieldSettingMap_2E_element element ;
-      element.mProperty_lkey = p->mProperty_lkey ;
-      element.mProperty_mValue = p->mProperty_mValue ;
-      element.mProperty_mMask = p->mProperty_mMask ;
-      result = element ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap GGS_fieldSettingMap::class_func_mapWithMapToOverride (const GGS_fieldSettingMap & inMapToOverride
-                                                                          COMMA_LOCATION_ARGS) {
-  GGS_fieldSettingMap result ;
-  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap GGS_fieldSettingMap::getter_overriddenMap (Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const {
-  GGS_fieldSettingMap result ;
-  getOverridenMap (result, inCompiler COMMA_THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_fieldSettingMap::setter_insertKey (GGS_lstring inKey,
-                                            GGS_uint inArgument0,
-                                            GGS_uint inArgument1,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * p = nullptr ;
-  macroMyNew (p, cMapElement_fieldSettingMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
-  capCollectionElement attributes ;
-  attributes.setPointer (p) ;
-  macroDetachSharedObject (p) ;
-  const char * kInsertErrorMessage = "the '%K' configuration register setting is already declared in %L" ;
-  const char * kShadowErrorMessage = "" ;
-  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const char * kSearchErrorMessage_fieldSettingMap_searchKey = "the '%K' configuration register setting is not declared" ;
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_fieldSettingMap::method_searchKey (GGS_lstring inKey,
-                                            GGS_uint & outArgument0,
-                                            GGS_uint & outArgument1,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) performSearch (inKey,
-                                                                                               inCompiler,
-                                                                                               kSearchErrorMessage_fieldSettingMap_searchKey
-                                                                                               COMMA_THERE) ;
-  if (nullptr == p) {
-    outArgument0.drop () ;
-    outArgument1.drop () ;
-  }else{
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    outArgument0 = p->mProperty_mValue ;
-    outArgument1 = p->mProperty_mMask ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint GGS_fieldSettingMap::getter_mValueForKey (const GGS_string & inKey,
-                                                   Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
-  GGS_uint result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    result = p->mProperty_mValue ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint GGS_fieldSettingMap::getter_mMaskForKey (const GGS_string & inKey,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const {
-  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
-  GGS_uint result ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    result = p->mProperty_mMask ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_fieldSettingMap::setter_setMValueForKey (GGS_uint inAttributeValue,
-                                                  GGS_string inKey,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    p->mProperty_mValue = inAttributeValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_fieldSettingMap::setter_setMMaskForKey (GGS_uint inAttributeValue,
-                                                 GGS_string inKey,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) {
-  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
-  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
-  if (nullptr != p) {
-    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-    p->mProperty_mMask = inAttributeValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-cMapElement_fieldSettingMap * GGS_fieldSettingMap::readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                      const GGS_string & inKey
-                                                                                      COMMA_LOCATION_ARGS) {
-  cMapElement_fieldSettingMap * result = (cMapElement_fieldSettingMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
-  macroNullOrValidSharedObject (result, cMapElement_fieldSettingMap) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//  Down Enumerator for @fieldSettingMap
-//--------------------------------------------------------------------------------------------------
-
-DownEnumerator_fieldSettingMap::DownEnumerator_fieldSettingMap (const GGS_fieldSettingMap & inEnumeratedObject) :
-cGenericAbstractEnumerator (EnumerationOrder::Down) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap_2E_element DownEnumerator_fieldSettingMap::current (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return GGS_fieldSettingMap_2E_element (p->mProperty_lkey, p->mProperty_mValue, p->mProperty_mMask) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring DownEnumerator_fieldSettingMap::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mProperty_lkey ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint DownEnumerator_fieldSettingMap::current_mValue (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return p->mProperty_mValue ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint DownEnumerator_fieldSettingMap::current_mMask (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return p->mProperty_mMask ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//  Up Enumerator for @fieldSettingMap
-//--------------------------------------------------------------------------------------------------
-
-UpEnumerator_fieldSettingMap::UpEnumerator_fieldSettingMap (const GGS_fieldSettingMap & inEnumeratedObject) :
-cGenericAbstractEnumerator (EnumerationOrder::Up) {
-  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap_2E_element UpEnumerator_fieldSettingMap::current (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return GGS_fieldSettingMap_2E_element (p->mProperty_lkey, p->mProperty_mValue, p->mProperty_mMask) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring UpEnumerator_fieldSettingMap::current_lkey (LOCATION_ARGS) const {
-  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement) ;
-  return p->mProperty_lkey ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint UpEnumerator_fieldSettingMap::current_mValue (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return p->mProperty_mValue ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint UpEnumerator_fieldSettingMap::current_mMask (LOCATION_ARGS) const {
-  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
-  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
-  return p->mProperty_mMask ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//     @fieldSettingMap generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap ("fieldSettingMap",
-                                                                       nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const C_galgas_type_descriptor * GGS_fieldSettingMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_fieldSettingMap ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_fieldSettingMap::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_fieldSettingMap (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_fieldSettingMap GGS_fieldSettingMap::extractObject (const GGS_object & inObject,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) {
-  GGS_fieldSettingMap result ;
-  const GGS_fieldSettingMap * p = (const GGS_fieldSettingMap *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_fieldSettingMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("fieldSettingMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //  Enum baseline_instruction_FD_base_code
 //--------------------------------------------------------------------------------------------------
 
@@ -1481,16 +1126,6 @@ GGS_location GGS_baseline_5F_instruction::readProperty_mInstructionLocation (voi
     cPtr_baseline_5F_instruction * p = (cPtr_baseline_5F_instruction *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction) ;
     return p->mProperty_mInstructionLocation ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_instruction::setProperty_mInstructionLocation (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction * p = (cPtr_baseline_5F_instruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction) ;
-    p->mProperty_mInstructionLocation = inValue ;
   }
 }
 
@@ -2949,16 +2584,6 @@ GGS_baseline_5F_WO_5F_OPERAND_5F_group GGS_baseline_5F_instruction_5F_WO_5F_OPER
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_instruction_5F_WO_5F_OPERAND::setProperty_mInstruction (const GGS_baseline_5F_WO_5F_OPERAND_5F_group & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_instruction_WO_OPERAND class
 //--------------------------------------------------------------------------------------------------
 
@@ -3356,16 +2981,6 @@ GGS_baseline_5F_literal_5F_instruction_5F_opcode GGS_baseline_5F_instruction_5F_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_instruction_5F_literalOperation::setProperty_mLiteralInstruction (const GGS_baseline_5F_literal_5F_instruction_5F_opcode & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mLiteralInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_baseline_5F_instruction_5F_literalOperation::readProperty_mImmediatExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -3373,16 +2988,6 @@ GGS_immediatExpression GGS_baseline_5F_instruction_5F_literalOperation::readProp
     cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_literalOperation) ;
     return p->mProperty_mImmediatExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_instruction_5F_literalOperation::setProperty_mImmediatExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mImmediatExpression = inValue ;
   }
 }
 
@@ -3677,16 +3282,6 @@ GGS_luint GGS_baseline_5F_instruction_5F_MNOP::readProperty_mOccurrenceFactor (v
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_instruction_5F_MNOP::setProperty_mOccurrenceFactor (const GGS_luint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_instruction_5F_MNOP *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_MNOP) ;
-    p->mProperty_mOccurrenceFactor = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_instruction_MNOP class
 //--------------------------------------------------------------------------------------------------
 
@@ -3975,16 +3570,6 @@ GGS_baseline_5F_instructionList GGS_baseline_5F_instruction_5F_FOREVER::readProp
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_instruction_5F_FOREVER::setProperty_mInstructionList (const GGS_baseline_5F_instructionList & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_FOREVER) ;
-    p->mProperty_mInstructionList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_location GGS_baseline_5F_instruction_5F_FOREVER::readProperty_mEndOfInstructionList (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_location () ;
@@ -3992,16 +3577,6 @@ GGS_location GGS_baseline_5F_instruction_5F_FOREVER::readProperty_mEndOfInstruct
     cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_FOREVER) ;
     return p->mProperty_mEndOfInstructionList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_instruction_5F_FOREVER::setProperty_mEndOfInstructionList (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_FOREVER) ;
-    p->mProperty_mEndOfInstructionList = inValue ;
   }
 }
 
@@ -4374,16 +3949,6 @@ GGS_baseline_5F_instruction GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::
     cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON) ;
     return p->mProperty_mInstruction ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON::setProperty_mInstruction (const GGS_baseline_5F_instruction & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON) ;
-    p->mProperty_mInstruction = inValue ;
   }
 }
 
@@ -5178,16 +4743,6 @@ GGS_baseline_5F_conditionExpression GGS_baseline_5F_negateCondition::readPropert
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_negateCondition::setProperty_mCondition (const GGS_baseline_5F_conditionExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_negateCondition * p = (cPtr_baseline_5F_negateCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_negateCondition) ;
-    p->mProperty_mCondition = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_negateCondition class
 //--------------------------------------------------------------------------------------------------
 
@@ -5468,16 +5023,6 @@ GGS_baseline_5F_conditionExpression GGS_baseline_5F_andCondition::readProperty_m
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_andCondition::setProperty_mLeftExpression (const GGS_baseline_5F_conditionExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_andCondition * p = (cPtr_baseline_5F_andCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_conditionExpression GGS_baseline_5F_andCondition::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_conditionExpression () ;
@@ -5485,16 +5030,6 @@ GGS_baseline_5F_conditionExpression GGS_baseline_5F_andCondition::readProperty_m
     cPtr_baseline_5F_andCondition * p = (cPtr_baseline_5F_andCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_andCondition::setProperty_mRightExpression (const GGS_baseline_5F_conditionExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_andCondition * p = (cPtr_baseline_5F_andCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_andCondition) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -5907,16 +5442,6 @@ GGS_baseline_5F_conditionExpression GGS_baseline_5F_instruction_5F_structured_5F
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_instruction_5F_structured_5F_if::setProperty_mIfCondition (const GGS_baseline_5F_conditionExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
-    p->mProperty_mIfCondition = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_instructionList GGS_baseline_5F_instruction_5F_structured_5F_if::readProperty_mThenInstructionList (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_instructionList () ;
@@ -5924,16 +5449,6 @@ GGS_baseline_5F_instructionList GGS_baseline_5F_instruction_5F_structured_5F_if:
     cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
     return p->mProperty_mThenInstructionList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_instruction_5F_structured_5F_if::setProperty_mThenInstructionList (const GGS_baseline_5F_instructionList & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
-    p->mProperty_mThenInstructionList = inValue ;
   }
 }
 
@@ -5951,16 +5466,6 @@ GGS_baseline_5F_instructionList GGS_baseline_5F_instruction_5F_structured_5F_if:
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_instruction_5F_structured_5F_if::setProperty_mElseInstructionList (const GGS_baseline_5F_instructionList & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
-    p->mProperty_mElseInstructionList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_location GGS_baseline_5F_instruction_5F_structured_5F_if::readProperty_mEndOfElsePartLocation (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_location () ;
@@ -5968,16 +5473,6 @@ GGS_location GGS_baseline_5F_instruction_5F_structured_5F_if::readProperty_mEndO
     cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
     return p->mProperty_mEndOfElsePartLocation ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_instruction_5F_structured_5F_if::setProperty_mEndOfElsePartLocation (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_structured_5F_if) ;
-    p->mProperty_mEndOfElsePartLocation = inValue ;
   }
 }
 
@@ -6872,16 +6367,6 @@ GGS_baseline_5F_instructionList GGS_baseline_5F_instruction_5F_do_5F_while::read
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_instruction_5F_do_5F_while::setProperty_mRepeatedInstructionList (const GGS_baseline_5F_instructionList & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
-    p->mProperty_mRepeatedInstructionList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_location GGS_baseline_5F_instruction_5F_do_5F_while::readProperty_mEndOfRepeatedInstructionList (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_location () ;
@@ -6894,16 +6379,6 @@ GGS_location GGS_baseline_5F_instruction_5F_do_5F_while::readProperty_mEndOfRepe
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_instruction_5F_do_5F_while::setProperty_mEndOfRepeatedInstructionList (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
-    p->mProperty_mEndOfRepeatedInstructionList = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_partList GGS_baseline_5F_instruction_5F_do_5F_while::readProperty_mWhilePartList (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_partList () ;
@@ -6911,16 +6386,6 @@ GGS_baseline_5F_partList GGS_baseline_5F_instruction_5F_do_5F_while::readPropert
     cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
     return p->mProperty_mWhilePartList ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_instruction_5F_do_5F_while::setProperty_mWhilePartList (const GGS_baseline_5F_partList & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_instruction_5F_do_5F_while) ;
-    p->mProperty_mWhilePartList = inValue ;
   }
 }
 
@@ -9469,16 +8934,6 @@ GGS_uint GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::readProperty_mPage (voi
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::setProperty_mPage (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE) ;
-    p->mProperty_mPage = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_intermediate_pseudo_PAGE class
 //--------------------------------------------------------------------------------------------------
 
@@ -10056,16 +9511,6 @@ GGS_location GGS_baseline_5F_intermediate_5F_actualInstruction::readProperty_mIn
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_actualInstruction::setProperty_mInstructionLocation (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_actualInstruction * p = (cPtr_baseline_5F_intermediate_5F_actualInstruction *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_actualInstruction) ;
-    p->mProperty_mInstructionLocation = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_intermediate_actualInstruction class
 //--------------------------------------------------------------------------------------------------
 
@@ -10333,16 +9778,6 @@ GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code GGS_baseline_5F_intermediate_5
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instruction_5F_FD::setProperty_mInstruction (const GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_5F_instruction_5F_FD::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_intermediate_5F_registerExpression () ;
@@ -10355,16 +9790,6 @@ GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instruction_5F_FD::setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_baseline_5F_intermediate_5F_instruction_5F_FD::readProperty_m_5F_W_5F_isDestination (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -10372,16 +9797,6 @@ GGS_bool GGS_baseline_5F_intermediate_5F_instruction_5F_FD::readProperty_m_5F_W_
     cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
     return p->mProperty_m_5F_W_5F_isDestination ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_instruction_5F_FD::setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD) ;
-    p->mProperty_m_5F_W_5F_isDestination = inValue ;
   }
 }
 
@@ -10688,16 +10103,6 @@ GGS_baseline_5F_F_5F_instruction_5F_base_5F_code GGS_baseline_5F_intermediate_5F
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instruction_5F_F::setProperty_mInstruction (const GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_F) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_5F_instruction_5F_F::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_intermediate_5F_registerExpression () ;
@@ -10705,16 +10110,6 @@ GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_
     cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_F) ;
     return p->mProperty_mRegisterDescription ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_instruction_5F_F::setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_F) ;
-    p->mProperty_mRegisterDescription = inValue ;
   }
 }
 
@@ -11018,16 +10413,6 @@ GGS_baseline_5F_bit_5F_oriented_5F_op GGS_baseline_5F_intermediate_5F_instructio
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instruction_5F_FB::setProperty_mInstruction (const GGS_baseline_5F_bit_5F_oriented_5F_op & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_5F_instruction_5F_FB::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_intermediate_5F_registerExpression () ;
@@ -11040,16 +10425,6 @@ GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instruction_5F_FB::setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_baseline_5F_intermediate_5F_instruction_5F_FB::readProperty_mBitNumber (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -11057,16 +10432,6 @@ GGS_uint GGS_baseline_5F_intermediate_5F_instruction_5F_FB::readProperty_mBitNum
     cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
     return p->mProperty_mBitNumber ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_instruction_5F_FB::setProperty_mBitNumber (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
-    p->mProperty_mBitNumber = inValue ;
   }
 }
 
@@ -11377,16 +10742,6 @@ GGS_bool GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::readPropert
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setProperty_mSkipIfSet (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
-    p->mProperty_mSkipIfSet = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_intermediate_5F_registerExpression () ;
@@ -11399,16 +10754,6 @@ GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::readProperty_mBitNumber (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -11416,16 +10761,6 @@ GGS_uint GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::readPropert
     cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
     return p->mProperty_mBitNumber ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::setProperty_mBitNumber (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
-    p->mProperty_mBitNumber = inValue ;
   }
 }
 
@@ -12163,16 +11498,6 @@ GGS_baseline_5F_WO_5F_OPERAND_5F_group GGS_baseline_5F_intermediate_5F_WO_5F_OPE
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND::setProperty_mInstruction (const GGS_baseline_5F_WO_5F_OPERAND_5F_group & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_intermediate_WO_OPERAND class
 //--------------------------------------------------------------------------------------------------
 
@@ -12570,16 +11895,6 @@ GGS_baseline_5F_literal_5F_instruction_5F_opcode GGS_baseline_5F_intermediate_5F
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::setProperty_mInstruction (const GGS_baseline_5F_literal_5F_instruction_5F_opcode & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mInstruction = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::readProperty_mLiteralValue (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -12587,16 +11902,6 @@ GGS_uint GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::readPr
     cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation) ;
     return p->mProperty_mLiteralValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::setProperty_mLiteralValue (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation) ;
-    p->mProperty_mLiteralValue = inValue ;
   }
 }
 
@@ -12887,16 +12192,6 @@ GGS_luint GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP::readProperty_mOcc
     cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP) ;
     return p->mProperty_mOccurrenceFactor ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP::setProperty_mOccurrenceFactor (const GGS_luint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP) ;
-    p->mProperty_mOccurrenceFactor = inValue ;
   }
 }
 
@@ -13201,16 +12496,6 @@ GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_string GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProperty_mTargetLabel (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_string () ;
@@ -13218,16 +12503,6 @@ GGS_string GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProper
     cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
     return p->mProperty_mTargetLabel ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_mTargetLabel (const GGS_string & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_mTargetLabel = inValue ;
   }
 }
 
@@ -13245,16 +12520,6 @@ GGS_bool GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProperty
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_mIncrement (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_mIncrement = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProperty_m_5F_W_5F_isDestination (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -13267,16 +12532,6 @@ GGS_bool GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProperty
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_m_5F_W_5F_isDestination = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProperty_mBranchIfZero (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -13284,16 +12539,6 @@ GGS_bool GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProperty
     cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
     return p->mProperty_mBranchIfZero ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::setProperty_mBranchIfZero (const GGS_bool & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
-    p->mProperty_mBranchIfZero = inValue ;
   }
 }
 
@@ -15187,6 +14432,499 @@ GGS_baseline_5F_assembly_5F_instructionList GGS_baseline_5F_assembly_5F_instruct
       result = *p ;
     }else{
       inCompiler->castError ("baseline_assembly_instructionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @baseline_5F_assembly_5F_pseudo_5F_ORG reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (void) :
+GGS_baseline_5F_assembly_5F_instruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::
+init_21_ (const GGS_uint & in_mOrigin,
+          Compiler * inCompiler
+          COMMA_LOCATION_ARGS) {
+  cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * object = nullptr ;
+  macroMyNew (object, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (inCompiler COMMA_THERE)) ;
+  object->baseline_5F_assembly_5F_pseudo_5F_ORG_init_21_ (in_mOrigin, inCompiler) ;
+  const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::
+baseline_5F_assembly_5F_pseudo_5F_ORG_init_21_ (const GGS_uint & in_mOrigin,
+                                                Compiler * /* inCompiler */) {
+  mProperty_mOrigin = in_mOrigin ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * inSourcePtr) :
+GGS_baseline_5F_assembly_5F_instruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::class_func_new (const GGS_uint & in_mOrigin,
+                                                                                                     Compiler * inCompiler
+                                                                                                     COMMA_LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
+  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (in_mOrigin,  inCompiler COMMA_THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::readProperty_mOrigin (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_uint () ;
+  }else{
+    cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
+    return p->mProperty_mOrigin ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @baseline_assembly_pseudo_ORG class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_assembly_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mOrigin () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (const GGS_uint & in_mOrigin,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) :
+cPtr_baseline_5F_assembly_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mOrigin () {
+  mProperty_mOrigin = in_mOrigin ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG ;
+}
+
+void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::description (String & ioString,
+                                                              const int32_t inIndentation) const {
+  ioString.appendCString ("[@baseline_assembly_pseudo_ORG:") ;
+  mProperty_mOrigin.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (mProperty_mOrigin, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG::printNonNullClassInstanceProperties (void) const {
+    cPtr_baseline_5F_assembly_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mOrigin.printNonNullClassInstanceProperties ("mOrigin") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @baseline_assembly_pseudo_ORG generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG ("baseline_assembly_pseudo_ORG",
+                                                                                             & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG::extractObject (const GGS_object & inObject,
+                                                                                                    Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
+  const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_pseudo_ORG", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (void) :
+GGS_baseline_5F_assembly_5F_instruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak & GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::operator = (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) :
+GGS_baseline_5F_assembly_5F_instruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::bang_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG) ;
+      result = GGS_baseline_5F_assembly_5F_pseudo_5F_ORG ((cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @baseline_assembly_pseudo_ORG.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak ("baseline_assembly_pseudo_ORG.weak",
+                                                                                                     & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                    Compiler * inCompiler
+                                                                                                                    COMMA_LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak result ;
+  const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak * p = (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_pseudo_ORG.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (void) :
+GGS_baseline_5F_assembly_5F_instruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::operator = (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) :
+GGS_baseline_5F_assembly_5F_instruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::bang_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE) ;
+      result = GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE ((cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @baseline_assembly_pseudo_BEGINOFROUTINE.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak ("baseline_assembly_pseudo_BEGINOFROUTINE.weak",
+                                                                                                                & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                                          Compiler * inCompiler
+                                                                                                                                          COMMA_LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak result ;
+  const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak * p = (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_pseudo_BEGINOFROUTINE.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak::objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (void) :
+GGS_baseline_5F_assembly_5F_instruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak & GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak::operator = (const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak::GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inSource) :
+GGS_baseline_5F_assembly_5F_instruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak::bang_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE) ;
+      result = GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE ((cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @baseline_assembly_pseudo_ENDOFROUTINE.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak ("baseline_assembly_pseudo_ENDOFROUTINE.weak",
+                                                                                                              & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                                      Compiler * inCompiler
+                                                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak result ;
+  const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak * p = (const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("baseline_assembly_pseudo_ENDOFROUTINE.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

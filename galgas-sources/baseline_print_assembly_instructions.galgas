@@ -1,34 +1,34 @@
 
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 abstract method @baseline_assembly_instruction print ?!@string ioListFileContents
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_pseudo_ORG print ?!@string ioListFileContents {
   ioListFileContents += "  ORG " + [self.mOrigin hexString]
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_pseudo_BEGINOFROUTINE print ?!@string ioListFileContents {
   ioListFileContents += ";  BEGIN OF ROUTINE " + self.mRoutineName
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_pseudo_ENDOFROUTINE print ?!@string ioListFileContents {
   ioListFileContents += ";  END OF ROUTINE " + self.mRoutineName + " IN PAGE " + self.mPage
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_pseudo_LABEL print ?!@string ioListFileContents {
   ioListFileContents += self.mLabel.string + ":"
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_instruction_FD print ?!@string ioListFileContents {
   ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
@@ -39,19 +39,19 @@ override method @baseline_assembly_instruction_FD print ?!@string ioListFileCont
   end
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_instruction_F print ?!@string ioListFileContents {
   ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_instruction_FB print ?!@string ioListFileContents {
   ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_instruction_BitTestSkip print ?!@string ioListFileContents {
   if self.mSkipIfSet then
@@ -62,32 +62,32 @@ override method @baseline_assembly_instruction_BitTestSkip print ?!@string ioLis
   ioListFileContents += self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_GOTO print ?!@string ioListFileContents {
   ioListFileContents += "  GOTO " + self.mTargetLabel
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_SKIP print ?!@string ioListFileContents {
   ioListFileContents += "  GOTO * + 2"
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 
 override method @baseline_assembly_CALL print ?!@string ioListFileContents {
   ioListFileContents += "  CALL " + self.mTargetLabel
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_instruction_literalOperation print ?!@string ioListFileContents {
   ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + [self.mLiteralValue hexString]
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_incDecRegisterInCondition print ?!@string ioListFileContents {
   if self.mIncrement then
@@ -103,17 +103,17 @@ override method @baseline_assembly_incDecRegisterInCondition print ?!@string ioL
   end
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_WO_OPERAND print ?!@string ioListFileContents {
   ioListFileContents += "  " + [self.mInstruction mnemonic]
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_TRIS print ?!@string ioListFileContents {
   ioListFileContents += "  TRIS " + self.mOperand
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 

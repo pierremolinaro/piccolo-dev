@@ -1,15 +1,15 @@
 
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 map @baselineRoutineMap {
-  public var @bool mIsNoReturn
-  public var @luint mPage
+  public let @bool mIsNoReturn
+  public let @luint mPage
   insert insertKey error message "the '%K' routine is already declared in %L"
   search searchKey error message "the '%K' routine is not declared"
 }
 
-#----------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 method @registerExpression resolveBaselineAccess
   ?let @registerTable inRegisterTable
@@ -54,7 +54,7 @@ method @registerExpression resolveBaselineAccess
   }
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 proc handleBaselineInstructionList
   ?let @uint inCurrentPage
@@ -91,7 +91,7 @@ proc handleBaselineInstructionList
   end
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 abstract method @baseline_instruction build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
@@ -106,7 +106,7 @@ abstract method @baseline_instruction build_baseline_intermediate_instructionLis
   ?let @bool inLastInstructionShouldReturn
   ?!@stringset ioUsedRegisters
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
@@ -126,7 +126,7 @@ override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_ins
   ioGeneratedInstructionList += !@baseline_intermediate_WO_OPERAND { !self.mInstructionLocation !self.mInstruction}
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 func %once acceptableTRISoperand -> @stringset set {
   set = @stringset ()
@@ -138,7 +138,7 @@ func %once acceptableTRISoperand -> @stringset set {
   set ++= "PORTE"
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_TRIS build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
@@ -172,7 +172,7 @@ override method @baseline_instruction_TRIS build_baseline_intermediate_instructi
   ioGeneratedInstructionList += !@baseline_intermediate_TRIS { !self.mInstructionLocation !self.mOperand !opcode}
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_MNOP build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
@@ -192,7 +192,7 @@ override method @baseline_instruction_MNOP build_baseline_intermediate_instructi
   ioGeneratedInstructionList += !@baseline_intermediate_instruction_MNOP { !self.mInstructionLocation !self.mOccurrenceFactor}
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_literalOperation build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
@@ -229,7 +229,7 @@ override method @baseline_instruction_literalOperation build_baseline_intermedia
 }
 
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_FD build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
@@ -260,7 +260,7 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
     !self.m_W_isDestination}
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_CALL build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -294,7 +294,7 @@ override method @baseline_instruction_CALL build_baseline_intermediate_instructi
   end
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_JSR build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -329,7 +329,7 @@ override method @baseline_instruction_JSR build_baseline_intermediate_instructio
   end
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_F build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
@@ -359,7 +359,7 @@ override method @baseline_instruction_F build_baseline_intermediate_instructionL
     !intermediateRegisterDescription}
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_FB build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
@@ -398,7 +398,7 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
   }
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_GOTO build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -429,7 +429,7 @@ override method @baseline_instruction_GOTO build_baseline_intermediate_instructi
     !self.mTargetLabel}
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_JUMP build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -459,7 +459,7 @@ override method @baseline_instruction_JUMP build_baseline_intermediate_instructi
     !targetPage.uint}
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_IF_BitTest build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -509,7 +509,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
   ]
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_IF_IncDec build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -561,7 +561,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
   ]
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_FOREVER build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -608,7 +608,7 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
   ioContinuesInSequence = false
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -675,7 +675,7 @@ override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_
   end
 }
 
-#----------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_do_while build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -757,7 +757,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
   end
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_instruction_structured_if build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
@@ -829,11 +829,11 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
   ioContinuesInSequence = thenContinuesInSequence | elseContinuesInSequence
 }
 
-#-------------------------------------------------------------------------------*
-#                                                                               *
-#   B U I L D    I P I C    C O N D I T I O N    I N S T R U C T I O N S        *
-#                                                                               *
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
+#                                                                               
+#   B U I L D    I P I C    C O N D I T I O N    I N S T R U C T I O N S        
+#                                                                               
+#---------------------------------------------------------------------------------------------------
 
 abstract method @baseline_conditionExpression build_intermediate_condition_instructions
   ?let @uint inCurrentPage
@@ -846,7 +846,7 @@ abstract method @baseline_conditionExpression build_intermediate_condition_instr
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@stringset ioUsedRegisters
 
-#----------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_incDecRegisterInCondition build_intermediate_condition_instructions
   ?let @uint unused inCurrentPage
@@ -875,7 +875,7 @@ override method @baseline_incDecRegisterInCondition build_intermediate_condition
     !self.mBranchIfZero ^ inComplementaryBranch}
 }
 
-#----------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_negateCondition build_intermediate_condition_instructions
   ?let @uint inCurrentPage
@@ -900,7 +900,7 @@ override method @baseline_negateCondition build_intermediate_condition_instructi
   ]
 }
 
-#----------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_andCondition build_intermediate_condition_instructions
   ?let @uint inCurrentPage
@@ -963,7 +963,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
   end
 }
 
-#----------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 
 override method @baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions
   ?let @uint unused inCurrentPage
@@ -1002,5 +1002,5 @@ override method @baseline_bitTest_in_structured_if_condition build_intermediate_
   }
 }
 
-#-------------------------------------------------------------------------------*
+#---------------------------------------------------------------------------------------------------
 

@@ -3,116 +3,116 @@
 #----------------------------------------------------*
 
 abstract class @baseline_instruction {
-  public var @location mInstructionLocation
+  public let @location mInstructionLocation
 }
 
 #----------------------------------------------------*
 
 list @baseline_instructionList {
-  public var @baseline_instruction mInstruction
+  public let @baseline_instruction mInstruction
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_FD : @baseline_instruction {
-  public var @baseline_instruction_FD_base_code mInstruction_FD_base_code
-  public var @registerExpression mRegisterExpression
-  public var @bool m_W_isDestination
+  public let @baseline_instruction_FD_base_code mInstruction_FD_base_code
+  public let @registerExpression mRegisterExpression
+  public let @bool m_W_isDestination
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_F : @baseline_instruction {
-  public var @baseline_F_instruction_base_code mFAinstruction
-  public var @registerExpression mRegisterExpression
+  public let @baseline_F_instruction_base_code mFAinstruction
+  public let @registerExpression mRegisterExpression
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_FB : @baseline_instruction {
-  public var @baseline_bit_oriented_op mBitOrientedOp
-  public var @registerExpression mRegisterExpression
-  public var @bitNumberExpression mBitNumber
+  public let @baseline_bit_oriented_op mBitOrientedOp
+  public let @registerExpression mRegisterExpression
+  public let @bitNumberExpression mBitNumber
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_CALL : @baseline_instruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_JSR : @baseline_instruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_GOTO : @baseline_instruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_JUMP : @baseline_instruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_WO_OPERAND : @baseline_instruction {
-  public var @baseline_WO_OPERAND_group mInstruction
+  public let @baseline_WO_OPERAND_group mInstruction
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_TRIS : @baseline_instruction {
-  public var @lstring mOperand
+  public let @lstring mOperand
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_literalOperation : @baseline_instruction {
-  public var @baseline_literal_instruction_opcode mLiteralInstruction
-  public var @immediatExpression mImmediatExpression
+  public let @baseline_literal_instruction_opcode mLiteralInstruction
+  public let @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_MNOP : @baseline_instruction {
-  public var @luint mOccurrenceFactor
+  public let @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_FOREVER : @baseline_instruction {
-  public var @baseline_instructionList mInstructionList
-  public var @location mEndOfInstructionList
+  public let @baseline_instructionList mInstructionList
+  public let @location mEndOfInstructionList
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
-  public var @lstring mConstantName
-  public var @immediatExpression mLowerBoundExpression
-  public var @immediatExpression mUpperBoundExpression
-  public var @baseline_instructionList mInstructionList
-  public var @location mEndOfInstruction
+  public let @lstring mConstantName
+  public let @immediatExpression mLowerBoundExpression
+  public let @immediatExpression mUpperBoundExpression
+  public let @baseline_instructionList mInstructionList
+  public let @location mEndOfInstruction
 }
 
 #----------------------------------------------------*
 
 abstract class @baseline_instruction_IF_SEMI_COLON : @baseline_instruction {
-  public var @baseline_instruction mInstruction
+  public let @baseline_instruction mInstruction
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_IF_BitTest : @baseline_instruction_IF_SEMI_COLON {
-  public var @bool mSkipIfSet
-  public var @registerExpression mRegisterExpression
-  public var @bitNumberExpression mBitNumber
+  public let @bool mSkipIfSet
+  public let @registerExpression mRegisterExpression
+  public let @bitNumberExpression mBitNumber
 }
 
 method @baseline_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
@@ -135,9 +135,9 @@ method @baseline_instruction_IF_BitTest getMnemonic !@string outMnemonic {
 #----------------------------------------------------*
 
 class @baseline_instruction_IF_IncDec : @baseline_instruction_IF_SEMI_COLON {
-  public var @bool mIncrement
-  public var @registerExpression mRegisterExpression
-  public var @bool m_W_isDestination
+  public let @bool mIncrement
+  public let @registerExpression mRegisterExpression
+  public let @bool m_W_isDestination
 }
 
 #----------------------------------------------------*
@@ -148,80 +148,80 @@ abstract class @baseline_conditionExpression {
 #----------------------------------------------------*
 
 class @baseline_incDecRegisterInCondition : @baseline_conditionExpression {
-  public var @registerExpression mRegisterExpression
-  public var @bool mIncrement
-  public var @bool m_W_isDestination
-  public var @bool mBranchIfZero
+  public let @registerExpression mRegisterExpression
+  public let @bool mIncrement
+  public let @bool m_W_isDestination
+  public let @bool mBranchIfZero
 }
 
 #----------------------------------------------------*
 
 class @baseline_negateCondition : @baseline_conditionExpression {
-  public var @baseline_conditionExpression mCondition
+  public let @baseline_conditionExpression mCondition
 }
 
 #----------------------------------------------------*
 
 class @baseline_andCondition : @baseline_conditionExpression {
-  public var @baseline_conditionExpression mLeftExpression
-  public var @baseline_conditionExpression mRightExpression
+  public let @baseline_conditionExpression mLeftExpression
+  public let @baseline_conditionExpression mRightExpression
 }
 
 #----------------------------------------------------*
 
 class @baseline_bitTest_in_structured_if_condition : @baseline_conditionExpression {
-  public var @registerExpression mRegisterExpression
-  public var @bitNumberExpression mBitNumber
+  public let @registerExpression mRegisterExpression
+  public let @bitNumberExpression mBitNumber
 #  @bool mBTFSSinstruction
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_structured_if : @baseline_instruction {
-  public var @baseline_conditionExpression mIfCondition
-  public var @baseline_instructionList mThenInstructionList
-  public var @baseline_instructionList mElseInstructionList
-  public var @location mEndOfElsePartLocation
+  public let @baseline_conditionExpression mIfCondition
+  public let @baseline_instructionList mThenInstructionList
+  public let @baseline_instructionList mElseInstructionList
+  public let @location mEndOfElsePartLocation
 }
 
 #----------------------------------------------------*
 
 list @baseline_partList {
-  public var @baseline_conditionExpression mCondition
-  public var @baseline_instructionList mInstructionList
-  public var @location mEndOfPartLocation
+  public let @baseline_conditionExpression mCondition
+  public let @baseline_instructionList mInstructionList
+  public let @location mEndOfPartLocation
 }
 
 #----------------------------------------------------*
 
 class @baseline_instruction_do_while : @baseline_instruction {
-  public var @baseline_instructionList mRepeatedInstructionList
-  public var @location mEndOfRepeatedInstructionList
-  public var @baseline_partList mWhilePartList
+  public let @baseline_instructionList mRepeatedInstructionList
+  public let @location mEndOfRepeatedInstructionList
+  public let @baseline_partList mWhilePartList
 }
 
 #----------------------------------------------------*
 
 list @baseline_routineDefinitionList {
-  public var @lstring mRoutineName
-  public var @luint mPage
-  public var @bool mIsNoReturn
-  public var @baseline_instructionList mInstructionList
-  public var @location mEndOfRoutineLocation
+  public let @lstring mRoutineName
+  public let @luint mPage
+  public let @bool mIsNoReturn
+  public let @baseline_instructionList mInstructionList
+  public let @location mEndOfRoutineLocation
 }
 
 #----------------------------------------------------*
 
 struct @baseline_model {
-  public var @lstring mProgramName
-  public var @lstring mDeviceName
-  public var @configDefinitionList mConfigDefinitionList
-  public var @ramDefinitionList mRamDefinitionList
-  public var @lstringlist mUnusedRegisterList
-  public var @constantDefinitionList mConstantDefinitionList
-  public var @baseline_routineDefinitionList mRoutineDefinitionList
-  public var @lstringlist mUnusedRoutineList
-  public var @location mEndOfProgram
+  public let @lstring mProgramName
+  public let @lstring mDeviceName
+  public let @configDefinitionList mConfigDefinitionList
+  public let @ramDefinitionList mRamDefinitionList
+  public let @lstringlist mUnusedRegisterList
+  public let @constantDefinitionList mConstantDefinitionList
+  public let @baseline_routineDefinitionList mRoutineDefinitionList
+  public let @lstringlist mUnusedRoutineList
+  public let @location mEndOfProgram
 }
 
 #----------------------------------------------------*

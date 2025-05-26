@@ -124,7 +124,7 @@ rule <start_symbol> {
     ?let unused ramBank
     ?let unused registerTable
 #--- Semantic analysis
-  let @string listingFile = [@string. stringWithSourceFilePath stringByDeletingPathExtension] + ".list"
+  let @string listingFile = [@string. stringWithSourceFilePath deletingPathExtension] + ".list"
   if (@uint. errorCount == 0) & [option piccoloOptions.ouputListingFile value] then
     [listFileContents writeToFileWhenDifferentContents !listingFile ?*]
   end

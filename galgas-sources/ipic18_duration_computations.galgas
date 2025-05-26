@@ -1,7 +1,7 @@
 
 map @blockDurationMap {
-  public var @uint mMinDuration
-  public var @uint mMaxDuration
+  public let @uint mMinDuration
+  public let @uint mMaxDuration
   insert insertKey error message "the '%K' entry is already declared in %L"
   search searchKey error message "the '%K' entry is not declared"
 }

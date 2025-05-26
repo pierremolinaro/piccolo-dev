@@ -3,38 +3,38 @@
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @pic18SimpleConstantCaseItem : @pic18AbstractCaseItem {
-  public var @immediatExpression mCaseExpression
-  public var @location mCaseExpressionLocation
+  public let @immediatExpression mCaseExpression
+  public let @location mCaseExpressionLocation
 }
 
 #·······················································································································
 
 class @pic18IntervalCaseItem : @pic18AbstractCaseItem {
-  public var @immediatExpression mMinExpression
-  public var @immediatExpression mMaxExpression
-  public var @location mCaseExpressionLocation
+  public let @immediatExpression mMinExpression
+  public let @immediatExpression mMaxExpression
+  public let @location mCaseExpressionLocation
 }
 
 #·······················································································································
 
 list @pic18CaseExpressionList {
-  public var @pic18AbstractCaseItem mCaseItem
+  public let @pic18AbstractCaseItem mCaseItem
 }
 
 #·······················································································································
 
 list @pic18SwitchInstructionCaseList {
-  public var @location mStartOfCase
-  public var @pic18CaseExpressionList mCaseExpressionList
-  public var @pic18InstructionList mInstructionList
+  public let @location mStartOfCase
+  public let @pic18CaseExpressionList mCaseExpressionList
+  public let @pic18InstructionList mInstructionList
 }
 
 #·······················································································································
 
 class @pic18Instruction_switch : @pic18PiccoloInstruction {
-  public var @pic18SwitchInstructionCaseList mCaseList
-  public var @location mElseBranchStartLocation
-  public var @pic18InstructionList mElseInstructionList
+  public let @pic18SwitchInstructionCaseList mCaseList
+  public let @location mElseBranchStartLocation
+  public let @pic18InstructionList mElseInstructionList
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

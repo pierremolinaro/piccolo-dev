@@ -1058,14 +1058,13 @@ method @ipic18Block optimize
 #----------------------------------------------------------------------------*
 
 struct @optimizeFlagStruct {
- public var @bool mRemoveEmptyRoutine # [E]
- public var @bool mJSRtoRETLWreplacedByMOVLW # [R]
- public var @bool mJSRfollowedByRETreplacedByJUMP # [J]
- public var @bool mMOVLWfollowedByRETreplacedByRETLW # [M]
- public var @bool mJSRtoOneInstructionRoutineReplacedByInstruction # [I]
- public var @bool mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction # [i]
- public var @bool mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank # [e]
-# @bool mComputedRCALLFollowedByRETURNreplacedByComputedBRA # [c]
+ public let @bool mRemoveEmptyRoutine # [E]
+ public let @bool mJSRtoRETLWreplacedByMOVLW # [R]
+ public let @bool mJSRfollowedByRETreplacedByJUMP # [J]
+ public let @bool mMOVLWfollowedByRETreplacedByRETLW # [M]
+ public let @bool mJSRtoOneInstructionRoutineReplacedByInstruction # [I]
+ public let @bool mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction # [i]
+ public let @bool mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank # [e]
 }
 
 #----------------------------------------------------------------------------*

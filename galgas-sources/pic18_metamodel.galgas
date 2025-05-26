@@ -7,7 +7,7 @@
 #---------------------------------------------------------------------------*
 
 map @bootloaderReservedRAMmap {
-  public var @luint mReservedSize
+  public let @luint mReservedSize
   insert insertKey error message "the reserved size for the '%K' bank is already declared"
   search searchKey error message "the reserved size for the '%K' bank is not declared"
 }
@@ -15,13 +15,13 @@ map @bootloaderReservedRAMmap {
 #----------------------------------------------------*
 
 abstract class @pic18PiccoloInstruction {
-  public var @location mInstructionLocation
+  public let @location mInstructionLocation
 }
 
 #----------------------------------------------------*
 
 list @pic18InstructionList {
-  public var @pic18PiccoloInstruction mInstruction
+  public let @pic18PiccoloInstruction mInstruction
 }
 
 #----------------------------------------------------*
@@ -37,7 +37,7 @@ class @pic18Instruction_checknobank : @pic18PiccoloInstruction {
 #----------------------------------------------------*
 
 class @pic18Instruction_checkbank : @pic18PiccoloInstruction {
-  public var @uint mBankIndex
+  public let @uint mBankIndex
 }
 
 #----------------------------------------------------*
@@ -48,33 +48,33 @@ abstract class @pic18PiccoloSimpleInstruction : @pic18PiccoloInstruction {
 #----------------------------------------------------*
 
 class @pic18Instruction_banksel : @pic18PiccoloInstruction {
-  public var @luint mBankIndex
-  public var @bool mWarningOnUselessBanksel
+  public let @luint mBankIndex
+  public let @bool mWarningOnUselessBanksel
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_banksel_register : @pic18PiccoloInstruction {
-  public var @registerExpression mRegisterExpression
-  public var @bool mWarningOnUselessBanksel
+  public let @registerExpression mRegisterExpression
+  public let @bool mWarningOnUselessBanksel
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_savebank : @pic18PiccoloInstruction {
-  public var @registerExpression mRegister
-  public var @pic18InstructionList mInstructionList
-  public var @location mEndOfSaveBankInstruction
+  public let @registerExpression mRegister
+  public let @pic18InstructionList mInstructionList
+  public let @location mEndOfSaveBankInstruction
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_repetitionStatique : @pic18PiccoloInstruction {
-  public var @lstring mConstantName
-  public var @immediatExpression mLowerBoundExpression
-  public var @immediatExpression mUpperBoundExpression
-  public var @pic18InstructionList mInstructionList
-  public var @location mEndOfInstruction
+  public let @lstring mConstantName
+  public let @immediatExpression mLowerBoundExpression
+  public let @immediatExpression mUpperBoundExpression
+  public let @pic18InstructionList mInstructionList
+  public let @location mEndOfInstruction
 }
 
 #----------------------------------------------------*
@@ -89,39 +89,39 @@ abstract class @abstractBlockTerminationForBlockInstruction {
 #----------------------------------------------------*
 
 class @exitBlockTerminationForBlockInstruction : @abstractBlockTerminationForBlockInstruction {
-  public var @location mLocation
+  public let @location mLocation
 }
 
 #----------------------------------------------------*
 
 class @gotoTerminationForBlockInstruction : @abstractBlockTerminationForBlockInstruction {
-  public var @lstring mNextBlock
+  public let @lstring mNextBlock
 }
 
 #----------------------------------------------------*
 
 class @testTerminationForBlockInstruction : @abstractBlockTerminationForBlockInstruction {
-  public var @pic18ConditionExpression mCondition
-  public var @abstractBlockTerminationForBlockInstruction mTrueTermination
-  public var @abstractBlockTerminationForBlockInstruction mFalseTermination
-  public var @location mLocation
+  public let @pic18ConditionExpression mCondition
+  public let @abstractBlockTerminationForBlockInstruction mTrueTermination
+  public let @abstractBlockTerminationForBlockInstruction mFalseTermination
+  public let @location mLocation
 }
 
 #----------------------------------------------------*
 
 list @pic18BlockInstructionBlockList {
-  public var @lstring mBlockName
-  public var @pic18InstructionList mInstructionList
-  public var @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction
-  public var @location mEndOfBlock
+  public let @lstring mBlockName
+  public let @pic18InstructionList mInstructionList
+  public let @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction
+  public let @location mEndOfBlock
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_block : @pic18PiccoloInstruction {
-  public var @lstring mStartBlockName
-  public var @pic18BlockInstructionBlockList mBlockList
-  public var @location mEndOfBlockInstruction
+  public let @lstring mStartBlockName
+  public let @pic18BlockInstructionBlockList mBlockList
+  public let @location mEndOfBlockInstruction
 }
 
 #----------------------------------------------------*
@@ -144,9 +144,9 @@ enum @pic18Instruction_FDA_base_code_AST %equatable {
 #----------------------------------------------------*
 
 class @pic18Instruction_FDA : @pic18PiccoloSimpleInstruction {
-  public var @pic18Instruction_FDA_base_code_AST mInstruction_FDA_base_code
-  public var @registerExpression mRegisterExpression
-  public var @bool m_W_isDestination
+  public let @pic18Instruction_FDA_base_code_AST mInstruction_FDA_base_code
+  public let @registerExpression mRegisterExpression
+  public let @bool m_W_isDestination
 }
 
 #----------------------------------------------------*
@@ -158,15 +158,15 @@ enum @FA_instruction_base_code {
 #----------------------------------------------------*
 
 class @pic18Instruction_FA : @pic18PiccoloSimpleInstruction {
-  public var @FA_instruction_base_code mFAinstruction
-  public var @registerExpression mRegisterExpression
+  public let @FA_instruction_base_code mFAinstruction
+  public let @registerExpression mRegisterExpression
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_MOVFF : @pic18PiccoloSimpleInstruction {
-  public var @registerExpression mSourceRegisterName
-  public var @registerExpression mDestinationRegisterName
+  public let @registerExpression mSourceRegisterName
+  public let @registerExpression mDestinationRegisterName
 }
 
 #----------------------------------------------------*
@@ -178,9 +178,9 @@ enum @bit_oriented_op {
 #----------------------------------------------------*
 
 class @pic18Instruction_FBA : @pic18PiccoloSimpleInstruction {
-  public var @bit_oriented_op mBitOrientedOp
-  public var @registerExpression mRegisterExpression
-  public var @bitNumberExpression mBitNumber
+  public let @bit_oriented_op mBitOrientedOp
+  public let @registerExpression mRegisterExpression
+  public let @bitNumberExpression mBitNumber
 }
 
 #----------------------------------------------------*
@@ -200,30 +200,30 @@ enum @jumpInstructionKind %equatable {
 #----------------------------------------------------*
 
 class @pic18Instruction_JSR : @pic18PiccoloSimpleInstruction {
-  public var @lstring mTargetLabel
-  public var @jumpInstructionKind mKind
+  public let @lstring mTargetLabel
+  public let @jumpInstructionKind mKind
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_macro : @pic18PiccoloInstruction {
-  public var @lstring mMacroName
-  public var @immediatExpressionList mExpressionList
+  public let @lstring mMacroName
+  public let @immediatExpressionList mExpressionList
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_JUMP : @pic18PiccoloInstruction {
-  public var @lstring mTargetLabel
-  public var @jumpInstructionKind mKind
+  public let @lstring mTargetLabel
+  public let @jumpInstructionKind mKind
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_JUMPCC : @pic18PiccoloInstruction {
-  public var @lstring mTargetLabel
-  public var @conditional_branch mConditionalBranch
-  public var @bool mIsBcc
+  public let @lstring mTargetLabel
+  public let @conditional_branch mConditionalBranch
+  public let @bool mIsBcc
 }
 
 #----------------------------------------------------*
@@ -241,7 +241,7 @@ enum @pic18InstructionWithNoOperandKind {
 #----------------------------------------------------*
 
 class @pic18Instruction_withNoOperand : @pic18PiccoloSimpleInstruction {
-  public var @pic18InstructionWithNoOperandKind mKind
+  public let @pic18InstructionWithNoOperandKind mKind
 }
 
 #----------------------------------------------------*
@@ -253,41 +253,41 @@ enum @literal_instruction_opcode %equatable {
 #----------------------------------------------------*
 
 class @pic18Instruction_literalOperation : @pic18PiccoloSimpleInstruction {
-  public var @literal_instruction_opcode mLiteralInstruction
-  public var @immediatExpression mImmediatExpression
+  public let @literal_instruction_opcode mLiteralInstruction
+  public let @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_fnop : @pic18PiccoloSimpleInstruction {
-  public var @immediatExpression mImmediatExpression
+  public let @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_LFSR : @pic18PiccoloSimpleInstruction {
-  public var @luint mFSRindex
-  public var @immediatExpression mImmediatExpression
+  public let @luint mFSRindex
+  public let @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_LTBLPTR : @pic18PiccoloInstruction {
-  public var @immediatExpression mImmediatExpression
+  public let @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_LDATA8PTR : @pic18PiccoloInstruction {
-  public var @lstring mDataName
-  public var @luint mDataIndex
+  public let @lstring mDataName
+  public let @luint mDataIndex
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_LDATA16PTR : @pic18PiccoloInstruction {
-  public var @lstring mDataName
-  public var @luint mDataIndex
+  public let @lstring mDataName
+  public let @luint mDataIndex
 }
 
 #----------------------------------------------------*
@@ -299,32 +299,32 @@ enum @tableAccessOption {
 #----------------------------------------------------*
 
 class @pic18Instruction_TBLRD : @pic18PiccoloSimpleInstruction {
-  public var @tableAccessOption mOption
+  public let @tableAccessOption mOption
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_TBLWT : @pic18PiccoloSimpleInstruction {
-  public var @tableAccessOption mOption
+  public let @tableAccessOption mOption
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_MNOP : @pic18PiccoloInstruction {
-  public var @luint mOccurrenceFactor
+  public let @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_NOPBRA : @pic18PiccoloInstruction {
-  public var @luint mOccurrenceFactor
+  public let @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_FOREVER : @pic18PiccoloInstruction {
-  public var @pic18InstructionList mInstructionList
-  public var @location mEndOfInstructionList
+  public let @pic18InstructionList mInstructionList
+  public let @location mEndOfInstructionList
 }
 
 #----------------------------------------------------*
@@ -336,63 +336,63 @@ enum @if_semi_colon_op {
 #----------------------------------------------------*
 
 abstract class @pic18Instruction_IF_SEMI_COLON : @pic18PiccoloInstruction {
-  public var @pic18PiccoloSimpleInstruction mEmbeddedInstruction
+  public let @pic18PiccoloSimpleInstruction mEmbeddedInstruction
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_IF_FA_SEMI_COLON : @pic18Instruction_IF_SEMI_COLON {
-  public var @if_semi_colon_op mOpCode
-  public var @registerExpression mRegisterExpression
+  public let @if_semi_colon_op mOpCode
+  public let @registerExpression mRegisterExpression
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_IF_BitTest : @pic18Instruction_IF_SEMI_COLON {
-  public var @bool mSkipIfSet
-  public var @registerExpression mRegisterExpression
-  public var @bitNumberExpression mBitNumber
+  public let @bool mSkipIfSet
+  public let @registerExpression mRegisterExpression
+  public let @bitNumberExpression mBitNumber
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_IF_IncDec : @pic18Instruction_IF_SEMI_COLON {
-  public var @bool mIncrement
-  public var @bool mSkipIfZero
-  public var @registerExpression mRegisterExpression
-  public var @bool m_W_isDestination
+  public let @bool mIncrement
+  public let @bool mSkipIfZero
+  public let @registerExpression mRegisterExpression
+  public let @bool m_W_isDestination
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_computed_retlw : @pic18PiccoloInstruction {
-  public var @immediatExpression mSizeExpression
-  public var @immediatExpressionList mImmediateExpressionList
-  public var @bool mUsesRelativeCall
+  public let @immediatExpression mSizeExpression
+  public let @immediatExpressionList mImmediateExpressionList
+  public let @bool mUsesRelativeCall
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_computed_bra : @pic18PiccoloInstruction {
-  public var @immediatExpression mSizeExpression
-  public var @lstringlist mTargetLabels
-  public var @bool mUsesRelativeCall
+  public let @immediatExpression mSizeExpression
+  public let @lstringlist mTargetLabels
+  public let @bool mUsesRelativeCall
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_computed_goto : @pic18PiccoloInstruction {
-  public var @immediatExpression mSizeExpression
-  public var @lstringlist mTargetLabels
-  public var @bool mUsesRelativeCall
+  public let @immediatExpression mSizeExpression
+  public let @lstringlist mTargetLabels
+  public let @bool mUsesRelativeCall
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_computed_rcall : @pic18PiccoloInstruction {
-  public var @immediatExpression mSizeExpression
-  public var @lstringlist mTargetLabels
-  public var @bool mUsesRelativeCall
+  public let @immediatExpression mSizeExpression
+  public let @lstringlist mTargetLabels
+  public let @bool mUsesRelativeCall
 }
 
 #----------------------------------------------------*
@@ -403,8 +403,8 @@ abstract class @pic18ConditionExpression {
 #----------------------------------------------------*
 
 class @pic18RegisterTestCondition : @pic18ConditionExpression {
-  public var @registerExpression mRegisterExpression
-  public var @bool mBranchIfZero
+  public let @registerExpression mRegisterExpression
+  public let @bool mBranchIfZero
 }
 
 #----------------------------------------------------*
@@ -416,106 +416,105 @@ enum @pic18RegisterComparison {
 #----------------------------------------------------*
 
 class @pic18RegisterComparisonCondition : @pic18ConditionExpression {
-  public var @registerExpression mRegisterExpression
-  public var @pic18RegisterComparison mComparison
+  public let @registerExpression mRegisterExpression
+  public let @pic18RegisterComparison mComparison
 }
 
 #----------------------------------------------------*
 
 class @pic18IncDecRegisterInCondition : @pic18ConditionExpression {
-  public var @registerExpression mRegisterExpression
-  public var @bool mIncrement
-  public var @bool m_W_isDestination
-  public var @bool mBranchIfZero
+  public let @registerExpression mRegisterExpression
+  public let @bool mIncrement
+  public let @bool m_W_isDestination
+  public let @bool mBranchIfZero
 }
 
 #----------------------------------------------------*
 
 class @pic18BccInStructuredCondition : @pic18ConditionExpression {
-  public var @location mConditionLocation
-  public var @conditional_branch mCondition
+  public let @location mConditionLocation
+  public let @conditional_branch mCondition
 }
 
 #----------------------------------------------------*
 
 class @pic18NegateCondition : @pic18ConditionExpression {
-  public var @pic18ConditionExpression mCondition
+  public let @pic18ConditionExpression mCondition
 }
 
 #----------------------------------------------------*
 
 class @pic18AndCondition : @pic18ConditionExpression {
-  public var @pic18ConditionExpression mLeftExpression
-  public var @pic18ConditionExpression mRightExpression
+  public let @pic18ConditionExpression mLeftExpression
+  public let @pic18ConditionExpression mRightExpression
 }
 
 #----------------------------------------------------*
 
 class @pic18BitTestInStructuredCondition : @pic18ConditionExpression {
-  public var @registerExpression mRegisterExpression
-  public var @bitNumberExpression mBitNumber
-#  @bool mBTFSSinstruction
+  public let @registerExpression mRegisterExpression
+  public let @bitNumberExpression mBitNumber
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_structured_if : @pic18PiccoloInstruction {
-  public var @pic18ConditionExpression mIfCondition
-  public var @pic18InstructionList mThenInstructionList
-  public var @pic18InstructionList mElseInstructionList
-  public var @location mEndOfElsePartLocation
+  public let @pic18ConditionExpression mIfCondition
+  public let @pic18InstructionList mThenInstructionList
+  public let @pic18InstructionList mElseInstructionList
+  public let @location mEndOfElsePartLocation
 }
 
 #----------------------------------------------------*
 
 list @pic18DoWhilePartList {
-  public var @pic18ConditionExpression mCondition
-  public var @pic18InstructionList mInstructionList
-  public var @location mEndOfPartLocation
+  public let @pic18ConditionExpression mCondition
+  public let @pic18InstructionList mInstructionList
+  public let @location mEndOfPartLocation
 }
 
 #----------------------------------------------------*
 
 class @pic18Instruction_do_while : @pic18PiccoloInstruction {
-  public var @pic18InstructionList mRepeatedInstructionList
-  public var @location mEndOfRepeatedInstructionList
-  public var @pic18DoWhilePartList mWhilePartList
+  public let @pic18InstructionList mRepeatedInstructionList
+  public let @location mEndOfRepeatedInstructionList
+  public let @pic18DoWhilePartList mWhilePartList
 }
 
 #----------------------------------------------------*
 
 list @pic18InterruptDefinitionList {
-  public var @lstring mInterruptName
-  public var @bool mFastReturn
-  public var @pic18InstructionList mInstructionList
-  public var @location mEndOfInterruptLocation
+  public let @lstring mInterruptName
+  public let @bool mFastReturn
+  public let @pic18InstructionList mInstructionList
+  public let @location mEndOfInterruptLocation
 }
 
 #----------------------------------------------------*
 
 list @pic18RoutineDefinitionList {
-  public var @lstring mRoutineName
-  public var @luint mRequiredBank
-  public var @luint mReturnedBank
-  public var @bool mPreservesBank
-  public var @bool mIsNoReturn
-  public var @pic18InstructionList mInstructionList
-  public var @location mEndOfRoutineLocation
+  public let @lstring mRoutineName
+  public let @luint mRequiredBank
+  public let @luint mReturnedBank
+  public let @bool mPreservesBank
+  public let @bool mIsNoReturn
+  public let @pic18InstructionList mInstructionList
+  public let @location mEndOfRoutineLocation
 }
 
 #----------------------------------------------------*
 
 list @pic18MacroDefinitionList {
-  public var @lstring mMacroName
-  public var @lstringlist mConstantNameList
-  public var @pic18InstructionList mInstructionList
+  public let @lstring mMacroName
+  public let @lstringlist mConstantNameList
+  public let @pic18InstructionList mInstructionList
 }
 
 #----------------------------------------------------*
 
 map @pic18MacroMap {
-  public var @lstringlist mConstantNameList
-  public var @pic18InstructionList mInstructionList
+  public let @lstringlist mConstantNameList
+  public let @pic18InstructionList mInstructionList
   insert insertKey error message "the '%K' macro is already declared in %L"
   search searchKey error message "there is no '%K' macro"
 }
@@ -523,11 +522,11 @@ map @pic18MacroMap {
 #----------------------------------------------------*
 
 list @routineDeclarationList {
-  public var @lstring mRoutineName
-  public var @luint mRequiredBank
-  public var @luint mReturnedBank
-  public var @bool mPreservesBank
-  public var @bool mIsNoReturn
+  public let @lstring mRoutineName
+  public let @luint mRequiredBank
+  public let @luint mReturnedBank
+  public let @bool mPreservesBank
+  public let @bool mIsNoReturn
 }
 
 #----------------------------------------------------*
@@ -539,38 +538,38 @@ enum @programKind %equatable {
 #----------------------------------------------------*
 
 list @dataList {
-  public var @lstring mDataName
-  public var @immediatExpressionList mValueList
-  public var @bool mIsByteList # true: data8, false: data16
+  public let @lstring mDataName
+  public let @immediatExpressionList mValueList
+  public let @bool mIsByteList # true: data8, false: data16
 }
 
 #----------------------------------------------------*
 
 list @checkpicList {
-  public var @location mErrorLocation
-  public var @lstringlist mValueList
+  public let @location mErrorLocation
+  public let @lstringlist mValueList
 }
 
 #----------------------------------------------------*
 
 struct @pic18AST {
-  public var @lstring mProgramName
-  public var @programKind mProgramKind
-  public var @lstring mDeviceNameOrBootLoaderReference
-  public var @configDefinitionList mConfigDefinitionList
-  public var @ramDefinitionList mRamDefinitionList
-  public var @lstringlist mUnusedRegisterList
-  public var @checkpicList mCheckpicList
-  public var @dataList mDataList
-  public var @pic18InterruptDefinitionList mInterruptDefinitionList
-  public var @constantDefinitionList mConstantDefinitionList
-  public var @pic18RoutineDefinitionList mRoutineDefinitionList
-  public var @pic18MacroDefinitionList mMacroDefinitionList
-  public var @lstringlist mUnusedRoutineList
-  public var @lstringlist mInlinedRoutineList
-  public var @bool mNeedsComputedGoto2
-  public var @bool mNeedsComputedGoto4
-  public var @location mEndOfProgram
+  public let @lstring mProgramName
+  public let @programKind mProgramKind
+  public let @lstring mDeviceNameOrBootLoaderReference
+  public let @configDefinitionList mConfigDefinitionList
+  public let @ramDefinitionList mRamDefinitionList
+  public let @lstringlist mUnusedRegisterList
+  public let @checkpicList mCheckpicList
+  public let @dataList mDataList
+  public let @pic18InterruptDefinitionList mInterruptDefinitionList
+  public let @constantDefinitionList mConstantDefinitionList
+  public let @pic18RoutineDefinitionList mRoutineDefinitionList
+  public let @pic18MacroDefinitionList mMacroDefinitionList
+  public let @lstringlist mUnusedRoutineList
+  public let @lstringlist mInlinedRoutineList
+  public let @bool mNeedsComputedGoto2
+  public let @bool mNeedsComputedGoto4
+  public let @location mEndOfProgram
 }
 
 #----------------------------------------------------*

@@ -2301,9 +2301,9 @@ override method @pic18Instruction_do_while analyze
 #----------------------------------------------------*
 
 map @blockInstructionBlockMap {
-  public var @pic18InstructionList mInstructionList
-  public var @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction
-  public var @location mEndOfBlock
+  public let @pic18InstructionList mInstructionList
+  public let @abstractBlockTerminationForBlockInstruction mBlockTerminaisonForBlockInstruction
+  public let @location mEndOfBlock
   insert insertKey error message "the '%K' block is already declared"
   search searchKey error message "the '%K' block is not declared"
 }
@@ -2311,8 +2311,8 @@ map @blockInstructionBlockMap {
 #----------------------------------------------------*
 
 map @blockInitialBankSelectionMap {
-  public var @uint mInitialBankSelection
-  public var @string mSourceBlock
+  public let @uint mInitialBankSelection
+  public let @string mSourceBlock
   insert insertKey error message "the '%K' block is already declared (internal error)"
   search searchKey error message "the '%K' block is not declared (internal error)"
 }

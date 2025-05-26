@@ -1,8 +1,8 @@
 #----------------------------------------------------------------------------------------------------------------------*
 
 map @generatedCodeMap { # Key is code address (decimal representation)
-  public var @codeList mCode
-  public var @ipic18SequentialInstruction mInstruction
+  public let @codeList mCode
+  public let @ipic18SequentialInstruction mInstruction
   insert insertKey error message "the '%K' entry is already declared in %L"
   search searchKey error message "the '%K' entry is not declared"
 }
@@ -330,16 +330,16 @@ proc ipic18GenerateCode
   end
 #--- Generate file
   getGeneratedContents (?let @string contents)
-  var destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
+  var destinationFile = [inSourceFileName deletingPathExtension] + ".hex"
   [contents writeToFileWhenDifferentContents !destinationFile ?*]
 #--- Generate contents in C file ?
   if [option piccoloOptions.output_C_Array value] then
-    let baseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+    let baseName = [[inSourceFileName lastPathComponent] deletingPathExtension]
     get_C_ArrayImplementation (!baseName ?let @string cContents)
-    destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".c"
+    destinationFile = [inSourceFileName deletingPathExtension] + ".c"
     [cContents writeToFileWhenDifferentContents !destinationFile ?*]
     get_C_ArrayHeader (!baseName ?let @string hContents)
-    destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".h"
+    destinationFile = [inSourceFileName deletingPathExtension] + ".h"
     [hContents writeToFileWhenDifferentContents !destinationFile ?*]
   end
 #----------------------------- Generate assembly file ?
@@ -404,7 +404,7 @@ proc pic18GenerateAssemblyFile
   assemblyString += ";---\n\n"
   assemblyString += "  END\n\n"
 #-------------------------------- Generate file
-  let @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+  let @string asmDestinationFile = [inSourceFileName deletingPathExtension] + ".asm"
  [assemblyString writeToFileWhenDifferentContents !asmDestinationFile ?*]
 }
 

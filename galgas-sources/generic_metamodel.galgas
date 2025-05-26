@@ -3,8 +3,8 @@
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 map @bitSliceTable {
-  public var @uint mSliceIndex
-  public var @uint mSliceSize
+  public let @uint mSliceIndex
+  public let @uint mSliceSize
   insert insertKey error message "the '%K' slice is already declared in %L"
   search searchKey error message "the '%K' slice is not declared"
 }
@@ -12,9 +12,9 @@ map @bitSliceTable {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @registerExpression {
-  public var @lstring mRegisterName
-  public var @immediatExpression mOffset
-  public var @location mEndOfOffsetExpression
+  public let @lstring mRegisterName
+  public let @immediatExpression mOffset
+  public let @location mEndOfOffsetExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -33,38 +33,38 @@ enum @registerProtection {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @byteDeclarationInRam : @declarationInRam {
-  public var @lstring mName
-  public var @immediatExpression mSizeExpression
-  public var @bitSliceTable mBitSliceTable
-  public var @string mBitDefinitionString
-  public var @registerProtection mProtection
+  public let @lstring mName
+  public let @immediatExpression mSizeExpression
+  public let @bitSliceTable mBitSliceTable
+  public let @string mBitDefinitionString
+  public let @registerProtection mProtection
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @declarationInRamList {
-  public var @declarationInRam mDeclarationInRAM
+  public let @declarationInRam mDeclarationInRAM
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @ramDefinitionList {
-  public var @lstring mBankName
-  public var @declarationInRamList mDeclaration
+  public let @lstring mBankName
+  public let @declarationInRamList mDeclaration
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @configSettingList {
-  public var @lstring mSettingName
-  public var @lstring mSettingValue
+  public let @lstring mSettingName
+  public let @lstring mSettingValue
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @configDefinitionList {
-  public var @location mDefinitionLocation
-  public var @configSettingList mSettingList
+  public let @location mDefinitionLocation
+  public let @configSettingList mSettingList
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
@@ -75,172 +75,172 @@ abstract class @immediatExpression {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @immediatExpressionList {
-  public var @immediatExpression mExpression
-  public var @location mErrorLocation
+  public let @immediatExpression mExpression
+  public let @location mErrorLocation
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatInteger : @immediatExpression {
-  public var @luint mValue
+  public let @luint mValue
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatRegister : @immediatExpression {
-  public var @registerExpression mRegister
+  public let @registerExpression mRegister
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatAdd : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatSub : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatMul : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatDiv : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatMod : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatOr : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatAnd : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatXor : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatLeftShift : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatRightShift : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatEqualTest : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatNotEqualTest : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatGreaterTest : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatGreaterOrEqualTest : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatLowerTest : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatLowerOrEqualTest : @immediatExpression {
-  public var @immediatExpression mLeftExpression
-  public var @immediatExpression mRightExpression
+  public let @immediatExpression mLeftExpression
+  public let @immediatExpression mRightExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatNegate : @immediatExpression {
-  public var @immediatExpression mExpression
+  public let @immediatExpression mExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatComplement : @immediatExpression {
-  public var @immediatExpression mExpression
+  public let @immediatExpression mExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @immediatSliceExpressionList {
-  public var @lstring mSliceName
-  public var @immediatExpression mExpression
+  public let @lstring mSliceName
+  public let @immediatExpression mExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @immediatSlice : @immediatExpression {
-  public var @lstring mRegisterName
-  public var @immediatSliceExpressionList mSliceExpressionList
+  public let @lstring mRegisterName
+  public let @immediatSliceExpressionList mSliceExpressionList
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 list @constantDefinitionList {
-  public var @lstring mConstantName
-  public var @immediatExpression mExpression
+  public let @lstring mConstantName
+  public let @immediatExpression mExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 map @actualConfigurationMap {
-  public var @uint mRegisterAddress
-  public var @uint mRegisterValue
+  public let @uint mRegisterAddress
+  public let @uint mRegisterValue
   insert insertKey error message "the '%K' configuration register is already declared in %L"
   search searchKey error message "the '%K' configuration register is not declared"
 }
@@ -253,21 +253,21 @@ abstract class @bitNumberExpression {
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @bitNumberLiteralExpression : @bitNumberExpression {
-  public var @immediatExpression mBitNumberLiteralExpression
-  public var @location mEndOfExpression
+  public let @immediatExpression mBitNumberLiteralExpression
+  public let @location mEndOfExpression
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @bitNumberLiteralValue : @bitNumberExpression {
-  public var @luint mBitNumberLiteralValue
+  public let @luint mBitNumberLiteralValue
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
 class @bitNumberLabelValue : @bitNumberExpression {
-  public var @lstring mBitNumberLabelValue
-  public var @luint mBitNumberIndexValue
+  public let @lstring mBitNumberLabelValue
+  public let @luint mBitNumberIndexValue
 }
 
 #———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

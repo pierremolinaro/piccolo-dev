@@ -7880,16 +7880,6 @@ GGS_immediatExpression GGS_immediatAdd::readProperty_mLeftExpression (void) cons
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatAdd::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatAdd * p = (cPtr_immediatAdd *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatAdd) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatAdd::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -7897,16 +7887,6 @@ GGS_immediatExpression GGS_immediatAdd::readProperty_mRightExpression (void) con
     cPtr_immediatAdd * p = (cPtr_immediatAdd *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatAdd) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatAdd::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatAdd * p = (cPtr_immediatAdd *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatAdd) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -8198,16 +8178,6 @@ GGS_immediatExpression GGS_immediatSub::readProperty_mLeftExpression (void) cons
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatSub::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatSub * p = (cPtr_immediatSub *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatSub) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatSub::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -8215,16 +8185,6 @@ GGS_immediatExpression GGS_immediatSub::readProperty_mRightExpression (void) con
     cPtr_immediatSub * p = (cPtr_immediatSub *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatSub) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatSub::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatSub * p = (cPtr_immediatSub *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatSub) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -8516,16 +8476,6 @@ GGS_immediatExpression GGS_immediatMul::readProperty_mLeftExpression (void) cons
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatMul::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatMul * p = (cPtr_immediatMul *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatMul) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatMul::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -8533,16 +8483,6 @@ GGS_immediatExpression GGS_immediatMul::readProperty_mRightExpression (void) con
     cPtr_immediatMul * p = (cPtr_immediatMul *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatMul) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatMul::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatMul * p = (cPtr_immediatMul *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatMul) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -8834,16 +8774,6 @@ GGS_immediatExpression GGS_immediatDiv::readProperty_mLeftExpression (void) cons
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatDiv::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatDiv * p = (cPtr_immediatDiv *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatDiv) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatDiv::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -8851,16 +8781,6 @@ GGS_immediatExpression GGS_immediatDiv::readProperty_mRightExpression (void) con
     cPtr_immediatDiv * p = (cPtr_immediatDiv *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatDiv) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatDiv::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatDiv * p = (cPtr_immediatDiv *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatDiv) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -9152,16 +9072,6 @@ GGS_immediatExpression GGS_immediatMod::readProperty_mLeftExpression (void) cons
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatMod::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatMod * p = (cPtr_immediatMod *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatMod) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatMod::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -9169,16 +9079,6 @@ GGS_immediatExpression GGS_immediatMod::readProperty_mRightExpression (void) con
     cPtr_immediatMod * p = (cPtr_immediatMod *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatMod) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatMod::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatMod * p = (cPtr_immediatMod *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatMod) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -9470,16 +9370,6 @@ GGS_immediatExpression GGS_immediatOr::readProperty_mLeftExpression (void) const
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatOr::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatOr * p = (cPtr_immediatOr *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatOr) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatOr::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -9487,16 +9377,6 @@ GGS_immediatExpression GGS_immediatOr::readProperty_mRightExpression (void) cons
     cPtr_immediatOr * p = (cPtr_immediatOr *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatOr) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatOr::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatOr * p = (cPtr_immediatOr *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatOr) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -9788,16 +9668,6 @@ GGS_immediatExpression GGS_immediatAnd::readProperty_mLeftExpression (void) cons
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatAnd::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatAnd * p = (cPtr_immediatAnd *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatAnd) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatAnd::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -9805,16 +9675,6 @@ GGS_immediatExpression GGS_immediatAnd::readProperty_mRightExpression (void) con
     cPtr_immediatAnd * p = (cPtr_immediatAnd *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatAnd) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatAnd::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatAnd * p = (cPtr_immediatAnd *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatAnd) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -10106,16 +9966,6 @@ GGS_immediatExpression GGS_immediatXor::readProperty_mLeftExpression (void) cons
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatXor::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatXor * p = (cPtr_immediatXor *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatXor) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatXor::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -10123,16 +9973,6 @@ GGS_immediatExpression GGS_immediatXor::readProperty_mRightExpression (void) con
     cPtr_immediatXor * p = (cPtr_immediatXor *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatXor) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatXor::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatXor * p = (cPtr_immediatXor *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatXor) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -10424,16 +10264,6 @@ GGS_immediatExpression GGS_immediatLeftShift::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatLeftShift::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLeftShift * p = (cPtr_immediatLeftShift *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLeftShift) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatLeftShift::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -10441,16 +10271,6 @@ GGS_immediatExpression GGS_immediatLeftShift::readProperty_mRightExpression (voi
     cPtr_immediatLeftShift * p = (cPtr_immediatLeftShift *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatLeftShift) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatLeftShift::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLeftShift * p = (cPtr_immediatLeftShift *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLeftShift) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -10742,16 +10562,6 @@ GGS_immediatExpression GGS_immediatRightShift::readProperty_mLeftExpression (voi
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatRightShift::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatRightShift * p = (cPtr_immediatRightShift *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatRightShift) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatRightShift::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -10759,16 +10569,6 @@ GGS_immediatExpression GGS_immediatRightShift::readProperty_mRightExpression (vo
     cPtr_immediatRightShift * p = (cPtr_immediatRightShift *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatRightShift) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatRightShift::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatRightShift * p = (cPtr_immediatRightShift *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatRightShift) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -11060,16 +10860,6 @@ GGS_immediatExpression GGS_immediatEqualTest::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatEqualTest::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatEqualTest * p = (cPtr_immediatEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatEqualTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatEqualTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -11077,16 +10867,6 @@ GGS_immediatExpression GGS_immediatEqualTest::readProperty_mRightExpression (voi
     cPtr_immediatEqualTest * p = (cPtr_immediatEqualTest *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatEqualTest) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatEqualTest::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatEqualTest * p = (cPtr_immediatEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatEqualTest) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -11378,16 +11158,6 @@ GGS_immediatExpression GGS_immediatNotEqualTest::readProperty_mLeftExpression (v
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatNotEqualTest::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatNotEqualTest * p = (cPtr_immediatNotEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatNotEqualTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatNotEqualTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -11395,16 +11165,6 @@ GGS_immediatExpression GGS_immediatNotEqualTest::readProperty_mRightExpression (
     cPtr_immediatNotEqualTest * p = (cPtr_immediatNotEqualTest *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatNotEqualTest) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatNotEqualTest::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatNotEqualTest * p = (cPtr_immediatNotEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatNotEqualTest) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -11696,16 +11456,6 @@ GGS_immediatExpression GGS_immediatGreaterTest::readProperty_mLeftExpression (vo
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatGreaterTest::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatGreaterTest * p = (cPtr_immediatGreaterTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatGreaterTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatGreaterTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -11713,16 +11463,6 @@ GGS_immediatExpression GGS_immediatGreaterTest::readProperty_mRightExpression (v
     cPtr_immediatGreaterTest * p = (cPtr_immediatGreaterTest *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatGreaterTest) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatGreaterTest::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatGreaterTest * p = (cPtr_immediatGreaterTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatGreaterTest) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -12014,16 +11754,6 @@ GGS_immediatExpression GGS_immediatGreaterOrEqualTest::readProperty_mLeftExpress
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatGreaterOrEqualTest::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatGreaterOrEqualTest * p = (cPtr_immediatGreaterOrEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatGreaterOrEqualTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatGreaterOrEqualTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -12031,16 +11761,6 @@ GGS_immediatExpression GGS_immediatGreaterOrEqualTest::readProperty_mRightExpres
     cPtr_immediatGreaterOrEqualTest * p = (cPtr_immediatGreaterOrEqualTest *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatGreaterOrEqualTest) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatGreaterOrEqualTest::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatGreaterOrEqualTest * p = (cPtr_immediatGreaterOrEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatGreaterOrEqualTest) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -12332,16 +12052,6 @@ GGS_immediatExpression GGS_immediatLowerTest::readProperty_mLeftExpression (void
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatLowerTest::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLowerTest * p = (cPtr_immediatLowerTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLowerTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatLowerTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -12349,16 +12059,6 @@ GGS_immediatExpression GGS_immediatLowerTest::readProperty_mRightExpression (voi
     cPtr_immediatLowerTest * p = (cPtr_immediatLowerTest *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatLowerTest) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatLowerTest::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLowerTest * p = (cPtr_immediatLowerTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLowerTest) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -12650,16 +12350,6 @@ GGS_immediatExpression GGS_immediatLowerOrEqualTest::readProperty_mLeftExpressio
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_immediatLowerOrEqualTest::setProperty_mLeftExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLowerOrEqualTest * p = (cPtr_immediatLowerOrEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLowerOrEqualTest) ;
-    p->mProperty_mLeftExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_immediatExpression GGS_immediatLowerOrEqualTest::readProperty_mRightExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_immediatExpression () ;
@@ -12667,16 +12357,6 @@ GGS_immediatExpression GGS_immediatLowerOrEqualTest::readProperty_mRightExpressi
     cPtr_immediatLowerOrEqualTest * p = (cPtr_immediatLowerOrEqualTest *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatLowerOrEqualTest) ;
     return p->mProperty_mRightExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatLowerOrEqualTest::setProperty_mRightExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatLowerOrEqualTest * p = (cPtr_immediatLowerOrEqualTest *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatLowerOrEqualTest) ;
-    p->mProperty_mRightExpression = inValue ;
   }
 }
 
@@ -12963,16 +12643,6 @@ GGS_immediatExpression GGS_immediatNegate::readProperty_mExpression (void) const
 }
 
 //--------------------------------------------------------------------------------------------------
-
-void GGS_immediatNegate::setProperty_mExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatNegate * p = (cPtr_immediatNegate *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatNegate) ;
-    p->mProperty_mExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @immediatNegate class
 //--------------------------------------------------------------------------------------------------
 
@@ -13244,16 +12914,6 @@ GGS_immediatExpression GGS_immediatComplement::readProperty_mExpression (void) c
     cPtr_immediatComplement * p = (cPtr_immediatComplement *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_immediatComplement) ;
     return p->mProperty_mExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_immediatComplement::setProperty_mExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_immediatComplement * p = (cPtr_immediatComplement *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_immediatComplement) ;
-    p->mProperty_mExpression = inValue ;
   }
 }
 
@@ -15219,16 +14879,6 @@ GGS_immediatExpression GGS_bitNumberLiteralExpression::readProperty_mBitNumberLi
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_bitNumberLiteralExpression::setProperty_mBitNumberLiteralExpression (const GGS_immediatExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_bitNumberLiteralExpression * p = (cPtr_bitNumberLiteralExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
-    p->mProperty_mBitNumberLiteralExpression = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_location GGS_bitNumberLiteralExpression::readProperty_mEndOfExpression (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_location () ;
@@ -15236,16 +14886,6 @@ GGS_location GGS_bitNumberLiteralExpression::readProperty_mEndOfExpression (void
     cPtr_bitNumberLiteralExpression * p = (cPtr_bitNumberLiteralExpression *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
     return p->mProperty_mEndOfExpression ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_bitNumberLiteralExpression::setProperty_mEndOfExpression (const GGS_location & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_bitNumberLiteralExpression * p = (cPtr_bitNumberLiteralExpression *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLiteralExpression) ;
-    p->mProperty_mEndOfExpression = inValue ;
   }
 }
 
@@ -15528,16 +15168,6 @@ GGS_luint GGS_bitNumberLiteralValue::readProperty_mBitNumberLiteralValue (void) 
     cPtr_bitNumberLiteralValue * p = (cPtr_bitNumberLiteralValue *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_bitNumberLiteralValue) ;
     return p->mProperty_mBitNumberLiteralValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_bitNumberLiteralValue::setProperty_mBitNumberLiteralValue (const GGS_luint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_bitNumberLiteralValue * p = (cPtr_bitNumberLiteralValue *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_bitNumberLiteralValue) ;
-    p->mProperty_mBitNumberLiteralValue = inValue ;
   }
 }
 
@@ -17885,6 +17515,361 @@ GGS_configFieldMap GGS_configFieldMap::extractObject (const GGS_object & inObjec
       result = *p ;
     }else{
       inCompiler->castError ("configFieldMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GGS_fieldSettingMap_2E_element & inValue
+                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inValue.mProperty_lkey COMMA_THERE),
+mProperty_mValue (inValue.mProperty_mValue),
+mProperty_mMask (inValue.mProperty_mMask) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_fieldSettingMap::cMapElement_fieldSettingMap (const GGS_lstring & inKey,
+                                                          const GGS_uint & in_mValue,
+                                                          const GGS_uint & in_mMask
+                                                          COMMA_LOCATION_ARGS) :
+cMapElement (inKey COMMA_THERE),
+mProperty_mValue (in_mValue),
+mProperty_mMask (in_mMask) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool cMapElement_fieldSettingMap::isValid (void) const {
+  return mProperty_lkey.isValid () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement * cMapElement_fieldSettingMap::copy (void) {
+  cMapElement * result = nullptr ;
+  macroMyNew (result, cMapElement_fieldSettingMap (mProperty_lkey, mProperty_mValue, mProperty_mMask COMMA_HERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cMapElement_fieldSettingMap::description (String & ioString, const int32_t inIndentation) const {
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mValue" ":") ;
+  mProperty_mValue.description (ioString, inIndentation) ;
+  ioString.appendNewLine () ;
+  ioString.appendStringMultiple ("| ", inIndentation) ;
+  ioString.appendCString ("mMask" ":") ;
+  mProperty_mMask.description (ioString, inIndentation) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap::GGS_fieldSettingMap (void) :
+AC_GALGAS_map () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap::GGS_fieldSettingMap (const GGS_fieldSettingMap & inSource) :
+AC_GALGAS_map (inSource) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap & GGS_fieldSettingMap::operator = (const GGS_fieldSettingMap & inSource) {
+  * ((AC_GALGAS_map *) this) = inSource ;
+  return * this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GGS_fieldSettingMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::class_func_emptyMap (LOCATION_ARGS) {
+  GGS_fieldSettingMap result ;
+  result.makeNewEmptyMap (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap_2E_element_3F_ GGS_fieldSettingMap
+::readSubscript__3F_ (const class GGS_string & inKey,
+                            Compiler * /* inCompiler */
+                            COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_fieldSettingMap_2E_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) searchForKey (inKey) ;
+    if (nullptr == p) {
+      result = GGS_fieldSettingMap_2E_element_3F_::init_nil () ;
+    }else{
+      GGS_fieldSettingMap_2E_element element ;
+      element.mProperty_lkey = p->mProperty_lkey ;
+      element.mProperty_mValue = p->mProperty_mValue ;
+      element.mProperty_mMask = p->mProperty_mMask ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::class_func_mapWithMapToOverride (const GGS_fieldSettingMap & inMapToOverride
+                                                                          COMMA_LOCATION_ARGS) {
+  GGS_fieldSettingMap result ;
+  result.makeNewEmptyMapWithMapToOverride (inMapToOverride COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::getter_overriddenMap (Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const {
+  GGS_fieldSettingMap result ;
+  getOverridenMap (result, inCompiler COMMA_THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::setter_insertKey (GGS_lstring inKey,
+                                            GGS_uint inArgument0,
+                                            GGS_uint inArgument1,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) {
+  cMapElement_fieldSettingMap * p = nullptr ;
+  macroMyNew (p, cMapElement_fieldSettingMap (inKey, inArgument0, inArgument1 COMMA_HERE)) ;
+  capCollectionElement attributes ;
+  attributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+  const char * kInsertErrorMessage = "the '%K' configuration register setting is already declared in %L" ;
+  const char * kShadowErrorMessage = "" ;
+  performInsert (attributes, inCompiler, kInsertErrorMessage, kShadowErrorMessage COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const char * kSearchErrorMessage_fieldSettingMap_searchKey = "the '%K' configuration register setting is not declared" ;
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::method_searchKey (GGS_lstring inKey,
+                                            GGS_uint & outArgument0,
+                                            GGS_uint & outArgument1,
+                                            Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) performSearch (inKey,
+                                                                                               inCompiler,
+                                                                                               kSearchErrorMessage_fieldSettingMap_searchKey
+                                                                                               COMMA_THERE) ;
+  if (nullptr == p) {
+    outArgument0.drop () ;
+    outArgument1.drop () ;
+  }else{
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    outArgument0 = p->mProperty_mValue ;
+    outArgument1 = p->mProperty_mMask ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint GGS_fieldSettingMap::getter_mValueForKey (const GGS_string & inKey,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
+  GGS_uint result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    result = p->mProperty_mValue ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint GGS_fieldSettingMap::getter_mMaskForKey (const GGS_string & inKey,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const {
+  const cCollectionElement * attributes = searchForReadingAttribute (inKey, inCompiler COMMA_THERE) ;
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) attributes ;
+  GGS_uint result ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    result = p->mProperty_mMask ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::setter_setMValueForKey (GGS_uint inAttributeValue,
+                                                  GGS_string inKey,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    p->mProperty_mValue = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_fieldSettingMap::setter_setMMaskForKey (GGS_uint inAttributeValue,
+                                                 GGS_string inKey,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
+  cCollectionElement * attributes = searchForReadWriteAttribute (inKey, true, inCompiler COMMA_THERE) ;
+  cMapElement_fieldSettingMap * p = (cMapElement_fieldSettingMap *) attributes ;
+  if (nullptr != p) {
+    macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+    p->mProperty_mMask = inAttributeValue ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cMapElement_fieldSettingMap * GGS_fieldSettingMap::readWriteAccessForWithInstruction (Compiler * inCompiler,
+                                                                                      const GGS_string & inKey
+                                                                                      COMMA_LOCATION_ARGS) {
+  cMapElement_fieldSettingMap * result = (cMapElement_fieldSettingMap *) searchForReadWriteAttribute (inKey, false, inCompiler COMMA_THERE) ;
+  macroNullOrValidSharedObject (result, cMapElement_fieldSettingMap) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @fieldSettingMap
+//--------------------------------------------------------------------------------------------------
+
+DownEnumerator_fieldSettingMap::DownEnumerator_fieldSettingMap (const GGS_fieldSettingMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Down) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap_2E_element DownEnumerator_fieldSettingMap::current (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return GGS_fieldSettingMap_2E_element (p->mProperty_lkey, p->mProperty_mValue, p->mProperty_mMask) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring DownEnumerator_fieldSettingMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint DownEnumerator_fieldSettingMap::current_mValue (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return p->mProperty_mValue ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint DownEnumerator_fieldSettingMap::current_mMask (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return p->mProperty_mMask ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Up Enumerator for @fieldSettingMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_fieldSettingMap::UpEnumerator_fieldSettingMap (const GGS_fieldSettingMap & inEnumeratedObject) :
+cGenericAbstractEnumerator (EnumerationOrder::Up) {
+  inEnumeratedObject.populateEnumerationArray (mEnumerationArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap_2E_element UpEnumerator_fieldSettingMap::current (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return GGS_fieldSettingMap_2E_element (p->mProperty_lkey, p->mProperty_mValue, p->mProperty_mMask) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_fieldSettingMap::current_lkey (LOCATION_ARGS) const {
+  const cMapElement * p = (const cMapElement *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement) ;
+  return p->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_fieldSettingMap::current_mValue (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return p->mProperty_mValue ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_fieldSettingMap::current_mMask (LOCATION_ARGS) const {
+  const cMapElement_fieldSettingMap * p = (const cMapElement_fieldSettingMap *) currentObjectPtr (THERE) ;
+  macroValidSharedObject (p, cMapElement_fieldSettingMap) ;
+  return p->mProperty_mMask ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//     @fieldSettingMap generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor kTypeDescriptor_GALGAS_fieldSettingMap ("fieldSettingMap",
+                                                                       nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const C_galgas_type_descriptor * GGS_fieldSettingMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_fieldSettingMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_fieldSettingMap::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_fieldSettingMap (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_fieldSettingMap GGS_fieldSettingMap::extractObject (const GGS_object & inObject,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) {
+  GGS_fieldSettingMap result ;
+  const GGS_fieldSettingMap * p = (const GGS_fieldSettingMap *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_fieldSettingMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("fieldSettingMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

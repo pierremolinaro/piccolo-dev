@@ -3,10 +3,10 @@
 #----------------------------------------------------------------------------*
 
 map @configFieldMap {
-  public var @lstring mRegisterName
-  public var @luint mMaskValue
-  public var @lstring mDescription
-  public var @fieldSettingMap mFieldSettingMap
+  public let @lstring mRegisterName
+  public let @luint mMaskValue
+  public let @lstring mDescription
+  public let @fieldSettingMap mFieldSettingMap
   insert insertKey error message "the '%K' configuration field is already declared in %L"
   search searchKey error message "the '%K' configuration field is not declared"
 }

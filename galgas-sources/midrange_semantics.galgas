@@ -14,7 +14,7 @@ map @midrange_declaredRoutineMap {
 #----------------------------------------------------------------------------*
 
 proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceFileName {
-  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] deletingPathExtension]
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
     error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
@@ -152,15 +152,15 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     )
     var @string contents
     getGeneratedContents ( ?contents )
-    var @string destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
+    var @string destinationFile = [inSourceFileName deletingPathExtension] + ".hex"
     [contents writeToFileWhenDifferentContents !destinationFile ?*]
     if [option piccoloOptions.output_C_Array value] then
-      let @string baseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+      let @string baseName = [[inSourceFileName lastPathComponent] deletingPathExtension]
       get_C_ArrayImplementation ( !baseName ?contents )
-      destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".c"
+      destinationFile = [inSourceFileName deletingPathExtension] + ".c"
       [contents writeToFileWhenDifferentContents !destinationFile ?*]
       get_C_ArrayHeader ( !baseName ?contents )
-      destinationFile = [inSourceFileName stringByDeletingPathExtension] + ".h"
+      destinationFile = [inSourceFileName deletingPathExtension] + ".h"
       [contents writeToFileWhenDifferentContents !destinationFile ?*]
     end
   #--- Write infos (if verbose mode)
@@ -189,22 +189,22 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
         !actualConfigurationMap
         ?assemblyCode
       )
-      let @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+      let @string asmDestinationFile = [inSourceFileName deletingPathExtension] + ".asm"
       [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*]
     end
   else # There are errors : delete hex and asm files
-    let @string hexDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".hex"
+    let @string hexDestinationFile = [inSourceFileName deletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
     end
-    let @string asmDestinationFile = [inSourceFileName stringByDeletingPathExtension] + ".asm"
+    let @string asmDestinationFile = [inSourceFileName deletingPathExtension] + ".asm"
     if [asmDestinationFile fileExists] then
       [@string deleteFile !asmDestinationFile]
     end
   end
 #-------------------------------- Listing file
   if [option piccoloOptions.ouputListingFile value] then
-    let @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
+    let @string listFile = [inSourceFileName deletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
 }

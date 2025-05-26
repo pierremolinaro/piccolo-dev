@@ -10,11 +10,11 @@ map @declaredByteMap {
 #----------------------------------------------------*
 
 map @registerTable {
-  public var @uintlist mRegisterAddressList
-  public var @uint mSize
-  public var @bitSliceTable mBitSliceTable
-  public var @string mBitDefinitionString
-  public var @registerProtection mProtection
+  public let @uintlist mRegisterAddressList
+  public let @uint mSize
+  public let @bitSliceTable mBitSliceTable
+  public let @string mBitDefinitionString
+  public let @registerProtection mProtection
   insert insertKey error message "the '%K' register is already declared in %L"
   search searchKey error message "the '%K' register is not declared"
 }
@@ -48,10 +48,10 @@ method @registerTable checkPrivateAccess
 #----------------------------------------------------*
 
 map @ramBankTable {
-  public var @uint mFirstAddress
-  public var @uint mFirstFreeAddress
-  public var @uint mLastAddressPlusOne
-  public var @uintlist mMirrorOffsetList
+  public let @uint mFirstAddress
+  public let @uint mFirstFreeAddress
+  public let @uint mLastAddressPlusOne
+  public let @uintlist mMirrorOffsetList
   insert insertKey error message "the '%K' bank ram is already declared in %L"
   search searchKey error message "the '%K' bank ram is not declared"
 }
@@ -65,16 +65,16 @@ enum @processorType {
 #----------------------------------------------------*
 
 list @illegalMaskList {
-  public var @luint mIllegalValue
-  public var @luint mIllegalMask
-  public var @lstring mDescription
+  public let @luint mIllegalValue
+  public let @luint mIllegalMask
+  public let @lstring mDescription
 }
 
 #----------------------------------------------------*
 
 map @fieldSettingMap {
-  public var @uint mValue
-  public var @uint mMask
+  public let @uint mValue
+  public let @uint mMask
   insert insertKey error message "the '%K' configuration register setting is already declared in %L"
   search searchKey error message "the '%K' configuration register setting is not declared"
 }
@@ -82,9 +82,9 @@ map @fieldSettingMap {
 #----------------------------------------------------*
 
 map @configRegisterMaskMap {
-  public var @luint mMaskValue
-  public var @lstring mDescription
-  public var @fieldSettingMap mFieldSettingMap
+  public let @luint mMaskValue
+  public let @lstring mDescription
+  public let @fieldSettingMap mFieldSettingMap
   insert insertKey error message "the '%K' configuration register mask is already declared in %L"
   search searchKey error message "the '%K' configuration register mask is not declared"
 }
@@ -92,10 +92,10 @@ map @configRegisterMaskMap {
 #----------------------------------------------------*
 
 map @configRegisterMap {
-  public var @luint mRegisterAddress
-  public var @luint mRegisterWidth
-  public var @configRegisterMaskMap mConfigRegisterMaskMap
-  public var @illegalMaskList mIllegalMaskList
+  public let @luint mRegisterAddress
+  public let @luint mRegisterWidth
+  public let @configRegisterMaskMap mConfigRegisterMaskMap
+  public let @illegalMaskList mIllegalMaskList
   insert insertKey error message "the '%K' configuration register is already declared in %L"
   search searchKey error message "the '%K' configuration register is not declared"
 }
@@ -103,16 +103,16 @@ map @configRegisterMap {
 #----------------------------------------------------*
 
 struct @piccoloDeviceModel {
-  public var @lstring mDeviceName
-  public var @processorType mProcessorType
-  public var @luint mRomSize
-  public var @luint mBankCount
-  public var @registerTable mRegisterTable
-  public var @ramBankTable mRamBankTable
-  public var @uint mEepromSize # 0 if no EEPROM
-  public var @uint mEepromAddress # 0 if no EEPROM
-  public var @configRegisterMap mConfigRegisterMap
-  public var @string mSharedBankName
+  public let @lstring mDeviceName
+  public let @processorType mProcessorType
+  public let @luint mRomSize
+  public let @luint mBankCount
+  public let @registerTable mRegisterTable
+  public let @ramBankTable mRamBankTable
+  public let @uint mEepromSize # 0 if no EEPROM
+  public let @uint mEepromAddress # 0 if no EEPROM
+  public let @configRegisterMap mConfigRegisterMap
+  public let @string mSharedBankName
 }
 
 #----------------------------------------------------*

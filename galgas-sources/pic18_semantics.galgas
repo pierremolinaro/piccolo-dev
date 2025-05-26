@@ -11,7 +11,7 @@ proc pic18_analyze
   ?let @string inSourceFileName
 {
 #-------------------------------- Check source file name
-  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] deletingPathExtension]
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
     error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
@@ -283,7 +283,7 @@ proc pic18_analyze
 #-------------------------------- Write listing file
   if [option piccoloOptions.ouputListingFile value] then
     listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-    let @string listFile = [inSourceFileName stringByDeletingPathExtension] + ".list"
+    let @string listFile = [inSourceFileName deletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
 }

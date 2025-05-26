@@ -9,621 +9,6 @@
 #include "all-declarations-1.h"
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_ORG reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG : public GGS_baseline_5F_assembly_5F_instruction {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (const class cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_uint readProperty_mOrigin (void) const ;
-  public: void setProperty_mOrigin (const GGS_uint & inValue) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ORG init_21_ (const class GGS_uint & inOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ORG extractObject (const GGS_object & inObject,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG class_func_new (const class GGS_uint & inOperand0,
-                                                                                 class Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @baseline_assembly_pseudo_ORG class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG : public cPtr_baseline_5F_assembly_5F_instruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void baseline_5F_assembly_5F_pseudo_5F_ORG_init_21_ (const class GGS_uint & inOperand0,
-                                                               Compiler * inCompiler) ;
-
-
-//--- Extension getter length
-  public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method enterLabelAtAddress
-  public: virtual void method_enterLabelAtAddress (class GGS_baseline_5F_symbolTable & arg_ioRoutineSymbolTable,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateBinaryCodeAtAddress
-  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method print
-  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_uint mProperty_mOrigin ;
-
-
-//--- Default constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (const GGS_uint & in_mOrigin,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak : public GGS_baseline_5F_assembly_5F_instruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (const class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) ;
-
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak init_nil (void) {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG bang_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_assembly_5F_pseudo_5F_ORG unwrappedValue (void) const {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak extractObject (const GGS_object & inObject,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public GGS_baseline_5F_assembly_5F_instruction {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (const class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_lstring readProperty_mRoutineName (void) const ;
-  public: void setProperty_mRoutineName (const GGS_lstring & inValue) ;
-
-  public: class GGS_bool readProperty_mIsRegular (void) const ;
-  public: void setProperty_mIsRegular (const GGS_bool & inValue) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                                    const class GGS_bool & inOperand1,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE extractObject (const GGS_object & inObject,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE class_func_new (const class GGS_lstring & inOperand0,
-                                                                                            const class GGS_bool & inOperand1,
-                                                                                            class Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @baseline_assembly_pseudo_BEGINOFROUTINE class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public cPtr_baseline_5F_assembly_5F_instruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                              const class GGS_bool & inOperand1,
-                                                                              Compiler * inCompiler) ;
-
-
-//--- Extension getter length
-  public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateBinaryCodeAtAddress
-  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method print
-  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_lstring mProperty_mRoutineName ;
-  public: GGS_bool mProperty_mIsRegular ;
-
-
-//--- Default constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (const GGS_lstring & in_mRoutineName,
-                                                                 const GGS_bool & in_mIsRegular,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak : public GGS_baseline_5F_assembly_5F_instruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (const class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) ;
-
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak init_nil (void) {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE bang_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE unwrappedValue (void) const {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak extractObject (const GGS_object & inObject,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE : public GGS_baseline_5F_assembly_5F_instruction {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (const class cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_lstring readProperty_mRoutineName (void) const ;
-  public: void setProperty_mRoutineName (const GGS_lstring & inValue) ;
-
-  public: class GGS_uint readProperty_mPage (void) const ;
-  public: void setProperty_mPage (const GGS_uint & inValue) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                                  const class GGS_uint & inOperand1,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE extractObject (const GGS_object & inObject,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE class_func_new (const class GGS_lstring & inOperand0,
-                                                                                          const class GGS_uint & inOperand1,
-                                                                                          class Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @baseline_assembly_pseudo_ENDOFROUTINE class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE : public cPtr_baseline_5F_assembly_5F_instruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                            const class GGS_uint & inOperand1,
-                                                                            Compiler * inCompiler) ;
-
-
-//--- Extension getter length
-  public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateBinaryCodeAtAddress
-  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method print
-  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_lstring mProperty_mRoutineName ;
-  public: GGS_uint mProperty_mPage ;
-
-
-//--- Default constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (const GGS_lstring & in_mRoutineName,
-                                                               const GGS_uint & in_mPage,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak : public GGS_baseline_5F_assembly_5F_instruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (const class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inSource) ;
-
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak init_nil (void) {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE bang_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE unwrappedValue (void) const {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak extractObject (const GGS_object & inObject,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_assembly_5F_pseudo_5F_LABEL reference class
 //--------------------------------------------------------------------------------------------------
 
@@ -636,7 +21,6 @@ class GGS_baseline_5F_assembly_5F_pseudo_5F_LABEL : public GGS_baseline_5F_assem
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mLabel (void) const ;
-  public: void setProperty_mLabel (const GGS_lstring & inValue) ;
 
 //-- Start of type generic part
 
@@ -839,7 +223,6 @@ class GGS_baseline_5F_assembly_5F_actualInstruction : public GGS_baseline_5F_ass
 
 //--------------------------------- Property access
   public: class GGS_location readProperty_mInstructionLocation (void) const ;
-  public: void setProperty_mInstructionLocation (const GGS_location & inValue) ;
 
 //-- Start of type generic part
 
@@ -1024,13 +407,10 @@ class GGS_baseline_5F_assembly_5F_instruction_5F_FD : public GGS_baseline_5F_ass
 
 //--------------------------------- Property access
   public: class GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code readProperty_mInstruction (void) const ;
-  public: void setProperty_mInstruction (const GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & inValue) ;
 
   public: class GGS_baseline_5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-  public: void setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GGS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
-  public: void setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) ;
 
 //-- Start of type generic part
 
@@ -1239,10 +619,8 @@ class GGS_baseline_5F_assembly_5F_instruction_5F_F : public GGS_baseline_5F_asse
 
 //--------------------------------- Property access
   public: class GGS_baseline_5F_F_5F_instruction_5F_base_5F_code readProperty_mInstruction (void) const ;
-  public: void setProperty_mInstruction (const GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & inValue) ;
 
   public: class GGS_baseline_5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-  public: void setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -1446,13 +824,10 @@ class GGS_baseline_5F_assembly_5F_instruction_5F_FB : public GGS_baseline_5F_ass
 
 //--------------------------------- Property access
   public: class GGS_baseline_5F_bit_5F_oriented_5F_op readProperty_mInstruction (void) const ;
-  public: void setProperty_mInstruction (const GGS_baseline_5F_bit_5F_oriented_5F_op & inValue) ;
 
   public: class GGS_baseline_5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-  public: void setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GGS_uint readProperty_mBitNumber (void) const ;
-  public: void setProperty_mBitNumber (const GGS_uint & inValue) ;
 
 //-- Start of type generic part
 
@@ -1661,13 +1036,10 @@ class GGS_baseline_5F_assembly_5F_instruction_5F_BitTestSkip : public GGS_baseli
 
 //--------------------------------- Property access
   public: class GGS_bool readProperty_mSkipIfSet (void) const ;
-  public: void setProperty_mSkipIfSet (const GGS_bool & inValue) ;
 
   public: class GGS_baseline_5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-  public: void setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GGS_uint readProperty_mBitNumber (void) const ;
-  public: void setProperty_mBitNumber (const GGS_uint & inValue) ;
 
 //-- Start of type generic part
 
@@ -1876,7 +1248,6 @@ class GGS_baseline_5F_assembly_5F_GOTO : public GGS_baseline_5F_assembly_5F_actu
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mTargetLabel (void) const ;
-  public: void setProperty_mTargetLabel (const GGS_lstring & inValue) ;
 
 //-- Start of type generic part
 
@@ -2266,7 +1637,6 @@ class GGS_baseline_5F_assembly_5F_CALL : public GGS_baseline_5F_assembly_5F_actu
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mTargetLabel (void) const ;
-  public: void setProperty_mTargetLabel (const GGS_lstring & inValue) ;
 
 //-- Start of type generic part
 
@@ -2465,7 +1835,6 @@ class GGS_baseline_5F_assembly_5F_WO_5F_OPERAND : public GGS_baseline_5F_assembl
 
 //--------------------------------- Property access
   public: class GGS_baseline_5F_WO_5F_OPERAND_5F_group readProperty_mInstruction (void) const ;
-  public: void setProperty_mInstruction (const GGS_baseline_5F_WO_5F_OPERAND_5F_group & inValue) ;
 
 //-- Start of type generic part
 
@@ -2664,10 +2033,8 @@ class GGS_baseline_5F_assembly_5F_TRIS : public GGS_baseline_5F_assembly_5F_actu
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mOperand (void) const ;
-  public: void setProperty_mOperand (const GGS_lstring & inValue) ;
 
   public: class GGS_uint readProperty_mOpcode (void) const ;
-  public: void setProperty_mOpcode (const GGS_uint & inValue) ;
 
 //-- Start of type generic part
 
@@ -2871,10 +2238,8 @@ class GGS_baseline_5F_assembly_5F_instruction_5F_literalOperation : public GGS_b
 
 //--------------------------------- Property access
   public: class GGS_baseline_5F_literal_5F_instruction_5F_opcode readProperty_mInstruction (void) const ;
-  public: void setProperty_mInstruction (const GGS_baseline_5F_literal_5F_instruction_5F_opcode & inValue) ;
 
   public: class GGS_uint readProperty_mLiteralValue (void) const ;
-  public: void setProperty_mLiteralValue (const GGS_uint & inValue) ;
 
 //-- Start of type generic part
 
@@ -3078,13 +2443,10 @@ class GGS_baseline_5F_assembly_5F_incDecRegisterInCondition : public GGS_baselin
 
 //--------------------------------- Property access
   public: class GGS_baseline_5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-  public: void setProperty_mRegisterDescription (const GGS_baseline_5F_intermediate_5F_registerExpression & inValue) ;
 
   public: class GGS_bool readProperty_mIncrement (void) const ;
-  public: void setProperty_mIncrement (const GGS_bool & inValue) ;
 
   public: class GGS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
-  public: void setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) ;
 
 //-- Start of type generic part
 
@@ -3672,7 +3034,6 @@ class GGS_midrange_5F_instruction : public AC_GALGAS_reference_class {
 
 //--------------------------------- Property access
   public: class GGS_location readProperty_mInstructionLocation (void) const ;
-  public: void setProperty_mInstructionLocation (const GGS_location & inValue) ;
 
 //-- Start of type generic part
 
@@ -4307,10 +3668,8 @@ class GGS_midrange_5F_instruction_5F_banksel : public GGS_midrange_5F_instructio
 
 //--------------------------------- Property access
   public: class GGS_luint readProperty_mBankIndex (void) const ;
-  public: void setProperty_mBankIndex (const GGS_luint & inValue) ;
 
   public: class GGS_bool readProperty_mWarningOnUselessBanksel (void) const ;
-  public: void setProperty_mWarningOnUselessBanksel (const GGS_bool & inValue) ;
 
 //-- Start of type generic part
 
@@ -4523,7 +3882,6 @@ class GGS_midrangeInstruction_5F_checkbank : public GGS_midrange_5F_instruction 
 
 //--------------------------------- Property access
   public: class GGS_uint readProperty_mBankIndex (void) const ;
-  public: void setProperty_mBankIndex (const GGS_uint & inValue) ;
 
 //-- Start of type generic part
 
@@ -4931,10 +4289,8 @@ class GGS_midrange_5F_instruction_5F_banksel_5F_register : public GGS_midrange_5
 
 //--------------------------------- Property access
   public: class GGS_registerExpression readProperty_mRegister (void) const ;
-  public: void setProperty_mRegister (const GGS_registerExpression & inValue) ;
 
   public: class GGS_bool readProperty_mWarningOnUselessBanksel (void) const ;
-  public: void setProperty_mWarningOnUselessBanksel (const GGS_bool & inValue) ;
 
 //-- Start of type generic part
 
@@ -5147,13 +4503,10 @@ class GGS_midrange_5F_instruction_5F_savebank : public GGS_midrange_5F_instructi
 
 //--------------------------------- Property access
   public: class GGS_registerExpression readProperty_mRegister (void) const ;
-  public: void setProperty_mRegister (const GGS_registerExpression & inValue) ;
 
   public: class GGS_midrange_5F_instructionList readProperty_mInstructionList (void) const ;
-  public: void setProperty_mInstructionList (const GGS_midrange_5F_instructionList & inValue) ;
 
   public: class GGS_location readProperty_mEndOfSaveBankInstruction (void) const ;
-  public: void setProperty_mEndOfSaveBankInstruction (const GGS_location & inValue) ;
 
 //-- Start of type generic part
 
@@ -5371,19 +4724,14 @@ class GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT : public GGS_midrange_5F_i
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mConstantName (void) const ;
-  public: void setProperty_mConstantName (const GGS_lstring & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mLowerBoundExpression (void) const ;
-  public: void setProperty_mLowerBoundExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mUpperBoundExpression (void) const ;
-  public: void setProperty_mUpperBoundExpression (const GGS_immediatExpression & inValue) ;
 
   public: class GGS_midrange_5F_instructionList readProperty_mInstructionList (void) const ;
-  public: void setProperty_mInstructionList (const GGS_midrange_5F_instructionList & inValue) ;
 
   public: class GGS_location readProperty_mEndOfInstruction (void) const ;
-  public: void setProperty_mEndOfInstruction (const GGS_location & inValue) ;
 
 //-- Start of type generic part
 
@@ -5760,13 +5108,10 @@ class GGS_midrange_5F_instruction_5F_FD : public GGS_midrange_5F_instruction {
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_instruction_5F_FD_5F_base_5F_code readProperty_mInstruction_5F_FD_5F_base_5F_code (void) const ;
-  public: void setProperty_mInstruction_5F_FD_5F_base_5F_code (const GGS_midrange_5F_instruction_5F_FD_5F_base_5F_code & inValue) ;
 
   public: class GGS_registerExpression readProperty_mRegisterExpression (void) const ;
-  public: void setProperty_mRegisterExpression (const GGS_registerExpression & inValue) ;
 
   public: class GGS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
-  public: void setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) ;
 
 //-- Start of type generic part
 
@@ -6071,10 +5416,8 @@ class GGS_midrange_5F_instruction_5F_F : public GGS_midrange_5F_instruction {
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_F_5F_instruction_5F_base_5F_code readProperty_mFAinstruction (void) const ;
-  public: void setProperty_mFAinstruction (const GGS_midrange_5F_F_5F_instruction_5F_base_5F_code & inValue) ;
 
   public: class GGS_registerExpression readProperty_mRegisterExpression (void) const ;
-  public: void setProperty_mRegisterExpression (const GGS_registerExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -6374,13 +5717,10 @@ class GGS_midrange_5F_instruction_5F_FB : public GGS_midrange_5F_instruction {
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_bit_5F_oriented_5F_op readProperty_mBitOrientedOp (void) const ;
-  public: void setProperty_mBitOrientedOp (const GGS_midrange_5F_bit_5F_oriented_5F_op & inValue) ;
 
   public: class GGS_registerExpression readProperty_mRegisterExpression (void) const ;
-  public: void setProperty_mRegisterExpression (const GGS_registerExpression & inValue) ;
 
   public: class GGS_bitNumberExpression readProperty_mBitNumber (void) const ;
-  public: void setProperty_mBitNumber (const GGS_bitNumberExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -6598,7 +5938,6 @@ class GGS_midrange_5F_instruction_5F_CALL : public GGS_midrange_5F_instruction {
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mTargetLabel (void) const ;
-  public: void setProperty_mTargetLabel (const GGS_lstring & inValue) ;
 
 //-- Start of type generic part
 
@@ -6810,7 +6149,6 @@ class GGS_midrange_5F_instruction_5F_JSR : public GGS_midrange_5F_instruction {
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mTargetLabel (void) const ;
-  public: void setProperty_mTargetLabel (const GGS_lstring & inValue) ;
 
 //-- Start of type generic part
 
@@ -7022,7 +6360,6 @@ class GGS_midrange_5F_instruction_5F_JUMP : public GGS_midrange_5F_instruction {
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mTargetLabel (void) const ;
-  public: void setProperty_mTargetLabel (const GGS_lstring & inValue) ;
 
 //-- Start of type generic part
 
@@ -7234,7 +6571,6 @@ class GGS_midrange_5F_instruction_5F_GOTO : public GGS_midrange_5F_instruction {
 
 //--------------------------------- Property access
   public: class GGS_lstring readProperty_mTargetLabel (void) const ;
-  public: void setProperty_mTargetLabel (const GGS_lstring & inValue) ;
 
 //-- Start of type generic part
 
@@ -8360,10 +7696,8 @@ class GGS_midrange_5F_instruction_5F_literalOperation : public GGS_midrange_5F_i
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_literal_5F_instruction_5F_opcode readProperty_mLiteralInstruction (void) const ;
-  public: void setProperty_mLiteralInstruction (const GGS_midrange_5F_literal_5F_instruction_5F_opcode & inValue) ;
 
   public: class GGS_immediatExpression readProperty_mImmediatExpression (void) const ;
-  public: void setProperty_mImmediatExpression (const GGS_immediatExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -8576,7 +7910,6 @@ class GGS_midrange_5F_instruction_5F_MNOP : public GGS_midrange_5F_instruction {
 
 //--------------------------------- Property access
   public: class GGS_luint readProperty_mOccurrenceFactor (void) const ;
-  public: void setProperty_mOccurrenceFactor (const GGS_luint & inValue) ;
 
 //-- Start of type generic part
 
@@ -8784,10 +8117,8 @@ class GGS_midrange_5F_instruction_5F_FOREVER : public GGS_midrange_5F_instructio
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_instructionList readProperty_mInstructionList (void) const ;
-  public: void setProperty_mInstructionList (const GGS_midrange_5F_instructionList & inValue) ;
 
   public: class GGS_location readProperty_mEndOfInstructionList (void) const ;
-  public: void setProperty_mEndOfInstructionList (const GGS_location & inValue) ;
 
 //-- Start of type generic part
 
@@ -9004,7 +8335,6 @@ class GGS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public GGS_midrange_5
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_instruction readProperty_mInstruction (void) const ;
-  public: void setProperty_mInstruction (const GGS_midrange_5F_instruction & inValue) ;
 
 //-- Start of type generic part
 
@@ -9188,13 +8518,10 @@ class GGS_midrange_5F_instruction_5F_IF_5F_BitTest : public GGS_midrange_5F_inst
 
 //--------------------------------- Property access
   public: class GGS_bool readProperty_mSkipIfSet (void) const ;
-  public: void setProperty_mSkipIfSet (const GGS_bool & inValue) ;
 
   public: class GGS_registerExpression readProperty_mRegisterExpression (void) const ;
-  public: void setProperty_mRegisterExpression (const GGS_registerExpression & inValue) ;
 
   public: class GGS_bitNumberExpression readProperty_mBitNumber (void) const ;
-  public: void setProperty_mBitNumber (const GGS_bitNumberExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -9424,13 +8751,10 @@ class GGS_midrange_5F_instruction_5F_IF_5F_IncDec : public GGS_midrange_5F_instr
 
 //--------------------------------- Property access
   public: class GGS_bool readProperty_mIncrement (void) const ;
-  public: void setProperty_mIncrement (const GGS_bool & inValue) ;
 
   public: class GGS_registerExpression readProperty_mRegisterExpression (void) const ;
-  public: void setProperty_mRegisterExpression (const GGS_registerExpression & inValue) ;
 
   public: class GGS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
-  public: void setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) ;
 
 //-- Start of type generic part
 
@@ -9839,16 +9163,12 @@ class GGS_midrange_5F_incDecRegisterInCondition : public GGS_midrange_5F_conditi
 
 //--------------------------------- Property access
   public: class GGS_registerExpression readProperty_mRegisterExpression (void) const ;
-  public: void setProperty_mRegisterExpression (const GGS_registerExpression & inValue) ;
 
   public: class GGS_bool readProperty_mIncrement (void) const ;
-  public: void setProperty_mIncrement (const GGS_bool & inValue) ;
 
   public: class GGS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
-  public: void setProperty_m_5F_W_5F_isDestination (const GGS_bool & inValue) ;
 
   public: class GGS_bool readProperty_mBranchIfZero (void) const ;
-  public: void setProperty_mBranchIfZero (const GGS_bool & inValue) ;
 
 //-- Start of type generic part
 
@@ -10067,7 +9387,6 @@ class GGS_midrange_5F_negateCondition : public GGS_midrange_5F_conditionExpressi
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_conditionExpression readProperty_mCondition (void) const ;
-  public: void setProperty_mCondition (const GGS_midrange_5F_conditionExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -10271,10 +9590,8 @@ class GGS_midrange_5F_andCondition : public GGS_midrange_5F_conditionExpression 
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_conditionExpression readProperty_mLeftExpression (void) const ;
-  public: void setProperty_mLeftExpression (const GGS_midrange_5F_conditionExpression & inValue) ;
 
   public: class GGS_midrange_5F_conditionExpression readProperty_mRightExpression (void) const ;
-  public: void setProperty_mRightExpression (const GGS_midrange_5F_conditionExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -10483,10 +9800,8 @@ class GGS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public GG
 
 //--------------------------------- Property access
   public: class GGS_registerExpression readProperty_mRegisterExpression (void) const ;
-  public: void setProperty_mRegisterExpression (const GGS_registerExpression & inValue) ;
 
   public: class GGS_bitNumberExpression readProperty_mBitNumber (void) const ;
-  public: void setProperty_mBitNumber (const GGS_bitNumberExpression & inValue) ;
 
 //-- Start of type generic part
 
@@ -10695,16 +10010,12 @@ class GGS_midrange_5F_instruction_5F_structured_5F_if : public GGS_midrange_5F_i
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_conditionExpression readProperty_mIfCondition (void) const ;
-  public: void setProperty_mIfCondition (const GGS_midrange_5F_conditionExpression & inValue) ;
 
   public: class GGS_midrange_5F_instructionList readProperty_mThenInstructionList (void) const ;
-  public: void setProperty_mThenInstructionList (const GGS_midrange_5F_instructionList & inValue) ;
 
   public: class GGS_midrange_5F_instructionList readProperty_mElseInstructionList (void) const ;
-  public: void setProperty_mElseInstructionList (const GGS_midrange_5F_instructionList & inValue) ;
 
   public: class GGS_location readProperty_mEndOfElsePartLocation (void) const ;
-  public: void setProperty_mEndOfElsePartLocation (const GGS_location & inValue) ;
 
 //-- Start of type generic part
 
@@ -11232,13 +10543,10 @@ class GGS_midrange_5F_instruction_5F_do_5F_while : public GGS_midrange_5F_instru
 
 //--------------------------------- Property access
   public: class GGS_midrange_5F_instructionList readProperty_mRepeatedInstructionList (void) const ;
-  public: void setProperty_mRepeatedInstructionList (const GGS_midrange_5F_instructionList & inValue) ;
 
   public: class GGS_location readProperty_mEndOfRepeatedInstructionList (void) const ;
-  public: void setProperty_mEndOfRepeatedInstructionList (const GGS_location & inValue) ;
 
   public: class GGS_midrange_5F_partList readProperty_mWhilePartList (void) const ;
-  public: void setProperty_mWhilePartList (const GGS_midrange_5F_partList & inValue) ;
 
 //-- Start of type generic part
 
@@ -12833,4 +12141,682 @@ class GGS_midrange_5F_intermediate_5F_instructionList_2E_element : public AC_GAL
 //--------------------------------------------------------------------------------------------------
 
 extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_instructionList_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @midrange_5F_intermediate_5F_NULL reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_midrange_5F_intermediate_5F_NULL : public GGS_midrange_5F_intermediate_5F_instruction {
+//--------------------------------- Default constructor
+  public: GGS_midrange_5F_intermediate_5F_NULL (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GGS_midrange_5F_intermediate_5F_NULL (const class cPtr_midrange_5F_intermediate_5F_NULL * inSourcePtr) ;
+
+//--------------------------------- Property access
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_midrange_5F_intermediate_5F_NULL init (Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_midrange_5F_intermediate_5F_NULL extractObject (const GGS_object & inObject,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_midrange_5F_intermediate_5F_NULL class_func_new (Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_midrange_5F_intermediate_5F_NULL & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 2: pointer class for @midrange_intermediate_NULL class
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_midrange_5F_intermediate_5F_NULL : public cPtr_midrange_5F_intermediate_5F_instruction {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void midrange_5F_intermediate_5F_NULL_init (Compiler * inCompiler) ;
+
+
+//--- Extension getter instructionLength
+  public: virtual class GGS_uint getter_instructionLength (Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter isNULL
+  public: virtual class GGS_bool getter_isNULL (Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildAssemblyCode
+  public: virtual void method_buildAssemblyCode (class GGS_string & arg_ioString,
+           class GGS_uint & arg_ioLocalLabelIndex,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method compute
+  public: virtual void method_compute (const class GGS_midrange_5F_symbolTableForConvertingRelatives arg_inRoutineSymbolTable,
+           class GGS_uint & arg_ioAddress,
+           class GGS_bool & arg_ioJUMP_or_JSR_fixed,
+           class GGS_midrange_5F_intermediate_5F_instructionList & arg_ioGeneratedInstructionList,
+           const class GGS_uint arg_inIndex,
+           class GGS_string & arg_ioListFileContents,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateBinaryCodeAtAddress
+  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_registerTable arg_inRegisterTable,
+           const class GGS_constantMap arg_inConstantMap,
+           const class GGS_uint arg_inTotalBankCount,
+           const class GGS_midrange_5F_symbolTable arg_inRoutineSymbolTable,
+           class GGS_string & arg_ioListFileContents,
+           class GGS_uint & arg_ioAddress,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method print
+  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+
+
+
+//--- Constructor
+  public: cPtr_midrange_5F_intermediate_5F_NULL (Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Class descriptor
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @midrange_5F_intermediate_5F_NULL_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_midrange_5F_intermediate_5F_NULL_2E_weak : public GGS_midrange_5F_intermediate_5F_instruction_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_midrange_5F_intermediate_5F_NULL_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_midrange_5F_intermediate_5F_NULL_2E_weak (const class GGS_midrange_5F_intermediate_5F_NULL & inSource) ;
+
+  public: GGS_midrange_5F_intermediate_5F_NULL_2E_weak & operator = (const class GGS_midrange_5F_intermediate_5F_NULL & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_midrange_5F_intermediate_5F_NULL_2E_weak init_nil (void) {
+    GGS_midrange_5F_intermediate_5F_NULL_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_midrange_5F_intermediate_5F_NULL bang_midrange_5F_intermediate_5F_NULL_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_midrange_5F_intermediate_5F_NULL unwrappedValue (void) const {
+    GGS_midrange_5F_intermediate_5F_NULL result ;
+    if (isValid ()) {
+      const cPtr_midrange_5F_intermediate_5F_NULL * p = (cPtr_midrange_5F_intermediate_5F_NULL *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_midrange_5F_intermediate_5F_NULL (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_midrange_5F_intermediate_5F_NULL_2E_weak extractObject (const GGS_object & inObject,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_midrange_5F_intermediate_5F_NULL_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_midrange_5F_intermediate_5F_NULL_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_NULL_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @midrange_5F_intermediate_5F_pseudo_5F_ORG reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG : public GGS_midrange_5F_intermediate_5F_instruction {
+//--------------------------------- Default constructor
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG (const class cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GGS_uint readProperty_mOrigin (void) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG init_21_ (const class GGS_uint & inOperand0,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG extractObject (const GGS_object & inObject,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG class_func_new (const class GGS_uint & inOperand0,
+                                                                                     class Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 2: pointer class for @midrange_intermediate_pseudo_ORG class
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG : public cPtr_midrange_5F_intermediate_5F_instruction {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void midrange_5F_intermediate_5F_pseudo_5F_ORG_init_21_ (const class GGS_uint & inOperand0,
+                                                                   Compiler * inCompiler) ;
+
+
+//--- Extension getter instructionLength
+  public: virtual class GGS_uint getter_instructionLength (Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter isLABELorORG
+  public: virtual class GGS_bool getter_isLABELorORG (Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildAssemblyCode
+  public: virtual void method_buildAssemblyCode (class GGS_string & arg_ioString,
+           class GGS_uint & arg_ioLocalLabelIndex,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method compute
+  public: virtual void method_compute (const class GGS_midrange_5F_symbolTableForConvertingRelatives arg_inRoutineSymbolTable,
+           class GGS_uint & arg_ioAddress,
+           class GGS_bool & arg_ioJUMP_or_JSR_fixed,
+           class GGS_midrange_5F_intermediate_5F_instructionList & arg_ioGeneratedInstructionList,
+           const class GGS_uint arg_inIndex,
+           class GGS_string & arg_ioListFileContents,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method defineLabelAtAddress
+  public: virtual void method_defineLabelAtAddress (class GGS_midrange_5F_symbolTableForConvertingRelatives & arg_ioRoutineSymbolTable,
+           class GGS_uint & arg_ioAddress,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterLabelAtAddress
+  public: virtual void method_enterLabelAtAddress (class GGS_midrange_5F_symbolTable & arg_ioRoutineSymbolTable,
+           class GGS_uint & arg_ioAddress,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateBinaryCodeAtAddress
+  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_registerTable arg_inRegisterTable,
+           const class GGS_constantMap arg_inConstantMap,
+           const class GGS_uint arg_inTotalBankCount,
+           const class GGS_midrange_5F_symbolTable arg_inRoutineSymbolTable,
+           class GGS_string & arg_ioListFileContents,
+           class GGS_uint & arg_ioAddress,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method print
+  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method setCurrentAddress
+  public: virtual void method_setCurrentAddress (class GGS_uint & arg_ioCurrentAddress,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GGS_uint mProperty_mOrigin ;
+
+
+//--- Default constructor
+  public: cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG (const GGS_uint & in_mOrigin,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Class descriptor
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak : public GGS_midrange_5F_intermediate_5F_instruction_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak (const class GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG & inSource) ;
+
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak & operator = (const class GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak init_nil (void) {
+    GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG bang_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG unwrappedValue (void) const {
+    GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG result ;
+    if (isValid ()) {
+      const cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG * p = (cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak extractObject (const GGS_object & inObject,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_ORG_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @midrange_5F_intermediate_5F_pseudo_5F_LABEL reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL : public GGS_midrange_5F_intermediate_5F_instruction {
+//--------------------------------- Default constructor
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL (void) ;
+
+//--------------------------------- Constructor from pointer
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL (const class cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * inSourcePtr) ;
+
+//--------------------------------- Property access
+  public: class GGS_lstring readProperty_mLabel (void) const ;
+
+  public: class GGS_bool readProperty_mIsDeletable (void) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL init_21__21_ (const class GGS_lstring & inOperand0,
+                                                                               const class GGS_bool & inOperand1,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL extractObject (const GGS_object & inObject,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL class_func_new (const class GGS_lstring & inOperand0,
+                                                                                       const class GGS_bool & inOperand1,
+                                                                                       class Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 2: pointer class for @midrange_intermediate_pseudo_LABEL class
+//--------------------------------------------------------------------------------------------------
+
+class cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL : public cPtr_midrange_5F_intermediate_5F_instruction {
+
+  #ifndef DO_NOT_GENERATE_CHECKINGS
+    public: virtual void printNonNullClassInstanceProperties (void) const override ;
+  #endif
+
+//--------------------------------- Initializers
+  public: void midrange_5F_intermediate_5F_pseudo_5F_LABEL_init_21__21_ (const class GGS_lstring & inOperand0,
+                                                                         const class GGS_bool & inOperand1,
+                                                                         Compiler * inCompiler) ;
+
+
+//--- Extension getter instructionLength
+  public: virtual class GGS_uint getter_instructionLength (Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension getter isLABELorORG
+  public: virtual class GGS_bool getter_isLABELorORG (Compiler * COMMA_LOCATION_ARGS) const override ;
+
+//--- Extension method buildAssemblyCode
+  public: virtual void method_buildAssemblyCode (class GGS_string & arg_ioString,
+           class GGS_uint & arg_ioLocalLabelIndex,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method compute
+  public: virtual void method_compute (const class GGS_midrange_5F_symbolTableForConvertingRelatives arg_inRoutineSymbolTable,
+           class GGS_uint & arg_ioAddress,
+           class GGS_bool & arg_ioJUMP_or_JSR_fixed,
+           class GGS_midrange_5F_intermediate_5F_instructionList & arg_ioGeneratedInstructionList,
+           const class GGS_uint arg_inIndex,
+           class GGS_string & arg_ioListFileContents,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method defineLabel
+  public: virtual void method_defineLabel (class GGS_symbolTableForOptimizations & arg_ioRoutineSymbolTable,
+           const class GGS_uint arg_inLineIndex,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method defineLabelAtAddress
+  public: virtual void method_defineLabelAtAddress (class GGS_midrange_5F_symbolTableForConvertingRelatives & arg_ioRoutineSymbolTable,
+           class GGS_uint & arg_ioAddress,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method enterLabelAtAddress
+  public: virtual void method_enterLabelAtAddress (class GGS_midrange_5F_symbolTable & arg_ioRoutineSymbolTable,
+           class GGS_uint & arg_ioAddress,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method generateBinaryCodeAtAddress
+  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_registerTable arg_inRegisterTable,
+           const class GGS_constantMap arg_inConstantMap,
+           const class GGS_uint arg_inTotalBankCount,
+           const class GGS_midrange_5F_symbolTable arg_inRoutineSymbolTable,
+           class GGS_string & arg_ioListFileContents,
+           class GGS_uint & arg_ioAddress,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Extension method print
+  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
+           Compiler * COMMA_LOCATION_ARGS) override ;
+
+//--- Properties
+  public: GGS_lstring mProperty_mLabel ;
+  public: GGS_bool mProperty_mIsDeletable ;
+
+
+//--- Default constructor
+  public: cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+
+//--- Constructor
+  public: cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL (const GGS_lstring & in_mLabel,
+                                                            const GGS_bool & in_mIsDeletable,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//--- Duplication
+  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+
+//--- Attribute accessors
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Class descriptor
+  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak : public GGS_midrange_5F_intermediate_5F_instruction_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak (const class GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL & inSource) ;
+
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak & operator = (const class GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak init_nil (void) {
+    GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL bang_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: inline GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL unwrappedValue (void) const {
+    GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL result ;
+    if (isValid ()) {
+      const cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL * p = (cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL *) ptr () ;
+      if (nullptr != p) {
+        result = GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL (p) ;
+      }
+    }
+    return result ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak extractObject (const GGS_object & inObject,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_midrange_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak ;
 

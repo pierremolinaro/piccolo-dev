@@ -3,13 +3,13 @@
 #----------------------------------------------------*
 
 abstract class @midrange_instruction {
-  public var @location mInstructionLocation
+  public let @location mInstructionLocation
 }
 
 #----------------------------------------------------*
 
 list @midrange_instructionList {
-  public var @midrange_instruction mInstruction
+  public let @midrange_instruction mInstruction
 }
 
 #----------------------------------------------------*
@@ -20,14 +20,14 @@ class @midrange_instruction_nobanksel : @midrange_instruction {
 #----------------------------------------------------*
 
 class @midrange_instruction_banksel : @midrange_instruction {
-  public var @luint mBankIndex
-  public var @bool mWarningOnUselessBanksel
+  public let @luint mBankIndex
+  public let @bool mWarningOnUselessBanksel
 }
 
 #----------------------------------------------------*
 
 class @midrangeInstruction_checkbank : @midrange_instruction {
-  public var @uint mBankIndex
+  public let @uint mBankIndex
 }
 
 #----------------------------------------------------*
@@ -38,26 +38,26 @@ class @midrangeInstruction_checknobank : @midrange_instruction {
 #----------------------------------------------------*
 
 class @midrange_instruction_banksel_register : @midrange_instruction {
-  public var @registerExpression mRegister
-  public var @bool mWarningOnUselessBanksel
+  public let @registerExpression mRegister
+  public let @bool mWarningOnUselessBanksel
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_savebank : @midrange_instruction {
-  public var @registerExpression mRegister
-  public var @midrange_instructionList mInstructionList
-  public var @location mEndOfSaveBankInstruction
+  public let @registerExpression mRegister
+  public let @midrange_instructionList mInstructionList
+  public let @location mEndOfSaveBankInstruction
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_STATIC_REPEAT : @midrange_instruction {
-  public var @lstring mConstantName
-  public var @immediatExpression mLowerBoundExpression
-  public var @immediatExpression mUpperBoundExpression
-  public var @midrange_instructionList mInstructionList
-  public var @location mEndOfInstruction
+  public let @lstring mConstantName
+  public let @immediatExpression mLowerBoundExpression
+  public let @immediatExpression mUpperBoundExpression
+  public let @midrange_instructionList mInstructionList
+  public let @location mEndOfInstruction
 }
 
 #----------------------------------------------------*
@@ -88,9 +88,9 @@ getter @midrange_instruction_FD_base_code mnemonic -> @string outResult {
 #----------------------------------------------------*
 
 class @midrange_instruction_FD : @midrange_instruction {
-  public var @midrange_instruction_FD_base_code mInstruction_FD_base_code
-  public var @registerExpression mRegisterExpression
-  public var @bool m_W_isDestination
+  public let @midrange_instruction_FD_base_code mInstruction_FD_base_code
+  public let @registerExpression mRegisterExpression
+  public let @bool m_W_isDestination
 }
 
 #----------------------------------------------------*
@@ -109,8 +109,8 @@ getter @midrange_F_instruction_base_code mnemonic -> @string outResult {
 #----------------------------------------------------*
 
 class @midrange_instruction_F : @midrange_instruction {
-  public var @midrange_F_instruction_base_code mFAinstruction
-  public var @registerExpression mRegisterExpression
+  public let @midrange_F_instruction_base_code mFAinstruction
+  public let @registerExpression mRegisterExpression
 }
 
 #----------------------------------------------------*
@@ -129,33 +129,33 @@ getter @midrange_bit_oriented_op mnemonic -> @string outResult {
 #----------------------------------------------------*
 
 class @midrange_instruction_FB : @midrange_instruction {
-  public var @midrange_bit_oriented_op mBitOrientedOp
-  public var @registerExpression mRegisterExpression
-  public var @bitNumberExpression mBitNumber
+  public let @midrange_bit_oriented_op mBitOrientedOp
+  public let @registerExpression mRegisterExpression
+  public let @bitNumberExpression mBitNumber
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_CALL : @midrange_instruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_JSR : @midrange_instruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_JUMP : @midrange_instruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_GOTO : @midrange_instruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
@@ -199,35 +199,35 @@ getter @midrange_literal_instruction_opcode mnemonic -> @string outResult {
 #----------------------------------------------------*
 
 class @midrange_instruction_literalOperation : @midrange_instruction {
-  public var @midrange_literal_instruction_opcode mLiteralInstruction
-  public var @immediatExpression mImmediatExpression
+  public let @midrange_literal_instruction_opcode mLiteralInstruction
+  public let @immediatExpression mImmediatExpression
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_MNOP : @midrange_instruction {
-  public var @luint mOccurrenceFactor
+  public let @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_FOREVER : @midrange_instruction {
-  public var @midrange_instructionList mInstructionList
-  public var @location mEndOfInstructionList
+  public let @midrange_instructionList mInstructionList
+  public let @location mEndOfInstructionList
 }
 
 #----------------------------------------------------*
 
 abstract class @midrange_instruction_IF_SEMI_COLON : @midrange_instruction {
-  public var @midrange_instruction mInstruction
+  public let @midrange_instruction mInstruction
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_IF_BitTest : @midrange_instruction_IF_SEMI_COLON {
-  public var @bool mSkipIfSet
-  public var @registerExpression mRegisterExpression
-  public var @bitNumberExpression mBitNumber
+  public let @bool mSkipIfSet
+  public let @registerExpression mRegisterExpression
+  public let @bitNumberExpression mBitNumber
 }
 
 method @midrange_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
@@ -250,9 +250,9 @@ method @midrange_instruction_IF_BitTest getMnemonic !@string outMnemonic {
 #----------------------------------------------------*
 
 class @midrange_instruction_IF_IncDec : @midrange_instruction_IF_SEMI_COLON {
-  public var @bool mIncrement
-  public var @registerExpression mRegisterExpression
-  public var @bool m_W_isDestination
+  public let @bool mIncrement
+  public let @registerExpression mRegisterExpression
+  public let @bool m_W_isDestination
 }
 
 #----------------------------------------------------*
@@ -263,96 +263,96 @@ abstract class @midrange_conditionExpression {
 #----------------------------------------------------*
 
 class @midrange_incDecRegisterInCondition : @midrange_conditionExpression {
-  public var @registerExpression mRegisterExpression
-  public var @bool mIncrement
-  public var @bool m_W_isDestination
-  public var @bool mBranchIfZero
+  public let @registerExpression mRegisterExpression
+  public let @bool mIncrement
+  public let @bool m_W_isDestination
+  public let @bool mBranchIfZero
 }
 
 #----------------------------------------------------*
 
 class @midrange_negateCondition : @midrange_conditionExpression {
-  public var @midrange_conditionExpression mCondition
+  public let @midrange_conditionExpression mCondition
 }
 
 #----------------------------------------------------*
 
 class @midrange_andCondition : @midrange_conditionExpression {
-  public var @midrange_conditionExpression mLeftExpression
-  public var @midrange_conditionExpression mRightExpression
+  public let @midrange_conditionExpression mLeftExpression
+  public let @midrange_conditionExpression mRightExpression
 }
 
 #----------------------------------------------------*
 
 class @midrange_bitTest_in_structured_if_condition : @midrange_conditionExpression {
-  public var @registerExpression mRegisterExpression
-  public var @bitNumberExpression mBitNumber
+  public let @registerExpression mRegisterExpression
+  public let @bitNumberExpression mBitNumber
 #  @bool mBTFSSinstruction
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_structured_if : @midrange_instruction {
-  public var @midrange_conditionExpression mIfCondition
-  public var @midrange_instructionList mThenInstructionList
-  public var @midrange_instructionList mElseInstructionList
-  public var @location mEndOfElsePartLocation
+  public let @midrange_conditionExpression mIfCondition
+  public let @midrange_instructionList mThenInstructionList
+  public let @midrange_instructionList mElseInstructionList
+  public let @location mEndOfElsePartLocation
 }
 
 #----------------------------------------------------*
 
 list @midrange_partList {
-  public var @midrange_conditionExpression mCondition
-  public var @midrange_instructionList mInstructionList
-  public var @location mEndOfPartLocation
+  public let @midrange_conditionExpression mCondition
+  public let @midrange_instructionList mInstructionList
+  public let @location mEndOfPartLocation
 }
 
 #----------------------------------------------------*
 
 class @midrange_instruction_do_while : @midrange_instruction {
-  public var @midrange_instructionList mRepeatedInstructionList
-  public var @location mEndOfRepeatedInstructionList
-  public var @midrange_partList mWhilePartList
+  public let @midrange_instructionList mRepeatedInstructionList
+  public let @location mEndOfRepeatedInstructionList
+  public let @midrange_partList mWhilePartList
 }
 
 #----------------------------------------------------*
 
 list @midrange_interruptDefinitionList {
-  public var @location mInterruptLocation
-  public var @midrange_instructionList mInstructionList
-  public var @lstring mFirstSaveRegister
-  public var @lstring mSecondSaveRegister
-  public var @location mEndOfInterruptLocation
+  public let @location mInterruptLocation
+  public let @midrange_instructionList mInstructionList
+  public let @lstring mFirstSaveRegister
+  public let @lstring mSecondSaveRegister
+  public let @location mEndOfInterruptLocation
 }
 
 #----------------------------------------------------*
 
 list @midrange_routineDefinitionList {
-  public var @lstring mRoutineName
-  public var @luint mPage
-  public var @luint mRequiredBank
-  public var @luint mReturnedBank
-  public var @bool mPreservesBank
-  public var @bool mIsNoReturn
-  public var @midrange_instructionList mInstructionList
-  public var @location mEndOfRoutineLocation
+  public let @lstring mRoutineName
+  public let @luint mPage
+  public let @luint mRequiredBank
+  public let @luint mReturnedBank
+  public let @bool mPreservesBank
+  public let @bool mIsNoReturn
+  public let @midrange_instructionList mInstructionList
+  public let @location mEndOfRoutineLocation
 }
 
 #----------------------------------------------------*
 
 struct @midrange_model {
-  public var @lstring mProgramName
-  public var @lstring mDeviceName
-  public var @configDefinitionList mConfigDefinitionList
-  public var @ramDefinitionList mRamDefinitionList
-  public var @lstringlist mUnusedRegisterList
-  public var @midrange_interruptDefinitionList mInterruptDefinitionList
-  public var @constantDefinitionList mConstantDefinitionList
-  public var @midrange_routineDefinitionList mRoutineDefinitionList
-  public var @lstringlist mUnusedRoutineList
-  public var @bool mNeedsComputedGoto2
-  public var @bool mNeedsComputedGoto4
-  public var @location mEndOfProgram
+  public let @lstring mProgramName
+  public let @lstring mDeviceName
+  public let @configDefinitionList mConfigDefinitionList
+  public let @ramDefinitionList mRamDefinitionList
+  public let @lstringlist mUnusedRegisterList
+  public let @midrange_interruptDefinitionList mInterruptDefinitionList
+  public let @constantDefinitionList mConstantDefinitionList
+  public let @midrange_routineDefinitionList mRoutineDefinitionList
+  public let @lstringlist mUnusedRoutineList
+  public let @bool mNeedsComputedGoto2
+  public let @bool mNeedsComputedGoto4
+  public let @location mEndOfProgram
 }
 
 #----------------------------------------------------*

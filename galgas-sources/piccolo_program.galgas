@@ -14,7 +14,7 @@ before {
     var baseline_devices =@stringlist ()
   #--- Parse them
     for (mValue) in  allDevices do
-      let @string name = [[mValue lastPathComponent] stringByDeletingPathExtension]
+      let @string name = [[mValue lastPathComponent] deletingPathExtension]
       parseDeviceDefinition ( !@lstring { !name !@location.here} ? let @piccoloDeviceModel piccoloDeviceModel )
       switch piccoloDeviceModel.mProcessorType
       case pic18_60, pic18_80 :

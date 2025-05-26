@@ -270,16 +270,6 @@ GGS_lstring GGS_ipic_31__38_JumpTerminator::readProperty_mLabel (void) const {
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_JumpTerminator::setProperty_mLabel (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_JumpTerminator * p = (cPtr_ipic_31__38_JumpTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_JumpTerminator) ;
-    p->mProperty_mLabel = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_jumpInstructionKind GGS_ipic_31__38_JumpTerminator::readProperty_mKind (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_jumpInstructionKind () ;
@@ -287,16 +277,6 @@ GGS_jumpInstructionKind GGS_ipic_31__38_JumpTerminator::readProperty_mKind (void
     cPtr_ipic_31__38_JumpTerminator * p = (cPtr_ipic_31__38_JumpTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_JumpTerminator) ;
     return p->mProperty_mKind ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_JumpTerminator::setProperty_mKind (const GGS_jumpInstructionKind & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_JumpTerminator * p = (cPtr_ipic_31__38_JumpTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_JumpTerminator) ;
-    p->mProperty_mKind = inValue ;
   }
 }
 
@@ -499,16 +479,6 @@ GGS_conditional_5F_branch GGS_ipic_31__38_ConditionalJumpTerminator::readPropert
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_ConditionalJumpTerminator::setProperty_mConditionalBranch (const GGS_conditional_5F_branch & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ConditionalJumpTerminator * p = (cPtr_ipic_31__38_ConditionalJumpTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
-    p->mProperty_mConditionalBranch = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_ipic_31__38_ConditionalJumpTerminator::readProperty_mTargetLabelWhenTrue (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -516,16 +486,6 @@ GGS_lstring GGS_ipic_31__38_ConditionalJumpTerminator::readProperty_mTargetLabel
     cPtr_ipic_31__38_ConditionalJumpTerminator * p = (cPtr_ipic_31__38_ConditionalJumpTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
     return p->mProperty_mTargetLabelWhenTrue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_ConditionalJumpTerminator::setProperty_mTargetLabelWhenTrue (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ConditionalJumpTerminator * p = (cPtr_ipic_31__38_ConditionalJumpTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
-    p->mProperty_mTargetLabelWhenTrue = inValue ;
   }
 }
 
@@ -543,16 +503,6 @@ GGS_conditionalBranchMode GGS_ipic_31__38_ConditionalJumpTerminator::readPropert
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_ConditionalJumpTerminator::setProperty_mBranchModeOnTrueLabel (const GGS_conditionalBranchMode & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ConditionalJumpTerminator * p = (cPtr_ipic_31__38_ConditionalJumpTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
-    p->mProperty_mBranchModeOnTrueLabel = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_ipic_31__38_ConditionalJumpTerminator::readProperty_mTargetLabelWhenFalse (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -565,16 +515,6 @@ GGS_lstring GGS_ipic_31__38_ConditionalJumpTerminator::readProperty_mTargetLabel
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38_ConditionalJumpTerminator::setProperty_mTargetLabelWhenFalse (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ConditionalJumpTerminator * p = (cPtr_ipic_31__38_ConditionalJumpTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
-    p->mProperty_mTargetLabelWhenFalse = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_conditionalBranchMode GGS_ipic_31__38_ConditionalJumpTerminator::readProperty_mBranchModeOnFalseLabel (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_conditionalBranchMode () ;
@@ -582,16 +522,6 @@ GGS_conditionalBranchMode GGS_ipic_31__38_ConditionalJumpTerminator::readPropert
     cPtr_ipic_31__38_ConditionalJumpTerminator * p = (cPtr_ipic_31__38_ConditionalJumpTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
     return p->mProperty_mBranchModeOnFalseLabel ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38_ConditionalJumpTerminator::setProperty_mBranchModeOnFalseLabel (const GGS_conditionalBranchMode & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38_ConditionalJumpTerminator * p = (cPtr_ipic_31__38_ConditionalJumpTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
-    p->mProperty_mBranchModeOnFalseLabel = inValue ;
   }
 }
 
@@ -811,16 +741,6 @@ GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_pic_31__38_RegisterCo
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_pic_31__38_RegisterComparisonTerminator::setProperty_mRegisterDescription (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_RegisterComparisonTerminator * p = (cPtr_pic_31__38_RegisterComparisonTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_RegisterComparisonTerminator) ;
-    p->mProperty_mRegisterDescription = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38_RegisterComparison GGS_pic_31__38_RegisterComparisonTerminator::readProperty_mComparison (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38_RegisterComparison () ;
@@ -828,16 +748,6 @@ GGS_ipic_31__38_RegisterComparison GGS_pic_31__38_RegisterComparisonTerminator::
     cPtr_pic_31__38_RegisterComparisonTerminator * p = (cPtr_pic_31__38_RegisterComparisonTerminator *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_pic_31__38_RegisterComparisonTerminator) ;
     return p->mProperty_mComparison ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38_RegisterComparisonTerminator::setProperty_mComparison (const GGS_ipic_31__38_RegisterComparison & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_pic_31__38_RegisterComparisonTerminator * p = (cPtr_pic_31__38_RegisterComparisonTerminator *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_pic_31__38_RegisterComparisonTerminator) ;
-    p->mProperty_mComparison = inValue ;
   }
 }
 
@@ -1036,16 +946,6 @@ GGS_lstring GGS_ipic_31__38__5F_intermediate_5F_JSR::readProperty_mTargetLabel (
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_JSR::setProperty_mTargetLabel (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_JSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_JSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_JSR) ;
-    p->mProperty_mTargetLabel = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_jumpInstructionKind GGS_ipic_31__38__5F_intermediate_5F_JSR::readProperty_mKind (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_jumpInstructionKind () ;
@@ -1053,16 +953,6 @@ GGS_jumpInstructionKind GGS_ipic_31__38__5F_intermediate_5F_JSR::readProperty_mK
     cPtr_ipic_31__38__5F_intermediate_5F_JSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_JSR *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_JSR) ;
     return p->mProperty_mKind ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_JSR::setProperty_mKind (const GGS_jumpInstructionKind & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_JSR * p = (cPtr_ipic_31__38__5F_intermediate_5F_JSR *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_JSR) ;
-    p->mProperty_mKind = inValue ;
   }
 }
 
@@ -1257,16 +1147,6 @@ GGS_lstring GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::readProperty_
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::setProperty_mLabel (const GGS_lstring & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * p = (cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W) ;
-    p->mProperty_mLabel = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::readProperty_mOffset (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -1279,16 +1159,6 @@ GGS_uint GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::readProperty_mOf
 
 //--------------------------------------------------------------------------------------------------
 
-void GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::setProperty_mOffset (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * p = (cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W) ;
-    p->mProperty_mOffset = inValue ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::readProperty_mRightShift (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -1296,16 +1166,6 @@ GGS_uint GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::readProperty_mRi
     cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * p = (cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W *) mObjectPtr ;
     macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W) ;
     return p->mProperty_mRightShift ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::setProperty_mRightShift (const GGS_uint & inValue) {
-  if (nullptr != mObjectPtr) {
-    cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * p = (cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W *) mObjectPtr ;
-    macroValidSharedObject (p, cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W) ;
-    p->mProperty_mRightShift = inValue ;
   }
 }
 
@@ -15277,5 +15137,81 @@ void cPtr_immediatRegister::method_eval (const GGS_registerTable constinArgument
       outArgument_outResult.drop () ; // Release error dropped variable
     }
   }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension method '@immediatAdd eval'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatAdd::method_eval (const GGS_registerTable constinArgument_inRegisterTable,
+                                    const GGS_constantMap constinArgument_inConstantMap,
+                                    GGS_sint_36__34_ & outArgument_outResult,
+                                    GGS_stringset & ioArgument_ioUsedRegisters,
+                                    Compiler * inCompiler
+                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_sint_36__34_ var_leftResult_5564 ;
+  const GGS_immediatAdd temp_0 = this ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mLeftExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_leftResult_5564, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 141)) ;
+  GGS_sint_36__34_ var_rightResult_5669 ;
+  const GGS_immediatAdd temp_1 = this ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_1.readProperty_mRightExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult_5669, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 142)) ;
+  outArgument_outResult = var_leftResult_5564.add_operation (var_rightResult_5669, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 143)) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension method '@immediatSub eval'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatSub::method_eval (const GGS_registerTable constinArgument_inRegisterTable,
+                                    const GGS_constantMap constinArgument_inConstantMap,
+                                    GGS_sint_36__34_ & outArgument_outResult,
+                                    GGS_stringset & ioArgument_ioUsedRegisters,
+                                    Compiler * inCompiler
+                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_sint_36__34_ var_leftResult_6056 ;
+  const GGS_immediatSub temp_0 = this ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mLeftExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_leftResult_6056, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 153)) ;
+  GGS_sint_36__34_ var_rightResult_6161 ;
+  const GGS_immediatSub temp_1 = this ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_1.readProperty_mRightExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult_6161, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 154)) ;
+  outArgument_outResult = var_leftResult_6056.substract_operation (var_rightResult_6161, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 155)) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension method '@immediatMul eval'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatMul::method_eval (const GGS_registerTable constinArgument_inRegisterTable,
+                                    const GGS_constantMap constinArgument_inConstantMap,
+                                    GGS_sint_36__34_ & outArgument_outResult,
+                                    GGS_stringset & ioArgument_ioUsedRegisters,
+                                    Compiler * inCompiler
+                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_sint_36__34_ var_leftResult_6548 ;
+  const GGS_immediatMul temp_0 = this ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mLeftExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_leftResult_6548, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 165)) ;
+  GGS_sint_36__34_ var_rightResult_6653 ;
+  const GGS_immediatMul temp_1 = this ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_1.readProperty_mRightExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult_6653, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 166)) ;
+  outArgument_outResult = var_leftResult_6548.multiply_operation (var_rightResult_6653, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 167)) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Overriding extension method '@immediatDiv eval'
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_immediatDiv::method_eval (const GGS_registerTable constinArgument_inRegisterTable,
+                                    const GGS_constantMap constinArgument_inConstantMap,
+                                    GGS_sint_36__34_ & outArgument_outResult,
+                                    GGS_stringset & ioArgument_ioUsedRegisters,
+                                    Compiler * inCompiler
+                                    COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_sint_36__34_ var_leftResult_7040 ;
+  const GGS_immediatDiv temp_0 = this ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mLeftExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_leftResult_7040, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 177)) ;
+  GGS_sint_36__34_ var_rightResult_7145 ;
+  const GGS_immediatDiv temp_1 = this ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_1.readProperty_mRightExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_rightResult_7145, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 178)) ;
+  outArgument_outResult = var_leftResult_7040.divide_operation (var_rightResult_7145, inCompiler COMMA_SOURCE_FILE ("intermediate_generic.galgas", 179)) ;
 }
 

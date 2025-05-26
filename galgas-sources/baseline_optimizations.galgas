@@ -3,7 +3,7 @@
 #----------------------------------------------------------------------------*
 
 map @baselineSymbolTableForOptimizations {
-  public var @uint mDefinitionLineIndex
+  public let @uint mDefinitionLineIndex
   insert insertKey error message "the '%K' label is already declared in %L"
   search searchKey error message "the '%K' label is not declared"
   remove removeKey error message "the '%K' label is not declared"

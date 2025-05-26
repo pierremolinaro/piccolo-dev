@@ -3,8 +3,8 @@
 #----------------------------------------------------*
 
 struct @midrange_intermediate_registerExpression {
-  public var @string mAssemblyString
-  public var @uint mRegisterAddress # xxx bit full address
+  public let @string mAssemblyString
+  public let @uint mRegisterAddress # xxx bit full address
 }
 
 #----------------------------------------------------*
@@ -95,7 +95,7 @@ abstract class @midrange_intermediate_instruction {
 #----------------------------------------------------*
 
 list @midrange_intermediate_instructionList {
-  public var @midrange_intermediate_instruction mInstruction
+  public let @midrange_intermediate_instruction mInstruction
 }
 
 #----------------------------------------------------*
@@ -107,51 +107,51 @@ class @midrange_intermediate_NULL : @midrange_intermediate_instruction {
 #----------------------------------------------------*
 
 class @midrange_intermediate_pseudo_ORG : @midrange_intermediate_instruction {
-  public var @uint mOrigin
+  public let @uint mOrigin
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_pseudo_LABEL : @midrange_intermediate_instruction {
-  public var @lstring mLabel
-  public var @bool mIsDeletable
+  public let @lstring mLabel
+  public let @bool mIsDeletable
 }
 
 #----------------------------------------------------*
 
 abstract class @midrange_intermediate_actualInstruction : @midrange_intermediate_instruction {
-  public var @location mInstructionLocation
+  public let @location mInstructionLocation
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_instruction_FD : @midrange_intermediate_actualInstruction {
-  public var @midrange_instruction_FD_base_code mInstruction_FD_base_code
-  public var @midrange_intermediate_registerExpression mRegisterDescription
-  public var @bool m_W_isDestination
+  public let @midrange_instruction_FD_base_code mInstruction_FD_base_code
+  public let @midrange_intermediate_registerExpression mRegisterDescription
+  public let @bool m_W_isDestination
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_instruction_F : @midrange_intermediate_actualInstruction {
-  public var @midrange_F_instruction_base_code mFinstruction
-  public var @midrange_intermediate_registerExpression mRegisterDescription
+  public let @midrange_F_instruction_base_code mFinstruction
+  public let @midrange_intermediate_registerExpression mRegisterDescription
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_instruction_FB : @midrange_intermediate_actualInstruction {
-  public var @midrange_bit_oriented_op mBitOrientedOp
-  public var @midrange_intermediate_registerExpression mRegisterDescription
-  public var @uint mBitNumber
+  public let @midrange_bit_oriented_op mBitOrientedOp
+  public let @midrange_intermediate_registerExpression mRegisterDescription
+  public let @uint mBitNumber
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_instruction_BitTestSkip : @midrange_intermediate_actualInstruction {
-  public var @bool mSkipIfSet
-  public var @midrange_intermediate_registerExpression mRegisterDescription
-  public var @uint mBitNumber
+  public let @bool mSkipIfSet
+  public let @midrange_intermediate_registerExpression mRegisterDescription
+  public let @uint mBitNumber
 }
 
 #----------------------------------------------------*
@@ -163,29 +163,29 @@ enum @midrange_call_goto_bit %equatable {
 #----------------------------------------------------*
 
 class @midrange_intermediate_JUMP : @midrange_intermediate_actualInstruction {
-  public var @lstring mTargetLabel
-  public var @midrange_call_goto_bit mBit11
-  public var @midrange_call_goto_bit mBit12
+  public let @lstring mTargetLabel
+  public let @midrange_call_goto_bit mBit11
+  public let @midrange_call_goto_bit mBit12
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_GOTO : @midrange_intermediate_actualInstruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_CALL : @midrange_intermediate_actualInstruction {
-  public var @lstring mTargetLabel
+  public let @lstring mTargetLabel
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_JSR : @midrange_intermediate_actualInstruction {
-  public var @lstring mTargetLabel
-  public var @midrange_call_goto_bit mBit11
-  public var @midrange_call_goto_bit mBit12
+  public let @lstring mTargetLabel
+  public let @midrange_call_goto_bit mBit11
+  public let @midrange_call_goto_bit mBit12
 }
 
 #----------------------------------------------------*
@@ -221,24 +221,24 @@ class @midrange_intermediate_instruction_SLEEP : @midrange_intermediate_actualIn
 #----------------------------------------------------*
 
 class @midrange_intermediate_instruction_literalOperation : @midrange_intermediate_actualInstruction {
-  public var @midrange_literal_instruction_opcode mLiteralInstruction
-  public var @uint mLiteralValue
+  public let @midrange_literal_instruction_opcode mLiteralInstruction
+  public let @uint mLiteralValue
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_instruction_MNOP : @midrange_intermediate_actualInstruction {
-  public var @luint mOccurrenceFactor
+  public let @luint mOccurrenceFactor
 }
 
 #----------------------------------------------------*
 
 class @midrange_intermediate_incDecRegisterInCondition : @midrange_intermediate_actualInstruction {
-  public var @midrange_intermediate_registerExpression mRegisterDescription
-  public var @string mTargetLabel
-  public var @bool mIncrement
-  public var @bool m_W_isDestination
-  public var @bool mBranchIfZero
+  public let @midrange_intermediate_registerExpression mRegisterDescription
+  public let @string mTargetLabel
+  public let @bool mIncrement
+  public let @bool m_W_isDestination
+  public let @bool mBranchIfZero
 }
 
 #----------------------------------------------------*

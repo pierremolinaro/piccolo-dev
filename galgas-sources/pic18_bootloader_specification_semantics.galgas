@@ -17,7 +17,7 @@ proc pic18BootloaderSpecificationAnalysis
   !@ramBankTable outRamBank
   !@registerTable outRegisterTable {
 #-------------------------------- Check source file name
-  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] stringByDeletingPathExtension]
+  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] deletingPathExtension]
   if sourceFileBaseName != inBootloaderName.string then
     error inBootloaderName: "the bootloader name ('" + inBootloaderName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
