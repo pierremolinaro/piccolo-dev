@@ -6266,8 +6266,8 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
   ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("*").add_operation (GGS_string ("BLOCK ORDERING OPTIMIZATION").getter_stringByLeftAndRightPadding (GGS_uint (uint32_t (117U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 374)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 374)).add_operation (GGS_string ("*\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 374)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 374)) ;
   ioArgument_ioListFileContents.plusAssignOperation(GGS_string::makeEmptyString ().getter_stringByLeftAndRightPadding (GGS_uint (uint32_t (119U)), GGS_char (TO_UNICODE (42)) COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 375)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 375)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 375)) ;
   ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("Block ordering optimization:\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 376)) ;
-  GGS_uint var_n_13026 = function_blockDiscontinuityCount (ioArgument_ioBlockList, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 377)) ;
-  ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  jump count before optimization: ").add_operation (var_n_13026.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 378)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 378)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 378)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 378)) ;
+  GGS_uint var_n_13056 = function_blockDiscontinuityCount (ioArgument_ioBlockList, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 377)) ;
+  ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  jump count before optimization: ").add_operation (var_n_13056.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 378)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 378)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 378)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 378)) ;
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_application::class_func_verboseOutput (SOURCE_FILE ("ipic18_block_ordering.galgas", 380)).boolEnum () ;
@@ -6277,162 +6277,162 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
       }
     }
   }
-  GGS_symbolTableForBlockOptimization var_symbolTable_13292 = GGS_symbolTableForBlockOptimization::init (inCompiler COMMA_HERE) ;
-  UpEnumerator_ipic_31__38_BlockList enumerator_13348 (ioArgument_ioBlockList) ;
-  GGS_uint index_13343 (uint32_t (0)) ;
-  while (enumerator_13348.hasCurrentObject ()) {
+  GGS_symbolTableForBlockOptimization var_symbolTable_13322 = GGS_symbolTableForBlockOptimization::init (inCompiler COMMA_HERE) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_13378 (ioArgument_ioBlockList) ;
+  GGS_uint index_13373 (uint32_t (0)) ;
+  while (enumerator_13378.hasCurrentObject ()) {
     {
-    var_symbolTable_13292.setter_insertKey (enumerator_13348.current_mBlock (HERE).readProperty_mLabel (), index_13343, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 386)) ;
+    var_symbolTable_13322.setter_insertKey (enumerator_13378.current_mBlock (HERE).readProperty_mLabel (), index_13373, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 386)) ;
     }
-    enumerator_13348.gotoNextObject () ;
-    index_13343.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 385)) ;
+    enumerator_13378.gotoNextObject () ;
+    index_13373.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 385)) ;
   }
-  GGS_blockInvocationGraph var_g_13461 = GGS_blockInvocationGraph::init (inCompiler COMMA_HERE) ;
-  UpEnumerator_ipic_31__38_BlockList enumerator_13497 (ioArgument_ioBlockList) ;
-  while (enumerator_13497.hasCurrentObject ()) {
+  GGS_blockInvocationGraph var_g_13491 = GGS_blockInvocationGraph::init (inCompiler COMMA_HERE) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_13527 (ioArgument_ioBlockList) ;
+  while (enumerator_13527.hasCurrentObject ()) {
     GalgasBool test_1 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_1) {
-      test_1 = GGS_bool (ComparisonKind::equal, enumerator_13497.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 391)))).boolEnum () ;
+      test_1 = GGS_bool (ComparisonKind::equal, enumerator_13527.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 391)))).boolEnum () ;
       if (GalgasBool::boolTrue == test_1) {
         {
-        var_g_13461.setter_addNode (enumerator_13497.current_mBlock (HERE).readProperty_mLabel (), enumerator_13497.current_mBlock (HERE).readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 392)) ;
+        var_g_13491.setter_addNode (enumerator_13527.current_mBlock (HERE).readProperty_mLabel (), enumerator_13527.current_mBlock (HERE).readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 392)) ;
         }
-        callExtensionMethod_buildTerminatorOrderedGraph ((cPtr_ipic_31__38_AbstractBlockTerminator *) enumerator_13497.current_mBlock (HERE).readProperty_mTerminator ().ptr (), enumerator_13497.current_mBlock (HERE).readProperty_mLabel (), var_g_13461, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 393)) ;
+        callExtensionMethod_buildTerminatorOrderedGraph ((cPtr_ipic_31__38_AbstractBlockTerminator *) enumerator_13527.current_mBlock (HERE).readProperty_mTerminator ().ptr (), enumerator_13527.current_mBlock (HERE).readProperty_mLabel (), var_g_13491, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 393)) ;
       }
     }
-    enumerator_13497.gotoNextObject () ;
+    enumerator_13527.gotoNextObject () ;
   }
-  GGS_lstringlist var_nodeList_13791 ;
-  GGS_stringlist joker_13770 ; // Joker input parameter
-  var_g_13461.method_nodesWithNoPredecessor (joker_13770, var_nodeList_13791 COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 397)) ;
-  GGS_stringlist var_newOrderedLabelList_13807 = GGS_stringlist::init (inCompiler COMMA_HERE) ;
-  GGS_stringset var_visitedNodeSet_13849 = GGS_stringset::init (inCompiler COMMA_HERE) ;
-  GGS_clusterList var_clusterList_13885 = GGS_clusterList::init (inCompiler COMMA_HERE) ;
-  UpEnumerator_lstringlist enumerator_13921 (var_nodeList_13791) ;
-  while (enumerator_13921.hasCurrentObject ()) {
-    GGS_blockInvocationGraph var_gg_13975 = var_g_13461.getter_subgraphFromNodes (GGS_lstringlist::class_func_listWithValue (enumerator_13921.current_mValue (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 403)), var_visitedNodeSet_13849, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 402)) ;
-    UpEnumerator_stringlist enumerator_14084 (var_gg_13975.getter_keyList (SOURCE_FILE ("ipic18_block_ordering.galgas", 406))) ;
-    while (enumerator_14084.hasCurrentObject ()) {
-      var_visitedNodeSet_13849.plusPlusAssignOperation (enumerator_14084.current_mValue (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 407)) ;
-      enumerator_14084.gotoNextObject () ;
+  GGS_lstringlist var_nodeList_13821 ;
+  GGS_stringlist joker_13800 ; // Joker input parameter
+  var_g_13491.method_nodesWithNoPredecessor (joker_13800, var_nodeList_13821 COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 397)) ;
+  GGS_stringlist var_newOrderedLabelList_13837 = GGS_stringlist::init (inCompiler COMMA_HERE) ;
+  GGS_stringset var_visitedNodeSet_13879 = GGS_stringset::init (inCompiler COMMA_HERE) ;
+  GGS_clusterList var_clusterList_13915 = GGS_clusterList::init (inCompiler COMMA_HERE) ;
+  UpEnumerator_lstringlist enumerator_13951 (var_nodeList_13821) ;
+  while (enumerator_13951.hasCurrentObject ()) {
+    GGS_blockInvocationGraph var_gg_14005 = var_g_13491.getter_subgraphFromNodes (GGS_lstringlist::class_func_listWithValue (enumerator_13951.current_mValue (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 403)), var_visitedNodeSet_13879, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 402)) ;
+    UpEnumerator_stringlist enumerator_14114 (var_gg_14005.getter_keyList (SOURCE_FILE ("ipic18_block_ordering.galgas", 406))) ;
+    while (enumerator_14114.hasCurrentObject ()) {
+      var_visitedNodeSet_13879.plusPlusAssignOperation (enumerator_14114.current_mValue (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 407)) ;
+      enumerator_14114.gotoNextObject () ;
     }
     {
-    var_gg_13975.setter_removeEdgesToDominators (SOURCE_FILE ("ipic18_block_ordering.galgas", 409)) ;
+    var_gg_14005.setter_removeEdgesToDominators (SOURCE_FILE ("ipic18_block_ordering.galgas", 409)) ;
     }
-    GGS_stringlist var_partialOrderedLabelList_14265 ;
-    GGS_lstringlist joker_14295_3 ; // Joker input parameter
-    GGS_stringlist joker_14295_2 ; // Joker input parameter
-    GGS_lstringlist joker_14295_1 ; // Joker input parameter
-    var_gg_13975.getter_reversedGraph (SOURCE_FILE ("ipic18_block_ordering.galgas", 410)).method_depthFirstTopologicalSort (var_partialOrderedLabelList_14265, joker_14295_3, joker_14295_2, joker_14295_1, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 410)) ;
-    var_newOrderedLabelList_13807.plusAssignOperation(var_partialOrderedLabelList_14265, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 414)) ;
-    GGS_ipic_31__38_BlockList var_cluster_14364 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
-    UpEnumerator_stringlist enumerator_14402 (var_partialOrderedLabelList_14265) ;
-    while (enumerator_14402.hasCurrentObject ()) {
-      GGS_uint var_blockIndex_14499 ;
-      var_symbolTable_13292.method_searchKey (enumerator_14402.current_mValue (HERE).getter_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 417)), var_blockIndex_14499, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 417)) ;
-      GGS_ipic_31__38_Block var_b_14534 = ioArgument_ioBlockList.getter_mBlockAtIndex (var_blockIndex_14499, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 418)) ;
-      var_cluster_14364.addAssignOperation (var_b_14534  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 419)) ;
-      enumerator_14402.gotoNextObject () ;
+    GGS_stringlist var_partialOrderedLabelList_14295 ;
+    GGS_lstringlist joker_14325_3 ; // Joker input parameter
+    GGS_stringlist joker_14325_2 ; // Joker input parameter
+    GGS_lstringlist joker_14325_1 ; // Joker input parameter
+    var_gg_14005.getter_reversedGraph (SOURCE_FILE ("ipic18_block_ordering.galgas", 410)).method_depthFirstTopologicalSort (var_partialOrderedLabelList_14295, joker_14325_3, joker_14325_2, joker_14325_1, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 410)) ;
+    var_newOrderedLabelList_13837.plusAssignOperation(var_partialOrderedLabelList_14295, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 414)) ;
+    GGS_ipic_31__38_BlockList var_cluster_14394 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
+    UpEnumerator_stringlist enumerator_14432 (var_partialOrderedLabelList_14295) ;
+    while (enumerator_14432.hasCurrentObject ()) {
+      GGS_uint var_blockIndex_14529 ;
+      var_symbolTable_13322.method_searchKey (enumerator_14432.current_mValue (HERE).getter_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 417)), var_blockIndex_14529, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 417)) ;
+      GGS_ipic_31__38_Block var_b_14564 = ioArgument_ioBlockList.getter_mBlockAtIndex (var_blockIndex_14529, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 418)) ;
+      var_cluster_14394.addAssignOperation (var_b_14564  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 419)) ;
+      enumerator_14432.gotoNextObject () ;
     }
-    var_clusterList_13885.addAssignOperation (var_cluster_14364  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 421)) ;
-    enumerator_13921.gotoNextObject () ;
+    var_clusterList_13915.addAssignOperation (var_cluster_14394  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 421)) ;
+    enumerator_13951.gotoNextObject () ;
   }
-  UpEnumerator_ipic_31__38_BlockList enumerator_14725 (ioArgument_ioBlockList) ;
-  while (enumerator_14725.hasCurrentObject ()) {
+  UpEnumerator_ipic_31__38_BlockList enumerator_14755 (ioArgument_ioBlockList) ;
+  while (enumerator_14755.hasCurrentObject ()) {
     GalgasBool test_2 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_2) {
-      test_2 = GGS_bool (ComparisonKind::equal, enumerator_14725.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 425)))).operator_and (var_visitedNodeSet_13849.getter_hasKey (enumerator_14725.current_mBlock (HERE).readProperty_mLabel ().readProperty_string () COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 426)).operator_not (SOURCE_FILE ("ipic18_block_ordering.galgas", 426)) COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 425)).boolEnum () ;
+      test_2 = GGS_bool (ComparisonKind::equal, enumerator_14755.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 425)))).operator_and (var_visitedNodeSet_13879.getter_hasKey (enumerator_14755.current_mBlock (HERE).readProperty_mLabel ().readProperty_string () COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 426)).operator_not (SOURCE_FILE ("ipic18_block_ordering.galgas", 426)) COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 425)).boolEnum () ;
       if (GalgasBool::boolTrue == test_2) {
-        GGS_blockInvocationGraph var_gg_14910 = var_g_13461.getter_subgraphFromNodes (GGS_lstringlist::class_func_listWithValue (enumerator_14725.current_mBlock (HERE).readProperty_mLabel ()  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 428)), var_visitedNodeSet_13849, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 427)) ;
-        UpEnumerator_stringlist enumerator_15034 (var_gg_14910.getter_keyList (SOURCE_FILE ("ipic18_block_ordering.galgas", 431))) ;
-        while (enumerator_15034.hasCurrentObject ()) {
-          var_visitedNodeSet_13849.plusPlusAssignOperation (enumerator_15034.current_mValue (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 432)) ;
-          enumerator_15034.gotoNextObject () ;
+        GGS_blockInvocationGraph var_gg_14940 = var_g_13491.getter_subgraphFromNodes (GGS_lstringlist::class_func_listWithValue (enumerator_14755.current_mBlock (HERE).readProperty_mLabel ()  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 428)), var_visitedNodeSet_13879, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 427)) ;
+        UpEnumerator_stringlist enumerator_15064 (var_gg_14940.getter_keyList (SOURCE_FILE ("ipic18_block_ordering.galgas", 431))) ;
+        while (enumerator_15064.hasCurrentObject ()) {
+          var_visitedNodeSet_13879.plusPlusAssignOperation (enumerator_15064.current_mValue (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 432)) ;
+          enumerator_15064.gotoNextObject () ;
         }
         {
-        var_gg_14910.setter_removeEdgesToNode (enumerator_14725.current_mBlock (HERE).readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 434)) ;
+        var_gg_14940.setter_removeEdgesToNode (enumerator_14755.current_mBlock (HERE).readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 434)) ;
         }
         {
-        var_gg_14910.setter_removeEdgesToDominators (SOURCE_FILE ("ipic18_block_ordering.galgas", 435)) ;
+        var_gg_14940.setter_removeEdgesToDominators (SOURCE_FILE ("ipic18_block_ordering.galgas", 435)) ;
         }
-        GGS_stringlist var_partialOrderedLabelList_15274 ;
-        GGS_lstringlist joker_15306_3 ; // Joker input parameter
-        GGS_stringlist joker_15306_2 ; // Joker input parameter
-        GGS_lstringlist joker_15306_1 ; // Joker input parameter
-        var_gg_14910.getter_reversedGraph (SOURCE_FILE ("ipic18_block_ordering.galgas", 436)).method_depthFirstTopologicalSort (var_partialOrderedLabelList_15274, joker_15306_3, joker_15306_2, joker_15306_1, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 436)) ;
-        var_newOrderedLabelList_13807.plusAssignOperation(var_partialOrderedLabelList_15274, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 440)) ;
-        GGS_ipic_31__38_BlockList var_cluster_15381 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
-        UpEnumerator_stringlist enumerator_15421 (var_partialOrderedLabelList_15274) ;
-        while (enumerator_15421.hasCurrentObject ()) {
-          GGS_uint var_blockIndex_15520 ;
-          var_symbolTable_13292.method_searchKey (enumerator_15421.current_mValue (HERE).getter_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 443)), var_blockIndex_15520, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 443)) ;
-          GGS_ipic_31__38_Block var_b_15557 = ioArgument_ioBlockList.getter_mBlockAtIndex (var_blockIndex_15520, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 444)) ;
-          var_cluster_15381.addAssignOperation (var_b_15557  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 445)) ;
-          enumerator_15421.gotoNextObject () ;
+        GGS_stringlist var_partialOrderedLabelList_15304 ;
+        GGS_lstringlist joker_15336_3 ; // Joker input parameter
+        GGS_stringlist joker_15336_2 ; // Joker input parameter
+        GGS_lstringlist joker_15336_1 ; // Joker input parameter
+        var_gg_14940.getter_reversedGraph (SOURCE_FILE ("ipic18_block_ordering.galgas", 436)).method_depthFirstTopologicalSort (var_partialOrderedLabelList_15304, joker_15336_3, joker_15336_2, joker_15336_1, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 436)) ;
+        var_newOrderedLabelList_13837.plusAssignOperation(var_partialOrderedLabelList_15304, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 440)) ;
+        GGS_ipic_31__38_BlockList var_cluster_15411 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
+        UpEnumerator_stringlist enumerator_15451 (var_partialOrderedLabelList_15304) ;
+        while (enumerator_15451.hasCurrentObject ()) {
+          GGS_uint var_blockIndex_15550 ;
+          var_symbolTable_13322.method_searchKey (enumerator_15451.current_mValue (HERE).getter_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 443)), var_blockIndex_15550, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 443)) ;
+          GGS_ipic_31__38_Block var_b_15587 = ioArgument_ioBlockList.getter_mBlockAtIndex (var_blockIndex_15550, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 444)) ;
+          var_cluster_15411.addAssignOperation (var_b_15587  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 445)) ;
+          enumerator_15451.gotoNextObject () ;
         }
-        var_clusterList_13885.addAssignOperation (var_cluster_15381  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 447)) ;
+        var_clusterList_13915.addAssignOperation (var_cluster_15411  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 447)) ;
       }
     }
-    enumerator_14725.gotoNextObject () ;
+    enumerator_14755.gotoNextObject () ;
   }
-  GGS_ipic_31__38_BlockList var_orderedBlockList_15732 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
-  GGS_bool var_continue_15823 = GGS_bool (true) ;
-  UpEnumerator_ipic_31__38_BlockList enumerator_15846 (ioArgument_ioBlockList) ;
-  bool bool_3 = var_continue_15823.isValidAndTrue () ;
-  if (enumerator_15846.hasCurrentObject () && bool_3) {
-    while (enumerator_15846.hasCurrentObject () && bool_3) {
-      var_continue_15823 = GGS_bool (ComparisonKind::notEqual, enumerator_15846.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 455)))) ;
+  GGS_ipic_31__38_BlockList var_orderedBlockList_15762 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
+  GGS_bool var_continue_15853 = GGS_bool (true) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_15876 (ioArgument_ioBlockList) ;
+  bool bool_3 = var_continue_15853.isValidAndTrue () ;
+  if (enumerator_15876.hasCurrentObject () && bool_3) {
+    while (enumerator_15876.hasCurrentObject () && bool_3) {
+      var_continue_15853 = GGS_bool (ComparisonKind::notEqual, enumerator_15876.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 455)))) ;
       GalgasBool test_4 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_4) {
-        test_4 = var_continue_15823.boolEnum () ;
+        test_4 = var_continue_15853.boolEnum () ;
         if (GalgasBool::boolTrue == test_4) {
-          var_orderedBlockList_15732.addAssignOperation (enumerator_15846.current_mBlock (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 457)) ;
+          var_orderedBlockList_15762.addAssignOperation (enumerator_15876.current_mBlock (HERE)  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 457)) ;
         }
       }
-      enumerator_15846.gotoNextObject () ;
-      if (enumerator_15846.hasCurrentObject ()) {
-        bool_3 = var_continue_15823.isValidAndTrue () ;
+      enumerator_15876.gotoNextObject () ;
+      if (enumerator_15876.hasCurrentObject ()) {
+        bool_3 = var_continue_15853.isValidAndTrue () ;
       }
     }
   }
-  UpEnumerator_stringlist enumerator_16037 (var_newOrderedLabelList_13807) ;
-  while (enumerator_16037.hasCurrentObject ()) {
-    GGS_uint var_blockIndex_16128 ;
-    var_symbolTable_13292.method_searchKey (enumerator_16037.current_mValue (HERE).getter_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 462)), var_blockIndex_16128, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 462)) ;
-    GGS_ipic_31__38_Block var_b_16161 = ioArgument_ioBlockList.getter_mBlockAtIndex (var_blockIndex_16128, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 463)) ;
-    var_orderedBlockList_15732.addAssignOperation (var_b_16161  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 464)) ;
-    enumerator_16037.gotoNextObject () ;
+  UpEnumerator_stringlist enumerator_16067 (var_newOrderedLabelList_13837) ;
+  while (enumerator_16067.hasCurrentObject ()) {
+    GGS_uint var_blockIndex_16158 ;
+    var_symbolTable_13322.method_searchKey (enumerator_16067.current_mValue (HERE).getter_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 462)), var_blockIndex_16158, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 462)) ;
+    GGS_ipic_31__38_Block var_b_16191 = ioArgument_ioBlockList.getter_mBlockAtIndex (var_blockIndex_16158, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 463)) ;
+    var_orderedBlockList_15762.addAssignOperation (var_b_16191  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 464)) ;
+    enumerator_16067.gotoNextObject () ;
   }
-  GGS_uint var_insertionIndex_16297 = var_orderedBlockList_15732.getter_count (SOURCE_FILE ("ipic18_block_ordering.galgas", 467)) ;
-  var_continue_15823 = GGS_bool (true) ;
-  DownEnumerator_ipic_31__38_BlockList enumerator_16366 (ioArgument_ioBlockList) ;
-  bool bool_5 = var_continue_15823.isValidAndTrue () ;
-  if (enumerator_16366.hasCurrentObject () && bool_5) {
-    while (enumerator_16366.hasCurrentObject () && bool_5) {
-      var_continue_15823 = GGS_bool (ComparisonKind::notEqual, enumerator_16366.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 470)))) ;
+  GGS_uint var_insertionIndex_16327 = var_orderedBlockList_15762.getter_count (SOURCE_FILE ("ipic18_block_ordering.galgas", 467)) ;
+  var_continue_15853 = GGS_bool (true) ;
+  DownEnumerator_ipic_31__38_BlockList enumerator_16396 (ioArgument_ioBlockList) ;
+  bool bool_5 = var_continue_15853.isValidAndTrue () ;
+  if (enumerator_16396.hasCurrentObject () && bool_5) {
+    while (enumerator_16396.hasCurrentObject () && bool_5) {
+      var_continue_15853 = GGS_bool (ComparisonKind::notEqual, enumerator_16396.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 470)))) ;
       GalgasBool test_6 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_6) {
-        test_6 = var_continue_15823.boolEnum () ;
+        test_6 = var_continue_15853.boolEnum () ;
         if (GalgasBool::boolTrue == test_6) {
           {
-          var_orderedBlockList_15732.setter_insertAtIndex (enumerator_16366.current_mBlock (HERE), var_insertionIndex_16297, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 472)) ;
+          var_orderedBlockList_15762.setter_insertAtIndex (enumerator_16396.current_mBlock (HERE), var_insertionIndex_16327, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 472)) ;
           }
         }
       }
-      enumerator_16366.gotoNextObject () ;
-      if (enumerator_16366.hasCurrentObject ()) {
-        bool_5 = var_continue_15823.isValidAndTrue () ;
+      enumerator_16396.gotoNextObject () ;
+      if (enumerator_16396.hasCurrentObject ()) {
+        bool_5 = var_continue_15853.isValidAndTrue () ;
       }
     }
   }
-  GGS_uint var_p_16602 = function_blockDiscontinuityCount (var_orderedBlockList_15732, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 476)) ;
-  ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  jump count after optimization: ").add_operation (var_p_16602.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 477)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 477)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 477)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 477)) ;
+  GGS_uint var_p_16632 = function_blockDiscontinuityCount (var_orderedBlockList_15762, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 476)) ;
+  ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  jump count after optimization: ").add_operation (var_p_16632.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 477)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 477)).add_operation (GGS_string ("\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 477)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 477)) ;
   GalgasBool test_7 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_7) {
     test_7 = GGS_application::class_func_verboseOutput (SOURCE_FILE ("ipic18_block_ordering.galgas", 478)).boolEnum () ;
     if (GalgasBool::boolTrue == test_7) {
       {
-      routine_print_3F_ (var_n_13026.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 479)).add_operation (GGS_string (" -> "), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 479)).add_operation (var_p_16602.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 479)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 479)).add_operation (GGS_string (".\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 479)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 479)) ;
+      routine_print_3F_ (var_n_13056.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 479)).add_operation (GGS_string (" -> "), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 479)).add_operation (var_p_16632.getter_string (SOURCE_FILE ("ipic18_block_ordering.galgas", 479)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 479)).add_operation (GGS_string (".\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 479)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 479)) ;
       }
     }
   }
@@ -6440,70 +6440,70 @@ void routine_buildOrderedGraph_26__3F__26_ (GGS_ipic_31__38_BlockList & ioArgume
   if (GalgasBool::boolTrue == test_8) {
     test_8 = GGS_bool (gOption_piccoloOptions_generateGraphvizFiles.readProperty_value ()).boolEnum () ;
     if (GalgasBool::boolTrue == test_8) {
-      GGS_bool joker_17002 ; // Joker input parameter
-      var_g_13461.getter_graphviz (SOURCE_FILE ("ipic18_block_ordering.galgas", 483)).method_writeToFileWhenDifferentContents (constinArgument_inSourceFileName.add_operation (GGS_string (".blockOrderingConstraints.dot"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 483)), joker_17002, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 483)) ;
+      GGS_bool joker_17032 ; // Joker input parameter
+      var_g_13491.getter_graphviz (SOURCE_FILE ("ipic18_block_ordering.galgas", 483)).method_writeToFileWhenDifferentContents (constinArgument_inSourceFileName.add_operation (GGS_string (".blockOrderingConstraints.dot"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 483)), joker_17032, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 483)) ;
     }
   }
-  GGS_stringset var_newSymbolSet_17046 = GGS_stringset::init (inCompiler COMMA_HERE) ;
-  GGS_bool var_ok_17086 = GGS_bool (true) ;
-  UpEnumerator_ipic_31__38_BlockList enumerator_17103 (var_orderedBlockList_15732) ;
-  while (enumerator_17103.hasCurrentObject ()) {
+  GGS_stringset var_newSymbolSet_17076 = GGS_stringset::init (inCompiler COMMA_HERE) ;
+  GGS_bool var_ok_17116 = GGS_bool (true) ;
+  UpEnumerator_ipic_31__38_BlockList enumerator_17133 (var_orderedBlockList_15762) ;
+  while (enumerator_17133.hasCurrentObject ()) {
     GalgasBool test_9 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_9) {
-      test_9 = var_newSymbolSet_17046.getter_hasKey (enumerator_17103.current_mBlock (HERE).readProperty_mLabel ().readProperty_string () COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 489)).boolEnum () ;
+      test_9 = var_newSymbolSet_17076.getter_hasKey (enumerator_17133.current_mBlock (HERE).readProperty_mLabel ().readProperty_string () COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 489)).boolEnum () ;
       if (GalgasBool::boolTrue == test_9) {
-        GGS_string var_s_17209 = GGS_string ("BLOCK REORDERING INTERNAL ERROR: block \"").add_operation (enumerator_17103.current_mBlock (HERE).readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 490)).add_operation (GGS_string ("\" is duplicated"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 491)) ;
+        GGS_string var_s_17239 = GGS_string ("BLOCK REORDERING INTERNAL ERROR: block \"").add_operation (enumerator_17133.current_mBlock (HERE).readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 490)).add_operation (GGS_string ("\" is duplicated"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 491)) ;
         TC_Array <FixItDescription> fixItArray10 ;
-        inCompiler->emitSemanticWarning (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 492)), var_s_17209, fixItArray10  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 492)) ;
-        ioArgument_ioListFileContents.plusAssignOperation(var_s_17209.add_operation (GGS_string (".\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 493)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 493)) ;
-        var_ok_17086 = GGS_bool (false) ;
+        inCompiler->emitSemanticWarning (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 492)), var_s_17239, fixItArray10  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 492)) ;
+        ioArgument_ioListFileContents.plusAssignOperation(var_s_17239.add_operation (GGS_string (".\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 493)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 493)) ;
+        var_ok_17116 = GGS_bool (false) ;
       }
     }
     if (GalgasBool::boolFalse == test_9) {
-      var_newSymbolSet_17046.plusPlusAssignOperation (enumerator_17103.current_mBlock (HERE).readProperty_mLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 496)) ;
+      var_newSymbolSet_17076.plusPlusAssignOperation (enumerator_17133.current_mBlock (HERE).readProperty_mLabel ().readProperty_string ()  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 496)) ;
     }
-    enumerator_17103.gotoNextObject () ;
+    enumerator_17133.gotoNextObject () ;
   }
-  UpEnumerator_symbolTableForBlockOptimization enumerator_17472 (var_symbolTable_13292) ;
-  while (enumerator_17472.hasCurrentObject ()) {
+  UpEnumerator_symbolTableForBlockOptimization enumerator_17502 (var_symbolTable_13322) ;
+  while (enumerator_17502.hasCurrentObject ()) {
     GalgasBool test_11 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_11) {
-      test_11 = var_newSymbolSet_17046.getter_hasKey (enumerator_17472.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 500)).operator_not (SOURCE_FILE ("ipic18_block_ordering.galgas", 500)).boolEnum () ;
+      test_11 = var_newSymbolSet_17076.getter_hasKey (enumerator_17502.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 500)).operator_not (SOURCE_FILE ("ipic18_block_ordering.galgas", 500)).boolEnum () ;
       if (GalgasBool::boolTrue == test_11) {
-        GGS_string var_s_17563 = GGS_string ("BLOCK REORDERING INTERNAL ERROR: block \"").add_operation (enumerator_17472.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 501)).add_operation (GGS_string ("\" is missing"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 502)) ;
+        GGS_string var_s_17593 = GGS_string ("BLOCK REORDERING INTERNAL ERROR: block \"").add_operation (enumerator_17502.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 501)).add_operation (GGS_string ("\" is missing"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 502)) ;
         TC_Array <FixItDescription> fixItArray12 ;
-        inCompiler->emitSemanticWarning (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 503)), var_s_17563, fixItArray12  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 503)) ;
-        ioArgument_ioListFileContents.plusAssignOperation(var_s_17563.add_operation (GGS_string (".\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 504)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 504)) ;
-        var_ok_17086 = GGS_bool (false) ;
+        inCompiler->emitSemanticWarning (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 503)), var_s_17593, fixItArray12  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 503)) ;
+        ioArgument_ioListFileContents.plusAssignOperation(var_s_17593.add_operation (GGS_string (".\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 504)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 504)) ;
+        var_ok_17116 = GGS_bool (false) ;
       }
     }
-    enumerator_17472.gotoNextObject () ;
+    enumerator_17502.gotoNextObject () ;
   }
   GalgasBool test_13 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_13) {
-    test_13 = var_ok_17086.boolEnum () ;
+    test_13 = var_ok_17116.boolEnum () ;
     if (GalgasBool::boolTrue == test_13) {
-      ioArgument_ioBlockList = var_orderedBlockList_15732 ;
+      ioArgument_ioBlockList = var_orderedBlockList_15762 ;
       {
-      routine_displayBlockList_3F__26__3F_ (GGS_string ("ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION"), ioArgument_ioListFileContents, var_orderedBlockList_15732, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 511)) ;
+      routine_displayBlockList_3F__26__3F_ (GGS_string ("ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION"), ioArgument_ioListFileContents, var_orderedBlockList_15762, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 511)) ;
       }
     }
   }
   if (GalgasBool::boolFalse == test_13) {
-    GGS_string var_s_17991 = GGS_string ("BLOCK REORDERING INTERNAL ERROR: reordered block list is inconsistent, it is not used anymore") ;
+    GGS_string var_s_18021 = GGS_string ("BLOCK REORDERING INTERNAL ERROR: reordered block list is inconsistent, it is not used anymore") ;
     TC_Array <FixItDescription> fixItArray14 ;
-    inCompiler->emitSemanticWarning (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 514)), var_s_17991, fixItArray14  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 514)) ;
-    ioArgument_ioListFileContents.plusAssignOperation(var_s_17991.add_operation (GGS_string (".\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 515)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 515)) ;
+    inCompiler->emitSemanticWarning (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_block_ordering.galgas", 514)), var_s_18021, fixItArray14  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 514)) ;
+    ioArgument_ioListFileContents.plusAssignOperation(var_s_18021.add_operation (GGS_string (".\n\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 515)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 515)) ;
     {
-    routine_displayBlockList_3F__26__3F_ (GGS_string ("INCONSISTENT ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION (not used)"), ioArgument_ioListFileContents, var_orderedBlockList_15732, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 516)) ;
+    routine_displayBlockList_3F__26__3F_ (GGS_string ("INCONSISTENT ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION (not used)"), ioArgument_ioListFileContents, var_orderedBlockList_15762, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 516)) ;
     }
   }
   GalgasBool test_15 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_15) {
-    test_15 = var_ok_17086.boolEnum () ;
+    test_15 = var_ok_17116.boolEnum () ;
     if (GalgasBool::boolTrue == test_15) {
       {
-      routine_perform_5F_cluster_5F_ordering_3F__26__26_ (var_clusterList_13885, ioArgument_ioBlockList, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 520)) ;
+      routine_perform_5F_cluster_5F_ordering_3F__26__26_ (var_clusterList_13915, ioArgument_ioBlockList, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 520)) ;
       }
     }
   }
@@ -6523,22 +6523,22 @@ void routine_buildInvocationGraph_3F__21_ (const GGS_ipic_31__38_BlockList const
   outArgument_outGraphVizString.drop () ; // Release 'out' argument
   outArgument_outGraphVizString = GGS_string ("digraph G {\n") ;
   outArgument_outGraphVizString.plusAssignOperation(GGS_string ("  node [fontname=courier]\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 534)) ;
-  UpEnumerator_ipic_31__38_BlockList enumerator_18745 (constinArgument_inBlockList) ;
-  while (enumerator_18745.hasCurrentObject ()) {
+  UpEnumerator_ipic_31__38_BlockList enumerator_18775 (constinArgument_inBlockList) ;
+  while (enumerator_18775.hasCurrentObject ()) {
     GalgasBool test_0 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_0) {
-      test_0 = GGS_bool (ComparisonKind::notEqual, enumerator_18745.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 536)))).boolEnum () ;
+      test_0 = GGS_bool (ComparisonKind::notEqual, enumerator_18775.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 536)))).boolEnum () ;
       if (GalgasBool::boolTrue == test_0) {
-        outArgument_outGraphVizString.plusAssignOperation(GGS_string ("  \"").add_operation (enumerator_18745.current_mBlock (HERE).readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 537)).add_operation (GGS_string ("\" [shape=rectangle]\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 537)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 537)) ;
+        outArgument_outGraphVizString.plusAssignOperation(GGS_string ("  \"").add_operation (enumerator_18775.current_mBlock (HERE).readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 537)).add_operation (GGS_string ("\" [shape=rectangle]\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 537)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 537)) ;
       }
     }
-    UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_18939 (enumerator_18745.current_mBlock (HERE).readProperty_mInstructionList ()) ;
-    while (enumerator_18939.hasCurrentObject ()) {
-      callExtensionMethod_buildInstructionInvocationGraph ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_18939.current_mInstruction (HERE).ptr (), enumerator_18745.current_mBlock (HERE).readProperty_mLabel (), outArgument_outGraphVizString, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 540)) ;
-      enumerator_18939.gotoNextObject () ;
+    UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_18969 (enumerator_18775.current_mBlock (HERE).readProperty_mInstructionList ()) ;
+    while (enumerator_18969.hasCurrentObject ()) {
+      callExtensionMethod_buildInstructionInvocationGraph ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_18969.current_mInstruction (HERE).ptr (), enumerator_18775.current_mBlock (HERE).readProperty_mLabel (), outArgument_outGraphVizString, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 540)) ;
+      enumerator_18969.gotoNextObject () ;
     }
-    callExtensionMethod_buildTerminatorInvocationGraph ((cPtr_ipic_31__38_AbstractBlockTerminator *) enumerator_18745.current_mBlock (HERE).readProperty_mTerminator ().ptr (), enumerator_18745.current_mBlock (HERE).readProperty_mLabel (), outArgument_outGraphVizString, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 542)) ;
-    enumerator_18745.gotoNextObject () ;
+    callExtensionMethod_buildTerminatorInvocationGraph ((cPtr_ipic_31__38_AbstractBlockTerminator *) enumerator_18775.current_mBlock (HERE).readProperty_mTerminator ().ptr (), enumerator_18775.current_mBlock (HERE).readProperty_mLabel (), outArgument_outGraphVizString, GGS_bool (false), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 542)) ;
+    enumerator_18775.gotoNextObject () ;
   }
   outArgument_outGraphVizString.plusAssignOperation(GGS_string ("}\n"), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 544)) ;
 }
@@ -6555,35 +6555,35 @@ GGS_uint function_blockDiscontinuityCount (const GGS_ipic_31__38_BlockList & con
                                            COMMA_UNUSED_LOCATION_ARGS) {
   GGS_uint result_outResult ; // Returned variable
   result_outResult = GGS_uint (uint32_t (0U)) ;
-  UpEnumerator_ipic_31__38_BlockList enumerator_19392 (constinArgument_inBlockList) ;
-  GGS_uint index_19387 (uint32_t (0)) ;
-  while (enumerator_19392.hasCurrentObject ()) {
+  UpEnumerator_ipic_31__38_BlockList enumerator_19422 (constinArgument_inBlockList) ;
+  GGS_uint index_19417 (uint32_t (0)) ;
+  while (enumerator_19422.hasCurrentObject ()) {
     GalgasBool test_0 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_0) {
-      test_0 = GGS_bool (ComparisonKind::equal, enumerator_19392.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 552)))).boolEnum () ;
+      test_0 = GGS_bool (ComparisonKind::equal, enumerator_19422.current_mBlock (HERE).readProperty_mAddress ().objectCompare (GGS_uint::class_func_max (SOURCE_FILE ("ipic18_block_ordering.galgas", 552)))).boolEnum () ;
       if (GalgasBool::boolTrue == test_0) {
-        GGS_string var_nextBlockLabel_19516 ;
+        GGS_string var_nextBlockLabel_19546 ;
         GalgasBool test_1 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_1) {
-          test_1 = GGS_bool (ComparisonKind::lowerThan, index_19387.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 554)).objectCompare (constinArgument_inBlockList.getter_count (SOURCE_FILE ("ipic18_block_ordering.galgas", 554)))).boolEnum () ;
+          test_1 = GGS_bool (ComparisonKind::lowerThan, index_19417.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 554)).objectCompare (constinArgument_inBlockList.getter_count (SOURCE_FILE ("ipic18_block_ordering.galgas", 554)))).boolEnum () ;
           if (GalgasBool::boolTrue == test_1) {
-            var_nextBlockLabel_19516 = constinArgument_inBlockList.getter_mBlockAtIndex (index_19387.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 555)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 555)).readProperty_mLabel ().readProperty_string () ;
+            var_nextBlockLabel_19546 = constinArgument_inBlockList.getter_mBlockAtIndex (index_19417.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 555)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 555)).readProperty_mLabel ().readProperty_string () ;
           }
         }
         if (GalgasBool::boolFalse == test_1) {
-          var_nextBlockLabel_19516 = GGS_string::makeEmptyString () ;
+          var_nextBlockLabel_19546 = GGS_string::makeEmptyString () ;
         }
         GalgasBool test_2 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_2) {
-          test_2 = callExtensionGetter_needToInsertJumpInstruction ((const cPtr_ipic_31__38_AbstractBlockTerminator *) enumerator_19392.current_mBlock (HERE).readProperty_mTerminator ().ptr (), var_nextBlockLabel_19516, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 559)).boolEnum () ;
+          test_2 = callExtensionGetter_needToInsertJumpInstruction ((const cPtr_ipic_31__38_AbstractBlockTerminator *) enumerator_19422.current_mBlock (HERE).readProperty_mTerminator ().ptr (), var_nextBlockLabel_19546, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 559)).boolEnum () ;
           if (GalgasBool::boolTrue == test_2) {
             result_outResult.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 560)) ;
           }
         }
       }
     }
-    enumerator_19392.gotoNextObject () ;
-    index_19387.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 551)) ;
+    enumerator_19422.gotoNextObject () ;
+    index_19417.increment_operation (inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 551)) ;
   }
 //---
   return result_outResult ;
@@ -6636,18 +6636,18 @@ void routine_ipic_31__38_OptimizeBlockOrdering_3F__26__26_ (const GGS_string con
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (gOption_piccoloOptions_generateGraphvizFiles.readProperty_value ()).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      GGS_string var_invocationGraph_20185 ;
+      GGS_string var_invocationGraph_20215 ;
       {
-      routine_buildInvocationGraph_3F__21_ (ioArgument_ioGeneratedBlockList, var_invocationGraph_20185, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 573)) ;
+      routine_buildInvocationGraph_3F__21_ (ioArgument_ioGeneratedBlockList, var_invocationGraph_20215, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 573)) ;
       }
-      GGS_bool joker_20299 ; // Joker input parameter
-      var_invocationGraph_20185.method_writeToFileWhenDifferentContents (constinArgument_inSourceFileName.add_operation (GGS_string (".blockInvocation.dot"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 574)), joker_20299, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 574)) ;
+      GGS_bool joker_20329 ; // Joker input parameter
+      var_invocationGraph_20215.method_writeToFileWhenDifferentContents (constinArgument_inSourceFileName.add_operation (GGS_string (".blockInvocation.dot"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 574)), joker_20329, inCompiler COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 574)) ;
     }
   }
-  GGS_bool var_optimize_20326 = GGS_bool (gOption_piccoloOptions_performOptimizations.readProperty_value ()).operator_or (GGS_string (gOption_piccoloOptions_optimizationFlags.readProperty_value ()).getter_containsCharacter (GGS_char (TO_UNICODE (66)) COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 578)) COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 577)) ;
+  GGS_bool var_optimize_20356 = GGS_bool (gOption_piccoloOptions_performOptimizations.readProperty_value ()).operator_or (GGS_string (gOption_piccoloOptions_optimizationFlags.readProperty_value ()).getter_containsCharacter (GGS_char (TO_UNICODE (66)) COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 578)) COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 577)) ;
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    test_1 = var_optimize_20326.boolEnum () ;
+    test_1 = var_optimize_20356.boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
       {
       routine_buildOrderedGraph_26__3F__26_ (ioArgument_ioGeneratedBlockList, constinArgument_inSourceFileName, ioArgument_ioListFileContents, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_ordering.galgas", 580)) ;

@@ -296,7 +296,7 @@ method @ipic18AbstractBlockTerminator buildTerminatorOrderedGraph
 override method @ipic18JumpTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
-  [!?ioGraph addEdge !inBlockLabel !self.mLabel]
+  [!?ioGraph addEdge !from: inBlockLabel !to: self.mLabel]
 }
 
 #----------------------------------------------------------------------------*
@@ -304,8 +304,8 @@ override method @ipic18JumpTerminator buildTerminatorOrderedGraph
 override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
-  [!?ioGraph addEdge !inBlockLabel !self.mTargetLabelWhenTrue]
-  [!?ioGraph addEdge !inBlockLabel !self.mTargetLabelWhenFalse]
+  [!?ioGraph addEdge !from: inBlockLabel !to: self.mTargetLabelWhenTrue]
+  [!?ioGraph addEdge !from: inBlockLabel !to: self.mTargetLabelWhenFalse]
 }
 
 #----------------------------------------------------------------------------*
