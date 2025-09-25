@@ -578,7 +578,7 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_ORG::method_defineLabelAtAddress
     test_0 = GGS_bool (ComparisonKind::greaterThan, ioArgument_ioAddress.objectCompare (temp_1.readProperty_mOrigin ())).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
       const GGS_midrange_5F_intermediate_5F_pseudo_5F_ORG temp_2 = this ;
-      TC_Array <FixItDescription> fixItArray3 ;
+      GenericArray <FixItDescription> fixItArray3 ;
       inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 38)), GGS_string ("internal error: current address (").add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 38)).add_operation (GGS_string (") is greater than origin ("), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)).add_operation (temp_2.readProperty_mOrigin ().getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)).add_operation (GGS_string (")"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 39)), fixItArray3  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 38)) ;
     }
   }
@@ -601,7 +601,7 @@ void cPtr_midrange_5F_intermediate_5F_actualInstruction::method_defineLabelAtAdd
     test_1 = GGS_bool (ComparisonKind::notEqual, var_nextAddress_1932.operator_xor (ioArgument_ioAddress COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 51)).operator_and (GGS_uint (uint32_t (63488U)) COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 51)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
       const GGS_midrange_5F_intermediate_5F_actualInstruction temp_2 = this ;
-      TC_Array <FixItDescription> fixItArray3 ;
+      GenericArray <FixItDescription> fixItArray3 ;
       inCompiler->emitSemanticError (temp_2.readProperty_mInstructionLocation (), GGS_string ("Routine too long, crosses page boundary at this instruction"), fixItArray3  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 52)) ;
     }
   }
@@ -821,7 +821,7 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_compute (const GGS
     if (GalgasBool::boolTrue == test_1) {
       const GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_2 = this ;
       const GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_3 = this ;
-      TC_Array <FixItDescription> fixItArray4 ;
+      GenericArray <FixItDescription> fixItArray4 ;
       inCompiler->emitSemanticError (temp_2.readProperty_mLabel ().readProperty_location (), GGS_string ("Internal second pass error: the '").add_operation (temp_3.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 203)).add_operation (GGS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 203)).add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 204)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 204)).add_operation (GGS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 204)).add_operation (var_targetAddress_7776.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 205)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 204)).add_operation (GGS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 205)), fixItArray4  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 203)) ;
     }
   }
@@ -880,7 +880,7 @@ void routine_midrange_5F_compute_5F_JSR_5F_JUMP_26__26_ (GGS_midrange_5F_interme
         if (GalgasBool::boolTrue == test_0) {
           test_0 = GGS_bool (ComparisonKind::notEqual, var_lastAddressForFirstPass_13716.objectCompare (var_currentAddress_13545)).boolEnum () ;
           if (GalgasBool::boolTrue == test_0) {
-            TC_Array <FixItDescription> fixItArray1 ;
+            GenericArray <FixItDescription> fixItArray1 ;
             inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 340)), GGS_string ("Internal second pass error: the last address gets ").add_operation (var_currentAddress_13545.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 340)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 340)).add_operation (GGS_string (" value when checking relative branches, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 340)).add_operation (var_lastAddressForFirstPass_13716.getter_hexString (SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 342)), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 341)).add_operation (GGS_string (" value when computing routine map"), inCompiler COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 342)), fixItArray1  COMMA_SOURCE_FILE ("midrange_compute_JSR_JUMP.galgas", 340)) ;
           }
         }
@@ -1310,7 +1310,7 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::method_buildAssemblyC
     test_0 = GGS_bool (ComparisonKind::equal, temp_1.readProperty_mOccurrenceFactor ().readProperty_uint ().objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
       const GGS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_2 = this ;
-      TC_Array <FixItDescription> fixItArray3 ;
+      GenericArray <FixItDescription> fixItArray3 ;
       inCompiler->emitSemanticWarning (temp_2.readProperty_mOccurrenceFactor ().readProperty_location (), GGS_string ("No generated code"), fixItArray3  COMMA_SOURCE_FILE ("midrange_ipic_build_assembly_code.galgas", 235)) ;
     }
   }
@@ -1694,7 +1694,7 @@ void routine_emit_5F_midrange_5F_GOTOinstruction_3F__26__3F__3F__26_ (const GGS_
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::notEqual, ioArgument_ioAddress.operator_xor (constinArgument_inTargetAddress COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 258)).operator_and (GGS_uint (uint32_t (63488U)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 258)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      TC_Array <FixItDescription> fixItArray1 ;
+      GenericArray <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (constinArgument_inIntructionLocation, GGS_string ("GOTO (from ").add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 259)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 259)).add_operation (GGS_string (" to "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 259)).add_operation (constinArgument_inTargetAddress.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 259)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 259)).add_operation (GGS_string (") crosses page boundary"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 259)), fixItArray1  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 259)) ;
     }
   }
@@ -1740,7 +1740,7 @@ void routine_emit_5F_midrange_5F_CALLinstruction_3F__26__3F__3F__26_ (const GGS_
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::notEqual, ioArgument_ioAddress.operator_xor (constinArgument_inTargetAddress COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 283)).operator_and (GGS_uint (uint32_t (63488U)) COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 283)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      TC_Array <FixItDescription> fixItArray1 ;
+      GenericArray <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (constinArgument_inIntructionLocation, GGS_string ("CALL (from ").add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 284)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 284)).add_operation (GGS_string (" to "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 284)).add_operation (constinArgument_inTargetAddress.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 284)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 284)).add_operation (GGS_string (") crosses page boundary"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 284)), fixItArray1  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 284)) ;
     }
   }
@@ -2186,7 +2186,7 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::method_generateBinaryCode
     if (GalgasBool::boolTrue == test_1) {
       const GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_2 = this ;
       const GGS_midrange_5F_intermediate_5F_pseudo_5F_LABEL temp_3 = this ;
-      TC_Array <FixItDescription> fixItArray4 ;
+      GenericArray <FixItDescription> fixItArray4 ;
       inCompiler->emitSemanticError (temp_2.readProperty_mLabel ().readProperty_location (), GGS_string ("Internal second pass error: the '").add_operation (temp_3.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 627)).add_operation (GGS_string ("' label gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 627)).add_operation (ioArgument_ioAddress.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 628)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 628)).add_operation (GGS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 628)).add_operation (var_targetAddress_22017.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 629)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 628)).add_operation (GGS_string (" in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 629)), fixItArray4  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 627)) ;
     }
   }
@@ -2214,7 +2214,7 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::method_generateBinary
     test_0 = GGS_bool (ComparisonKind::equal, temp_1.readProperty_mOccurrenceFactor ().readProperty_uint ().objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
       const GGS_midrange_5F_intermediate_5F_instruction_5F_MNOP temp_2 = this ;
-      TC_Array <FixItDescription> fixItArray3 ;
+      GenericArray <FixItDescription> fixItArray3 ;
       inCompiler->emitSemanticWarning (temp_2.readProperty_mOccurrenceFactor ().readProperty_location (), GGS_string ("No generated code"), fixItArray3  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 644)) ;
     }
   }
@@ -2293,7 +2293,7 @@ void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code_3F__3F__3F__3F__3F__3F_
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::notEqual, var_lastAddressForFirstPass_24112.objectCompare (var_currentAddress_23950)).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      TC_Array <FixItDescription> fixItArray1 ;
+      GenericArray <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 699)), GGS_string ("Internal second pass error: the last address gets ").add_operation (var_currentAddress_23950.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 699)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 699)).add_operation (GGS_string (" value in second pass, while it gets "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 699)).add_operation (var_lastAddressForFirstPass_24112.getter_hexString (SOURCE_FILE ("midrange_build_binary_code.galgas", 701)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 700)).add_operation (GGS_string (" value in first pass"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 701)), fixItArray1  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 699)) ;
     }
   }
@@ -2302,7 +2302,7 @@ void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code_3F__3F__3F__3F__3F__3F_
     if (GalgasBool::boolTrue == test_2) {
       test_2 = GGS_bool (ComparisonKind::greaterThan, var_lastAddressForFirstPass_24112.objectCompare (constinArgument_inROMsize)).boolEnum () ;
       if (GalgasBool::boolTrue == test_2) {
-        TC_Array <FixItDescription> fixItArray3 ;
+        GenericArray <FixItDescription> fixItArray3 ;
         inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)), GGS_string ("Program too large: ").add_operation (var_lastAddressForFirstPass_24112.getter_string (SOURCE_FILE ("midrange_build_binary_code.galgas", 703)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)).add_operation (GGS_string (" bytes (rom size is "), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)).add_operation (constinArgument_inROMsize.getter_string (SOURCE_FILE ("midrange_build_binary_code.galgas", 705)), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 704)).add_operation (GGS_string (" bytes)"), inCompiler COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 705)), fixItArray3  COMMA_SOURCE_FILE ("midrange_build_binary_code.galgas", 703)) ;
       }
     }
@@ -2335,7 +2335,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::notEqual, var_sourceFileBaseName_760.objectCompare (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_string ())).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      TC_Array <FixItDescription> fixItArray1 ;
+      GenericArray <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_location (), GGS_string ("the program name ('").add_operation (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 19)).add_operation (GGS_string ("') should be identical to the file base name '"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 19)).add_operation (var_sourceFileBaseName_760, inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 20)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 20)), fixItArray1  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 19)) ;
     }
   }
@@ -2352,13 +2352,13 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
   case GGS_processorType::Enumeration::enum_pic_31__38__5F__36__30_:
   case GGS_processorType::Enumeration::enum_pic_31__38__5F__38__30_:
     {
-      TC_Array <FixItDescription> fixItArray2 ;
+      GenericArray <FixItDescription> fixItArray2 ;
       inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mDeviceName ().readProperty_location (), GGS_string ("a pic18 device is not accepted here : only a mid-range device"), fixItArray2  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 27)) ;
     }
     break ;
   case GGS_processorType::Enumeration::enum_baseline:
     {
-      TC_Array <FixItDescription> fixItArray3 ;
+      GenericArray <FixItDescription> fixItArray3 ;
       inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mDeviceName ().readProperty_location (), GGS_string ("a baseline device is not accepted here : only a mid-range device"), fixItArray3  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 28)) ;
     }
     break ;
@@ -2370,7 +2370,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
     if (GalgasBool::boolTrue == test_4) {
       test_4 = var_hasInterrupt_1628.boolEnum () ;
       if (GalgasBool::boolTrue == test_4) {
-        TC_Array <FixItDescription> fixItArray5 ;
+        GenericArray <FixItDescription> fixItArray5 ;
         inCompiler->emitSemanticError (enumerator_1681.current_mInterruptLocation (HERE), GGS_string ("only one interrupt routine can be defined"), fixItArray5  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 34)) ;
       }
     }
@@ -2396,7 +2396,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
     if (GalgasBool::boolTrue == test_6) {
       test_6 = var_registerTable_2229.getter_hasKey (enumerator_2490.current_mConstantName (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 55)).boolEnum () ;
       if (GalgasBool::boolTrue == test_6) {
-        TC_Array <FixItDescription> fixItArray7 ;
+        GenericArray <FixItDescription> fixItArray7 ;
         inCompiler->emitSemanticError (enumerator_2490.current_mConstantName (HERE).readProperty_location (), GGS_string ("'").add_operation (enumerator_2490.current_mConstantName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 56)).add_operation (GGS_string ("' is already declared as ram register or special register"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 56)), fixItArray7  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 56)) ;
       }
     }
@@ -2432,7 +2432,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
     if (GalgasBool::boolTrue == test_8) {
       test_8 = var_declaredRoutineMap_3975.getter_hasKey (enumerator_4278.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 100)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 100)).boolEnum () ;
       if (GalgasBool::boolTrue == test_8) {
-        TC_Array <FixItDescription> fixItArray9 ;
+        GenericArray <FixItDescription> fixItArray9 ;
         inCompiler->emitSemanticError (enumerator_4278.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_4278.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 101)).add_operation (GGS_string ("' routine is not declared"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 101)), fixItArray9  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 101)) ;
       }
     }
@@ -2441,7 +2441,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
       if (GalgasBool::boolTrue == test_10) {
         test_10 = var_unusedRoutineDeclarationUnicity_4224.getter_hasKey (enumerator_4278.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 102)).boolEnum () ;
         if (GalgasBool::boolTrue == test_10) {
-          TC_Array <FixItDescription> fixItArray11 ;
+          GenericArray <FixItDescription> fixItArray11 ;
           inCompiler->emitSemanticWarning (enumerator_4278.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_4278.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 103)).add_operation (GGS_string ("' routine is already declared as unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 103)), fixItArray11  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 103)) ;
         }
       }
@@ -2450,7 +2450,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
         if (GalgasBool::boolTrue == test_12) {
           test_12 = var_usedRoutineSet_3829.getter_hasKey (enumerator_4278.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 104)).boolEnum () ;
           if (GalgasBool::boolTrue == test_12) {
-            TC_Array <FixItDescription> fixItArray13 ;
+            GenericArray <FixItDescription> fixItArray13 ;
             inCompiler->emitSemanticWarning (enumerator_4278.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_4278.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 105)).add_operation (GGS_string ("' routine is declared as unused, but is used"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 105)), fixItArray13  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 105)) ;
           }
         }
@@ -2465,7 +2465,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
     if (GalgasBool::boolTrue == test_14) {
       test_14 = var_usedRoutineSet_3829.getter_hasKey (enumerator_4827.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 110)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 110)).operator_and (var_unusedRoutineDeclarationUnicity_4224.getter_hasKey (enumerator_4827.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 110)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 110)) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 110)).boolEnum () ;
       if (GalgasBool::boolTrue == test_14) {
-        TC_Array <FixItDescription> fixItArray15 ;
+        GenericArray <FixItDescription> fixItArray15 ;
         inCompiler->emitSemanticWarning (enumerator_4827.current_lkey (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_4827.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 111)).add_operation (GGS_string ("' routine is unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 111)), fixItArray15  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 111)) ;
       }
     }
@@ -2478,7 +2478,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
     if (GalgasBool::boolTrue == test_16) {
       test_16 = var_registerTable_2229.getter_hasKey (enumerator_5198.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 117)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 117)).boolEnum () ;
       if (GalgasBool::boolTrue == test_16) {
-        TC_Array <FixItDescription> fixItArray17 ;
+        GenericArray <FixItDescription> fixItArray17 ;
         inCompiler->emitSemanticError (enumerator_5198.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_5198.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 118)).add_operation (GGS_string ("' byte is not declared"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 118)), fixItArray17  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 118)) ;
       }
     }
@@ -2487,7 +2487,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
       if (GalgasBool::boolTrue == test_18) {
         test_18 = var_unusedByteDeclarationUnicity_5147.getter_hasKey (enumerator_5198.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 119)).boolEnum () ;
         if (GalgasBool::boolTrue == test_18) {
-          TC_Array <FixItDescription> fixItArray19 ;
+          GenericArray <FixItDescription> fixItArray19 ;
           inCompiler->emitSemanticWarning (enumerator_5198.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_5198.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 120)).add_operation (GGS_string ("' byte is already declared as unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 120)), fixItArray19  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 120)) ;
         }
       }
@@ -2496,7 +2496,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
         if (GalgasBool::boolTrue == test_20) {
           test_20 = var_usedRegisters_2188.getter_hasKey (enumerator_5198.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 121)).boolEnum () ;
           if (GalgasBool::boolTrue == test_20) {
-            TC_Array <FixItDescription> fixItArray21 ;
+            GenericArray <FixItDescription> fixItArray21 ;
             inCompiler->emitSemanticWarning (enumerator_5198.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_5198.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 122)).add_operation (GGS_string ("' byte is declared as unused, but is used"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 122)), fixItArray21  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 122)) ;
           }
         }
@@ -2511,7 +2511,7 @@ void routine_midrange_5F_analyze_3F__3F_ (const GGS_midrange_5F_model constinArg
     if (GalgasBool::boolTrue == test_22) {
       test_22 = var_usedRegisters_2188.getter_hasKey (enumerator_5727.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 127)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 127)).operator_and (var_unusedByteDeclarationUnicity_5147.getter_hasKey (enumerator_5727.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("midrange_semantics.galgas", 127)).operator_not (SOURCE_FILE ("midrange_semantics.galgas", 127)) COMMA_SOURCE_FILE ("midrange_semantics.galgas", 127)).boolEnum () ;
       if (GalgasBool::boolTrue == test_22) {
-        TC_Array <FixItDescription> fixItArray23 ;
+        GenericArray <FixItDescription> fixItArray23 ;
         inCompiler->emitSemanticWarning (enumerator_5727.current_lkey (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_5727.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 128)).add_operation (GGS_string ("' byte is unused"), inCompiler COMMA_SOURCE_FILE ("midrange_semantics.galgas", 128)), fixItArray23  COMMA_SOURCE_FILE ("midrange_semantics.galgas", 128)) ;
       }
     }
@@ -2655,7 +2655,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::notEqual, var_sourceFileBaseName_554.objectCompare (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_string ())).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      TC_Array <FixItDescription> fixItArray1 ;
+      GenericArray <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_location (), GGS_string ("the program name ('").add_operation (constinArgument_inPiccoloModel.readProperty_mProgramName ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 16)).add_operation (GGS_string ("') should be identical to the file base name '"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 16)).add_operation (var_sourceFileBaseName_554, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 17)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 17)), fixItArray1  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 16)) ;
     }
   }
@@ -2695,14 +2695,14 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
         break ;
       case GGS_processorType::Enumeration::enum_midrange:
         {
-          TC_Array <FixItDescription> fixItArray2 ;
+          GenericArray <FixItDescription> fixItArray2 ;
           inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mDeviceNameOrBootLoaderReference ().readProperty_location (), GGS_string ("a midrange device is not accepted here"), fixItArray2  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 39)) ;
           var_accessBankSplitOffset_1024.drop () ; // Release error dropped variable
         }
         break ;
       case GGS_processorType::Enumeration::enum_baseline:
         {
-          TC_Array <FixItDescription> fixItArray3 ;
+          GenericArray <FixItDescription> fixItArray3 ;
           inCompiler->emitSemanticError (constinArgument_inPiccoloModel.readProperty_mDeviceNameOrBootLoaderReference ().readProperty_location (), GGS_string ("a baseline device is not accepted here"), fixItArray3  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 40)) ;
           var_accessBankSplitOffset_1024.drop () ; // Release error dropped variable
         }
@@ -2782,7 +2782,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
     if (GalgasBool::boolTrue == test_4) {
       test_4 = var_declaredRoutineMap_5067.getter_hasKey (enumerator_5532.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 109)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 109)).boolEnum () ;
       if (GalgasBool::boolTrue == test_4) {
-        TC_Array <FixItDescription> fixItArray5 ;
+        GenericArray <FixItDescription> fixItArray5 ;
         inCompiler->emitSemanticError (enumerator_5532.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_5532.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 110)).add_operation (GGS_string ("' routine is not declared"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 110)), fixItArray5  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 110)) ;
       }
     }
@@ -2791,7 +2791,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
       if (GalgasBool::boolTrue == test_6) {
         test_6 = var_unusedDeclarationUnicity_5485.getter_hasKey (enumerator_5532.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 111)).boolEnum () ;
         if (GalgasBool::boolTrue == test_6) {
-          TC_Array <FixItDescription> fixItArray7 ;
+          GenericArray <FixItDescription> fixItArray7 ;
           inCompiler->emitSemanticWarning (enumerator_5532.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_5532.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 112)).add_operation (GGS_string ("' routine is already declared as unused"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 112)), fixItArray7  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 112)) ;
         }
       }
@@ -2800,7 +2800,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
         if (GalgasBool::boolTrue == test_8) {
           test_8 = var_usedRoutineSet_4785.getter_hasKey (enumerator_5532.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 113)).boolEnum () ;
           if (GalgasBool::boolTrue == test_8) {
-            TC_Array <FixItDescription> fixItArray9 ;
+            GenericArray <FixItDescription> fixItArray9 ;
             inCompiler->emitSemanticWarning (enumerator_5532.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_5532.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 114)).add_operation (GGS_string ("' routine is declared as unused, but is used"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 114)), fixItArray9  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 114)) ;
           }
         }
@@ -2815,7 +2815,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
     if (GalgasBool::boolTrue == test_10) {
       test_10 = var_usedRoutineSet_4785.getter_hasKey (enumerator_6080.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 119)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 119)).operator_and (var_unusedDeclarationUnicity_5485.getter_hasKey (enumerator_6080.current_lkey (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 119)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 119)) COMMA_SOURCE_FILE ("pic18_semantics.galgas", 119)).boolEnum () ;
       if (GalgasBool::boolTrue == test_10) {
-        TC_Array <FixItDescription> fixItArray11 ;
+        GenericArray <FixItDescription> fixItArray11 ;
         inCompiler->emitSemanticWarning (enumerator_6080.current_lkey (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_6080.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 120)).add_operation (GGS_string ("' routine is unused"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 120)), fixItArray11  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 120)) ;
       }
     }
@@ -2828,7 +2828,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
     if (GalgasBool::boolTrue == test_12) {
       test_12 = var_declaredRoutineMap_5067.getter_hasKey (enumerator_6389.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 126)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 126)).boolEnum () ;
       if (GalgasBool::boolTrue == test_12) {
-        TC_Array <FixItDescription> fixItArray13 ;
+        GenericArray <FixItDescription> fixItArray13 ;
         inCompiler->emitSemanticError (enumerator_6389.current_mValue (HERE).readProperty_location (), GGS_string ("the '").add_operation (enumerator_6389.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 127)).add_operation (GGS_string ("' routine is not declared"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 127)), fixItArray13  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 127)) ;
       }
     }
@@ -2837,7 +2837,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
       if (GalgasBool::boolTrue == test_14) {
         test_14 = var_usedRoutineSet_4785.getter_hasKey (enumerator_6389.current_mValue (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 128)).operator_not (SOURCE_FILE ("pic18_semantics.galgas", 128)).boolEnum () ;
         if (GalgasBool::boolTrue == test_14) {
-          TC_Array <FixItDescription> fixItArray15 ;
+          GenericArray <FixItDescription> fixItArray15 ;
           inCompiler->emitSemanticWarning (enumerator_6389.current_mValue (HERE).readProperty_location (), GGS_string ("useless declaration, the '").add_operation (enumerator_6389.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 129)).add_operation (GGS_string ("' routine is unused"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 129)), fixItArray15  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 129)) ;
         }
       }
@@ -2870,7 +2870,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
     if (GalgasBool::boolTrue == test_17) {
       test_17 = var_found_7259.operator_not (SOURCE_FILE ("pic18_semantics.galgas", 148)).boolEnum () ;
       if (GalgasBool::boolTrue == test_17) {
-        TC_Array <FixItDescription> fixItArray18 ;
+        GenericArray <FixItDescription> fixItArray18 ;
         inCompiler->emitSemanticError (enumerator_7197.current_mErrorLocation (HERE), GGS_string ("this code is not available for '").add_operation (var_piccoloDeviceName_1710, inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 149)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 149)), fixItArray18  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 149)) ;
       }
     }
@@ -2886,7 +2886,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
     if (GalgasBool::boolTrue == test_19) {
       test_19 = GGS_bool (ComparisonKind::equal, constinArgument_inPiccoloModel.readProperty_mProgramKind ().objectCompare (GGS_programKind::class_func_userProgram (SOURCE_FILE ("pic18_semantics.galgas", 158)))).boolEnum () ;
       if (GalgasBool::boolTrue == test_19) {
-        TC_Array <FixItDescription> fixItArray20 ;
+        GenericArray <FixItDescription> fixItArray20 ;
         inCompiler->emitSemanticError (enumerator_7741.current_mInterruptName (HERE).readProperty_location (), GGS_string ("interrupt routine is not allowed for a bootloader user program"), fixItArray20  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 159)) ;
       }
     }
@@ -2899,7 +2899,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
         if (GalgasBool::boolTrue == test_22) {
           test_22 = var_hasHighInterrupt_7565.boolEnum () ;
           if (GalgasBool::boolTrue == test_22) {
-            TC_Array <FixItDescription> fixItArray23 ;
+            GenericArray <FixItDescription> fixItArray23 ;
             inCompiler->emitSemanticError (enumerator_7741.current_mInterruptName (HERE).readProperty_location (), GGS_string ("Only one 'high' interrupt routine is allowed"), fixItArray23  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 164)) ;
           }
         }
@@ -2916,7 +2916,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
           if (GalgasBool::boolTrue == test_25) {
             test_25 = var_hasLowInterrupt_7642.boolEnum () ;
             if (GalgasBool::boolTrue == test_25) {
-              TC_Array <FixItDescription> fixItArray26 ;
+              GenericArray <FixItDescription> fixItArray26 ;
               inCompiler->emitSemanticError (enumerator_7741.current_mInterruptName (HERE).readProperty_location (), GGS_string ("Only one 'low' interrupt routine is allowed"), fixItArray26  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 170)) ;
             }
           }
@@ -2924,7 +2924,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
         }
       }
       if (GalgasBool::boolFalse == test_24) {
-        TC_Array <FixItDescription> fixItArray27 ;
+        GenericArray <FixItDescription> fixItArray27 ;
         inCompiler->emitSemanticError (enumerator_7741.current_mInterruptName (HERE).readProperty_location (), GGS_string ("An interrupt routine should be named 'low' or 'high'"), fixItArray27  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 174)) ;
       }
     }
@@ -2932,7 +2932,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
     if (GalgasBool::boolTrue == test_28) {
       test_28 = var_highInterruptIsFast_7602.operator_and (var_lowInterruptIsFast_7678 COMMA_SOURCE_FILE ("pic18_semantics.galgas", 176)).boolEnum () ;
       if (GalgasBool::boolTrue == test_28) {
-        TC_Array <FixItDescription> fixItArray29 ;
+        GenericArray <FixItDescription> fixItArray29 ;
         inCompiler->emitSemanticError (enumerator_7741.current_mInterruptName (HERE).readProperty_location (), GGS_string ("either low interrupt or high interrupt can be \"fast\", not both"), fixItArray29  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 177)) ;
       }
     }
@@ -2945,7 +2945,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
     if (GalgasBool::boolTrue == test_30) {
       UpEnumerator_configDefinitionList enumerator_8869 (constinArgument_inPiccoloModel.readProperty_mConfigDefinitionList ()) ;
       while (enumerator_8869.hasCurrentObject ()) {
-        TC_Array <FixItDescription> fixItArray31 ;
+        GenericArray <FixItDescription> fixItArray31 ;
         inCompiler->emitSemanticError (enumerator_8869.current_mDefinitionLocation (HERE), GGS_string ("configuration is not allowed for a bootloader user program"), fixItArray31  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 184)) ;
         enumerator_8869.gotoNextObject () ;
       }
@@ -2995,7 +2995,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
     if (GalgasBool::boolTrue == test_34) {
       test_34 = var_piccoloDeviceModel_993.readProperty_mRegisterTable ().getter_hasKey (enumerator_10192.current_mConstantName (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_semantics.galgas", 216)).boolEnum () ;
       if (GalgasBool::boolTrue == test_34) {
-        TC_Array <FixItDescription> fixItArray35 ;
+        GenericArray <FixItDescription> fixItArray35 ;
         inCompiler->emitSemanticError (enumerator_10192.current_mConstantName (HERE).readProperty_location (), GGS_string ("'").add_operation (enumerator_10192.current_mConstantName (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 217)).add_operation (GGS_string ("' is already declared as ram register or special register"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 217)), fixItArray35  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 217)) ;
       }
     }
@@ -3026,7 +3026,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
             if (GalgasBool::boolTrue == test_38) {
               test_38 = GGS_bool (ComparisonKind::greaterThan, enumerator_11180.current_mFirstFreeAddress (HERE).substract_operation (enumerator_11180.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 240)).objectCompare (var_bootloaderReservedSize_11277.readProperty_uint ())).boolEnum () ;
               if (GalgasBool::boolTrue == test_38) {
-                TC_Array <FixItDescription> fixItArray39 ;
+                GenericArray <FixItDescription> fixItArray39 ;
                 inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 241)), GGS_string ("for '").add_operation (enumerator_11180.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 241)).add_operation (GGS_string ("' RAM bank, the bootloader implementation declares "), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 241)).add_operation (enumerator_11180.current_mFirstFreeAddress (HERE).substract_operation (enumerator_11180.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 242)).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 242)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 241)).add_operation (GGS_string (" byte(s), althought the bootloader specification reserves "), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 242)).add_operation (var_bootloaderReservedSize_11277.readProperty_uint ().getter_string (SOURCE_FILE ("pic18_semantics.galgas", 244)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 243)).add_operation (GGS_string (" byte(s)"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 244)), fixItArray39  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 241)) ;
               }
             }
@@ -3037,7 +3037,7 @@ void routine_pic_31__38__5F_analyze_3F__3F_ (const GGS_pic_31__38_AST constinArg
           if (GalgasBool::boolTrue == test_40) {
             test_40 = GGS_bool (ComparisonKind::greaterThan, enumerator_11180.current_mFirstFreeAddress (HERE).objectCompare (enumerator_11180.current_mFirstAddress (HERE))).boolEnum () ;
             if (GalgasBool::boolTrue == test_40) {
-              TC_Array <FixItDescription> fixItArray41 ;
+              GenericArray <FixItDescription> fixItArray41 ;
               inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 248)), GGS_string ("for '").add_operation (enumerator_11180.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 248)).add_operation (GGS_string ("' RAM bank, the bootloader implementation declares "), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 248)).add_operation (enumerator_11180.current_mFirstFreeAddress (HERE).substract_operation (enumerator_11180.current_mFirstAddress (HERE), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 249)).getter_string (SOURCE_FILE ("pic18_semantics.galgas", 249)), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 248)).add_operation (GGS_string (" byte(s), althought the bootloader specification reserves no space"), inCompiler COMMA_SOURCE_FILE ("pic18_semantics.galgas", 249)), fixItArray41  COMMA_SOURCE_FILE ("pic18_semantics.galgas", 248)) ;
             }
           }
@@ -3093,7 +3093,7 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::notEqual, var_sourceFileBaseName_734.objectCompare (constinArgument_inBootloaderName.readProperty_string ())).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      TC_Array <FixItDescription> fixItArray1 ;
+      GenericArray <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (constinArgument_inBootloaderName.readProperty_location (), GGS_string ("the bootloader name ('").add_operation (constinArgument_inBootloaderName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)).add_operation (GGS_string ("') should be identical to the file base name '"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)).add_operation (var_sourceFileBaseName_734, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 23)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 23)), fixItArray1  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 22)) ;
     }
   }
@@ -3116,14 +3116,14 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__
     break ;
   case GGS_processorType::Enumeration::enum_midrange:
     {
-      TC_Array <FixItDescription> fixItArray2 ;
+      GenericArray <FixItDescription> fixItArray2 ;
       inCompiler->emitSemanticError (constinArgument_inDeviceName.readProperty_location (), GGS_string ("a midrange device is not accepted here"), fixItArray2  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 31)) ;
       outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
     }
     break ;
   case GGS_processorType::Enumeration::enum_baseline:
     {
-      TC_Array <FixItDescription> fixItArray3 ;
+      GenericArray <FixItDescription> fixItArray3 ;
       inCompiler->emitSemanticError (constinArgument_inDeviceName.readProperty_location (), GGS_string ("a baseline device is not accepted here"), fixItArray3  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 32)) ;
       outArgument_outAccessBankSplitOffset.drop () ; // Release error dropped variable
     }
@@ -3136,7 +3136,7 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__
   if (GalgasBool::boolTrue == test_4) {
     test_4 = GGS_bool (ComparisonKind::greaterOrEqual, constinArgument_inReservedRomSize.readProperty_uint ().objectCompare (outArgument_outPiccoloDeviceModel.readProperty_mRomSize ().readProperty_uint ())).boolEnum () ;
     if (GalgasBool::boolTrue == test_4) {
-      TC_Array <FixItDescription> fixItArray5 ;
+      GenericArray <FixItDescription> fixItArray5 ;
       inCompiler->emitSemanticError (constinArgument_inReservedRomSize.readProperty_location (), GGS_string ("reserved size for bootloader (").add_operation (constinArgument_inReservedRomSize.readProperty_uint ().getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 39)).add_operation (GGS_string (" bytes) is greater than ROM size ("), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)).add_operation (outArgument_outPiccoloDeviceModel.readProperty_mRomSize ().readProperty_uint ().getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 40)).add_operation (GGS_string (" bytes) of "), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)).add_operation (constinArgument_inDeviceName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 41)).add_operation (GGS_string (" micro controller"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 42)), fixItArray5  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 39)) ;
     }
   }
@@ -3154,7 +3154,7 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__
     if (GalgasBool::boolTrue == test_6) {
       test_6 = GGS_bool (ComparisonKind::greaterThan, var_firstFreeAddress_2569.objectCompare (var_lastAddressPlusOne_2591)).boolEnum () ;
       if (GalgasBool::boolTrue == test_6) {
-        TC_Array <FixItDescription> fixItArray7 ;
+        GenericArray <FixItDescription> fixItArray7 ;
         inCompiler->emitSemanticError (enumerator_2465.current_mReservedSize (HERE).readProperty_location (), GGS_string ("reserved size is greater than size of '").add_operation (enumerator_2465.current_lkey (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 51)).add_operation (GGS_string ("' bank ("), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 51)).add_operation (var_lastAddressPlusOne_2591.substract_operation (var_firstAddress_2551, inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 52)).getter_string (SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 52)), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 51)).add_operation (GGS_string (" bytes)"), inCompiler COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 52)), fixItArray7  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 51)) ;
       }
     }
@@ -3178,7 +3178,7 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__
     if (GalgasBool::boolTrue == test_8) {
       test_8 = var_routineNameSet_3613.getter_hasKey (enumerator_3705.current_mRoutineName (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 67)).boolEnum () ;
       if (GalgasBool::boolTrue == test_8) {
-        TC_Array <FixItDescription> fixItArray9 ;
+        GenericArray <FixItDescription> fixItArray9 ;
         inCompiler->emitSemanticError (enumerator_3705.current_mRoutineName (HERE).readProperty_location (), GGS_string ("This routine is already declared"), fixItArray9  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 68)) ;
       }
     }
@@ -3215,7 +3215,7 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__
     if (GalgasBool::boolTrue == test_12) {
       test_12 = var_routineNameSet_3613.getter_hasKey (enumerator_4753.current_mRoutineName (HERE).readProperty_string () COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 87)).boolEnum () ;
       if (GalgasBool::boolTrue == test_12) {
-        TC_Array <FixItDescription> fixItArray13 ;
+        GenericArray <FixItDescription> fixItArray13 ;
         inCompiler->emitSemanticError (enumerator_4753.current_mRoutineName (HERE).readProperty_location (), GGS_string ("This routine is already declared"), fixItArray13  COMMA_SOURCE_FILE ("pic18_bootloader_specification_semantics.galgas", 88)) ;
       }
     }
@@ -3314,7 +3314,7 @@ void cPtr_pic_31__38_Instruction_5F_switch::method_analyze (const GGS_uint const
             }else if (GalgasBool::boolFalse == test_10) {
               temp_9 = var_finalBankSetting_2792.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 132)) ;
             }
-            TC_Array <FixItDescription> fixItArray11 ;
+            GenericArray <FixItDescription> fixItArray11 ;
             inCompiler->emitSemanticError (enumerator_2911.current_mStartOfCase (HERE), GGS_string ("this branch leaves bank setting to ").add_operation (temp_7, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 129)).add_operation (GGS_string (", but first branch leaves bank setting to "), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 130)).add_operation (temp_9, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 131)).add_operation (GGS_string (" (should be the same setting)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 132)), fixItArray11  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 129)) ;
           }
         }
@@ -3362,7 +3362,7 @@ void cPtr_pic_31__38_Instruction_5F_switch::method_analyze (const GGS_uint const
       }else if (GalgasBool::boolFalse == test_20) {
         temp_19 = var_finalBankSetting_2792.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 179)) ;
       }
-      TC_Array <FixItDescription> fixItArray21 ;
+      GenericArray <FixItDescription> fixItArray21 ;
       inCompiler->emitSemanticError (temp_16.readProperty_mElseBranchStartLocation (), GGS_string ("the 'else' branch leaves bank setting to ").add_operation (temp_17, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 176)).add_operation (GGS_string (", but first branch leaves bank setting to "), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 177)).add_operation (temp_19, inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 178)).add_operation (GGS_string (" (should be the same setting)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 179)), fixItArray21  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 176)) ;
     }
   }
@@ -3403,7 +3403,7 @@ void cPtr_pic_31__38_SimpleConstantCaseItem::method_analyzeCaseItem (const GGS_r
     test_1 = GGS_bool (ComparisonKind::greaterThan, var_result_8045.objectCompare (GGS_sint_36__34_ (int64_t (255LL)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_result_8045.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 227)).boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
       const GGS_pic_31__38_SimpleConstantCaseItem temp_2 = this ;
-      TC_Array <FixItDescription> fixItArray3 ;
+      GenericArray <FixItDescription> fixItArray3 ;
       inCompiler->emitSemanticError (temp_2.readProperty_mCaseExpressionLocation (), GGS_string ("case value is evaluated as ").add_operation (var_result_8045.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)).add_operation (GGS_string (" (should be between 0 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)), fixItArray3  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 228)) ;
     }
   }
@@ -3412,9 +3412,9 @@ void cPtr_pic_31__38_SimpleConstantCaseItem::method_analyzeCaseItem (const GGS_r
     test_4 = ioArgument_ioCaseConstantMap.getter_hasKey (var_result_8045.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 231)) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 231)).boolEnum () ;
     if (GalgasBool::boolTrue == test_4) {
       const GGS_pic_31__38_SimpleConstantCaseItem temp_5 = this ;
-      TC_Array <FixItDescription> fixItArray6 ;
+      GenericArray <FixItDescription> fixItArray6 ;
       inCompiler->emitSemanticError (temp_5.readProperty_mCaseExpressionLocation (), GGS_string ("the '").add_operation (var_result_8045.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)).add_operation (GGS_string ("' constant is already used in switch instruction"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)), fixItArray6  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 232)) ;
-      TC_Array <FixItDescription> fixItArray7 ;
+      GenericArray <FixItDescription> fixItArray7 ;
       inCompiler->emitSemanticError (ioArgument_ioCaseConstantMap.getter_locationForKey (var_result_8045.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), GGS_string ("the '").add_operation (var_result_8045.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)).add_operation (GGS_string ("' constant is used here"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)), fixItArray7  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 233)) ;
     }
   }
@@ -3464,7 +3464,7 @@ void cPtr_pic_31__38_IntervalCaseItem::method_analyzeCaseItem (const GGS_registe
     test_2 = GGS_bool (ComparisonKind::greaterThan, var_minBound_10250.objectCompare (GGS_sint_36__34_ (int64_t (255LL)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_minBound_10250.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 288)).boolEnum () ;
     if (GalgasBool::boolTrue == test_2) {
       const GGS_pic_31__38_IntervalCaseItem temp_3 = this ;
-      TC_Array <FixItDescription> fixItArray4 ;
+      GenericArray <FixItDescription> fixItArray4 ;
       inCompiler->emitSemanticError (temp_3.readProperty_mCaseExpressionLocation (), GGS_string ("min bound is evaluated as ").add_operation (var_minBound_10250.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)).add_operation (GGS_string (" (should be between 0 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)), fixItArray4  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 289)) ;
       var_ok_10390 = GGS_bool (false) ;
     }
@@ -3474,7 +3474,7 @@ void cPtr_pic_31__38_IntervalCaseItem::method_analyzeCaseItem (const GGS_registe
     test_5 = GGS_bool (ComparisonKind::greaterThan, var_maxBound_10351.objectCompare (GGS_sint_36__34_ (int64_t (255LL)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_maxBound_10351.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 292)).boolEnum () ;
     if (GalgasBool::boolTrue == test_5) {
       const GGS_pic_31__38_IntervalCaseItem temp_6 = this ;
-      TC_Array <FixItDescription> fixItArray7 ;
+      GenericArray <FixItDescription> fixItArray7 ;
       inCompiler->emitSemanticError (temp_6.readProperty_mCaseExpressionLocation (), GGS_string ("max bound is evaluated as ").add_operation (var_maxBound_10351.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)).add_operation (GGS_string (" (should be between 0 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)), fixItArray7  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 293)) ;
       var_ok_10390 = GGS_bool (false) ;
     }
@@ -3484,7 +3484,7 @@ void cPtr_pic_31__38_IntervalCaseItem::method_analyzeCaseItem (const GGS_registe
     test_8 = GGS_bool (ComparisonKind::lowerOrEqual, var_maxBound_10351.objectCompare (var_minBound_10250)).boolEnum () ;
     if (GalgasBool::boolTrue == test_8) {
       const GGS_pic_31__38_IntervalCaseItem temp_9 = this ;
-      TC_Array <FixItDescription> fixItArray10 ;
+      GenericArray <FixItDescription> fixItArray10 ;
       inCompiler->emitSemanticError (temp_9.readProperty_mCaseExpressionLocation (), GGS_string ("max bound (").add_operation (var_maxBound_10351.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)).add_operation (GGS_string (") should be greater than low bound ("), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)).add_operation (var_minBound_10250.getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)).add_operation (GGS_string (")"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)), fixItArray10  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 297)) ;
       var_ok_10390 = GGS_bool (false) ;
     }
@@ -3495,7 +3495,7 @@ void cPtr_pic_31__38_IntervalCaseItem::method_analyzeCaseItem (const GGS_registe
       test_11 = GGS_bool (ComparisonKind::equal, var_maxBound_10351.objectCompare (GGS_sint_36__34_ (int64_t (255LL)))).operator_and (GGS_bool (ComparisonKind::equal, var_minBound_10250.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 299)).boolEnum () ;
       if (GalgasBool::boolTrue == test_11) {
         const GGS_pic_31__38_IntervalCaseItem temp_12 = this ;
-        TC_Array <FixItDescription> fixItArray13 ;
+        GenericArray <FixItDescription> fixItArray13 ;
         inCompiler->emitSemanticError (temp_12.readProperty_mCaseExpressionLocation (), GGS_string ("condition is always true"), fixItArray13  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 300)) ;
         var_ok_10390 = GGS_bool (false) ;
       }
@@ -3512,9 +3512,9 @@ void cPtr_pic_31__38_IntervalCaseItem::method_analyzeCaseItem (const GGS_registe
           test_15 = ioArgument_ioCaseConstantMap.getter_hasKey (enumerator_11178.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 306)) COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 306)).boolEnum () ;
           if (GalgasBool::boolTrue == test_15) {
             const GGS_pic_31__38_IntervalCaseItem temp_16 = this ;
-            TC_Array <FixItDescription> fixItArray17 ;
+            GenericArray <FixItDescription> fixItArray17 ;
             inCompiler->emitSemanticError (temp_16.readProperty_mCaseExpressionLocation (), GGS_string ("the '").add_operation (enumerator_11178.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)).add_operation (GGS_string ("' constant is already used in switch instruction"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)), fixItArray17  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 307)) ;
-            TC_Array <FixItDescription> fixItArray18 ;
+            GenericArray <FixItDescription> fixItArray18 ;
             inCompiler->emitSemanticError (ioArgument_ioCaseConstantMap.getter_locationForKey (enumerator_11178.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), GGS_string ("the '").add_operation (enumerator_11178.current (HERE).getter_string (SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)).add_operation (GGS_string ("' constant is used here"), inCompiler COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)), fixItArray18  COMMA_SOURCE_FILE ("ipic18-switch-instruction.galgas", 308)) ;
           }
         }
@@ -3602,7 +3602,7 @@ GGS_bool function_pic_31__38__5F_checkBCC (const GGS_symbolTableForRelativesReso
 //  Function introspection                                                                       
 //--------------------------------------------------------------------------------------------------
 
-static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_checkBCC [4] = {
+static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_checkBCC [4] = {
   & kTypeDescriptor_GALGAS_symbolTableForRelativesResolution,
   & kTypeDescriptor_GALGAS_lstring,
   & kTypeDescriptor_GALGAS_uint,
@@ -3664,7 +3664,7 @@ GGS_bool function_pic_31__38__5F_checkBRA_5F_RCALL (const GGS_symbolTableForRela
 //  Function introspection                                                                       
 //--------------------------------------------------------------------------------------------------
 
-static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_checkBRA_5F_RCALL [4] = {
+static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_checkBRA_5F_RCALL [4] = {
   & kTypeDescriptor_GALGAS_symbolTableForRelativesResolution,
   & kTypeDescriptor_GALGAS_lstring,
   & kTypeDescriptor_GALGAS_uint,
@@ -3725,7 +3725,7 @@ GGS_sint function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (const GGS_symbolT
 //  Function introspection                                                                       
 //--------------------------------------------------------------------------------------------------
 
-static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_BRA_5F_RCALL_5F_displacement [4] = {
+static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_BRA_5F_RCALL_5F_displacement [4] = {
   & kTypeDescriptor_GALGAS_symbolTableForRelativesResolution,
   & kTypeDescriptor_GALGAS_lstring,
   & kTypeDescriptor_GALGAS_uint,
@@ -3781,7 +3781,7 @@ GGS_codeList function_pic_31__38__5F_Bcc_5F_instruction_5F_code (const GGS_uint 
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::greaterThan, var_displacement_20343.objectCompare (GGS_sint (int32_t (127L)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_displacement_20343.objectCompare (GGS_sint (int32_t (-128L)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 558)).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      TC_Array <FixItDescription> fixItArray1 ;
+      GenericArray <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (constinArgument_inTargetLabel.readProperty_location (), GGS_string ("** INTERNAL ERROR ** displacement too large for conditional branch instruction"), fixItArray1  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 559)) ;
     }
   }
@@ -3903,7 +3903,7 @@ GGS_codeList function_pic_31__38__5F_Bcc_5F_instruction_5F_code (const GGS_uint 
 //  Function introspection                                                                       
 //--------------------------------------------------------------------------------------------------
 
-static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_Bcc_5F_instruction_5F_code [6] = {
+static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_Bcc_5F_instruction_5F_code [6] = {
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_lstring,
@@ -3967,7 +3967,7 @@ GGS_codeList function_pic_31__38__5F_RCALL_5F_instruction_5F_code (const GGS_uin
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::greaterThan, var_displacement_22170.objectCompare (GGS_sint (int32_t (1023L)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_displacement_22170.objectCompare (GGS_sint (int32_t (-1024L)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 603)).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      TC_Array <FixItDescription> fixItArray1 ;
+      GenericArray <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (constinArgument_inTargetLabel.readProperty_location (), GGS_string ("** INTERNAL ERROR ** displacement too large (").add_operation (var_displacement_22170.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 604)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 604)).add_operation (GGS_string (") for RCALL instruction to '"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 604)).add_operation (constinArgument_inTargetLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 605)).add_operation (GGS_string ("' (should be between -1024 and 1023)"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 605)), fixItArray1  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 604)) ;
     }
   }
@@ -3981,7 +3981,7 @@ GGS_codeList function_pic_31__38__5F_RCALL_5F_instruction_5F_code (const GGS_uin
 //  Function introspection                                                                       
 //--------------------------------------------------------------------------------------------------
 
-static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_RCALL_5F_instruction_5F_code [4] = {
+static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_RCALL_5F_instruction_5F_code [4] = {
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_lstring,
@@ -4035,7 +4035,7 @@ GGS_codeList function_pic_31__38__5F_BRA_5F_instruction_5F_code (const GGS_uint 
   if (GalgasBool::boolTrue == test_0) {
     test_0 = GGS_bool (ComparisonKind::greaterThan, var_displacement_22922.objectCompare (GGS_sint (int32_t (1023L)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_displacement_22922.objectCompare (GGS_sint (int32_t (-1024L)))) COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 620)).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      TC_Array <FixItDescription> fixItArray1 ;
+      GenericArray <FixItDescription> fixItArray1 ;
       inCompiler->emitSemanticError (constinArgument_inTargetLabel.readProperty_location (), GGS_string ("** INTERNAL ERROR ** displacement too large (").add_operation (var_displacement_22922.getter_string (SOURCE_FILE ("ipic18_block_representation.galgas", 621)), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 621)).add_operation (GGS_string (") for BRA instruction to '"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 621)).add_operation (constinArgument_inTargetLabel.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 622)).add_operation (GGS_string ("' (should be between -1024 and 1023)"), inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 622)), fixItArray1  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 621)) ;
     }
   }
@@ -4049,7 +4049,7 @@ GGS_codeList function_pic_31__38__5F_BRA_5F_instruction_5F_code (const GGS_uint 
 //  Function introspection                                                                       
 //--------------------------------------------------------------------------------------------------
 
-static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_BRA_5F_instruction_5F_code [4] = {
+static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_BRA_5F_instruction_5F_code [4] = {
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_lstring,
@@ -4110,7 +4110,7 @@ GGS_codeList function_pic_31__38__5F_CALL_5F_instruction_5F_code (const GGS_uint
 //  Function introspection                                                                       
 //--------------------------------------------------------------------------------------------------
 
-static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_CALL_5F_instruction_5F_code [3] = {
+static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_CALL_5F_instruction_5F_code [3] = {
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_lstring,
   nullptr
@@ -4166,7 +4166,7 @@ GGS_codeList function_pic_31__38__5F_GOTO_5F_instruction_5F_code (const GGS_uint
 //  Function introspection                                                                       
 //--------------------------------------------------------------------------------------------------
 
-static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_GOTO_5F_instruction_5F_code [3] = {
+static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_GOTO_5F_instruction_5F_code [3] = {
   & kTypeDescriptor_GALGAS_uint,
   & kTypeDescriptor_GALGAS_lstring,
   nullptr
@@ -4218,7 +4218,7 @@ GGS_codeList function_pic_31__38__5F_definition_5F_label (const GGS_lstring & co
 //  Function introspection                                                                       
 //--------------------------------------------------------------------------------------------------
 
-static const C_galgas_type_descriptor * functionArgs_pic_31__38__5F_definition_5F_label [2] = {
+static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_definition_5F_label [2] = {
   & kTypeDescriptor_GALGAS_lstring,
   nullptr
 } ;
@@ -4597,7 +4597,7 @@ void cPtr_ipic_31__38_JumpTerminator::method_performTerminatorRelativeBranchReso
               const GGS_ipic_31__38_JumpTerminator temp_12 = this ;
               const GGS_ipic_31__38_JumpTerminator temp_13 = this ;
               const GGS_ipic_31__38_JumpTerminator temp_14 = this ;
-              TC_Array <FixItDescription> fixItArray15 ;
+              GenericArray <FixItDescription> fixItArray15 ;
               inCompiler->emitSemanticError (temp_12.readProperty_mInstructionLocation (), GGS_string ("displacement (").add_operation (function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (constinArgument_inSymbolTable, temp_13.readProperty_mLabel (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 215)).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 214)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 214)).add_operation (GGS_string (") too large for BRA "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 215)).add_operation (temp_14.readProperty_mLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 215)).add_operation (GGS_string (" instruction (limited to [-1024, 1023])"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 216)), fixItArray15  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 214)) ;
             }
           }
@@ -6131,7 +6131,7 @@ void cPtr_ipic_31__38_ComputedBraTerminator::method_performTerminatorRelativeBra
       test_1 = function_pic_31__38__5F_checkBRA_5F_RCALL (constinArgument_inSymbolTable, enumerator_38954.current_mValue (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1109)).operator_not (SOURCE_FILE ("ipic18_terminators.galgas", 1109)).boolEnum () ;
       if (GalgasBool::boolTrue == test_1) {
         const GGS_ipic_31__38_ComputedBraTerminator temp_2 = this ;
-        TC_Array <FixItDescription> fixItArray3 ;
+        GenericArray <FixItDescription> fixItArray3 ;
         inCompiler->emitSemanticError (temp_2.readProperty_mInstructionLocation (), GGS_string ("displacement (").add_operation (function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (constinArgument_inSymbolTable, enumerator_38954.current_mValue (HERE), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1111)).getter_string (SOURCE_FILE ("ipic18_terminators.galgas", 1110)), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1110)).add_operation (GGS_string (") too large for rcall "), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1111)).add_operation (enumerator_38954.current_mValue (HERE).readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1111)).add_operation (GGS_string (" instruction (limited to [-1024, 1023])"), inCompiler COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1112)), fixItArray3  COMMA_SOURCE_FILE ("ipic18_terminators.galgas", 1110)) ;
       }
     }
@@ -9062,7 +9062,7 @@ void cPtr_ipic_31__38__5F_intermediate_5F_JSR::method_performInstructionRelative
           const GGS_ipic_31__38__5F_intermediate_5F_JSR temp_10 = this ;
           const GGS_ipic_31__38__5F_intermediate_5F_JSR temp_11 = this ;
           const GGS_ipic_31__38__5F_intermediate_5F_JSR temp_12 = this ;
-          TC_Array <FixItDescription> fixItArray13 ;
+          GenericArray <FixItDescription> fixItArray13 ;
           inCompiler->emitSemanticError (temp_10.readProperty_mInstructionLocation (), GGS_string ("displacement (").add_operation (function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (constinArgument_inSymbolTable, temp_11.readProperty_mTargetLabel (), constinArgument_inAddress, inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 953)).getter_string (SOURCE_FILE ("ipic18_regular_instructions.galgas", 952)), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 952)).add_operation (GGS_string (") too large for RCALL "), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 953)).add_operation (temp_12.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 954)).add_operation (GGS_string (" instruction (limited to [-1024, 1023])"), inCompiler COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 954)), fixItArray13  COMMA_SOURCE_FILE ("ipic18_regular_instructions.galgas", 952)) ;
         }
       }

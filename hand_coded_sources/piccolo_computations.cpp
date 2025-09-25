@@ -111,8 +111,8 @@ generate_C_ArrayImplementationFileFromSpareArray (const String & inSourceName,
   implementationCode.appendString (inSourceName) ;
   implementationCode.appendString (".h\"\n\n") ;
   implementationCode.append_C_HyphenLineComment () ;
-  TC_UniqueArray <uint32_t> startAddressArray ;
-  TC_UniqueArray <uint32_t> blockLengthArray ;
+  GenericUniqueArray <uint32_t> startAddressArray ;
+  GenericUniqueArray <uint32_t> blockLengthArray ;
 //--- Loop
   uint32_t currentAddress = 0 ;
   while (inSpareArray.findFirstEntryWithIndex (currentAddress)) {

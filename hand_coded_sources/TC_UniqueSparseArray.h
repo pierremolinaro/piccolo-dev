@@ -59,15 +59,15 @@ template <typename TYPE> class TC_UniqueSparseArray {
   public: virtual ~TC_UniqueSparseArray (void) ;
 
 //--- No copy
-  private: TC_UniqueSparseArray (const TC_UniqueSparseArray <TYPE> &) ;
-  private: TC_UniqueSparseArray <TYPE> & operator = (const TC_UniqueSparseArray <TYPE> &) ;
+  private: TC_UniqueSparseArray (const TC_UniqueSparseArray <TYPE> &) = delete ;
+  private: TC_UniqueSparseArray <TYPE> & operator = (const TC_UniqueSparseArray <TYPE> &) = delete ;
 
 //--- Remove all objects and deallocate
   public: void free (void) ;
 
 //--- Set entry
   public: void setObjectAtIndex (const TYPE & inValue,
-                                  const uint32_t inIndex) ;
+                                 const uint32_t inIndex) ;
 
 //--- Get entry
   public: TYPE objectAtIndex (const uint32_t inIndex) const ;
@@ -236,7 +236,6 @@ template <typename TYPE> TYPE TC_UniqueSparseArray <TYPE>::objectAtIndex (const 
 //----------------------------------------------------------------------------------------------------------------------
 
 template <typename TYPE> bool TC_UniqueSparseArray <TYPE>::findFirstEntryWithIndex (uint32_t & ioIndex) const {
-//  const uint32_t start = ioIndex ; printf ("SEARCH FROM 0x%X\n", start) ;
   bool found = false ;
   uint32_t primaryIndex = ioIndex >> 24 ;
   uint32_t indexU = (ioIndex >> 16) & 255 ;
@@ -279,17 +278,17 @@ template <typename TYPE> bool TC_UniqueSparseArray <TYPE>::findFirstEntryWithInd
     }else{
       const TC_arrayH * highArrayRef = upperArrayRef->mArrayH [indexU] ;
       found = highArrayRef->mArrayL [indexH] != nullptr ;
-      if (! found) {
+      if (!found) {
         indexL = 0 ;
       }
       indexH ++ ;
       while ((indexH < 256) && ! found) {
         found = highArrayRef->mArrayL [indexH] != nullptr ;
-        indexH ++ ;
+        indexH += 1 ;
       }
       indexH -- ;
     //--- Low
-      if (! found) {
+      if (!found) {
         macroAssert (primaryIndex < 256, "primaryIndex (%ld) should be <= 255", (int32_t) primaryIndex, 0) ;
         macroAssert (indexU       < 256, "indexU (%ld) should be <= 255", (int32_t) indexU, 0) ;
         macroAssert (indexH      == 255, "indexH (%ld) should be == 255", (int32_t) indexH, 0) ;
@@ -299,12 +298,12 @@ template <typename TYPE> bool TC_UniqueSparseArray <TYPE>::findFirstEntryWithInd
       }else{
         const TC_arrayL * lowArrayRef = highArrayRef->mArrayL [indexH] ;
         found = (lowArrayRef->mExplicitValueFlags [indexL >> 5] & (1 << (indexL & 31))) != 0 ;
-        indexL ++ ;
+        indexL += 1 ;
         while ((indexL < 256) && ! found) {
           found = (lowArrayRef->mExplicitValueFlags [indexL >> 5] & (1 << (indexL & 31))) != 0 ;
-          indexL ++ ;
+          indexL += 1 ;
         }
-        indexL -- ;
+        indexL -= 1 ;
       //--- Computing result index
         macroAssert (primaryIndex < 256, "primaryIndex (%ld) should be <= 255", (int32_t) primaryIndex, 0) ;
         macroAssert (indexU       < 256, "indexU (%ld) should be <= 255", (int32_t) indexU, 0) ;
@@ -313,7 +312,7 @@ template <typename TYPE> bool TC_UniqueSparseArray <TYPE>::findFirstEntryWithInd
         ioIndex = (primaryIndex << 24) | (indexU << 16) | (indexH << 8) | indexL ;
         if (! found) {
           macroAssert (indexL == 255, "indexL (%ld) should be == 255", (int32_t) indexL, 0) ;
-          ioIndex ++ ;
+          ioIndex += 1 ;
           found = findFirstEntryWithIndexAfterNotFound (ioIndex) ;
         }
       }

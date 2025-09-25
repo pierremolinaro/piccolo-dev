@@ -30,7 +30,7 @@ void routine_parseDeviceDefinition_3F__21_ (const GGS_lstring constinArgument_in
     }
   }
   if (GalgasBool::boolFalse == test_0) {
-    TC_Array <FixItDescription> fixItArray1 ;
+    GenericArray <FixItDescription> fixItArray1 ;
     inCompiler->emitSemanticError (constinArgument_inDeviceName.readProperty_location (), GGS_string ("The '").add_operation (constinArgument_inDeviceName.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)).add_operation (GGS_string ("' definition file is not defined"), inCompiler COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 24)), fixItArray1  COMMA_SOURCE_FILE ("piccolo_embedded_devices.galgas", 22)) ;
     outArgument_outPiccoloDeviceModel.drop () ; // Release error dropped variable
   }
@@ -43,7 +43,7 @@ void routine_parseDeviceDefinition_3F__21_ (const GGS_lstring constinArgument_in
 #include "builtin-command-line-options.h"
 #include "C_galgas_CLI_Options.h"
 #include "F_verbose_output.h"
-#include "cLexiqueIntrospection.h"
+#include "LexiqueIntrospection.h"
 #include "F_DisplayException.h"
 
 //--------------------------------------------------------------------------------------------------
@@ -364,7 +364,7 @@ static void routine_before (Compiler * inCompiler
           }
         }
         if (GalgasBool::boolFalse == test_13) {
-          TC_Array <FixItDescription> fixItArray17 ;
+          GenericArray <FixItDescription> fixItArray17 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)), GGS_string ("The ").add_operation (var_deviceForMemoryDescription_4057, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)).add_operation (GGS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)), fixItArray17  COMMA_SOURCE_FILE ("piccolo_program.galgas", 142)) ;
         }
       }
@@ -406,7 +406,7 @@ static void routine_before (Compiler * inCompiler
           }
         }
         if (GalgasBool::boolFalse == test_19) {
-          TC_Array <FixItDescription> fixItArray20 ;
+          GenericArray <FixItDescription> fixItArray20 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)), GGS_string ("The ").add_operation (var_deviceForRegistersDescription_6510, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)).add_operation (GGS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)), fixItArray20  COMMA_SOURCE_FILE ("piccolo_program.galgas", 162)) ;
         }
       }
@@ -454,7 +454,7 @@ static void routine_before (Compiler * inCompiler
           }
         }
         if (GalgasBool::boolFalse == test_22) {
-          TC_Array <FixItDescription> fixItArray23 ;
+          GenericArray <FixItDescription> fixItArray23 ;
           inCompiler->emitSemanticError (GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)), GGS_string ("The ").add_operation (var_deviceForConfigDescription_7617, inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)).add_operation (GGS_string (" device is not supported or does not exist"), inCompiler COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)), fixItArray23  COMMA_SOURCE_FILE ("piccolo_program.galgas", 186)) ;
         }
       }
@@ -495,7 +495,7 @@ static void routine_programRule_5F__30_ (const GGS_lstring constinArgument_inSou
 
 int mainForLIBPM (int inArgc, const char * inArgv []) {
 //--- Analyze Command Line Options
-  TC_UniqueArray <String> sourceFilesArray ;
+  GenericUniqueArray <String> sourceFilesArray ;
   analyzeCommandLineOptions (inArgc, inArgv,
                              sourceFilesArray,
                              kSourceFileExtensions,
@@ -515,7 +515,7 @@ int mainForLIBPM (int inArgc, const char * inArgv []) {
     macroMyNew (commonCompiler, Compiler (nullptr COMMA_HERE)) ;
     try{
       routine_before (commonCompiler COMMA_HERE) ;
-      cLexiqueIntrospection::handleGetKeywordListOption (commonCompiler) ;
+      LexiqueIntrospection::handleGetKeywordListOption (commonCompiler) ;
       const bool verboseOptionOn = verboseOutput () ;
       for (int32_t i=0 ; i<sourceFilesArray.count () ; i++) {
         const String fileExtension = sourceFilesArray (i COMMA_HERE).pathExtension () ;

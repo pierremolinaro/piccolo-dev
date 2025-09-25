@@ -9,6 +9,1608 @@
 #include "all-declarations-0.h"
 
 //--------------------------------------------------------------------------------------------------
+//   enum routineKind
+//--------------------------------------------------------------------------------------------------
+
+class GGS_routineKind : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public: GGS_routineKind (void) ;
+
+//--------------------------------- Enumeration
+  public: enum class Enumeration {
+    invalid,
+    enum_regularRoutine,
+    enum_noReturnRoutine,
+    enum_interruptRoutine
+  } ;
+  
+//--------------------------------- Private properties
+  private: Enumeration mEnum ;
+
+//--------------------------------- Associated value extraction
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override {
+    return Enumeration::invalid != mEnum ;
+  }
+
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override {
+    mEnum = Enumeration::invalid ;
+  }
+
+  public: inline Enumeration enumValue (void) const {
+    return mEnum ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_routineKind extractObject (const GGS_object & inObject,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_routineKind class_func_interruptRoutine (LOCATION_ARGS) ;
+
+  public: static class GGS_routineKind class_func_noReturnRoutine (LOCATION_ARGS) ;
+
+  public: static class GGS_routineKind class_func_regularRoutine (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_routineKind & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isInterruptRoutine (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isNoReturnRoutine (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isRegularRoutine (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_routineKind ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@immediatExpression eval'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_eval (class cPtr_immediatExpression * inObject,
+                               const class GGS_registerTable constin_inRegisterTable,
+                               const class GGS_constantMap constin_inConstantMap,
+                               class GGS_sint_36__34_ & out_outResult,
+                               class GGS_stringset & io_ioUsedRegisters,
+                               class Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @registerTable map
+//--------------------------------------------------------------------------------------------------
+
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
+
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_registerTable final {
+
+  public: DownEnumerator_registerTable (const class GGS_registerTable & inMap) ;
+
+  public: ~ DownEnumerator_registerTable (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_uintlist current_mRegisterAddressList (LOCATION_ARGS) const ;
+
+  public: class GGS_uint current_mSize (LOCATION_ARGS) const ;
+
+  public: class GGS_bitSliceTable current_mBitSliceTable (LOCATION_ARGS) const ;
+
+  public: class GGS_string current_mBitDefinitionString (LOCATION_ARGS) const ;
+
+  public: class GGS_registerProtection current_mProtection (LOCATION_ARGS) const ;
+
+  public: class GGS_registerTable_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_registerTable_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_registerTable (const DownEnumerator_registerTable &) = delete ;
+  private: DownEnumerator_registerTable & operator = (const DownEnumerator_registerTable &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_registerTable final {
+  public: UpEnumerator_registerTable (const class GGS_registerTable & inMap)  ;
+
+  public: ~ UpEnumerator_registerTable (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_uintlist current_mRegisterAddressList (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mSize (LOCATION_ARGS) const ;
+  public: class GGS_bitSliceTable current_mBitSliceTable (LOCATION_ARGS) const ;
+  public: class GGS_string current_mBitDefinitionString (LOCATION_ARGS) const ;
+  public: class GGS_registerProtection current_mProtection (LOCATION_ARGS) const ;
+  public: class GGS_registerTable_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_registerTable_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_registerTable (const UpEnumerator_registerTable &) = delete ;
+  private: UpEnumerator_registerTable & operator = (const UpEnumerator_registerTable &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_registerTable : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_registerTable_2E_element>> mSharedRoot ;
+
+//--- Default constructor
+  public: GGS_registerTable (void) ;
+
+//--- Virtual destructor
+  public: virtual ~ GGS_registerTable (void) ;
+
+//--- Handle copy
+  public: GGS_registerTable (const GGS_registerTable & inSource) ;
+  public: GGS_registerTable & operator = (const GGS_registerTable & inSource) ;
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_registerTable_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_registerTable_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_registerTable_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_registerTable init (Compiler * inCompiler
+                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_registerTable extractObject (const GGS_object & inObject,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_registerTable class_func_emptyMap (LOCATION_ARGS) ;
+
+  public: static class GGS_registerTable class_func_mapWithMapToOverride (const class GGS_registerTable & inOperand0
+                                                                          COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uintlist constinArgument1,
+                                                  class GGS_uint constinArgument2,
+                                                  class GGS_bitSliceTable constinArgument3,
+                                                  class GGS_string constinArgument4,
+                                                  class GGS_registerProtection constinArgument5,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMBitDefinitionStringForKey (class GGS_string constinArgument0,
+                                                                      class GGS_string constinArgument1,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMBitSliceTableForKey (class GGS_bitSliceTable constinArgument0,
+                                                                class GGS_string constinArgument1,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMProtectionForKey (class GGS_registerProtection constinArgument0,
+                                                             class GGS_string constinArgument1,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMRegisterAddressListForKey (class GGS_uintlist constinArgument0,
+                                                                      class GGS_string constinArgument1,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMSizeForKey (class GGS_uint constinArgument0,
+                                                       class GGS_string constinArgument1,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uintlist & outArgument1,
+                                                  class GGS_uint & outArgument2,
+                                                  class GGS_bitSliceTable & outArgument3,
+                                                  class GGS_string & outArgument4,
+                                                  class GGS_registerProtection & outArgument5,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_string getter_mBitDefinitionStringForKey (const class GGS_string & constinOperand0,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bitSliceTable getter_mBitSliceTableForKey (const class GGS_string & constinOperand0,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_registerProtection getter_mProtectionForKey (const class GGS_string & constinOperand0,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uintlist getter_mRegisterAddressListForKey (const class GGS_string & constinOperand0,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mSizeForKey (const class GGS_string & constinOperand0,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_registerTable getter_overriddenMap (Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+  public: VIRTUAL_IN_DEBUG class GGS_registerTable_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) const ;
+
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_registerTable ;
+  friend class DownEnumerator_registerTable ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_registerTable ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@bitNumberExpression getBitNumber'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_getBitNumber (class cPtr_bitNumberExpression * inObject,
+                                       const class GGS_registerTable constin_inRegisterTable,
+                                       const class GGS_constantMap constin_inConstantMap,
+                                       class GGS_stringset & io_ioUsedRegisters,
+                                       const class GGS_bitSliceTable constin_inBitSliceTable,
+                                       class GGS_uint & out_outBitNumber,
+                                       class Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @symbolTableForOptimizations map
+//--------------------------------------------------------------------------------------------------
+
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
+
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_symbolTableForOptimizations final {
+
+  public: DownEnumerator_symbolTableForOptimizations (const class GGS_symbolTableForOptimizations & inMap) ;
+
+  public: ~ DownEnumerator_symbolTableForOptimizations (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_uint current_mDefinitionLineIndex (LOCATION_ARGS) const ;
+
+  public: class GGS_bool current_mIsDeletable (LOCATION_ARGS) const ;
+
+  public: class GGS_symbolTableForOptimizations_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_symbolTableForOptimizations_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_symbolTableForOptimizations (const DownEnumerator_symbolTableForOptimizations &) = delete ;
+  private: DownEnumerator_symbolTableForOptimizations & operator = (const DownEnumerator_symbolTableForOptimizations &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_symbolTableForOptimizations final {
+  public: UpEnumerator_symbolTableForOptimizations (const class GGS_symbolTableForOptimizations & inMap)  ;
+
+  public: ~ UpEnumerator_symbolTableForOptimizations (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mDefinitionLineIndex (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mIsDeletable (LOCATION_ARGS) const ;
+  public: class GGS_symbolTableForOptimizations_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_symbolTableForOptimizations_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_symbolTableForOptimizations (const UpEnumerator_symbolTableForOptimizations &) = delete ;
+  private: UpEnumerator_symbolTableForOptimizations & operator = (const UpEnumerator_symbolTableForOptimizations &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_symbolTableForOptimizations : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_symbolTableForOptimizations_2E_element>> mSharedRoot ;
+
+//--- Default constructor
+  public: GGS_symbolTableForOptimizations (void) ;
+
+//--- Virtual destructor
+  public: virtual ~ GGS_symbolTableForOptimizations (void) ;
+
+//--- Handle copy
+  public: GGS_symbolTableForOptimizations (const GGS_symbolTableForOptimizations & inSource) ;
+  public: GGS_symbolTableForOptimizations & operator = (const GGS_symbolTableForOptimizations & inSource) ;
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_symbolTableForOptimizations_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_symbolTableForOptimizations_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_symbolTableForOptimizations_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_symbolTableForOptimizations init (Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_symbolTableForOptimizations extractObject (const GGS_object & inObject,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_symbolTableForOptimizations class_func_emptyMap (LOCATION_ARGS) ;
+
+  public: static class GGS_symbolTableForOptimizations class_func_mapWithMapToOverride (const class GGS_symbolTableForOptimizations & inOperand0
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uint constinArgument1,
+                                                  class GGS_bool constinArgument2,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_removeKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uint & outArgument1,
+                                                  class GGS_bool & outArgument2,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMDefinitionLineIndexForKey (class GGS_uint constinArgument0,
+                                                                      class GGS_string constinArgument1,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMIsDeletableForKey (class GGS_bool constinArgument0,
+                                                              class GGS_string constinArgument1,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uint & outArgument1,
+                                                  class GGS_bool & outArgument2,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mDefinitionLineIndexForKey (const class GGS_string & constinOperand0,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mIsDeletableForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_symbolTableForOptimizations getter_overriddenMap (Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+  public: VIRTUAL_IN_DEBUG class GGS_symbolTableForOptimizations_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                                    Compiler * inCompiler
+                                                                                                    COMMA_LOCATION_ARGS) const ;
+
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_symbolTableForOptimizations ;
+  friend class DownEnumerator_symbolTableForOptimizations ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_symbolTableForOptimizations ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @symbolTableForOptimizations_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_symbolTableForOptimizations_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_lkey ;
+  public: inline GGS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
+
+  public: GGS_uint mProperty_mDefinitionLineIndex ;
+  public: inline GGS_uint readProperty_mDefinitionLineIndex (void) const {
+    return mProperty_mDefinitionLineIndex ;
+  }
+
+  public: GGS_bool mProperty_mIsDeletable ;
+  public: inline GGS_bool readProperty_mIsDeletable (void) const {
+    return mProperty_mIsDeletable ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_symbolTableForOptimizations_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
+  }
+
+  public: inline void setter_setMDefinitionLineIndex (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDefinitionLineIndex = inValue ;
+  }
+
+  public: inline void setter_setMIsDeletable (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mIsDeletable = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_symbolTableForOptimizations_2E_element (const GGS_lstring & in_lkey,
+                                                      const GGS_uint & in_mDefinitionLineIndex,
+                                                      const GGS_bool & in_mIsDeletable) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_symbolTableForOptimizations_2E_element (const GGS_symbolTableForOptimizations_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_symbolTableForOptimizations_2E_element & operator = (const GGS_symbolTableForOptimizations_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_symbolTableForOptimizations_2E_element init_21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                              const class GGS_uint & inOperand1,
+                                                                              const class GGS_bool & inOperand2,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_symbolTableForOptimizations_2E_element extractObject (const GGS_object & inObject,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_symbolTableForOptimizations_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                                  const class GGS_uint & inOperand1,
+                                                                                  const class GGS_bool & inOperand2,
+                                                                                  class Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_symbolTableForOptimizations_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: symbolTableForOptimizations.element? optional
+//--------------------------------------------------------------------------------------------------
+
+class GGS_symbolTableForOptimizations_2E_element_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_symbolTableForOptimizations_2E_element mValue ;
+  private: OptionalState mState ;
+
+//--------------------------------- Default constructor
+  public: GGS_symbolTableForOptimizations_2E_element_3F_ (void) ;
+
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_symbolTableForOptimizations_2E_element_3F_ (const GGS_symbolTableForOptimizations_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_symbolTableForOptimizations_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_symbolTableForOptimizations_2E_element unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
+  
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
+
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_symbolTableForOptimizations_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_symbolTableForOptimizations_2E_element_3F_ ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @configFieldMap map
+//--------------------------------------------------------------------------------------------------
+
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
+
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_configFieldMap final {
+
+  public: DownEnumerator_configFieldMap (const class GGS_configFieldMap & inMap) ;
+
+  public: ~ DownEnumerator_configFieldMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_lstring current_mRegisterName (LOCATION_ARGS) const ;
+
+  public: class GGS_luint current_mMaskValue (LOCATION_ARGS) const ;
+
+  public: class GGS_lstring current_mDescription (LOCATION_ARGS) const ;
+
+  public: class GGS_fieldSettingMap current_mFieldSettingMap (LOCATION_ARGS) const ;
+
+  public: class GGS_configFieldMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_configFieldMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_configFieldMap (const DownEnumerator_configFieldMap &) = delete ;
+  private: DownEnumerator_configFieldMap & operator = (const DownEnumerator_configFieldMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_configFieldMap final {
+  public: UpEnumerator_configFieldMap (const class GGS_configFieldMap & inMap)  ;
+
+  public: ~ UpEnumerator_configFieldMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mRegisterName (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mMaskValue (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mDescription (LOCATION_ARGS) const ;
+  public: class GGS_fieldSettingMap current_mFieldSettingMap (LOCATION_ARGS) const ;
+  public: class GGS_configFieldMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_configFieldMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_configFieldMap (const UpEnumerator_configFieldMap &) = delete ;
+  private: UpEnumerator_configFieldMap & operator = (const UpEnumerator_configFieldMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_configFieldMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_configFieldMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
+  public: GGS_configFieldMap (void) ;
+
+//--- Virtual destructor
+  public: virtual ~ GGS_configFieldMap (void) ;
+
+//--- Handle copy
+  public: GGS_configFieldMap (const GGS_configFieldMap & inSource) ;
+  public: GGS_configFieldMap & operator = (const GGS_configFieldMap & inSource) ;
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_configFieldMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_configFieldMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_configFieldMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_configFieldMap init (Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_configFieldMap extractObject (const GGS_object & inObject,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_configFieldMap class_func_emptyMap (LOCATION_ARGS) ;
+
+  public: static class GGS_configFieldMap class_func_mapWithMapToOverride (const class GGS_configFieldMap & inOperand0
+                                                                           COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
+                                                  class GGS_lstring constinArgument1,
+                                                  class GGS_luint constinArgument2,
+                                                  class GGS_lstring constinArgument3,
+                                                  class GGS_fieldSettingMap constinArgument4,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMDescriptionForKey (class GGS_lstring constinArgument0,
+                                                              class GGS_string constinArgument1,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMFieldSettingMapForKey (class GGS_fieldSettingMap constinArgument0,
+                                                                  class GGS_string constinArgument1,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMMaskValueForKey (class GGS_luint constinArgument0,
+                                                            class GGS_string constinArgument1,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMRegisterNameForKey (class GGS_lstring constinArgument0,
+                                                               class GGS_string constinArgument1,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
+                                                  class GGS_lstring & outArgument1,
+                                                  class GGS_luint & outArgument2,
+                                                  class GGS_lstring & outArgument3,
+                                                  class GGS_fieldSettingMap & outArgument4,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mDescriptionForKey (const class GGS_string & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_fieldSettingMap getter_mFieldSettingMapForKey (const class GGS_string & constinOperand0,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_luint getter_mMaskValueForKey (const class GGS_string & constinOperand0,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mRegisterNameForKey (const class GGS_string & constinOperand0,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_configFieldMap getter_overriddenMap (Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+  public: VIRTUAL_IN_DEBUG class GGS_configFieldMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) const ;
+
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_configFieldMap ;
+  friend class DownEnumerator_configFieldMap ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_configFieldMap ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @fieldSettingMap map
+//--------------------------------------------------------------------------------------------------
+
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
+
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_fieldSettingMap final {
+
+  public: DownEnumerator_fieldSettingMap (const class GGS_fieldSettingMap & inMap) ;
+
+  public: ~ DownEnumerator_fieldSettingMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_uint current_mValue (LOCATION_ARGS) const ;
+
+  public: class GGS_uint current_mMask (LOCATION_ARGS) const ;
+
+  public: class GGS_fieldSettingMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_fieldSettingMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_fieldSettingMap (const DownEnumerator_fieldSettingMap &) = delete ;
+  private: DownEnumerator_fieldSettingMap & operator = (const DownEnumerator_fieldSettingMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_fieldSettingMap final {
+  public: UpEnumerator_fieldSettingMap (const class GGS_fieldSettingMap & inMap)  ;
+
+  public: ~ UpEnumerator_fieldSettingMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mValue (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mMask (LOCATION_ARGS) const ;
+  public: class GGS_fieldSettingMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_fieldSettingMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_fieldSettingMap (const UpEnumerator_fieldSettingMap &) = delete ;
+  private: UpEnumerator_fieldSettingMap & operator = (const UpEnumerator_fieldSettingMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_fieldSettingMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_fieldSettingMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
+  public: GGS_fieldSettingMap (void) ;
+
+//--- Virtual destructor
+  public: virtual ~ GGS_fieldSettingMap (void) ;
+
+//--- Handle copy
+  public: GGS_fieldSettingMap (const GGS_fieldSettingMap & inSource) ;
+  public: GGS_fieldSettingMap & operator = (const GGS_fieldSettingMap & inSource) ;
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_fieldSettingMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_fieldSettingMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_fieldSettingMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_fieldSettingMap init (Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_fieldSettingMap extractObject (const GGS_object & inObject,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_fieldSettingMap class_func_emptyMap (LOCATION_ARGS) ;
+
+  public: static class GGS_fieldSettingMap class_func_mapWithMapToOverride (const class GGS_fieldSettingMap & inOperand0
+                                                                            COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uint constinArgument1,
+                                                  class GGS_uint constinArgument2,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMMaskForKey (class GGS_uint constinArgument0,
+                                                       class GGS_string constinArgument1,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMValueForKey (class GGS_uint constinArgument0,
+                                                        class GGS_string constinArgument1,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uint & outArgument1,
+                                                  class GGS_uint & outArgument2,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mMaskForKey (const class GGS_string & constinOperand0,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mValueForKey (const class GGS_string & constinOperand0,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_fieldSettingMap getter_overriddenMap (Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+  public: VIRTUAL_IN_DEBUG class GGS_fieldSettingMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const ;
+
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_fieldSettingMap ;
+  friend class DownEnumerator_fieldSettingMap ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_fieldSettingMap ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @configFieldMap_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_configFieldMap_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_lkey ;
+  public: inline GGS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
+
+  public: GGS_lstring mProperty_mRegisterName ;
+  public: inline GGS_lstring readProperty_mRegisterName (void) const {
+    return mProperty_mRegisterName ;
+  }
+
+  public: GGS_luint mProperty_mMaskValue ;
+  public: inline GGS_luint readProperty_mMaskValue (void) const {
+    return mProperty_mMaskValue ;
+  }
+
+  public: GGS_lstring mProperty_mDescription ;
+  public: inline GGS_lstring readProperty_mDescription (void) const {
+    return mProperty_mDescription ;
+  }
+
+  public: GGS_fieldSettingMap mProperty_mFieldSettingMap ;
+  public: inline GGS_fieldSettingMap readProperty_mFieldSettingMap (void) const {
+    return mProperty_mFieldSettingMap ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_configFieldMap_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
+  }
+
+  public: inline void setter_setMRegisterName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRegisterName = inValue ;
+  }
+
+  public: inline void setter_setMMaskValue (const GGS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mMaskValue = inValue ;
+  }
+
+  public: inline void setter_setMDescription (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDescription = inValue ;
+  }
+
+  public: inline void setter_setMFieldSettingMap (const GGS_fieldSettingMap & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mFieldSettingMap = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_configFieldMap_2E_element (const GGS_lstring & in_lkey,
+                                         const GGS_lstring & in_mRegisterName,
+                                         const GGS_luint & in_mMaskValue,
+                                         const GGS_lstring & in_mDescription,
+                                         const GGS_fieldSettingMap & in_mFieldSettingMap) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_configFieldMap_2E_element (const GGS_configFieldMap_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_configFieldMap_2E_element & operator = (const GGS_configFieldMap_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_configFieldMap_2E_element init_21__21__21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                         const class GGS_lstring & inOperand1,
+                                                                         const class GGS_luint & inOperand2,
+                                                                         const class GGS_lstring & inOperand3,
+                                                                         const class GGS_fieldSettingMap & inOperand4,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_configFieldMap_2E_element extractObject (const GGS_object & inObject,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_configFieldMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                     const class GGS_lstring & inOperand1,
+                                                                     const class GGS_luint & inOperand2,
+                                                                     const class GGS_lstring & inOperand3,
+                                                                     const class GGS_fieldSettingMap & inOperand4,
+                                                                     class Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_configFieldMap_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: configFieldMap.element? optional
+//--------------------------------------------------------------------------------------------------
+
+class GGS_configFieldMap_2E_element_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_configFieldMap_2E_element mValue ;
+  private: OptionalState mState ;
+
+//--------------------------------- Default constructor
+  public: GGS_configFieldMap_2E_element_3F_ (void) ;
+
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_configFieldMap_2E_element_3F_ (const GGS_configFieldMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_configFieldMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_configFieldMap_2E_element unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
+  
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
+
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_configFieldMap_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_configFieldMap_2E_element_3F_ ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @fieldSettingMap_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_fieldSettingMap_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_lkey ;
+  public: inline GGS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
+
+  public: GGS_uint mProperty_mValue ;
+  public: inline GGS_uint readProperty_mValue (void) const {
+    return mProperty_mValue ;
+  }
+
+  public: GGS_uint mProperty_mMask ;
+  public: inline GGS_uint readProperty_mMask (void) const {
+    return mProperty_mMask ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_fieldSettingMap_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
+  }
+
+  public: inline void setter_setMValue (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mValue = inValue ;
+  }
+
+  public: inline void setter_setMMask (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mMask = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_fieldSettingMap_2E_element (const GGS_lstring & in_lkey,
+                                          const GGS_uint & in_mValue,
+                                          const GGS_uint & in_mMask) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_fieldSettingMap_2E_element (const GGS_fieldSettingMap_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_fieldSettingMap_2E_element & operator = (const GGS_fieldSettingMap_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_fieldSettingMap_2E_element init_21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                  const class GGS_uint & inOperand1,
+                                                                  const class GGS_uint & inOperand2,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_fieldSettingMap_2E_element extractObject (const GGS_object & inObject,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_fieldSettingMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                      const class GGS_uint & inOperand1,
+                                                                      const class GGS_uint & inOperand2,
+                                                                      class Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_fieldSettingMap_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: fieldSettingMap.element? optional
+//--------------------------------------------------------------------------------------------------
+
+class GGS_fieldSettingMap_2E_element_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_fieldSettingMap_2E_element mValue ;
+  private: OptionalState mState ;
+
+//--------------------------------- Default constructor
+  public: GGS_fieldSettingMap_2E_element_3F_ (void) ;
+
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_fieldSettingMap_2E_element_3F_ (const GGS_fieldSettingMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_fieldSettingMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_fieldSettingMap_2E_element unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
+  
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
+
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_fieldSettingMap_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_fieldSettingMap_2E_element_3F_ ;
+
+//--------------------------------------------------------------------------------------------------
 //   enum baseline_5F_instruction_5F_FD_5F_base_5F_code
 //--------------------------------------------------------------------------------------------------
 
@@ -139,13 +1741,13 @@ class GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code : public AC_GALGAS_root 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD_5F_base_5F_code ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -226,13 +1828,13 @@ class GGS_baseline_5F_F_5F_instruction_5F_base_5F_code : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_F_5F_instruction_5F_base_5F_code ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -313,13 +1915,13 @@ class GGS_baseline_5F_bit_5F_oriented_5F_op : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_bit_5F_oriented_5F_op ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_bit_5F_oriented_5F_op ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -417,13 +2019,13 @@ class GGS_baseline_5F_literal_5F_instruction_5F_opcode : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_literal_5F_instruction_5F_opcode ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_literal_5F_instruction_5F_opcode ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -519,13 +2121,13 @@ class GGS_baseline_5F_WO_5F_OPERAND_5F_group : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_WO_5F_OPERAND_5F_group ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_WO_5F_OPERAND_5F_group ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -580,13 +2182,13 @@ class GGS_baseline_5F_instruction : public AC_GALGAS_reference_class {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction class
@@ -647,7 +2249,7 @@ class cPtr_baseline_5F_instruction : public acStrongPtr_class {
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -682,16 +2284,7 @@ class GGS_baseline_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction unwrappedValue (void) const {
-    GGS_baseline_5F_instruction result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction * p = (cPtr_baseline_5F_instruction *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -731,56 +2324,115 @@ class GGS_baseline_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instructionList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_baseline_5F_instructionList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_baseline_5F_instructionList (const class GGS_baseline_5F_instructionList & inEnumeratedObject) ;
+class DownEnumerator_baseline_5F_instructionList final {
+  public: DownEnumerator_baseline_5F_instructionList (const class GGS_baseline_5F_instructionList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_baseline_5F_instructionList (void) = default ;
 
-  public: class GGS_baseline_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baseline_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_baseline_5F_instructionList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_baseline_5F_instructionList (const class GGS_baseline_5F_instructionList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_baseline_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_baseline_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_baseline_5F_instructionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_baseline_5F_instructionList (const DownEnumerator_baseline_5F_instructionList &) = delete ;
+  private: DownEnumerator_baseline_5F_instructionList & operator = (const DownEnumerator_baseline_5F_instructionList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_instructionList list
+
+class UpEnumerator_baseline_5F_instructionList final {
+  public: UpEnumerator_baseline_5F_instructionList (const class GGS_baseline_5F_instructionList & inList)  ;
+
+  public: ~ UpEnumerator_baseline_5F_instructionList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_baseline_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_baseline_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_baseline_5F_instructionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_baseline_5F_instructionList (const UpEnumerator_baseline_5F_instructionList &) = delete ;
+  private: UpEnumerator_baseline_5F_instructionList & operator = (const UpEnumerator_baseline_5F_instructionList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @baseline_instructionList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_baseline_5F_instructionList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_baseline_5F_instructionList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_baseline_5F_instructionList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_baseline_5F_instructionList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_baseline_5F_instructionList (void) = default ;
+
+//--- Copy
+  public: GGS_baseline_5F_instructionList (const GGS_baseline_5F_instructionList &) = default ;
+  public: GGS_baseline_5F_instructionList & operator = (const GGS_baseline_5F_instructionList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_baseline_5F_instructionList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_baseline_5F_instructionList subList (const int32_t inStart,
+                                                    const int32_t inLength,
+                                                    Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_baseline_5F_instructionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_baseline_5F_instruction & in_mInstruction
                                                  COMMA_LOCATION_ARGS) ;
@@ -864,9 +2516,13 @@ class GGS_baseline_5F_instructionList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_instruction getter_mInstructionAtIndex (const class GGS_uint & constinOperand0,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_instructionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                           Compiler * inCompiler
@@ -885,7 +2541,7 @@ class GGS_baseline_5F_instructionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_instructionList ;
   friend class DownEnumerator_baseline_5F_instructionList ;
@@ -894,7 +2550,7 @@ class GGS_baseline_5F_instructionList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instructionList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instructionList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instructionList_2E_element struct
@@ -966,13 +2622,13 @@ class GGS_baseline_5F_instructionList_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instructionList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instructionList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_FD reference class
@@ -1032,13 +2688,13 @@ class GGS_baseline_5F_instruction_5F_FD : public GGS_baseline_5F_instruction {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_FD class
@@ -1102,7 +2758,7 @@ class cPtr_baseline_5F_instruction_5F_FD : public cPtr_baseline_5F_instruction {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1137,16 +2793,7 @@ class GGS_baseline_5F_instruction_5F_FD_2E_weak : public GGS_baseline_5F_instruc
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_FD unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_FD result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_FD * p = (cPtr_baseline_5F_instruction_5F_FD *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_FD (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_FD unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -1186,13 +2833,13 @@ class GGS_baseline_5F_instruction_5F_FD_2E_weak : public GGS_baseline_5F_instruc
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FD_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_F reference class
@@ -1248,13 +2895,13 @@ class GGS_baseline_5F_instruction_5F_F : public GGS_baseline_5F_instruction {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_F ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_F ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_F class
@@ -1315,7 +2962,7 @@ class cPtr_baseline_5F_instruction_5F_F : public cPtr_baseline_5F_instruction {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1350,16 +2997,7 @@ class GGS_baseline_5F_instruction_5F_F_2E_weak : public GGS_baseline_5F_instruct
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_F unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_F result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_F * p = (cPtr_baseline_5F_instruction_5F_F *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_F (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_F unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -1399,13 +3037,13 @@ class GGS_baseline_5F_instruction_5F_F_2E_weak : public GGS_baseline_5F_instruct
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_F_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_F_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_FB reference class
@@ -1465,13 +3103,13 @@ class GGS_baseline_5F_instruction_5F_FB : public GGS_baseline_5F_instruction {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FB ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FB ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_FB class
@@ -1535,7 +3173,7 @@ class cPtr_baseline_5F_instruction_5F_FB : public cPtr_baseline_5F_instruction {
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1570,16 +3208,7 @@ class GGS_baseline_5F_instruction_5F_FB_2E_weak : public GGS_baseline_5F_instruc
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_FB unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_FB result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_FB * p = (cPtr_baseline_5F_instruction_5F_FB *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_FB (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_FB unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -1619,13 +3248,13 @@ class GGS_baseline_5F_instruction_5F_FB_2E_weak : public GGS_baseline_5F_instruc
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FB_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FB_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_CALL reference class
@@ -1677,13 +3306,13 @@ class GGS_baseline_5F_instruction_5F_CALL : public GGS_baseline_5F_instruction {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_CALL class
@@ -1745,7 +3374,7 @@ class cPtr_baseline_5F_instruction_5F_CALL : public cPtr_baseline_5F_instruction
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1780,16 +3409,7 @@ class GGS_baseline_5F_instruction_5F_CALL_2E_weak : public GGS_baseline_5F_instr
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_CALL unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_CALL result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_CALL * p = (cPtr_baseline_5F_instruction_5F_CALL *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_CALL (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_CALL unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -1829,13 +3449,13 @@ class GGS_baseline_5F_instruction_5F_CALL_2E_weak : public GGS_baseline_5F_instr
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_CALL_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_JSR reference class
@@ -1887,13 +3507,13 @@ class GGS_baseline_5F_instruction_5F_JSR : public GGS_baseline_5F_instruction {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JSR ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JSR ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_JSR class
@@ -1951,7 +3571,7 @@ class cPtr_baseline_5F_instruction_5F_JSR : public cPtr_baseline_5F_instruction 
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -1986,16 +3606,7 @@ class GGS_baseline_5F_instruction_5F_JSR_2E_weak : public GGS_baseline_5F_instru
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_JSR unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_JSR result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_JSR * p = (cPtr_baseline_5F_instruction_5F_JSR *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_JSR (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_JSR unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -2035,13 +3646,13 @@ class GGS_baseline_5F_instruction_5F_JSR_2E_weak : public GGS_baseline_5F_instru
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JSR_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JSR_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_GOTO reference class
@@ -2093,13 +3704,13 @@ class GGS_baseline_5F_instruction_5F_GOTO : public GGS_baseline_5F_instruction {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_GOTO ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_GOTO ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_GOTO class
@@ -2161,7 +3772,7 @@ class cPtr_baseline_5F_instruction_5F_GOTO : public cPtr_baseline_5F_instruction
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2196,16 +3807,7 @@ class GGS_baseline_5F_instruction_5F_GOTO_2E_weak : public GGS_baseline_5F_instr
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_GOTO unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_GOTO result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_GOTO * p = (cPtr_baseline_5F_instruction_5F_GOTO *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_GOTO (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_GOTO unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -2245,13 +3847,13 @@ class GGS_baseline_5F_instruction_5F_GOTO_2E_weak : public GGS_baseline_5F_instr
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_GOTO_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_GOTO_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_JUMP reference class
@@ -2303,13 +3905,13 @@ class GGS_baseline_5F_instruction_5F_JUMP : public GGS_baseline_5F_instruction {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JUMP ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JUMP ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_JUMP class
@@ -2371,7 +3973,7 @@ class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2406,16 +4008,7 @@ class GGS_baseline_5F_instruction_5F_JUMP_2E_weak : public GGS_baseline_5F_instr
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_JUMP unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_JUMP result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_JUMP * p = (cPtr_baseline_5F_instruction_5F_JUMP *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_JUMP (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_JUMP unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -2455,13 +4048,13 @@ class GGS_baseline_5F_instruction_5F_JUMP_2E_weak : public GGS_baseline_5F_instr
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JUMP_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_JUMP_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_WO_5F_OPERAND reference class
@@ -2513,13 +4106,13 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND : public GGS_baseline_5F_inst
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_WO_OPERAND class
@@ -2577,7 +4170,7 @@ class cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND : public cPtr_baseline_5F_in
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2612,16 +4205,7 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak : public GGS_baseline
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_WO_5F_OPERAND unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_WO_5F_OPERAND result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_WO_5F_OPERAND (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_WO_5F_OPERAND unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -2661,13 +4245,13 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak : public GGS_baseline
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_TRIS reference class
@@ -2719,13 +4303,13 @@ class GGS_baseline_5F_instruction_5F_TRIS : public GGS_baseline_5F_instruction {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_TRIS ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_TRIS ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_TRIS class
@@ -2783,7 +4367,7 @@ class cPtr_baseline_5F_instruction_5F_TRIS : public cPtr_baseline_5F_instruction
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -2818,16 +4402,7 @@ class GGS_baseline_5F_instruction_5F_TRIS_2E_weak : public GGS_baseline_5F_instr
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_TRIS unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_TRIS result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_TRIS * p = (cPtr_baseline_5F_instruction_5F_TRIS *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_TRIS (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_TRIS unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -2867,13 +4442,13 @@ class GGS_baseline_5F_instruction_5F_TRIS_2E_weak : public GGS_baseline_5F_instr
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_TRIS_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_TRIS_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_literalOperation reference class
@@ -2929,13 +4504,13 @@ class GGS_baseline_5F_instruction_5F_literalOperation : public GGS_baseline_5F_i
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_literalOperation ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_literalOperation ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_literalOperation class
@@ -3000,7 +4575,7 @@ class cPtr_baseline_5F_instruction_5F_literalOperation : public cPtr_baseline_5F
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3035,16 +4610,7 @@ class GGS_baseline_5F_instruction_5F_literalOperation_2E_weak : public GGS_basel
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_literalOperation unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_literalOperation result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_instruction_5F_literalOperation *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_literalOperation (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_literalOperation unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -3084,13 +4650,13 @@ class GGS_baseline_5F_instruction_5F_literalOperation_2E_weak : public GGS_basel
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_literalOperation_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_literalOperation_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_MNOP reference class
@@ -3142,13 +4708,13 @@ class GGS_baseline_5F_instruction_5F_MNOP : public GGS_baseline_5F_instruction {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_MNOP ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_MNOP ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_MNOP class
@@ -3206,7 +4772,7 @@ class cPtr_baseline_5F_instruction_5F_MNOP : public cPtr_baseline_5F_instruction
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3241,16 +4807,7 @@ class GGS_baseline_5F_instruction_5F_MNOP_2E_weak : public GGS_baseline_5F_instr
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_MNOP unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_MNOP result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_instruction_5F_MNOP *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_MNOP (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_MNOP unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -3290,13 +4847,13 @@ class GGS_baseline_5F_instruction_5F_MNOP_2E_weak : public GGS_baseline_5F_instr
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_MNOP_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_MNOP_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_FOREVER reference class
@@ -3352,13 +4909,13 @@ class GGS_baseline_5F_instruction_5F_FOREVER : public GGS_baseline_5F_instructio
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FOREVER ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FOREVER ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_FOREVER class
@@ -3423,7 +4980,7 @@ class cPtr_baseline_5F_instruction_5F_FOREVER : public cPtr_baseline_5F_instruct
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3458,16 +5015,7 @@ class GGS_baseline_5F_instruction_5F_FOREVER_2E_weak : public GGS_baseline_5F_in
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_FOREVER unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_FOREVER result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_FOREVER * p = (cPtr_baseline_5F_instruction_5F_FOREVER *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_FOREVER (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_FOREVER unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -3507,13 +5055,13 @@ class GGS_baseline_5F_instruction_5F_FOREVER_2E_weak : public GGS_baseline_5F_in
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FOREVER_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_FOREVER_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_STATIC_5F_REPEAT reference class
@@ -3581,13 +5129,13 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public GGS_baseline_5F_i
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_STATIC_REPEAT class
@@ -3657,7 +5205,7 @@ class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -3692,16 +5240,7 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak : public GGS_basel
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT * p = (cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -3741,13 +5280,13 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak : public GGS_basel
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON reference class
@@ -3793,13 +5332,13 @@ class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public GGS_baseline_5
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_IF_SEMI_COLON class
@@ -3840,7 +5379,7 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_baseline
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -3875,16 +5414,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak : public GGS_ba
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON * p = (cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -3924,13 +5454,13 @@ class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak : public GGS_ba
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_IF_5F_BitTest reference class
@@ -3992,13 +5522,13 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest : public GGS_baseline_5F_inst
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_IF_BitTest class
@@ -4072,7 +5602,7 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest : public cPtr_baseline_5F_in
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4107,16 +5637,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak : public GGS_baseline
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_IF_5F_BitTest unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_IF_5F_BitTest result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * p = (cPtr_baseline_5F_instruction_5F_IF_5F_BitTest *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_IF_5F_BitTest (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_IF_5F_BitTest unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -4156,13 +5677,13 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak : public GGS_baseline
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_IF_5F_IncDec reference class
@@ -4224,13 +5745,13 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec : public GGS_baseline_5F_instr
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_IF_IncDec class
@@ -4296,7 +5817,7 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_IncDec : public cPtr_baseline_5F_ins
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4331,16 +5852,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak : public GGS_baseline_
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_IF_5F_IncDec unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_IF_5F_IncDec result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_IF_5F_IncDec * p = (cPtr_baseline_5F_instruction_5F_IF_5F_IncDec *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_IF_5F_IncDec (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_IF_5F_IncDec unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -4380,13 +5892,13 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak : public GGS_baseline_
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_conditionExpression reference class
@@ -4428,13 +5940,13 @@ class GGS_baseline_5F_conditionExpression : public AC_GALGAS_reference_class {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_conditionExpression ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_conditionExpression ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_conditionExpression class
@@ -4476,7 +5988,7 @@ class cPtr_baseline_5F_conditionExpression : public acStrongPtr_class {
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -4511,16 +6023,7 @@ class GGS_baseline_5F_conditionExpression_2E_weak : public AC_GALGAS_weak_refere
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_conditionExpression unwrappedValue (void) const {
-    GGS_baseline_5F_conditionExpression result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_conditionExpression * p = (cPtr_baseline_5F_conditionExpression *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_conditionExpression (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_conditionExpression unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -4560,13 +6063,13 @@ class GGS_baseline_5F_conditionExpression_2E_weak : public AC_GALGAS_weak_refere
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_conditionExpression_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_conditionExpression_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_incDecRegisterInCondition reference class
@@ -4628,13 +6131,13 @@ class GGS_baseline_5F_incDecRegisterInCondition : public GGS_baseline_5F_conditi
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_incDecRegisterInCondition ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_incDecRegisterInCondition ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_incDecRegisterInCondition class
@@ -4693,7 +6196,7 @@ class cPtr_baseline_5F_incDecRegisterInCondition : public cPtr_baseline_5F_condi
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4728,16 +6231,7 @@ class GGS_baseline_5F_incDecRegisterInCondition_2E_weak : public GGS_baseline_5F
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_incDecRegisterInCondition unwrappedValue (void) const {
-    GGS_baseline_5F_incDecRegisterInCondition result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_incDecRegisterInCondition *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_incDecRegisterInCondition (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_incDecRegisterInCondition unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -4777,13 +6271,13 @@ class GGS_baseline_5F_incDecRegisterInCondition_2E_weak : public GGS_baseline_5F
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_incDecRegisterInCondition_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_incDecRegisterInCondition_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_negateCondition reference class
@@ -4833,13 +6327,13 @@ class GGS_baseline_5F_negateCondition : public GGS_baseline_5F_conditionExpressi
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_negateCondition ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_negateCondition ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_negateCondition class
@@ -4889,7 +6383,7 @@ class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpres
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -4924,16 +6418,7 @@ class GGS_baseline_5F_negateCondition_2E_weak : public GGS_baseline_5F_condition
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_negateCondition unwrappedValue (void) const {
-    GGS_baseline_5F_negateCondition result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_negateCondition * p = (cPtr_baseline_5F_negateCondition *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_negateCondition (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_negateCondition unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -4973,13 +6458,13 @@ class GGS_baseline_5F_negateCondition_2E_weak : public GGS_baseline_5F_condition
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_negateCondition_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_negateCondition_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_andCondition reference class
@@ -5033,13 +6518,13 @@ class GGS_baseline_5F_andCondition : public GGS_baseline_5F_conditionExpression 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_andCondition class
@@ -5092,7 +6577,7 @@ class cPtr_baseline_5F_andCondition : public cPtr_baseline_5F_conditionExpressio
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5127,16 +6612,7 @@ class GGS_baseline_5F_andCondition_2E_weak : public GGS_baseline_5F_conditionExp
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_andCondition unwrappedValue (void) const {
-    GGS_baseline_5F_andCondition result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_andCondition * p = (cPtr_baseline_5F_andCondition *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_andCondition (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_andCondition unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -5176,13 +6652,13 @@ class GGS_baseline_5F_andCondition_2E_weak : public GGS_baseline_5F_conditionExp
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_andCondition_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition reference class
@@ -5236,13 +6712,13 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public GG
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_bitTest_in_structured_if_condition class
@@ -5295,7 +6771,7 @@ class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5330,16 +6806,7 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak : p
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition unwrappedValue (void) const {
-    GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition * p = (cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -5379,13 +6846,13 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak : p
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_structured_5F_if reference class
@@ -5449,13 +6916,13 @@ class GGS_baseline_5F_instruction_5F_structured_5F_if : public GGS_baseline_5F_i
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_structured_5F_if ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_structured_5F_if ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_structured_if class
@@ -5526,7 +6993,7 @@ class cPtr_baseline_5F_instruction_5F_structured_5F_if : public cPtr_baseline_5F
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -5561,16 +7028,7 @@ class GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak : public GGS_basel
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_structured_5F_if unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_structured_5F_if result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_structured_5F_if * p = (cPtr_baseline_5F_instruction_5F_structured_5F_if *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_structured_5F_if (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_structured_5F_if unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -5610,60 +7068,119 @@ class GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak : public GGS_basel
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_structured_5F_if_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_structured_5F_if_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_partList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_baseline_5F_partList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_baseline_5F_partList (const class GGS_baseline_5F_partList & inEnumeratedObject) ;
+class DownEnumerator_baseline_5F_partList final {
+  public: DownEnumerator_baseline_5F_partList (const class GGS_baseline_5F_partList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_baseline_5F_partList (void) = default ;
 
-  public: class GGS_baseline_5F_conditionExpression current_mCondition (LOCATION_ARGS) const ;
-  public: class GGS_baseline_5F_instructionList current_mInstructionList (LOCATION_ARGS) const ;
-  public: class GGS_location current_mEndOfPartLocation (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baseline_5F_partList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_baseline_5F_partList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_baseline_5F_partList (const class GGS_baseline_5F_partList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_baseline_5F_conditionExpression current_mCondition (LOCATION_ARGS) const ;
   public: class GGS_baseline_5F_instructionList current_mInstructionList (LOCATION_ARGS) const ;
   public: class GGS_location current_mEndOfPartLocation (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_baseline_5F_partList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_baseline_5F_partList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_baseline_5F_partList (const DownEnumerator_baseline_5F_partList &) = delete ;
+  private: DownEnumerator_baseline_5F_partList & operator = (const DownEnumerator_baseline_5F_partList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_partList list
+
+class UpEnumerator_baseline_5F_partList final {
+  public: UpEnumerator_baseline_5F_partList (const class GGS_baseline_5F_partList & inList)  ;
+
+  public: ~ UpEnumerator_baseline_5F_partList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_baseline_5F_conditionExpression current_mCondition (LOCATION_ARGS) const ;
+  public: class GGS_baseline_5F_instructionList current_mInstructionList (LOCATION_ARGS) const ;
+  public: class GGS_location current_mEndOfPartLocation (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_baseline_5F_partList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_baseline_5F_partList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_baseline_5F_partList (const UpEnumerator_baseline_5F_partList &) = delete ;
+  private: UpEnumerator_baseline_5F_partList & operator = (const UpEnumerator_baseline_5F_partList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @baseline_partList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_baseline_5F_partList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_baseline_5F_partList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_baseline_5F_partList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_baseline_5F_partList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_baseline_5F_partList (void) = default ;
+
+//--- Copy
+  public: GGS_baseline_5F_partList (const GGS_baseline_5F_partList &) = default ;
+  public: GGS_baseline_5F_partList & operator = (const GGS_baseline_5F_partList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_baseline_5F_partList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_baseline_5F_partList subList (const int32_t inStart,
+                                             const int32_t inLength,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_baseline_5F_partList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_baseline_5F_conditionExpression & in_mCondition,
                                                  const class GGS_baseline_5F_instructionList & in_mInstructionList,
@@ -5777,6 +7294,8 @@ class GGS_baseline_5F_partList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_conditionExpression getter_mConditionAtIndex (const class GGS_uint & constinOperand0,
                                                                                                Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) const ;
@@ -5788,6 +7307,8 @@ class GGS_baseline_5F_partList : public AC_GALGAS_list {
   public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_instructionList getter_mInstructionListAtIndex (const class GGS_uint & constinOperand0,
                                                                                                  Compiler * inCompiler
                                                                                                  COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_partList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                    Compiler * inCompiler
@@ -5806,7 +7327,7 @@ class GGS_baseline_5F_partList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_partList ;
   friend class DownEnumerator_baseline_5F_partList ;
@@ -5815,7 +7336,7 @@ class GGS_baseline_5F_partList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_partList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_partList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_partList_2E_element struct
@@ -5911,13 +7432,13 @@ class GGS_baseline_5F_partList_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_partList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_partList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_instruction_5F_do_5F_while reference class
@@ -5977,13 +7498,13 @@ class GGS_baseline_5F_instruction_5F_do_5F_while : public GGS_baseline_5F_instru
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_do_5F_while ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_do_5F_while ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_instruction_do_while class
@@ -6047,7 +7568,7 @@ class cPtr_baseline_5F_instruction_5F_do_5F_while : public cPtr_baseline_5F_inst
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -6082,16 +7603,7 @@ class GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak : public GGS_baseline_5
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_instruction_5F_do_5F_while unwrappedValue (void) const {
-    GGS_baseline_5F_instruction_5F_do_5F_while result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_instruction_5F_do_5F_while * p = (cPtr_baseline_5F_instruction_5F_do_5F_while *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_instruction_5F_do_5F_while (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_instruction_5F_do_5F_while unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -6131,42 +7643,30 @@ class GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak : public GGS_baseline_5
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_do_5F_while_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instruction_5F_do_5F_while_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_routineDefinitionList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_baseline_5F_routineDefinitionList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_baseline_5F_routineDefinitionList (const class GGS_baseline_5F_routineDefinitionList & inEnumeratedObject) ;
+class DownEnumerator_baseline_5F_routineDefinitionList final {
+  public: DownEnumerator_baseline_5F_routineDefinitionList (const class GGS_baseline_5F_routineDefinitionList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_baseline_5F_routineDefinitionList (void) = default ;
 
-  public: class GGS_lstring current_mRoutineName (LOCATION_ARGS) const ;
-  public: class GGS_luint current_mPage (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mIsNoReturn (LOCATION_ARGS) const ;
-  public: class GGS_baseline_5F_instructionList current_mInstructionList (LOCATION_ARGS) const ;
-  public: class GGS_location current_mEndOfRoutineLocation (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baseline_5F_routineDefinitionList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_baseline_5F_routineDefinitionList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_baseline_5F_routineDefinitionList (const class GGS_baseline_5F_routineDefinitionList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_lstring current_mRoutineName (LOCATION_ARGS) const ;
   public: class GGS_luint current_mPage (LOCATION_ARGS) const ;
@@ -6175,20 +7675,91 @@ class UpEnumerator_baseline_5F_routineDefinitionList final : public cGenericAbst
   public: class GGS_location current_mEndOfRoutineLocation (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_baseline_5F_routineDefinitionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_baseline_5F_routineDefinitionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_baseline_5F_routineDefinitionList (const DownEnumerator_baseline_5F_routineDefinitionList &) = delete ;
+  private: DownEnumerator_baseline_5F_routineDefinitionList & operator = (const DownEnumerator_baseline_5F_routineDefinitionList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_routineDefinitionList list
+
+class UpEnumerator_baseline_5F_routineDefinitionList final {
+  public: UpEnumerator_baseline_5F_routineDefinitionList (const class GGS_baseline_5F_routineDefinitionList & inList)  ;
+
+  public: ~ UpEnumerator_baseline_5F_routineDefinitionList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_lstring current_mRoutineName (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mPage (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mIsNoReturn (LOCATION_ARGS) const ;
+  public: class GGS_baseline_5F_instructionList current_mInstructionList (LOCATION_ARGS) const ;
+  public: class GGS_location current_mEndOfRoutineLocation (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_baseline_5F_routineDefinitionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_baseline_5F_routineDefinitionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_baseline_5F_routineDefinitionList (const UpEnumerator_baseline_5F_routineDefinitionList &) = delete ;
+  private: UpEnumerator_baseline_5F_routineDefinitionList & operator = (const UpEnumerator_baseline_5F_routineDefinitionList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @baseline_routineDefinitionList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_baseline_5F_routineDefinitionList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_baseline_5F_routineDefinitionList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_baseline_5F_routineDefinitionList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_baseline_5F_routineDefinitionList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_baseline_5F_routineDefinitionList (void) = default ;
+
+//--- Copy
+  public: GGS_baseline_5F_routineDefinitionList (const GGS_baseline_5F_routineDefinitionList &) = default ;
+  public: GGS_baseline_5F_routineDefinitionList & operator = (const GGS_baseline_5F_routineDefinitionList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_baseline_5F_routineDefinitionList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_baseline_5F_routineDefinitionList subList (const int32_t inStart,
+                                                          const int32_t inLength,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_baseline_5F_routineDefinitionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mRoutineName,
                                                  const class GGS_luint & in_mPage,
@@ -6332,6 +7903,8 @@ class GGS_baseline_5F_routineDefinitionList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_location getter_mEndOfRoutineLocationAtIndex (const class GGS_uint & constinOperand0,
                                                                                    Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) const ;
@@ -6352,6 +7925,8 @@ class GGS_baseline_5F_routineDefinitionList : public AC_GALGAS_list {
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) const ;
 
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_routineDefinitionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                                 Compiler * inCompiler
                                                                                                 COMMA_LOCATION_ARGS) const ;
@@ -6369,7 +7944,7 @@ class GGS_baseline_5F_routineDefinitionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_routineDefinitionList ;
   friend class DownEnumerator_baseline_5F_routineDefinitionList ;
@@ -6378,7 +7953,7 @@ class GGS_baseline_5F_routineDefinitionList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_routineDefinitionList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_routineDefinitionList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_routineDefinitionList_2E_element struct
@@ -6498,13 +8073,13 @@ class GGS_baseline_5F_routineDefinitionList_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_routineDefinitionList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_routineDefinitionList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -6518,55 +8093,111 @@ void callExtensionMethod_addUsedRoutines (class cPtr_baseline_5F_instruction * i
                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_declaredRoutineMap map enumerator
+// Phase 1: @baseline_5F_declaredRoutineMap map
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_baseline_5F_declaredRoutineMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_baseline_5F_declaredRoutineMap (const class GGS_baseline_5F_declaredRoutineMap & inEnumeratedObject) ;
+#include "SharedGenericPtrWithValueSemantics.h"
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+template <typename INFO> class GenericMapRoot ;
+
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_baseline_5F_declaredRoutineMap final {
+
+  public: DownEnumerator_baseline_5F_declaredRoutineMap (const class GGS_baseline_5F_declaredRoutineMap & inMap) ;
+
+  public: ~ DownEnumerator_baseline_5F_declaredRoutineMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
   public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-//--- Current element access
+
   public: class GGS_baseline_5F_declaredRoutineMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_baseline_5F_declaredRoutineMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_baseline_5F_declaredRoutineMap (const DownEnumerator_baseline_5F_declaredRoutineMap &) = delete ;
+  private: DownEnumerator_baseline_5F_declaredRoutineMap & operator = (const DownEnumerator_baseline_5F_declaredRoutineMap &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-class UpEnumerator_baseline_5F_declaredRoutineMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_baseline_5F_declaredRoutineMap (const class GGS_baseline_5F_declaredRoutineMap & inEnumeratedObject) ;
+class UpEnumerator_baseline_5F_declaredRoutineMap final {
+  public: UpEnumerator_baseline_5F_declaredRoutineMap (const class GGS_baseline_5F_declaredRoutineMap & inMap)  ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ UpEnumerator_baseline_5F_declaredRoutineMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
 
   public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-//--- Current element access
   public: class GGS_baseline_5F_declaredRoutineMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_baseline_5F_declaredRoutineMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_baseline_5F_declaredRoutineMap (const UpEnumerator_baseline_5F_declaredRoutineMap &) = delete ;
+  private: UpEnumerator_baseline_5F_declaredRoutineMap & operator = (const UpEnumerator_baseline_5F_declaredRoutineMap &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_declaredRoutineMap map
-//--------------------------------------------------------------------------------------------------
 
-class cMapElement_baseline_5F_declaredRoutineMap ;
+class GGS_baseline_5F_declaredRoutineMap : public AC_GALGAS_root {
 
-//--------------------------------------------------------------------------------------------------
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_baseline_5F_declaredRoutineMap_2E_element>> mSharedRoot ;
 
-extern const char * kSearchErrorMessage_baseline_5F_declaredRoutineMap_searchKey ;
-
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_declaredRoutineMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
+//--- Default constructor
   public: GGS_baseline_5F_declaredRoutineMap (void) ;
 
-//--------------------------------- Handle copy
+//--- Virtual destructor
+  public: virtual ~ GGS_baseline_5F_declaredRoutineMap (void) ;
+
+//--- Handle copy
   public: GGS_baseline_5F_declaredRoutineMap (const GGS_baseline_5F_declaredRoutineMap & inSource) ;
   public: GGS_baseline_5F_declaredRoutineMap & operator = (const GGS_baseline_5F_declaredRoutineMap & inSource) ;
-  
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_baseline_5F_declaredRoutineMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_baseline_5F_declaredRoutineMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_baseline_5F_declaredRoutineMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
 //-- Start of type generic part
 
 //--------------------------------- Initializers
@@ -6602,6 +8233,27 @@ class GGS_baseline_5F_declaredRoutineMap : public AC_GALGAS_map {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_declaredRoutineMap getter_overriddenMap (Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) const ;
 
@@ -6614,11 +8266,7 @@ class GGS_baseline_5F_declaredRoutineMap : public AC_GALGAS_map {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_baseline_5F_declaredRoutineMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                                           const GGS_string & inKey
-                                                                                                           COMMA_LOCATION_ARGS) ;
-
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_declaredRoutineMap ;
   friend class DownEnumerator_baseline_5F_declaredRoutineMap ;
@@ -6627,33 +8275,7 @@ class GGS_baseline_5F_declaredRoutineMap : public AC_GALGAS_map {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: class for element of '@baseline_declaredRoutineMap' map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_baseline_5F_declaredRoutineMap : public cMapElement {
-//--- Map attributes
-
-//--- Constructors
-  public: cMapElement_baseline_5F_declaredRoutineMap (const GGS_baseline_5F_declaredRoutineMap_2E_element & inValue
-                                                      COMMA_LOCATION_ARGS) ;
- 
-  public: cMapElement_baseline_5F_declaredRoutineMap (const GGS_lstring & inKey
-                                                      COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cMapElement * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_declaredRoutineMap_2E_element struct
@@ -6725,13 +8347,13 @@ class GGS_baseline_5F_declaredRoutineMap_2E_element : public AC_GALGAS_root {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: baseline_declaredRoutineMap.element? optional
@@ -6802,13 +8424,13 @@ class GGS_baseline_5F_declaredRoutineMap_2E_element_3F_ : public AC_GALGAS_root 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap_2E_element_3F_ ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_declaredRoutineMap_2E_element_3F_ ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -6914,13 +8536,13 @@ class GGS_baseline_5F_intermediate_5F_registerExpression : public AC_GALGAS_root
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_registerExpression ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_registerExpression ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_instruction reference class
@@ -6962,13 +8584,13 @@ class GGS_baseline_5F_intermediate_5F_instruction : public AC_GALGAS_reference_c
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_instruction class
@@ -7036,7 +8658,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction : public acStrongPtr_class {
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -7071,16 +8693,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_2E_weak : public AC_GALGAS_wea
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_instruction unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_instruction result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_instruction * p = (cPtr_baseline_5F_intermediate_5F_instruction *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_instruction (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_instruction unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -7120,56 +8733,115 @@ class GGS_baseline_5F_intermediate_5F_instruction_2E_weak : public AC_GALGAS_wea
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_instructionList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_baseline_5F_intermediate_5F_instructionList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_baseline_5F_intermediate_5F_instructionList (const class GGS_baseline_5F_intermediate_5F_instructionList & inEnumeratedObject) ;
+class DownEnumerator_baseline_5F_intermediate_5F_instructionList final {
+  public: DownEnumerator_baseline_5F_intermediate_5F_instructionList (const class GGS_baseline_5F_intermediate_5F_instructionList & inList) ;
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: ~ DownEnumerator_baseline_5F_intermediate_5F_instructionList (void) = default ;
 
-  public: class GGS_baseline_5F_intermediate_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baseline_5F_intermediate_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
-} ;
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
-//--------------------------------------------------------------------------------------------------
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
 
-class UpEnumerator_baseline_5F_intermediate_5F_instructionList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_baseline_5F_intermediate_5F_instructionList (const class GGS_baseline_5F_intermediate_5F_instructionList & inEnumeratedObject) ;
+  public: inline void rewind (void) { mIndex = 0 ; }
 
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
   public: class GGS_baseline_5F_intermediate_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
 //--- Current element access
   public: class GGS_baseline_5F_intermediate_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_baseline_5F_intermediate_5F_instructionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_baseline_5F_intermediate_5F_instructionList (const DownEnumerator_baseline_5F_intermediate_5F_instructionList &) = delete ;
+  private: DownEnumerator_baseline_5F_intermediate_5F_instructionList & operator = (const DownEnumerator_baseline_5F_intermediate_5F_instructionList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_intermediate_instructionList list
+
+class UpEnumerator_baseline_5F_intermediate_5F_instructionList final {
+  public: UpEnumerator_baseline_5F_intermediate_5F_instructionList (const class GGS_baseline_5F_intermediate_5F_instructionList & inList)  ;
+
+  public: ~ UpEnumerator_baseline_5F_intermediate_5F_instructionList (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
+
+  public: class GGS_baseline_5F_intermediate_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
+//--- Current element access
+  public: class GGS_baseline_5F_intermediate_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <GGS_baseline_5F_intermediate_5F_instructionList_2E_element> mArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_baseline_5F_intermediate_5F_instructionList (const UpEnumerator_baseline_5F_intermediate_5F_instructionList &) = delete ;
+  private: UpEnumerator_baseline_5F_intermediate_5F_instructionList & operator = (const UpEnumerator_baseline_5F_intermediate_5F_instructionList &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+// @baseline_intermediate_instructionList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_baseline_5F_intermediate_5F_instructionList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
+class GGS_baseline_5F_intermediate_5F_instructionList : public AC_GALGAS_root {
+//--- Private property
+  private: GenericArray <GGS_baseline_5F_intermediate_5F_instructionList_2E_element> mArray ;
+
+//--- Default constructor
   public: GGS_baseline_5F_intermediate_5F_instructionList (void) ;
 
-//--------------------------------- List constructor by graph
+//--- Destructor
+  public: virtual ~ GGS_baseline_5F_intermediate_5F_instructionList (void) = default ;
+
+//--- Copy
+  public: GGS_baseline_5F_intermediate_5F_instructionList (const GGS_baseline_5F_intermediate_5F_instructionList &) = default ;
+  public: GGS_baseline_5F_intermediate_5F_instructionList & operator = (const GGS_baseline_5F_intermediate_5F_instructionList &) = default ;
+
+//--- Is valid
+  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
+
+//--- Drop
+  public: inline virtual void drop (void) override { mArray.removeAll () ; }
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//--- Count
+  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
+ 
+//--- sortedElementArray
+  public : inline GenericArray <GGS_baseline_5F_intermediate_5F_instructionList_2E_element> sortedElementArray (void) const {
+    return mArray ;
+  }
+
+//--- subList
+  private: GGS_baseline_5F_intermediate_5F_instructionList subList (const int32_t inStart,
+                                                                    const int32_t inLength,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) const ;
+
+
+//--- List constructor for graph
   public: GGS_baseline_5F_intermediate_5F_instructionList (const capCollectionElementArray & inSharedArray) ;
 
-//--------------------------------- Element constructor
+//--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
                                                  const class GGS_baseline_5F_intermediate_5F_instruction & in_mInstruction
                                                  COMMA_LOCATION_ARGS) ;
@@ -7253,9 +8925,13 @@ class GGS_baseline_5F_intermediate_5F_instructionList : public AC_GALGAS_list {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
   public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_intermediate_5F_instruction getter_mInstructionAtIndex (const class GGS_uint & constinOperand0,
                                                                                                          Compiler * inCompiler
                                                                                                          COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_intermediate_5F_instructionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
                                                                                                           Compiler * inCompiler
@@ -7274,7 +8950,7 @@ class GGS_baseline_5F_intermediate_5F_instructionList : public AC_GALGAS_list {
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
   friend class UpEnumerator_baseline_5F_intermediate_5F_instructionList ;
   friend class DownEnumerator_baseline_5F_intermediate_5F_instructionList ;
@@ -7283,7 +8959,7 @@ class GGS_baseline_5F_intermediate_5F_instructionList : public AC_GALGAS_list {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_instructionList_2E_element struct
@@ -7355,13 +9031,13 @@ class GGS_baseline_5F_intermediate_5F_instructionList_2E_element : public AC_GAL
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instructionList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_NULL reference class
@@ -7407,13 +9083,13 @@ class GGS_baseline_5F_intermediate_5F_NULL : public GGS_baseline_5F_intermediate
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_NULL ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_NULL ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_NULL class
@@ -7462,7 +9138,7 @@ class cPtr_baseline_5F_intermediate_5F_NULL : public cPtr_baseline_5F_intermedia
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7497,16 +9173,7 @@ class GGS_baseline_5F_intermediate_5F_NULL_2E_weak : public GGS_baseline_5F_inte
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_NULL unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_NULL result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_NULL * p = (cPtr_baseline_5F_intermediate_5F_NULL *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_NULL (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_NULL unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -7546,13 +9213,13 @@ class GGS_baseline_5F_intermediate_5F_NULL_2E_weak : public GGS_baseline_5F_inte
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_NULL_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_NULL_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_pseudo reference class
@@ -7594,13 +9261,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo : public GGS_baseline_5F_intermedia
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_pseudo class
@@ -7630,7 +9297,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo : public cPtr_baseline_5F_intermed
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -7665,16 +9332,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_2E_weak : public GGS_baseline_5F_in
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_pseudo unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_pseudo result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_pseudo * p = (cPtr_baseline_5F_intermediate_5F_pseudo *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_pseudo (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_pseudo unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -7714,13 +9372,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo_2E_weak : public GGS_baseline_5F_in
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_PAGE reference class
@@ -7770,13 +9428,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public GGS_baseline_5F_in
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_pseudo_PAGE class
@@ -7834,7 +9492,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public cPtr_baseline_5F_
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -7869,16 +9527,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak : public GGS_baseli
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -7918,13 +9567,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak : public GGS_baseli
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_LABEL reference class
@@ -7974,13 +9623,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public GGS_baseline_5F_i
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_pseudo_LABEL class
@@ -8039,7 +9688,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public cPtr_baseline_5F
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8074,16 +9723,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak : public GGS_basel
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -8123,13 +9763,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak : public GGS_basel
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE reference class
@@ -8183,13 +9823,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public GGS_ba
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_pseudo_BEGIN_ROUTINE class
@@ -8250,7 +9890,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public cPtr_
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8285,16 +9925,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak : publi
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -8334,13 +9965,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak : publi
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE reference class
@@ -8394,13 +10025,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public GGS_base
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_pseudo_END_ROUTINE class
@@ -8460,7 +10091,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public cPtr_ba
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8495,16 +10126,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak : public 
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE * p = (cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -8544,13 +10166,13 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak : public 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_actualInstruction reference class
@@ -8595,13 +10217,13 @@ class GGS_baseline_5F_intermediate_5F_actualInstruction : public GGS_baseline_5F
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_actualInstruction ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_actualInstruction ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_actualInstruction class
@@ -8639,7 +10261,7 @@ class cPtr_baseline_5F_intermediate_5F_actualInstruction : public cPtr_baseline_
                                     const int32_t inIndentation) const override = 0 ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
 
 } ;
 
@@ -8674,16 +10296,7 @@ class GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak : public GGS_bas
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_actualInstruction unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_actualInstruction result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_actualInstruction * p = (cPtr_baseline_5F_intermediate_5F_actualInstruction *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_actualInstruction (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_actualInstruction unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -8723,13 +10336,13 @@ class GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak : public GGS_bas
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_actualInstruction_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_actualInstruction_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_FD reference class
@@ -8789,13 +10402,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD : public GGS_baseline_5F
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_instruction_FD class
@@ -8851,7 +10464,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_FD : public cPtr_baseline_
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -8886,16 +10499,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak : public GGS_bas
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_FD unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_instruction_5F_FD result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_instruction_5F_FD * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FD *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_instruction_5F_FD (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_instruction_5F_FD unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -8935,13 +10539,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak : public GGS_bas
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_F reference class
@@ -8997,13 +10601,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F : public GGS_baseline_5F_
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_F ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_F ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_instruction_F class
@@ -9056,7 +10660,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_F : public cPtr_baseline_5
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -9091,16 +10695,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak : public GGS_base
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_F unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_instruction_5F_F result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_instruction_5F_F * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_F *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_instruction_5F_F (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_instruction_5F_F unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -9140,13 +10735,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak : public GGS_base
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_FB reference class
@@ -9206,13 +10801,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB : public GGS_baseline_5F
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_instruction_FB class
@@ -9268,7 +10863,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_FB : public cPtr_baseline_
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -9303,16 +10898,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak : public GGS_bas
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_FB unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_instruction_5F_FB result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_instruction_5F_FB * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_FB *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_instruction_5F_FB (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_instruction_5F_FB unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -9352,13 +10938,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak : public GGS_bas
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_BitTestSkip reference class
@@ -9418,13 +11004,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public GGS_ba
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_instruction_BitTestSkip class
@@ -9483,7 +11069,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public cPtr_
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -9518,16 +11104,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak : publi
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -9567,13 +11144,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak : publi
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_GOTO reference class
@@ -9625,13 +11202,13 @@ class GGS_baseline_5F_intermediate_5F_GOTO : public GGS_baseline_5F_intermediate
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_GOTO class
@@ -9696,7 +11273,7 @@ class cPtr_baseline_5F_intermediate_5F_GOTO : public cPtr_baseline_5F_intermedia
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -9731,16 +11308,7 @@ class GGS_baseline_5F_intermediate_5F_GOTO_2E_weak : public GGS_baseline_5F_inte
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_GOTO unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_GOTO result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_GOTO * p = (cPtr_baseline_5F_intermediate_5F_GOTO *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_GOTO (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_GOTO unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -9780,13 +11348,13 @@ class GGS_baseline_5F_intermediate_5F_GOTO_2E_weak : public GGS_baseline_5F_inte
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_GOTO_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_JUMP reference class
@@ -9846,13 +11414,13 @@ class GGS_baseline_5F_intermediate_5F_JUMP : public GGS_baseline_5F_intermediate
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_JUMP class
@@ -9926,7 +11494,7 @@ class cPtr_baseline_5F_intermediate_5F_JUMP : public cPtr_baseline_5F_intermedia
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -9961,16 +11529,7 @@ class GGS_baseline_5F_intermediate_5F_JUMP_2E_weak : public GGS_baseline_5F_inte
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_JUMP unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_JUMP result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_JUMP * p = (cPtr_baseline_5F_intermediate_5F_JUMP *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_JUMP (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_JUMP unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -10010,13 +11569,13 @@ class GGS_baseline_5F_intermediate_5F_JUMP_2E_weak : public GGS_baseline_5F_inte
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JUMP_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_CALL reference class
@@ -10068,13 +11627,13 @@ class GGS_baseline_5F_intermediate_5F_CALL : public GGS_baseline_5F_intermediate
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_CALL ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_CALL ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_CALL class
@@ -10136,7 +11695,7 @@ class cPtr_baseline_5F_intermediate_5F_CALL : public cPtr_baseline_5F_intermedia
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10171,16 +11730,7 @@ class GGS_baseline_5F_intermediate_5F_CALL_2E_weak : public GGS_baseline_5F_inte
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_CALL unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_CALL result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_CALL * p = (cPtr_baseline_5F_intermediate_5F_CALL *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_CALL (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_CALL unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -10220,13 +11770,13 @@ class GGS_baseline_5F_intermediate_5F_CALL_2E_weak : public GGS_baseline_5F_inte
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_CALL_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_CALL_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_JSR reference class
@@ -10286,13 +11836,13 @@ class GGS_baseline_5F_intermediate_5F_JSR : public GGS_baseline_5F_intermediate_
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JSR ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JSR ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_JSR class
@@ -10363,7 +11913,7 @@ class cPtr_baseline_5F_intermediate_5F_JSR : public cPtr_baseline_5F_intermediat
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10398,16 +11948,7 @@ class GGS_baseline_5F_intermediate_5F_JSR_2E_weak : public GGS_baseline_5F_inter
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_JSR unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_JSR result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_JSR * p = (cPtr_baseline_5F_intermediate_5F_JSR *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_JSR (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_JSR unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -10447,13 +11988,13 @@ class GGS_baseline_5F_intermediate_5F_JSR_2E_weak : public GGS_baseline_5F_inter
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JSR_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_JSR_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_WO_5F_OPERAND reference class
@@ -10505,13 +12046,13 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND : public GGS_baseline_5F_int
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_WO_OPERAND class
@@ -10561,7 +12102,7 @@ class cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND : public cPtr_baseline_5F_i
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10596,16 +12137,7 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak : public GGS_baselin
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND * p = (cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -10645,13 +12177,13 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak : public GGS_baselin
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_TRIS reference class
@@ -10707,13 +12239,13 @@ class GGS_baseline_5F_intermediate_5F_TRIS : public GGS_baseline_5F_intermediate
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_TRIS ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_TRIS ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_TRIS class
@@ -10766,7 +12298,7 @@ class cPtr_baseline_5F_intermediate_5F_TRIS : public cPtr_baseline_5F_intermedia
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -10801,16 +12333,7 @@ class GGS_baseline_5F_intermediate_5F_TRIS_2E_weak : public GGS_baseline_5F_inte
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_TRIS unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_TRIS result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_TRIS * p = (cPtr_baseline_5F_intermediate_5F_TRIS *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_TRIS (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_TRIS unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -10850,13 +12373,13 @@ class GGS_baseline_5F_intermediate_5F_TRIS_2E_weak : public GGS_baseline_5F_inte
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_TRIS_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_TRIS_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_literalOperation reference class
@@ -10912,13 +12435,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public G
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_instruction_literalOperation class
@@ -10974,7 +12497,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public 
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -11009,16 +12532,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak : 
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -11058,13 +12572,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak : 
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_instruction_5F_MNOP reference class
@@ -11116,13 +12630,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP : public GGS_baseline_
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_instruction_MNOP class
@@ -11175,7 +12689,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP : public cPtr_baselin
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
 
@@ -11210,16 +12724,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak : public GGS_b
   }
 
 //--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP * p = (cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP (p) ;
-      }
-    }
-    return result ;
-  }
+  public: GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -11259,13 +12764,13 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak : public GGS_b
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 1: @baseline_5F_intermediate_5F_incDecRegisterInCondition reference class
@@ -11333,13 +12838,13 @@ class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition : public GGS_bas
 
 
 //--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition ;
 
 //--------------------------------------------------------------------------------------------------
 // Phase 2: pointer class for @baseline_intermediate_incDecRegisterInCondition class
@@ -11416,1960 +12921,7 @@ class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition : public cPtr_b
                                     const int32_t inIndentation) const override ;
 
 //--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
+  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
 } ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak : public GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak (const class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition & inSource) ;
-
-  public: GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak & operator = (const class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak init_nil (void) {
-    GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition bang_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition unwrappedValue (void) const {
-    GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * p = (cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                  Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baselineRoutineMap map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_baselineRoutineMap final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_baselineRoutineMap (const class GGS_baselineRoutineMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mIsNoReturn (LOCATION_ARGS) const ;
-  public: class GGS_luint current_mPage (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baselineRoutineMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_baselineRoutineMap final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_baselineRoutineMap (const class GGS_baselineRoutineMap & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mIsNoReturn (LOCATION_ARGS) const ;
-  public: class GGS_luint current_mPage (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baselineRoutineMap_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baselineRoutineMap map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_baselineRoutineMap ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const char * kSearchErrorMessage_baselineRoutineMap_searchKey ;
-
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baselineRoutineMap : public AC_GALGAS_map {
-//--------------------------------- Default constructor
-  public: GGS_baselineRoutineMap (void) ;
-
-//--------------------------------- Handle copy
-  public: GGS_baselineRoutineMap (const GGS_baselineRoutineMap & inSource) ;
-  public: GGS_baselineRoutineMap & operator = (const GGS_baselineRoutineMap & inSource) ;
-  
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baselineRoutineMap init (Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baselineRoutineMap extractObject (const GGS_object & inObject,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baselineRoutineMap class_func_emptyMap (LOCATION_ARGS) ;
-
-  public: static class GGS_baselineRoutineMap class_func_mapWithMapToOverride (const class GGS_baselineRoutineMap & inOperand0
-                                                                               COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_bool constinArgument1,
-                                                  class GGS_luint constinArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMIsNoReturnForKey (class GGS_bool constinArgument0,
-                                                             class GGS_string constinArgument1,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMPageForKey (class GGS_luint constinArgument0,
-                                                       class GGS_string constinArgument1,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_bool & outArgument1,
-                                                  class GGS_luint & outArgument2,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mIsNoReturnForKey (const class GGS_string & constinOperand0,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_luint getter_mPageForKey (const class GGS_string & constinOperand0,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_baselineRoutineMap getter_overriddenMap (Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_baselineRoutineMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const ;
-
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_baselineRoutineMap * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                               const GGS_string & inKey
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Friend
-  friend class UpEnumerator_baselineRoutineMap ;
-  friend class DownEnumerator_baselineRoutineMap ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineRoutineMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: class for element of '@baselineRoutineMap' map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_baselineRoutineMap : public cMapElement {
-//--- Map attributes
-  public: GGS_bool mProperty_mIsNoReturn ;
-  public: GGS_luint mProperty_mPage ;
-
-//--- Constructors
-  public: cMapElement_baselineRoutineMap (const GGS_baselineRoutineMap_2E_element & inValue
-                                          COMMA_LOCATION_ARGS) ;
- 
-  public: cMapElement_baselineRoutineMap (const GGS_lstring & inKey,
-                                          const GGS_bool & in_mIsNoReturn,
-                                          const GGS_luint & in_mPage
-                                          COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cMapElement * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baselineRoutineMap_2E_element struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baselineRoutineMap_2E_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_lstring mProperty_lkey ;
-  public: inline GGS_lstring readProperty_lkey (void) const {
-    return mProperty_lkey ;
-  }
-
-  public: GGS_bool mProperty_mIsNoReturn ;
-  public: inline GGS_bool readProperty_mIsNoReturn (void) const {
-    return mProperty_mIsNoReturn ;
-  }
-
-  public: GGS_luint mProperty_mPage ;
-  public: inline GGS_luint readProperty_mPage (void) const {
-    return mProperty_mPage ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_baselineRoutineMap_2E_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_lkey = inValue ;
-  }
-
-  public: inline void setter_setMIsNoReturn (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mIsNoReturn = inValue ;
-  }
-
-  public: inline void setter_setMPage (const GGS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mPage = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_baselineRoutineMap_2E_element (const GGS_lstring & in_lkey,
-                                             const GGS_bool & in_mIsNoReturn,
-                                             const GGS_luint & in_mPage) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_baselineRoutineMap_2E_element (const GGS_baselineRoutineMap_2E_element & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_baselineRoutineMap_2E_element & operator = (const GGS_baselineRoutineMap_2E_element & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baselineRoutineMap_2E_element init_21__21__21_ (const class GGS_lstring & inOperand0,
-                                                                     const class GGS_bool & inOperand1,
-                                                                     const class GGS_luint & inOperand2,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baselineRoutineMap_2E_element extractObject (const GGS_object & inObject,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baselineRoutineMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                         const class GGS_bool & inOperand1,
-                                                                         const class GGS_luint & inOperand2,
-                                                                         class Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineRoutineMap_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: baselineRoutineMap.element? optional
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baselineRoutineMap_2E_element_3F_ : public AC_GALGAS_root {
-//--------------------------------- Private property
-  private: GGS_baselineRoutineMap_2E_element mValue ;
-  private: OptionalState mState ;
-
-//--------------------------------- Default constructor
-  public: GGS_baselineRoutineMap_2E_element_3F_ (void) ;
-
-//--------------------------------- Constructor from unwrapped type
-  public: GGS_baselineRoutineMap_2E_element_3F_ (const GGS_baselineRoutineMap_2E_element & inSource) ;
-
-//--------------------------------- Constructor from weak type
-
-//--------------------------------- nil initializer
-  public: static GGS_baselineRoutineMap_2E_element_3F_ init_nil (void) ;
-
-  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
-
-  public: bool isValuated (void) const ;
-  public: inline GGS_baselineRoutineMap_2E_element unwrappedValue (void) const {
-    return mValue ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
-  }
-
-  
-//--- Methods that every type should implement
-  public: virtual bool isValid (void) const override ;
-  
-  public: virtual void drop (void) override ;
-
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baselineRoutineMap_2E_element_3F_ extractObject (const GGS_object & inObject,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineRoutineMap_2E_element_3F_ ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@baseline_instruction build_baseline_intermediate_instructionList'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList (class cPtr_baseline_5F_instruction * inObject,
-                                                                               const class GGS_uint constin_inCurrentPage,
-                                                                               const class GGS_baselineRoutineMap constin_inRoutineMap,
-                                                                               const class GGS_registerTable constin_inRegisterTable,
-                                                                               const class GGS_constantMap constin_inConstantMap,
-                                                                               class GGS_uint & io_ioLocalLabelIndex,
-                                                                               class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                                                               class GGS_string & io_ioListFileContents,
-                                                                               class GGS_bool & io_ioContinuesInSequence,
-                                                                               const class GGS_routineKind constin_inRoutineKind,
-                                                                               const class GGS_bool constin_inLastInstructionShouldReturn,
-                                                                               class GGS_stringset & io_ioUsedRegisters,
-                                                                               class Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@baseline_conditionExpression build_intermediate_condition_instructions'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_build_5F_intermediate_5F_condition_5F_instructions (class cPtr_baseline_5F_conditionExpression * inObject,
-                                                                             const class GGS_uint constin_inCurrentPage,
-                                                                             const class GGS_registerTable constin_inRegisterTable,
-                                                                             const class GGS_constantMap constin_inConstantMap,
-                                                                             class GGS_uint & io_ioLocalLabelIndex,
-                                                                             const class GGS_bool constin_inComplementaryBranch,
-                                                                             const class GGS_location constin_inInstructionLocation,
-                                                                             const class GGS_string constin_inTargetLabel,
-                                                                             class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                                                             class GGS_stringset & io_ioUsedRegisters,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@baseline_intermediate_instruction print'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_print (class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                class GGS_string & io_ioListFileContents,
-                                class Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Abstract extension getter '@baseline_intermediate_instruction length'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_uint callExtensionGetter_length (const class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                           class Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baselineSymbolTableForOptimizations map enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_baselineSymbolTableForOptimizations final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_baselineSymbolTableForOptimizations (const class GGS_baselineSymbolTableForOptimizations & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_uint current_mDefinitionLineIndex (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baselineSymbolTableForOptimizations_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_baselineSymbolTableForOptimizations final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_baselineSymbolTableForOptimizations (const class GGS_baselineSymbolTableForOptimizations & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_uint current_mDefinitionLineIndex (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baselineSymbolTableForOptimizations_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baselineSymbolTableForOptimizations map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_baselineSymbolTableForOptimizations ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const char * kSearchErrorMessage_baselineSymbolTableForOptimizations_searchKey ;
-
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baselineSymbolTableForOptimizations : public AC_GALGAS_map {
-//--------------------------------- Default constructor
-  public: GGS_baselineSymbolTableForOptimizations (void) ;
-
-//--------------------------------- Handle copy
-  public: GGS_baselineSymbolTableForOptimizations (const GGS_baselineSymbolTableForOptimizations & inSource) ;
-  public: GGS_baselineSymbolTableForOptimizations & operator = (const GGS_baselineSymbolTableForOptimizations & inSource) ;
-  
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baselineSymbolTableForOptimizations init (Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baselineSymbolTableForOptimizations extractObject (const GGS_object & inObject,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baselineSymbolTableForOptimizations class_func_emptyMap (LOCATION_ARGS) ;
-
-  public: static class GGS_baselineSymbolTableForOptimizations class_func_mapWithMapToOverride (const class GGS_baselineSymbolTableForOptimizations & inOperand0
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_uint constinArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_removeKey (class GGS_lstring constinArgument0,
-                                                  class GGS_uint & outArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMDefinitionLineIndexForKey (class GGS_uint constinArgument0,
-                                                                      class GGS_string constinArgument1,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_uint & outArgument1,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mDefinitionLineIndexForKey (const class GGS_string & constinOperand0,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_baselineSymbolTableForOptimizations getter_overriddenMap (Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_baselineSymbolTableForOptimizations_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                                            Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) const ;
-
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-  public: VIRTUAL_IN_DEBUG cMapElement_baselineSymbolTableForOptimizations * readWriteAccessForWithInstruction (Compiler * inCompiler,
-                                                                                                                const GGS_string & inKey
-                                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Friend
-  friend class UpEnumerator_baselineSymbolTableForOptimizations ;
-  friend class DownEnumerator_baselineSymbolTableForOptimizations ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineSymbolTableForOptimizations ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: class for element of '@baselineSymbolTableForOptimizations' map
-//--------------------------------------------------------------------------------------------------
-
-class cMapElement_baselineSymbolTableForOptimizations : public cMapElement {
-//--- Map attributes
-  public: GGS_uint mProperty_mDefinitionLineIndex ;
-
-//--- Constructors
-  public: cMapElement_baselineSymbolTableForOptimizations (const GGS_baselineSymbolTableForOptimizations_2E_element & inValue
-                                                           COMMA_LOCATION_ARGS) ;
- 
-  public: cMapElement_baselineSymbolTableForOptimizations (const GGS_lstring & inKey,
-                                                           const GGS_uint & in_mDefinitionLineIndex
-                                                           COMMA_LOCATION_ARGS) ;
-
-//--- Virtual method for comparing elements
-
-//--- Virtual method that checks that all attributes are valid
-  public: virtual bool isValid (void) const ;
-
-//--- Virtual method that returns a copy of current object
-  public: virtual cMapElement * copy (void) ;
-
-//--- Description
- public: virtual void description (String & ioString, const int32_t inIndentation) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baselineSymbolTableForOptimizations_2E_element struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baselineSymbolTableForOptimizations_2E_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_lstring mProperty_lkey ;
-  public: inline GGS_lstring readProperty_lkey (void) const {
-    return mProperty_lkey ;
-  }
-
-  public: GGS_uint mProperty_mDefinitionLineIndex ;
-  public: inline GGS_uint readProperty_mDefinitionLineIndex (void) const {
-    return mProperty_mDefinitionLineIndex ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_baselineSymbolTableForOptimizations_2E_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_lkey = inValue ;
-  }
-
-  public: inline void setter_setMDefinitionLineIndex (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mDefinitionLineIndex = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_baselineSymbolTableForOptimizations_2E_element (const GGS_lstring & in_lkey,
-                                                              const GGS_uint & in_mDefinitionLineIndex) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_baselineSymbolTableForOptimizations_2E_element (const GGS_baselineSymbolTableForOptimizations_2E_element & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_baselineSymbolTableForOptimizations_2E_element & operator = (const GGS_baselineSymbolTableForOptimizations_2E_element & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baselineSymbolTableForOptimizations_2E_element init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                                  const class GGS_uint & inOperand1,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baselineSymbolTableForOptimizations_2E_element extractObject (const GGS_object & inObject,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baselineSymbolTableForOptimizations_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                                          const class GGS_uint & inOperand1,
-                                                                                          class Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineSymbolTableForOptimizations_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: baselineSymbolTableForOptimizations.element? optional
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baselineSymbolTableForOptimizations_2E_element_3F_ : public AC_GALGAS_root {
-//--------------------------------- Private property
-  private: GGS_baselineSymbolTableForOptimizations_2E_element mValue ;
-  private: OptionalState mState ;
-
-//--------------------------------- Default constructor
-  public: GGS_baselineSymbolTableForOptimizations_2E_element_3F_ (void) ;
-
-//--------------------------------- Constructor from unwrapped type
-  public: GGS_baselineSymbolTableForOptimizations_2E_element_3F_ (const GGS_baselineSymbolTableForOptimizations_2E_element & inSource) ;
-
-//--------------------------------- Constructor from weak type
-
-//--------------------------------- nil initializer
-  public: static GGS_baselineSymbolTableForOptimizations_2E_element_3F_ init_nil (void) ;
-
-  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
-
-  public: bool isValuated (void) const ;
-  public: inline GGS_baselineSymbolTableForOptimizations_2E_element unwrappedValue (void) const {
-    return mValue ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
-  }
-
-  
-//--- Methods that every type should implement
-  public: virtual bool isValid (void) const override ;
-  
-  public: virtual void drop (void) override ;
-
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baselineSymbolTableForOptimizations_2E_element_3F_ extractObject (const GGS_object & inObject,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baselineSymbolTableForOptimizations_2E_element_3F_ ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@baseline_intermediate_instruction setCurrentAddress'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_setCurrentAddress (class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                            class GGS_uint & io_ioCurrentWordAdress,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@baseline_intermediate_instruction isLABEL'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_bool callExtensionGetter_isLABEL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                            class Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@baseline_intermediate_instruction isNULL'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_bool callExtensionGetter_isNULL (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                           class Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@baseline_intermediate_instruction isSkippingInstruction'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_bool callExtensionGetter_isSkippingInstruction (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                          class Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@baseline_intermediate_instruction nextInstructionIsReachable'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                                               class Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@baseline_intermediate_instruction enterReferencedLabel'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_enterReferencedLabel (class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                               class GGS_stringset & io_ioReferencedLabelSet,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@baseline_intermediate_instruction defineLabel'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_defineLabel (class cPtr_baseline_5F_intermediate_5F_instruction * inObject,
-                                      class GGS_baselineSymbolTableForOptimizations & io_ioRoutineSymbolTable,
-                                      const class GGS_uint constin_inLineIndex,
-                                      Compiler * inCompiler
-                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_optimizeTestDecInc (class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition * inObject,
-                                             const class GGS_baselineSymbolTableForOptimizations constin_inSymbolTable,
-                                             const class GGS_uint constin_inLineIndex,
-                                             class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
-                                             class GGS_string & io_ioListFileContents,
-                                             class GGS_bool & io_ioOptimizationsDone,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'findBaselineFirstInstructionFromAddress??!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (const class GGS_uint constinArgument0,
-                                                                  const class GGS_baseline_5F_intermediate_5F_instructionList constinArgument1,
-                                                                  class GGS_baseline_5F_intermediate_5F_instruction & outArgument2,
-                                                                  class Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_instruction reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_instruction : public AC_GALGAS_reference_class {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_instruction (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_baseline_5F_assembly_5F_instruction (const class cPtr_baseline_5F_assembly_5F_instruction * inSourcePtr) ;
-
-//--------------------------------- Property access
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_instruction init (Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_instruction extractObject (const GGS_object & inObject,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_instruction & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @baseline_assembly_instruction class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_baseline_5F_assembly_5F_instruction : public acStrongPtr_class {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void baseline_5F_assembly_5F_instruction_init (Compiler * inCompiler) ;
-
-
-//--- Extension getter length
-  public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension method enterLabelAtAddress
-  public: virtual void method_enterLabelAtAddress (class GGS_baseline_5F_symbolTable & arg_ioRoutineSymbolTable,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) ;
-
-//--- Extension method generateBinaryCodeAtAddress
-  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
-
-//--- Extension method print
-  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
-
-//--- Properties
-
-
-
-//--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_instruction (Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override = 0 ;
-
-//--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override = 0 ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_instruction_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_instruction_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_baseline_5F_assembly_5F_instruction_2E_weak (const class GGS_baseline_5F_assembly_5F_instruction & inSource) ;
-
-  public: GGS_baseline_5F_assembly_5F_instruction_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_instruction & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_baseline_5F_assembly_5F_instruction_2E_weak init_nil (void) {
-    GGS_baseline_5F_assembly_5F_instruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_baseline_5F_assembly_5F_instruction bang_baseline_5F_assembly_5F_instruction_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_assembly_5F_instruction unwrappedValue (void) const {
-    GGS_baseline_5F_assembly_5F_instruction result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_assembly_5F_instruction * p = (cPtr_baseline_5F_assembly_5F_instruction *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_assembly_5F_instruction (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_instruction_2E_weak extractObject (const GGS_object & inObject,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_instruction_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_instruction_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instruction_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_instructionList list enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_baseline_5F_assembly_5F_instructionList final : public cGenericAbstractEnumerator {
-  public: DownEnumerator_baseline_5F_assembly_5F_instructionList (const class GGS_baseline_5F_assembly_5F_instructionList & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_baseline_5F_assembly_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baseline_5F_assembly_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_baseline_5F_assembly_5F_instructionList final : public cGenericAbstractEnumerator {
-  public: UpEnumerator_baseline_5F_assembly_5F_instructionList (const class GGS_baseline_5F_assembly_5F_instructionList & inEnumeratedObject) ;
-
-//    public: bool hasCurrentObject (void) const ;
-//    public: void gotoNextObject (void) ;
-//    public: void rewind (void) ;
-
-  public: class GGS_baseline_5F_assembly_5F_instruction current_mInstruction (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_baseline_5F_assembly_5F_instructionList_2E_element current (LOCATION_ARGS) const ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_assembly_instructionList list
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_instructionList : public AC_GALGAS_list {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_instructionList (void) ;
-
-//--------------------------------- List constructor by graph
-  public: GGS_baseline_5F_assembly_5F_instructionList (const capCollectionElementArray & inSharedArray) ;
-
-//--------------------------------- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                 const class GGS_baseline_5F_assembly_5F_instruction & in_mInstruction
-                                                 COMMA_LOCATION_ARGS) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_instructionList init (Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_instructionList extractObject (const GGS_object & inObject,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_instructionList class_func_emptyList (LOCATION_ARGS) ;
-
-  public: static class GGS_baseline_5F_assembly_5F_instructionList class_func_listWithValue (const class GGS_baseline_5F_assembly_5F_instruction & inOperand0
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_baseline_5F_assembly_5F_instructionList inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_baseline_5F_assembly_5F_instruction & inOperand0
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_baseline_5F_assembly_5F_instructionList add_operation (const GGS_baseline_5F_assembly_5F_instructionList & inOperand,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_baseline_5F_assembly_5F_instruction constinArgument0,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_baseline_5F_assembly_5F_instruction constinArgument0,
-                                                      class GGS_uint constinArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
-                                                      class GGS_uint constinArgument1,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMInstructionAtIndex (class GGS_baseline_5F_assembly_5F_instruction constinArgument0,
-                                                               class GGS_uint constinArgument1,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_baseline_5F_assembly_5F_instruction & outArgument0,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_assembly_5F_instruction getter_mInstructionAtIndex (const class GGS_uint & constinOperand0,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_assembly_5F_instructionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                                      Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_assembly_5F_instructionList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_assembly_5F_instructionList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                                      Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
-  friend class UpEnumerator_baseline_5F_assembly_5F_instructionList ;
-  friend class DownEnumerator_baseline_5F_assembly_5F_instructionList ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_instructionList_2E_element struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_instructionList_2E_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_baseline_5F_assembly_5F_instruction mProperty_mInstruction ;
-  public: inline GGS_baseline_5F_assembly_5F_instruction readProperty_mInstruction (void) const {
-    return mProperty_mInstruction ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMInstruction (const GGS_baseline_5F_assembly_5F_instruction & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mInstruction = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element (const GGS_baseline_5F_assembly_5F_instruction & in_mInstruction) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_baseline_5F_assembly_5F_instructionList_2E_element & operator = (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_instructionList_2E_element init_21_ (const class GGS_baseline_5F_assembly_5F_instruction & inOperand0,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_instructionList_2E_element extractObject (const GGS_object & inObject,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_instructionList_2E_element class_func_new (const class GGS_baseline_5F_assembly_5F_instruction & inOperand0,
-                                                                                              class Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_instructionList_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_ORG reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG : public GGS_baseline_5F_assembly_5F_instruction {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (const class cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_uint readProperty_mOrigin (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ORG init_21_ (const class GGS_uint & inOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ORG extractObject (const GGS_object & inObject,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG class_func_new (const class GGS_uint & inOperand0,
-                                                                                 class Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @baseline_assembly_pseudo_ORG class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG : public cPtr_baseline_5F_assembly_5F_instruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void baseline_5F_assembly_5F_pseudo_5F_ORG_init_21_ (const class GGS_uint & inOperand0,
-                                                               Compiler * inCompiler) ;
-
-
-//--- Extension getter length
-  public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method enterLabelAtAddress
-  public: virtual void method_enterLabelAtAddress (class GGS_baseline_5F_symbolTable & arg_ioRoutineSymbolTable,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateBinaryCodeAtAddress
-  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method print
-  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_uint mProperty_mOrigin ;
-
-
-//--- Default constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG (const GGS_uint & in_mOrigin,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak : public GGS_baseline_5F_assembly_5F_instruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (const class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) ;
-
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak init_nil (void) {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ORG bang_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_assembly_5F_pseudo_5F_ORG unwrappedValue (void) const {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_ORG result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_assembly_5F_pseudo_5F_ORG (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak extractObject (const GGS_object & inObject,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ORG_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public GGS_baseline_5F_assembly_5F_instruction {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (const class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_lstring readProperty_mRoutineName (void) const ;
-
-  public: class GGS_bool readProperty_mIsRegular (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                                    const class GGS_bool & inOperand1,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE extractObject (const GGS_object & inObject,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE class_func_new (const class GGS_lstring & inOperand0,
-                                                                                            const class GGS_bool & inOperand1,
-                                                                                            class Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @baseline_assembly_pseudo_BEGINOFROUTINE class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public cPtr_baseline_5F_assembly_5F_instruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                              const class GGS_bool & inOperand1,
-                                                                              Compiler * inCompiler) ;
-
-
-//--- Extension getter length
-  public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateBinaryCodeAtAddress
-  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method print
-  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_lstring mProperty_mRoutineName ;
-  public: GGS_bool mProperty_mIsRegular ;
-
-
-//--- Default constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (const GGS_lstring & in_mRoutineName,
-                                                                 const GGS_bool & in_mIsRegular,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak : public GGS_baseline_5F_assembly_5F_instruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (const class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) ;
-
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak init_nil (void) {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE bang_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE unwrappedValue (void) const {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak extractObject (const GGS_object & inObject,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE : public GGS_baseline_5F_assembly_5F_instruction {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (const class cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_lstring readProperty_mRoutineName (void) const ;
-
-  public: class GGS_uint readProperty_mPage (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                                  const class GGS_uint & inOperand1,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE extractObject (const GGS_object & inObject,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE class_func_new (const class GGS_lstring & inOperand0,
-                                                                                          const class GGS_uint & inOperand1,
-                                                                                          class Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @baseline_assembly_pseudo_ENDOFROUTINE class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE : public cPtr_baseline_5F_assembly_5F_instruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_init_21__21_ (const class GGS_lstring & inOperand0,
-                                                                            const class GGS_uint & inOperand1,
-                                                                            Compiler * inCompiler) ;
-
-
-//--- Extension getter length
-  public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateBinaryCodeAtAddress
-  public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_uint & arg_ioWordAddress,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method print
-  public: virtual void method_print (class GGS_string & arg_ioListFileContents,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_lstring mProperty_mRoutineName ;
-  public: GGS_uint mProperty_mPage ;
-
-
-//--- Default constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (const GGS_lstring & in_mRoutineName,
-                                                               const GGS_uint & in_mPage,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const C_galgas_type_descriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak : public GGS_baseline_5F_assembly_5F_instruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (const class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inSource) ;
-
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak & operator = (const class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak init_nil (void) {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE bang_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: inline GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE unwrappedValue (void) const {
-    GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE result ;
-    if (isValid ()) {
-      const cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE * p = (cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE *) ptr () ;
-      if (nullptr != p) {
-        result = GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (p) ;
-      }
-    }
-    return result ;
-  }
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak extractObject (const GGS_object & inObject,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const C_galgas_type_descriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const C_galgas_type_descriptor kTypeDescriptor_GALGAS_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE_2E_weak ;
 
