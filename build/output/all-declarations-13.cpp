@@ -519,7 +519,7 @@ GGS_stringset function_pic_31__38__5F_computeUsedRoutines (const GGS_pic_31__38_
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("pic18_used_routines.galgas", 375)) ;
       }
       if (loop_11446) {
-        variant_11446 -- ;
+        variant_11446 -= 1 ;
         var_s_11427 = result_outUsedRoutineSet ;
         UpEnumerator_pic_31__38_RoutineDefinitionList enumerator_11592 (constinArgument_inRoutineDefinitionList) ;
         while (enumerator_11592.hasCurrentObject ()) {
@@ -1594,7 +1594,7 @@ void cPtr_pic_31__38_Instruction_5F_repetitionStatique::method_analyze (const GG
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_build_block_representation.galgas", 763)) ;
       }
       if (loop_27041) {
-        variant_27041 -- ;
+        variant_27041 -= 1 ;
         GGS_constantMap var_constantMap_27147 = constinArgument_inConstantMap ;
         {
         const GGS_pic_31__38_Instruction_5F_repetitionStatique temp_17 = this ;
@@ -3552,7 +3552,7 @@ void cPtr_pic_31__38_Instruction_5F_block::method_analyze (const GGS_uint consti
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_build_block_representation.galgas", 2586)) ;
       }
       if (loop_89082) {
-        variant_89082 -- ;
+        variant_89082 -= 1 ;
         var_continueAccessibilityExploration_89000 = GGS_bool (false) ;
         UpEnumerator_stringset enumerator_89253 (var_accessibleBlockSet_88875.substract_operation (var_handledBlockSet_88957, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 2588))) ;
         while (enumerator_89253.hasCurrentObject ()) {
@@ -4219,7 +4219,7 @@ void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_build_block_representation.galgas", 3247)) ;
       }
       if (loop_114048) {
-        variant_114048 -- ;
+        variant_114048 -= 1 ;
         GGS_lstring var_routineName_114254 ;
         {
         GGS_luint joker_114266 ; // Joker input parameter
@@ -5708,7 +5708,7 @@ void routine_ipic_31__38_OptimizeBlocks_26__26_ (GGS_string & ioArgument_ioListF
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_optimize_block.galgas", 1114)) ;
       }
       if (loop_44129) {
-        variant_44129 -- ;
+        variant_44129 -= 1 ;
         var_optimizationDone_44070 = GGS_bool (false) ;
         var_optimizationPass_44106 = var_optimizationPass_44106.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1117)) ;
         ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("\n--- Pass ").add_operation (var_optimizationPass_44106.getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 1118)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1118)).add_operation (GGS_string (" ("), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1118)).add_operation (ioArgument_ioGeneratedBlockList.getter_count (SOURCE_FILE ("ipic18_optimize_block.galgas", 1118)).getter_string (SOURCE_FILE ("ipic18_optimize_block.galgas", 1118)), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1118)).add_operation (GGS_string (" blocks)\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1118)), inCompiler  COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas", 1118)) ;
@@ -6771,7 +6771,7 @@ void routine_perform_5F_cluster_5F_ordering_3F__26__26_ (const GGS_clusterList c
           inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_cluster_ordering.galgas", 56)) ;
         }
         if (loop_2183) {
-          variant_2183 -- ;
+          variant_2183 -= 1 ;
           var_pass_2170.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 58)) ;
           ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("Pass ").add_operation (var_pass_2170.getter_string (SOURCE_FILE ("ipic18_cluster_ordering.galgas", 59)), inCompiler COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 59)).add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 59)), inCompiler  COMMA_SOURCE_FILE ("ipic18_cluster_ordering.galgas", 59)) ;
           GGS_ipic_31__38_BlockList var_workingBlockList_2382 = GGS_ipic_31__38_BlockList::init (inCompiler COMMA_HERE) ;
@@ -7263,7 +7263,7 @@ void routine_ipic_31__38_RelativesResolution_26__26_ (GGS_string & ioArgument_io
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_relatives_resolution.galgas", 151)) ;
       }
       if (loop_4900) {
-        variant_4900 -- ;
+        variant_4900 -= 1 ;
         var_pass_4889.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("ipic18_relatives_resolution.galgas", 153)) ;
         GGS_symbolTableForRelativesResolution var_symbolTable_5151 ;
         {
@@ -7398,7 +7398,7 @@ void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const GGS_uint consti
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("ipic18_code_generation.galgas", 41)) ;
       }
       if (loop_1415) {
-        variant_1415 -- ;
+        variant_1415 -= 1 ;
         var_ipicText_1391.addAssignOperation (GGS_string::makeEmptyString ()  COMMA_SOURCE_FILE ("ipic18_code_generation.galgas", 43)) ;
       }
     }

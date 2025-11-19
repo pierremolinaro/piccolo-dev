@@ -918,7 +918,7 @@ GGS_stringset function_baseline_5F_computeUsedRoutines (const GGS_baseline_5F_ro
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_used_routines.galgas", 150)) ;
       }
       if (loop_5022) {
-        variant_5022 -- ;
+        variant_5022 -= 1 ;
         var_s_5003 = result_outUsedRoutineSet ;
         UpEnumerator_baseline_5F_routineDefinitionList enumerator_5164 (constinArgument_inRoutineDefinitionList) ;
         while (enumerator_5164.hasCurrentObject ()) {
@@ -1246,7 +1246,7 @@ void routine_baseline_5F_analysis_3F__3F_ (const GGS_baseline_5F_model constinAr
             inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_compilation.galgas", 204)) ;
           }
           if (loop_8733) {
-            variant_8733 -- ;
+            variant_8733 -= 1 ;
             GGS_bool var_pseudo_5F_PAGE_5F_generated_8809 = GGS_bool (false) ;
             UpEnumerator_baseline_5F_routineDefinitionList enumerator_8898 (var_sortedRoutineDefinitionList_7901) ;
             while (enumerator_8898.hasCurrentObject ()) {
@@ -2407,7 +2407,7 @@ void cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT::method_build_5F_baseline_
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_semantic_analysis.galgas", 657)) ;
       }
       if (loop_24776) {
-        variant_24776 -- ;
+        variant_24776 -= 1 ;
         GGS_constantMap var_constantMap_24882 = constinArgument_inConstantMap ;
         {
         const GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT temp_14 = this ;
@@ -3306,7 +3306,7 @@ void routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (const GGS_uint
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_optimizations.galgas", 205)) ;
       }
       if (loop_8096) {
-        variant_8096 -- ;
+        variant_8096 -= 1 ;
         GalgasBool test_0 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_0) {
           GGS_baseline_5F_intermediate_5F_actualInstruction var_instr_8228 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_actualInstruction *> (constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_7916, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 208)).ptr ())) ;
@@ -3358,7 +3358,7 @@ void routine_findBaselineFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (con
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_optimizations.galgas", 232)) ;
       }
       if (loop_9167) {
-        variant_9167 -- ;
+        variant_9167 -= 1 ;
         GGS_baseline_5F_intermediate_5F_instruction var_instruction_9296 = constinArgument_inGeneratedInstructionList.getter_mInstructionAtIndex (var_currentAddress_8987, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 235)) ;
         GalgasBool test_0 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_0) {
@@ -3443,7 +3443,7 @@ void routine_perform_5F_baseline_5F_optimizations_26__26_ (GGS_baseline_5F_inter
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_optimizations.galgas", 544)) ;
       }
       if (loop_22165) {
-        variant_22165 -- ;
+        variant_22165 -= 1 ;
         var_optimizationsDone_22112 = GGS_bool (false) ;
         var_iteration_22149.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 548)) ;
         ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("Pass ").add_operation (var_iteration_22149.getter_string (SOURCE_FILE ("baseline_optimizations.galgas", 549)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 549)).add_operation (GGS_string (":\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 549)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas", 549)) ;
@@ -4108,7 +4108,7 @@ void cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP::method_generateAssemb
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_build_assembly_code.galgas", 155)) ;
       }
       if (loop_6914) {
-        variant_6914 -- ;
+        variant_6914 -= 1 ;
         const GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP temp_6 = this ;
         ioArgument_ioAssemblyInstructionList.addAssignOperation (GGS_baseline_5F_assembly_5F_WO_5F_OPERAND::init_21__21_ (temp_6.readProperty_mInstructionLocation (), GGS_baseline_5F_WO_5F_OPERAND_5F_group::class_func_NOP (SOURCE_FILE ("baseline_build_assembly_code.galgas", 160)), inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 158)) ;
         var_idx_6904.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 161)) ;
@@ -4159,7 +4159,7 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::method_generateAssemblyCode (const G
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_build_assembly_code.galgas", 186)) ;
       }
       if (loop_8088) {
-        variant_8088 -- ;
+        variant_8088 -= 1 ;
         GalgasBool test_3 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_3) {
           test_3 = GGS_bool (ComparisonKind::notEqual, var_pageChangeFlags_7964.operator_and (GGS_uint (uint32_t (1U)) COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 187)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
@@ -4278,7 +4278,7 @@ void cPtr_baseline_5F_intermediate_5F_JSR::method_generateAssemblyCode (const GG
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("baseline_build_assembly_code.galgas", 249)) ;
       }
       if (loop_10667) {
-        variant_10667 -- ;
+        variant_10667 -= 1 ;
         GalgasBool test_3 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_3) {
           test_3 = GGS_bool (ComparisonKind::notEqual, var_pageChangeFlags_10474.operator_and (GGS_uint (uint32_t (1U)) COMMA_SOURCE_FILE ("baseline_build_assembly_code.galgas", 250)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
@@ -5392,7 +5392,7 @@ GGS_stringset function_midrange_5F_computeUsedRoutines (const GGS_midrange_5F_in
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_used_routines.galgas", 207)) ;
       }
       if (loop_6872) {
-        variant_6872 -- ;
+        variant_6872 -= 1 ;
         var_s_6853 = result_outUsedRoutineSet ;
         UpEnumerator_midrange_5F_routineDefinitionList enumerator_7020 (constinArgument_inRoutineDefinitionList) ;
         while (enumerator_7020.hasCurrentObject ()) {
@@ -6171,7 +6171,7 @@ void cPtr_midrange_5F_instruction_5F_banksel::method_build_5F_midrange_5F_ipic_5
                 inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 268)) ;
               }
               if (loop_9409) {
-                variant_9409 -- ;
+                variant_9409 -= 1 ;
                 GGS_midrange_5F_bit_5F_oriented_5F_op var_op_9487 ;
                 GalgasBool test_20 = GalgasBool::boolTrue ;
                 if (GalgasBool::boolTrue == test_20) {
@@ -6214,7 +6214,7 @@ void cPtr_midrange_5F_instruction_5F_banksel::method_build_5F_midrange_5F_ipic_5
               inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 289)) ;
             }
             if (loop_10159) {
-              variant_10159 -- ;
+              variant_10159 -= 1 ;
               GGS_midrange_5F_bit_5F_oriented_5F_op var_op_10237 ;
               GalgasBool test_25 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_25) {
@@ -6378,7 +6378,7 @@ void cPtr_midrange_5F_instruction_5F_banksel_5F_register::method_build_5F_midran
                 inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 381)) ;
               }
               if (loop_13837) {
-                variant_13837 -- ;
+                variant_13837 -= 1 ;
                 GGS_midrange_5F_bit_5F_oriented_5F_op var_op_13915 ;
                 GalgasBool test_25 = GalgasBool::boolTrue ;
                 if (GalgasBool::boolTrue == test_25) {
@@ -6418,7 +6418,7 @@ void cPtr_midrange_5F_instruction_5F_banksel_5F_register::method_build_5F_midran
               inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 402)) ;
             }
             if (loop_14548) {
-              variant_14548 -- ;
+              variant_14548 -= 1 ;
               GGS_midrange_5F_bit_5F_oriented_5F_op var_op_14626 ;
               GalgasBool test_27 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_27) {
@@ -7190,7 +7190,7 @@ void cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT::method_build_5F_midrange_
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 968)) ;
       }
       if (loop_35956) {
-        variant_35956 -- ;
+        variant_35956 -= 1 ;
         GGS_constantMap var_constantMap_36062 = constinArgument_inConstantMap ;
         {
         const GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT temp_17 = this ;
@@ -7796,7 +7796,7 @@ void routine_build_5F_midrange_5F_assembly_5F_instruction_5F_list_3F__3F__3F__3F
         inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_checkingAndBuildIPIC.galgas", 1689)) ;
       }
       if (loop_60012) {
-        variant_60012 -- ;
+        variant_60012 -= 1 ;
         GGS_bool var_orgGenerated_60090 = GGS_bool (ComparisonKind::equal, var_currentPage_59994.objectCompare (GGS_uint (uint32_t (0U)))) ;
         UpEnumerator_midrange_5F_routineDefinitionList enumerator_60246 (constinArgument_inPiccoloModel.readProperty_mRoutineDefinitionList ()) ;
         while (enumerator_60246.hasCurrentObject ()) {

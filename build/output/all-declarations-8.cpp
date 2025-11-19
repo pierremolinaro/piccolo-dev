@@ -12996,7 +12996,7 @@ void cPtr_registerExpression::method_resolveMidrangeAccess (const GGS_uint const
             inCompiler->loopRunTimeVariantError (SOURCE_FILE ("midrange_intermediate_classes.galgas", 53)) ;
           }
           if (loop_1611) {
-            variant_1611 -- ;
+            variant_1611 -= 1 ;
             var_ok_1597 = GGS_bool (false) ;
             UpEnumerator_uintlist enumerator_1703 (var_registerAddressList_967) ;
             bool bool_10 = var_ok_1597.operator_not (SOURCE_FILE ("midrange_intermediate_classes.galgas", 55)).isValidAndTrue () ;
