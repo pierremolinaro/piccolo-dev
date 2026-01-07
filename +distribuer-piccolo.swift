@@ -171,12 +171,12 @@ do{
   let debutCompilation = Date ()
   runCommand ("/bin/rm", ["-fr", "build"])
   runCommand ("/Applications/Xcode.app/Contents/Developer/usr/bin/xcodebuild",
-              ["-target", "Cocoa piccolo",
+              ["-target", "piccolo IDE",
                "-configuration", "Default"
               ])
   fm.changeCurrentDirectoryPath (DISTRIBUTION_DIR + "/" + PICCOLO_DIR)
   let DureeCompilation = Date ().timeIntervalSince (debutCompilation)
-  let PRODUCT_NAME = "CocoaPiccolo"
+  let PRODUCT_NAME = "Piccolo IDE"
 //-------------------- Copier l'application dans la racine du répertoire de distribution
   runCommand (
     "/bin/cp",

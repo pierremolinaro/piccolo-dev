@@ -734,11 +734,11 @@ class SWIFT_Lexique_piccolo_lexique : SWIFT_Lexique {
     self.mLexicalAttribute_uint32value = 0
     var tokenCode : UInt16 = 0
     let startLocation = self.currentLocation
-    if scanningOk && (self.testForCharWithFunction (isUnicodeLetter)) {
+    if scanningOk && (self.testForChar_isUnicodeLetter ()) {
       while (loop && scanningOk) {
         scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_identifierString, scanner_cocoa_function_toLower (self.previousChar))
         scanner_cocoa_routine_enterCharacterIntoString (&scanningOk, &self.mLexicalAttribute_tokenString, self.previousChar)
-        if scanningOk && (self.testForCharWithFunction (isUnicodeLetter) || self.testForInputChar (95) || self.testForInputFromChar (48, toChar:57)) {
+        if scanningOk && (self.testForChar_isUnicodeLetter () || self.testForInputChar (95) || self.testForInputFromChar (48, toChar:57)) {
         }else{
           loop = false
         }

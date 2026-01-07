@@ -131,7 +131,7 @@ static void routine_before (Compiler * inCompiler
             UpEnumerator_stringlist enumerator_1777 (var_baseline_5F_devices_596) ;
             while (enumerator_1777.hasCurrentObject ()) {
               {
-              routine_print_3F_ (enumerator_1777.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 39)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 39)) ;
+              routine_print_3F_ (enumerator_1777.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (utf32 (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 39)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 39)) ;
               }
               var_idx_1758.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 40)) ;
               GalgasBool test_2 = GalgasBool::boolTrue ;
@@ -168,7 +168,7 @@ static void routine_before (Compiler * inCompiler
             UpEnumerator_stringlist enumerator_2386 (var_midrange_5F_devices_555) ;
             while (enumerator_2386.hasCurrentObject ()) {
               {
-              routine_print_3F_ (enumerator_2386.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 55)) ;
+              routine_print_3F_ (enumerator_2386.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (utf32 (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 55)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 55)) ;
               }
               var_idx_2367.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 56)) ;
               GalgasBool test_5 = GalgasBool::boolTrue ;
@@ -205,7 +205,7 @@ static void routine_before (Compiler * inCompiler
             UpEnumerator_stringlist enumerator_2981 (var_pic_31__38__5F_devices_517) ;
             while (enumerator_2981.hasCurrentObject ()) {
               {
-              routine_print_3F_ (enumerator_2981.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (TO_UNICODE (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 71)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 71)) ;
+              routine_print_3F_ (enumerator_2981.current_mValue (HERE).getter_stringByRightPadding (GGS_uint (uint32_t (15U)), GGS_char (utf32 (32)) COMMA_SOURCE_FILE ("piccolo_program.galgas", 71)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 71)) ;
               }
               var_idx_2962.plusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccolo_program.galgas", 72)) ;
               GalgasBool test_8 = GalgasBool::boolTrue ;
