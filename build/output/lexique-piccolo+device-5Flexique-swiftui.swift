@@ -175,19 +175,25 @@ struct SettingViewFor_piccoloDevice_lexique : View {
 
 //--------------------------------------------------------------------------------------------------
 
-#Preview {
-  SettingViewFor_piccoloDevice_lexique ()
-}
-
-//--------------------------------------------------------------------------------------------------
-
-class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
+class ScannerFor_piccoloDevice_lexique : AbstractScanner {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   private let mDebug = false
   private let mVerboseDebug = false
-  private var mTokenArray = [SWIFT_Token] ()
+  private var mTokenArray = [LexicalToken] ()
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  final override func popUpDefinitionList () -> [[UInt16]] {
+    return gPopUpData_piccoloDevice_lexique
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  final override func blockComment () -> String? {
+    return gBlockComment_piccoloDevice_lexique
+  }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
@@ -347,7 +353,7 @@ class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func indexingTitles () -> [String] {
+  override func indexingTitles () -> [String] {
 
     return []
   }
@@ -727,7 +733,7 @@ class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
     //--- Apply styles
       for token in self.mTokenArray {
         let idx = Int (self.styleIndexFor (token: token.tokenCode))
-        if idx > 0, let attributes = self.mTokenAttributeArray [idx - 1] {
+        if idx > 0, idx < (self.mTokenAttributeArray.count - 1), let attributes = self.mTokenAttributeArray [idx - 1] {
           inTextStorage.addAttributes (attributes, range: token.range)
         }
       }
@@ -741,7 +747,8 @@ class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
 
   override func performLexicalAnalysisAndColoring (textStorage inTextStorage : NSTextStorage,
                                                    editedRange inEditedRange : NSRange,
-                                                   changeInLength inDelta : Int) {
+                                                   changeInLength inDelta : Int,
+                                                   popMenuItems ioPopupMenuItems : inout [IdentifiableAttributedString]) {
     if self.mDebug { Swift.print ("performLexicalAnalysisAndColoring \(inEditedRange), delta \(inDelta)") }
     let nsString = inTextStorage.string as NSString
   //---
@@ -765,7 +772,7 @@ class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
     var i = savedTokenCount + 1
     while i < self.mTokenArray.count {
       let token = self.mTokenArray [i]
-      let newToken = SWIFT_Token (
+      let newToken = LexicalToken (
         range: NSRange (location: token.range.location + inDelta, length: token.range.length),
         tokenCode: token.tokenCode,
         templateDelimiterIndex: token.templateDelimiterIndex
@@ -794,7 +801,7 @@ class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
     var stop = false
     var insertionIndex = savedTokenCount
     while self.currentLocation < nsString.length, !stop {
-      let token : SWIFT_Token = self.parseLexicalTokenForLexicalColoring ()
+      let token : LexicalToken = self.parseLexicalTokenForLexicalColoring ()
       if token.tokenCode > 0 { // For eliminating separators
         if self.mVerboseDebug { Swift.print ("  -> new token \(token.range) '\(nsString.substring (with: token.range))'") }
       //--- Eliminate previous tokens before new token location
@@ -823,7 +830,9 @@ class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
     }
     if self.mDebug { Swift.print ("  Lexical analysis time: \(Int (Date ().timeIntervalSince (start) * 1000.0)) ms") }
   //---- Apply default attributes
-    let modificationStart = min (inEditedRange.location, (savedTokenCount == 0) ? 0 : self.mTokenArray [savedTokenCount - 1].range.upperBound)
+    let modificationStart = min (inEditedRange.location, (savedTokenCount == 0)
+      ? 0
+      : self.mTokenArray [savedTokenCount - 1].range.upperBound)
     let modificationEnd = max (inEditedRange.upperBound, (insertionIndex == self.mTokenArray.count)
        ? nsString.length
        : self.mTokenArray [insertionIndex].range.upperBound
@@ -855,7 +864,7 @@ class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
           stop = true
         }else if token.range.upperBound > modifiedRange.lowerBound {
           let styleIndex = Int (self.styleIndexFor (token: token.tokenCode))
-          if styleIndex > 0, let attributes = self.mTokenAttributeArray [styleIndex - 1] {
+          if styleIndex > 0, styleIndex < (self.mTokenAttributeArray.count - 1), let attributes = self.mTokenAttributeArray [styleIndex - 1] {
             inTextStorage.addAttributes (attributes, range: token.range)
           }
         }
@@ -864,13 +873,14 @@ class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
       inTextStorage.delegate = tsDelegate // NSTextStorageDelegate
     }
     if self.mDebug { Swift.print ("  Adding attributes: \(Int (Date ().timeIntervalSince (start2) * 1000.0)) ms") }
+    ioPopupMenuItems = self.updateEntryPopUpButtons (self.mTokenArray)
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
   //   Lexical analysis
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  func parseLexicalTokenForLexicalColoring () -> SWIFT_Token {
+  func parseLexicalTokenForLexicalColoring () -> LexicalToken {
     var loop = true
     var scanningOk = true
     self.mLexicalAttribute_charValue = 0
@@ -1006,7 +1016,7 @@ class ScannerFor_piccoloDevice_lexique : SWIFT_Scanner {
       tokenCode = piccoloDevice_lexique_2_TEMPLATE
       self.advance ()
     }
-    return SWIFT_Token (
+    return LexicalToken (
       range: NSRange (location: startLocation, length: self.currentLocation - startLocation),
       tokenCode: tokenCode,
       templateDelimiterIndex: self.mEndTemplateDelimiterIndex

@@ -4,43 +4,81 @@
 //--- END OF USER ZONE 1
 
 import SwiftUI
+import UniformTypeIdentifiers
+
+//--------------------------------------------------------------------------------------------------
+
+extension UTType {
+  nonisolated static let piccolo = UTType (exportedAs: Bundle.main.bundleIdentifier! + ".piccolo")
+}
+
+//--------------------------------------------------------------------------------------------------
+
+extension ProjectDocument {
+  static let readableContentTypes : [UTType] = [.piccolo]
+}
 
 //--------------------------------------------------------------------------------------------------
 //    Project file extensions
 //--------------------------------------------------------------------------------------------------
 
+let projectFileExtensions = Set (["piccolo"])
+
+//--------------------------------------------------------------------------------------------------
+//    Indexing dictionary
+//--------------------------------------------------------------------------------------------------
+
 func indexingDescriptorDictionary () -> [String : String] {
-  return [  "piccolo" : "PICCOLO_INDEXES",]
+  return [
+    "piccolo" : "PICCOLO_INDEXES"
+  ]
 }
 
 //--------------------------------------------------------------------------------------------------
-//   Global functions
+//   Scanner for a given extension
 //--------------------------------------------------------------------------------------------------
 
-@MainActor func scannerFor (extension inExtension : String) -> SWIFT_Scanner? {
-  var result : SWIFT_Scanner? = nil
-  if inExtension == "piccolo" {
+@MainActor func scannerFor (extension inExtension : String) -> AbstractScanner? {
+  var result : AbstractScanner? = nil
+  let fileExtension = inExtension.lowercased ()
+  if fileExtension == "piccolo" {
     result = ScannerFor_piccolo_lexique ()
   }
   return result
 }
 
 //--------------------------------------------------------------------------------------------------
-
-/* @MainActor func tokenizers () -> [any SWIFT_Tokenizer_Protocol] {
-  return [
-    SettingViewFor_piccolo_lexique ()
-  ]
-} */
-
+// Setting View
 //--------------------------------------------------------------------------------------------------
 
 struct SettingsView : View {
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  enum SidebarItem {
+    case commandLineOptions
+    case piccolo_lexique_0
+  }
+
+  // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+  @State private var mSelection : SidebarItem = .commandLineOptions
+
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
   @ViewBuilder var body : some View {
-    TabView {
-      SettingViewFor_piccolo_lexique ().tabItem { Text ("Source") }
+    NavigationSplitView {
+      List(selection: self.$mSelection) {
+        Text ("Options").tag (SidebarItem.commandLineOptions)
+
+        Text ("Source").tag (SidebarItem.piccolo_lexique_0)
+      }
+      .toolbar (removing: .sidebarToggle)
+    } detail: {
+      switch self.mSelection {
+        case .commandLineOptions : OptionView ()
+        case .piccolo_lexique_0 : SettingViewFor_piccolo_lexique ()
+      }
     }
   }
 
@@ -50,10 +88,47 @@ struct SettingsView : View {
 
 
 //--------------------------------------------------------------------------------------------------
+//   Popup list data for 'piccolo_lexique' lexique
+//--------------------------------------------------------------------------------------------------
 
-/* func buildRunOption () -> String {
-  return ""
-} */
+let gPopUpData_piccolo_lexique : [[UInt16]] = [
+  [0, // Leading character count to strip
+    piccolo_lexique_1_routine, 0,
+    piccolo_lexique_1_identifier, 0
+  ],
+  [0, // Leading character count to strip
+    piccolo_lexique_1_ram, 0,
+    piccolo_lexique_1_identifier, 0
+  ],
+  [0, // Leading character count to strip
+    piccolo_lexique_1_interrupt, 0,
+    piccolo_lexique_1_identifier, 0
+  ],
+  [0, // Leading character count to strip
+    piccolo_lexique_1_include, 0,
+    piccolo_lexique_1_literal_5F_string, 0
+  ],
+  [0, // Leading character count to strip
+    piccolo_lexique_1_unused, 0,
+    piccolo_lexique_1_byte, 0,
+    piccolo_lexique_1_identifier, 0
+  ],
+  [0, // Leading character count to strip
+    piccolo_lexique_1_unused, 0,
+    piccolo_lexique_1_routine, 0,
+    piccolo_lexique_1_identifier, 0
+  ],
+  [1, // Leading character count to strip
+    piccolo_lexique_1_commentMark, 32
+  ]
+]
+
+//--------------------------------------------------------------------------------------------------
+//   Block Comment for 'piccolo_lexique' lexique
+//--------------------------------------------------------------------------------------------------
+
+let gBlockComment_piccolo_lexique : String? = "#"
+
 
 //--------------------------------------------------------------------------------------------------
 
