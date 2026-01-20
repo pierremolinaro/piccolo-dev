@@ -11,7 +11,7 @@
                        "../build/libpm/strings",
                        "../build/libpm/time",
                        "../build/libpm/utilities",
-                       "../hand_coded_sources"],
+                       "../sources/tool-sources"],
     "SOURCES"  :  [
         "all-declarations-14.cpp",
         "all-declarations-13.cpp",

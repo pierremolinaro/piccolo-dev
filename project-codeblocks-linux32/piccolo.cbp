@@ -69,7 +69,7 @@
    <Add directory="../build/libpm/utilities" />
    <Add directory="../build/user-headers" />
    <Add directory="../build/output" />
-  <Add directory="../hand_coded_sources" />
+   <Add directory="../sources/tool-sources" />
   </Compiler>
   <Linker>
   </Linker>
@@ -90,7 +90,10 @@
   <Unit filename="../build/output/all-declarations-1.cpp" />
   <Unit filename="../build/output/all-declarations-0.cpp" />
   <Unit filename="../build/output/all-predefined-types.cpp" />
-  <Unit filename="../hand_coded_sources/piccolo_computations.cpp" />
+  <Unit filename="../PMPiccoloCocoa.h" />
+  <Unit filename="../installCLITools.h" />
+  <Unit filename="../piccolo_computations.cpp" />
+  <Unit filename="../TC_UniqueSparseArray.h" />
    <Unit filename="../build/libpm/command_line_interface/AbstractCommandLineOption.cpp" />
    <Unit filename="../build/libpm/command_line_interface/BoolCommandLineOption.cpp" />
    <Unit filename="../build/libpm/command_line_interface/UIntCommandLineOption.cpp" />
