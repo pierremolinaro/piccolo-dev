@@ -9,29 +9,29 @@
 #include "all-declarations-5.h"
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_SimpleConstantCaseItem_2E_weak weak reference class
+// Phase 1: @pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak weak reference class
 //--------------------------------------------------------------------------------------------------
 
-class GGS_pic_31__38_SimpleConstantCaseItem_2E_weak : public GGS_pic_31__38_AbstractCaseItem_2E_weak {
+class GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak : public GGS_pic_31__38_PiccoloInstruction_2E_weak {
 //--------------------------------- Default constructor
-  public: GGS_pic_31__38_SimpleConstantCaseItem_2E_weak (void) ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak (void) ;
 
 //--------------------------------- Constructor and assignment from strong reference
-  public: GGS_pic_31__38_SimpleConstantCaseItem_2E_weak (const class GGS_pic_31__38_SimpleConstantCaseItem & inSource) ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak (const class GGS_pic_31__38_Instruction_5F_computed_5F_retlw & inSource) ;
 
-  public: GGS_pic_31__38_SimpleConstantCaseItem_2E_weak & operator = (const class GGS_pic_31__38_SimpleConstantCaseItem & inSource) ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak & operator = (const class GGS_pic_31__38_Instruction_5F_computed_5F_retlw & inSource) ;
 
 //--------------------------------- Constructor and assignment from optional reference
 
 //--------------------------------- nil initializer
-  public: inline static GGS_pic_31__38_SimpleConstantCaseItem_2E_weak init_nil (void) {
-    GGS_pic_31__38_SimpleConstantCaseItem_2E_weak result ;
+  public: inline static GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak init_nil (void) {
+    GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak result ;
     macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
     return result ;
   }
 
 //--------------------------------- Bang operator
-  public: GGS_pic_31__38_SimpleConstantCaseItem bang_pic_31__38_SimpleConstantCaseItem_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_retlw bang_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- isValuated
   public: inline bool isValuated (void) const {
@@ -39,7 +39,7 @@ class GGS_pic_31__38_SimpleConstantCaseItem_2E_weak : public GGS_pic_31__38_Abst
   }
 
 //--------------------------------- Unwrapped value
-  public: GGS_pic_31__38_SimpleConstantCaseItem unwrappedValue (void) const ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_retlw unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -58,15 +58,15 @@ class GGS_pic_31__38_SimpleConstantCaseItem_2E_weak : public GGS_pic_31__38_Abst
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_pic_31__38_SimpleConstantCaseItem_2E_weak extractObject (const GGS_object & inObject,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak extractObject (const GGS_object & inObject,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_SimpleConstantCaseItem_2E_weak class_func_nil (LOCATION_ARGS) ;
+  public: static class GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_pic_31__38_SimpleConstantCaseItem_2E_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -85,32 +85,32 @@ class GGS_pic_31__38_SimpleConstantCaseItem_2E_weak : public GGS_pic_31__38_Abst
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_SimpleConstantCaseItem_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_IntervalCaseItem_2E_weak weak reference class
+// Phase 1: @pic_31__38_Instruction_5F_computed_5F_bra_2E_weak weak reference class
 //--------------------------------------------------------------------------------------------------
 
-class GGS_pic_31__38_IntervalCaseItem_2E_weak : public GGS_pic_31__38_AbstractCaseItem_2E_weak {
+class GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak : public GGS_pic_31__38_PiccoloInstruction_2E_weak {
 //--------------------------------- Default constructor
-  public: GGS_pic_31__38_IntervalCaseItem_2E_weak (void) ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak (void) ;
 
 //--------------------------------- Constructor and assignment from strong reference
-  public: GGS_pic_31__38_IntervalCaseItem_2E_weak (const class GGS_pic_31__38_IntervalCaseItem & inSource) ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak (const class GGS_pic_31__38_Instruction_5F_computed_5F_bra & inSource) ;
 
-  public: GGS_pic_31__38_IntervalCaseItem_2E_weak & operator = (const class GGS_pic_31__38_IntervalCaseItem & inSource) ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak & operator = (const class GGS_pic_31__38_Instruction_5F_computed_5F_bra & inSource) ;
 
 //--------------------------------- Constructor and assignment from optional reference
 
 //--------------------------------- nil initializer
-  public: inline static GGS_pic_31__38_IntervalCaseItem_2E_weak init_nil (void) {
-    GGS_pic_31__38_IntervalCaseItem_2E_weak result ;
+  public: inline static GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak init_nil (void) {
+    GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak result ;
     macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
     return result ;
   }
 
 //--------------------------------- Bang operator
-  public: GGS_pic_31__38_IntervalCaseItem bang_pic_31__38_IntervalCaseItem_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_bra bang_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
 
 //--------------------------------- isValuated
   public: inline bool isValuated (void) const {
@@ -118,7 +118,7 @@ class GGS_pic_31__38_IntervalCaseItem_2E_weak : public GGS_pic_31__38_AbstractCa
   }
 
 //--------------------------------- Unwrapped value
-  public: GGS_pic_31__38_IntervalCaseItem unwrappedValue (void) const ;
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_bra unwrappedValue (void) const ;
 
 //--------------------------------- GALGAS read only properties
   public: inline GGS_bool readProperty_isNil (void) const {
@@ -137,15 +137,15 @@ class GGS_pic_31__38_IntervalCaseItem_2E_weak : public GGS_pic_31__38_AbstractCa
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_pic_31__38_IntervalCaseItem_2E_weak extractObject (const GGS_object & inObject,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak extractObject (const GGS_object & inObject,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_IntervalCaseItem_2E_weak class_func_nil (LOCATION_ARGS) ;
+  public: static class GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak class_func_nil (LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_pic_31__38_IntervalCaseItem_2E_weak & inOperand) const ;
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -164,17 +164,896 @@ class GGS_pic_31__38_IntervalCaseItem_2E_weak : public GGS_pic_31__38_AbstractCa
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_IntervalCaseItem_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_CaseExpressionList_2E_element struct
+// Phase 1: @pic_31__38_Instruction_5F_computed_5F_goto_2E_weak weak reference class
 //--------------------------------------------------------------------------------------------------
 
-class GGS_pic_31__38_CaseExpressionList_2E_element : public AC_GALGAS_root {
+class GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak : public GGS_pic_31__38_PiccoloInstruction_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak (const class GGS_pic_31__38_Instruction_5F_computed_5F_goto & inSource) ;
+
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak & operator = (const class GGS_pic_31__38_Instruction_5F_computed_5F_goto & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak init_nil (void) {
+    GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_goto bang_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_goto unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak extractObject (const GGS_object & inObject,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak : public GGS_pic_31__38_PiccoloInstruction_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak (const class GGS_pic_31__38_Instruction_5F_computed_5F_rcall & inSource) ;
+
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak & operator = (const class GGS_pic_31__38_Instruction_5F_computed_5F_rcall & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak init_nil (void) {
+    GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_rcall bang_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_Instruction_5F_computed_5F_rcall unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak extractObject (const GGS_object & inObject,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_ConditionExpression_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_ConditionExpression_2E_weak : public AC_GALGAS_weak_reference {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_ConditionExpression_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_ConditionExpression_2E_weak (const class GGS_pic_31__38_ConditionExpression & inSource) ;
+
+  public: GGS_pic_31__38_ConditionExpression_2E_weak & operator = (const class GGS_pic_31__38_ConditionExpression & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_ConditionExpression_2E_weak init_nil (void) {
+    GGS_pic_31__38_ConditionExpression_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_ConditionExpression bang_pic_31__38_ConditionExpression_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_ConditionExpression unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_ConditionExpression_2E_weak extractObject (const GGS_object & inObject,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_ConditionExpression_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_ConditionExpression_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_ConditionExpression_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_RegisterTestCondition_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_RegisterTestCondition_2E_weak : public GGS_pic_31__38_ConditionExpression_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_RegisterTestCondition_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_RegisterTestCondition_2E_weak (const class GGS_pic_31__38_RegisterTestCondition & inSource) ;
+
+  public: GGS_pic_31__38_RegisterTestCondition_2E_weak & operator = (const class GGS_pic_31__38_RegisterTestCondition & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_RegisterTestCondition_2E_weak init_nil (void) {
+    GGS_pic_31__38_RegisterTestCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_RegisterTestCondition bang_pic_31__38_RegisterTestCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_RegisterTestCondition unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_RegisterTestCondition_2E_weak extractObject (const GGS_object & inObject,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_RegisterTestCondition_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_RegisterTestCondition_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterTestCondition_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_RegisterComparisonCondition_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_RegisterComparisonCondition_2E_weak : public GGS_pic_31__38_ConditionExpression_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_RegisterComparisonCondition_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_RegisterComparisonCondition_2E_weak (const class GGS_pic_31__38_RegisterComparisonCondition & inSource) ;
+
+  public: GGS_pic_31__38_RegisterComparisonCondition_2E_weak & operator = (const class GGS_pic_31__38_RegisterComparisonCondition & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_RegisterComparisonCondition_2E_weak init_nil (void) {
+    GGS_pic_31__38_RegisterComparisonCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_RegisterComparisonCondition bang_pic_31__38_RegisterComparisonCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_RegisterComparisonCondition unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_RegisterComparisonCondition_2E_weak extractObject (const GGS_object & inObject,
+                                                                                   Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_RegisterComparisonCondition_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_RegisterComparisonCondition_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonCondition_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_IncDecRegisterInCondition_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_IncDecRegisterInCondition_2E_weak : public GGS_pic_31__38_ConditionExpression_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_IncDecRegisterInCondition_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_IncDecRegisterInCondition_2E_weak (const class GGS_pic_31__38_IncDecRegisterInCondition & inSource) ;
+
+  public: GGS_pic_31__38_IncDecRegisterInCondition_2E_weak & operator = (const class GGS_pic_31__38_IncDecRegisterInCondition & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_IncDecRegisterInCondition_2E_weak init_nil (void) {
+    GGS_pic_31__38_IncDecRegisterInCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_IncDecRegisterInCondition bang_pic_31__38_IncDecRegisterInCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_IncDecRegisterInCondition unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_IncDecRegisterInCondition_2E_weak extractObject (const GGS_object & inObject,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_IncDecRegisterInCondition_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_IncDecRegisterInCondition_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_IncDecRegisterInCondition_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_BccInStructuredCondition_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_BccInStructuredCondition_2E_weak : public GGS_pic_31__38_ConditionExpression_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_BccInStructuredCondition_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_BccInStructuredCondition_2E_weak (const class GGS_pic_31__38_BccInStructuredCondition & inSource) ;
+
+  public: GGS_pic_31__38_BccInStructuredCondition_2E_weak & operator = (const class GGS_pic_31__38_BccInStructuredCondition & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_BccInStructuredCondition_2E_weak init_nil (void) {
+    GGS_pic_31__38_BccInStructuredCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_BccInStructuredCondition bang_pic_31__38_BccInStructuredCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_BccInStructuredCondition unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_BccInStructuredCondition_2E_weak extractObject (const GGS_object & inObject,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_BccInStructuredCondition_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_BccInStructuredCondition_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_BccInStructuredCondition_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_NegateCondition_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_NegateCondition_2E_weak : public GGS_pic_31__38_ConditionExpression_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_NegateCondition_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_NegateCondition_2E_weak (const class GGS_pic_31__38_NegateCondition & inSource) ;
+
+  public: GGS_pic_31__38_NegateCondition_2E_weak & operator = (const class GGS_pic_31__38_NegateCondition & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_NegateCondition_2E_weak init_nil (void) {
+    GGS_pic_31__38_NegateCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_NegateCondition bang_pic_31__38_NegateCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_NegateCondition unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_NegateCondition_2E_weak extractObject (const GGS_object & inObject,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_NegateCondition_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_NegateCondition_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_NegateCondition_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_AndCondition_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_AndCondition_2E_weak : public GGS_pic_31__38_ConditionExpression_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_AndCondition_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_AndCondition_2E_weak (const class GGS_pic_31__38_AndCondition & inSource) ;
+
+  public: GGS_pic_31__38_AndCondition_2E_weak & operator = (const class GGS_pic_31__38_AndCondition & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_AndCondition_2E_weak init_nil (void) {
+    GGS_pic_31__38_AndCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_AndCondition bang_pic_31__38_AndCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_AndCondition unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_AndCondition_2E_weak extractObject (const GGS_object & inObject,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_AndCondition_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_AndCondition_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_AndCondition_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_BitTestInStructuredCondition_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_BitTestInStructuredCondition_2E_weak : public GGS_pic_31__38_ConditionExpression_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_BitTestInStructuredCondition_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_BitTestInStructuredCondition_2E_weak (const class GGS_pic_31__38_BitTestInStructuredCondition & inSource) ;
+
+  public: GGS_pic_31__38_BitTestInStructuredCondition_2E_weak & operator = (const class GGS_pic_31__38_BitTestInStructuredCondition & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_BitTestInStructuredCondition_2E_weak init_nil (void) {
+    GGS_pic_31__38_BitTestInStructuredCondition_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_BitTestInStructuredCondition bang_pic_31__38_BitTestInStructuredCondition_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_BitTestInStructuredCondition unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_BitTestInStructuredCondition_2E_weak extractObject (const GGS_object & inObject,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_BitTestInStructuredCondition_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_BitTestInStructuredCondition_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestInStructuredCondition_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_Instruction_5F_structured_5F_if_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak : public GGS_pic_31__38_PiccoloInstruction_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak (const class GGS_pic_31__38_Instruction_5F_structured_5F_if & inSource) ;
+
+  public: GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak & operator = (const class GGS_pic_31__38_Instruction_5F_structured_5F_if & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak init_nil (void) {
+    GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_Instruction_5F_structured_5F_if bang_pic_31__38_Instruction_5F_structured_5F_if_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_Instruction_5F_structured_5F_if unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak extractObject (const GGS_object & inObject,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_DoWhilePartList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_DoWhilePartList_2E_element : public AC_GALGAS_root {
 //--------------------------------- Properties
-  public: GGS_pic_31__38_AbstractCaseItem mProperty_mCaseItem ;
-  public: inline GGS_pic_31__38_AbstractCaseItem readProperty_mCaseItem (void) const {
-    return mProperty_mCaseItem ;
+  public: GGS_pic_31__38_ConditionExpression mProperty_mCondition ;
+  public: inline GGS_pic_31__38_ConditionExpression readProperty_mCondition (void) const {
+    return mProperty_mCondition ;
+  }
+
+  public: GGS_pic_31__38_InstructionList mProperty_mInstructionList ;
+  public: inline GGS_pic_31__38_InstructionList readProperty_mInstructionList (void) const {
+    return mProperty_mInstructionList ;
+  }
+
+  public: GGS_location mProperty_mEndOfPartLocation ;
+  public: inline GGS_location readProperty_mEndOfPartLocation (void) const {
+    return mProperty_mEndOfPartLocation ;
   }
 
 //--------------------------------- Accessors
@@ -182,44 +1061,58 @@ class GGS_pic_31__38_CaseExpressionList_2E_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
-  public: GGS_pic_31__38_CaseExpressionList_2E_element (void) ;
+  public: GGS_pic_31__38_DoWhilePartList_2E_element (void) ;
 
 //--------------------------------- Property setters
-  public: inline void setter_setMCaseItem (const GGS_pic_31__38_AbstractCaseItem & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mCaseItem = inValue ;
+  public: inline void setter_setMCondition (const GGS_pic_31__38_ConditionExpression & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mCondition = inValue ;
+  }
+
+  public: inline void setter_setMInstructionList (const GGS_pic_31__38_InstructionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInstructionList = inValue ;
+  }
+
+  public: inline void setter_setMEndOfPartLocation (const GGS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEndOfPartLocation = inValue ;
   }
 
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
 //--------------------------------- Native constructor
-  public: GGS_pic_31__38_CaseExpressionList_2E_element (const GGS_pic_31__38_AbstractCaseItem & in_mCaseItem) ;
+  public: GGS_pic_31__38_DoWhilePartList_2E_element (const GGS_pic_31__38_ConditionExpression & in_mCondition,
+                                                     const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                                                     const GGS_location & in_mEndOfPartLocation) ;
 
 //--------------------------------- Copy constructor
-  public: GGS_pic_31__38_CaseExpressionList_2E_element (const GGS_pic_31__38_CaseExpressionList_2E_element & inSource) ;
+  public: GGS_pic_31__38_DoWhilePartList_2E_element (const GGS_pic_31__38_DoWhilePartList_2E_element & inSource) ;
 
 //--------------------------------- Assignment operator
-  public: GGS_pic_31__38_CaseExpressionList_2E_element & operator = (const GGS_pic_31__38_CaseExpressionList_2E_element & inSource) ;
+  public: GGS_pic_31__38_DoWhilePartList_2E_element & operator = (const GGS_pic_31__38_DoWhilePartList_2E_element & inSource) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_pic_31__38_CaseExpressionList_2E_element init_21_ (const class GGS_pic_31__38_AbstractCaseItem & inOperand0,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_DoWhilePartList_2E_element init_21__21__21_ (const class GGS_pic_31__38_ConditionExpression & inOperand0,
+                                                                             const class GGS_pic_31__38_InstructionList & inOperand1,
+                                                                             const class GGS_location & inOperand2,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_pic_31__38_CaseExpressionList_2E_element extractObject (const GGS_object & inObject,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_DoWhilePartList_2E_element extractObject (const GGS_object & inObject,
+                                                                          Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_CaseExpressionList_2E_element class_func_new (const class GGS_pic_31__38_AbstractCaseItem & inOperand0,
-                                                                                    class Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public: static class GGS_pic_31__38_DoWhilePartList_2E_element class_func_new (const class GGS_pic_31__38_ConditionExpression & inOperand0,
+                                                                                 const class GGS_pic_31__38_InstructionList & inOperand1,
+                                                                                 const class GGS_location & inOperand2,
+                                                                                 class Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -242,22 +1135,365 @@ class GGS_pic_31__38_CaseExpressionList_2E_element : public AC_GALGAS_root {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_CaseExpressionList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_DoWhilePartList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_SwitchInstructionCaseList_2E_element struct
+// Phase 1: @pic_31__38_Instruction_5F_do_5F_while_2E_weak weak reference class
 //--------------------------------------------------------------------------------------------------
 
-class GGS_pic_31__38_SwitchInstructionCaseList_2E_element : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_location mProperty_mStartOfCase ;
-  public: inline GGS_location readProperty_mStartOfCase (void) const {
-    return mProperty_mStartOfCase ;
+class GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak : public GGS_pic_31__38_PiccoloInstruction_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak (const class GGS_pic_31__38_Instruction_5F_do_5F_while & inSource) ;
+
+  public: GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak & operator = (const class GGS_pic_31__38_Instruction_5F_do_5F_while & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak init_nil (void) {
+    GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
   }
 
-  public: GGS_pic_31__38_CaseExpressionList mProperty_mCaseExpressionList ;
-  public: inline GGS_pic_31__38_CaseExpressionList readProperty_mCaseExpressionList (void) const {
-    return mProperty_mCaseExpressionList ;
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_Instruction_5F_do_5F_while bang_pic_31__38_Instruction_5F_do_5F_while_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_Instruction_5F_do_5F_while unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak extractObject (const GGS_object & inObject,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_do_5F_while_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_InterruptDefinitionList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_InterruptDefinitionList_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_mInterruptName ;
+  public: inline GGS_lstring readProperty_mInterruptName (void) const {
+    return mProperty_mInterruptName ;
+  }
+
+  public: GGS_bool mProperty_mFastReturn ;
+  public: inline GGS_bool readProperty_mFastReturn (void) const {
+    return mProperty_mFastReturn ;
+  }
+
+  public: GGS_pic_31__38_InstructionList mProperty_mInstructionList ;
+  public: inline GGS_pic_31__38_InstructionList readProperty_mInstructionList (void) const {
+    return mProperty_mInstructionList ;
+  }
+
+  public: GGS_location mProperty_mEndOfInterruptLocation ;
+  public: inline GGS_location readProperty_mEndOfInterruptLocation (void) const {
+    return mProperty_mEndOfInterruptLocation ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_InterruptDefinitionList_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMInterruptName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInterruptName = inValue ;
+  }
+
+  public: inline void setter_setMFastReturn (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mFastReturn = inValue ;
+  }
+
+  public: inline void setter_setMInstructionList (const GGS_pic_31__38_InstructionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInstructionList = inValue ;
+  }
+
+  public: inline void setter_setMEndOfInterruptLocation (const GGS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEndOfInterruptLocation = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_pic_31__38_InterruptDefinitionList_2E_element (const GGS_lstring & in_mInterruptName,
+                                                             const GGS_bool & in_mFastReturn,
+                                                             const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                                                             const GGS_location & in_mEndOfInterruptLocation) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_pic_31__38_InterruptDefinitionList_2E_element (const GGS_pic_31__38_InterruptDefinitionList_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_pic_31__38_InterruptDefinitionList_2E_element & operator = (const GGS_pic_31__38_InterruptDefinitionList_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_pic_31__38_InterruptDefinitionList_2E_element init_21__21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                                         const class GGS_bool & inOperand1,
+                                                                                         const class GGS_pic_31__38_InstructionList & inOperand2,
+                                                                                         const class GGS_location & inOperand3,
+                                                                                         Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_InterruptDefinitionList_2E_element extractObject (const GGS_object & inObject,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_InterruptDefinitionList_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                                         const class GGS_bool & inOperand1,
+                                                                                         const class GGS_pic_31__38_InstructionList & inOperand2,
+                                                                                         const class GGS_location & inOperand3,
+                                                                                         class Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_InterruptDefinitionList_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_RoutineDefinitionList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_RoutineDefinitionList_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_mRoutineName ;
+  public: inline GGS_lstring readProperty_mRoutineName (void) const {
+    return mProperty_mRoutineName ;
+  }
+
+  public: GGS_luint mProperty_mRequiredBank ;
+  public: inline GGS_luint readProperty_mRequiredBank (void) const {
+    return mProperty_mRequiredBank ;
+  }
+
+  public: GGS_luint mProperty_mReturnedBank ;
+  public: inline GGS_luint readProperty_mReturnedBank (void) const {
+    return mProperty_mReturnedBank ;
+  }
+
+  public: GGS_bool mProperty_mPreservesBank ;
+  public: inline GGS_bool readProperty_mPreservesBank (void) const {
+    return mProperty_mPreservesBank ;
+  }
+
+  public: GGS_bool mProperty_mIsNoReturn ;
+  public: inline GGS_bool readProperty_mIsNoReturn (void) const {
+    return mProperty_mIsNoReturn ;
+  }
+
+  public: GGS_pic_31__38_InstructionList mProperty_mInstructionList ;
+  public: inline GGS_pic_31__38_InstructionList readProperty_mInstructionList (void) const {
+    return mProperty_mInstructionList ;
+  }
+
+  public: GGS_location mProperty_mEndOfRoutineLocation ;
+  public: inline GGS_location readProperty_mEndOfRoutineLocation (void) const {
+    return mProperty_mEndOfRoutineLocation ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_RoutineDefinitionList_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMRoutineName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRoutineName = inValue ;
+  }
+
+  public: inline void setter_setMRequiredBank (const GGS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRequiredBank = inValue ;
+  }
+
+  public: inline void setter_setMReturnedBank (const GGS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mReturnedBank = inValue ;
+  }
+
+  public: inline void setter_setMPreservesBank (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mPreservesBank = inValue ;
+  }
+
+  public: inline void setter_setMIsNoReturn (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mIsNoReturn = inValue ;
+  }
+
+  public: inline void setter_setMInstructionList (const GGS_pic_31__38_InstructionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInstructionList = inValue ;
+  }
+
+  public: inline void setter_setMEndOfRoutineLocation (const GGS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEndOfRoutineLocation = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_pic_31__38_RoutineDefinitionList_2E_element (const GGS_lstring & in_mRoutineName,
+                                                           const GGS_luint & in_mRequiredBank,
+                                                           const GGS_luint & in_mReturnedBank,
+                                                           const GGS_bool & in_mPreservesBank,
+                                                           const GGS_bool & in_mIsNoReturn,
+                                                           const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                                                           const GGS_location & in_mEndOfRoutineLocation) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_pic_31__38_RoutineDefinitionList_2E_element (const GGS_pic_31__38_RoutineDefinitionList_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_pic_31__38_RoutineDefinitionList_2E_element & operator = (const GGS_pic_31__38_RoutineDefinitionList_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_pic_31__38_RoutineDefinitionList_2E_element init_21__21__21__21__21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                                                   const class GGS_luint & inOperand1,
+                                                                                                   const class GGS_luint & inOperand2,
+                                                                                                   const class GGS_bool & inOperand3,
+                                                                                                   const class GGS_bool & inOperand4,
+                                                                                                   const class GGS_pic_31__38_InstructionList & inOperand5,
+                                                                                                   const class GGS_location & inOperand6,
+                                                                                                   Compiler * inCompiler
+                                                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_RoutineDefinitionList_2E_element extractObject (const GGS_object & inObject,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_RoutineDefinitionList_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                                       const class GGS_luint & inOperand1,
+                                                                                       const class GGS_luint & inOperand2,
+                                                                                       const class GGS_bool & inOperand3,
+                                                                                       const class GGS_bool & inOperand4,
+                                                                                       const class GGS_pic_31__38_InstructionList & inOperand5,
+                                                                                       const class GGS_location & inOperand6,
+                                                                                       class Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_RoutineDefinitionList_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_MacroDefinitionList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_MacroDefinitionList_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_mMacroName ;
+  public: inline GGS_lstring readProperty_mMacroName (void) const {
+    return mProperty_mMacroName ;
+  }
+
+  public: GGS_lstringlist mProperty_mConstantNameList ;
+  public: inline GGS_lstringlist readProperty_mConstantNameList (void) const {
+    return mProperty_mConstantNameList ;
   }
 
   public: GGS_pic_31__38_InstructionList mProperty_mInstructionList ;
@@ -270,15 +1506,15 @@ class GGS_pic_31__38_SwitchInstructionCaseList_2E_element : public AC_GALGAS_roo
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
-  public: GGS_pic_31__38_SwitchInstructionCaseList_2E_element (void) ;
+  public: GGS_pic_31__38_MacroDefinitionList_2E_element (void) ;
 
 //--------------------------------- Property setters
-  public: inline void setter_setMStartOfCase (const GGS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mStartOfCase = inValue ;
+  public: inline void setter_setMMacroName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mMacroName = inValue ;
   }
 
-  public: inline void setter_setMCaseExpressionList (const GGS_pic_31__38_CaseExpressionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mCaseExpressionList = inValue ;
+  public: inline void setter_setMConstantNameList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConstantNameList = inValue ;
   }
 
   public: inline void setter_setMInstructionList (const GGS_pic_31__38_InstructionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
@@ -289,39 +1525,39 @@ class GGS_pic_31__38_SwitchInstructionCaseList_2E_element : public AC_GALGAS_roo
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
 //--------------------------------- Native constructor
-  public: GGS_pic_31__38_SwitchInstructionCaseList_2E_element (const GGS_location & in_mStartOfCase,
-                                                               const GGS_pic_31__38_CaseExpressionList & in_mCaseExpressionList,
-                                                               const GGS_pic_31__38_InstructionList & in_mInstructionList) ;
+  public: GGS_pic_31__38_MacroDefinitionList_2E_element (const GGS_lstring & in_mMacroName,
+                                                         const GGS_lstringlist & in_mConstantNameList,
+                                                         const GGS_pic_31__38_InstructionList & in_mInstructionList) ;
 
 //--------------------------------- Copy constructor
-  public: GGS_pic_31__38_SwitchInstructionCaseList_2E_element (const GGS_pic_31__38_SwitchInstructionCaseList_2E_element & inSource) ;
+  public: GGS_pic_31__38_MacroDefinitionList_2E_element (const GGS_pic_31__38_MacroDefinitionList_2E_element & inSource) ;
 
 //--------------------------------- Assignment operator
-  public: GGS_pic_31__38_SwitchInstructionCaseList_2E_element & operator = (const GGS_pic_31__38_SwitchInstructionCaseList_2E_element & inSource) ;
+  public: GGS_pic_31__38_MacroDefinitionList_2E_element & operator = (const GGS_pic_31__38_MacroDefinitionList_2E_element & inSource) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_pic_31__38_SwitchInstructionCaseList_2E_element init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                       const class GGS_pic_31__38_CaseExpressionList & inOperand1,
-                                                                                       const class GGS_pic_31__38_InstructionList & inOperand2,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_MacroDefinitionList_2E_element init_21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                                 const class GGS_lstringlist & inOperand1,
+                                                                                 const class GGS_pic_31__38_InstructionList & inOperand2,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_pic_31__38_SwitchInstructionCaseList_2E_element extractObject (const GGS_object & inObject,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_MacroDefinitionList_2E_element extractObject (const GGS_object & inObject,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_SwitchInstructionCaseList_2E_element class_func_new (const class GGS_location & inOperand0,
-                                                                                           const class GGS_pic_31__38_CaseExpressionList & inOperand1,
-                                                                                           const class GGS_pic_31__38_InstructionList & inOperand2,
-                                                                                           class Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) ;
+  public: static class GGS_pic_31__38_MacroDefinitionList_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                                     const class GGS_lstringlist & inOperand1,
+                                                                                     const class GGS_pic_31__38_InstructionList & inOperand2,
+                                                                                     class Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -344,277 +1580,27 @@ class GGS_pic_31__38_SwitchInstructionCaseList_2E_element : public AC_GALGAS_roo
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_SwitchInstructionCaseList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_MacroDefinitionList_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_Instruction_5F_switch_2E_weak weak reference class
+// Phase 1: @pic_31__38_MacroMap_2E_element struct
 //--------------------------------------------------------------------------------------------------
 
-class GGS_pic_31__38_Instruction_5F_switch_2E_weak : public GGS_pic_31__38_PiccoloInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_pic_31__38_Instruction_5F_switch_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_pic_31__38_Instruction_5F_switch_2E_weak (const class GGS_pic_31__38_Instruction_5F_switch & inSource) ;
-
-  public: GGS_pic_31__38_Instruction_5F_switch_2E_weak & operator = (const class GGS_pic_31__38_Instruction_5F_switch & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_pic_31__38_Instruction_5F_switch_2E_weak init_nil (void) {
-    GGS_pic_31__38_Instruction_5F_switch_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_pic_31__38_Instruction_5F_switch bang_pic_31__38_Instruction_5F_switch_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_pic_31__38_Instruction_5F_switch unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_pic_31__38_Instruction_5F_switch_2E_weak extractObject (const GGS_object & inObject,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_Instruction_5F_switch_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_pic_31__38_Instruction_5F_switch_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_switch_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @caseConstantMap map
-//--------------------------------------------------------------------------------------------------
-
-#include "SharedGenericPtrWithValueSemantics.h"
-
-template <typename INFO> class GenericMapRoot ;
-
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_caseConstantMap final {
-
-  public: DownEnumerator_caseConstantMap (const class GGS_caseConstantMap & inMap) ;
-
-  public: ~ DownEnumerator_caseConstantMap (void) = default ;
-
-  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
-
-  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-
-  public: class GGS_caseConstantMap_2E_element current (LOCATION_ARGS) const ;
-
-  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_caseConstantMap_2E_element>> mInfoArray ;
-  private: int32_t mIndex ;
-
-  private: DownEnumerator_caseConstantMap (const DownEnumerator_caseConstantMap &) = delete ;
-  private: DownEnumerator_caseConstantMap & operator = (const DownEnumerator_caseConstantMap &) = delete ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_caseConstantMap final {
-  public: UpEnumerator_caseConstantMap (const class GGS_caseConstantMap & inMap)  ;
-
-  public: ~ UpEnumerator_caseConstantMap (void) = default ;
-
-  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
-
-  public: inline void gotoNextObject (void) { mIndex += 1 ; }
-
-  public: inline void rewind (void) { mIndex = 0 ; }
-
-  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_caseConstantMap_2E_element current (LOCATION_ARGS) const ;
-
-  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_caseConstantMap_2E_element>> mInfoArray ;
-  private: int32_t mIndex ;
-
-  private: UpEnumerator_caseConstantMap (const UpEnumerator_caseConstantMap &) = delete ;
-  private: UpEnumerator_caseConstantMap & operator = (const UpEnumerator_caseConstantMap &) = delete ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class GGS_caseConstantMap : public AC_GALGAS_root {
-
-//--- Private property
-  private: OptionalSharedRef <GenericMapRoot <GGS_caseConstantMap_2E_element>> mSharedRoot ;
-
-//--- Default constructor
-  public: GGS_caseConstantMap (void) ;
-
-//--- Virtual destructor
-  public: virtual ~ GGS_caseConstantMap (void) ;
-
-//--- Handle copy
-  public: GGS_caseConstantMap (const GGS_caseConstantMap & inSource) ;
-  public: GGS_caseConstantMap & operator = (const GGS_caseConstantMap & inSource) ;
-
-//--- Build
-  protected: void build (LOCATION_ARGS) ;
-
-//--- isValid
-  public: bool isValid (void) const override ;
-
-//--- Drop
-  public: void drop (void) override ;
-
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-
-
-//--- performInsert
-  protected: void performInsert (const class GGS_caseConstantMap_2E_element & inElement,
-                                 const char * inInsertErrorMessage,
-                                 const char * inShadowErrorMessage,
-                                 Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
- 
-//--- infoForKey
-  protected: const SharedGenericPtrWithValueSemantics <GGS_caseConstantMap_2E_element> infoForKey (const String & inKey) const ;
- 
-//--- Count
-  public: int32_t count (void) const ;
- 
-//--- sortedInfoArray
-  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_caseConstantMap_2E_element>> sortedInfoArray (void) const ;
-
-//--- findNearestKey
-  protected: void findNearestKey (const String & inKey,
-                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_caseConstantMap init (Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_caseConstantMap extractObject (const GGS_object & inObject,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_caseConstantMap class_func_emptyMap (LOCATION_ARGS) ;
-
-  public: static class GGS_caseConstantMap class_func_mapWithMapToOverride (const class GGS_caseConstantMap & inOperand0
-                                                                            COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
-                                                         COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
-                                                                const class GGS_uint & constinOperand1
-                                                                COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_caseConstantMap getter_overriddenMap (Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_caseConstantMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) const ;
-
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
-  friend class UpEnumerator_caseConstantMap ;
-  friend class DownEnumerator_caseConstantMap ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_caseConstantMap ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @caseConstantMap_2E_element struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_caseConstantMap_2E_element : public AC_GALGAS_root {
+class GGS_pic_31__38_MacroMap_2E_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GGS_lstring mProperty_lkey ;
   public: inline GGS_lstring readProperty_lkey (void) const {
     return mProperty_lkey ;
+  }
+
+  public: GGS_lstringlist mProperty_mConstantNameList ;
+  public: inline GGS_lstringlist readProperty_mConstantNameList (void) const {
+    return mProperty_mConstantNameList ;
+  }
+
+  public: GGS_pic_31__38_InstructionList mProperty_mInstructionList ;
+  public: inline GGS_pic_31__38_InstructionList readProperty_mInstructionList (void) const {
+    return mProperty_mInstructionList ;
   }
 
 //--------------------------------- Accessors
@@ -622,44 +1608,58 @@ class GGS_caseConstantMap_2E_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
-  public: GGS_caseConstantMap_2E_element (void) ;
+  public: GGS_pic_31__38_MacroMap_2E_element (void) ;
 
 //--------------------------------- Property setters
   public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
     mProperty_lkey = inValue ;
   }
 
+  public: inline void setter_setMConstantNameList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConstantNameList = inValue ;
+  }
+
+  public: inline void setter_setMInstructionList (const GGS_pic_31__38_InstructionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInstructionList = inValue ;
+  }
+
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
 //--------------------------------- Native constructor
-  public: GGS_caseConstantMap_2E_element (const GGS_lstring & in_lkey) ;
+  public: GGS_pic_31__38_MacroMap_2E_element (const GGS_lstring & in_lkey,
+                                              const GGS_lstringlist & in_mConstantNameList,
+                                              const GGS_pic_31__38_InstructionList & in_mInstructionList) ;
 
 //--------------------------------- Copy constructor
-  public: GGS_caseConstantMap_2E_element (const GGS_caseConstantMap_2E_element & inSource) ;
+  public: GGS_pic_31__38_MacroMap_2E_element (const GGS_pic_31__38_MacroMap_2E_element & inSource) ;
 
 //--------------------------------- Assignment operator
-  public: GGS_caseConstantMap_2E_element & operator = (const GGS_caseConstantMap_2E_element & inSource) ;
+  public: GGS_pic_31__38_MacroMap_2E_element & operator = (const GGS_pic_31__38_MacroMap_2E_element & inSource) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_caseConstantMap_2E_element init_21_ (const class GGS_lstring & inOperand0,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_MacroMap_2E_element init_21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                      const class GGS_lstringlist & inOperand1,
+                                                                      const class GGS_pic_31__38_InstructionList & inOperand2,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_caseConstantMap_2E_element extractObject (const GGS_object & inObject,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_MacroMap_2E_element extractObject (const GGS_object & inObject,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_caseConstantMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                      class Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
+  public: static class GGS_pic_31__38_MacroMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                          const class GGS_lstringlist & inOperand1,
+                                                                          const class GGS_pic_31__38_InstructionList & inOperand2,
+                                                                          class Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -682,32 +1682,32 @@ class GGS_caseConstantMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_caseConstantMap_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_MacroMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: caseConstantMap.element? optional
+// Phase 1: pic18MacroMap.element? optional
 //--------------------------------------------------------------------------------------------------
 
-class GGS_caseConstantMap_2E_element_3F_ : public AC_GALGAS_root {
+class GGS_pic_31__38_MacroMap_2E_element_3F_ : public AC_GALGAS_root {
 //--------------------------------- Private property
-  private: GGS_caseConstantMap_2E_element mValue ;
+  private: GGS_pic_31__38_MacroMap_2E_element mValue ;
   private: OptionalState mState ;
 
 //--------------------------------- Default constructor
-  public: GGS_caseConstantMap_2E_element_3F_ (void) ;
+  public: GGS_pic_31__38_MacroMap_2E_element_3F_ (void) ;
 
 //--------------------------------- Constructor from unwrapped type
-  public: GGS_caseConstantMap_2E_element_3F_ (const GGS_caseConstantMap_2E_element & inSource) ;
+  public: GGS_pic_31__38_MacroMap_2E_element_3F_ (const GGS_pic_31__38_MacroMap_2E_element & inSource) ;
 
 //--------------------------------- Constructor from weak type
 
 //--------------------------------- nil initializer
-  public: static GGS_caseConstantMap_2E_element_3F_ init_nil (void) ;
+  public: static GGS_pic_31__38_MacroMap_2E_element_3F_ init_nil (void) ;
 
   public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
-  public: inline GGS_caseConstantMap_2E_element unwrappedValue (void) const {
+  public: inline GGS_pic_31__38_MacroMap_2E_element unwrappedValue (void) const {
     return mValue ;
   }
 
@@ -737,9 +1737,9 @@ class GGS_caseConstantMap_2E_element_3F_ : public AC_GALGAS_root {
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_caseConstantMap_2E_element_3F_ extractObject (const GGS_object & inObject,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_MacroMap_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Setters
@@ -759,36 +1759,16 @@ class GGS_caseConstantMap_2E_element_3F_ : public AC_GALGAS_root {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_caseConstantMap_2E_element_3F_ ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_MacroMap_2E_element_3F_ ;
 
 //--------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@pic18AbstractCaseItem analyzeCaseItem'
-//
+// Phase 1: @routineDeclarationList list enumerator
 //--------------------------------------------------------------------------------------------------
 
-void callExtensionMethod_analyzeCaseItem (class cPtr_pic_31__38_AbstractCaseItem * inObject,
-                                          const class GGS_registerTable constin_inRegisterTable,
-                                          const class GGS_constantMap constin_inConstantMap,
-                                          const class GGS_lstring constin_inConditionTrueLabel,
-                                          const class GGS_string constin_inIndexForLabels,
-                                          class GGS_stringset & io_ioUsedRegisters,
-                                          class GGS_caseConstantMap & io_ioCaseConstantMap,
-                                          class GGS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
-                                          class GGS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
-                                          class GGS_lstring & io_ioBlockLabel,
-                                          class GGS_sint_36__34_ & io_ioLastComparisonValue,
-                                          class Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) ;
+class DownEnumerator_routineDeclarationList final {
+  public: DownEnumerator_routineDeclarationList (const class GGS_routineDeclarationList & inList) ;
 
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_BlockList list enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_ipic_31__38_BlockList final {
-  public: DownEnumerator_ipic_31__38_BlockList (const class GGS_ipic_31__38_BlockList & inList) ;
-
-  public: ~ DownEnumerator_ipic_31__38_BlockList (void) = default ;
+  public: ~ DownEnumerator_routineDeclarationList (void) = default ;
 
   public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
@@ -798,23 +1778,27 @@ class DownEnumerator_ipic_31__38_BlockList final {
 
   public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
-  public: class GGS_ipic_31__38_Block current_mBlock (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mRoutineName (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mRequiredBank (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mReturnedBank (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mPreservesBank (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mIsNoReturn (LOCATION_ARGS) const ;
 //--- Current element access
-  public: class GGS_ipic_31__38_BlockList_2E_element current (LOCATION_ARGS) const ;
+  public: class GGS_routineDeclarationList_2E_element current (LOCATION_ARGS) const ;
 
-  private: GenericArray <GGS_ipic_31__38_BlockList_2E_element> mArray ;
+  private: GenericArray <GGS_routineDeclarationList_2E_element> mArray ;
   private: int32_t mIndex ;
 
-  private: DownEnumerator_ipic_31__38_BlockList (const DownEnumerator_ipic_31__38_BlockList &) = delete ;
-  private: DownEnumerator_ipic_31__38_BlockList & operator = (const DownEnumerator_ipic_31__38_BlockList &) = delete ;
+  private: DownEnumerator_routineDeclarationList (const DownEnumerator_routineDeclarationList &) = delete ;
+  private: DownEnumerator_routineDeclarationList & operator = (const DownEnumerator_routineDeclarationList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-class UpEnumerator_ipic_31__38_BlockList final {
-  public: UpEnumerator_ipic_31__38_BlockList (const class GGS_ipic_31__38_BlockList & inList)  ;
+class UpEnumerator_routineDeclarationList final {
+  public: UpEnumerator_routineDeclarationList (const class GGS_routineDeclarationList & inList)  ;
 
-  public: ~ UpEnumerator_ipic_31__38_BlockList (void) = default ;
+  public: ~ UpEnumerator_routineDeclarationList (void) = default ;
 
   public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
 
@@ -824,34 +1808,38 @@ class UpEnumerator_ipic_31__38_BlockList final {
 
   public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
 
-  public: class GGS_ipic_31__38_Block current_mBlock (LOCATION_ARGS) const ;
+  public: class GGS_lstring current_mRoutineName (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mRequiredBank (LOCATION_ARGS) const ;
+  public: class GGS_luint current_mReturnedBank (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mPreservesBank (LOCATION_ARGS) const ;
+  public: class GGS_bool current_mIsNoReturn (LOCATION_ARGS) const ;
 //--- Current element access
-  public: class GGS_ipic_31__38_BlockList_2E_element current (LOCATION_ARGS) const ;
+  public: class GGS_routineDeclarationList_2E_element current (LOCATION_ARGS) const ;
 
-  private: GenericArray <GGS_ipic_31__38_BlockList_2E_element> mArray ;
+  private: GenericArray <GGS_routineDeclarationList_2E_element> mArray ;
   private: int32_t mIndex ;
 
-  private: UpEnumerator_ipic_31__38_BlockList (const UpEnumerator_ipic_31__38_BlockList &) = delete ;
-  private: UpEnumerator_ipic_31__38_BlockList & operator = (const UpEnumerator_ipic_31__38_BlockList &) = delete ;
+  private: UpEnumerator_routineDeclarationList (const UpEnumerator_routineDeclarationList &) = delete ;
+  private: UpEnumerator_routineDeclarationList & operator = (const UpEnumerator_routineDeclarationList &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// @ipic18BlockList list
+// @routineDeclarationList list
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38_BlockList : public AC_GALGAS_root {
+class GGS_routineDeclarationList : public AC_GALGAS_root {
 //--- Private property
-  private: GenericArray <GGS_ipic_31__38_BlockList_2E_element> mArray ;
+  private: GenericArray <GGS_routineDeclarationList_2E_element> mArray ;
 
 //--- Default constructor
-  public: GGS_ipic_31__38_BlockList (void) ;
+  public: GGS_routineDeclarationList (void) ;
 
 //--- Destructor
-  public: virtual ~ GGS_ipic_31__38_BlockList (void) = default ;
+  public: virtual ~ GGS_routineDeclarationList (void) = default ;
 
 //--- Copy
-  public: GGS_ipic_31__38_BlockList (const GGS_ipic_31__38_BlockList &) = default ;
-  public: GGS_ipic_31__38_BlockList & operator = (const GGS_ipic_31__38_BlockList &) = default ;
+  public: GGS_routineDeclarationList (const GGS_routineDeclarationList &) = default ;
+  public: GGS_routineDeclarationList & operator = (const GGS_routineDeclarationList &) = default ;
 
 //--- Is valid
   public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
@@ -867,352 +1855,158 @@ class GGS_ipic_31__38_BlockList : public AC_GALGAS_root {
   public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
  
 //--- sortedElementArray
-  public : inline GenericArray <GGS_ipic_31__38_BlockList_2E_element> sortedElementArray (void) const {
+  public : inline GenericArray <GGS_routineDeclarationList_2E_element> sortedElementArray (void) const {
     return mArray ;
   }
 
 //--- subList
-  private: GGS_ipic_31__38_BlockList subList (const int32_t inStart,
-                                              const int32_t inLength,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
+  private: GGS_routineDeclarationList subList (const int32_t inStart,
+                                               const int32_t inLength,
+                                               Compiler * inCompiler
+                                               COMMA_LOCATION_ARGS) const ;
 
 
 //--- List constructor for graph
-  public: GGS_ipic_31__38_BlockList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_routineDeclarationList (const capCollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
   public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                 const class GGS_ipic_31__38_Block & in_mBlock
+                                                 const class GGS_lstring & in_mRoutineName,
+                                                 const class GGS_luint & in_mRequiredBank,
+                                                 const class GGS_luint & in_mReturnedBank,
+                                                 const class GGS_bool & in_mPreservesBank,
+                                                 const class GGS_bool & in_mIsNoReturn
                                                  COMMA_LOCATION_ARGS) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_ipic_31__38_BlockList init (Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
+  public: static GGS_routineDeclarationList init (Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_BlockList extractObject (const GGS_object & inObject,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
+  public: static GGS_routineDeclarationList extractObject (const GGS_object & inObject,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_BlockList class_func_emptyList (LOCATION_ARGS) ;
+  public: static class GGS_routineDeclarationList class_func_emptyList (LOCATION_ARGS) ;
 
-  public: static class GGS_ipic_31__38_BlockList class_func_listWithValue (const class GGS_ipic_31__38_Block & inOperand0
-                                                                           COMMA_LOCATION_ARGS) ;
+  public: static class GGS_routineDeclarationList class_func_listWithValue (const class GGS_lstring & inOperand0,
+                                                                            const class GGS_luint & inOperand1,
+                                                                            const class GGS_luint & inOperand2,
+                                                                            const class GGS_bool & inOperand3,
+                                                                            const class GGS_bool & inOperand4
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_ipic_31__38_BlockList inOperand,
+  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_routineDeclarationList inOperand,
                                                      class Compiler * inCompiler
                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_ipic_31__38_Block & inOperand0
+  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_lstring & inOperand0,
+                                                    const class GGS_luint & inOperand1,
+                                                    const class GGS_luint & inOperand2,
+                                                    const class GGS_bool & inOperand3,
+                                                    const class GGS_bool & inOperand4
                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_ipic_31__38_BlockList_2E_element & inOperand
+  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_routineDeclarationList_2E_element & inOperand
                                                          COMMA_LOCATION_ARGS) ;
 //--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_ipic_31__38_BlockList add_operation (const GGS_ipic_31__38_BlockList & inOperand,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG GGS_routineDeclarationList add_operation (const GGS_routineDeclarationList & inOperand,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_ipic_31__38_Block constinArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_lstring constinArgument0,
+                                               class GGS_luint constinArgument1,
+                                               class GGS_luint constinArgument2,
+                                               class GGS_bool constinArgument3,
+                                               class GGS_bool constinArgument4,
                                                Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_ipic_31__38_Block constinArgument0,
-                                                      class GGS_uint constinArgument1,
+  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_lstring constinArgument0,
+                                                      class GGS_luint constinArgument1,
+                                                      class GGS_luint constinArgument2,
+                                                      class GGS_bool constinArgument3,
+                                                      class GGS_bool constinArgument4,
+                                                      class GGS_uint constinArgument5,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_ipic_31__38_Block & outArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_lstring & outArgument0,
+                                                 class GGS_luint & outArgument1,
+                                                 class GGS_luint & outArgument2,
+                                                 class GGS_bool & outArgument3,
+                                                 class GGS_bool & outArgument4,
                                                  Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_ipic_31__38_Block & outArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_lstring & outArgument0,
+                                                class GGS_luint & outArgument1,
+                                                class GGS_luint & outArgument2,
+                                                class GGS_bool & outArgument3,
+                                                class GGS_bool & outArgument4,
                                                 Compiler * inCompiler
                                                 COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_ipic_31__38_Block & outArgument0,
-                                                      class GGS_uint constinArgument1,
+  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_lstring & outArgument0,
+                                                      class GGS_luint & outArgument1,
+                                                      class GGS_luint & outArgument2,
+                                                      class GGS_bool & outArgument3,
+                                                      class GGS_bool & outArgument4,
+                                                      class GGS_uint constinArgument5,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMBlockAtIndex (class GGS_ipic_31__38_Block constinArgument0,
-                                                         class GGS_uint constinArgument1,
-                                                         Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
-
-//--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_ipic_31__38_Block & outArgument0,
-                                              Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_ipic_31__38_Block & outArgument0,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_ipic_31__38_Block getter_mBlockAtIndex (const class GGS_uint & constinOperand0,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_ipic_31__38_BlockList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_ipic_31__38_BlockList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_ipic_31__38_BlockList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
-//--------------------------------- Friend
-  friend class UpEnumerator_ipic_31__38_BlockList ;
-  friend class DownEnumerator_ipic_31__38_BlockList ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_BlockList ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_SequentialInstructionList list enumerator
-//--------------------------------------------------------------------------------------------------
-
-class DownEnumerator_ipic_31__38_SequentialInstructionList final {
-  public: DownEnumerator_ipic_31__38_SequentialInstructionList (const class GGS_ipic_31__38_SequentialInstructionList & inList) ;
-
-  public: ~ DownEnumerator_ipic_31__38_SequentialInstructionList (void) = default ;
-
-  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
-
-  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
-
-  public: inline void rewind (void) { mIndex = 0 ; }
-
-  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
-
-  public: class GGS_ipic_31__38_SequentialInstruction current_mInstruction (LOCATION_ARGS) const ;
-  public: class GGS_uint current_mMin (LOCATION_ARGS) const ;
-  public: class GGS_uint current_mMax (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_ipic_31__38_SequentialInstructionList_2E_element current (LOCATION_ARGS) const ;
-
-  private: GenericArray <GGS_ipic_31__38_SequentialInstructionList_2E_element> mArray ;
-  private: int32_t mIndex ;
-
-  private: DownEnumerator_ipic_31__38_SequentialInstructionList (const DownEnumerator_ipic_31__38_SequentialInstructionList &) = delete ;
-  private: DownEnumerator_ipic_31__38_SequentialInstructionList & operator = (const DownEnumerator_ipic_31__38_SequentialInstructionList &) = delete ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-class UpEnumerator_ipic_31__38_SequentialInstructionList final {
-  public: UpEnumerator_ipic_31__38_SequentialInstructionList (const class GGS_ipic_31__38_SequentialInstructionList & inList)  ;
-
-  public: ~ UpEnumerator_ipic_31__38_SequentialInstructionList (void) = default ;
-
-  public: inline bool hasCurrentObject (void) const { return mIndex < mArray.count () ; }
-
-  public: inline void gotoNextObject (void) { mIndex += 1 ; }
-
-  public: inline void rewind (void) { mIndex = 0 ; }
-
-  public: inline uint32_t index (void) { return uint32_t (mIndex) ; }
-
-  public: class GGS_ipic_31__38_SequentialInstruction current_mInstruction (LOCATION_ARGS) const ;
-  public: class GGS_uint current_mMin (LOCATION_ARGS) const ;
-  public: class GGS_uint current_mMax (LOCATION_ARGS) const ;
-//--- Current element access
-  public: class GGS_ipic_31__38_SequentialInstructionList_2E_element current (LOCATION_ARGS) const ;
-
-  private: GenericArray <GGS_ipic_31__38_SequentialInstructionList_2E_element> mArray ;
-  private: int32_t mIndex ;
-
-  private: UpEnumerator_ipic_31__38_SequentialInstructionList (const UpEnumerator_ipic_31__38_SequentialInstructionList &) = delete ;
-  private: UpEnumerator_ipic_31__38_SequentialInstructionList & operator = (const UpEnumerator_ipic_31__38_SequentialInstructionList &) = delete ;
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// @ipic18SequentialInstructionList list
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_SequentialInstructionList : public AC_GALGAS_root {
-//--- Private property
-  private: GenericArray <GGS_ipic_31__38_SequentialInstructionList_2E_element> mArray ;
-
-//--- Default constructor
-  public: GGS_ipic_31__38_SequentialInstructionList (void) ;
-
-//--- Destructor
-  public: virtual ~ GGS_ipic_31__38_SequentialInstructionList (void) = default ;
-
-//--- Copy
-  public: GGS_ipic_31__38_SequentialInstructionList (const GGS_ipic_31__38_SequentialInstructionList &) = default ;
-  public: GGS_ipic_31__38_SequentialInstructionList & operator = (const GGS_ipic_31__38_SequentialInstructionList &) = default ;
-
-//--- Is valid
-  public: inline bool isValid (void) const override { return mArray.isAllocated () ; }
-
-//--- Drop
-  public: inline virtual void drop (void) override { mArray.removeAll () ; }
-
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Count
-  public: inline uint32_t count (void) const { return uint32_t (mArray.count ()) ; }
- 
-//--- sortedElementArray
-  public : inline GenericArray <GGS_ipic_31__38_SequentialInstructionList_2E_element> sortedElementArray (void) const {
-    return mArray ;
-  }
-
-//--- subList
-  private: GGS_ipic_31__38_SequentialInstructionList subList (const int32_t inStart,
-                                                              const int32_t inLength,
+  public: VIRTUAL_IN_DEBUG void setter_setMIsNoReturnAtIndex (class GGS_bool constinArgument0,
+                                                              class GGS_uint constinArgument1,
                                                               Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+                                                              COMMA_LOCATION_ARGS) ;
 
-
-//--- List constructor for graph
-  public: GGS_ipic_31__38_SequentialInstructionList (const capCollectionElementArray & inSharedArray) ;
-
-//--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
-                                                 const class GGS_ipic_31__38_SequentialInstruction & in_mInstruction,
-                                                 const class GGS_uint & in_mMin,
-                                                 const class GGS_uint & in_mMax
-                                                 COMMA_LOCATION_ARGS) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_SequentialInstructionList init (Compiler * inCompiler
+  public: VIRTUAL_IN_DEBUG void setter_setMPreservesBankAtIndex (class GGS_bool constinArgument0,
+                                                                 class GGS_uint constinArgument1,
+                                                                 Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+  public: VIRTUAL_IN_DEBUG void setter_setMRequiredBankAtIndex (class GGS_luint constinArgument0,
+                                                                class GGS_uint constinArgument1,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_SequentialInstructionList extractObject (const GGS_object & inObject,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void setter_setMReturnedBankAtIndex (class GGS_luint constinArgument0,
+                                                                class GGS_uint constinArgument1,
+                                                                Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_SequentialInstructionList class_func_emptyList (LOCATION_ARGS) ;
-
-  public: static class GGS_ipic_31__38_SequentialInstructionList class_func_listWithValue (const class GGS_ipic_31__38_SequentialInstruction & inOperand0,
-                                                                                           const class GGS_uint & inOperand1,
-                                                                                           const class GGS_uint & inOperand2
-                                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with expression)
-  public: VIRTUAL_IN_DEBUG void plusAssignOperation (const GGS_ipic_31__38_SequentialInstructionList inOperand,
-                                                     class Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- += operator (with list of field expressions)
-  public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_ipic_31__38_SequentialInstruction & inOperand0,
-                                                    const class GGS_uint & inOperand1,
-                                                    const class GGS_uint & inOperand2
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- ++= operator, collection value
-  public: VIRTUAL_IN_DEBUG void plusPlusAssignOperation (const GGS_ipic_31__38_SequentialInstructionList_2E_element & inOperand
-                                                         COMMA_LOCATION_ARGS) ;
-//--------------------------------- + operator
-  public: VIRTUAL_IN_DEBUG GGS_ipic_31__38_SequentialInstructionList add_operation (const GGS_ipic_31__38_SequentialInstructionList & inOperand,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) const ;
-
-
-//--------------------------------- Setters
-  public: VIRTUAL_IN_DEBUG void setter_append (class GGS_ipic_31__38_SequentialInstruction constinArgument0,
-                                               class GGS_uint constinArgument1,
-                                               class GGS_uint constinArgument2,
-                                               Compiler * inCompiler
-                                               COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_insertAtIndex (class GGS_ipic_31__38_SequentialInstruction constinArgument0,
-                                                      class GGS_uint constinArgument1,
-                                                      class GGS_uint constinArgument2,
-                                                      class GGS_uint constinArgument3,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popFirst (class GGS_ipic_31__38_SequentialInstruction & outArgument0,
-                                                 class GGS_uint & outArgument1,
-                                                 class GGS_uint & outArgument2,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_popLast (class GGS_ipic_31__38_SequentialInstruction & outArgument0,
-                                                class GGS_uint & outArgument1,
-                                                class GGS_uint & outArgument2,
-                                                Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_removeAtIndex (class GGS_ipic_31__38_SequentialInstruction & outArgument0,
-                                                      class GGS_uint & outArgument1,
-                                                      class GGS_uint & outArgument2,
-                                                      class GGS_uint constinArgument3,
-                                                      Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMInstructionAtIndex (class GGS_ipic_31__38_SequentialInstruction constinArgument0,
+  public: VIRTUAL_IN_DEBUG void setter_setMRoutineNameAtIndex (class GGS_lstring constinArgument0,
                                                                class GGS_uint constinArgument1,
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMMaxAtIndex (class GGS_uint constinArgument0,
-                                                       class GGS_uint constinArgument1,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMMinAtIndex (class GGS_uint constinArgument0,
-                                                       class GGS_uint constinArgument1,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
 
 //--------------------------------- Instance Methods
-  public: VIRTUAL_IN_DEBUG void method_first (class GGS_ipic_31__38_SequentialInstruction & outArgument0,
-                                              class GGS_uint & outArgument1,
-                                              class GGS_uint & outArgument2,
+  public: VIRTUAL_IN_DEBUG void method_first (class GGS_lstring & outArgument0,
+                                              class GGS_luint & outArgument1,
+                                              class GGS_luint & outArgument2,
+                                              class GGS_bool & outArgument3,
+                                              class GGS_bool & outArgument4,
                                               Compiler * inCompiler
                                               COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG void method_last (class GGS_ipic_31__38_SequentialInstruction & outArgument0,
-                                             class GGS_uint & outArgument1,
-                                             class GGS_uint & outArgument2,
+  public: VIRTUAL_IN_DEBUG void method_last (class GGS_lstring & outArgument0,
+                                             class GGS_luint & outArgument1,
+                                             class GGS_luint & outArgument2,
+                                             class GGS_bool & outArgument3,
+                                             class GGS_bool & outArgument4,
                                              Compiler * inCompiler
                                              COMMA_LOCATION_ARGS) const ;
 
@@ -1221,31 +2015,39 @@ class GGS_ipic_31__38_SequentialInstructionList : public AC_GALGAS_root {
 //--------------------------------- Getters
   public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_ipic_31__38_SequentialInstruction getter_mInstructionAtIndex (const class GGS_uint & constinOperand0,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mIsNoReturnAtIndex (const class GGS_uint & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mMaxAtIndex (const class GGS_uint & constinOperand0,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mPreservesBankAtIndex (const class GGS_uint & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mMinAtIndex (const class GGS_uint & constinOperand0,
-                                                              Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GGS_luint getter_mRequiredBankAtIndex (const class GGS_uint & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_luint getter_mReturnedBankAtIndex (const class GGS_uint & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstring getter_mRoutineNameAtIndex (const class GGS_uint & constinOperand0,
+                                                                         Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) const ;
 
   public: VIRTUAL_IN_DEBUG class GGS_range getter_range (LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_ipic_31__38_SequentialInstructionList getter_subListFromIndex (const class GGS_uint & constinOperand0,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GGS_routineDeclarationList getter_subListFromIndex (const class GGS_uint & constinOperand0,
+                                                                                     Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_ipic_31__38_SequentialInstructionList getter_subListToIndex (const class GGS_uint & constinOperand0,
-                                                                                                  Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GGS_routineDeclarationList getter_subListToIndex (const class GGS_uint & constinOperand0,
+                                                                                   Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_ipic_31__38_SequentialInstructionList getter_subListWithRange (const class GGS_range & constinOperand0,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GGS_routineDeclarationList getter_subListWithRange (const class GGS_range & constinOperand0,
+                                                                                     Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
@@ -1254,17 +2056,419 @@ class GGS_ipic_31__38_SequentialInstructionList : public AC_GALGAS_root {
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
-  friend class UpEnumerator_ipic_31__38_SequentialInstructionList ;
-  friend class DownEnumerator_ipic_31__38_SequentialInstructionList ;
+  friend class UpEnumerator_routineDeclarationList ;
+  friend class DownEnumerator_routineDeclarationList ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_routineDeclarationList ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38__5F_dataMap map
+// Phase 1: @routineDeclarationList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_routineDeclarationList_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_mRoutineName ;
+  public: inline GGS_lstring readProperty_mRoutineName (void) const {
+    return mProperty_mRoutineName ;
+  }
+
+  public: GGS_luint mProperty_mRequiredBank ;
+  public: inline GGS_luint readProperty_mRequiredBank (void) const {
+    return mProperty_mRequiredBank ;
+  }
+
+  public: GGS_luint mProperty_mReturnedBank ;
+  public: inline GGS_luint readProperty_mReturnedBank (void) const {
+    return mProperty_mReturnedBank ;
+  }
+
+  public: GGS_bool mProperty_mPreservesBank ;
+  public: inline GGS_bool readProperty_mPreservesBank (void) const {
+    return mProperty_mPreservesBank ;
+  }
+
+  public: GGS_bool mProperty_mIsNoReturn ;
+  public: inline GGS_bool readProperty_mIsNoReturn (void) const {
+    return mProperty_mIsNoReturn ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_routineDeclarationList_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMRoutineName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRoutineName = inValue ;
+  }
+
+  public: inline void setter_setMRequiredBank (const GGS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRequiredBank = inValue ;
+  }
+
+  public: inline void setter_setMReturnedBank (const GGS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mReturnedBank = inValue ;
+  }
+
+  public: inline void setter_setMPreservesBank (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mPreservesBank = inValue ;
+  }
+
+  public: inline void setter_setMIsNoReturn (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mIsNoReturn = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_routineDeclarationList_2E_element (const GGS_lstring & in_mRoutineName,
+                                                 const GGS_luint & in_mRequiredBank,
+                                                 const GGS_luint & in_mReturnedBank,
+                                                 const GGS_bool & in_mPreservesBank,
+                                                 const GGS_bool & in_mIsNoReturn) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_routineDeclarationList_2E_element (const GGS_routineDeclarationList_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_routineDeclarationList_2E_element & operator = (const GGS_routineDeclarationList_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_routineDeclarationList_2E_element init_21__21__21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                                 const class GGS_luint & inOperand1,
+                                                                                 const class GGS_luint & inOperand2,
+                                                                                 const class GGS_bool & inOperand3,
+                                                                                 const class GGS_bool & inOperand4,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_routineDeclarationList_2E_element extractObject (const GGS_object & inObject,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_routineDeclarationList_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                             const class GGS_luint & inOperand1,
+                                                                             const class GGS_luint & inOperand2,
+                                                                             const class GGS_bool & inOperand3,
+                                                                             const class GGS_bool & inOperand4,
+                                                                             class Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_routineDeclarationList_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+//   enum programKind
+//--------------------------------------------------------------------------------------------------
+
+class GGS_programKind : public AC_GALGAS_root {
+//--------------------------------- Default constructor
+  public: GGS_programKind (void) ;
+
+//--------------------------------- Enumeration
+  public: enum class Enumeration {
+    invalid,
+    enum_regularProgram,
+    enum_bootloaderProgram,
+    enum_userProgram
+  } ;
+  
+//--------------------------------- Private properties
+  private: Enumeration mEnum ;
+
+//--------------------------------- Associated value extraction
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override {
+    return Enumeration::invalid != mEnum ;
+  }
+
+  public: VIRTUAL_IN_DEBUG inline void drop (void) override {
+    mEnum = Enumeration::invalid ;
+  }
+
+  public: inline Enumeration enumValue (void) const {
+    return mEnum ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_programKind extractObject (const GGS_object & inObject,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_programKind class_func_bootloaderProgram (LOCATION_ARGS) ;
+
+  public: static class GGS_programKind class_func_regularProgram (LOCATION_ARGS) ;
+
+  public: static class GGS_programKind class_func_userProgram (LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_programKind & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isBootloaderProgram (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isRegularProgram (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isUserProgram (LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_programKind ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @dataList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_dataList_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_mDataName ;
+  public: inline GGS_lstring readProperty_mDataName (void) const {
+    return mProperty_mDataName ;
+  }
+
+  public: GGS_immediatExpressionList mProperty_mValueList ;
+  public: inline GGS_immediatExpressionList readProperty_mValueList (void) const {
+    return mProperty_mValueList ;
+  }
+
+  public: GGS_bool mProperty_mIsByteList ;
+  public: inline GGS_bool readProperty_mIsByteList (void) const {
+    return mProperty_mIsByteList ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_dataList_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMDataName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDataName = inValue ;
+  }
+
+  public: inline void setter_setMValueList (const GGS_immediatExpressionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mValueList = inValue ;
+  }
+
+  public: inline void setter_setMIsByteList (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mIsByteList = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_dataList_2E_element (const GGS_lstring & in_mDataName,
+                                   const GGS_immediatExpressionList & in_mValueList,
+                                   const GGS_bool & in_mIsByteList) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_dataList_2E_element (const GGS_dataList_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_dataList_2E_element & operator = (const GGS_dataList_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_dataList_2E_element init_21__21__21_ (const class GGS_lstring & inOperand0,
+                                                           const class GGS_immediatExpressionList & inOperand1,
+                                                           const class GGS_bool & inOperand2,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_dataList_2E_element extractObject (const GGS_object & inObject,
+                                                        Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_dataList_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                               const class GGS_immediatExpressionList & inOperand1,
+                                                               const class GGS_bool & inOperand2,
+                                                               class Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_dataList_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @checkpicList_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_checkpicList_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_location mProperty_mErrorLocation ;
+  public: inline GGS_location readProperty_mErrorLocation (void) const {
+    return mProperty_mErrorLocation ;
+  }
+
+  public: GGS_lstringlist mProperty_mValueList ;
+  public: inline GGS_lstringlist readProperty_mValueList (void) const {
+    return mProperty_mValueList ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_checkpicList_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMErrorLocation (const GGS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mErrorLocation = inValue ;
+  }
+
+  public: inline void setter_setMValueList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mValueList = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_checkpicList_2E_element (const GGS_location & in_mErrorLocation,
+                                       const GGS_lstringlist & in_mValueList) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_checkpicList_2E_element (const GGS_checkpicList_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_checkpicList_2E_element & operator = (const GGS_checkpicList_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_checkpicList_2E_element init_21__21_ (const class GGS_location & inOperand0,
+                                                           const class GGS_lstringlist & inOperand1,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_checkpicList_2E_element extractObject (const GGS_object & inObject,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_checkpicList_2E_element class_func_new (const class GGS_location & inOperand0,
+                                                                   const class GGS_lstringlist & inOperand1,
+                                                                   class Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_checkpicList_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @baseline_5F_symbolTable map
 //--------------------------------------------------------------------------------------------------
 
 #include "SharedGenericPtrWithValueSemantics.h"
@@ -1273,11 +2477,11 @@ template <typename INFO> class GenericMapRoot ;
 
 //--------------------------------------------------------------------------------------------------
 
-class DownEnumerator_pic_31__38__5F_dataMap final {
+class DownEnumerator_baseline_5F_symbolTable final {
 
-  public: DownEnumerator_pic_31__38__5F_dataMap (const class GGS_pic_31__38__5F_dataMap & inMap) ;
+  public: DownEnumerator_baseline_5F_symbolTable (const class GGS_baseline_5F_symbolTable & inMap) ;
 
-  public: ~ DownEnumerator_pic_31__38__5F_dataMap (void) = default ;
+  public: ~ DownEnumerator_baseline_5F_symbolTable (void) = default ;
 
   public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
 
@@ -1285,25 +2489,23 @@ class DownEnumerator_pic_31__38__5F_dataMap final {
 
   public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
 
-  public: class GGS_uintlist current_mData (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mRoutineAddress (LOCATION_ARGS) const ;
 
-  public: class GGS_bool current_mIsData_38_ (LOCATION_ARGS) const ;
+  public: class GGS_baseline_5F_symbolTable_2E_element current (LOCATION_ARGS) const ;
 
-  public: class GGS_pic_31__38__5F_dataMap_2E_element current (LOCATION_ARGS) const ;
-
-  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataMap_2E_element>> mInfoArray ;
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_baseline_5F_symbolTable_2E_element>> mInfoArray ;
   private: int32_t mIndex ;
 
-  private: DownEnumerator_pic_31__38__5F_dataMap (const DownEnumerator_pic_31__38__5F_dataMap &) = delete ;
-  private: DownEnumerator_pic_31__38__5F_dataMap & operator = (const DownEnumerator_pic_31__38__5F_dataMap &) = delete ;
+  private: DownEnumerator_baseline_5F_symbolTable (const DownEnumerator_baseline_5F_symbolTable &) = delete ;
+  private: DownEnumerator_baseline_5F_symbolTable & operator = (const DownEnumerator_baseline_5F_symbolTable &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-class UpEnumerator_pic_31__38__5F_dataMap final {
-  public: UpEnumerator_pic_31__38__5F_dataMap (const class GGS_pic_31__38__5F_dataMap & inMap)  ;
+class UpEnumerator_baseline_5F_symbolTable final {
+  public: UpEnumerator_baseline_5F_symbolTable (const class GGS_baseline_5F_symbolTable & inMap)  ;
 
-  public: ~ UpEnumerator_pic_31__38__5F_dataMap (void) = default ;
+  public: ~ UpEnumerator_baseline_5F_symbolTable (void) = default ;
 
   public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
 
@@ -1312,33 +2514,32 @@ class UpEnumerator_pic_31__38__5F_dataMap final {
   public: inline void rewind (void) { mIndex = 0 ; }
 
   public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
-  public: class GGS_uintlist current_mData (LOCATION_ARGS) const ;
-  public: class GGS_bool current_mIsData_38_ (LOCATION_ARGS) const ;
-  public: class GGS_pic_31__38__5F_dataMap_2E_element current (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mRoutineAddress (LOCATION_ARGS) const ;
+  public: class GGS_baseline_5F_symbolTable_2E_element current (LOCATION_ARGS) const ;
 
-  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataMap_2E_element>> mInfoArray ;
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_baseline_5F_symbolTable_2E_element>> mInfoArray ;
   private: int32_t mIndex ;
 
-  private: UpEnumerator_pic_31__38__5F_dataMap (const UpEnumerator_pic_31__38__5F_dataMap &) = delete ;
-  private: UpEnumerator_pic_31__38__5F_dataMap & operator = (const UpEnumerator_pic_31__38__5F_dataMap &) = delete ;
+  private: UpEnumerator_baseline_5F_symbolTable (const UpEnumerator_baseline_5F_symbolTable &) = delete ;
+  private: UpEnumerator_baseline_5F_symbolTable & operator = (const UpEnumerator_baseline_5F_symbolTable &) = delete ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-class GGS_pic_31__38__5F_dataMap : public AC_GALGAS_root {
+class GGS_baseline_5F_symbolTable : public AC_GALGAS_root {
 
 //--- Private property
-  private: OptionalSharedRef <GenericMapRoot <GGS_pic_31__38__5F_dataMap_2E_element>> mSharedRoot ;
+  private: OptionalSharedRef <GenericMapRoot <GGS_baseline_5F_symbolTable_2E_element>> mSharedRoot ;
 
 //--- Default constructor
-  public: GGS_pic_31__38__5F_dataMap (void) ;
+  public: GGS_baseline_5F_symbolTable (void) ;
 
 //--- Virtual destructor
-  public: virtual ~ GGS_pic_31__38__5F_dataMap (void) ;
+  public: virtual ~ GGS_baseline_5F_symbolTable (void) ;
 
 //--- Handle copy
-  public: GGS_pic_31__38__5F_dataMap (const GGS_pic_31__38__5F_dataMap & inSource) ;
-  public: GGS_pic_31__38__5F_dataMap & operator = (const GGS_pic_31__38__5F_dataMap & inSource) ;
+  public: GGS_baseline_5F_symbolTable (const GGS_baseline_5F_symbolTable & inSource) ;
+  public: GGS_baseline_5F_symbolTable & operator = (const GGS_baseline_5F_symbolTable & inSource) ;
 
 //--- Build
   protected: void build (LOCATION_ARGS) ;
@@ -1356,20 +2557,20 @@ class GGS_pic_31__38__5F_dataMap : public AC_GALGAS_root {
 
 
 //--- performInsert
-  protected: void performInsert (const class GGS_pic_31__38__5F_dataMap_2E_element & inElement,
+  protected: void performInsert (const class GGS_baseline_5F_symbolTable_2E_element & inElement,
                                  const char * inInsertErrorMessage,
                                  const char * inShadowErrorMessage,
                                  Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
  
 //--- infoForKey
-  protected: const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataMap_2E_element> infoForKey (const String & inKey) const ;
+  protected: const SharedGenericPtrWithValueSemantics <GGS_baseline_5F_symbolTable_2E_element> infoForKey (const String & inKey) const ;
  
 //--- Count
   public: int32_t count (void) const ;
  
 //--- sortedInfoArray
-  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataMap_2E_element>> sortedInfoArray (void) const ;
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_baseline_5F_symbolTable_2E_element>> sortedInfoArray (void) const ;
 
 //--- findNearestKey
   protected: void findNearestKey (const String & inKey,
@@ -1378,46 +2579,39 @@ class GGS_pic_31__38__5F_dataMap : public AC_GALGAS_root {
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_pic_31__38__5F_dataMap init (Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  public: static GGS_baseline_5F_symbolTable init (Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_pic_31__38__5F_dataMap extractObject (const GGS_object & inObject,
-                                                           Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
+  public: static GGS_baseline_5F_symbolTable extractObject (const GGS_object & inObject,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38__5F_dataMap class_func_emptyMap (LOCATION_ARGS) ;
+  public: static class GGS_baseline_5F_symbolTable class_func_emptyMap (LOCATION_ARGS) ;
 
-  public: static class GGS_pic_31__38__5F_dataMap class_func_mapWithMapToOverride (const class GGS_pic_31__38__5F_dataMap & inOperand0
-                                                                                   COMMA_LOCATION_ARGS) ;
+  public: static class GGS_baseline_5F_symbolTable class_func_mapWithMapToOverride (const class GGS_baseline_5F_symbolTable & inOperand0
+                                                                                    COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Setters
   public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
-                                                  class GGS_uintlist constinArgument1,
-                                                  class GGS_bool constinArgument2,
+                                                  class GGS_uint constinArgument1,
                                                   Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) ;
 
-  public: VIRTUAL_IN_DEBUG void setter_setMDataForKey (class GGS_uintlist constinArgument0,
-                                                       class GGS_string constinArgument1,
-                                                       Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) ;
-
-  public: VIRTUAL_IN_DEBUG void setter_setMIsData_38_ForKey (class GGS_bool constinArgument0,
-                                                             class GGS_string constinArgument1,
-                                                             Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
+  public: VIRTUAL_IN_DEBUG void setter_setMRoutineAddressForKey (class GGS_uint constinArgument0,
+                                                                 class GGS_string constinArgument1,
+                                                                 Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Instance Methods
   public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
-                                                  class GGS_uintlist & outArgument1,
-                                                  class GGS_bool & outArgument2,
+                                                  class GGS_uint & outArgument1,
                                                   Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) const ;
 
@@ -1445,56 +2639,47 @@ class GGS_pic_31__38__5F_dataMap : public AC_GALGAS_root {
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_uintlist getter_mDataForKey (const class GGS_string & constinOperand0,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mRoutineAddressForKey (const class GGS_string & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
 
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_mIsData_38_ForKey (const class GGS_string & constinOperand0,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_pic_31__38__5F_dataMap getter_overriddenMap (Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_symbolTable getter_overriddenMap (Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) const ;
 
 
 //--------------------------------- Read subscripts
-  public: VIRTUAL_IN_DEBUG class GGS_pic_31__38__5F_dataMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) const ;
+  public: VIRTUAL_IN_DEBUG class GGS_baseline_5F_symbolTable_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                                Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) const ;
 
 
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
 //--------------------------------- Friend
-  friend class UpEnumerator_pic_31__38__5F_dataMap ;
-  friend class DownEnumerator_pic_31__38__5F_dataMap ;
+  friend class UpEnumerator_baseline_5F_symbolTable ;
+  friend class DownEnumerator_baseline_5F_symbolTable ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataMap ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_symbolTable ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38__5F_dataMap_2E_element struct
+// Phase 1: @baseline_5F_symbolTable_2E_element struct
 //--------------------------------------------------------------------------------------------------
 
-class GGS_pic_31__38__5F_dataMap_2E_element : public AC_GALGAS_root {
+class GGS_baseline_5F_symbolTable_2E_element : public AC_GALGAS_root {
 //--------------------------------- Properties
   public: GGS_lstring mProperty_lkey ;
   public: inline GGS_lstring readProperty_lkey (void) const {
     return mProperty_lkey ;
   }
 
-  public: GGS_uintlist mProperty_mData ;
-  public: inline GGS_uintlist readProperty_mData (void) const {
-    return mProperty_mData ;
-  }
-
-  public: GGS_bool mProperty_mIsData_38_ ;
-  public: inline GGS_bool readProperty_mIsData_38_ (void) const {
-    return mProperty_mIsData_38_ ;
+  public: GGS_uint mProperty_mRoutineAddress ;
+  public: inline GGS_uint readProperty_mRoutineAddress (void) const {
+    return mProperty_mRoutineAddress ;
   }
 
 //--------------------------------- Accessors
@@ -1502,58 +2687,51 @@ class GGS_pic_31__38__5F_dataMap_2E_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
-  public: GGS_pic_31__38__5F_dataMap_2E_element (void) ;
+  public: GGS_baseline_5F_symbolTable_2E_element (void) ;
 
 //--------------------------------- Property setters
   public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
     mProperty_lkey = inValue ;
   }
 
-  public: inline void setter_setMData (const GGS_uintlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mData = inValue ;
-  }
-
-  public: inline void setter_setMIsData_38_ (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mIsData_38_ = inValue ;
+  public: inline void setter_setMRoutineAddress (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRoutineAddress = inValue ;
   }
 
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
 //--------------------------------- Native constructor
-  public: GGS_pic_31__38__5F_dataMap_2E_element (const GGS_lstring & in_lkey,
-                                                 const GGS_uintlist & in_mData,
-                                                 const GGS_bool & in_mIsData_38_) ;
+  public: GGS_baseline_5F_symbolTable_2E_element (const GGS_lstring & in_lkey,
+                                                  const GGS_uint & in_mRoutineAddress) ;
 
 //--------------------------------- Copy constructor
-  public: GGS_pic_31__38__5F_dataMap_2E_element (const GGS_pic_31__38__5F_dataMap_2E_element & inSource) ;
+  public: GGS_baseline_5F_symbolTable_2E_element (const GGS_baseline_5F_symbolTable_2E_element & inSource) ;
 
 //--------------------------------- Assignment operator
-  public: GGS_pic_31__38__5F_dataMap_2E_element & operator = (const GGS_pic_31__38__5F_dataMap_2E_element & inSource) ;
+  public: GGS_baseline_5F_symbolTable_2E_element & operator = (const GGS_baseline_5F_symbolTable_2E_element & inSource) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_pic_31__38__5F_dataMap_2E_element init_21__21__21_ (const class GGS_lstring & inOperand0,
-                                                                         const class GGS_uintlist & inOperand1,
-                                                                         const class GGS_bool & inOperand2,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
+  public: static GGS_baseline_5F_symbolTable_2E_element init_21__21_ (const class GGS_lstring & inOperand0,
+                                                                      const class GGS_uint & inOperand1,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_pic_31__38__5F_dataMap_2E_element extractObject (const GGS_object & inObject,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
+  public: static GGS_baseline_5F_symbolTable_2E_element extractObject (const GGS_object & inObject,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38__5F_dataMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                             const class GGS_uintlist & inOperand1,
-                                                                             const class GGS_bool & inOperand2,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
+  public: static class GGS_baseline_5F_symbolTable_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                              const class GGS_uint & inOperand1,
+                                                                              class Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -1576,32 +2754,32 @@ class GGS_pic_31__38__5F_dataMap_2E_element : public AC_GALGAS_root {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataMap_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_symbolTable_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: pic18_dataMap.element? optional
+// Phase 1: baseline_symbolTable.element? optional
 //--------------------------------------------------------------------------------------------------
 
-class GGS_pic_31__38__5F_dataMap_2E_element_3F_ : public AC_GALGAS_root {
+class GGS_baseline_5F_symbolTable_2E_element_3F_ : public AC_GALGAS_root {
 //--------------------------------- Private property
-  private: GGS_pic_31__38__5F_dataMap_2E_element mValue ;
+  private: GGS_baseline_5F_symbolTable_2E_element mValue ;
   private: OptionalState mState ;
 
 //--------------------------------- Default constructor
-  public: GGS_pic_31__38__5F_dataMap_2E_element_3F_ (void) ;
+  public: GGS_baseline_5F_symbolTable_2E_element_3F_ (void) ;
 
 //--------------------------------- Constructor from unwrapped type
-  public: GGS_pic_31__38__5F_dataMap_2E_element_3F_ (const GGS_pic_31__38__5F_dataMap_2E_element & inSource) ;
+  public: GGS_baseline_5F_symbolTable_2E_element_3F_ (const GGS_baseline_5F_symbolTable_2E_element & inSource) ;
 
 //--------------------------------- Constructor from weak type
 
 //--------------------------------- nil initializer
-  public: static GGS_pic_31__38__5F_dataMap_2E_element_3F_ init_nil (void) ;
+  public: static GGS_baseline_5F_symbolTable_2E_element_3F_ init_nil (void) ;
 
   public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
 
   public: bool isValuated (void) const ;
-  public: inline GGS_pic_31__38__5F_dataMap_2E_element unwrappedValue (void) const {
+  public: inline GGS_baseline_5F_symbolTable_2E_element unwrappedValue (void) const {
     return mValue ;
   }
 
@@ -1631,9 +2809,9 @@ class GGS_pic_31__38__5F_dataMap_2E_element_3F_ : public AC_GALGAS_root {
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_pic_31__38__5F_dataMap_2E_element_3F_ extractObject (const GGS_object & inObject,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
+  public: static GGS_baseline_5F_symbolTable_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                           Compiler * inCompiler
+                                                                           COMMA_LOCATION_ARGS) ;
 
 
 //--------------------------------- Setters
@@ -1653,255 +2831,223 @@ class GGS_pic_31__38__5F_dataMap_2E_element_3F_ : public AC_GALGAS_root {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataMap_2E_element_3F_ ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_symbolTable_2E_element_3F_ ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_SequentialInstruction reference class
+//
+//Extension method '@baseline_assembly_instruction enterLabelAtAddress'
+//
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38_SequentialInstruction : public AC_GALGAS_reference_class {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_SequentialInstruction (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_SequentialInstruction (const class cPtr_ipic_31__38_SequentialInstruction * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_location readProperty_mInstructionLocation (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_SequentialInstruction init_21_ (const class GGS_location & inOperand0,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_SequentialInstruction extractObject (const GGS_object & inObject,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_SequentialInstruction & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
+void callExtensionMethod_enterLabelAtAddress (class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                              class GGS_baseline_5F_symbolTable & io_ioRoutineSymbolTable,
+                                              class GGS_uint & io_ioWordAddress,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18SequentialInstruction class
+//
+//Abstract extension method '@baseline_assembly_instruction generateBinaryCodeAtAddress'
+//
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_ipic_31__38_SequentialInstruction : public acStrongPtr_class {
+void callExtensionMethod_generateBinaryCodeAtAddress (class cPtr_baseline_5F_assembly_5F_instruction * inObject,
+                                                      const class GGS_baseline_5F_symbolTable constin_inRoutineSymbolTable,
+                                                      class GGS_string & io_ioListFileContents,
+                                                      class GGS_uint & io_ioWordAddress,
+                                                      class Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
 
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@declarationInRam handleDeclaration'
+//
+//--------------------------------------------------------------------------------------------------
 
-//--------------------------------- Initializers
-  public: void ipic_31__38_SequentialInstruction_init_21_ (const class GGS_location & inOperand0,
-                                                           Compiler * inCompiler) ;
+void callExtensionMethod_handleDeclaration (class cPtr_declarationInRam * inObject,
+                                            const class GGS_constantMap constin_inConstantMap,
+                                            class GGS_stringset & io_ioUsedRegisters,
+                                            class GGS_ramBankTable & io_ioRamBank,
+                                            class GGS_registerTable & io_ioRegisterTable,
+                                            const class GGS_lstring constin_inCurrentRamBank,
+                                            class GGS_declaredByteMap & io_ioDeclaredByteMap,
+                                            class Compiler * inCompiler
+                                            COMMA_LOCATION_ARGS) ;
 
+//--------------------------------------------------------------------------------------------------
+//
+//Parser class 'pic18_start_symbol' declaration
+//
+//--------------------------------------------------------------------------------------------------
 
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const = 0 ;
+class cParser_pic_31__38__5F_start_5F_symbol {
+//--- Virtual destructor
+  public: virtual ~ cParser_pic_31__38__5F_start_5F_symbol (void) { }
 
-//--- Extension getter instructionSize
-  public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const ;
+//--- Non terminal declarations
+  protected: virtual void nt_body_ (class GGS_pic_31__38_InterruptDefinitionList & ioArgument0,
+                                    class GGS_pic_31__38_RoutineDefinitionList & ioArgument1,
+                                    class GGS_pic_31__38_MacroDefinitionList & ioArgument2,
+                                    class GGS_lstringlist & ioArgument3,
+                                    class GGS_lstringlist & ioArgument4,
+                                    class GGS_ramDefinitionList & ioArgument5,
+                                    class GGS_lstringlist & ioArgument6,
+                                    class GGS_configDefinitionList & ioArgument7,
+                                    class GGS_constantDefinitionList & ioArgument8,
+                                    class GGS_checkpicList & ioArgument9,
+                                    class GGS_dataList & ioArgument10,
+                                    class GGS_bool & ioArgument11,
+                                    class GGS_bool & ioArgument12,
+                                    class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
-//--- Extension method buildCalledRoutineSetForStackComputations
-  public: virtual void method_buildCalledRoutineSetForStackComputations (class GGS_stringset & arg_ioRoutineCalledSet,
-           Compiler * COMMA_LOCATION_ARGS) ;
+  protected: virtual void nt_body_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
-//--- Extension method buildInstructionInvocationGraph
-  public: virtual void method_buildInstructionInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           Compiler * COMMA_LOCATION_ARGS) ;
+  protected: virtual void nt_body_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
-//--- Extension method enterInstructionReferencedLabels
-  public: virtual void method_enterInstructionReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) ;
+  protected: virtual void nt_start_5F_symbol_ (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
+  protected: virtual void nt_start_5F_symbol_importBootloaderSpecification (class GGS_piccoloDeviceModel & outArgument0,
+                                                                            class GGS_string & outArgument1,
+                                                                            class GGS_uint & outArgument2,
+                                                                            class GGS_ramBankTable & outArgument3,
+                                                                            class GGS_registerTable & outArgument4,
+                                                                            class GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                            class GGS_routineDeclarationList & outArgument6,
+                                                                            class GGS_routineDeclarationList & outArgument7,
+                                                                            class GGS_luint & outArgument8,
+                                                                            class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
-//--- Extension method instructionRelativeBranchOverflow
-  public: virtual void method_instructionRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) ;
+  protected: virtual void nt_start_5F_symbol_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) ;
-
-//--- Extension method optimizeInstruction
-  public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_lstring arg_inBlockLabel,
-           class GGS_bool & arg_outOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outOptimizedInstruction,
-           class GGS_bool & arg_outNOPsubstitution,
-           Compiler * COMMA_LOCATION_ARGS) ;
-
-//--- Extension method performInstructionRelativeBranchResolution
-  public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outModifiedInstruction,
-           Compiler * COMMA_LOCATION_ARGS) ;
-
-//--- Properties
-  public: GGS_location mProperty_mInstructionLocation ;
+  protected: virtual void nt_start_5F_symbol_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
 
-//--- Default constructor
-  public: cPtr_ipic_31__38_SequentialInstruction (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+//--- Rule declarations
+  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_ (Lexique_piccolo_5F_lexique * inLexique) ;
 
-//--- Constructor
-  public: cPtr_ipic_31__38_SequentialInstruction (const GGS_location & in_mInstructionLocation,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
+  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_importBootloaderSpecification (GGS_piccoloDeviceModel & outArgument0,
+                                                                                                        GGS_string & outArgument1,
+                                                                                                        GGS_uint & outArgument2,
+                                                                                                        GGS_ramBankTable & outArgument3,
+                                                                                                        GGS_registerTable & outArgument4,
+                                                                                                        GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                                                        GGS_routineDeclarationList & outArgument6,
+                                                                                                        GGS_routineDeclarationList & outArgument7,
+                                                                                                        GGS_luint & outArgument8,
+                                                                                                        Lexique_piccolo_5F_lexique * inLexique) ;
 
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override = 0 ;
+  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_parse (Lexique_piccolo_5F_lexique * inLexique) ;
 
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
+  protected: void rule_pic_31__38__5F_start_5F_symbol_start_5F_symbol_i0_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+
+
+//--- Select methods
+  protected: virtual int32_t select_pic_31__38__5F_start_5F_symbol_0 (Lexique_piccolo_5F_lexique *) = 0 ;
+
 
 } ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_SequentialInstruction_2E_weak weak reference class
+//
+//Routine 'pic18_analyze??'
+//
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38_SequentialInstruction_2E_weak : public AC_GALGAS_weak_reference {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_SequentialInstruction_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_SequentialInstruction_2E_weak (const class GGS_ipic_31__38_SequentialInstruction & inSource) ;
-
-  public: GGS_ipic_31__38_SequentialInstruction_2E_weak & operator = (const class GGS_ipic_31__38_SequentialInstruction & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_SequentialInstruction_2E_weak init_nil (void) {
-    GGS_ipic_31__38_SequentialInstruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_SequentialInstruction bang_ipic_31__38_SequentialInstruction_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_SequentialInstruction unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_SequentialInstruction_2E_weak extractObject (const GGS_object & inObject,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_SequentialInstruction_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_SequentialInstruction_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
+void routine_pic_31__38__5F_analyze_3F__3F_ (const class GGS_pic_31__38_AST constinArgument0,
+                                             const class GGS_string constinArgument1,
+                                             class Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstruction_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_SequentialInstructionList_2E_element struct
+// Phase 1: @pic_31__38_AST struct
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38_SequentialInstructionList_2E_element : public AC_GALGAS_root {
+class GGS_pic_31__38_AST : public AC_GALGAS_root {
 //--------------------------------- Properties
-  public: GGS_ipic_31__38_SequentialInstruction mProperty_mInstruction ;
-  public: inline GGS_ipic_31__38_SequentialInstruction readProperty_mInstruction (void) const {
-    return mProperty_mInstruction ;
+  public: GGS_lstring mProperty_mProgramName ;
+  public: inline GGS_lstring readProperty_mProgramName (void) const {
+    return mProperty_mProgramName ;
   }
 
-  public: GGS_uint mProperty_mMin ;
-  public: inline GGS_uint readProperty_mMin (void) const {
-    return mProperty_mMin ;
+  public: GGS_programKind mProperty_mProgramKind ;
+  public: inline GGS_programKind readProperty_mProgramKind (void) const {
+    return mProperty_mProgramKind ;
   }
 
-  public: GGS_uint mProperty_mMax ;
-  public: inline GGS_uint readProperty_mMax (void) const {
-    return mProperty_mMax ;
+  public: GGS_lstring mProperty_mDeviceNameOrBootLoaderReference ;
+  public: inline GGS_lstring readProperty_mDeviceNameOrBootLoaderReference (void) const {
+    return mProperty_mDeviceNameOrBootLoaderReference ;
+  }
+
+  public: GGS_configDefinitionList mProperty_mConfigDefinitionList ;
+  public: inline GGS_configDefinitionList readProperty_mConfigDefinitionList (void) const {
+    return mProperty_mConfigDefinitionList ;
+  }
+
+  public: GGS_ramDefinitionList mProperty_mRamDefinitionList ;
+  public: inline GGS_ramDefinitionList readProperty_mRamDefinitionList (void) const {
+    return mProperty_mRamDefinitionList ;
+  }
+
+  public: GGS_lstringlist mProperty_mUnusedRegisterList ;
+  public: inline GGS_lstringlist readProperty_mUnusedRegisterList (void) const {
+    return mProperty_mUnusedRegisterList ;
+  }
+
+  public: GGS_checkpicList mProperty_mCheckpicList ;
+  public: inline GGS_checkpicList readProperty_mCheckpicList (void) const {
+    return mProperty_mCheckpicList ;
+  }
+
+  public: GGS_dataList mProperty_mDataList ;
+  public: inline GGS_dataList readProperty_mDataList (void) const {
+    return mProperty_mDataList ;
+  }
+
+  public: GGS_pic_31__38_InterruptDefinitionList mProperty_mInterruptDefinitionList ;
+  public: inline GGS_pic_31__38_InterruptDefinitionList readProperty_mInterruptDefinitionList (void) const {
+    return mProperty_mInterruptDefinitionList ;
+  }
+
+  public: GGS_constantDefinitionList mProperty_mConstantDefinitionList ;
+  public: inline GGS_constantDefinitionList readProperty_mConstantDefinitionList (void) const {
+    return mProperty_mConstantDefinitionList ;
+  }
+
+  public: GGS_pic_31__38_RoutineDefinitionList mProperty_mRoutineDefinitionList ;
+  public: inline GGS_pic_31__38_RoutineDefinitionList readProperty_mRoutineDefinitionList (void) const {
+    return mProperty_mRoutineDefinitionList ;
+  }
+
+  public: GGS_pic_31__38_MacroDefinitionList mProperty_mMacroDefinitionList ;
+  public: inline GGS_pic_31__38_MacroDefinitionList readProperty_mMacroDefinitionList (void) const {
+    return mProperty_mMacroDefinitionList ;
+  }
+
+  public: GGS_lstringlist mProperty_mUnusedRoutineList ;
+  public: inline GGS_lstringlist readProperty_mUnusedRoutineList (void) const {
+    return mProperty_mUnusedRoutineList ;
+  }
+
+  public: GGS_lstringlist mProperty_mInlinedRoutineList ;
+  public: inline GGS_lstringlist readProperty_mInlinedRoutineList (void) const {
+    return mProperty_mInlinedRoutineList ;
+  }
+
+  public: GGS_bool mProperty_mNeedsComputedGoto_32_ ;
+  public: inline GGS_bool readProperty_mNeedsComputedGoto_32_ (void) const {
+    return mProperty_mNeedsComputedGoto_32_ ;
+  }
+
+  public: GGS_bool mProperty_mNeedsComputedGoto_34_ ;
+  public: inline GGS_bool readProperty_mNeedsComputedGoto_34_ (void) const {
+    return mProperty_mNeedsComputedGoto_34_ ;
+  }
+
+  public: GGS_location mProperty_mEndOfProgram ;
+  public: inline GGS_location readProperty_mEndOfProgram (void) const {
+    return mProperty_mEndOfProgram ;
   }
 
 //--------------------------------- Accessors
@@ -1909,58 +3055,156 @@ class GGS_ipic_31__38_SequentialInstructionList_2E_element : public AC_GALGAS_ro
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
-  public: GGS_ipic_31__38_SequentialInstructionList_2E_element (void) ;
+  public: GGS_pic_31__38_AST (void) ;
 
 //--------------------------------- Property setters
-  public: inline void setter_setMInstruction (const GGS_ipic_31__38_SequentialInstruction & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mInstruction = inValue ;
+  public: inline void setter_setMProgramName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProgramName = inValue ;
   }
 
-  public: inline void setter_setMMin (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mMin = inValue ;
+  public: inline void setter_setMProgramKind (const GGS_programKind & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProgramKind = inValue ;
   }
 
-  public: inline void setter_setMMax (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mMax = inValue ;
+  public: inline void setter_setMDeviceNameOrBootLoaderReference (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDeviceNameOrBootLoaderReference = inValue ;
+  }
+
+  public: inline void setter_setMConfigDefinitionList (const GGS_configDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConfigDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRamDefinitionList (const GGS_ramDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRamDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRegisterList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRegisterList = inValue ;
+  }
+
+  public: inline void setter_setMCheckpicList (const GGS_checkpicList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mCheckpicList = inValue ;
+  }
+
+  public: inline void setter_setMDataList (const GGS_dataList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDataList = inValue ;
+  }
+
+  public: inline void setter_setMInterruptDefinitionList (const GGS_pic_31__38_InterruptDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInterruptDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMConstantDefinitionList (const GGS_constantDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConstantDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRoutineDefinitionList (const GGS_pic_31__38_RoutineDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRoutineDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMMacroDefinitionList (const GGS_pic_31__38_MacroDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mMacroDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRoutineList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRoutineList = inValue ;
+  }
+
+  public: inline void setter_setMInlinedRoutineList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInlinedRoutineList = inValue ;
+  }
+
+  public: inline void setter_setMNeedsComputedGoto_32_ (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mNeedsComputedGoto_32_ = inValue ;
+  }
+
+  public: inline void setter_setMNeedsComputedGoto_34_ (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mNeedsComputedGoto_34_ = inValue ;
+  }
+
+  public: inline void setter_setMEndOfProgram (const GGS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEndOfProgram = inValue ;
   }
 
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
 //--------------------------------- Native constructor
-  public: GGS_ipic_31__38_SequentialInstructionList_2E_element (const GGS_ipic_31__38_SequentialInstruction & in_mInstruction,
-                                                                const GGS_uint & in_mMin,
-                                                                const GGS_uint & in_mMax) ;
+  public: GGS_pic_31__38_AST (const GGS_lstring & in_mProgramName,
+                              const GGS_programKind & in_mProgramKind,
+                              const GGS_lstring & in_mDeviceNameOrBootLoaderReference,
+                              const GGS_configDefinitionList & in_mConfigDefinitionList,
+                              const GGS_ramDefinitionList & in_mRamDefinitionList,
+                              const GGS_lstringlist & in_mUnusedRegisterList,
+                              const GGS_checkpicList & in_mCheckpicList,
+                              const GGS_dataList & in_mDataList,
+                              const GGS_pic_31__38_InterruptDefinitionList & in_mInterruptDefinitionList,
+                              const GGS_constantDefinitionList & in_mConstantDefinitionList,
+                              const GGS_pic_31__38_RoutineDefinitionList & in_mRoutineDefinitionList,
+                              const GGS_pic_31__38_MacroDefinitionList & in_mMacroDefinitionList,
+                              const GGS_lstringlist & in_mUnusedRoutineList,
+                              const GGS_lstringlist & in_mInlinedRoutineList,
+                              const GGS_bool & in_mNeedsComputedGoto_32_,
+                              const GGS_bool & in_mNeedsComputedGoto_34_,
+                              const GGS_location & in_mEndOfProgram) ;
 
 //--------------------------------- Copy constructor
-  public: GGS_ipic_31__38_SequentialInstructionList_2E_element (const GGS_ipic_31__38_SequentialInstructionList_2E_element & inSource) ;
+  public: GGS_pic_31__38_AST (const GGS_pic_31__38_AST & inSource) ;
 
 //--------------------------------- Assignment operator
-  public: GGS_ipic_31__38_SequentialInstructionList_2E_element & operator = (const GGS_ipic_31__38_SequentialInstructionList_2E_element & inSource) ;
+  public: GGS_pic_31__38_AST & operator = (const GGS_pic_31__38_AST & inSource) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_ipic_31__38_SequentialInstructionList_2E_element init_21__21__21_ (const class GGS_ipic_31__38_SequentialInstruction & inOperand0,
-                                                                                        const class GGS_uint & inOperand1,
-                                                                                        const class GGS_uint & inOperand2,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_AST init_21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                                                              const class GGS_programKind & inOperand1,
+                                                                                                              const class GGS_lstring & inOperand2,
+                                                                                                              const class GGS_configDefinitionList & inOperand3,
+                                                                                                              const class GGS_ramDefinitionList & inOperand4,
+                                                                                                              const class GGS_lstringlist & inOperand5,
+                                                                                                              const class GGS_checkpicList & inOperand6,
+                                                                                                              const class GGS_dataList & inOperand7,
+                                                                                                              const class GGS_pic_31__38_InterruptDefinitionList & inOperand8,
+                                                                                                              const class GGS_constantDefinitionList & inOperand9,
+                                                                                                              const class GGS_pic_31__38_RoutineDefinitionList & inOperand10,
+                                                                                                              const class GGS_pic_31__38_MacroDefinitionList & inOperand11,
+                                                                                                              const class GGS_lstringlist & inOperand12,
+                                                                                                              const class GGS_lstringlist & inOperand13,
+                                                                                                              const class GGS_bool & inOperand14,
+                                                                                                              const class GGS_bool & inOperand15,
+                                                                                                              const class GGS_location & inOperand16,
+                                                                                                              Compiler * inCompiler
+                                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_SequentialInstructionList_2E_element extractObject (const GGS_object & inObject,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
+  public: static GGS_pic_31__38_AST extractObject (const GGS_object & inObject,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_SequentialInstructionList_2E_element class_func_new (const class GGS_ipic_31__38_SequentialInstruction & inOperand0,
-                                                                                            const class GGS_uint & inOperand1,
-                                                                                            const class GGS_uint & inOperand2,
-                                                                                            class Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) ;
+  public: static class GGS_pic_31__38_AST class_func_new (const class GGS_lstring & inOperand0,
+                                                          const class GGS_programKind & inOperand1,
+                                                          const class GGS_lstring & inOperand2,
+                                                          const class GGS_configDefinitionList & inOperand3,
+                                                          const class GGS_ramDefinitionList & inOperand4,
+                                                          const class GGS_lstringlist & inOperand5,
+                                                          const class GGS_checkpicList & inOperand6,
+                                                          const class GGS_dataList & inOperand7,
+                                                          const class GGS_pic_31__38_InterruptDefinitionList & inOperand8,
+                                                          const class GGS_constantDefinitionList & inOperand9,
+                                                          const class GGS_pic_31__38_RoutineDefinitionList & inOperand10,
+                                                          const class GGS_pic_31__38_MacroDefinitionList & inOperand11,
+                                                          const class GGS_lstringlist & inOperand12,
+                                                          const class GGS_lstringlist & inOperand13,
+                                                          const class GGS_bool & inOperand14,
+                                                          const class GGS_bool & inOperand15,
+                                                          const class GGS_location & inOperand16,
+                                                          class Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -1983,290 +3227,62 @@ class GGS_ipic_31__38_SequentialInstructionList_2E_element : public AC_GALGAS_ro
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_SequentialInstructionList_2E_element ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_AST ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_AbstractBlockTerminator reference class
+// Phase 1: @piccoloDeviceModel struct
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38_AbstractBlockTerminator : public AC_GALGAS_reference_class {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_AbstractBlockTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_AbstractBlockTerminator (const class cPtr_ipic_31__38_AbstractBlockTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_location readProperty_mInstructionLocation (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_AbstractBlockTerminator init_21_ (const class GGS_location & inOperand0,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_AbstractBlockTerminator extractObject (const GGS_object & inObject,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_AbstractBlockTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18AbstractBlockTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_AbstractBlockTerminator : public acStrongPtr_class {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_AbstractBlockTerminator_init_21_ (const class GGS_location & inOperand0,
-                                                             Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const = 0 ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
-
-//--- Extension method buildTerminatorOrderedGraph
-  public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_blockInvocationGraph & arg_ioGraph,
-           Compiler * COMMA_LOCATION_ARGS) ;
-
-//--- Extension method enterTerminatorReferencedLabels
-  public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
-
-//--- Extension method terminatorRelativeBranchOverflow
-  public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) ;
-
-//--- Properties
-  public: GGS_location mProperty_mInstructionLocation ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_AbstractBlockTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_AbstractBlockTerminator (const GGS_location & in_mInstructionLocation,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override = 0 ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_AbstractBlockTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_AbstractBlockTerminator_2E_weak : public AC_GALGAS_weak_reference {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_AbstractBlockTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_AbstractBlockTerminator_2E_weak (const class GGS_ipic_31__38_AbstractBlockTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_AbstractBlockTerminator_2E_weak & operator = (const class GGS_ipic_31__38_AbstractBlockTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_AbstractBlockTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_AbstractBlockTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_AbstractBlockTerminator bang_ipic_31__38_AbstractBlockTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_AbstractBlockTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_AbstractBlockTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_AbstractBlockTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_AbstractBlockTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractBlockTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_Block struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_Block : public AC_GALGAS_root {
+class GGS_piccoloDeviceModel : public AC_GALGAS_root {
 //--------------------------------- Properties
-  public: GGS_uint mProperty_mAddress ;
-  public: inline GGS_uint readProperty_mAddress (void) const {
-    return mProperty_mAddress ;
+  public: GGS_lstring mProperty_mDeviceName ;
+  public: inline GGS_lstring readProperty_mDeviceName (void) const {
+    return mProperty_mDeviceName ;
   }
 
-  public: GGS_lstring mProperty_mLabel ;
-  public: inline GGS_lstring readProperty_mLabel (void) const {
-    return mProperty_mLabel ;
+  public: GGS_processorType mProperty_mProcessorType ;
+  public: inline GGS_processorType readProperty_mProcessorType (void) const {
+    return mProperty_mProcessorType ;
   }
 
-  public: GGS_ipic_31__38_SequentialInstructionList mProperty_mInstructionList ;
-  public: inline GGS_ipic_31__38_SequentialInstructionList readProperty_mInstructionList (void) const {
-    return mProperty_mInstructionList ;
+  public: GGS_luint mProperty_mRomSize ;
+  public: inline GGS_luint readProperty_mRomSize (void) const {
+    return mProperty_mRomSize ;
   }
 
-  public: GGS_ipic_31__38_AbstractBlockTerminator mProperty_mTerminator ;
-  public: inline GGS_ipic_31__38_AbstractBlockTerminator readProperty_mTerminator (void) const {
-    return mProperty_mTerminator ;
+  public: GGS_luint mProperty_mBankCount ;
+  public: inline GGS_luint readProperty_mBankCount (void) const {
+    return mProperty_mBankCount ;
   }
 
-  public: GGS_uint mProperty_mTerminatorMin ;
-  public: inline GGS_uint readProperty_mTerminatorMin (void) const {
-    return mProperty_mTerminatorMin ;
+  public: GGS_registerTable mProperty_mRegisterTable ;
+  public: inline GGS_registerTable readProperty_mRegisterTable (void) const {
+    return mProperty_mRegisterTable ;
   }
 
-  public: GGS_uint mProperty_mTerminatorMax ;
-  public: inline GGS_uint readProperty_mTerminatorMax (void) const {
-    return mProperty_mTerminatorMax ;
+  public: GGS_ramBankTable mProperty_mRamBankTable ;
+  public: inline GGS_ramBankTable readProperty_mRamBankTable (void) const {
+    return mProperty_mRamBankTable ;
+  }
+
+  public: GGS_uint mProperty_mEepromSize ;
+  public: inline GGS_uint readProperty_mEepromSize (void) const {
+    return mProperty_mEepromSize ;
+  }
+
+  public: GGS_uint mProperty_mEepromAddress ;
+  public: inline GGS_uint readProperty_mEepromAddress (void) const {
+    return mProperty_mEepromAddress ;
+  }
+
+  public: GGS_configRegisterMap mProperty_mConfigRegisterMap ;
+  public: inline GGS_configRegisterMap readProperty_mConfigRegisterMap (void) const {
+    return mProperty_mConfigRegisterMap ;
+  }
+
+  public: GGS_string mProperty_mSharedBankName ;
+  public: inline GGS_string readProperty_mSharedBankName (void) const {
+    return mProperty_mSharedBankName ;
   }
 
 //--------------------------------- Accessors
@@ -2274,77 +3290,679 @@ class GGS_ipic_31__38_Block : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
-  public: GGS_ipic_31__38_Block (void) ;
+  public: GGS_piccoloDeviceModel (void) ;
 
 //--------------------------------- Property setters
-  public: inline void setter_setMAddress (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mAddress = inValue ;
+  public: inline void setter_setMDeviceName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDeviceName = inValue ;
   }
 
-  public: inline void setter_setMLabel (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mLabel = inValue ;
+  public: inline void setter_setMProcessorType (const GGS_processorType & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProcessorType = inValue ;
   }
 
-  public: inline void setter_setMInstructionList (const GGS_ipic_31__38_SequentialInstructionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mInstructionList = inValue ;
+  public: inline void setter_setMRomSize (const GGS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRomSize = inValue ;
   }
 
-  public: inline void setter_setMTerminator (const GGS_ipic_31__38_AbstractBlockTerminator & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mTerminator = inValue ;
+  public: inline void setter_setMBankCount (const GGS_luint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mBankCount = inValue ;
   }
 
-  public: inline void setter_setMTerminatorMin (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mTerminatorMin = inValue ;
+  public: inline void setter_setMRegisterTable (const GGS_registerTable & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRegisterTable = inValue ;
   }
 
-  public: inline void setter_setMTerminatorMax (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mTerminatorMax = inValue ;
+  public: inline void setter_setMRamBankTable (const GGS_ramBankTable & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRamBankTable = inValue ;
+  }
+
+  public: inline void setter_setMEepromSize (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEepromSize = inValue ;
+  }
+
+  public: inline void setter_setMEepromAddress (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEepromAddress = inValue ;
+  }
+
+  public: inline void setter_setMConfigRegisterMap (const GGS_configRegisterMap & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConfigRegisterMap = inValue ;
+  }
+
+  public: inline void setter_setMSharedBankName (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mSharedBankName = inValue ;
   }
 
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
 //--------------------------------- Native constructor
-  public: GGS_ipic_31__38_Block (const GGS_uint & in_mAddress,
-                                 const GGS_lstring & in_mLabel,
-                                 const GGS_ipic_31__38_SequentialInstructionList & in_mInstructionList,
-                                 const GGS_ipic_31__38_AbstractBlockTerminator & in_mTerminator,
-                                 const GGS_uint & in_mTerminatorMin,
-                                 const GGS_uint & in_mTerminatorMax) ;
+  public: GGS_piccoloDeviceModel (const GGS_lstring & in_mDeviceName,
+                                  const GGS_processorType & in_mProcessorType,
+                                  const GGS_luint & in_mRomSize,
+                                  const GGS_luint & in_mBankCount,
+                                  const GGS_registerTable & in_mRegisterTable,
+                                  const GGS_ramBankTable & in_mRamBankTable,
+                                  const GGS_uint & in_mEepromSize,
+                                  const GGS_uint & in_mEepromAddress,
+                                  const GGS_configRegisterMap & in_mConfigRegisterMap,
+                                  const GGS_string & in_mSharedBankName) ;
 
 //--------------------------------- Copy constructor
-  public: GGS_ipic_31__38_Block (const GGS_ipic_31__38_Block & inSource) ;
+  public: GGS_piccoloDeviceModel (const GGS_piccoloDeviceModel & inSource) ;
 
 //--------------------------------- Assignment operator
-  public: GGS_ipic_31__38_Block & operator = (const GGS_ipic_31__38_Block & inSource) ;
+  public: GGS_piccoloDeviceModel & operator = (const GGS_piccoloDeviceModel & inSource) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_ipic_31__38_Block init_21__21__21__21__21__21_ (const class GGS_uint & inOperand0,
-                                                                     const class GGS_lstring & inOperand1,
-                                                                     const class GGS_ipic_31__38_SequentialInstructionList & inOperand2,
-                                                                     const class GGS_ipic_31__38_AbstractBlockTerminator & inOperand3,
-                                                                     const class GGS_uint & inOperand4,
-                                                                     const class GGS_uint & inOperand5,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
+  public: static GGS_piccoloDeviceModel init_21__21__21__21__21__21__21__21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                                      const class GGS_processorType & inOperand1,
+                                                                                      const class GGS_luint & inOperand2,
+                                                                                      const class GGS_luint & inOperand3,
+                                                                                      const class GGS_registerTable & inOperand4,
+                                                                                      const class GGS_ramBankTable & inOperand5,
+                                                                                      const class GGS_uint & inOperand6,
+                                                                                      const class GGS_uint & inOperand7,
+                                                                                      const class GGS_configRegisterMap & inOperand8,
+                                                                                      const class GGS_string & inOperand9,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_Block extractObject (const GGS_object & inObject,
+  public: static GGS_piccoloDeviceModel extractObject (const GGS_object & inObject,
+                                                       Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_piccoloDeviceModel class_func_new (const class GGS_lstring & inOperand0,
+                                                              const class GGS_processorType & inOperand1,
+                                                              const class GGS_luint & inOperand2,
+                                                              const class GGS_luint & inOperand3,
+                                                              const class GGS_registerTable & inOperand4,
+                                                              const class GGS_ramBankTable & inOperand5,
+                                                              const class GGS_uint & inOperand6,
+                                                              const class GGS_uint & inOperand7,
+                                                              const class GGS_configRegisterMap & inOperand8,
+                                                              const class GGS_string & inOperand9,
+                                                              class Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_piccoloDeviceModel ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Parser class 'midrange_syntax' declaration
+//
+//--------------------------------------------------------------------------------------------------
+
+class cParser_midrange_5F_syntax {
+//--- Virtual destructor
+  public: virtual ~ cParser_midrange_5F_syntax (void) { }
+
+//--- Non terminal declarations
+  protected: virtual void nt_bit_5F_number_5F_parsing_ (class GGS_bitNumberExpression & outArgument0,
+                                                        class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_bit_5F_number_5F_parsing_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_bit_5F_number_5F_parsing_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_configuration_5F_definition_ (class GGS_configDefinitionList & ioArgument0,
+                                                           class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_configuration_5F_definition_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_configuration_5F_definition_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_constant_5F_definition_ (class GGS_constantDefinitionList & ioArgument0,
+                                                      class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_constant_5F_definition_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_constant_5F_definition_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_declaration_5F_in_5F_ram_ (class GGS_declarationInRam & outArgument0,
+                                                        class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_declaration_5F_in_5F_ram_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_declaration_5F_in_5F_ram_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_immediate_5F_expression_ (class GGS_immediatExpression & outArgument0,
+                                                       class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_immediate_5F_expression_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_immediate_5F_expression_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_expression_ (class GGS_midrange_5F_conditionExpression & outArgument0,
+                                                                   class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_expression_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_expression_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_factor_ (class GGS_midrange_5F_conditionExpression & outArgument0,
+                                                               class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_factor_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_factor_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_term_ (class GGS_midrange_5F_conditionExpression & outArgument0,
+                                                             class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_term_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_condition_5F_term_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_instruction_5F_list_ (class GGS_midrange_5F_instructionList & outArgument0,
+                                                               class GGS_bool & ioArgument1,
+                                                               class GGS_bool & ioArgument2,
+                                                               class GGS_labelMap & ioArgument3,
+                                                               class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_instruction_5F_list_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_instruction_5F_list_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_interrupt_5F_definition_ (class GGS_midrange_5F_interruptDefinitionList & ioArgument0,
+                                                                   class GGS_bool & ioArgument1,
+                                                                   class GGS_bool & ioArgument2,
+                                                                   class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_interrupt_5F_definition_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_interrupt_5F_definition_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_routine_5F_definition_ (class GGS_midrange_5F_routineDefinitionList & ioArgument0,
+                                                                 class GGS_bool & ioArgument1,
+                                                                 class GGS_bool & ioArgument2,
+                                                                 class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_routine_5F_definition_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_routine_5F_definition_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_simple_5F_instruction_ (class GGS_midrange_5F_instruction & outArgument0,
+                                                                 class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_simple_5F_instruction_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_simple_5F_instruction_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_ (const class GGS_lstring constinArgument0,
+                                                                           class GGS_midrange_5F_instruction & outArgument1,
+                                                                           class GGS_bool & ioArgument2,
+                                                                           class GGS_bool & ioArgument3,
+                                                                           class GGS_labelMap & ioArgument4,
+                                                                           class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_instruction_ (class GGS_midrange_5F_instruction & outArgument0,
+                                                                     class GGS_bool & ioArgument1,
+                                                                     class GGS_bool & ioArgument2,
+                                                                     class GGS_labelMap & ioArgument3,
+                                                                     class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_instruction_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_midrange_5F_structured_5F_instruction_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_optional_5F_w_5F_as_5F_dest_ (class GGS_bool & outArgument0,
+                                                           class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_optional_5F_w_5F_as_5F_dest_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_optional_5F_w_5F_as_5F_dest_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_ram_5F_definition_ (class GGS_ramDefinitionList & ioArgument0,
+                                                 class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_ram_5F_definition_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_ram_5F_definition_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_register_5F_parsing_ (class GGS_registerExpression & outArgument0,
+                                                   class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_register_5F_parsing_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_register_5F_parsing_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_ (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_importBootloaderSpecification (class GGS_piccoloDeviceModel & outArgument0,
+                                                                            class GGS_string & outArgument1,
+                                                                            class GGS_uint & outArgument2,
+                                                                            class GGS_ramBankTable & outArgument3,
+                                                                            class GGS_registerTable & outArgument4,
+                                                                            class GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                            class GGS_routineDeclarationList & outArgument6,
+                                                                            class GGS_routineDeclarationList & outArgument7,
+                                                                            class GGS_luint & outArgument8,
+                                                                            class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+
+//--- Rule declarations
+  protected: void rule_midrange_5F_syntax_start_5F_symbol_i0_ (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_start_5F_symbol_i0_importBootloaderSpecification (GGS_piccoloDeviceModel & outArgument0,
+                                                                                            GGS_string & outArgument1,
+                                                                                            GGS_uint & outArgument2,
+                                                                                            GGS_ramBankTable & outArgument3,
+                                                                                            GGS_registerTable & outArgument4,
+                                                                                            GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                                            GGS_routineDeclarationList & outArgument6,
+                                                                                            GGS_routineDeclarationList & outArgument7,
+                                                                                            GGS_luint & outArgument8,
+                                                                                            Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_start_5F_symbol_i0_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_start_5F_symbol_i0_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_ (GGS_midrange_5F_instructionList & outArgument0,
+                                                                               GGS_bool & ioArgument1,
+                                                                               GGS_bool & ioArgument2,
+                                                                               GGS_labelMap & ioArgument3,
+                                                                               Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_instruction_5F_list_i1_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_ (GGS_midrange_5F_interruptDefinitionList & ioArgument0,
+                                                                                   GGS_bool & ioArgument1,
+                                                                                   GGS_bool & ioArgument2,
+                                                                                   Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_interrupt_5F_definition_i2_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_ (GGS_midrange_5F_routineDefinitionList & ioArgument0,
+                                                                                 GGS_bool & ioArgument1,
+                                                                                 GGS_bool & ioArgument2,
+                                                                                 Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_routine_5F_definition_i3_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_ (GGS_midrange_5F_instruction & outArgument0,
+                                                                                     GGS_bool & ioArgument1,
+                                                                                     GGS_bool & ioArgument2,
+                                                                                     GGS_labelMap & ioArgument3,
+                                                                                     Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_instruction_i4_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_ (const GGS_lstring constinArgument0,
+                                                                                           GGS_midrange_5F_instruction & outArgument1,
+                                                                                           GGS_bool & ioArgument2,
+                                                                                           GGS_bool & ioArgument3,
+                                                                                           GGS_labelMap & ioArgument4,
+                                                                                           Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_structured_5F_if_5F_instruction_i5_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_ (GGS_midrange_5F_instruction & outArgument0,
+                                                                                 Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_simple_5F_instruction_i6_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_ (GGS_midrange_5F_conditionExpression & outArgument0,
+                                                                               Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i7_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_ (GGS_midrange_5F_conditionExpression & outArgument0,
+                                                                               Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i8_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_ (GGS_midrange_5F_conditionExpression & outArgument0,
+                                                                               Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_factor_i9_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_ (GGS_midrange_5F_conditionExpression & outArgument0,
+                                                                                    Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_expression_i10_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_ (GGS_midrange_5F_conditionExpression & outArgument0,
+                                                                              Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_midrange_5F_syntax_midrange_5F_condition_5F_term_i11_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+
+
+//--- Select methods
+  protected: virtual int32_t select_midrange_5F_syntax_0 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_1 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_2 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_3 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_4 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_5 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_6 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_7 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_8 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_9 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_10 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_11 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_12 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_13 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_14 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_15 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_16 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_17 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_18 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_19 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_20 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_21 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_22 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_23 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_24 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_25 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_26 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_27 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_28 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_29 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_30 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_31 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_32 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_33 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_34 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_35 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_36 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_midrange_5F_syntax_37 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'midrange_analyze??'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_midrange_5F_analyze_3F__3F_ (const class GGS_midrange_5F_model constinArgument0,
+                                          const class GGS_string constinArgument1,
+                                          class Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @midrange_5F_model struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_midrange_5F_model : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_mProgramName ;
+  public: inline GGS_lstring readProperty_mProgramName (void) const {
+    return mProperty_mProgramName ;
+  }
+
+  public: GGS_lstring mProperty_mDeviceName ;
+  public: inline GGS_lstring readProperty_mDeviceName (void) const {
+    return mProperty_mDeviceName ;
+  }
+
+  public: GGS_configDefinitionList mProperty_mConfigDefinitionList ;
+  public: inline GGS_configDefinitionList readProperty_mConfigDefinitionList (void) const {
+    return mProperty_mConfigDefinitionList ;
+  }
+
+  public: GGS_ramDefinitionList mProperty_mRamDefinitionList ;
+  public: inline GGS_ramDefinitionList readProperty_mRamDefinitionList (void) const {
+    return mProperty_mRamDefinitionList ;
+  }
+
+  public: GGS_lstringlist mProperty_mUnusedRegisterList ;
+  public: inline GGS_lstringlist readProperty_mUnusedRegisterList (void) const {
+    return mProperty_mUnusedRegisterList ;
+  }
+
+  public: GGS_midrange_5F_interruptDefinitionList mProperty_mInterruptDefinitionList ;
+  public: inline GGS_midrange_5F_interruptDefinitionList readProperty_mInterruptDefinitionList (void) const {
+    return mProperty_mInterruptDefinitionList ;
+  }
+
+  public: GGS_constantDefinitionList mProperty_mConstantDefinitionList ;
+  public: inline GGS_constantDefinitionList readProperty_mConstantDefinitionList (void) const {
+    return mProperty_mConstantDefinitionList ;
+  }
+
+  public: GGS_midrange_5F_routineDefinitionList mProperty_mRoutineDefinitionList ;
+  public: inline GGS_midrange_5F_routineDefinitionList readProperty_mRoutineDefinitionList (void) const {
+    return mProperty_mRoutineDefinitionList ;
+  }
+
+  public: GGS_lstringlist mProperty_mUnusedRoutineList ;
+  public: inline GGS_lstringlist readProperty_mUnusedRoutineList (void) const {
+    return mProperty_mUnusedRoutineList ;
+  }
+
+  public: GGS_bool mProperty_mNeedsComputedGoto_32_ ;
+  public: inline GGS_bool readProperty_mNeedsComputedGoto_32_ (void) const {
+    return mProperty_mNeedsComputedGoto_32_ ;
+  }
+
+  public: GGS_bool mProperty_mNeedsComputedGoto_34_ ;
+  public: inline GGS_bool readProperty_mNeedsComputedGoto_34_ (void) const {
+    return mProperty_mNeedsComputedGoto_34_ ;
+  }
+
+  public: GGS_location mProperty_mEndOfProgram ;
+  public: inline GGS_location readProperty_mEndOfProgram (void) const {
+    return mProperty_mEndOfProgram ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_midrange_5F_model (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setMProgramName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProgramName = inValue ;
+  }
+
+  public: inline void setter_setMDeviceName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDeviceName = inValue ;
+  }
+
+  public: inline void setter_setMConfigDefinitionList (const GGS_configDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConfigDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRamDefinitionList (const GGS_ramDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRamDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRegisterList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRegisterList = inValue ;
+  }
+
+  public: inline void setter_setMInterruptDefinitionList (const GGS_midrange_5F_interruptDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInterruptDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMConstantDefinitionList (const GGS_constantDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConstantDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRoutineDefinitionList (const GGS_midrange_5F_routineDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRoutineDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRoutineList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRoutineList = inValue ;
+  }
+
+  public: inline void setter_setMNeedsComputedGoto_32_ (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mNeedsComputedGoto_32_ = inValue ;
+  }
+
+  public: inline void setter_setMNeedsComputedGoto_34_ (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mNeedsComputedGoto_34_ = inValue ;
+  }
+
+  public: inline void setter_setMEndOfProgram (const GGS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEndOfProgram = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_midrange_5F_model (const GGS_lstring & in_mProgramName,
+                                 const GGS_lstring & in_mDeviceName,
+                                 const GGS_configDefinitionList & in_mConfigDefinitionList,
+                                 const GGS_ramDefinitionList & in_mRamDefinitionList,
+                                 const GGS_lstringlist & in_mUnusedRegisterList,
+                                 const GGS_midrange_5F_interruptDefinitionList & in_mInterruptDefinitionList,
+                                 const GGS_constantDefinitionList & in_mConstantDefinitionList,
+                                 const GGS_midrange_5F_routineDefinitionList & in_mRoutineDefinitionList,
+                                 const GGS_lstringlist & in_mUnusedRoutineList,
+                                 const GGS_bool & in_mNeedsComputedGoto_32_,
+                                 const GGS_bool & in_mNeedsComputedGoto_34_,
+                                 const GGS_location & in_mEndOfProgram) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_midrange_5F_model (const GGS_midrange_5F_model & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_midrange_5F_model & operator = (const GGS_midrange_5F_model & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_midrange_5F_model init_21__21__21__21__21__21__21__21__21__21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                                             const class GGS_lstring & inOperand1,
+                                                                                             const class GGS_configDefinitionList & inOperand2,
+                                                                                             const class GGS_ramDefinitionList & inOperand3,
+                                                                                             const class GGS_lstringlist & inOperand4,
+                                                                                             const class GGS_midrange_5F_interruptDefinitionList & inOperand5,
+                                                                                             const class GGS_constantDefinitionList & inOperand6,
+                                                                                             const class GGS_midrange_5F_routineDefinitionList & inOperand7,
+                                                                                             const class GGS_lstringlist & inOperand8,
+                                                                                             const class GGS_bool & inOperand9,
+                                                                                             const class GGS_bool & inOperand10,
+                                                                                             const class GGS_location & inOperand11,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_midrange_5F_model extractObject (const GGS_object & inObject,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_Block class_func_new (const class GGS_uint & inOperand0,
+  public: static class GGS_midrange_5F_model class_func_new (const class GGS_lstring & inOperand0,
                                                              const class GGS_lstring & inOperand1,
-                                                             const class GGS_ipic_31__38_SequentialInstructionList & inOperand2,
-                                                             const class GGS_ipic_31__38_AbstractBlockTerminator & inOperand3,
-                                                             const class GGS_uint & inOperand4,
-                                                             const class GGS_uint & inOperand5,
+                                                             const class GGS_configDefinitionList & inOperand2,
+                                                             const class GGS_ramDefinitionList & inOperand3,
+                                                             const class GGS_lstringlist & inOperand4,
+                                                             const class GGS_midrange_5F_interruptDefinitionList & inOperand5,
+                                                             const class GGS_constantDefinitionList & inOperand6,
+                                                             const class GGS_midrange_5F_routineDefinitionList & inOperand7,
+                                                             const class GGS_lstringlist & inOperand8,
+                                                             const class GGS_bool & inOperand9,
+                                                             const class GGS_bool & inOperand10,
+                                                             const class GGS_location & inOperand11,
                                                              class Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
@@ -2369,17 +3987,133 @@ class GGS_ipic_31__38_Block : public AC_GALGAS_root {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_Block ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_model ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_BlockList_2E_element struct
+//
+//Parser class 'baseline_program' declaration
+//
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38_BlockList_2E_element : public AC_GALGAS_root {
+class cParser_baseline_5F_program {
+//--- Virtual destructor
+  public: virtual ~ cParser_baseline_5F_program (void) { }
+
+//--- Non terminal declarations
+  protected: virtual void nt_section_5F_list_ (class GGS_baseline_5F_routineDefinitionList & ioArgument0,
+                                               class GGS_lstringlist & ioArgument1,
+                                               class GGS_ramDefinitionList & ioArgument2,
+                                               class GGS_lstringlist & ioArgument3,
+                                               class GGS_configDefinitionList & ioArgument4,
+                                               class GGS_constantDefinitionList & ioArgument5,
+                                               class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_section_5F_list_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_section_5F_list_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_ (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_importBootloaderSpecification (class GGS_piccoloDeviceModel & outArgument0,
+                                                                            class GGS_string & outArgument1,
+                                                                            class GGS_uint & outArgument2,
+                                                                            class GGS_ramBankTable & outArgument3,
+                                                                            class GGS_registerTable & outArgument4,
+                                                                            class GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                            class GGS_routineDeclarationList & outArgument6,
+                                                                            class GGS_routineDeclarationList & outArgument7,
+                                                                            class GGS_luint & outArgument8,
+                                                                            class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+
+//--- Rule declarations
+  protected: void rule_baseline_5F_program_start_5F_symbol_i0_ (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_baseline_5F_program_start_5F_symbol_i0_importBootloaderSpecification (GGS_piccoloDeviceModel & outArgument0,
+                                                                                             GGS_string & outArgument1,
+                                                                                             GGS_uint & outArgument2,
+                                                                                             GGS_ramBankTable & outArgument3,
+                                                                                             GGS_registerTable & outArgument4,
+                                                                                             GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                                             GGS_routineDeclarationList & outArgument6,
+                                                                                             GGS_routineDeclarationList & outArgument7,
+                                                                                             GGS_luint & outArgument8,
+                                                                                             Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_baseline_5F_program_start_5F_symbol_i0_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_baseline_5F_program_start_5F_symbol_i0_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+
+
+//--- Select methods
+
+} ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'baseline_analysis??'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_baseline_5F_analysis_3F__3F_ (const class GGS_baseline_5F_model constinArgument0,
+                                           const class GGS_string constinArgument1,
+                                           class Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @baseline_5F_model struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_baseline_5F_model : public AC_GALGAS_root {
 //--------------------------------- Properties
-  public: GGS_ipic_31__38_Block mProperty_mBlock ;
-  public: inline GGS_ipic_31__38_Block readProperty_mBlock (void) const {
-    return mProperty_mBlock ;
+  public: GGS_lstring mProperty_mProgramName ;
+  public: inline GGS_lstring readProperty_mProgramName (void) const {
+    return mProperty_mProgramName ;
+  }
+
+  public: GGS_lstring mProperty_mDeviceName ;
+  public: inline GGS_lstring readProperty_mDeviceName (void) const {
+    return mProperty_mDeviceName ;
+  }
+
+  public: GGS_configDefinitionList mProperty_mConfigDefinitionList ;
+  public: inline GGS_configDefinitionList readProperty_mConfigDefinitionList (void) const {
+    return mProperty_mConfigDefinitionList ;
+  }
+
+  public: GGS_ramDefinitionList mProperty_mRamDefinitionList ;
+  public: inline GGS_ramDefinitionList readProperty_mRamDefinitionList (void) const {
+    return mProperty_mRamDefinitionList ;
+  }
+
+  public: GGS_lstringlist mProperty_mUnusedRegisterList ;
+  public: inline GGS_lstringlist readProperty_mUnusedRegisterList (void) const {
+    return mProperty_mUnusedRegisterList ;
+  }
+
+  public: GGS_constantDefinitionList mProperty_mConstantDefinitionList ;
+  public: inline GGS_constantDefinitionList readProperty_mConstantDefinitionList (void) const {
+    return mProperty_mConstantDefinitionList ;
+  }
+
+  public: GGS_baseline_5F_routineDefinitionList mProperty_mRoutineDefinitionList ;
+  public: inline GGS_baseline_5F_routineDefinitionList readProperty_mRoutineDefinitionList (void) const {
+    return mProperty_mRoutineDefinitionList ;
+  }
+
+  public: GGS_lstringlist mProperty_mUnusedRoutineList ;
+  public: inline GGS_lstringlist readProperty_mUnusedRoutineList (void) const {
+    return mProperty_mUnusedRoutineList ;
+  }
+
+  public: GGS_location mProperty_mEndOfProgram ;
+  public: inline GGS_location readProperty_mEndOfProgram (void) const {
+    return mProperty_mEndOfProgram ;
   }
 
 //--------------------------------- Accessors
@@ -2387,2102 +4121,104 @@ class GGS_ipic_31__38_BlockList_2E_element : public AC_GALGAS_root {
   public: VIRTUAL_IN_DEBUG void drop (void) override ;
 
 //--------------------------------- Default constructor
-  public: GGS_ipic_31__38_BlockList_2E_element (void) ;
+  public: GGS_baseline_5F_model (void) ;
 
 //--------------------------------- Property setters
-  public: inline void setter_setMBlock (const GGS_ipic_31__38_Block & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mBlock = inValue ;
+  public: inline void setter_setMProgramName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mProgramName = inValue ;
+  }
+
+  public: inline void setter_setMDeviceName (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDeviceName = inValue ;
+  }
+
+  public: inline void setter_setMConfigDefinitionList (const GGS_configDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConfigDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRamDefinitionList (const GGS_ramDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRamDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRegisterList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRegisterList = inValue ;
+  }
+
+  public: inline void setter_setMConstantDefinitionList (const GGS_constantDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mConstantDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMRoutineDefinitionList (const GGS_baseline_5F_routineDefinitionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mRoutineDefinitionList = inValue ;
+  }
+
+  public: inline void setter_setMUnusedRoutineList (const GGS_lstringlist & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mUnusedRoutineList = inValue ;
+  }
+
+  public: inline void setter_setMEndOfProgram (const GGS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEndOfProgram = inValue ;
   }
 
 //--------------------------------- Set initialized properties
   private: void setInitializedProperties (Compiler * inCompiler) ;
 
 //--------------------------------- Native constructor
-  public: GGS_ipic_31__38_BlockList_2E_element (const GGS_ipic_31__38_Block & in_mBlock) ;
+  public: GGS_baseline_5F_model (const GGS_lstring & in_mProgramName,
+                                 const GGS_lstring & in_mDeviceName,
+                                 const GGS_configDefinitionList & in_mConfigDefinitionList,
+                                 const GGS_ramDefinitionList & in_mRamDefinitionList,
+                                 const GGS_lstringlist & in_mUnusedRegisterList,
+                                 const GGS_constantDefinitionList & in_mConstantDefinitionList,
+                                 const GGS_baseline_5F_routineDefinitionList & in_mRoutineDefinitionList,
+                                 const GGS_lstringlist & in_mUnusedRoutineList,
+                                 const GGS_location & in_mEndOfProgram) ;
 
 //--------------------------------- Copy constructor
-  public: GGS_ipic_31__38_BlockList_2E_element (const GGS_ipic_31__38_BlockList_2E_element & inSource) ;
+  public: GGS_baseline_5F_model (const GGS_baseline_5F_model & inSource) ;
 
 //--------------------------------- Assignment operator
-  public: GGS_ipic_31__38_BlockList_2E_element & operator = (const GGS_ipic_31__38_BlockList_2E_element & inSource) ;
+  public: GGS_baseline_5F_model & operator = (const GGS_baseline_5F_model & inSource) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_ipic_31__38_BlockList_2E_element init_21_ (const class GGS_ipic_31__38_Block & inOperand0,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_BlockList_2E_element extractObject (const GGS_object & inObject,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_BlockList_2E_element class_func_new (const class GGS_ipic_31__38_Block & inOperand0,
-                                                                            class Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_BlockList_2E_element ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_SingleInstructionTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_SingleInstructionTerminator : public GGS_ipic_31__38_AbstractBlockTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_SingleInstructionTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_SingleInstructionTerminator (const class cPtr_ipic_31__38_SingleInstructionTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_SingleInstructionTerminator init_21_ (const class GGS_location & inOperand0,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_SingleInstructionTerminator extractObject (const GGS_object & inObject,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_SingleInstructionTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18SingleInstructionTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_SingleInstructionTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_SingleInstructionTerminator_init_21_ (const class GGS_location & inOperand0,
-                                                                 Compiler * inCompiler) ;
-
-
-//--- Extension method duration
-  public: virtual void method_duration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) = 0 ;
-
-//--- Extension method enterTerminatorReferencedLabels
-  public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_SingleInstructionTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_SingleInstructionTerminator (const GGS_location & in_mInstructionLocation,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override = 0 ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_SingleInstructionTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_SingleInstructionTerminator_2E_weak : public GGS_ipic_31__38_AbstractBlockTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_SingleInstructionTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_SingleInstructionTerminator_2E_weak (const class GGS_ipic_31__38_SingleInstructionTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_SingleInstructionTerminator_2E_weak & operator = (const class GGS_ipic_31__38_SingleInstructionTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_SingleInstructionTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_SingleInstructionTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_SingleInstructionTerminator bang_ipic_31__38_SingleInstructionTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_SingleInstructionTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_SingleInstructionTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_SingleInstructionTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_SingleInstructionTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_SingleInstructionTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ReturnTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_ReturnTerminator : public GGS_ipic_31__38_SingleInstructionTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ReturnTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_ReturnTerminator (const class cPtr_ipic_31__38_ReturnTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_ReturnTerminator init_21_ (const class GGS_location & inOperand0,
-                                                            Compiler * inCompiler
-                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ReturnTerminator extractObject (const GGS_object & inObject,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ReturnTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ReturnTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ReturnTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18ReturnTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_ReturnTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_ReturnTerminator_init_21_ (const class GGS_location & inOperand0,
-                                                      Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method duration
-  public: virtual void method_duration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_ReturnTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_ReturnTerminator (const GGS_location & in_mInstructionLocation,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ReturnTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_ReturnTerminator_2E_weak : public GGS_ipic_31__38_SingleInstructionTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ReturnTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_ReturnTerminator_2E_weak (const class GGS_ipic_31__38_ReturnTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_ReturnTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ReturnTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_ReturnTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_ReturnTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_ReturnTerminator bang_ipic_31__38_ReturnTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_ReturnTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ReturnTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ReturnTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ReturnTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ReturnTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_RetlwTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_RetlwTerminator : public GGS_ipic_31__38_SingleInstructionTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_RetlwTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_RetlwTerminator (const class cPtr_ipic_31__38_RetlwTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_uint readProperty_mLiteralValue (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_RetlwTerminator init_21__21_ (const class GGS_location & inOperand0,
-                                                               const class GGS_uint & inOperand1,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_RetlwTerminator extractObject (const GGS_object & inObject,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_RetlwTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                       const class GGS_uint & inOperand1,
-                                                                       class Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_RetlwTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_RetlwTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18RetlwTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_RetlwTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_RetlwTerminator_init_21__21_ (const class GGS_location & inOperand0,
-                                                         const class GGS_uint & inOperand1,
-                                                         Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method duration
-  public: virtual void method_duration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_uint mProperty_mLiteralValue ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_RetlwTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_RetlwTerminator (const GGS_location & in_mInstructionLocation,
-                                            const GGS_uint & in_mLiteralValue,
-                                            Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_RetlwTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_RetlwTerminator_2E_weak : public GGS_ipic_31__38_SingleInstructionTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_RetlwTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_RetlwTerminator_2E_weak (const class GGS_ipic_31__38_RetlwTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_RetlwTerminator_2E_weak & operator = (const class GGS_ipic_31__38_RetlwTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_RetlwTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_RetlwTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_RetlwTerminator bang_ipic_31__38_RetlwTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_RetlwTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_RetlwTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_RetlwTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_RetlwTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_RetlwTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_RetfieTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_RetfieTerminator : public GGS_ipic_31__38_SingleInstructionTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_RetfieTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_RetfieTerminator (const class cPtr_ipic_31__38_RetfieTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_bool readProperty_mFastReturn (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_RetfieTerminator init_21__21_ (const class GGS_location & inOperand0,
-                                                                const class GGS_bool & inOperand1,
-                                                                Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_RetfieTerminator extractObject (const GGS_object & inObject,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_RetfieTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                        const class GGS_bool & inOperand1,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_RetfieTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_RetfieTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18RetfieTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_RetfieTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_RetfieTerminator_init_21__21_ (const class GGS_location & inOperand0,
-                                                          const class GGS_bool & inOperand1,
-                                                          Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method duration
-  public: virtual void method_duration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_bool mProperty_mFastReturn ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_RetfieTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_RetfieTerminator (const GGS_location & in_mInstructionLocation,
-                                             const GGS_bool & in_mFastReturn,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_RetfieTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_RetfieTerminator_2E_weak : public GGS_ipic_31__38_SingleInstructionTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_RetfieTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_RetfieTerminator_2E_weak (const class GGS_ipic_31__38_RetfieTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_RetfieTerminator_2E_weak & operator = (const class GGS_ipic_31__38_RetfieTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_RetfieTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_RetfieTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_RetfieTerminator bang_ipic_31__38_RetfieTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_RetfieTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_RetfieTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_RetfieTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_RetfieTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_RetfieTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_JumpTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_JumpTerminator : public GGS_ipic_31__38_SingleInstructionTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_JumpTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_JumpTerminator (const class cPtr_ipic_31__38_JumpTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_lstring readProperty_mLabel (void) const ;
-
-  public: class GGS_jumpInstructionKind readProperty_mKind (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_JumpTerminator init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                  const class GGS_lstring & inOperand1,
-                                                                  const class GGS_jumpInstructionKind & inOperand2,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_JumpTerminator extractObject (const GGS_object & inObject,
-                                                               Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_JumpTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                      const class GGS_lstring & inOperand1,
-                                                                      const class GGS_jumpInstructionKind & inOperand2,
-                                                                      class Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_JumpTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_JumpTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18JumpTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_JumpTerminator : public cPtr_ipic_31__38_SingleInstructionTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_JumpTerminator_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                            const class GGS_lstring & inOperand1,
-                                                            const class GGS_jumpInstructionKind & inOperand2,
-                                                            Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method buildTerminatorOrderedGraph
-  public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_blockInvocationGraph & arg_ioGraph,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method duration
-  public: virtual void method_duration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method enterTerminatorReferencedLabels
-  public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorRelativeBranchOverflow
-  public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_lstring mProperty_mLabel ;
-  public: GGS_jumpInstructionKind mProperty_mKind ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_JumpTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_JumpTerminator (const GGS_location & in_mInstructionLocation,
-                                           const GGS_lstring & in_mLabel,
-                                           const GGS_jumpInstructionKind & in_mKind,
-                                           Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_JumpTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_JumpTerminator_2E_weak : public GGS_ipic_31__38_SingleInstructionTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_JumpTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_JumpTerminator_2E_weak (const class GGS_ipic_31__38_JumpTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_JumpTerminator_2E_weak & operator = (const class GGS_ipic_31__38_JumpTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_JumpTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_JumpTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_JumpTerminator bang_ipic_31__38_JumpTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_JumpTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_JumpTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_JumpTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_JumpTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_JumpTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ComputedGotoTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_ComputedGotoTerminator : public GGS_ipic_31__38_AbstractBlockTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ComputedGotoTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_ComputedGotoTerminator (const class cPtr_ipic_31__38_ComputedGotoTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_lstringlist readProperty_mTargetLabels (void) const ;
-
-  public: class GGS_bool readProperty_mUsesRCALL (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_ComputedGotoTerminator init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                          const class GGS_lstringlist & inOperand1,
-                                                                          const class GGS_bool & inOperand2,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ComputedGotoTerminator extractObject (const GGS_object & inObject,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ComputedGotoTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                              const class GGS_lstringlist & inOperand1,
-                                                                              const class GGS_bool & inOperand2,
-                                                                              class Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ComputedGotoTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18ComputedGotoTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_ComputedGotoTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_ComputedGotoTerminator_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                    const class GGS_lstringlist & inOperand1,
-                                                                    const class GGS_bool & inOperand2,
-                                                                    Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method enterTerminatorReferencedLabels
-  public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorRelativeBranchOverflow
-  public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_lstringlist mProperty_mTargetLabels ;
-  public: GGS_bool mProperty_mUsesRCALL ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_ComputedGotoTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_ComputedGotoTerminator (const GGS_location & in_mInstructionLocation,
-                                                   const GGS_lstringlist & in_mTargetLabels,
-                                                   const GGS_bool & in_mUsesRCALL,
-                                                   Compiler * inCompiler
-                                                   COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ComputedGotoTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_ComputedGotoTerminator_2E_weak : public GGS_ipic_31__38_AbstractBlockTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ComputedGotoTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_ComputedGotoTerminator_2E_weak (const class GGS_ipic_31__38_ComputedGotoTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_ComputedGotoTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ComputedGotoTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_ComputedGotoTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_ComputedGotoTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_ComputedGotoTerminator bang_ipic_31__38_ComputedGotoTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_ComputedGotoTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ComputedGotoTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ComputedGotoTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ComputedGotoTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedGotoTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ComputedRETLWTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_ComputedRETLWTerminator : public GGS_ipic_31__38_AbstractBlockTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ComputedRETLWTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_ComputedRETLWTerminator (const class cPtr_ipic_31__38_ComputedRETLWTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_uintlist readProperty_mLiteralValues (void) const ;
-
-  public: class GGS_bool readProperty_mUsesRCALL (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_ComputedRETLWTerminator init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                           const class GGS_uintlist & inOperand1,
-                                                                           const class GGS_bool & inOperand2,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ComputedRETLWTerminator extractObject (const GGS_object & inObject,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ComputedRETLWTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                               const class GGS_uintlist & inOperand1,
-                                                                               const class GGS_bool & inOperand2,
-                                                                               class Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ComputedRETLWTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18ComputedRETLWTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_ComputedRETLWTerminator_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                     const class GGS_uintlist & inOperand1,
-                                                                     const class GGS_bool & inOperand2,
-                                                                     Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method enterTerminatorReferencedLabels
-  public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorRelativeBranchOverflow
-  public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_uintlist mProperty_mLiteralValues ;
-  public: GGS_bool mProperty_mUsesRCALL ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_ComputedRETLWTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_ComputedRETLWTerminator (const GGS_location & in_mInstructionLocation,
-                                                    const GGS_uintlist & in_mLiteralValues,
-                                                    const GGS_bool & in_mUsesRCALL,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ComputedRETLWTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak : public GGS_ipic_31__38_AbstractBlockTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak (const class GGS_ipic_31__38_ComputedRETLWTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ComputedRETLWTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_ComputedRETLWTerminator bang_ipic_31__38_ComputedRETLWTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_ComputedRETLWTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ComputedRETLWTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedRETLWTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-//   enum conditionalBranchMode
-//--------------------------------------------------------------------------------------------------
-
-class GGS_conditionalBranchMode : public AC_GALGAS_root {
-//--------------------------------- Default constructor
-  public: GGS_conditionalBranchMode (void) ;
-
-//--------------------------------- Enumeration
-  public: enum class Enumeration {
-    invalid,
-    enum_native,
-    enum_ipicBRA,
-    enum_ipicGOTO
-  } ;
-  
-//--------------------------------- Private properties
-  private: Enumeration mEnum ;
-
-//--------------------------------- Associated value extraction
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override {
-    return Enumeration::invalid != mEnum ;
-  }
-
-  public: VIRTUAL_IN_DEBUG inline void drop (void) override {
-    mEnum = Enumeration::invalid ;
-  }
-
-  public: inline Enumeration enumValue (void) const {
-    return mEnum ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_conditionalBranchMode extractObject (const GGS_object & inObject,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_conditionalBranchMode class_func_ipicBRA (LOCATION_ARGS) ;
-
-  public: static class GGS_conditionalBranchMode class_func_ipicGOTO (LOCATION_ARGS) ;
-
-  public: static class GGS_conditionalBranchMode class_func_native (LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_conditionalBranchMode & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isIpicBRA (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isIpicGOTO (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isNative (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_conditionalBranchMode ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ConditionalJumpTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_ConditionalJumpTerminator : public GGS_ipic_31__38_AbstractBlockTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ConditionalJumpTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_ConditionalJumpTerminator (const class cPtr_ipic_31__38_ConditionalJumpTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_conditional_5F_branch readProperty_mConditionalBranch (void) const ;
-
-  public: class GGS_lstring readProperty_mTargetLabelWhenTrue (void) const ;
-
-  public: class GGS_conditionalBranchMode readProperty_mBranchModeOnTrueLabel (void) const ;
-
-  public: class GGS_lstring readProperty_mTargetLabelWhenFalse (void) const ;
-
-  public: class GGS_conditionalBranchMode readProperty_mBranchModeOnFalseLabel (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_ConditionalJumpTerminator init_21__21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                         const class GGS_conditional_5F_branch & inOperand1,
-                                                                                         const class GGS_lstring & inOperand2,
-                                                                                         const class GGS_conditionalBranchMode & inOperand3,
-                                                                                         const class GGS_lstring & inOperand4,
-                                                                                         const class GGS_conditionalBranchMode & inOperand5,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ConditionalJumpTerminator extractObject (const GGS_object & inObject,
-                                                                          Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ConditionalJumpTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                                 const class GGS_conditional_5F_branch & inOperand1,
-                                                                                 const class GGS_lstring & inOperand2,
-                                                                                 const class GGS_conditionalBranchMode & inOperand3,
-                                                                                 const class GGS_lstring & inOperand4,
-                                                                                 const class GGS_conditionalBranchMode & inOperand5,
-                                                                                 class Compiler * inCompiler
+  public: static GGS_baseline_5F_model init_21__21__21__21__21__21__21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                                 const class GGS_lstring & inOperand1,
+                                                                                 const class GGS_configDefinitionList & inOperand2,
+                                                                                 const class GGS_ramDefinitionList & inOperand3,
+                                                                                 const class GGS_lstringlist & inOperand4,
+                                                                                 const class GGS_constantDefinitionList & inOperand5,
+                                                                                 const class GGS_baseline_5F_routineDefinitionList & inOperand6,
+                                                                                 const class GGS_lstringlist & inOperand7,
+                                                                                 const class GGS_location & inOperand8,
+                                                                                 Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ConditionalJumpTerminator & inOperand) const ;
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18ConditionalJumpTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_ConditionalJumpTerminator_init_21__21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                   const class GGS_conditional_5F_branch & inOperand1,
-                                                                                   const class GGS_lstring & inOperand2,
-                                                                                   const class GGS_conditionalBranchMode & inOperand3,
-                                                                                   const class GGS_lstring & inOperand4,
-                                                                                   const class GGS_conditionalBranchMode & inOperand5,
-                                                                                   Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method buildTerminatorOrderedGraph
-  public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_blockInvocationGraph & arg_ioGraph,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method enterTerminatorReferencedLabels
-  public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorRelativeBranchOverflow
-  public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_conditional_5F_branch mProperty_mConditionalBranch ;
-  public: GGS_lstring mProperty_mTargetLabelWhenTrue ;
-  public: GGS_conditionalBranchMode mProperty_mBranchModeOnTrueLabel ;
-  public: GGS_lstring mProperty_mTargetLabelWhenFalse ;
-  public: GGS_conditionalBranchMode mProperty_mBranchModeOnFalseLabel ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_ConditionalJumpTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_ConditionalJumpTerminator (const GGS_location & in_mInstructionLocation,
-                                                      const GGS_conditional_5F_branch & in_mConditionalBranch,
-                                                      const GGS_lstring & in_mTargetLabelWhenTrue,
-                                                      const GGS_conditionalBranchMode & in_mBranchModeOnTrueLabel,
-                                                      const GGS_lstring & in_mTargetLabelWhenFalse,
-                                                      const GGS_conditionalBranchMode & in_mBranchModeOnFalseLabel,
+//--------------------------------- Object extraction
+  public: static GGS_baseline_5F_model extractObject (const GGS_object & inObject,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ConditionalJumpTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak : public GGS_ipic_31__38_AbstractBlockTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak (const class GGS_ipic_31__38_ConditionalJumpTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ConditionalJumpTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_ConditionalJumpTerminator bang_ipic_31__38_ConditionalJumpTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_ConditionalJumpTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                                  Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
+  public: static class GGS_baseline_5F_model class_func_new (const class GGS_lstring & inOperand0,
+                                                             const class GGS_lstring & inOperand1,
+                                                             const class GGS_configDefinitionList & inOperand2,
+                                                             const class GGS_ramDefinitionList & inOperand3,
+                                                             const class GGS_lstringlist & inOperand4,
+                                                             const class GGS_constantDefinitionList & inOperand5,
+                                                             const class GGS_baseline_5F_routineDefinitionList & inOperand6,
+                                                             const class GGS_lstringlist & inOperand7,
+                                                             const class GGS_location & inOperand8,
+                                                             class Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak & inOperand) const ;
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -4501,30 +4237,443 @@ class GGS_ipic_31__38_ConditionalJumpTerminator_2E_weak : public GGS_ipic_31__38
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ConditionalJumpTerminator_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_model ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ComputedBraTerminator reference class
+//
+//Parser class 'pic18_bootloader_syntax' declaration
+//
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38_ComputedBraTerminator : public GGS_ipic_31__38_AbstractBlockTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ComputedBraTerminator (void) ;
+class cParser_pic_31__38__5F_bootloader_5F_syntax {
+//--- Virtual destructor
+  public: virtual ~ cParser_pic_31__38__5F_bootloader_5F_syntax (void) { }
 
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_ComputedBraTerminator (const class cPtr_ipic_31__38_ComputedBraTerminator * inSourcePtr) ;
+//--- Non terminal declarations
+  protected: virtual void nt_parse_5F_bootloader_ (class GGS_lstring & outArgument0,
+                                                   class GGS_lstring & outArgument1,
+                                                   class GGS_routineDeclarationList & outArgument2,
+                                                   class GGS_bootloaderReservedRAMmap & outArgument3,
+                                                   class GGS_luint & outArgument4,
+                                                   class GGS_routineDeclarationList & outArgument5,
+                                                   class GGS_ramDefinitionList & outArgument6,
+                                                   class GGS_string & outArgument7,
+                                                   class GGS_piccoloDeviceModel & outArgument8,
+                                                   class GGS_uint & outArgument9,
+                                                   class GGS_ramBankTable & outArgument10,
+                                                   class GGS_registerTable & outArgument11,
+                                                   class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
-//--------------------------------- Property access
-  public: class GGS_lstringlist readProperty_mTargetLabels (void) const ;
+  protected: virtual void nt_parse_5F_bootloader_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
 
-  public: class GGS_bool readProperty_mUsesRCALL (void) const ;
+  protected: virtual void nt_parse_5F_bootloader_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_ram_5F_definition_ (class GGS_ramDefinitionList & ioArgument0,
+                                                 class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_ram_5F_definition_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_ram_5F_definition_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_routine_5F_declaration_ (class GGS_routineDeclarationList & ioArgument0,
+                                                      class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_routine_5F_declaration_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_routine_5F_declaration_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_ (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_importBootloaderSpecification (class GGS_piccoloDeviceModel & outArgument0,
+                                                                            class GGS_string & outArgument1,
+                                                                            class GGS_uint & outArgument2,
+                                                                            class GGS_ramBankTable & outArgument3,
+                                                                            class GGS_registerTable & outArgument4,
+                                                                            class GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                            class GGS_routineDeclarationList & outArgument6,
+                                                                            class GGS_routineDeclarationList & outArgument7,
+                                                                            class GGS_luint & outArgument8,
+                                                                            class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_parse (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_indexing (class Lexique_piccolo_5F_lexique * inLexique) = 0 ;
+
+
+//--- Rule declarations
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_ (GGS_lstring & outArgument0,
+                                                                                    GGS_lstring & outArgument1,
+                                                                                    GGS_routineDeclarationList & outArgument2,
+                                                                                    GGS_bootloaderReservedRAMmap & outArgument3,
+                                                                                    GGS_luint & outArgument4,
+                                                                                    GGS_routineDeclarationList & outArgument5,
+                                                                                    GGS_ramDefinitionList & outArgument6,
+                                                                                    GGS_string & outArgument7,
+                                                                                    GGS_piccoloDeviceModel & outArgument8,
+                                                                                    GGS_uint & outArgument9,
+                                                                                    GGS_ramBankTable & outArgument10,
+                                                                                    GGS_registerTable & outArgument11,
+                                                                                    Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_parse_5F_bootloader_i0_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_start_5F_symbol_i1_ (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_start_5F_symbol_i1_importBootloaderSpecification (GGS_piccoloDeviceModel & outArgument0,
+                                                                                                             GGS_string & outArgument1,
+                                                                                                             GGS_uint & outArgument2,
+                                                                                                             GGS_ramBankTable & outArgument3,
+                                                                                                             GGS_registerTable & outArgument4,
+                                                                                                             GGS_bootloaderReservedRAMmap & outArgument5,
+                                                                                                             GGS_routineDeclarationList & outArgument6,
+                                                                                                             GGS_routineDeclarationList & outArgument7,
+                                                                                                             GGS_luint & outArgument8,
+                                                                                                             Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_start_5F_symbol_i1_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_start_5F_symbol_i1_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_ (GGS_routineDeclarationList & ioArgument0,
+                                                                                       Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_parse (Lexique_piccolo_5F_lexique * inLexique) ;
+
+  protected: void rule_pic_31__38__5F_bootloader_5F_syntax_routine_5F_declaration_i2_indexing (Lexique_piccolo_5F_lexique * inLexique) ;
+
+
+
+//--- Select methods
+  protected: virtual int32_t select_pic_31__38__5F_bootloader_5F_syntax_0 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_pic_31__38__5F_bootloader_5F_syntax_1 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_pic_31__38__5F_bootloader_5F_syntax_2 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_pic_31__38__5F_bootloader_5F_syntax_3 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_pic_31__38__5F_bootloader_5F_syntax_4 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_pic_31__38__5F_bootloader_5F_syntax_5 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_pic_31__38__5F_bootloader_5F_syntax_6 (Lexique_piccolo_5F_lexique *) = 0 ;
+
+
+} ;
+
+
+//--------------------------------------------------------------------------------------------------
+//
+//                               Bool options                                                    
+//
+//--------------------------------------------------------------------------------------------------
+
+extern BoolCommandLineOption gOption_piccoloOptions_doNotReorderCluster ;
+
+extern BoolCommandLineOption gOption_piccoloOptions_doNotWarnRecursive ;
+
+extern BoolCommandLineOption gOption_piccoloOptions_generateGraphvizFiles ;
+
+extern BoolCommandLineOption gOption_piccoloOptions_generateAssembly ;
+
+extern BoolCommandLineOption gOption_piccoloOptions_output_5F_C_5F_Array ;
+
+extern BoolCommandLineOption gOption_piccoloOptions_ouputListingFile ;
+
+extern BoolCommandLineOption gOption_piccoloOptions_performOptimizations ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//                               UInt options                                                    
+//
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+//
+//                              String options                                                   
+//
+//--------------------------------------------------------------------------------------------------
+
+extern StringCommandLineOption gOption_piccoloOptions_optimizationFlags ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//                              String List options                                              
+//
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'pic18BootloaderSpecificationAnalysis????????!!!!!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__3F__3F__21__21__21__21__21_ (const class GGS_string constinArgument0,
+                                                                                                             const class GGS_lstring constinArgument1,
+                                                                                                             const class GGS_lstring constinArgument2,
+                                                                                                             const class GGS_routineDeclarationList constinArgument3,
+                                                                                                             const class GGS_bootloaderReservedRAMmap constinArgument4,
+                                                                                                             const class GGS_luint constinArgument5,
+                                                                                                             const class GGS_routineDeclarationList constinArgument6,
+                                                                                                             const class GGS_ramDefinitionList constinArgument7,
+                                                                                                             class GGS_string & outArgument8,
+                                                                                                             class GGS_piccoloDeviceModel & outArgument9,
+                                                                                                             class GGS_uint & outArgument10,
+                                                                                                             class GGS_ramBankTable & outArgument11,
+                                                                                                             class GGS_registerTable & outArgument12,
+                                                                                                             class Compiler * inCompiler
+                                                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension getter '@ipic18AbstractBlockTerminator terminatorDisplay'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string callExtensionGetter_terminatorDisplay (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                        const class GGS_string constin_inNextBlockLabel,
+                                                        class Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension getter '@ipic18AbstractBlockTerminator terminatorSize'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_uint callExtensionGetter_terminatorSize (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                   const class GGS_string constin_inNextBlockLabel,
+                                                   class Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @midrange_5F_declaredRoutineMap map
+//--------------------------------------------------------------------------------------------------
+
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
+
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_midrange_5F_declaredRoutineMap final {
+
+  public: DownEnumerator_midrange_5F_declaredRoutineMap (const class GGS_midrange_5F_declaredRoutineMap & inMap) ;
+
+  public: ~ DownEnumerator_midrange_5F_declaredRoutineMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_midrange_5F_declaredRoutineMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_midrange_5F_declaredRoutineMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_midrange_5F_declaredRoutineMap (const DownEnumerator_midrange_5F_declaredRoutineMap &) = delete ;
+  private: DownEnumerator_midrange_5F_declaredRoutineMap & operator = (const DownEnumerator_midrange_5F_declaredRoutineMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_midrange_5F_declaredRoutineMap final {
+  public: UpEnumerator_midrange_5F_declaredRoutineMap (const class GGS_midrange_5F_declaredRoutineMap & inMap)  ;
+
+  public: ~ UpEnumerator_midrange_5F_declaredRoutineMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_midrange_5F_declaredRoutineMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_midrange_5F_declaredRoutineMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_midrange_5F_declaredRoutineMap (const UpEnumerator_midrange_5F_declaredRoutineMap &) = delete ;
+  private: UpEnumerator_midrange_5F_declaredRoutineMap & operator = (const UpEnumerator_midrange_5F_declaredRoutineMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_midrange_5F_declaredRoutineMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_midrange_5F_declaredRoutineMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
+  public: GGS_midrange_5F_declaredRoutineMap (void) ;
+
+//--- Virtual destructor
+  public: virtual ~ GGS_midrange_5F_declaredRoutineMap (void) ;
+
+//--- Handle copy
+  public: GGS_midrange_5F_declaredRoutineMap (const GGS_midrange_5F_declaredRoutineMap & inSource) ;
+  public: GGS_midrange_5F_declaredRoutineMap & operator = (const GGS_midrange_5F_declaredRoutineMap & inSource) ;
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_midrange_5F_declaredRoutineMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_midrange_5F_declaredRoutineMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_midrange_5F_declaredRoutineMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_ipic_31__38_ComputedBraTerminator init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                         const class GGS_lstringlist & inOperand1,
-                                                                         const class GGS_bool & inOperand2,
+  public: static GGS_midrange_5F_declaredRoutineMap init (Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_midrange_5F_declaredRoutineMap extractObject (const GGS_object & inObject,
+                                                                   Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_midrange_5F_declaredRoutineMap class_func_emptyMap (LOCATION_ARGS) ;
+
+  public: static class GGS_midrange_5F_declaredRoutineMap class_func_mapWithMapToOverride (const class GGS_midrange_5F_declaredRoutineMap & inOperand0
+                                                                                           COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_midrange_5F_declaredRoutineMap getter_overriddenMap (Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+  public: VIRTUAL_IN_DEBUG class GGS_midrange_5F_declaredRoutineMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                                       Compiler * inCompiler
+                                                                                                       COMMA_LOCATION_ARGS) const ;
+
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_midrange_5F_declaredRoutineMap ;
+  friend class DownEnumerator_midrange_5F_declaredRoutineMap ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_declaredRoutineMap ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @midrange_5F_declaredRoutineMap_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_midrange_5F_declaredRoutineMap_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_lkey ;
+  public: inline GGS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_midrange_5F_declaredRoutineMap_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_midrange_5F_declaredRoutineMap_2E_element (const GGS_lstring & in_lkey) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_midrange_5F_declaredRoutineMap_2E_element (const GGS_midrange_5F_declaredRoutineMap_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_midrange_5F_declaredRoutineMap_2E_element & operator = (const GGS_midrange_5F_declaredRoutineMap_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_midrange_5F_declaredRoutineMap_2E_element init_21_ (const class GGS_lstring & inOperand0,
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
@@ -4532,219 +4681,18 @@ class GGS_ipic_31__38_ComputedBraTerminator : public GGS_ipic_31__38_AbstractBlo
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ComputedBraTerminator extractObject (const GGS_object & inObject,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ComputedBraTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                             const class GGS_lstringlist & inOperand1,
-                                                                             const class GGS_bool & inOperand2,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ComputedBraTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18ComputedBraTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_ComputedBraTerminator_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                   const class GGS_lstringlist & inOperand1,
-                                                                   const class GGS_bool & inOperand2,
-                                                                   Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method enterTerminatorReferencedLabels
-  public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorRelativeBranchOverflow
-  public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_lstringlist mProperty_mTargetLabels ;
-  public: GGS_bool mProperty_mUsesRCALL ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_ComputedBraTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_ComputedBraTerminator (const GGS_location & in_mInstructionLocation,
-                                                  const GGS_lstringlist & in_mTargetLabels,
-                                                  const GGS_bool & in_mUsesRCALL,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_ComputedBraTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_ComputedBraTerminator_2E_weak : public GGS_ipic_31__38_AbstractBlockTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_ComputedBraTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_ComputedBraTerminator_2E_weak (const class GGS_ipic_31__38_ComputedBraTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_ComputedBraTerminator_2E_weak & operator = (const class GGS_ipic_31__38_ComputedBraTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_ComputedBraTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_ComputedBraTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_ComputedBraTerminator bang_ipic_31__38_ComputedBraTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_ComputedBraTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_ComputedBraTerminator_2E_weak extractObject (const GGS_object & inObject,
+  public: static GGS_midrange_5F_declaredRoutineMap_2E_element extractObject (const GGS_object & inObject,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ComputedBraTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
+  public: static class GGS_midrange_5F_declaredRoutineMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                                     class Compiler * inCompiler
+                                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_ComputedBraTerminator_2E_weak & inOperand) const ;
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -4763,41 +4711,52 @@ class GGS_ipic_31__38_ComputedBraTerminator_2E_weak : public GGS_ipic_31__38_Abs
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_ComputedBraTerminator_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_declaredRoutineMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-//   enum ipic_31__38_RegisterComparison
+// Phase 1: midrange_declaredRoutineMap.element? optional
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38_RegisterComparison : public AC_GALGAS_root {
+class GGS_midrange_5F_declaredRoutineMap_2E_element_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_midrange_5F_declaredRoutineMap_2E_element mValue ;
+  private: OptionalState mState ;
+
 //--------------------------------- Default constructor
-  public: GGS_ipic_31__38_RegisterComparison (void) ;
+  public: GGS_midrange_5F_declaredRoutineMap_2E_element_3F_ (void) ;
 
-//--------------------------------- Enumeration
-  public: enum class Enumeration {
-    invalid,
-    enum_registerEqualsToW,
-    enum_registerGreaterThanW,
-    enum_registerLowerThanW
-  } ;
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_midrange_5F_declaredRoutineMap_2E_element_3F_ (const GGS_midrange_5F_declaredRoutineMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_midrange_5F_declaredRoutineMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_midrange_5F_declaredRoutineMap_2E_element unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
   
-//--------------------------------- Private properties
-  private: Enumeration mEnum ;
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
 
-//--------------------------------- Associated value extraction
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override {
-    return Enumeration::invalid != mEnum ;
-  }
-
-  public: VIRTUAL_IN_DEBUG inline void drop (void) override {
-    mEnum = Enumeration::invalid ;
-  }
-
-  public: inline Enumeration enumValue (void) const {
-    return mEnum ;
-  }
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
 
 //-- Start of type generic part
 
@@ -4807,22 +4766,10 @@ class GGS_ipic_31__38_RegisterComparison : public AC_GALGAS_root {
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_RegisterComparison extractObject (const GGS_object & inObject,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
+  public: static GGS_midrange_5F_declaredRoutineMap_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                                  Compiler * inCompiler
+                                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_RegisterComparison class_func_registerEqualsToW (LOCATION_ARGS) ;
-
-  public: static class GGS_ipic_31__38_RegisterComparison class_func_registerGreaterThanW (LOCATION_ARGS) ;
-
-  public: static class GGS_ipic_31__38_RegisterComparison class_func_registerLowerThanW (LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_RegisterComparison & inOperand) const ;
 
 //--------------------------------- Setters
 
@@ -4830,12 +4777,6 @@ class GGS_ipic_31__38_RegisterComparison : public AC_GALGAS_root {
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isRegisterEqualsToW (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isRegisterGreaterThanW (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isRegisterLowerThanW (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Read subscripts
 
@@ -4847,30 +4788,351 @@ class GGS_ipic_31__38_RegisterComparison : public AC_GALGAS_root {
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_RegisterComparison ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_declaredRoutineMap_2E_element_3F_ ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_AbstractConditionTerminator reference class
+//
+//Abstract extension method '@pic18PiccoloSimpleInstruction analyzeSimpleInstruction'
+//
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38_AbstractConditionTerminator : public GGS_ipic_31__38_AbstractBlockTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_AbstractConditionTerminator (void) ;
+void callExtensionMethod_analyzeSimpleInstruction (class cPtr_pic_31__38_PiccoloSimpleInstruction * inObject,
+                                                   const class GGS_uint constin_inAccessBankSplitOffset,
+                                                   const class GGS_routineMap constin_inRoutineMap,
+                                                   const class GGS_registerTable constin_inRegisterTable,
+                                                   const class GGS_pic_31__38__5F_dataMap constin_inDataMap,
+                                                   const class GGS_constantMap constin_inConstantMap,
+                                                   class GGS_uint & io_ioCurrentBank,
+                                                   const class GGS_bool constin_inShouldPreserveBSR,
+                                                   class GGS_stringset & io_ioUsedRegisters,
+                                                   class GGS_ipic_31__38_SequentialInstruction & out_outInstruction,
+                                                   class Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_AbstractConditionTerminator (const class cPtr_ipic_31__38_AbstractConditionTerminator * inSourcePtr) ;
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@pic18PiccoloInstruction analyze'
+//
+//--------------------------------------------------------------------------------------------------
 
-//--------------------------------- Property access
-  public: class GGS_ipic_31__38_SingleInstructionTerminator readProperty_mSingleInstructionTerminatorIfConditionTrue (void) const ;
+void callExtensionMethod_analyze (class cPtr_pic_31__38_PiccoloInstruction * inObject,
+                                  const class GGS_uint constin_inAccessBankSplitOffset,
+                                  class GGS_ipic_31__38_BlockList & io_ioGeneratedBlockList,
+                                  const class GGS_routineMap constin_inRoutineMap,
+                                  const class GGS_registerTable constin_inRegisterTable,
+                                  const class GGS_pic_31__38__5F_dataMap constin_inDataMap,
+                                  const class GGS_constantMap constin_inConstantMap,
+                                  const class GGS_pic_31__38_MacroMap constin_inMacroMap,
+                                  class GGS_uint & io_ioLocalLabelIndex,
+                                  class GGS_ipic_31__38_SequentialInstructionList & io_ioGeneratedInstructionList,
+                                  class GGS_lstring & io_ioBlockLabel,
+                                  class GGS_string & io_ioListFileContents,
+                                  class GGS_uint & io_ioCurrentBank,
+                                  const class GGS_bool constin_inShouldPreserveBSR,
+                                  const class GGS_routineKind constin_inRoutineKind,
+                                  class GGS_stringset & io_ioUsedRegisters,
+                                  class Compiler * inCompiler
+                                  COMMA_LOCATION_ARGS) ;
 
-  public: class GGS_ipic_31__38_SingleInstructionTerminator readProperty_mSingleInstructionTerminatorIfConditionFalse (void) const ;
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @blockInstructionBlockMap map
+//--------------------------------------------------------------------------------------------------
+
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
+
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_blockInstructionBlockMap final {
+
+  public: DownEnumerator_blockInstructionBlockMap (const class GGS_blockInstructionBlockMap & inMap) ;
+
+  public: ~ DownEnumerator_blockInstructionBlockMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_pic_31__38_InstructionList current_mInstructionList (LOCATION_ARGS) const ;
+
+  public: class GGS_abstractBlockTerminationForBlockInstruction current_mBlockTerminaisonForBlockInstruction (LOCATION_ARGS) const ;
+
+  public: class GGS_location current_mEndOfBlock (LOCATION_ARGS) const ;
+
+  public: class GGS_blockInstructionBlockMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_blockInstructionBlockMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_blockInstructionBlockMap (const DownEnumerator_blockInstructionBlockMap &) = delete ;
+  private: DownEnumerator_blockInstructionBlockMap & operator = (const DownEnumerator_blockInstructionBlockMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_blockInstructionBlockMap final {
+  public: UpEnumerator_blockInstructionBlockMap (const class GGS_blockInstructionBlockMap & inMap)  ;
+
+  public: ~ UpEnumerator_blockInstructionBlockMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_pic_31__38_InstructionList current_mInstructionList (LOCATION_ARGS) const ;
+  public: class GGS_abstractBlockTerminationForBlockInstruction current_mBlockTerminaisonForBlockInstruction (LOCATION_ARGS) const ;
+  public: class GGS_location current_mEndOfBlock (LOCATION_ARGS) const ;
+  public: class GGS_blockInstructionBlockMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_blockInstructionBlockMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_blockInstructionBlockMap (const UpEnumerator_blockInstructionBlockMap &) = delete ;
+  private: UpEnumerator_blockInstructionBlockMap & operator = (const UpEnumerator_blockInstructionBlockMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_blockInstructionBlockMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_blockInstructionBlockMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
+  public: GGS_blockInstructionBlockMap (void) ;
+
+//--- Virtual destructor
+  public: virtual ~ GGS_blockInstructionBlockMap (void) ;
+
+//--- Handle copy
+  public: GGS_blockInstructionBlockMap (const GGS_blockInstructionBlockMap & inSource) ;
+  public: GGS_blockInstructionBlockMap & operator = (const GGS_blockInstructionBlockMap & inSource) ;
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_blockInstructionBlockMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_blockInstructionBlockMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_blockInstructionBlockMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: static GGS_ipic_31__38_AbstractConditionTerminator init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                               const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                               const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
+  public: static GGS_blockInstructionBlockMap init (Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_blockInstructionBlockMap extractObject (const GGS_object & inObject,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_blockInstructionBlockMap class_func_emptyMap (LOCATION_ARGS) ;
+
+  public: static class GGS_blockInstructionBlockMap class_func_mapWithMapToOverride (const class GGS_blockInstructionBlockMap & inOperand0
+                                                                                     COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
+                                                  class GGS_pic_31__38_InstructionList constinArgument1,
+                                                  class GGS_abstractBlockTerminationForBlockInstruction constinArgument2,
+                                                  class GGS_location constinArgument3,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMBlockTerminaisonForBlockInstructionForKey (class GGS_abstractBlockTerminationForBlockInstruction constinArgument0,
+                                                                                      class GGS_string constinArgument1,
+                                                                                      Compiler * inCompiler
+                                                                                      COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMEndOfBlockForKey (class GGS_location constinArgument0,
+                                                             class GGS_string constinArgument1,
+                                                             Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMInstructionListForKey (class GGS_pic_31__38_InstructionList constinArgument0,
+                                                                  class GGS_string constinArgument1,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
+                                                  class GGS_pic_31__38_InstructionList & outArgument1,
+                                                  class GGS_abstractBlockTerminationForBlockInstruction & outArgument2,
+                                                  class GGS_location & outArgument3,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_abstractBlockTerminationForBlockInstruction getter_mBlockTerminaisonForBlockInstructionForKey (const class GGS_string & constinOperand0,
+                                                                                                                                    Compiler * inCompiler
+                                                                                                                                    COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_mEndOfBlockForKey (const class GGS_string & constinOperand0,
+                                                                        Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_pic_31__38_InstructionList getter_mInstructionListForKey (const class GGS_string & constinOperand0,
+                                                                                               Compiler * inCompiler
+                                                                                               COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_blockInstructionBlockMap getter_overriddenMap (Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+  public: VIRTUAL_IN_DEBUG class GGS_blockInstructionBlockMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                                 Compiler * inCompiler
+                                                                                                 COMMA_LOCATION_ARGS) const ;
+
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_blockInstructionBlockMap ;
+  friend class DownEnumerator_blockInstructionBlockMap ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_blockInstructionBlockMap ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @blockInstructionBlockMap_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_blockInstructionBlockMap_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_lkey ;
+  public: inline GGS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
+
+  public: GGS_pic_31__38_InstructionList mProperty_mInstructionList ;
+  public: inline GGS_pic_31__38_InstructionList readProperty_mInstructionList (void) const {
+    return mProperty_mInstructionList ;
+  }
+
+  public: GGS_abstractBlockTerminationForBlockInstruction mProperty_mBlockTerminaisonForBlockInstruction ;
+  public: inline GGS_abstractBlockTerminationForBlockInstruction readProperty_mBlockTerminaisonForBlockInstruction (void) const {
+    return mProperty_mBlockTerminaisonForBlockInstruction ;
+  }
+
+  public: GGS_location mProperty_mEndOfBlock ;
+  public: inline GGS_location readProperty_mEndOfBlock (void) const {
+    return mProperty_mEndOfBlock ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_blockInstructionBlockMap_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
+  }
+
+  public: inline void setter_setMInstructionList (const GGS_pic_31__38_InstructionList & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInstructionList = inValue ;
+  }
+
+  public: inline void setter_setMBlockTerminaisonForBlockInstruction (const GGS_abstractBlockTerminationForBlockInstruction & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mBlockTerminaisonForBlockInstruction = inValue ;
+  }
+
+  public: inline void setter_setMEndOfBlock (const GGS_location & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mEndOfBlock = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_blockInstructionBlockMap_2E_element (const GGS_lstring & in_lkey,
+                                                   const GGS_pic_31__38_InstructionList & in_mInstructionList,
+                                                   const GGS_abstractBlockTerminationForBlockInstruction & in_mBlockTerminaisonForBlockInstruction,
+                                                   const GGS_location & in_mEndOfBlock) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_blockInstructionBlockMap_2E_element (const GGS_blockInstructionBlockMap_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_blockInstructionBlockMap_2E_element & operator = (const GGS_blockInstructionBlockMap_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_blockInstructionBlockMap_2E_element init_21__21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                               const class GGS_pic_31__38_InstructionList & inOperand1,
+                                                                               const class GGS_abstractBlockTerminationForBlockInstruction & inOperand2,
+                                                                               const class GGS_location & inOperand3,
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
@@ -4878,2925 +5140,21 @@ class GGS_ipic_31__38_AbstractConditionTerminator : public GGS_ipic_31__38_Abstr
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_AbstractConditionTerminator extractObject (const GGS_object & inObject,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_AbstractConditionTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18AbstractConditionTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_AbstractBlockTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_AbstractConditionTerminator_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                         const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                         const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                         Compiler * inCompiler) ;
-
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method enterTerminatorReferencedLabels
-  public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method exploreAccessibleBlocksForStackComputations
-  public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
-           class GGS_stringset & arg_ioExploredBlockSet,
-           class GGS_uint & arg_outStackNeeds,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method getOptimizedTerminators
-  public: virtual void method_getOptimizedTerminators (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SingleInstructionTerminator & arg_outOptimizedTrueTerminator,
-           class GGS_ipic_31__38_SingleInstructionTerminator & arg_outOptimizedFalseTerminator,
-           class GGS_bool & arg_outIdenticalTerminators,
-           Compiler * COMMA_LOCATION_ARGS) ;
-
-//--- Extension method terminatorRelativeBranchOverflow
-  public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_ipic_31__38_SingleInstructionTerminator mProperty_mSingleInstructionTerminatorIfConditionTrue ;
-  public: GGS_ipic_31__38_SingleInstructionTerminator mProperty_mSingleInstructionTerminatorIfConditionFalse ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_AbstractConditionTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_AbstractConditionTerminator (const GGS_location & in_mInstructionLocation,
-                                                        const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                        const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override = 0 ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_AbstractConditionTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_AbstractConditionTerminator_2E_weak : public GGS_ipic_31__38_AbstractBlockTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_AbstractConditionTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_AbstractConditionTerminator_2E_weak (const class GGS_ipic_31__38_AbstractConditionTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_AbstractConditionTerminator_2E_weak & operator = (const class GGS_ipic_31__38_AbstractConditionTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_AbstractConditionTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_AbstractConditionTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_AbstractConditionTerminator bang_ipic_31__38_AbstractConditionTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_AbstractConditionTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_AbstractConditionTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_AbstractConditionTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_AbstractConditionTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_AbstractConditionTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_registerExpression struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_registerExpression : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_string mProperty_mAssemblyString ;
-  public: inline GGS_string readProperty_mAssemblyString (void) const {
-    return mProperty_mAssemblyString ;
-  }
-
-  public: GGS_uint mProperty_mRegisterAddress ;
-  public: inline GGS_uint readProperty_mRegisterAddress (void) const {
-    return mProperty_mRegisterAddress ;
-  }
-
-  public: GGS_bool mProperty_mNeedsBSR ;
-  public: inline GGS_bool readProperty_mNeedsBSR (void) const {
-    return mProperty_mNeedsBSR ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMAssemblyString (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mAssemblyString = inValue ;
-  }
-
-  public: inline void setter_setMRegisterAddress (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mRegisterAddress = inValue ;
-  }
-
-  public: inline void setter_setMNeedsBSR (const GGS_bool & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mNeedsBSR = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression (const GGS_string & in_mAssemblyString,
-                                                                  const GGS_uint & in_mRegisterAddress,
-                                                                  const GGS_bool & in_mNeedsBSR) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression & operator = (const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_registerExpression init_21__21__21_ (const class GGS_string & inOperand0,
-                                                                                          const class GGS_uint & inOperand1,
-                                                                                          const class GGS_bool & inOperand2,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_registerExpression extractObject (const GGS_object & inObject,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_registerExpression class_func_new (const class GGS_string & inOperand0,
-                                                                                              const class GGS_uint & inOperand1,
-                                                                                              const class GGS_bool & inOperand2,
-                                                                                              class Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpression ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_RegisterComparisonTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_pic_31__38_RegisterComparisonTerminator : public GGS_ipic_31__38_AbstractConditionTerminator {
-//--------------------------------- Default constructor
-  public: GGS_pic_31__38_RegisterComparisonTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_pic_31__38_RegisterComparisonTerminator (const class cPtr_pic_31__38_RegisterComparisonTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-
-  public: class GGS_ipic_31__38_RegisterComparison readProperty_mComparison (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_pic_31__38_RegisterComparisonTerminator init_21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                       const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                       const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                       const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                       const class GGS_ipic_31__38_RegisterComparison & inOperand4,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_pic_31__38_RegisterComparisonTerminator extractObject (const GGS_object & inObject,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_RegisterComparisonTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                                   const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                   const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                   const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                   const class GGS_ipic_31__38_RegisterComparison & inOperand4,
-                                                                                   class Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_pic_31__38_RegisterComparisonTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @pic18RegisterComparisonTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void pic_31__38_RegisterComparisonTerminator_init_21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                 const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                 const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                 const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                 const class GGS_ipic_31__38_RegisterComparison & inOperand4,
-                                                                                 Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method buildTerminatorOrderedGraph
-  public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_blockInvocationGraph & arg_ioGraph,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-  public: GGS_ipic_31__38_RegisterComparison mProperty_mComparison ;
-
-
-//--- Default constructor
-  public: cPtr_pic_31__38_RegisterComparisonTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_RegisterComparisonTerminator (const GGS_location & in_mInstructionLocation,
-                                                        const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                        const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                        const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                        const GGS_ipic_31__38_RegisterComparison & in_mComparison,
-                                                        Compiler * inCompiler
-                                                        COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_RegisterComparisonTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_pic_31__38_RegisterComparisonTerminator_2E_weak : public GGS_ipic_31__38_AbstractConditionTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_pic_31__38_RegisterComparisonTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_pic_31__38_RegisterComparisonTerminator_2E_weak (const class GGS_pic_31__38_RegisterComparisonTerminator & inSource) ;
-
-  public: GGS_pic_31__38_RegisterComparisonTerminator_2E_weak & operator = (const class GGS_pic_31__38_RegisterComparisonTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_pic_31__38_RegisterComparisonTerminator_2E_weak init_nil (void) {
-    GGS_pic_31__38_RegisterComparisonTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_pic_31__38_RegisterComparisonTerminator bang_pic_31__38_RegisterComparisonTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_pic_31__38_RegisterComparisonTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_pic_31__38_RegisterComparisonTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_RegisterComparisonTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_pic_31__38_RegisterComparisonTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_RegisterComparisonTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_IncDecRegisterTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_IncDecRegisterTerminator : public GGS_ipic_31__38_AbstractConditionTerminator {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_IncDecRegisterTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_IncDecRegisterTerminator (const class cPtr_ipic_31__38_IncDecRegisterTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-
-  public: class GGS_bool readProperty_mIncrement (void) const ;
-
-  public: class GGS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_IncDecRegisterTerminator init_21__21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                        const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                        const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                        const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                        const class GGS_bool & inOperand4,
-                                                                                        const class GGS_bool & inOperand5,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_IncDecRegisterTerminator extractObject (const GGS_object & inObject,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_IncDecRegisterTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                                const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                const class GGS_bool & inOperand4,
-                                                                                const class GGS_bool & inOperand5,
-                                                                                class Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_IncDecRegisterTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18IncDecRegisterTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_IncDecRegisterTerminator_init_21__21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                  const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                  const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                  const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                  const class GGS_bool & inOperand4,
-                                                                                  const class GGS_bool & inOperand5,
-                                                                                  Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorOrderedGraph
-  public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_blockInvocationGraph & arg_ioGraph,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-  public: GGS_bool mProperty_mIncrement ;
-  public: GGS_bool mProperty_m_5F_W_5F_isDestination ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_IncDecRegisterTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_IncDecRegisterTerminator (const GGS_location & in_mInstructionLocation,
-                                                     const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                     const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                     const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                     const GGS_bool & in_mIncrement,
-                                                     const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_IncDecRegisterTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak : public GGS_ipic_31__38_AbstractConditionTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak (const class GGS_ipic_31__38_IncDecRegisterTerminator & inSource) ;
-
-  public: GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak & operator = (const class GGS_ipic_31__38_IncDecRegisterTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak init_nil (void) {
-    GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_IncDecRegisterTerminator bang_ipic_31__38_IncDecRegisterTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_IncDecRegisterTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_IncDecRegisterTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_IncDecRegisterTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_TestRegisterTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_pic_31__38_TestRegisterTerminator : public GGS_ipic_31__38_AbstractConditionTerminator {
-//--------------------------------- Default constructor
-  public: GGS_pic_31__38_TestRegisterTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_pic_31__38_TestRegisterTerminator (const class cPtr_pic_31__38_TestRegisterTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_pic_31__38_TestRegisterTerminator init_21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                             const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                             const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                             const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                             Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_pic_31__38_TestRegisterTerminator extractObject (const GGS_object & inObject,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_TestRegisterTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                             const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                             const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                             const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_pic_31__38_TestRegisterTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_TestRegisterTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @pic18TestRegisterTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void pic_31__38_TestRegisterTerminator_init_21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                       const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                       const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                       const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                       Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter needToInsertJumpInstruction
-  public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorSize
-  public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorInvocationGraph
-  public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           const class GGS_bool arg_inDottedArrow,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method buildTerminatorOrderedGraph
-  public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_blockInvocationGraph & arg_ioGraph,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-
-
-//--- Default constructor
-  public: cPtr_pic_31__38_TestRegisterTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_TestRegisterTerminator (const GGS_location & in_mInstructionLocation,
-                                                  const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                  const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                  const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_TestRegisterTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_pic_31__38_TestRegisterTerminator_2E_weak : public GGS_ipic_31__38_AbstractConditionTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_pic_31__38_TestRegisterTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_pic_31__38_TestRegisterTerminator_2E_weak (const class GGS_pic_31__38_TestRegisterTerminator & inSource) ;
-
-  public: GGS_pic_31__38_TestRegisterTerminator_2E_weak & operator = (const class GGS_pic_31__38_TestRegisterTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_pic_31__38_TestRegisterTerminator_2E_weak init_nil (void) {
-    GGS_pic_31__38_TestRegisterTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_pic_31__38_TestRegisterTerminator bang_pic_31__38_TestRegisterTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_pic_31__38_TestRegisterTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_pic_31__38_TestRegisterTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                              Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_TestRegisterTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_pic_31__38_TestRegisterTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_TestRegisterTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_BitTestTerminator reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_pic_31__38_BitTestTerminator : public GGS_ipic_31__38_AbstractConditionTerminator {
-//--------------------------------- Default constructor
-  public: GGS_pic_31__38_BitTestTerminator (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_pic_31__38_BitTestTerminator (const class cPtr_pic_31__38_BitTestTerminator * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-
-  public: class GGS_uint readProperty_mBitNumber (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_pic_31__38_BitTestTerminator init_21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                            const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                            const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                            const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                            const class GGS_uint & inOperand4,
-                                                                            Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_pic_31__38_BitTestTerminator extractObject (const GGS_object & inObject,
-                                                                 Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_BitTestTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                        const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                        const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                        const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                        const class GGS_uint & inOperand4,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_pic_31__38_BitTestTerminator & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestTerminator ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @pic18BitTestTerminator class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractConditionTerminator {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void pic_31__38_BitTestTerminator_init_21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                      const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                      const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                      const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                      const class GGS_uint & inOperand4,
-                                                                      Compiler * inCompiler) ;
-
-
-//--- Extension getter isEqualToTerminator
-  public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter terminatorDisplay
-  public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
-           Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildTerminatorOrderedGraph
-  public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_blockInvocationGraph & arg_ioGraph,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateTerminatorCode
-  public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeTerminator
-  public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_string arg_inBlockLabel,
-           class GGS_bool & arg_ioOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performTerminatorRelativeBranchResolution
-  public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_string arg_inNextBlockLabel,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method terminatorMinMaxDuration
-  public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           const class GGS_string arg_inNextLabel,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-  public: GGS_uint mProperty_mBitNumber ;
-
-
-//--- Default constructor
-  public: cPtr_pic_31__38_BitTestTerminator (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_pic_31__38_BitTestTerminator (const GGS_location & in_mInstructionLocation,
-                                             const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                             const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                             const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                             const GGS_uint & in_mBitNumber,
-                                             Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @pic_31__38_BitTestTerminator_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_pic_31__38_BitTestTerminator_2E_weak : public GGS_ipic_31__38_AbstractConditionTerminator_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_pic_31__38_BitTestTerminator_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_pic_31__38_BitTestTerminator_2E_weak (const class GGS_pic_31__38_BitTestTerminator & inSource) ;
-
-  public: GGS_pic_31__38_BitTestTerminator_2E_weak & operator = (const class GGS_pic_31__38_BitTestTerminator & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_pic_31__38_BitTestTerminator_2E_weak init_nil (void) {
-    GGS_pic_31__38_BitTestTerminator_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_pic_31__38_BitTestTerminator bang_pic_31__38_BitTestTerminator_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_pic_31__38_BitTestTerminator unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_pic_31__38_BitTestTerminator_2E_weak extractObject (const GGS_object & inObject,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_BitTestTerminator_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_pic_31__38_BitTestTerminator_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_BitTestTerminator_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_InstructionWithNoOperand reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_InstructionWithNoOperand : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_InstructionWithNoOperand (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38_InstructionWithNoOperand (const class cPtr_ipic_31__38_InstructionWithNoOperand * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_pic_31__38_InstructionWithNoOperandKind readProperty_mKind (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38_InstructionWithNoOperand init_21__21_ (const class GGS_location & inOperand0,
-                                                                        const class GGS_pic_31__38_InstructionWithNoOperandKind & inOperand1,
-                                                                        Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_InstructionWithNoOperand extractObject (const GGS_object & inObject,
-                                                                         Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_InstructionWithNoOperand class_func_new (const class GGS_location & inOperand0,
-                                                                                const class GGS_pic_31__38_InstructionWithNoOperandKind & inOperand1,
-                                                                                class Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_InstructionWithNoOperand & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18InstructionWithNoOperand class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38_InstructionWithNoOperand : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38_InstructionWithNoOperand_init_21__21_ (const class GGS_location & inOperand0,
-                                                                  const class GGS_pic_31__38_InstructionWithNoOperandKind & inOperand1,
-                                                                  Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_pic_31__38_InstructionWithNoOperandKind mProperty_mKind ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38_InstructionWithNoOperand (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38_InstructionWithNoOperand (const GGS_location & in_mInstructionLocation,
-                                                     const GGS_pic_31__38_InstructionWithNoOperandKind & in_mKind,
-                                                     Compiler * inCompiler
-                                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38_InstructionWithNoOperand_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38_InstructionWithNoOperand_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38_InstructionWithNoOperand_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38_InstructionWithNoOperand_2E_weak (const class GGS_ipic_31__38_InstructionWithNoOperand & inSource) ;
-
-  public: GGS_ipic_31__38_InstructionWithNoOperand_2E_weak & operator = (const class GGS_ipic_31__38_InstructionWithNoOperand & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38_InstructionWithNoOperand_2E_weak init_nil (void) {
-    GGS_ipic_31__38_InstructionWithNoOperand_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38_InstructionWithNoOperand bang_ipic_31__38_InstructionWithNoOperand_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38_InstructionWithNoOperand unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38_InstructionWithNoOperand_2E_weak extractObject (const GGS_object & inObject,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_InstructionWithNoOperand_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38_InstructionWithNoOperand_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_InstructionWithNoOperand_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@ipic18_intermediate_registerExpression isEqualToRegister' (as function)
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_bool extensionGetter_isEqualToRegister (const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inObject,
-                                                  const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & constinArgument0,
-                                                  class Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_FDA reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const ;
-
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-
-  public: class GGS_bool readProperty_m_5F_W_5F_isDestination (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA init_21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                              const class GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inOperand1,
-                                                                                              const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                              const class GGS_bool & inOperand3,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA extractObject (const GGS_object & inObject,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA class_func_new (const class GGS_location & inOperand0,
-                                                                                              const class GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inOperand1,
-                                                                                              const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                              const class GGS_bool & inOperand3,
-                                                                                              class Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_FDA class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_init_21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                        const class GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inOperand1,
-                                                                                        const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                        const class GGS_bool & inOperand3,
-                                                                                        Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST mProperty_mInstruction_5F_FDA_5F_base_5F_code ;
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-  public: GGS_bool mProperty_m_5F_W_5F_isDestination ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (const GGS_location & in_mInstructionLocation,
-                                                                   const GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & in_mInstruction_5F_FDA_5F_base_5F_code,
-                                                                   const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                   const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA bang_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak extractObject (const GGS_object & inObject,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-//   enum FA_5F_sequential_5F_instruction_5F_base_5F_code
-//--------------------------------------------------------------------------------------------------
-
-class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code : public AC_GALGAS_root {
-//--------------------------------- Default constructor
-  public: GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code (void) ;
-
-//--------------------------------- Enumeration
-  public: enum class Enumeration {
-    invalid,
-    enum_CLRF,
-    enum_MOVWF,
-    enum_MULWF,
-    enum_NEGF,
-    enum_SETF
-  } ;
-  
-//--------------------------------- Private properties
-  private: Enumeration mEnum ;
-
-//--------------------------------- Associated value extraction
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override {
-    return Enumeration::invalid != mEnum ;
-  }
-
-  public: VIRTUAL_IN_DEBUG inline void drop (void) override {
-    mEnum = Enumeration::invalid ;
-  }
-
-  public: inline Enumeration enumValue (void) const {
-    return mEnum ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code extractObject (const GGS_object & inObject,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code class_func_CLRF (LOCATION_ARGS) ;
-
-  public: static class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code class_func_MOVWF (LOCATION_ARGS) ;
-
-  public: static class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code class_func_MULWF (LOCATION_ARGS) ;
-
-  public: static class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code class_func_NEGF (LOCATION_ARGS) ;
-
-  public: static class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code class_func_SETF (LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isCLRF (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isMOVWF (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isMULWF (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isNEGF (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isSETF (LOCATION_ARGS) const ;
-
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_FA_5F_sequential_5F_instruction_5F_base_5F_code ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_FA reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code readProperty_mFAinstruction (void) const ;
-
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                         const class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                                         const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA extractObject (const GGS_object & inObject,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA class_func_new (const class GGS_location & inOperand0,
-                                                                                             const class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                                             const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                             class Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_FA class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_FA_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                   const class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                                   const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                   Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code mProperty_mFAinstruction ;
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (const GGS_location & in_mInstructionLocation,
-                                                                  const GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code & in_mFAinstruction,
-                                                                  const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA bang_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak extractObject (const GGS_object & inObject,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication struct
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication : public AC_GALGAS_root {
-//--------------------------------- Properties
-  public: GGS_string mProperty_mAssemblyString ;
-  public: inline GGS_string readProperty_mAssemblyString (void) const {
-    return mProperty_mAssemblyString ;
-  }
-
-  public: GGS_uint mProperty_mRegisterAddress ;
-  public: inline GGS_uint readProperty_mRegisterAddress (void) const {
-    return mProperty_mRegisterAddress ;
-  }
-
-//--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
-  public: VIRTUAL_IN_DEBUG void drop (void) override ;
-
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (void) ;
-
-//--------------------------------- Property setters
-  public: inline void setter_setMAssemblyString (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mAssemblyString = inValue ;
-  }
-
-  public: inline void setter_setMRegisterAddress (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
-    mProperty_mRegisterAddress = inValue ;
-  }
-
-//--------------------------------- Set initialized properties
-  private: void setInitializedProperties (Compiler * inCompiler) ;
-
-//--------------------------------- Native constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (const GGS_string & in_mAssemblyString,
-                                                                                      const GGS_uint & in_mRegisterAddress) ;
-
-//--------------------------------- Copy constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication (const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inSource) ;
-
-//--------------------------------- Assignment operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & operator = (const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inSource) ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication init_21__21_ (const class GGS_string & inOperand0,
-                                                                                                          const class GGS_uint & inOperand1,
-                                                                                                          Compiler * inCompiler
-                                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication extractObject (const GGS_object & inObject,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication class_func_new (const class GGS_string & inOperand0,
-                                                                                                                  const class GGS_uint & inOperand1,
-                                                                                                                  class Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Implementation of getter 'description'
-  public: VIRTUAL_IN_DEBUG void description (String & ioString,
-                                             const int32_t inIndentation) const override ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication readProperty_mSourceRegisterDescription (void) const ;
-
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication readProperty_mDestinationRegisterDescription (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                            const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand1,
-                                                                                            const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand2,
-                                                                                            Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF extractObject (const GGS_object & inObject,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand1,
-                                                                                                const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand2,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_MOVFF class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                      const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand1,
-                                                                                      const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand2,
-                                                                                      Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter instructionSize
-  public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication mProperty_mSourceRegisterDescription ;
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication mProperty_mDestinationRegisterDescription ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (const GGS_location & in_mInstructionLocation,
-                                                                     const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & in_mSourceRegisterDescription,
-                                                                     const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & in_mDestinationRegisterDescription,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF bang_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_literal_5F_instruction_5F_opcode readProperty_mLiteralInstruction (void) const ;
-
-  public: class GGS_uint readProperty_mLiteralValue (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                                       const class GGS_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                                       const class GGS_uint & inOperand2,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation extractObject (const GGS_object & inObject,
-                                                                                                    Compiler * inCompiler
-                                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation class_func_new (const class GGS_location & inOperand0,
-                                                                                                           const class GGS_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                                           const class GGS_uint & inOperand2,
-                                                                                                           class Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_literalOperation class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                                 const class GGS_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                                 const class GGS_uint & inOperand2,
-                                                                                                 Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_literal_5F_instruction_5F_opcode mProperty_mLiteralInstruction ;
-  public: GGS_uint mProperty_mLiteralValue ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (const GGS_location & in_mInstructionLocation,
-                                                                                const GGS_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
-                                                                                const GGS_uint & in_mLiteralValue,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation bang_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                            Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_luint readProperty_mFSRindex (void) const ;
-
-  public: class GGS_uint readProperty_mValue (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                           const class GGS_luint & inOperand1,
-                                                                                           const class GGS_uint & inOperand2,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR extractObject (const GGS_object & inObject,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR class_func_new (const class GGS_location & inOperand0,
-                                                                                               const class GGS_luint & inOperand1,
-                                                                                               const class GGS_uint & inOperand2,
-                                                                                               class Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_LFSR class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                     const class GGS_luint & inOperand1,
-                                                                                     const class GGS_uint & inOperand2,
-                                                                                     Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter instructionSize
-  public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_luint mProperty_mFSRindex ;
-  public: GGS_uint mProperty_mValue ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (const GGS_location & in_mInstructionLocation,
-                                                                    const GGS_luint & in_mFSRindex,
-                                                                    const GGS_uint & in_mValue,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR bang_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_FBA reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_bit_5F_oriented_5F_op readProperty_mBitOrientedOp (void) const ;
-
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-
-  public: class GGS_uint readProperty_mBitNumber (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA init_21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                              const class GGS_bit_5F_oriented_5F_op & inOperand1,
-                                                                                              const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                              const class GGS_uint & inOperand3,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA extractObject (const GGS_object & inObject,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA class_func_new (const class GGS_location & inOperand0,
-                                                                                              const class GGS_bit_5F_oriented_5F_op & inOperand1,
-                                                                                              const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                              const class GGS_uint & inOperand3,
-                                                                                              class Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_FBA class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_init_21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                        const class GGS_bit_5F_oriented_5F_op & inOperand1,
-                                                                                        const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                        const class GGS_uint & inOperand3,
-                                                                                        Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_bit_5F_oriented_5F_op mProperty_mBitOrientedOp ;
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-  public: GGS_uint mProperty_mBitNumber ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (const GGS_location & in_mInstructionLocation,
-                                                                   const GGS_bit_5F_oriented_5F_op & in_mBitOrientedOp,
-                                                                   const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                   const GGS_uint & in_mBitNumber,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA bang_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak extractObject (const GGS_object & inObject,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_JSR reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_JSR : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_JSR (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_JSR (const class cPtr_ipic_31__38__5F_intermediate_5F_JSR * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_lstring readProperty_mTargetLabel (void) const ;
-
-  public: class GGS_jumpInstructionKind readProperty_mKind (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_JSR init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                           const class GGS_lstring & inOperand1,
-                                                                           const class GGS_jumpInstructionKind & inOperand2,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_JSR extractObject (const GGS_object & inObject,
+  public: static GGS_blockInstructionBlockMap_2E_element extractObject (const GGS_object & inObject,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_JSR class_func_new (const class GGS_location & inOperand0,
-                                                                               const class GGS_lstring & inOperand1,
-                                                                               const class GGS_jumpInstructionKind & inOperand2,
+  public: static class GGS_blockInstructionBlockMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                               const class GGS_pic_31__38_InstructionList & inOperand1,
+                                                                               const class GGS_abstractBlockTerminationForBlockInstruction & inOperand2,
+                                                                               const class GGS_location & inOperand3,
                                                                                class Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_JSR & inOperand) const ;
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
 
 //--------------------------------- Setters
 
@@ -7815,2479 +5173,376 @@ class GGS_ipic_31__38__5F_intermediate_5F_JSR : public GGS_ipic_31__38_Sequentia
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_JSR ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_blockInstructionBlockMap_2E_element ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_JSR class
+// Phase 1: blockInstructionBlockMap.element? optional
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_SequentialInstruction {
+class GGS_blockInstructionBlockMap_2E_element_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_blockInstructionBlockMap_2E_element mValue ;
+  private: OptionalState mState ;
 
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
+//--------------------------------- Default constructor
+  public: GGS_blockInstructionBlockMap_2E_element_3F_ (void) ;
+
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_blockInstructionBlockMap_2E_element_3F_ (const GGS_blockInstructionBlockMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_blockInstructionBlockMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_blockInstructionBlockMap_2E_element unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
+  
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
+
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//-- Start of type generic part
 
 //--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_JSR_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                     const class GGS_lstring & inOperand1,
-                                                                     const class GGS_jumpInstructionKind & inOperand2,
-                                                                     Compiler * inCompiler) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_blockInstructionBlockMap_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
 
 
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
+//--------------------------------- Setters
 
-//--- Extension getter instructionSize
-  public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
 
-//--- Extension method buildCalledRoutineSetForStackComputations
-  public: virtual void method_buildCalledRoutineSetForStackComputations (class GGS_stringset & arg_ioRoutineCalledSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
+//--------------------------------- Getters
 
-//--- Extension method buildInstructionInvocationGraph
-  public: virtual void method_buildInstructionInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           Compiler * COMMA_LOCATION_ARGS) override ;
+//--------------------------------- Read subscripts
 
-//--- Extension method enterInstructionReferencedLabels
-  public: virtual void method_enterInstructionReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
 
-//--- Extension method instructionRelativeBranchOverflow
-  public: virtual void method_instructionRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) override ;
+//--------------------------------------------------------------------------------------------------
 
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_blockInstructionBlockMap_2E_element_3F_ ;
 
-//--- Extension method optimizeInstruction
-  public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_lstring arg_inBlockLabel,
-           class GGS_bool & arg_outOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outOptimizedInstruction,
-           class GGS_bool & arg_outNOPsubstitution,
-           Compiler * COMMA_LOCATION_ARGS) override ;
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @blockInitialBankSelectionMap map
+//--------------------------------------------------------------------------------------------------
 
-//--- Extension method performInstructionRelativeBranchResolution
-  public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outModifiedInstruction,
-           Compiler * COMMA_LOCATION_ARGS) override ;
+#include "SharedGenericPtrWithValueSemantics.h"
 
-//--- Properties
-  public: GGS_lstring mProperty_mTargetLabel ;
-  public: GGS_jumpInstructionKind mProperty_mKind ;
+template <typename INFO> class GenericMapRoot ;
 
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_blockInitialBankSelectionMap final {
+
+  public: DownEnumerator_blockInitialBankSelectionMap (const class GGS_blockInitialBankSelectionMap & inMap) ;
+
+  public: ~ DownEnumerator_blockInitialBankSelectionMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_uint current_mInitialBankSelection (LOCATION_ARGS) const ;
+
+  public: class GGS_string current_mSourceBlock (LOCATION_ARGS) const ;
+
+  public: class GGS_blockInitialBankSelectionMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_blockInitialBankSelectionMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_blockInitialBankSelectionMap (const DownEnumerator_blockInitialBankSelectionMap &) = delete ;
+  private: DownEnumerator_blockInitialBankSelectionMap & operator = (const DownEnumerator_blockInitialBankSelectionMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_blockInitialBankSelectionMap final {
+  public: UpEnumerator_blockInitialBankSelectionMap (const class GGS_blockInitialBankSelectionMap & inMap)  ;
+
+  public: ~ UpEnumerator_blockInitialBankSelectionMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mInitialBankSelection (LOCATION_ARGS) const ;
+  public: class GGS_string current_mSourceBlock (LOCATION_ARGS) const ;
+  public: class GGS_blockInitialBankSelectionMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_blockInitialBankSelectionMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_blockInitialBankSelectionMap (const UpEnumerator_blockInitialBankSelectionMap &) = delete ;
+  private: UpEnumerator_blockInitialBankSelectionMap & operator = (const UpEnumerator_blockInitialBankSelectionMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_blockInitialBankSelectionMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_blockInitialBankSelectionMap_2E_element>> mSharedRoot ;
 
 //--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_JSR (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
+  public: GGS_blockInitialBankSelectionMap (void) ;
 
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_JSR (const GGS_location & in_mInstructionLocation,
-                                                    const GGS_lstring & in_mTargetLabel,
-                                                    const GGS_jumpInstructionKind & in_mKind,
-                                                    Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
+//--- Virtual destructor
+  public: virtual ~ GGS_blockInitialBankSelectionMap (void) ;
 
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+//--- Handle copy
+  public: GGS_blockInitialBankSelectionMap (const GGS_blockInitialBankSelectionMap & inSource) ;
+  public: GGS_blockInitialBankSelectionMap & operator = (const GGS_blockInitialBankSelectionMap & inSource) ;
 
-//--- Attribute accessors
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
 //--- Description
   public: virtual void description (String & ioString,
                                     const int32_t inIndentation) const override ;
 
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
 
-} ;
 
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_JSR_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
+//--- performInsert
+  protected: void performInsert (const class GGS_blockInitialBankSelectionMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_blockInitialBankSelectionMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_blockInitialBankSelectionMap_2E_element>> sortedInfoArray (void) const ;
 
-class GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_JSR & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_JSR & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_JSR bang_ipic_31__38__5F_intermediate_5F_JSR_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_JSR unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GGS_blockInitialBankSelectionMap init (Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak extractObject (const GGS_object & inObject,
-                                                                                Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_JSR_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_luint readProperty_mBankIndex (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB init_21__21_ (const class GGS_location & inOperand0,
-                                                                                        const class GGS_luint & inOperand1,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB extractObject (const GGS_object & inObject,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_luint & inOperand1,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_MOVLB class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_init_21__21_ (const class GGS_location & inOperand0,
-                                                                                  const class GGS_luint & inOperand1,
-                                                                                  Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_luint mProperty_mBankIndex ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (const GGS_location & in_mInstructionLocation,
-                                                                     const GGS_luint & in_mBankIndex,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB bang_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_uint readProperty_mBlankValue (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP init_21__21_ (const class GGS_location & inOperand0,
-                                                                                       const class GGS_uint & inOperand1,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP extractObject (const GGS_object & inObject,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP class_func_new (const class GGS_location & inOperand0,
-                                                                                               const class GGS_uint & inOperand1,
-                                                                                               class Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_FNOP class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_init_21__21_ (const class GGS_location & inOperand0,
-                                                                                 const class GGS_uint & inOperand1,
-                                                                                 Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_uint mProperty_mBlankValue ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (const GGS_location & in_mInstructionLocation,
-                                                                    const GGS_uint & in_mBlankValue,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP bang_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_uint readProperty_mBlankValue (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK init_21__21_ (const class GGS_location & inOperand0,
-                                                                                        const class GGS_uint & inOperand1,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK extractObject (const GGS_object & inObject,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_uint & inOperand1,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_BLANK class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_init_21__21_ (const class GGS_location & inOperand0,
-                                                                                  const class GGS_uint & inOperand1,
-                                                                                  Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_uint mProperty_mBlankValue ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (const GGS_location & in_mInstructionLocation,
-                                                                     const GGS_uint & in_mBlankValue,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK bang_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_tableAccessOption readProperty_mOption (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD init_21__21_ (const class GGS_location & inOperand0,
-                                                                                        const class GGS_tableAccessOption & inOperand1,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD extractObject (const GGS_object & inObject,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_tableAccessOption & inOperand1,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_TBLRD class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_init_21__21_ (const class GGS_location & inOperand0,
-                                                                                  const class GGS_tableAccessOption & inOperand1,
-                                                                                  Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_tableAccessOption mProperty_mOption ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (const GGS_location & in_mInstructionLocation,
-                                                                     const GGS_tableAccessOption & in_mOption,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD bang_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_tableAccessOption readProperty_mOption (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT init_21__21_ (const class GGS_location & inOperand0,
-                                                                                        const class GGS_tableAccessOption & inOperand1,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT extractObject (const GGS_object & inObject,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_tableAccessOption & inOperand1,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_TBLWT class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_init_21__21_ (const class GGS_location & inOperand0,
-                                                                                  const class GGS_tableAccessOption & inOperand1,
-                                                                                  Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_tableAccessOption mProperty_mOption ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (const GGS_location & in_mInstructionLocation,
-                                                                     const GGS_tableAccessOption & in_mOption,
-                                                                     Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT bang_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_luint readProperty_mOccurrenceFactor (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP init_21__21_ (const class GGS_location & inOperand0,
-                                                                                       const class GGS_luint & inOperand1,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP extractObject (const GGS_object & inObject,
-                                                                                        Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP class_func_new (const class GGS_location & inOperand0,
-                                                                                               const class GGS_luint & inOperand1,
-                                                                                               class Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_MNOP class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_init_21__21_ (const class GGS_location & inOperand0,
-                                                                                 const class GGS_luint & inOperand1,
-                                                                                 Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter instructionSize
-  public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_luint mProperty_mOccurrenceFactor ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (const GGS_location & in_mInstructionLocation,
-                                                                    const GGS_luint & in_mOccurrenceFactor,
-                                                                    Compiler * inCompiler
-                                                                    COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP bang_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_luint readProperty_mOccurrenceFactor (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA init_21__21_ (const class GGS_location & inOperand0,
-                                                                                         const class GGS_luint & inOperand1,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA extractObject (const GGS_object & inObject,
-                                                                                          Compiler * inCompiler
-                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA class_func_new (const class GGS_location & inOperand0,
-                                                                                                 const class GGS_luint & inOperand1,
-                                                                                                 class Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_NOPBRA class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_init_21__21_ (const class GGS_location & inOperand0,
-                                                                                   const class GGS_luint & inOperand1,
-                                                                                   Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter instructionSize
-  public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_luint mProperty_mOccurrenceFactor ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (const GGS_location & in_mInstructionLocation,
-                                                                      const GGS_luint & in_mOccurrenceFactor,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA bang_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                  Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (const class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_lstring readProperty_mLabel (void) const ;
-
-  public: class GGS_uint readProperty_mOffset (void) const ;
-
-  public: class GGS_uint readProperty_mRightShift (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W init_21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                             const class GGS_lstring & inOperand1,
-                                                                                             const class GGS_uint & inOperand2,
-                                                                                             const class GGS_uint & inOperand3,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W extractObject (const GGS_object & inObject,
-                                                                                      Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W class_func_new (const class GGS_location & inOperand0,
-                                                                                             const class GGS_lstring & inOperand1,
-                                                                                             const class GGS_uint & inOperand2,
-                                                                                             const class GGS_uint & inOperand3,
-                                                                                             class Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_MOV_LABEL_W class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_init_21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                       const class GGS_lstring & inOperand1,
-                                                                                       const class GGS_uint & inOperand2,
-                                                                                       const class GGS_uint & inOperand3,
-                                                                                       Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_lstring mProperty_mLabel ;
-  public: GGS_uint mProperty_mOffset ;
-  public: GGS_uint mProperty_mRightShift ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (const GGS_location & in_mInstructionLocation,
-                                                                  const GGS_lstring & in_mLabel,
-                                                                  const GGS_uint & in_mOffset,
-                                                                  const GGS_uint & in_mRightShift,
-                                                                  Compiler * inCompiler
-                                                                  COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W bang_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak extractObject (const GGS_object & inObject,
-                                                                                              Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (const class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_ipic_31__38_SequentialInstructionList readProperty_mTargetInstructions (void) const ;
-
-  public: class GGS_bool readProperty_mUsesRCALL (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                                        const class GGS_ipic_31__38_SequentialInstructionList & inOperand1,
-                                                                                                        const class GGS_bool & inOperand2,
-                                                                                                        Compiler * inCompiler
-                                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall extractObject (const GGS_object & inObject,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall class_func_new (const class GGS_location & inOperand0,
-                                                                                                            const class GGS_ipic_31__38_SequentialInstructionList & inOperand1,
-                                                                                                            const class GGS_bool & inOperand2,
-                                                                                                            class Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_intermediate_instruction_computed_rcall class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_init_21__21__21_ (const class GGS_location & inOperand0,
-                                                                                                  const class GGS_ipic_31__38_SequentialInstructionList & inOperand1,
-                                                                                                  const class GGS_bool & inOperand2,
-                                                                                                  Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension getter instructionSize
-  public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildCalledRoutineSetForStackComputations
-  public: virtual void method_buildCalledRoutineSetForStackComputations (class GGS_stringset & arg_ioRoutineCalledSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method buildInstructionInvocationGraph
-  public: virtual void method_buildInstructionInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method enterInstructionReferencedLabels
-  public: virtual void method_enterInstructionReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method instructionRelativeBranchOverflow
-  public: virtual void method_instructionRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeInstruction
-  public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_lstring arg_inBlockLabel,
-           class GGS_bool & arg_outOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outOptimizedInstruction,
-           class GGS_bool & arg_outNOPsubstitution,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performInstructionRelativeBranchResolution
-  public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outModifiedInstruction,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_ipic_31__38_SequentialInstructionList mProperty_mTargetInstructions ;
-  public: GGS_bool mProperty_mUsesRCALL ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (const GGS_location & in_mInstructionLocation,
-                                                                                 const GGS_ipic_31__38_SequentialInstructionList & in_mTargetInstructions,
-                                                                                 const GGS_bool & in_mUsesRCALL,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall & inSource) ;
-
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak & operator = (const class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall bang_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak extractObject (const GGS_object & inObject,
-                                                                                                             Compiler * inCompiler
-                                                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_condition_5F_skip_5F_instruction reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction : public GGS_ipic_31__38_SequentialInstruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction (const class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_ipic_31__38_SequentialInstruction readProperty_mEmbeddedInstruction (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction init_21__21_ (const class GGS_location & inOperand0,
-                                                                                    const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction extractObject (const GGS_object & inObject,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_condition_skip_instruction class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_31__38_SequentialInstruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_condition_5F_skip_5F_instruction_init_21__21_ (const class GGS_location & inOperand0,
-                                                                              const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                              Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionSize
-  public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method buildCalledRoutineSetForStackComputations
-  public: virtual void method_buildCalledRoutineSetForStackComputations (class GGS_stringset & arg_ioRoutineCalledSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method buildInstructionInvocationGraph
-  public: virtual void method_buildInstructionInvocationGraph (const class GGS_lstring arg_inBlockLabel,
-           class GGS_string & arg_ioGraphVizString,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method enterInstructionReferencedLabels
-  public: virtual void method_enterInstructionReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           class GGS_stringset & arg_ioReferencedBlockSet,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method instructionRelativeBranchOverflow
-  public: virtual void method_instructionRelativeBranchOverflow (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           class GGS_branchOverflowMap & arg_ioOverflowMap,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method minMaxDuration
-  public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
-           class GGS_uint & arg_outMin,
-           class GGS_uint & arg_outMax,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_ipic_31__38_SequentialInstruction mProperty_mEmbeddedInstruction ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction (const GGS_location & in_mInstructionLocation,
-                                                                 const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
+  public: static GGS_blockInitialBankSelectionMap extractObject (const GGS_object & inObject,
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override = 0 ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override = 0 ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak : public GGS_ipic_31__38_SequentialInstruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak (const class GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction & inSource) ;
-
-  public: GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak & operator = (const class GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
-  }
-
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction bang_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
-  }
-
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
-  }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak extractObject (const GGS_object & inObject,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak class_func_nil (LOCATION_ARGS) ;
+  public: static class GGS_blockInitialBankSelectionMap class_func_emptyMap (LOCATION_ARGS) ;
 
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak & inOperand) const ;
+  public: static class GGS_blockInitialBankSelectionMap class_func_mapWithMapToOverride (const class GGS_blockInitialBankSelectionMap & inOperand0
+                                                                                         COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uint constinArgument1,
+                                                  class GGS_string constinArgument2,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMInitialBankSelectionForKey (class GGS_uint constinArgument0,
+                                                                       class GGS_string constinArgument1,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMSourceBlockForKey (class GGS_string constinArgument0,
+                                                              class GGS_string constinArgument1,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
 
 //--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uint & outArgument1,
+                                                  class GGS_string & outArgument2,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mInitialBankSelectionForKey (const class GGS_string & constinOperand0,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_string getter_mSourceBlockForKey (const class GGS_string & constinOperand0,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_blockInitialBankSelectionMap getter_overriddenMap (Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const ;
+
 
 //--------------------------------- Read subscripts
+  public: VIRTUAL_IN_DEBUG class GGS_blockInitialBankSelectionMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                                     Compiler * inCompiler
+                                                                                                     COMMA_LOCATION_ARGS) const ;
+
 
 
 //--------------------------------- Introspection
   public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_blockInitialBankSelectionMap ;
+  friend class DownEnumerator_blockInitialBankSelectionMap ;
  
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_blockInitialBankSelectionMap ;
 
 //--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip reference class
+// Phase 1: @blockInitialBankSelectionMap_2E_element struct
 //--------------------------------------------------------------------------------------------------
 
-class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (void) ;
-
-//--------------------------------- Constructor from pointer
-  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (const class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip * inSourcePtr) ;
-
-//--------------------------------- Property access
-  public: class GGS_bool readProperty_mSkipIfSet (void) const ;
-
-  public: class GGS_ipic_31__38__5F_intermediate_5F_registerExpression readProperty_mRegisterDescription (void) const ;
-
-  public: class GGS_uint readProperty_mBitNumber (void) const ;
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-  public: static GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip init_21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                                  const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                                  const class GGS_bool & inOperand2,
-                                                                                                  const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                                  const class GGS_uint & inOperand4,
-                                                                                                  Compiler * inCompiler
-                                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip extractObject (const GGS_object & inObject,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip class_func_new (const class GGS_location & inOperand0,
-                                                                                              const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                              const class GGS_bool & inOperand2,
-                                                                                              const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                              const class GGS_uint & inOperand4,
-                                                                                              class Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 2: pointer class for @ipic18_skip_instruction_BitTestSkip class
-//--------------------------------------------------------------------------------------------------
-
-class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction {
-
-  #ifndef DO_NOT_GENERATE_CHECKINGS
-    public: virtual void printNonNullClassInstanceProperties (void) const override ;
-  #endif
-
-//--------------------------------- Initializers
-  public: void ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_init_21__21__21__21__21_ (const class GGS_location & inOperand0,
-                                                                                            const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                            const class GGS_bool & inOperand2,
-                                                                                            const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                            const class GGS_uint & inOperand4,
-                                                                                            Compiler * inCompiler) ;
-
-
-//--- Extension getter instructionDisplay
-  public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
-
-//--- Extension method generateCode
-  public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
-           class GGS_codeList & arg_outCode,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method optimizeInstruction
-  public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
-           const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
-           const class GGS_ipic_31__38_BlockList arg_inBlockList,
-           const class GGS_lstring arg_inBlockLabel,
-           class GGS_bool & arg_outOptimizationDone,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outOptimizedInstruction,
-           class GGS_bool & arg_outNOPsubstitution,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Extension method performInstructionRelativeBranchResolution
-  public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
-           const class GGS_string arg_inBlockLabel,
-           const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
-           class GGS_uint & arg_ioConversionCount,
-           class GGS_string & arg_ioListFileContents,
-           class GGS_ipic_31__38_SequentialInstruction & arg_outModifiedInstruction,
-           Compiler * COMMA_LOCATION_ARGS) override ;
-
-//--- Properties
-  public: GGS_bool mProperty_mSkipIfSet ;
-  public: GGS_ipic_31__38__5F_intermediate_5F_registerExpression mProperty_mRegisterDescription ;
-  public: GGS_uint mProperty_mBitNumber ;
-
-
-//--- Default constructor
-  public: cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (Compiler * inCompiler COMMA_LOCATION_ARGS) ;
-
-//--- Constructor
-  public: cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (const GGS_location & in_mInstructionLocation,
-                                                                   const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                                                                   const GGS_bool & in_mSkipIfSet,
-                                                                   const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                   const GGS_uint & in_mBitNumber,
-                                                                   Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
-
-//--- Attribute accessors
-//--- Description
-  public: virtual void description (String & ioString,
-                                    const int32_t inIndentation) const override ;
-
-//--- Class descriptor
-  public: virtual const GALGAS_TypeDescriptor * classDescriptor (void) const override ;
-
-} ;
-
-//--------------------------------------------------------------------------------------------------
-// Phase 1: @ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak weak reference class
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak : public GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction_2E_weak {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak (void) ;
-
-//--------------------------------- Constructor and assignment from strong reference
-  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak (const class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip & inSource) ;
-
-  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak & operator = (const class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip & inSource) ;
-
-//--------------------------------- Constructor and assignment from optional reference
-
-//--------------------------------- nil initializer
-  public: inline static GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak init_nil (void) {
-    GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
-    return result ;
+class GGS_blockInitialBankSelectionMap_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_lkey ;
+  public: inline GGS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
   }
 
-//--------------------------------- Bang operator
-  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip bang_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
-
-//--------------------------------- isValuated
-  public: inline bool isValuated (void) const {
-    return isValid () && (ptr () != nullptr) ;
+  public: GGS_uint mProperty_mInitialBankSelection ;
+  public: inline GGS_uint readProperty_mInitialBankSelection (void) const {
+    return mProperty_mInitialBankSelection ;
   }
 
-//--------------------------------- Unwrapped value
-  public: GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip unwrappedValue (void) const ;
-
-//--------------------------------- GALGAS read only properties
-  public: inline GGS_bool readProperty_isNil (void) const {
-    return GGS_bool (isValid (), ptr () == nullptr) ;
+  public: GGS_string mProperty_mSourceBlock ;
+  public: inline GGS_string readProperty_mSourceBlock (void) const {
+    return mProperty_mSourceBlock ;
   }
-
-  public: inline GGS_bool readProperty_isSome (void) const {
-    return GGS_bool (isValid (), ptr () != nullptr) ;
-  }
-
-//-- Start of type generic part
-
-//--------------------------------- Initializers
-
-//--------------------------------- Object cloning
-  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
-
-//--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak extractObject (const GGS_object & inObject,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak class_func_nil (LOCATION_ARGS) ;
-
-//--------------------------------- Comparison
-  public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak & inOperand) const ;
-
-//--------------------------------- Setters
-
-//--------------------------------- Instance Methods
-//--------------------------------- Class Methods
-
-//--------------------------------- Getters
-
-//--------------------------------- Read subscripts
-
-
-//--------------------------------- Introspection
-  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
- 
-} ;
-
-//--------------------------------------------------------------------------------------------------
-
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip_2E_weak ;
-
-//--------------------------------------------------------------------------------------------------
-//   enum ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code
-//--------------------------------------------------------------------------------------------------
-
-class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code : public AC_GALGAS_root {
-//--------------------------------- Default constructor
-  public: GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code (void) ;
-
-//--------------------------------- Enumeration
-  public: enum class Enumeration {
-    invalid,
-    enum_CPFSEQ,
-    enum_CPFSGT,
-    enum_CPFSLT,
-    enum_TSTFSZ
-  } ;
-  
-//--------------------------------- Private properties
-  private: Enumeration mEnum ;
-
-//--------------------------------- Associated value extraction
 
 //--------------------------------- Accessors
-  public: VIRTUAL_IN_DEBUG inline bool isValid (void) const override {
-    return Enumeration::invalid != mEnum ;
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_blockInitialBankSelectionMap_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
   }
 
-  public: VIRTUAL_IN_DEBUG inline void drop (void) override {
-    mEnum = Enumeration::invalid ;
+  public: inline void setter_setMInitialBankSelection (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mInitialBankSelection = inValue ;
   }
 
-  public: inline Enumeration enumValue (void) const {
-    return mEnum ;
+  public: inline void setter_setMSourceBlock (const GGS_string & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mSourceBlock = inValue ;
   }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_blockInitialBankSelectionMap_2E_element (const GGS_lstring & in_lkey,
+                                                       const GGS_uint & in_mInitialBankSelection,
+                                                       const GGS_string & in_mSourceBlock) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_blockInitialBankSelectionMap_2E_element (const GGS_blockInitialBankSelectionMap_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_blockInitialBankSelectionMap_2E_element & operator = (const GGS_blockInitialBankSelectionMap_2E_element & inSource) ;
 
 //-- Start of type generic part
 
 //--------------------------------- Initializers
+  public: static GGS_blockInitialBankSelectionMap_2E_element init_21__21__21_ (const class GGS_lstring & inOperand0,
+                                                                               const class GGS_uint & inOperand1,
+                                                                               const class GGS_string & inOperand2,
+                                                                               Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Object cloning
   protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
 
 //--------------------------------- Object extraction
-  public: static GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code extractObject (const GGS_object & inObject,
-                                                                                                       Compiler * inCompiler
-                                                                                                       COMMA_LOCATION_ARGS) ;
+  public: static GGS_blockInitialBankSelectionMap_2E_element extractObject (const GGS_object & inObject,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSEQ (LOCATION_ARGS) ;
-
-  public: static class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSGT (LOCATION_ARGS) ;
-
-  public: static class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_CPFSLT (LOCATION_ARGS) ;
-
-  public: static class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_TSTFSZ (LOCATION_ARGS) ;
+  public: static class GGS_blockInitialBankSelectionMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
+                                                                                   const class GGS_uint & inOperand1,
+                                                                                   const class GGS_string & inOperand2,
+                                                                                   class Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -10299,14 +5554,6 @@ class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code : p
 //--------------------------------- Class Methods
 
 //--------------------------------- Getters
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isCPFSEQ (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isCPFSGT (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isCPFSLT (LOCATION_ARGS) const ;
-
-  public: VIRTUAL_IN_DEBUG class GGS_bool getter_isTSTFSZ (LOCATION_ARGS) const ;
-
 
 //--------------------------------- Read subscripts
 
@@ -10318,5 +5565,82 @@ class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code : p
 
 //--------------------------------------------------------------------------------------------------
 
-extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code ;
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_blockInitialBankSelectionMap_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: blockInitialBankSelectionMap.element? optional
+//--------------------------------------------------------------------------------------------------
+
+class GGS_blockInitialBankSelectionMap_2E_element_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_blockInitialBankSelectionMap_2E_element mValue ;
+  private: OptionalState mState ;
+
+//--------------------------------- Default constructor
+  public: GGS_blockInitialBankSelectionMap_2E_element_3F_ (void) ;
+
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_blockInitialBankSelectionMap_2E_element_3F_ (const GGS_blockInitialBankSelectionMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_blockInitialBankSelectionMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_blockInitialBankSelectionMap_2E_element unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
+  
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
+
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_blockInitialBankSelectionMap_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                                Compiler * inCompiler
+                                                                                COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_blockInitialBankSelectionMap_2E_element_3F_ ;
 

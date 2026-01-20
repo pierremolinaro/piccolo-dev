@@ -9,6 +9,500 @@
 #include "all-declarations-8.h"
 
 //--------------------------------------------------------------------------------------------------
+//
+//Extension method '@ipic18Block generateCodeForBlock'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionMethod_generateCodeForBlock (const class GGS_ipic_31__38_Block inObject,
+                                           const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                           const class GGS_pic_31__38__5F_dataAddressMap constin_inDataMap,
+                                           const class GGS_uint constin_inBlockAddress,
+                                           const class GGS_string constin_inNextBlockLabel,
+                                           class GGS_string & io_ioListFileContents,
+                                           class GGS_string & io_ioAssemblyString,
+                                           class GGS_generatedCodeMap & io_ioGeneratedCodeMap,
+                                           class Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'emitCode?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_emitCode_3F_ (const class GGS_uint constinArgument0,
+                           class Compiler * inCompiler
+                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'generateLineWithCode?????&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const class GGS_uint constinArgument0,
+                                                           const class GGS_codeList constinArgument1,
+                                                           const class GGS_stringlist constinArgument2,
+                                                           const class GGS_uint constinArgument3,
+                                                           const class GGS_uint constinArgument4,
+                                                           class GGS_string & ioArgument5,
+                                                           class Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_intermediate_GOTO optimizeGOTO'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeGOTO (class cPtr_baseline_5F_intermediate_5F_GOTO * inObject,
+                                       const class GGS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const class GGS_uint constin_inLineIndex,
+                                       class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GGS_string & io_ioListFileContents,
+                                       class GGS_bool & io_ioOptimizationsDone,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'findBaselineFirstInstructionOrLabelFromAddress??!!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_findBaselineFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (const class GGS_uint constinArgument0,
+                                                                             const class GGS_baseline_5F_intermediate_5F_instructionList constinArgument1,
+                                                                             class GGS_baseline_5F_intermediate_5F_instruction & outArgument2,
+                                                                             class GGS_stringset & outArgument3,
+                                                                             class Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_intermediate_JUMP optimizeJUMP'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeJUMP (class cPtr_baseline_5F_intermediate_5F_JUMP * inObject,
+                                       const class GGS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const class GGS_uint constin_inLineIndex,
+                                       class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GGS_string & io_ioListFileContents,
+                                       class GGS_bool & io_ioOptimizationsDone,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_intermediate_CALL optimizeCALL'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeCALL (class cPtr_baseline_5F_intermediate_5F_CALL * inObject,
+                                       const class GGS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                       const class GGS_uint constin_inLineIndex,
+                                       class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GGS_string & io_ioListFileContents,
+                                       class GGS_bool & io_ioOptimizationsDone,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_intermediate_JSR optimizeJSR'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeJSR (class cPtr_baseline_5F_intermediate_5F_JSR * inObject,
+                                      const class GGS_baselineSymbolTableForOptimizations constin_inSymbolTable,
+                                      const class GGS_uint constin_inLineIndex,
+                                      class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                      class GGS_string & io_ioListFileContents,
+                                      class GGS_bool & io_ioOptimizationsDone,
+                                      Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeBEGIN_5F_ROUTINE (class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE * inObject,
+                                                   const class GGS_uint constin_inLineIndex,
+                                                   class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                                   class GGS_string & io_ioListFileContents,
+                                                   class GGS_bool & io_ioOptimizationsDone,
+                                                   Compiler * inCompiler
+                                                   COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@midrange_intermediate_JUMP optimizeJUMP'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeJUMP (class cPtr_midrange_5F_intermediate_5F_JUMP * inObject,
+                                       const class GGS_symbolTableForOptimizations constin_inSymbolTable,
+                                       const class GGS_uint constin_inLineIndex,
+                                       class GGS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GGS_string & io_ioListFileContents,
+                                       class GGS_bool & io_ioOptimizationsDone,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'findMidRangeFirstInstructionFromAddress??!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (const class GGS_uint constinArgument0,
+                                                                  const class GGS_midrange_5F_intermediate_5F_instructionList constinArgument1,
+                                                                  class GGS_midrange_5F_intermediate_5F_instruction & outArgument2,
+                                                                  class Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'findMidRangeFirstInstructionOrLabelFromAddress??!!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_findMidRangeFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (const class GGS_uint constinArgument0,
+                                                                             const class GGS_midrange_5F_intermediate_5F_instructionList constinArgument1,
+                                                                             class GGS_midrange_5F_intermediate_5F_instruction & outArgument2,
+                                                                             class GGS_stringset & outArgument3,
+                                                                             class Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@midrange_intermediate_GOTO optimizeGOTO'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeGOTO (class cPtr_midrange_5F_intermediate_5F_GOTO * inObject,
+                                       const class GGS_symbolTableForOptimizations constin_inSymbolTable,
+                                       const class GGS_uint constin_inLineIndex,
+                                       class GGS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                       class GGS_string & io_ioListFileContents,
+                                       class GGS_bool & io_ioOptimizationsDone,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@midrange_intermediate_instruction_literalOperation optimizeMOVLW'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeMOVLW (class cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation * inObject,
+                                        const class GGS_uint constin_inLineIndex,
+                                        class GGS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                        class GGS_string & io_ioListFileContents,
+                                        class GGS_bool & io_ioOptimizationsDone,
+                                        Compiler * inCompiler
+                                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeTestDecInc (class cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition * inObject,
+                                             const class GGS_symbolTableForOptimizations constin_inSymbolTable,
+                                             const class GGS_uint constin_inLineIndex,
+                                             class GGS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                             class GGS_string & io_ioListFileContents,
+                                             class GGS_bool & io_ioOptimizationsDone,
+                                             Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_optimizeBitTestSkip (class cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip * inObject,
+                                              const class GGS_uint constin_inLineIndex,
+                                              class GGS_midrange_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                              class GGS_string & io_ioListFileContents,
+                                              class GGS_bool & io_ioOptimizationsDone,
+                                              Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@registerExpression resolveBaselineAccess'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_resolveBaselineAccess (class cPtr_registerExpression * inObject,
+                                                const class GGS_registerTable constin_inRegisterTable,
+                                                const class GGS_constantMap constin_inConstantMap,
+                                                class GGS_baseline_5F_intermediate_5F_registerExpression & out_outIntermediateRegisterDescription,
+                                                class GGS_bitSliceTable & out_outBitSliceTable,
+                                                class GGS_stringset & io_ioUsedRegisters,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@baseline_instruction build_baseline_intermediate_instructionList'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList (class cPtr_baseline_5F_instruction * inObject,
+                                                                               const class GGS_uint constin_inCurrentPage,
+                                                                               const class GGS_baselineRoutineMap constin_inRoutineMap,
+                                                                               const class GGS_registerTable constin_inRegisterTable,
+                                                                               const class GGS_constantMap constin_inConstantMap,
+                                                                               class GGS_uint & io_ioLocalLabelIndex,
+                                                                               class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                                                               class GGS_string & io_ioListFileContents,
+                                                                               class GGS_bool & io_ioContinuesInSequence,
+                                                                               const class GGS_routineKind constin_inRoutineKind,
+                                                                               const class GGS_bool constin_inLastInstructionShouldReturn,
+                                                                               class GGS_stringset & io_ioUsedRegisters,
+                                                                               class Compiler * inCompiler
+                                                                               COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@baseline_conditionExpression build_intermediate_condition_instructions'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_build_5F_intermediate_5F_condition_5F_instructions (class cPtr_baseline_5F_conditionExpression * inObject,
+                                                                             const class GGS_uint constin_inCurrentPage,
+                                                                             const class GGS_registerTable constin_inRegisterTable,
+                                                                             const class GGS_constantMap constin_inConstantMap,
+                                                                             class GGS_uint & io_ioLocalLabelIndex,
+                                                                             const class GGS_bool constin_inComplementaryBranch,
+                                                                             const class GGS_location constin_inInstructionLocation,
+                                                                             const class GGS_string constin_inTargetLabel,
+                                                                             class GGS_baseline_5F_intermediate_5F_instructionList & io_ioGeneratedInstructionList,
+                                                                             class GGS_stringset & io_ioUsedRegisters,
+                                                                             class Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_SimpleConstantCaseItem_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_SimpleConstantCaseItem_2E_weak : public GGS_pic_31__38_AbstractCaseItem_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_SimpleConstantCaseItem_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_SimpleConstantCaseItem_2E_weak (const class GGS_pic_31__38_SimpleConstantCaseItem & inSource) ;
+
+  public: GGS_pic_31__38_SimpleConstantCaseItem_2E_weak & operator = (const class GGS_pic_31__38_SimpleConstantCaseItem & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_SimpleConstantCaseItem_2E_weak init_nil (void) {
+    GGS_pic_31__38_SimpleConstantCaseItem_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_SimpleConstantCaseItem bang_pic_31__38_SimpleConstantCaseItem_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_SimpleConstantCaseItem unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_SimpleConstantCaseItem_2E_weak extractObject (const GGS_object & inObject,
+                                                                              Compiler * inCompiler
+                                                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_SimpleConstantCaseItem_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_SimpleConstantCaseItem_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_SimpleConstantCaseItem_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38_Instruction_5F_switch_2E_weak weak reference class
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38_Instruction_5F_switch_2E_weak : public GGS_pic_31__38_PiccoloInstruction_2E_weak {
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38_Instruction_5F_switch_2E_weak (void) ;
+
+//--------------------------------- Constructor and assignment from strong reference
+  public: GGS_pic_31__38_Instruction_5F_switch_2E_weak (const class GGS_pic_31__38_Instruction_5F_switch & inSource) ;
+
+  public: GGS_pic_31__38_Instruction_5F_switch_2E_weak & operator = (const class GGS_pic_31__38_Instruction_5F_switch & inSource) ;
+
+//--------------------------------- Constructor and assignment from optional reference
+
+//--------------------------------- nil initializer
+  public: inline static GGS_pic_31__38_Instruction_5F_switch_2E_weak init_nil (void) {
+    GGS_pic_31__38_Instruction_5F_switch_2E_weak result ;
+    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    return result ;
+  }
+
+//--------------------------------- Bang operator
+  public: GGS_pic_31__38_Instruction_5F_switch bang_pic_31__38_Instruction_5F_switch_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- isValuated
+  public: inline bool isValuated (void) const {
+    return isValid () && (ptr () != nullptr) ;
+  }
+
+//--------------------------------- Unwrapped value
+  public: GGS_pic_31__38_Instruction_5F_switch unwrappedValue (void) const ;
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (isValid (), ptr () == nullptr) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (isValid (), ptr () != nullptr) ;
+  }
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38_Instruction_5F_switch_2E_weak extractObject (const GGS_object & inObject,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38_Instruction_5F_switch_2E_weak class_func_nil (LOCATION_ARGS) ;
+
+//--------------------------------- Comparison
+  public: ComparisonResult objectCompare (const GGS_pic_31__38_Instruction_5F_switch_2E_weak & inOperand) const ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction_5F_switch_2E_weak ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@ipic18Block display'
+//
+//--------------------------------------------------------------------------------------------------
+
+void extensionMethod_display (const class GGS_ipic_31__38_Block inObject,
+                              const class GGS_string constin_inNextBlockLabel,
+                              class GGS_string & io_ioListFileContents,
+                              class Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_instruction_IF_BitTest getBaseCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_getBaseCode (class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
+                                      class GGS_uint & out_outBaseCode,
+                                      Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension method '@baseline_instruction_IF_BitTest getMnemonic'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_getMnemonic (class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest * inObject,
+                                      class GGS_string & out_outMnemonic,
+                                      Compiler * inCompiler
+                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension getter '@pic18RegisterComparison mnemonic' (as function)
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string extensionGetter_mnemonic (const class GGS_pic_31__38_RegisterComparison & inObject,
+                                           class Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Extension getter '@FA_instruction_base_code mnemonic' (as function)
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_string extensionGetter_mnemonic (const class GGS_FA_5F_instruction_5F_base_5F_code & inObject,
+                                           class Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
 //  GRAMMAR pic18_grammar
 //--------------------------------------------------------------------------------------------------
 

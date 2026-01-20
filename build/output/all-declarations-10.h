@@ -10,27 +10,68 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension setter '@branchOverflowMap insertKey'
+//Parser class 'piccoloDevice_syntax' declaration
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionSetter_insertKey (class GGS_branchOverflowMap & ioObject,
-                                const class GGS_string constin_inKey,
-                                const class GGS_string constin_inValue,
-                                class Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
+class cParser_piccoloDevice_5F_syntax {
+//--- Virtual destructor
+  public: virtual ~ cParser_piccoloDevice_5F_syntax (void) { }
 
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@ipic18Block display'
-//
-//--------------------------------------------------------------------------------------------------
+//--- Non terminal declarations
+  protected: virtual void nt_start_5F_symbol_ (class GGS_piccoloDeviceModel & outArgument0,
+                                               class Lexique_piccoloDevice_5F_lexique * inLexique) = 0 ;
 
-void extensionMethod_display (const class GGS_ipic_31__38_Block inObject,
-                              const class GGS_string constin_inNextBlockLabel,
-                              class GGS_string & io_ioListFileContents,
-                              class Compiler * inCompiler
-                              COMMA_LOCATION_ARGS) ;
+  protected: virtual void nt_start_5F_symbol_parse (class Lexique_piccoloDevice_5F_lexique * inLexique) = 0 ;
+
+  protected: virtual void nt_start_5F_symbol_indexing (class Lexique_piccoloDevice_5F_lexique * inLexique) = 0 ;
+
+
+//--- Rule declarations
+  protected: void rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_ (GGS_piccoloDeviceModel & outArgument0,
+                                                                    Lexique_piccoloDevice_5F_lexique * inLexique) ;
+
+  protected: void rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_parse (Lexique_piccoloDevice_5F_lexique * inLexique) ;
+
+  protected: void rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_indexing (Lexique_piccoloDevice_5F_lexique * inLexique) ;
+
+
+
+//--- Select methods
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_0 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_1 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_2 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_3 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_4 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_5 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_6 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_7 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_8 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_9 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_10 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_11 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_12 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_13 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_14 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+  protected: virtual int32_t select_piccoloDevice_5F_syntax_15 (Lexique_piccoloDevice_5F_lexique *) = 0 ;
+
+
+} ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -82,132 +123,20 @@ void callExtensionMethod_getRegisterAddress (class cPtr_registerExpression * inO
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18Block enterReferencedLabels'
+//Extension method '@registerExpression resolveMidrangeAccess'
 //
 //--------------------------------------------------------------------------------------------------
 
-void extensionMethod_enterReferencedLabels (const class GGS_ipic_31__38_Block inObject,
-                                            const class GGS_symbolTableForBlockOptimization constin_inSymbolTable,
-                                            const class GGS_ipic_31__38_BlockList constin_inBlockList,
-                                            class GGS_stringset & io_ioReferencedBlockSet,
-                                            class Compiler * inCompiler
-                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@ipic18Block optimize'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionMethod_optimize (const class GGS_ipic_31__38_Block inObject,
-                               const class GGS_symbolTableForBlockOptimization constin_inSymbolTable,
-                               const class GGS_optimizeFlagStruct constin_inOptimizeFlagStruct,
-                               const class GGS_ipic_31__38_BlockList constin_inBlockList,
-                               class GGS_bool & io_ioOptimizationDone,
-                               class GGS_string & io_ioListFileContents,
-                               class GGS_ipic_31__38_Block & out_outOptimizedBlock,
-                               class Compiler * inCompiler
-                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'instructionListOptimization?????!&!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_instructionListOptimization_3F__3F__3F__3F__3F__21__26__21_ (const class GGS_symbolTableForBlockOptimization constinArgument0,
-                                                                          const class GGS_optimizeFlagStruct constinArgument1,
-                                                                          const class GGS_ipic_31__38_BlockList constinArgument2,
-                                                                          const class GGS_ipic_31__38_SequentialInstructionList constinArgument3,
-                                                                          const class GGS_lstring constinArgument4,
-                                                                          class GGS_bool & outArgument5,
-                                                                          class GGS_string & ioArgument6,
-                                                                          class GGS_ipic_31__38_SequentialInstructionList & outArgument7,
-                                                                          class Compiler * inCompiler
-                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@ipic18Block performRelativesResolution'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionMethod_performRelativesResolution (const class GGS_ipic_31__38_Block inObject,
-                                                 const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                                 const class GGS_string constin_inNextBlockLabel,
-                                                 const class GGS_uint constin_inBlockStartAddress,
-                                                 class GGS_uint & io_ioConversionCount,
-                                                 class GGS_string & io_ioListFileContents,
-                                                 class GGS_ipic_31__38_Block & out_outModifiedBlock,
-                                                 class Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension getter '@ipic18Block blockSize' (as function)
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_uint extensionGetter_blockSize (const class GGS_ipic_31__38_Block & inObject,
-                                          const class GGS_string & constinArgument0,
-                                          class Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@ipic18Block relativeBranchOverflow'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionMethod_relativeBranchOverflow (const class GGS_ipic_31__38_Block inObject,
-                                             const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                             const class GGS_string constin_inNextBlockLabel,
-                                             const class GGS_uint constin_inBlockStartAddress,
-                                             class GGS_branchOverflowMap & io_ioOverflowMap,
-                                             class Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Extension method '@ipic18Block generateCodeForBlock'
-//
-//--------------------------------------------------------------------------------------------------
-
-void extensionMethod_generateCodeForBlock (const class GGS_ipic_31__38_Block inObject,
-                                           const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                           const class GGS_pic_31__38__5F_dataAddressMap constin_inDataMap,
-                                           const class GGS_uint constin_inBlockAddress,
-                                           const class GGS_string constin_inNextBlockLabel,
-                                           class GGS_string & io_ioListFileContents,
-                                           class GGS_string & io_ioAssemblyString,
-                                           class GGS_generatedCodeMap & io_ioGeneratedCodeMap,
-                                           class Compiler * inCompiler
-                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'emitCode?'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_emitCode_3F_ (const class GGS_uint constinArgument0,
-                           class Compiler * inCompiler
-                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'generateLineWithCode?????&'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const class GGS_uint constinArgument0,
-                                                           const class GGS_codeList constinArgument1,
-                                                           const class GGS_stringlist constinArgument2,
-                                                           const class GGS_uint constinArgument3,
-                                                           const class GGS_uint constinArgument4,
-                                                           class GGS_string & ioArgument5,
-                                                           class Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
+void callExtensionMethod_resolveMidrangeAccess (class cPtr_registerExpression * inObject,
+                                                const class GGS_uint constin_inTotalBankCount,
+                                                const class GGS_uint constin_inCurrentBank,
+                                                const class GGS_registerTable constin_inRegisterTable,
+                                                const class GGS_constantMap constin_inConstantMap,
+                                                class GGS_midrange_5F_intermediate_5F_registerExpression & out_outIPICregisterDescription,
+                                                class GGS_bitSliceTable & out_outBitSliceTable,
+                                                class GGS_stringset & io_ioUsedRegisters,
+                                                Compiler * inCompiler
+                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -317,127 +246,37 @@ void routine_print_3F_ (const class GGS_string constinArgument0,
                         class Compiler * inCompiler
                         COMMA_LOCATION_ARGS) ;
 
-
 //--------------------------------------------------------------------------------------------------
 //
-//                               Bool options                                                    
-//
-//--------------------------------------------------------------------------------------------------
-
-extern BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputBaselineDeviceList ;
-
-extern BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList ;
-
-extern BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputMidrangeDeviceList ;
-
-extern BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputPic_31__38_DeviceList ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//                               UInt options                                                    
+//Function 'sortKey'
 //
 //--------------------------------------------------------------------------------------------------
 
-//--------------------------------------------------------------------------------------------------
-//
-//                              String options                                                   
-//
-//--------------------------------------------------------------------------------------------------
-
-extern StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_exportDeviceFiles ;
-
-extern StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_memoryDescription ;
-
-extern StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_configDescription ;
-
-extern StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_registerDescription ;
+class GGS_string function_sortKey (const class GGS_clusterList & constinArgument0,
+                                   class Compiler * inCompiler
+                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//                              String List options                                              
+//Routine 'perform_cluster_ordering?&&'
 //
 //--------------------------------------------------------------------------------------------------
 
-//--------------------------------------------------------------------------------------------------
+void routine_perform_5F_cluster_5F_ordering_3F__26__26_ (const class GGS_clusterList constinArgument0,
+                                                         class GGS_ipic_31__38_BlockList & ioArgument1,
+                                                         class GGS_string & ioArgument2,
+                                                         class Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'initCodeGenerator'
+//Routine 'ipic18RelativeBranchOverflow??!'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_initCodeGenerator (class Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'setEmitAddress?'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_setEmitAddress_3F_ (const class GGS_uint constinArgument0,
-                                 class Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'currentEmitAddress!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_currentEmitAddress_21_ (class GGS_uint & outArgument0,
-                                     class Compiler * inCompiler
-                                     COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'emitByte?'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_emitByte_3F_ (const class GGS_uint constinArgument0,
-                           class Compiler * inCompiler
-                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'getGeneratedContents!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_getGeneratedContents_21_ (class GGS_string & outArgument0,
-                                       class Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'get_C_ArrayImplementation?!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_get_5F_C_5F_ArrayImplementation_3F__21_ (const class GGS_string constinArgument0,
-                                                      class GGS_string & outArgument1,
-                                                      class Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'get_C_ArrayHeader?!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_get_5F_C_5F_ArrayHeader_3F__21_ (const class GGS_string constinArgument0,
-                                              class GGS_string & outArgument1,
-                                              class Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'checkCurrentEmitAddress?'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_checkCurrentEmitAddress_3F_ (const class GGS_uint constinArgument0,
-                                          class Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) ;
+void routine_ipic_31__38_RelativeBranchOverflow_3F__3F__21_ (const class GGS_ipic_31__38_BlockList constinArgument0,
+                                                             const class GGS_ipic_31__38_BlockList constinArgument1,
+                                                             class GGS_branchOverflowMap & outArgument2,
+                                                             class Compiler * inCompiler
+                                                             COMMA_LOCATION_ARGS) ;
 
