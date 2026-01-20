@@ -19,4 +19,10 @@ with lexique piccolo_lexique {
   label* $commentMark$ (2, 0)
 }
 
+with lexique piccoloDevice_lexique {
+  blockComment : "#"
+  fileExtension : "piccoloDevice"
+  title: "Device Source"
+}
+
 }

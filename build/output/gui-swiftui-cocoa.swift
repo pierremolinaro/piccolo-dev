@@ -10,19 +10,20 @@ import UniformTypeIdentifiers
 
 extension UTType {
   nonisolated static let piccolo = UTType (exportedAs: Bundle.main.bundleIdentifier! + ".piccolo")
+  nonisolated static let piccoloDevice = UTType (exportedAs: Bundle.main.bundleIdentifier! + ".piccolodevice")
 }
 
 //--------------------------------------------------------------------------------------------------
 
 extension ProjectDocument {
-  static let readableContentTypes : [UTType] = [.piccolo]
+  static let readableContentTypes : [UTType] = [.piccolo, .piccoloDevice]
 }
 
 //--------------------------------------------------------------------------------------------------
 //    Project file extensions
 //--------------------------------------------------------------------------------------------------
 
-let projectFileExtensions = Set (["piccolo"])
+let projectFileExtensions = Set (["piccolo", "piccolodevice"])
 
 //--------------------------------------------------------------------------------------------------
 //    Indexing dictionary
@@ -43,6 +44,8 @@ func indexingDescriptorDictionary () -> [String : String] {
   let fileExtension = inExtension.lowercased ()
   if fileExtension == "piccolo" {
     result = ScannerFor_piccolo_lexique ()
+  }else if fileExtension == "piccolodevice" {
+    result = ScannerFor_piccoloDevice_lexique ()
   }
   return result
 }
@@ -58,6 +61,7 @@ struct SettingsView : View {
   enum SidebarItem {
     case commandLineOptions
     case piccolo_lexique_0
+    case piccoloDevice_lexique_1
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -72,12 +76,14 @@ struct SettingsView : View {
         Text ("Options").tag (SidebarItem.commandLineOptions)
 
         Text ("Source").tag (SidebarItem.piccolo_lexique_0)
+        Text ("Device Source").tag (SidebarItem.piccoloDevice_lexique_1)
       }
       .toolbar (removing: .sidebarToggle)
     } detail: {
       switch self.mSelection {
         case .commandLineOptions : OptionView ()
         case .piccolo_lexique_0 : SettingViewFor_piccolo_lexique ()
+        case .piccoloDevice_lexique_1 : SettingViewFor_piccoloDevice_lexique ()
       }
     }
   }
@@ -128,6 +134,20 @@ let gPopUpData_piccolo_lexique : [[UInt16]] = [
 //--------------------------------------------------------------------------------------------------
 
 let gBlockComment_piccolo_lexique : String? = "#"
+
+//--------------------------------------------------------------------------------------------------
+//   Popup list data for 'piccoloDevice_lexique' lexique
+//--------------------------------------------------------------------------------------------------
+
+let gPopUpData_piccoloDevice_lexique : [[UInt16]] = [
+
+]
+
+//--------------------------------------------------------------------------------------------------
+//   Block Comment for 'piccoloDevice_lexique' lexique
+//--------------------------------------------------------------------------------------------------
+
+let gBlockComment_piccoloDevice_lexique : String? = "#"
 
 
 //--------------------------------------------------------------------------------------------------
