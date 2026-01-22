@@ -1,13 +1,11 @@
-
-
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 struct @midrange_intermediate_registerExpression {
   public let @string mAssemblyString
-  public let @uint mRegisterAddress # xxx bit full address
+  public let @uint mRegisterAddress // xxx bit full address
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 method @registerExpression resolveMidrangeAccess
   ?let @uint inTotalBankCount
@@ -20,12 +18,12 @@ method @registerExpression resolveMidrangeAccess
 {
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   ioUsedRegisters ++= self.mRegisterName.string
-#--- Build assembly string
+//--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
   if offset > 0 then
     assemblyString += " + " + [[offset uint] hexString]
   end
-#--- 
+//--- 
   [inRegisterTable searchKey
     !self.mRegisterName
     ?let @uintlist registerAddressList
@@ -35,19 +33,19 @@ method @registerExpression resolveMidrangeAccess
     ?let protection
   ]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:true !protection]
-#---
+//---
   if [offset uint] >= size then
     error self.mEndOfOffsetExpression: "maximum index value is " + (size - 1)
   end
-#--- Find acceptable bank settings
+//--- Find acceptable bank settings
   var acceptableBanks =@uintlist ()
   for (mValue) in  registerAddressList do
     acceptableBanks += !mValue >> 7
   end
-#---
+//---
   var @uint registerAddress = 0
   if inCurrentBank == @uint. max then
-  #--- No selected bank, register should be mirrored in all banks
+  //--- No selected bank, register should be mirrored in all banks
     var @uint bank = 0
     var @bool ok = true
     loop( inTotalBankCount) while (bank < inTotalBankCount) & ok do
@@ -81,49 +79,49 @@ method @registerExpression resolveMidrangeAccess
       error self.mRegisterName:"the '" + self.mRegisterName + "' register cannot be accessed from bank " + [inCurrentBank string] + " (valid bank setting: " + acceptableBankMessage + ")"
     end
   end
-#---
+//---
   outIPICregisterDescription = @midrange_intermediate_registerExpression {
     !assemblyString
     !registerAddress + [offset uint]}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 abstract class @midrange_intermediate_instruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 list @midrange_intermediate_instructionList {
   public let @midrange_intermediate_instruction mInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_NULL : @midrange_intermediate_instruction {
 }
 
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_pseudo_ORG : @midrange_intermediate_instruction {
   public let @uint mOrigin
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_pseudo_LABEL : @midrange_intermediate_instruction {
   public let @lstring mLabel
   public let @bool mIsDeletable
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 abstract class @midrange_intermediate_actualInstruction : @midrange_intermediate_instruction {
   public let @location mInstructionLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_FD : @midrange_intermediate_actualInstruction {
   public let @midrange_instruction_FD_base_code mInstruction_FD_base_code
@@ -131,14 +129,14 @@ class @midrange_intermediate_instruction_FD : @midrange_intermediate_actualInstr
   public let @bool m_W_isDestination
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_F : @midrange_intermediate_actualInstruction {
   public let @midrange_F_instruction_base_code mFinstruction
   public let @midrange_intermediate_registerExpression mRegisterDescription
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_FB : @midrange_intermediate_actualInstruction {
   public let @midrange_bit_oriented_op mBitOrientedOp
@@ -146,7 +144,7 @@ class @midrange_intermediate_instruction_FB : @midrange_intermediate_actualInstr
   public let @uint mBitNumber
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_BitTestSkip : @midrange_intermediate_actualInstruction {
   public let @bool mSkipIfSet
@@ -154,13 +152,13 @@ class @midrange_intermediate_instruction_BitTestSkip : @midrange_intermediate_ac
   public let @uint mBitNumber
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @midrange_call_goto_bit %equatable {
   case set  case clear  case noChange
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_JUMP : @midrange_intermediate_actualInstruction {
   public let @lstring mTargetLabel
@@ -168,19 +166,19 @@ class @midrange_intermediate_JUMP : @midrange_intermediate_actualInstruction {
   public let @midrange_call_goto_bit mBit12
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_GOTO : @midrange_intermediate_actualInstruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_CALL : @midrange_intermediate_actualInstruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_JSR : @midrange_intermediate_actualInstruction {
   public let @lstring mTargetLabel
@@ -188,50 +186,50 @@ class @midrange_intermediate_JSR : @midrange_intermediate_actualInstruction {
   public let @midrange_call_goto_bit mBit12
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_CLRWDT : @midrange_intermediate_actualInstruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_CLRW : @midrange_intermediate_actualInstruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_NOP : @midrange_intermediate_actualInstruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_RETURN : @midrange_intermediate_actualInstruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_RETFIE : @midrange_intermediate_actualInstruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_SLEEP : @midrange_intermediate_actualInstruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_literalOperation : @midrange_intermediate_actualInstruction {
   public let @midrange_literal_instruction_opcode mLiteralInstruction
   public let @uint mLiteralValue
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_instruction_MNOP : @midrange_intermediate_actualInstruction {
   public let @luint mOccurrenceFactor
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_intermediate_incDecRegisterInCondition : @midrange_intermediate_actualInstruction {
   public let @midrange_intermediate_registerExpression mRegisterDescription
@@ -241,5 +239,5 @@ class @midrange_intermediate_incDecRegisterInCondition : @midrange_intermediate_
   public let @bool mBranchIfZero
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

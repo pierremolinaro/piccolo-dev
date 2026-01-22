@@ -1,6 +1,6 @@
 syntax pic18_start_symbol (piccolo_lexique) {
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <body>
   ?!@pic18InterruptDefinitionList interruptDefinitionList
@@ -17,7 +17,7 @@ rule <body>
   ?!@bool needsComputedGoto2
   ?!@bool needsComputedGoto4
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <start_symbol> {
   $pic18$
@@ -65,7 +65,7 @@ rule <start_symbol> {
     !?needsComputedGoto2
     !?needsComputedGoto4
   $end$
-#--- Semantic analysis
+//--- Semantic analysis
   if @uint. errorCount == 0 then
     let piccoloModel = @pic18AST {
       !programName
@@ -130,6 +130,6 @@ label importBootloaderSpecification
   $end$
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 }

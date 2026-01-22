@@ -1,66 +1,64 @@
-
-
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 struct @baseline_intermediate_registerExpression {
   public let @string mAssemblyString
-  public let @uint mRegisterAddress # xxx bit full address
+  public let @uint mRegisterAddress // xxx bit full address
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 abstract class @baseline_intermediate_instruction {
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 list @baseline_intermediate_instructionList {
   public let @baseline_intermediate_instruction mInstruction
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_NULL : @baseline_intermediate_instruction {
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 abstract class @baseline_intermediate_pseudo : @baseline_intermediate_instruction {
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_pseudo_PAGE : @baseline_intermediate_pseudo {
   public let @uint mPage
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_pseudo_LABEL : @baseline_intermediate_pseudo {
   public let @lstring mLabel
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_pseudo_BEGIN_ROUTINE : @baseline_intermediate_pseudo {
   public let @lstring mRoutineName
   public let @bool mIsRegular
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_pseudo_END_ROUTINE : @baseline_intermediate_pseudo {
   public let @lstring mRoutineName
   public let @uint mPage
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 abstract class @baseline_intermediate_actualInstruction : @baseline_intermediate_instruction {
   public let @location mInstructionLocation
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_instruction_FD : @baseline_intermediate_actualInstruction {
   public let @baseline_instruction_FD_base_code mInstruction
@@ -68,14 +66,14 @@ class @baseline_intermediate_instruction_FD : @baseline_intermediate_actualInstr
   public let @bool m_W_isDestination
 }
 
-#---------------------------------------------------------------------------------------------------
+////---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_instruction_F : @baseline_intermediate_actualInstruction {
   public let @baseline_F_instruction_base_code mInstruction
   public let @baseline_intermediate_registerExpression mRegisterDescription
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_instruction_FB : @baseline_intermediate_actualInstruction {
   public let @baseline_bit_oriented_op mInstruction
@@ -83,7 +81,7 @@ class @baseline_intermediate_instruction_FB : @baseline_intermediate_actualInstr
   public let @uint mBitNumber
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_instruction_BitTestSkip : @baseline_intermediate_actualInstruction {
   public let @bool mSkipIfSet
@@ -91,13 +89,13 @@ class @baseline_intermediate_instruction_BitTestSkip : @baseline_intermediate_ac
   public let @uint mBitNumber
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_GOTO : @baseline_intermediate_actualInstruction {
   public let @lstring mTargetLabel
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_JUMP : @baseline_intermediate_actualInstruction {
   public let @lstring mTargetLabel
@@ -105,13 +103,13 @@ class @baseline_intermediate_JUMP : @baseline_intermediate_actualInstruction {
   public let @uint mTargetPage
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_CALL : @baseline_intermediate_actualInstruction {
   public let @lstring mTargetLabel
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_JSR : @baseline_intermediate_actualInstruction {
   public let @lstring mTargetLabel
@@ -119,33 +117,33 @@ class @baseline_intermediate_JSR : @baseline_intermediate_actualInstruction {
   public let @uint mTargetPage
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_intermediate_WO_OPERAND : @baseline_intermediate_actualInstruction {
   public let @baseline_WO_OPERAND_group mInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_intermediate_TRIS : @baseline_intermediate_actualInstruction {
   public let @lstring mOperand
   public let @uint mOpcode
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_instruction_literalOperation : @baseline_intermediate_actualInstruction {
   public let @baseline_literal_instruction_opcode mInstruction
   public let @uint mLiteralValue
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_instruction_MNOP : @baseline_intermediate_actualInstruction {
   public let @luint mOccurrenceFactor
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_intermediate_incDecRegisterInCondition : @baseline_intermediate_actualInstruction {
   public let @baseline_intermediate_registerExpression mRegisterDescription
@@ -155,5 +153,5 @@ class @baseline_intermediate_incDecRegisterInCondition : @baseline_intermediate_
   public let @bool mBranchIfZero
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 

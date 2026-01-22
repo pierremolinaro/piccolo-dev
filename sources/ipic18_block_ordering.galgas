@@ -1,27 +1,25 @@
+//----------------------------------------------------------------------------*
 
+//!Block invocation graph
 
-#----------------------------------------------------------------------------*
-
-#!Block invocation graph
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 graph @blockInvocationGraph (@stringlist) {
   insert addNode error message "the '%K' label is already declared at %L"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!buildInstructionInvocationGraph
+////!buildInstructionInvocationGraph
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18SequentialInstruction buildInstructionInvocationGraph
   ?let @lstring unused inBlockLabel
   ?!@string unused ioGraphVizString {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_JSR buildInstructionInvocationGraph
   ?let @lstring inBlockLabel
@@ -29,7 +27,7 @@ override method @ipic18_intermediate_JSR buildInstructionInvocationGraph
   ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + self.mTargetLabel + "\" [color=red] ;\n"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall buildInstructionInvocationGraph
   ?let @lstring inBlockLabel
@@ -43,7 +41,7 @@ override method @ipic18_intermediate_instruction_computed_rcall buildInstruction
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_condition_skip_instruction buildInstructionInvocationGraph
   ?let @lstring inBlockLabel
@@ -54,18 +52,18 @@ override method @ipic18_condition_skip_instruction buildInstructionInvocationGra
   ]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!buildTerminatorInvocationGraph
+//!buildTerminatorInvocationGraph
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 abstract method @ipic18AbstractBlockTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool inDottedArrow
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ReturnTerminator buildTerminatorInvocationGraph
   ?let @lstring unused inBlockLabel
@@ -73,7 +71,7 @@ override method @ipic18ReturnTerminator buildTerminatorInvocationGraph
   ?let @bool unused inDottedArrow {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18RetlwTerminator buildTerminatorInvocationGraph
   ?let @lstring unused inBlockLabel
@@ -81,7 +79,7 @@ override method @ipic18RetlwTerminator buildTerminatorInvocationGraph
   ?let @bool unused inDottedArrow {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18RetfieTerminator buildTerminatorInvocationGraph
   ?let @lstring unused inBlockLabel
@@ -89,7 +87,7 @@ override method @ipic18RetfieTerminator buildTerminatorInvocationGraph
   ?let @bool unused inDottedArrow {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
@@ -98,7 +96,7 @@ override method @ipic18ComputedGotoTerminator buildTerminatorInvocationGraph
   ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_4\" [color=red] ;\n"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
@@ -107,7 +105,7 @@ override method @ipic18ComputedRETLWTerminator buildTerminatorInvocationGraph
   ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_2\" [color=red] ;\n"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
@@ -116,7 +114,7 @@ override method @ipic18ComputedBraTerminator buildTerminatorInvocationGraph
   ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_2\" [color=red] ;\n"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18AbstractConditionTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
@@ -126,7 +124,7 @@ override method @ipic18AbstractConditionTerminator buildTerminatorInvocationGrap
   [self.mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !false]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18RegisterComparisonTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
@@ -136,7 +134,7 @@ override method @pic18RegisterComparisonTerminator buildTerminatorInvocationGrap
   [self.mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18TestRegisterTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
@@ -146,7 +144,7 @@ override method @pic18TestRegisterTerminator buildTerminatorInvocationGraph
   [self.mSingleInstructionTerminatorIfConditionFalse buildTerminatorInvocationGraph !inBlockLabel !?ioGraphVizString !true]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
@@ -159,7 +157,7 @@ override method @ipic18JumpTerminator buildTerminatorInvocationGraph
   ioGraphVizString += " ;\n"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
@@ -177,17 +175,17 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
   ioGraphVizString += " ;\n"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator noNeedToInsertJumpInstruction
+//!Terminator noNeedToInsertJumpInstruction
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 abstract getter @ipic18AbstractBlockTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ReturnTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
@@ -195,7 +193,7 @@ override getter @ipic18ReturnTerminator needToInsertJumpInstruction
   outResult = false
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18RetlwTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
@@ -203,7 +201,7 @@ override getter @ipic18RetlwTerminator needToInsertJumpInstruction
   outResult = false
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18RetfieTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
@@ -211,7 +209,7 @@ override getter @ipic18RetfieTerminator needToInsertJumpInstruction
   outResult = false
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18JumpTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
@@ -219,7 +217,7 @@ override getter @ipic18JumpTerminator needToInsertJumpInstruction
   outResult = self.mLabel.string != inNextBlockLabel
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedGotoTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
@@ -227,7 +225,7 @@ override getter @ipic18ComputedGotoTerminator needToInsertJumpInstruction
   outResult = false
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedRETLWTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
@@ -235,7 +233,7 @@ override getter @ipic18ComputedRETLWTerminator needToInsertJumpInstruction
   outResult = false
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ConditionalJumpTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
@@ -243,7 +241,7 @@ override getter @ipic18ConditionalJumpTerminator needToInsertJumpInstruction
   outResult = false
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedBraTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
@@ -251,7 +249,7 @@ override getter @ipic18ComputedBraTerminator needToInsertJumpInstruction
   outResult = false
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18AbstractConditionTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
@@ -262,7 +260,7 @@ override getter @ipic18AbstractConditionTerminator needToInsertJumpInstruction
     [self.mSingleInstructionTerminatorIfConditionFalse needToInsertJumpInstruction !inNextBlockLabel]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18RegisterComparisonTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
@@ -271,7 +269,7 @@ override getter @pic18RegisterComparisonTerminator needToInsertJumpInstruction
     [self.mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18TestRegisterTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
@@ -280,18 +278,18 @@ override getter @pic18TestRegisterTerminator needToInsertJumpInstruction
     [self.mSingleInstructionTerminatorIfConditionTrue needToInsertJumpInstruction !inNextBlockLabel]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!buildTerminatorInvocationGraph
+//!buildTerminatorInvocationGraph
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18AbstractBlockTerminator buildTerminatorOrderedGraph
   ?let @lstring unused inBlockLabel
   ?!@blockInvocationGraph unused ioGraph {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
@@ -299,7 +297,7 @@ override method @ipic18JumpTerminator buildTerminatorOrderedGraph
   [!?ioGraph addEdge !from: inBlockLabel !to: self.mLabel]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
@@ -308,7 +306,7 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
   [!?ioGraph addEdge !from: inBlockLabel !to: self.mTargetLabelWhenFalse]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
@@ -319,7 +317,7 @@ override method @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
   ]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18TestRegisterTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
@@ -330,7 +328,7 @@ override method @pic18TestRegisterTerminator buildTerminatorOrderedGraph
   ]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
@@ -345,7 +343,7 @@ override method @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
   ]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18BitTestTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
@@ -360,11 +358,11 @@ override method @pic18BitTestTerminator buildTerminatorOrderedGraph
   ]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Routines
+//!Routines
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc buildOrderedGraph
   ?!@ipic18BlockList ioBlockList
@@ -376,24 +374,24 @@ proc buildOrderedGraph
   ioListFileContents += "Block ordering optimization:\n"
   let @uint n = blockDiscontinuityCount (!ioBlockList)
   ioListFileContents += "  jump count before optimization: " + n + "\n"
-#---
+//---
   if @application.verboseOutput then
     print (!"Block ordering optimization... ")
   end
-#-------------------------------- Build label map
+//-------------------------------- Build label map
   var symbolTable =@symbolTableForBlockOptimization ()
   for (mBlock) in  ioBlockList do(blockIndex)
     [!?symbolTable insertKey !mBlock.mLabel !blockIndex]
   end
-#---
+//---
   var g = @blockInvocationGraph ()
   for (mBlock) in  ioBlockList do
-    if mBlock.mAddress == @uint. max then # Only relocatable block
+    if mBlock.mAddress == @uint. max then // Only relocatable block
       [!?g addNode !mBlock.mLabel !mBlock.mLabel.string]
       [mBlock.mTerminator buildTerminatorOrderedGraph !mBlock.mLabel !?g]
     end
   end
-#----
+//----
   [g nodesWithNoPredecessor ?* ?let @lstringlist nodeList]
   var newOrderedLabelList =@stringlist ()
   var visitedNodeSet =@stringset ()
@@ -420,9 +418,9 @@ proc buildOrderedGraph
     end
     clusterList += !cluster
   end
-#----------------------- Add nodes that are involved in a circular dependance
+//----------------------- Add nodes that are involved in a circular dependance
   for (mBlock) in  ioBlockList do
-    if (mBlock.mAddress == @uint. max) # Only relocatable block
+    if (mBlock.mAddress == @uint. max) // Only relocatable block
      & not [visitedNodeSet hasKey !mBlock.mLabel.string] then
       var @blockInvocationGraph gg = [g subgraphFromNodes
         !@lstringlist. listWithValue { !mBlock.mLabel}
@@ -447,9 +445,9 @@ proc buildOrderedGraph
       clusterList += !cluster
     end
   end
-#----------------------- Build sorted block list
+//----------------------- Build sorted block list
   var orderedBlockList =@ipic18BlockList ()
-#--- First insert absolute blocks from 0
+//--- First insert absolute blocks from 0
   var @bool continue = true
   for (mBlock) in  ioBlockList while continue do
     continue = mBlock.mAddress != @uint. max
@@ -457,13 +455,13 @@ proc buildOrderedGraph
       orderedBlockList += !mBlock
     end
   end 
-#--- Insert sorted blocks 
+//--- Insert sorted blocks 
   for (mValue) in  newOrderedLabelList do
     [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
     let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
     orderedBlockList += !b
   end
-#--- First insert absolute blocks from the end
+//--- First insert absolute blocks from the end
   let @uint insertionIndex = [orderedBlockList count]
   continue = true
   for > (mBlock) in  ioBlockList while continue do
@@ -472,17 +470,17 @@ proc buildOrderedGraph
       [!?orderedBlockList insertAtIndex !mBlock !insertionIndex]
     end
   end 
-#------------------------ Messaging
+//------------------------ Messaging
   let @uint p = blockDiscontinuityCount (!orderedBlockList)
   ioListFileContents += "  jump count after optimization: " + p + "\n\n"
   if @application.verboseOutput then
     print (![n string] + " -> " + p + ".\n\n")
   end
-#--- Write Graphviz file
+//--- Write Graphviz file
   if [option piccoloOptions.generateGraphvizFiles value] then
     [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName+ ".blockOrderingConstraints.dot" ?*]
   end
-#--- Check block definition
+//--- Check block definition
   var newSymbolSet =@stringset ()
   var @bool ok = true
   for (mBlock) in  orderedBlockList do
@@ -505,7 +503,7 @@ proc buildOrderedGraph
       ok = false
     end
   end
-#--- Perform list remplacement if no detected error
+//--- Perform list remplacement if no detected error
   if ok then
     ioBlockList = orderedBlockList
     displayBlockList ( !"ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION" !?ioListFileContents !orderedBlockList )
@@ -515,7 +513,7 @@ proc buildOrderedGraph
     ioListFileContents += s + ".\n\n"
     displayBlockList ( !"INCONSISTENT ORDERED OPTIMIZED INTERMEDIATE BLOCK REPRESENTATION (not used)" !?ioListFileContents !orderedBlockList )
   end
-#--- if ok, perform cluster ordering
+//--- if ok, perform cluster ordering
   if ok then
     perform_cluster_ordering (
       !clusterList
@@ -525,7 +523,7 @@ proc buildOrderedGraph
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc buildInvocationGraph
   ?let @ipic18BlockList inBlockList
@@ -533,7 +531,7 @@ proc buildInvocationGraph
   outGraphVizString = "digraph G {\n"
   outGraphVizString += "  node [fontname=courier]\n"
   for (mBlock) in  inBlockList do
-    if mBlock.mAddress != @uint. max then # Absolute bloc
+    if mBlock.mAddress != @uint. max then // Absolute bloc
       outGraphVizString += "  \"" + mBlock.mLabel + "\" [shape=rectangle]\n"
     end
     for (mInstruction * *) in  mBlock.mInstructionList do
@@ -544,12 +542,12 @@ proc buildInvocationGraph
   outGraphVizString += "}\n"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 func blockDiscontinuityCount ?let @ipic18BlockList inBlockList -> @uint outResult {
   outResult = 0
   for (mBlock) in  inBlockList do(blockIndex)
-    if mBlock.mAddress == @uint. max then # Only relocatable block
+    if mBlock.mAddress == @uint. max then // Only relocatable block
       let @string nextBlockLabel
       if (blockIndex+1) < [inBlockList count] then
         nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
@@ -563,7 +561,7 @@ func blockDiscontinuityCount ?let @ipic18BlockList inBlockList -> @uint outResul
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc ipic18OptimizeBlockOrdering
   ?let @string inSourceFileName
@@ -573,7 +571,7 @@ proc ipic18OptimizeBlockOrdering
     buildInvocationGraph ( !ioGeneratedBlockList ?let @string invocationGraph )
     [invocationGraph writeToFileWhenDifferentContents !inSourceFileName+ ".blockInvocation.dot" ?*]
   end
-#---
+//---
   let @bool optimize = [option piccoloOptions.performOptimizations value]
     | [[option piccoloOptions.optimizationFlags value] containsCharacter !'B']
   if optimize then
@@ -581,5 +579,5 @@ proc ipic18OptimizeBlockOrdering
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 

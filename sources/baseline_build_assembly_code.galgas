@@ -1,17 +1,15 @@
-
-
-#----------------------------------------------------------------------------*
-#                                                                            *
-#               C O D E    G E N E R A T I O N                               *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//               C O D E    G E N E R A T I O N                               *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 abstract method @baseline_intermediate_instruction generateAssemblyCode
   ?let @baseline_intermediate_registerExpression inSTATUSregister
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_NULL generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -19,7 +17,7 @@ override method @baseline_intermediate_NULL generateAssemblyCode
   ?!@baseline_assembly_instructionList unused ioAssemblyInstructionList {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_pseudo_PAGE generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -28,7 +26,7 @@ override method @baseline_intermediate_pseudo_PAGE generateAssemblyCode
   ioAssemblyInstructionList += !@baseline_assembly_pseudo_ORG { !self.mPage * 512}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_pseudo_BEGIN_ROUTINE generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -37,7 +35,7 @@ override method @baseline_intermediate_pseudo_BEGIN_ROUTINE generateAssemblyCode
   ioAssemblyInstructionList += !@baseline_assembly_pseudo_BEGINOFROUTINE { !self.mRoutineName !self.mIsRegular}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_pseudo_END_ROUTINE generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -46,7 +44,7 @@ override method @baseline_intermediate_pseudo_END_ROUTINE generateAssemblyCode
   ioAssemblyInstructionList += !@baseline_assembly_pseudo_ENDOFROUTINE { !self.mRoutineName !self.mPage}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_FD generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -59,7 +57,7 @@ override method @baseline_intermediate_instruction_FD generateAssemblyCode
     !self.m_W_isDestination}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_F generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -71,7 +69,7 @@ override method @baseline_intermediate_instruction_F generateAssemblyCode
     !self.mRegisterDescription}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_FB generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -84,7 +82,7 @@ override method @baseline_intermediate_instruction_FB generateAssemblyCode
     !self.mBitNumber}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_BitTestSkip generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -97,7 +95,7 @@ override method @baseline_intermediate_instruction_BitTestSkip generateAssemblyC
     !self.mBitNumber}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_WO_OPERAND generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -108,7 +106,7 @@ override method @baseline_intermediate_WO_OPERAND generateAssemblyCode
     !self.mInstruction}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_TRIS generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -120,7 +118,7 @@ override method @baseline_intermediate_TRIS generateAssemblyCode
     !self.mOpcode}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_literalOperation generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -132,7 +130,7 @@ override method @baseline_intermediate_instruction_literalOperation generateAsse
     !self.mLiteralValue}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_pseudo_LABEL generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -142,7 +140,7 @@ override method @baseline_intermediate_pseudo_LABEL generateAssemblyCode
     !self.mLabel}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_instruction_MNOP generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -162,7 +160,7 @@ override method @baseline_intermediate_instruction_MNOP generateAssemblyCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_GOTO generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -173,13 +171,13 @@ override method @baseline_intermediate_GOTO generateAssemblyCode
     !self.mTargetLabel}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_JUMP generateAssemblyCode
   ?let @baseline_intermediate_registerExpression inSTATUSregister
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
-#---
+//---
   var @uint pageChangeFlags = self.mCurrentPage ^ self.mTargetPage
   var @uint targetPageFlags = self.mTargetPage
   var @uint idx = 0
@@ -224,7 +222,7 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
     !self.mTargetLabel}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_CALL generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -235,13 +233,13 @@ override method @baseline_intermediate_CALL generateAssemblyCode
     !self.mTargetLabel}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_intermediate_JSR generateAssemblyCode
   ?let @baseline_intermediate_registerExpression inSTATUSregister
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
-#---
+//---
   var @uint pageChangeFlags = self.mCurrentPage ^ self.mTargetPage
   var @uint targetPageFlags = self.mTargetPage
   var @uint idx = 0
@@ -295,7 +293,7 @@ override method @baseline_intermediate_JSR generateAssemblyCode
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @baseline_intermediate_incDecRegisterInCondition generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
@@ -306,21 +304,21 @@ override method @baseline_intermediate_incDecRegisterInCondition generateAssembl
     !self.mRegisterDescription
     !self.mIncrement
     !self.m_W_isDestination}
-#---
+//---
   if self.mBranchIfZero then
     ioAssemblyInstructionList += !@baseline_assembly_SKIP {
       !self.mInstructionLocation}
   end
-#--- Generate GOTO instruction
+//--- Generate GOTO instruction
   ioAssemblyInstructionList += !@baseline_assembly_GOTO {
     !self.mInstructionLocation
     !@lstring { !self.mTargetLabel !self.mInstructionLocation}}
 }
 
-#----------------------------------------------------------------------------*
-#                                                                            *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 proc build_baseline_assembly_code
   ?let @baseline_intermediate_instructionList inGeneratedInstructionList
@@ -328,16 +326,16 @@ proc build_baseline_assembly_code
   ?let @baseline_intermediate_registerExpression inSTATUSregister
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
-#-------------------------------- Build assembly code
+//-------------------------------- Build assembly code
   for (mInstruction) in  inGeneratedInstructionList do
     [mInstruction generateAssemblyCode !inSTATUSregister !inStatusRegisterBitSliceTable !?ioAssemblyInstructionList]
   end
-#-------------------------------- Add Configuration
+//-------------------------------- Add Configuration
   for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do
     setEmitAddress ( ! mRegisterAddress + mRegisterAddress )
     emitCode ( !mRegisterValue )
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 

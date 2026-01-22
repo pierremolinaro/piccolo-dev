@@ -1,11 +1,11 @@
 syntax piccoloDevice_syntax (piccoloDevice_lexique) {
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <start_symbol>
   !@piccoloDeviceModel outPiccoloModel
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   $controller$
@@ -49,11 +49,11 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   repeat
   while
     $unusedregister$
-    $integer$ ?* # let @luint unusedRegisterStart
+    $integer$ ?* // let @luint unusedRegisterStart
     select
     or
      $to$
-     $integer$ ?* # let @luint unusedRegisterEnd
+     $integer$ ?* // let @luint unusedRegisterEnd
     end
     $;$
   end
@@ -80,8 +80,8 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     $;$
     [!?ramBankTable insertKey
       !ramName
-      !ramStart.uint # Start
-      !ramStart.uint # First free address (mutable)
+      !ramStart.uint // Start
+      !ramStart.uint // First free address (mutable)
       !ramEnd.uint + 1
       !mirrorOffsetList
     ]
@@ -105,7 +105,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     var @string bitDefinitionString = " <"
     repeat
       select
-        var @uint sliceWidth = 0 # Means undefined
+        var @uint sliceWidth = 0 // Means undefined
         repeat
           var @uint sliceBase = sliceIndex
           $identifier$ ?let @lstring sliceName
@@ -206,15 +206,15 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     ]
   end
   $}$
-#--- Check some registers are actual defined
+//--- Check some registers are actual defined
   if (processorName.string == "pic18_60") | (processorName.string == "pic18_80") then
     [registerTable searchKey !@lstring { !"BSR" !@location.here} ?5*]
     [registerTable searchKey !@lstring { !"TOSL" !@location.here} ?5*]
     [registerTable searchKey !@lstring { !"TOSH" !@location.here} ?5*]
     [registerTable searchKey !@lstring { !"TOSU" !@location.here} ?5*]
   end
-#--- Check if controller has a shared bank
-  var @string sharedBankName = "" # No shared bank by default
+//--- Check if controller has a shared bank
+  var @string sharedBankName = "" // No shared bank by default
   if processorName.string == "mid-range" then
     for (lkey * mFirstFreeAddress * mMirrorOffsetList) in  ramBankTable while sharedBankName  == "" do
       var @uint bankAccessibility = 1 << (mFirstFreeAddress >> 7)
@@ -226,7 +226,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       end
     end
   end
-#---
+//---
   outPiccoloDeviceModel = @piccoloDeviceModel {
     !deviceName
     !processorType
@@ -240,6 +240,6 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     !sharedBankName}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 }

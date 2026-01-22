@@ -1,6 +1,6 @@
 
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @pic18RegisterComparison mnemonic -> @string outResult {
   switch self
@@ -13,7 +13,7 @@ getter @pic18RegisterComparison mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @conditional_branch condition -> @string outResult {
   switch self
@@ -28,7 +28,7 @@ getter @conditional_branch condition -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @pic18InstructionWithNoOperandKind assemblyCode
   -> @string outResult {
@@ -43,7 +43,7 @@ getter @pic18InstructionWithNoOperandKind assemblyCode
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @FA_instruction_base_code mnemonic -> @string outResult {
   switch self
@@ -59,7 +59,7 @@ getter @FA_instruction_base_code mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @bit_oriented_op mnemonic  -> @string outResult {
   switch self
@@ -69,7 +69,7 @@ getter @bit_oriented_op mnemonic  -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @conditional_branch mnemonic  -> @string outResult {
   switch self
@@ -84,7 +84,7 @@ getter @conditional_branch mnemonic  -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @literal_instruction_opcode mnemonic -> @string outResult {
   switch self
@@ -98,7 +98,7 @@ getter @literal_instruction_opcode mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @tableAccessOption mnemonic  -> @string outResult {
   switch self
@@ -109,5 +109,5 @@ getter @tableAccessOption mnemonic  -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

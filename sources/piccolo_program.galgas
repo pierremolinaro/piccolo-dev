@@ -1,18 +1,16 @@
-
-
-#--- Prologue routine
+//--- Prologue routine
 before {
-#------------------------------------------------ Print supported device list
+//------------------------------------------------ Print supported device list
   if [option piccolo_options_not_in_cocoa.outputDeviceList value]
    | [option piccolo_options_not_in_cocoa.outputPic18DeviceList value]
    | [option piccolo_options_not_in_cocoa.outputBaselineDeviceList value]
    | [option piccolo_options_not_in_cocoa.outputMidrangeDeviceList value] then
-  #--- Enumerate devices
+  //--- Enumerate devices
     let @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePathes]
     var pic18_devices =@stringlist ()
     var midrange_devices =@stringlist ()
     var baseline_devices =@stringlist ()
-  #--- Parse them
+  //--- Parse them
     for (mValue) in  allDevices do
       let @string name = [[mValue lastPathComponent] deletingPathExtension]
       parseDeviceDefinition ( !@lstring { !name !@location.here} ? let @piccoloDeviceModel piccoloDeviceModel )
@@ -21,17 +19,17 @@ before {
         pic18_devices += !name
       case midrange :
         midrange_devices += !name
-#        if not [piccoloDeviceModel->mRamBankTable hasKey !"gprnobnk"] then
-#          message name . " has no common bank\n" ;
-#        end if ;
-#      if [[piccoloDeviceModel mBankCount] uint] > 4 then
-#        message name . " has " . [[[piccoloDeviceModel mBankCount] uint] string] . " banks\n" ;
-#      end if ;
+//        if not [piccoloDeviceModel->mRamBankTable hasKey !"gprnobnk"] then
+//          message name . " has no common bank\n" ;
+//        end if ;
+//      if [[piccoloDeviceModel mBankCount] uint] > 4 then
+//        message name . " has " . [[[piccoloDeviceModel mBankCount] uint] string] . " banks\n" ;
+//      end if ;
       case baseline :
         baseline_devices += !name
       end
     end
-  #--- Print baseline device list
+  //--- Print baseline device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputBaselineDeviceList value] then
       print (![[baseline_devices count] string] + " baseline devices supported by Piccolo " + @application.projectVersionString + ":\n")
       var @uint idx = 0
@@ -47,7 +45,7 @@ before {
         print (!"\n")
       end
     end
-  #--- Print mid-range device list
+  //--- Print mid-range device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputMidrangeDeviceList value] then
       print (![[midrange_devices count] string] + " mid-range devices supported by Piccolo " + @application.projectVersionString + ":\n")
       var @uint idx = 0
@@ -63,7 +61,7 @@ before {
         print (!"\n")
       end
     end
-  #--- Print pic18 device list
+  //--- Print pic18 device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputPic18DeviceList value] then
       print (![[pic18_devices count] string] + " pic18 devices supported by Piccolo " + @application.projectVersionString + ":\n")
       var @uint idx = 0
@@ -79,9 +77,9 @@ before {
         print (!"\n")
       end
     end
-  #---
+  //---
   end
-#------------------------------------------------ Export Device definition files
+//------------------------------------------------ Export Device definition files
   if [[option piccolo_options_not_in_cocoa.exportDeviceFiles value] count] > 0 then
     let @string dir = [option piccolo_options_not_in_cocoa.exportDeviceFiles value]
     if not [dir directoryExists] then
@@ -95,7 +93,7 @@ before {
     end
     print (![[allDevices count] string] + " devices copied in '" + dir + "' directory\n")
   end
-#------------------------------------------------ Print RAM description
+//------------------------------------------------ Print RAM description
   let @string deviceForMemoryDescription = [option piccolo_options_not_in_cocoa.memoryDescription value]
   if [deviceForMemoryDescription count] > 0 then
     let @string devicePath = "/" + deviceForMemoryDescription + ".piccoloDevice"
@@ -142,7 +140,7 @@ before {
       error .here:"The " + deviceForMemoryDescription + " device is not supported or does not exist"
     end
   end
-#------------------------------------------------ Print REGISTERS description
+//------------------------------------------------ Print REGISTERS description
   let @string deviceForRegistersDescription = [option piccolo_options_not_in_cocoa.registerDescription value]
   if [deviceForRegistersDescription count] > 0 then
     let @string devicePath = "/" + deviceForRegistersDescription + ".piccoloDevice"
@@ -162,7 +160,7 @@ before {
       error .here:"The " + deviceForRegistersDescription + " device is not supported or does not exist"
     end
   end
-#------------------------------------------------ Print CONFIGURATION description
+//------------------------------------------------ Print CONFIGURATION description
   let @string deviceForConfigDescription = [option piccolo_options_not_in_cocoa.configDescription value]
   if [deviceForConfigDescription count] > 0 then
     let @string devicePath = "/" + deviceForConfigDescription + ".piccoloDevice"
@@ -188,7 +186,7 @@ before {
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 case . "piccolo"
 message "a source text file with the .piccolo extension"
@@ -197,4 +195,4 @@ grammar pic18_grammar
   grammar pic18_grammar () in inSourceFile
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*

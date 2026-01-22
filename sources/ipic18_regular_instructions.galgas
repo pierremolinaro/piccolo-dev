@@ -1,28 +1,24 @@
-
-
-#----------------------------------------------------------------------------*
-
-#!Instruction size
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//!Instruction size
+//----------------------------------------------------------------------------*
 
 getter @ipic18SequentialInstruction instructionSize
   -> @uint outSize {
   outSize = 2
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_condition_skip_instruction instructionSize
   -> @uint outSize {
   outSize = 2 + [self.mEmbeddedInstruction instructionSize]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Check relative resolution : instruction
+//!Check relative resolution : instruction
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18SequentialInstruction performInstructionRelativeBranchResolution
   ?let @uint unused inAddress
@@ -34,7 +30,7 @@ method @ipic18SequentialInstruction performInstructionRelativeBranchResolution
   outModifiedInstruction = self
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_condition_skip_instruction instructionRelativeBranchOverflow
   ?let @uint inAddress
@@ -49,20 +45,20 @@ override method @ipic18_condition_skip_instruction instructionRelativeBranchOver
   ]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate instruction display
+//!Intermediate instruction display
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 abstract getter @ipic18SequentialInstruction instructionDisplay
   ->@stringlist
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18InstructionWithNoOperand
+//!Intermediate @ipic18InstructionWithNoOperand
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 getter @pic18InstructionWithNoOperandKind mnemonic
   ->@string outResult {
@@ -77,14 +73,14 @@ getter @pic18InstructionWithNoOperandKind mnemonic
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18InstructionWithNoOperand instructionDisplay
   ->@stringlist outResult {
   outResult = @stringlist. listWithValue { ![self.mKind mnemonic]}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18InstructionWithNoOperand generateCode
   ?let @uint unused inAddress
@@ -114,11 +110,11 @@ override method @ipic18InstructionWithNoOperand generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_FDA
+//!Intermediate @ipic18_intermediate_instruction_FDA
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_FDA instructionDisplay
   ->@stringlist outResult {
@@ -155,7 +151,7 @@ override getter @ipic18_intermediate_instruction_FDA instructionDisplay
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_FDA generateCode
   ?let @uint unused inAddress
@@ -196,11 +192,11 @@ override method @ipic18_intermediate_instruction_FDA generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_FDA
+//!Intermediate @ipic18_intermediate_instruction_FDA
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_FA instructionDisplay ->@stringlist outResult {
   var @string s
@@ -216,7 +212,7 @@ override getter @ipic18_intermediate_instruction_FA instructionDisplay ->@string
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_FA generateCode
   ?let @uint unused inAddress
@@ -242,18 +238,18 @@ override method @ipic18_intermediate_instruction_FA generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_MOVFF
+//!Intermediate @ipic18_intermediate_instruction_MOVFF
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MOVFF instructionSize
   -> @uint outSize {
   outSize = 4
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MOVFF instructionDisplay ->@stringlist outResult {
   let @string s = "MOVFF " + self.mSourceRegisterDescription.mAssemblyString
@@ -261,7 +257,7 @@ override getter @ipic18_intermediate_instruction_MOVFF instructionDisplay ->@str
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_MOVFF generateCode
   ?let @uint unused inAddress
@@ -276,18 +272,18 @@ override method @ipic18_intermediate_instruction_MOVFF generateCode
     !code}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_literalOperation
+//!Intermediate @ipic18_intermediate_instruction_literalOperation
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_literalOperation instructionDisplay ->@stringlist outResult {
   let @string s = [self.mLiteralInstruction mnemonic] + " " + [self.mLiteralValue hexString] + " ; " + self.mLiteralValue
   outResult = @[@(s)]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_literalOperation generateCode
   ?let @uint unused inAddress
@@ -310,25 +306,25 @@ override method @ipic18_intermediate_instruction_literalOperation generateCode
     !@[@(code)]}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_LFSR
+//!Intermediate @ipic18_intermediate_instruction_LFSR
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_LFSR instructionSize
   -> @uint outSize {
   outSize = 4
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_LFSR instructionDisplay ->@stringlist outResult {
   let @string s = "LFSR " + [self.mFSRindex.uint string] + ", " + [self.mValue hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_LFSR generateCode
   ?let @uint unused inAddress
@@ -343,18 +339,18 @@ override method @ipic18_intermediate_instruction_LFSR generateCode
     !code}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_FBA
+//!Intermediate @ipic18_intermediate_instruction_FBA
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_FBA instructionDisplay ->@stringlist outResult {
   let @string s = [self.mBitOrientedOp mnemonic] + " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_FBA generateCode
   ?let @uint unused inAddress
@@ -378,18 +374,18 @@ override method @ipic18_intermediate_instruction_FBA generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_MOVLB
+//!Intermediate @ipic18_intermediate_instruction_MOVLB
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MOVLB instructionDisplay ->@stringlist outResult {
   let @string s = "MOVLB " + [self.mBankIndex.uint hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_MOVLB generateCode
   ?let @uint unused inAddress
@@ -403,18 +399,18 @@ override method @ipic18_intermediate_instruction_MOVLB generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_TBLRD
+//!Intermediate @ipic18_intermediate_instruction_TBLRD
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_TBLRD instructionDisplay ->@stringlist outResult {
   let @string s = "TBLRD " + [self.mOption mnemonic]
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_TBLRD generateCode
   ?let @uint unused inAddress
@@ -434,18 +430,18 @@ override method @ipic18_intermediate_instruction_TBLRD generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_TBLWT
+//!Intermediate @ipic18_intermediate_instruction_TBLWT
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_TBLWT instructionDisplay ->@stringlist outResult {
   let @string s = "TBLWT " + [self.mOption mnemonic]
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_TBLWT generateCode
   ?let @uint unused inAddress
@@ -465,11 +461,11 @@ override method @ipic18_intermediate_instruction_TBLWT generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_MNOP
+//!Intermediate @ipic18_intermediate_instruction_MNOP
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MNOP instructionSize
   -> @uint outSize
@@ -477,14 +473,14 @@ override getter @ipic18_intermediate_instruction_MNOP instructionSize
   outSize = self.mOccurrenceFactor.uint * 2
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_MNOP instructionDisplay ->@stringlist outResult {
   let s = "MNOP " + self.mOccurrenceFactor.uint
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_MNOP generateCode
   ?let @uint unused inAddress
@@ -502,25 +498,25 @@ override method @ipic18_intermediate_instruction_MNOP generateCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_NOPBRA
+//!Intermediate @ipic18_intermediate_instruction_NOPBRA
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_NOPBRA instructionSize
   -> @uint outSize {
   outSize = self.mOccurrenceFactor.uint * 2
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_NOPBRA instructionDisplay ->@stringlist outResult {
   let s = "NOPBRA " + self.mOccurrenceFactor.uint
   outResult = @[@(s)]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_NOPBRA generateCode
   ?let @uint unused inAddress
@@ -538,18 +534,18 @@ override method @ipic18_intermediate_instruction_NOPBRA generateCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_MOV_LABEL_W
+//!Intermediate @ipic18_intermediate_MOV_LABEL_W
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_MOV_LABEL_W instructionDisplay ->@stringlist outResult {
   let @string s = "MOVLW ((" + self.mLabel + " + " + self.mOffset + ") >> " + self.mRightShift + ") & 0xFF"
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_MOV_LABEL_W generateCode
   ?let @uint unused inAddress
@@ -565,18 +561,18 @@ override method @ipic18_intermediate_MOV_LABEL_W generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_BLANK
+//!Intermediate @ipic18_intermediate_BLANK
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_BLANK instructionDisplay ->@stringlist outResult {
   let @string s = "BLANK " + [self.mBlankValue hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_BLANK generateCode
   ?let @uint unused inAddress
@@ -590,18 +586,18 @@ override method @ipic18_intermediate_instruction_BLANK generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_FNOP
+//!Intermediate @ipic18_intermediate_instruction_FNOP
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_FNOP instructionDisplay ->@stringlist outResult {
   let @string s = "FNOP " + [self.mBlankValue hexString]
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_FNOP generateCode
   ?let @uint unused inAddress
@@ -615,11 +611,11 @@ override method @ipic18_intermediate_instruction_FNOP generateCode
   }
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_skip_instruction_compare_register
+//!Intermediate @ipic18_skip_instruction_compare_register
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_skip_instruction_compare_register instructionDisplay ->@stringlist outResult {
   var @string s = self.mRegisterDescription.mAssemblyString + " "
@@ -633,7 +629,7 @@ override getter @ipic18_skip_instruction_compare_register instructionDisplay ->@
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_skip_instruction_compare_register generateCode
   ?let @uint inAddress
@@ -652,7 +648,7 @@ override method @ipic18_skip_instruction_compare_register generateCode
     code = code | 0x0100
   end
   code = code | (self.mRegisterDescription.mRegisterAddress & 255)
-#--- Assembly string
+//--- Assembly string
   var @string s = "    "
   switch self.mCompareInstruction
   case CPFSEQ : s += "CPFSEQ"
@@ -664,7 +660,7 @@ override method @ipic18_skip_instruction_compare_register generateCode
   if self.mRegisterDescription.mNeedsBSR then
     s += ", BSR_ACCESS"
   end
-#---
+//---
   outCode = @codeList. listWithValue {
     !s
     !@[@(code)]
@@ -678,7 +674,7 @@ override method @ipic18_skip_instruction_compare_register generateCode
   outCode += c
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_skip_instruction_compare_register performInstructionRelativeBranchResolution
   ?let @uint inAddress
@@ -706,11 +702,11 @@ override method @ipic18_skip_instruction_compare_register performInstructionRela
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_skip_instruction_BitTestSkip
+//!Intermediate @ipic18_skip_instruction_BitTestSkip
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_skip_instruction_BitTestSkip instructionDisplay ->@stringlist outResult {
   var @string s = ""
@@ -724,7 +720,7 @@ override getter @ipic18_skip_instruction_BitTestSkip instructionDisplay ->@strin
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_skip_instruction_BitTestSkip generateCode
   ?let @uint inAddress
@@ -733,16 +729,16 @@ override method @ipic18_skip_instruction_BitTestSkip generateCode
   !@codeList outCode {
   var @uint code
   if self.mSkipIfSet then
-    code = 0xA000 # BTFSS
+    code = 0xA000 // BTFSS
   else
-    code = 0xB000 # BTFSC
+    code = 0xB000 // BTFSC
   end
   if self.mRegisterDescription.mNeedsBSR then
     code = code | 0x0100
   end
   code = code | (self.mRegisterDescription.mRegisterAddress & 255)
   code = code | (self.mBitNumber << 9)
-#--- Assembly string
+//--- Assembly string
   var @string s = "    "
   if self.mSkipIfSet then
     s += "BTFSS"
@@ -750,7 +746,7 @@ override method @ipic18_skip_instruction_BitTestSkip generateCode
     s += "BTFSC"
   end
   s += " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
-#---
+//---
   outCode = @codeList. listWithValue {
     !s
     !@[@(code)]
@@ -764,7 +760,7 @@ override method @ipic18_skip_instruction_BitTestSkip generateCode
   outCode += c
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_skip_instruction_BitTestSkip performInstructionRelativeBranchResolution
   ?let @uint inAddress
@@ -793,11 +789,11 @@ override method @ipic18_skip_instruction_BitTestSkip performInstructionRelativeB
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_skip_instruction_FDA
+//!Intermediate @ipic18_skip_instruction_FDA
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_skip_instruction_FDA instructionDisplay ->@stringlist outResult {
   var @string s
@@ -817,7 +813,7 @@ override getter @ipic18_skip_instruction_FDA instructionDisplay ->@stringlist ou
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_skip_instruction_FDA generateCode
   ?let @uint inAddress
@@ -835,7 +831,7 @@ override method @ipic18_skip_instruction_FDA generateCode
     binCode = binCode | 0x0100
   end
   binCode = binCode | (self.mRegisterDescription.mRegisterAddress & 255)
-#--- Assembly string
+//--- Assembly string
   var @string assemblyCode = "    "
   switch self.mInstruction_FDA_base_code
   case DECFSZ : assemblyCode += "DECFSZ"
@@ -854,7 +850,7 @@ override method @ipic18_skip_instruction_FDA generateCode
     binCode = binCode | 0x0100
     assemblyCode += ", BSR_ACCESS"
   end
-#---
+//---
   outCode = @codeList. listWithValue {
     !assemblyCode
     !@[@(binCode)]
@@ -868,7 +864,7 @@ override method @ipic18_skip_instruction_FDA generateCode
   outCode += c
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_skip_instruction_FDA performInstructionRelativeBranchResolution
   ?let @uint inAddress
@@ -897,11 +893,11 @@ override method @ipic18_skip_instruction_FDA performInstructionRelativeBranchRes
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_JSR
+//!Intermediate @ipic18_intermediate_JSR
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_JSR instructionSize
   -> @uint outSize {
@@ -913,7 +909,7 @@ override getter @ipic18_intermediate_JSR instructionSize
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_JSR instructionRelativeBranchOverflow
   ?let @uint inAddress
@@ -923,14 +919,14 @@ override method @ipic18_intermediate_JSR instructionRelativeBranchOverflow
   switch self.mKind
   case ipicRelative, relative :
     if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabel !inAddress) then
-#      ioOverflowMap += !inBlockLabel !self.mTargetLabel.string
+//      ioOverflowMap += !inBlockLabel !self.mTargetLabel.string
       [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabel.string]
     end
-  case absolute : # Allways ok
+  case absolute : // Allways ok
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_JSR performInstructionRelativeBranchResolution
   ?let @uint inAddress
@@ -953,11 +949,11 @@ override method @ipic18_intermediate_JSR performInstructionRelativeBranchResolut
       + pic18_BRA_RCALL_displacement (!inSymbolTable !self.mTargetLabel !inAddress)
       + ") too large for RCALL " + self.mTargetLabel + " instruction (limited to [-1024, 1023])"
     end
-  case absolute : # Allways ok
+  case absolute : // Allways ok
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_JSR instructionDisplay ->@stringlist outResult {
     let @string s
@@ -969,7 +965,7 @@ override getter @ipic18_intermediate_JSR instructionDisplay ->@stringlist outRes
   outResult = @stringlist. listWithValue { !s}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_JSR generateCode
   ?let @uint inAddress
@@ -985,11 +981,11 @@ override method @ipic18_intermediate_JSR generateCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Intermediate @ipic18_intermediate_instruction_computed_rcall
+//!Intermediate @ipic18_intermediate_instruction_computed_rcall
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_computed_rcall instructionSize
   -> @uint outSize {
@@ -1001,7 +997,7 @@ override getter @ipic18_intermediate_instruction_computed_rcall instructionSize
   outSize = outSize + 4 * [self.mTargetInstructions count] - 2
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18_intermediate_instruction_computed_rcall instructionDisplay ->@stringlist outResult {
   var @string s = "COMPUTED "
@@ -1016,7 +1012,7 @@ override getter @ipic18_intermediate_instruction_computed_rcall instructionDispl
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall instructionRelativeBranchOverflow
   ?let @uint inAddress
@@ -1035,13 +1031,13 @@ override method @ipic18_intermediate_instruction_computed_rcall instructionRelat
   end
   if self.mUsesRCALL then
     if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_4" nowhere] !inAddress) then
-#      ioOverflowMap += !inBlockLabel !"_computed_goto_4"
+//      ioOverflowMap += !inBlockLabel !"_computed_goto_4"
       [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_4"]
     end
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall performInstructionRelativeBranchResolution
   ?let @uint inAddress
@@ -1055,14 +1051,14 @@ override method @ipic18_intermediate_instruction_computed_rcall performInstructi
   var @string unusedListing = ""
   var @uint address = inAddress + if self.mUsesRCALL then 2 else 4 end
   for (mInstruction * *) in  self.mTargetInstructions do
-    #--- NEVER CONVERT: ONLY PERFORM CHECKING
+    //--- NEVER CONVERT: ONLY PERFORM CHECKING
     [mInstruction performInstructionRelativeBranchResolution
       !address
       !inBlockLabel
       !inSymbolTable
       !?unusedConversionCount
       !?unusedListing
-      ?* # ?@ipic18SequentialInstruction outModifiedInstruction
+      ?* // ?@ipic18SequentialInstruction outModifiedInstruction
     ]
     address = address + 4
   end
@@ -1078,7 +1074,7 @@ override method @ipic18_intermediate_instruction_computed_rcall performInstructi
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall generateCode
   ?let @uint inAddress
@@ -1115,11 +1111,9 @@ override method @ipic18_intermediate_instruction_computed_rcall generateCode
       currentInstructionAddress = currentInstructionAddress + 2
     end
   end
-#--- Emit label instruction
+//--- Emit label instruction
   outCode += pic18_definition_label (!nextInstructionLabel)
 }
 
-#----------------------------------------------------------------------------*
-
-
+//----------------------------------------------------------------------------*
 

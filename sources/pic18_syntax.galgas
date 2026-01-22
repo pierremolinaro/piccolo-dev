@@ -1,6 +1,6 @@
 syntax pic18_syntax (piccolo_lexique) {
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
@@ -23,7 +23,7 @@ rule <optional_w_as_dest>
 rule <bit_number_parsing>
   !@bitNumberExpression outBitNumber
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <body>
   ?!@pic18InterruptDefinitionList interruptDefinitionList
@@ -132,7 +132,7 @@ rule <body>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <checkpic_definition>
   ?!@checkpicList ioList {
@@ -148,7 +148,7 @@ rule <checkpic_definition>
   ioList += !loc !valueList
 }
     
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <data_definition> ?!@dataList ioDataList {
   select
@@ -170,7 +170,7 @@ rule <data_definition> ?!@dataList ioDataList {
   ioDataList += !dataName !valueList !false
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <data_definition> ?!@dataList ioDataList {
   $data8$
@@ -187,7 +187,7 @@ rule <data_definition> ?!@dataList ioDataList {
   ioDataList += !dataName !valueList !true
 }
     
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <instruction_list>
   !@pic18InstructionList outInstructionList
@@ -210,7 +210,7 @@ rule <instruction_list>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <interrupt_definition>
   ?!@pic18InterruptDefinitionList ioInterruptDefinitionList
@@ -237,7 +237,7 @@ rule <interrupt_definition>
   ioInterruptDefinitionList += !interruptName !isFast !instructionList !@location.here
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <routine_definition>
   ?!@pic18RoutineDefinitionList ioRoutineDefinitionList
@@ -304,7 +304,7 @@ rule <routine_definition>
   ioRoutineDefinitionList += !routineName !requiredBank !returnedBank !preservesBank !noreturn !instructionList !@location.here
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <condition_factor>
   !@pic18ConditionExpression outCondition {
@@ -313,14 +313,14 @@ rule <condition_factor>
   outCondition = @pic18NegateCondition { !condition}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <condition_factor>
   !@pic18ConditionExpression outCondition {
   <condition_expression> ? outCondition
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <condition_factor>
   !@pic18ConditionExpression outCondition {
@@ -426,7 +426,7 @@ rule <condition_factor>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <condition_expression>
   !@pic18ConditionExpression outCondition {
@@ -443,7 +443,7 @@ rule <condition_expression>
   $)$
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <condition_term>
   !@pic18ConditionExpression outCondition {
@@ -456,7 +456,7 @@ rule <condition_term>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <block_termination>
   !@abstractBlockTerminationForBlockInstruction outBlockTermination {
@@ -464,7 +464,7 @@ rule <block_termination>
   outBlockTermination = @exitBlockTerminationForBlockInstruction { !@location.here}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <block_termination>
   !@abstractBlockTerminationForBlockInstruction outBlockTermination {
@@ -472,7 +472,7 @@ rule <block_termination>
   outBlockTermination = @gotoTerminationForBlockInstruction { !nextBlockName}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <block_termination>
   !@abstractBlockTerminationForBlockInstruction outBlockTermination {
@@ -485,7 +485,7 @@ rule <block_termination>
    outBlockTermination = @testTerminationForBlockInstruction { !condition !terminationIfTrue !terminationIfFalse !location}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <structured_instruction>
   !@pic18PiccoloInstruction outInstruction
@@ -1109,7 +1109,7 @@ rule <structured_instruction>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <structured_if_instruction>
   ?let @lstring ifLabel
@@ -1175,7 +1175,7 @@ rule <structured_if_instruction>
     !endOfElsePartLocation}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
   select
@@ -1241,7 +1241,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
       !registerName
       !W_isDestination
     }
-  #--- Emit a warning if instruction is "movf" and W is not destination
+  //--- Emit a warning if instruction is "movf" and W is not destination
     if (baseCode == .MOVF) && not W_isDestination then
       warning instructionLocation :  "This instruction does not move data, it only sets flags. "
         "Use 'movf *, reg' instead of 'movf reg' to suppress this warning" 
@@ -1256,7 +1256,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
       !instructionLocation
       !.MOVF
       !registerName
-      !false # W is not destination
+      !false // W is not destination
     }
   or
     let @FA_instruction_base_code FAinstruction
@@ -1432,6 +1432,6 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 }

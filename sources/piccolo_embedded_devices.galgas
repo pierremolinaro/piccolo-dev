@@ -1,6 +1,6 @@
 
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 filewrapper embeddedDevices in "../deviceDefinitions" {
   "piccoloDevice"
@@ -8,7 +8,7 @@ filewrapper embeddedDevices in "../deviceDefinitions" {
 }{
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 proc parseDeviceDefinition
   ?let @lstring inDeviceName
@@ -26,5 +26,5 @@ proc parseDeviceDefinition
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

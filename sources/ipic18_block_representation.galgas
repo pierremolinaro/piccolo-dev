@@ -1,10 +1,8 @@
-
-
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 map @pic18_dataMap {
   public let @uintlist mData
-  public let @bool mIsData8 # true: data8, false: data16
+  public let @bool mIsData8 // true: data8, false: data16
   insert insertKey error message "the '%K' data is already declared"
   search searchKey error message "the '%K' data is not declared"
 }
@@ -32,7 +30,7 @@ abstract class @ipic18AbstractBlockTerminator {
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 struct @ipic18Block {
-  public let @uint mAddress # [@uint max] if relocatable
+  public let @uint mAddress // [@uint max] if relocatable
   public let @lstring mLabel
   public let @ipic18SequentialInstructionList mInstructionList
   public let @ipic18AbstractBlockTerminator mTerminator
@@ -48,7 +46,7 @@ list @ipic18BlockList {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-#!Block terminators
+//!Block terminators
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -96,9 +94,9 @@ class @ipic18ComputedRETLWTerminator : @ipic18AbstractBlockTerminator {
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 enum @conditionalBranchMode %equatable {
-  case native  # Use Bcc instruction only
-  case ipicBRA  # Use BRA if possible (Bcc + BRA)
-  case ipicGOTO # use GOTO (Bcc + GOTO)
+  case native  // Use Bcc instruction only
+  case ipicBRA  // Use BRA if possible (Bcc + BRA)
+  case ipicGOTO // use GOTO (Bcc + GOTO)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
@@ -118,7 +116,7 @@ class @ipic18ComputedBraTerminator : @ipic18AbstractBlockTerminator {
   public let @bool mUsesRCALL
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @ipic18RegisterComparison %equatable {
   case registerEqualsToW 
@@ -163,7 +161,7 @@ class @pic18BitTestTerminator : @ipic18AbstractConditionTerminator {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-#!Regular instructions
+//!Regular instructions
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -175,7 +173,7 @@ class @ipic18InstructionWithNoOperand : @ipic18SequentialInstruction {
 
 struct @ipic18_intermediate_registerExpression {
   public let @string mAssemblyString
-  public let @uint mRegisterAddress # 12 bit full address
+  public let @uint mRegisterAddress // 12 bit full address
   public let @bool mNeedsBSR
 }
 
@@ -201,7 +199,7 @@ class @ipic18_intermediate_instruction_FDA : @ipic18SequentialInstruction {
   public let @bool m_W_isDestination
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @FA_sequential_instruction_base_code {
   case CLRF  case MOVWF  case MULWF  case NEGF  case SETF
@@ -218,7 +216,7 @@ class @ipic18_intermediate_instruction_FA : @ipic18SequentialInstruction {
 
 struct @ipic18_intermediate_registerExpressionWithoutBSRIndication {
   public let @string mAssemblyString
-  public let @uint mRegisterAddress # 12 bit full address
+  public let @uint mRegisterAddress // 12 bit full address
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
@@ -327,7 +325,7 @@ class @ipic18_skip_instruction_BitTestSkip : @ipic18_condition_skip_instruction 
   public let @uint mBitNumber
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @ipic18_compare_register_instruction_base_code {
   case CPFSEQ  case CPFSGT  case CPFSLT  case TSTFSZ
@@ -340,7 +338,7 @@ class @ipic18_skip_instruction_compare_register : @ipic18_condition_skip_instruc
   public let @ipic18_intermediate_registerExpression mRegisterDescription
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @skip_instruction_FDA_base_code {
   case DECFSZ  case DCFSNZ  case INCFSZ  case INFSNZ
@@ -356,7 +354,7 @@ class @ipic18_skip_instruction_FDA : @ipic18_condition_skip_instruction {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-#!Optimization
+//!Optimization
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -368,7 +366,7 @@ map @symbolTableForBlockOptimization {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-#!Cluster ordering optimization
+//!Cluster ordering optimization
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -441,7 +439,7 @@ method @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-#!@symbolTableForRelativesResolution
+//!@symbolTableForRelativesResolution
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -503,7 +501,7 @@ abstract getter @ipic18AbstractBlockTerminator isEqualToTerminator
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-#!Check displacement
+//!Check displacement
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -524,7 +522,7 @@ func pic18_checkBRA_RCALL
   ?let @lstring inTargetLabel
   ?let @uint inCurrentAddress
   ->@bool outDisplacementOK {
-#--- The target label is not defined if 
+//--- The target label is not defined if 
   [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
   let @sint displacement = ([targetAddress sint] - 2 - [inCurrentAddress sint]) >> 1
   outDisplacementOK =  (displacement <= 1023) & (displacement >= - 1024)
@@ -543,7 +541,7 @@ func pic18_BRA_RCALL_displacement
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-#!Generate branch instructions
+//!Generate branch instructions
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 

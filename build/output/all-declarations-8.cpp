@@ -69,18 +69,6 @@ GGS_ipic_31__38_SingleInstructionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38_JumpTerminator GGS_ipic_31__38_JumpTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                               const GGS_lstring & in_mLabel,
-                                                                               const GGS_jumpInstructionKind & in_mKind,
-                                                                               Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_JumpTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_JumpTerminator (in_mInstructionLocation, in_mLabel, in_mKind,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_ipic_31__38_JumpTerminator::readProperty_mLabel (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -264,18 +252,6 @@ GGS_ipic_31__38_ComputedGotoTerminator::GGS_ipic_31__38_ComputedGotoTerminator (
 GGS_ipic_31__38_AbstractBlockTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38_ComputedGotoTerminator) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38_ComputedGotoTerminator GGS_ipic_31__38_ComputedGotoTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                               const GGS_lstringlist & in_mTargetLabels,
-                                                                                               const GGS_bool & in_mUsesRCALL,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_ComputedGotoTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ComputedGotoTerminator (in_mInstructionLocation, in_mTargetLabels, in_mUsesRCALL,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstringlist GGS_ipic_31__38_ComputedGotoTerminator::readProperty_mTargetLabels (void) const {
@@ -470,21 +446,6 @@ GGS_ipic_31__38_ConditionalJumpTerminator::GGS_ipic_31__38_ConditionalJumpTermin
 GGS_ipic_31__38_AbstractBlockTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38_ConditionalJumpTerminator) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38_ConditionalJumpTerminator GGS_ipic_31__38_ConditionalJumpTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                     const GGS_conditional_5F_branch & in_mConditionalBranch,
-                                                                                                     const GGS_lstring & in_mTargetLabelWhenTrue,
-                                                                                                     const GGS_conditionalBranchMode & in_mBranchModeOnTrueLabel,
-                                                                                                     const GGS_lstring & in_mTargetLabelWhenFalse,
-                                                                                                     const GGS_conditionalBranchMode & in_mBranchModeOnFalseLabel,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_ConditionalJumpTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ConditionalJumpTerminator (in_mInstructionLocation, in_mConditionalBranch, in_mTargetLabelWhenTrue, in_mBranchModeOnTrueLabel, in_mTargetLabelWhenFalse, in_mBranchModeOnFalseLabel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_conditional_5F_branch GGS_ipic_31__38_ConditionalJumpTerminator::readProperty_mConditionalBranch (void) const {
@@ -735,20 +696,6 @@ GGS_ipic_31__38_AbstractConditionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_RegisterComparisonTerminator GGS_pic_31__38_RegisterComparisonTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                         const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                                                                         const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                                                                         const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                         const GGS_ipic_31__38_RegisterComparison & in_mComparison,
-                                                                                                         Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_pic_31__38_RegisterComparisonTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_RegisterComparisonTerminator (in_mInstructionLocation, in_mSingleInstructionTerminatorIfConditionTrue, in_mSingleInstructionTerminatorIfConditionFalse, in_mRegisterDescription, in_mComparison,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_pic_31__38_RegisterComparisonTerminator::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
@@ -939,17 +886,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38_InstructionWithNoOperand GGS_ipic_31__38_InstructionWithNoOperand::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                   const GGS_pic_31__38_InstructionWithNoOperandKind & in_mKind,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_InstructionWithNoOperand result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_InstructionWithNoOperand (in_mInstructionLocation, in_mKind,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_pic_31__38_InstructionWithNoOperandKind GGS_ipic_31__38_InstructionWithNoOperand::readProperty_mKind (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_pic_31__38_InstructionWithNoOperandKind () ;
@@ -1117,19 +1053,6 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::GGS_ipic_31__38__5F_inte
 GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                               const GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & in_mInstruction_5F_FDA_5F_base_5F_code,
-                                                                                                                               const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                               const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                                               Compiler * inCompiler
-                                                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA (in_mInstructionLocation, in_mInstruction_5F_FDA_5F_base_5F_code, in_mRegisterDescription, in_m_5F_W_5F_isDestination,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const {
@@ -1336,18 +1259,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                                         const GGS_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
-                                                                                                                                                         const GGS_uint & in_mLiteralValue,
-                                                                                                                                                         Compiler * inCompiler
-                                                                                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation (in_mInstructionLocation, in_mLiteralInstruction, in_mLiteralValue,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_literal_5F_instruction_5F_opcode GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::readProperty_mLiteralInstruction (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_literal_5F_instruction_5F_opcode () ;
@@ -1534,19 +1445,6 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::GGS_ipic_31__38__5F_inte
 GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                               const GGS_bit_5F_oriented_5F_op & in_mBitOrientedOp,
-                                                                                                                               const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                               const GGS_uint & in_mBitNumber,
-                                                                                                                               Compiler * inCompiler
-                                                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA (in_mInstructionLocation, in_mBitOrientedOp, in_mRegisterDescription, in_mBitNumber,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_bit_5F_oriented_5F_op GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::readProperty_mBitOrientedOp (void) const {
@@ -1753,18 +1651,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_JSR GGS_ipic_31__38__5F_intermediate_5F_JSR::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                 const GGS_lstring & in_mTargetLabel,
-                                                                                                 const GGS_jumpInstructionKind & in_mKind,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_JSR result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_JSR (in_mInstructionLocation, in_mTargetLabel, in_mKind,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_ipic_31__38__5F_intermediate_5F_JSR::readProperty_mTargetLabel (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -1947,17 +1833,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                   const GGS_tableAccessOption & in_mOption,
-                                                                                                                                   Compiler * inCompiler
-                                                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD (in_mInstructionLocation, in_mOption,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_tableAccessOption GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD::readProperty_mOption (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_tableAccessOption () ;
@@ -2127,19 +2002,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                             const GGS_lstring & in_mLabel,
-                                                                                                                             const GGS_uint & in_mOffset,
-                                                                                                                             const GGS_uint & in_mRightShift,
-                                                                                                                             Compiler * inCompiler
-                                                                                                                             COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W (in_mInstructionLocation, in_mLabel, in_mOffset, in_mRightShift,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W::readProperty_mLabel (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -2296,21 +2158,21 @@ void extensionSetter_insertKey (GGS_branchOverflowMap & ioObject,
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
     const GGS_branchOverflowMap temp_1 = ioObject ;
-    test_0 = temp_1.readProperty_dictionary ().getter_hasKey (constinArgument_inKey COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 400)).boolEnum () ;
+    test_0 = temp_1.readProperty_dictionary ().getter_hasKey (constinArgument_inKey COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 398)).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      GGS_stringlist var_aList_14744 ;
+      GGS_stringlist var_aList_14757 ;
       const GGS_branchOverflowMap temp_2 = ioObject ;
-      temp_2.readProperty_dictionary ().method_searchKey (constinArgument_inKey, var_aList_14744, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 401)) ;
+      temp_2.readProperty_dictionary ().method_searchKey (constinArgument_inKey, var_aList_14757, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 399)) ;
       {
-      var_aList_14744.setter_append (constinArgument_inValue, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 402)) ;
+      var_aList_14757.setter_append (constinArgument_inValue, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 400)) ;
       }
-      ioObject.mProperty_dictionary.addAssignOperation (constinArgument_inKey, var_aList_14744, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 403)) ;
+      ioObject.mProperty_dictionary.addAssignOperation (constinArgument_inKey, var_aList_14757, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 401)) ;
     }
   }
   if (GalgasBool::boolFalse == test_0) {
-    GGS_stringlist temp_3 = GGS_stringlist::init (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 405)) ;
-    temp_3.plusPlusAssignOperation (GGS_stringlist_2E_element::init_21_ (constinArgument_inValue, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 405)) ;
-    ioObject.mProperty_dictionary.addAssignOperation (constinArgument_inKey, temp_3, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 405)) ;
+    GGS_stringlist temp_3 = GGS_stringlist::init (inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 403)) ;
+    temp_3.plusPlusAssignOperation (GGS_stringlist_2E_element::init_21_ (constinArgument_inValue, inCompiler COMMA_HERE)  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 403)) ;
+    ioObject.mProperty_dictionary.addAssignOperation (constinArgument_inKey, temp_3, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 403)) ;
   }
 }
 
@@ -2326,7 +2188,7 @@ void cPtr_pic_31__38_PiccoloInstruction::method_performInlining (const GGS_strin
                                                                  Compiler * /* inCompiler */
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_pic_31__38_PiccoloInstruction temp_0 = this ;
-  ioArgument_ioInstructionList.addAssignOperation (temp_0  COMMA_SOURCE_FILE ("pic18_routine_inlining.galgas", 22)) ;
+  ioArgument_ioInstructionList.addAssignOperation (temp_0  COMMA_SOURCE_FILE ("pic18_routine_inlining.galgas", 20)) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -2398,16 +2260,6 @@ GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::GGS_baseline_5F_intermediate_5F
 GGS_baseline_5F_intermediate_5F_pseudo (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::class_func_new (const GGS_lstring & in_mLabel,
-                                                                                                                 Compiler * inCompiler
-                                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL (in_mLabel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL::readProperty_mLabel (void) const {
@@ -2567,17 +2419,6 @@ GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::GGS_baseline_5F_inte
 GGS_baseline_5F_intermediate_5F_pseudo (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::class_func_new (const GGS_lstring & in_mRoutineName,
-                                                                                                                                       const GGS_bool & in_mIsRegular,
-                                                                                                                                       Compiler * inCompiler
-                                                                                                                                       COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE (in_mRoutineName, in_mIsRegular,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::readProperty_mRoutineName (void) const {
@@ -2758,17 +2599,6 @@ GGS_baseline_5F_intermediate_5F_pseudo (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::class_func_new (const GGS_lstring & in_mRoutineName,
-                                                                                                                                   const GGS_uint & in_mPage,
-                                                                                                                                   Compiler * inCompiler
-                                                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE (in_mRoutineName, in_mPage,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE::readProperty_mRoutineName (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -2947,17 +2777,6 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_GOTO GGS_baseline_5F_intermediate_5F_GOTO::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                           const GGS_lstring & in_mTargetLabel,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_GOTO result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_GOTO (in_mInstructionLocation, in_mTargetLabel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_baseline_5F_intermediate_5F_GOTO::readProperty_mTargetLabel (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -3125,19 +2944,6 @@ GGS_baseline_5F_intermediate_5F_JUMP::GGS_baseline_5F_intermediate_5F_JUMP (cons
 GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_JUMP) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_intermediate_5F_JUMP GGS_baseline_5F_intermediate_5F_JUMP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                           const GGS_lstring & in_mTargetLabel,
-                                                                                           const GGS_uint & in_mCurrentPage,
-                                                                                           const GGS_uint & in_mTargetPage,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_JUMP result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_JUMP (in_mInstructionLocation, in_mTargetLabel, in_mCurrentPage, in_mTargetPage,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_baseline_5F_intermediate_5F_JUMP::readProperty_mTargetLabel (void) const {
@@ -3341,17 +3147,6 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_CALL GGS_baseline_5F_intermediate_5F_CALL::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                           const GGS_lstring & in_mTargetLabel,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_CALL result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_CALL (in_mInstructionLocation, in_mTargetLabel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_baseline_5F_intermediate_5F_CALL::readProperty_mTargetLabel (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -3519,19 +3314,6 @@ GGS_baseline_5F_intermediate_5F_JSR::GGS_baseline_5F_intermediate_5F_JSR (const 
 GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_JSR) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_intermediate_5F_JSR GGS_baseline_5F_intermediate_5F_JSR::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                         const GGS_lstring & in_mTargetLabel,
-                                                                                         const GGS_uint & in_mCurrentPage,
-                                                                                         const GGS_uint & in_mTargetPage,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_JSR result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_JSR (in_mInstructionLocation, in_mTargetLabel, in_mCurrentPage, in_mTargetPage,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_baseline_5F_intermediate_5F_JSR::readProperty_mTargetLabel (void) const {
@@ -3738,18 +3520,6 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_TRIS GGS_baseline_5F_intermediate_5F_TRIS::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                           const GGS_lstring & in_mOperand,
-                                                                                           const GGS_uint & in_mOpcode,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_TRIS result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_TRIS (in_mInstructionLocation, in_mOperand, in_mOpcode,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_baseline_5F_intermediate_5F_TRIS::readProperty_mOperand (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -3933,18 +3703,6 @@ GGS_midrange_5F_instruction_5F_banksel_5F_register::GGS_midrange_5F_instruction_
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_banksel_5F_register) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_banksel_5F_register GGS_midrange_5F_instruction_5F_banksel_5F_register::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                       const GGS_registerExpression & in_mRegister,
-                                                                                                                       const GGS_bool & in_mWarningOnUselessBanksel,
-                                                                                                                       Compiler * inCompiler
-                                                                                                                       COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_banksel_5F_register result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_banksel_5F_register (in_mInstructionLocation, in_mRegister, in_mWarningOnUselessBanksel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_registerExpression GGS_midrange_5F_instruction_5F_banksel_5F_register::readProperty_mRegister (void) const {
@@ -4133,19 +3891,6 @@ GGS_midrange_5F_instruction_5F_savebank::GGS_midrange_5F_instruction_5F_savebank
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_savebank) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_savebank GGS_midrange_5F_instruction_5F_savebank::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                 const GGS_registerExpression & in_mRegister,
-                                                                                                 const GGS_midrange_5F_instructionList & in_mInstructionList,
-                                                                                                 const GGS_location & in_mEndOfSaveBankInstruction,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_savebank result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_savebank (in_mInstructionLocation, in_mRegister, in_mInstructionList, in_mEndOfSaveBankInstruction,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_registerExpression GGS_midrange_5F_instruction_5F_savebank::readProperty_mRegister (void) const {
@@ -4359,21 +4104,6 @@ GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::GGS_midrange_5F_instruction_5F_
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                 const GGS_lstring & in_mConstantName,
-                                                                                                                 const GGS_immediatExpression & in_mLowerBoundExpression,
-                                                                                                                 const GGS_immediatExpression & in_mUpperBoundExpression,
-                                                                                                                 const GGS_midrange_5F_instructionList & in_mInstructionList,
-                                                                                                                 const GGS_location & in_mEndOfInstruction,
-                                                                                                                 Compiler * inCompiler
-                                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT (in_mInstructionLocation, in_mConstantName, in_mLowerBoundExpression, in_mUpperBoundExpression, in_mInstructionList, in_mEndOfInstruction,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT::readProperty_mConstantName (void) const {
@@ -4621,19 +4351,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_instruction_5F_FD GGS_midrange_5F_instruction_5F_FD::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                     const GGS_midrange_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction_5F_FD_5F_base_5F_code,
-                                                                                     const GGS_registerExpression & in_mRegisterExpression,
-                                                                                     const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_FD result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_FD (in_mInstructionLocation, in_mInstruction_5F_FD_5F_base_5F_code, in_mRegisterExpression, in_m_5F_W_5F_isDestination,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_midrange_5F_instruction_5F_FD_5F_base_5F_code GGS_midrange_5F_instruction_5F_FD::readProperty_mInstruction_5F_FD_5F_base_5F_code (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_midrange_5F_instruction_5F_FD_5F_base_5F_code () ;
@@ -4838,18 +4555,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_instruction_5F_F GGS_midrange_5F_instruction_5F_F::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                   const GGS_midrange_5F_F_5F_instruction_5F_base_5F_code & in_mFAinstruction,
-                                                                                   const GGS_registerExpression & in_mRegisterExpression,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_F result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_F (in_mInstructionLocation, in_mFAinstruction, in_mRegisterExpression,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_midrange_5F_F_5F_instruction_5F_base_5F_code GGS_midrange_5F_instruction_5F_F::readProperty_mFAinstruction (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_midrange_5F_F_5F_instruction_5F_base_5F_code () ;
@@ -5036,19 +4741,6 @@ GGS_midrange_5F_instruction_5F_FB::GGS_midrange_5F_instruction_5F_FB (const cPtr
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_FB) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_FB GGS_midrange_5F_instruction_5F_FB::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                     const GGS_midrange_5F_bit_5F_oriented_5F_op & in_mBitOrientedOp,
-                                                                                     const GGS_registerExpression & in_mRegisterExpression,
-                                                                                     const GGS_bitNumberExpression & in_mBitNumber,
-                                                                                     Compiler * inCompiler
-                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_FB result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_FB (in_mInstructionLocation, in_mBitOrientedOp, in_mRegisterExpression, in_mBitNumber,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_midrange_5F_bit_5F_oriented_5F_op GGS_midrange_5F_instruction_5F_FB::readProperty_mBitOrientedOp (void) const {
@@ -5252,17 +4944,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_instruction_5F_CALL GGS_midrange_5F_instruction_5F_CALL::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                         const GGS_lstring & in_mTargetLabel,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_CALL result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_CALL (in_mInstructionLocation, in_mTargetLabel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_midrange_5F_instruction_5F_CALL::readProperty_mTargetLabel (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -5424,17 +5105,6 @@ GGS_midrange_5F_instruction_5F_JSR::GGS_midrange_5F_instruction_5F_JSR (const cP
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_JSR) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_JSR GGS_midrange_5F_instruction_5F_JSR::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                       const GGS_lstring & in_mTargetLabel,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_JSR result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_JSR (in_mInstructionLocation, in_mTargetLabel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_midrange_5F_instruction_5F_JSR::readProperty_mTargetLabel (void) const {
@@ -5600,17 +5270,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_instruction_5F_JUMP GGS_midrange_5F_instruction_5F_JUMP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                         const GGS_lstring & in_mTargetLabel,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_JUMP result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_JUMP (in_mInstructionLocation, in_mTargetLabel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstring GGS_midrange_5F_instruction_5F_JUMP::readProperty_mTargetLabel (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstring () ;
@@ -5772,17 +5431,6 @@ GGS_midrange_5F_instruction_5F_GOTO::GGS_midrange_5F_instruction_5F_GOTO (const 
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_GOTO) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_GOTO GGS_midrange_5F_instruction_5F_GOTO::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                         const GGS_lstring & in_mTargetLabel,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_GOTO result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_GOTO (in_mInstructionLocation, in_mTargetLabel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_lstring GGS_midrange_5F_instruction_5F_GOTO::readProperty_mTargetLabel (void) const {
@@ -5955,20 +5603,6 @@ GGS_midrange_5F_instruction_5F_IF_5F_BitTest::GGS_midrange_5F_instruction_5F_IF_
 GGS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_IF_5F_BitTest) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_IF_5F_BitTest GGS_midrange_5F_instruction_5F_IF_5F_BitTest::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                           const GGS_midrange_5F_instruction & in_mInstruction,
-                                                                                                           const GGS_bool & in_mSkipIfSet,
-                                                                                                           const GGS_registerExpression & in_mRegisterExpression,
-                                                                                                           const GGS_bitNumberExpression & in_mBitNumber,
-                                                                                                           Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_IF_5F_BitTest result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_IF_5F_BitTest (in_mInstructionLocation, in_mInstruction, in_mSkipIfSet, in_mRegisterExpression, in_mBitNumber,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_bool GGS_midrange_5F_instruction_5F_IF_5F_BitTest::readProperty_mSkipIfSet (void) const {
@@ -6251,20 +5885,6 @@ GGS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_instruction_5F_IF_5F_IncDec GGS_midrange_5F_instruction_5F_IF_5F_IncDec::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                         const GGS_midrange_5F_instruction & in_mInstruction,
-                                                                                                         const GGS_bool & in_mIncrement,
-                                                                                                         const GGS_registerExpression & in_mRegisterExpression,
-                                                                                                         const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                         Compiler * inCompiler
-                                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_IF_5F_IncDec result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_IF_5F_IncDec (in_mInstructionLocation, in_mInstruction, in_mIncrement, in_mRegisterExpression, in_m_5F_W_5F_isDestination,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_midrange_5F_instruction_5F_IF_5F_IncDec::readProperty_mIncrement (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -6474,19 +6094,6 @@ GGS_midrange_5F_incDecRegisterInCondition::GGS_midrange_5F_incDecRegisterInCondi
 GGS_midrange_5F_conditionExpression (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_incDecRegisterInCondition) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_incDecRegisterInCondition GGS_midrange_5F_incDecRegisterInCondition::class_func_new (const GGS_registerExpression & in_mRegisterExpression,
-                                                                                                     const GGS_bool & in_mIncrement,
-                                                                                                     const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                     const GGS_bool & in_mBranchIfZero,
-                                                                                                     Compiler * inCompiler
-                                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_incDecRegisterInCondition result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_incDecRegisterInCondition (in_mRegisterExpression, in_mIncrement, in_m_5F_W_5F_isDestination, in_mBranchIfZero,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_registerExpression GGS_midrange_5F_incDecRegisterInCondition::readProperty_mRegisterExpression (void) const {
@@ -6703,17 +6310,6 @@ GGS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::GGS_midrange_5F_
 GGS_midrange_5F_conditionExpression (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition GGS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::class_func_new (const GGS_registerExpression & in_mRegisterExpression,
-                                                                                                                                               const GGS_bitNumberExpression & in_mBitNumber,
-                                                                                                                                               Compiler * inCompiler
-                                                                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition (in_mRegisterExpression, in_mBitNumber,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_registerExpression GGS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::readProperty_mRegisterExpression (void) const {
@@ -6955,39 +6551,6 @@ mProperty_mEndOfProgram (inOperand11) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_model GGS_midrange_5F_model::class_func_new (const GGS_lstring & in_mProgramName,
-                                                             const GGS_lstring & in_mDeviceName,
-                                                             const GGS_configDefinitionList & in_mConfigDefinitionList,
-                                                             const GGS_ramDefinitionList & in_mRamDefinitionList,
-                                                             const GGS_lstringlist & in_mUnusedRegisterList,
-                                                             const GGS_midrange_5F_interruptDefinitionList & in_mInterruptDefinitionList,
-                                                             const GGS_constantDefinitionList & in_mConstantDefinitionList,
-                                                             const GGS_midrange_5F_routineDefinitionList & in_mRoutineDefinitionList,
-                                                             const GGS_lstringlist & in_mUnusedRoutineList,
-                                                             const GGS_bool & in_mNeedsComputedGoto2,
-                                                             const GGS_bool & in_mNeedsComputedGoto4,
-                                                             const GGS_location & in_mEndOfProgram,
-                                                             Compiler * inCompiler
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_midrange_5F_model result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mProgramName = in_mProgramName ;
-  result.mProperty_mDeviceName = in_mDeviceName ;
-  result.mProperty_mConfigDefinitionList = in_mConfigDefinitionList ;
-  result.mProperty_mRamDefinitionList = in_mRamDefinitionList ;
-  result.mProperty_mUnusedRegisterList = in_mUnusedRegisterList ;
-  result.mProperty_mInterruptDefinitionList = in_mInterruptDefinitionList ;
-  result.mProperty_mConstantDefinitionList = in_mConstantDefinitionList ;
-  result.mProperty_mRoutineDefinitionList = in_mRoutineDefinitionList ;
-  result.mProperty_mUnusedRoutineList = in_mUnusedRoutineList ;
-  result.mProperty_mNeedsComputedGoto_32_ = in_mNeedsComputedGoto2 ;
-  result.mProperty_mNeedsComputedGoto_34_ = in_mNeedsComputedGoto4 ;
-  result.mProperty_mEndOfProgram = in_mEndOfProgram ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_midrange_5F_model::isValid (void) const {
   return mProperty_mProgramName.isValid () && mProperty_mDeviceName.isValid () && mProperty_mConfigDefinitionList.isValid () && mProperty_mRamDefinitionList.isValid () && mProperty_mUnusedRegisterList.isValid () && mProperty_mInterruptDefinitionList.isValid () && mProperty_mConstantDefinitionList.isValid () && mProperty_mRoutineDefinitionList.isValid () && mProperty_mUnusedRoutineList.isValid () && mProperty_mNeedsComputedGoto_32_.isValid () && mProperty_mNeedsComputedGoto_34_.isValid () && mProperty_mEndOfProgram.isValid () ;
 }
@@ -7186,35 +6749,6 @@ mProperty_mEepromSize (inOperand6),
 mProperty_mEepromAddress (inOperand7),
 mProperty_mConfigRegisterMap (inOperand8),
 mProperty_mSharedBankName (inOperand9) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_piccoloDeviceModel GGS_piccoloDeviceModel::class_func_new (const GGS_lstring & in_mDeviceName,
-                                                               const GGS_processorType & in_mProcessorType,
-                                                               const GGS_luint & in_mRomSize,
-                                                               const GGS_luint & in_mBankCount,
-                                                               const GGS_registerTable & in_mRegisterTable,
-                                                               const GGS_ramBankTable & in_mRamBankTable,
-                                                               const GGS_uint & in_mEepromSize,
-                                                               const GGS_uint & in_mEepromAddress,
-                                                               const GGS_configRegisterMap & in_mConfigRegisterMap,
-                                                               const GGS_string & in_mSharedBankName,
-                                                               Compiler * inCompiler
-                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_piccoloDeviceModel result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mDeviceName = in_mDeviceName ;
-  result.mProperty_mProcessorType = in_mProcessorType ;
-  result.mProperty_mRomSize = in_mRomSize ;
-  result.mProperty_mBankCount = in_mBankCount ;
-  result.mProperty_mRegisterTable = in_mRegisterTable ;
-  result.mProperty_mRamBankTable = in_mRamBankTable ;
-  result.mProperty_mEepromSize = in_mEepromSize ;
-  result.mProperty_mEepromAddress = in_mEepromAddress ;
-  result.mProperty_mConfigRegisterMap = in_mConfigRegisterMap ;
-  result.mProperty_mSharedBankName = in_mSharedBankName ;
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------

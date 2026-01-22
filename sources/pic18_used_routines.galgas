@@ -1,12 +1,10 @@
-
-
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 abstract method @pic18PiccoloInstruction addUsedRoutines
   ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_IF_BitTest addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -15,7 +13,7 @@ override method @pic18Instruction_IF_BitTest addUsedRoutines
   [self.mEmbeddedInstruction addUsedRoutines !inMacroMap !?ioUsedRoutines]
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_IF_FA_SEMI_COLON addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -24,7 +22,7 @@ override method @pic18Instruction_IF_FA_SEMI_COLON addUsedRoutines
   [self.mEmbeddedInstruction addUsedRoutines !inMacroMap !?ioUsedRoutines]
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_IF_IncDec addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -33,7 +31,7 @@ override method @pic18Instruction_IF_IncDec addUsedRoutines
   [self.mEmbeddedInstruction addUsedRoutines !inMacroMap !?ioUsedRoutines]
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_JUMP addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -42,7 +40,7 @@ override method @pic18Instruction_JUMP addUsedRoutines
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_JUMPCC addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -51,7 +49,7 @@ override method @pic18Instruction_JUMPCC addUsedRoutines
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_FOREVER addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -60,7 +58,7 @@ override method @pic18Instruction_FOREVER addUsedRoutines
   addPic18UsedRoutinesFromInstructionList (!self.mInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_repetitionStatique addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -69,7 +67,7 @@ override method @pic18Instruction_repetitionStatique addUsedRoutines
   addPic18UsedRoutinesFromInstructionList (!self.mInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_checkbank addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -77,7 +75,7 @@ override method @pic18Instruction_checkbank addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_LDATA16PTR addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -85,7 +83,7 @@ override method @pic18Instruction_LDATA16PTR addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_LDATA8PTR addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -93,7 +91,7 @@ override method @pic18Instruction_LDATA8PTR addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_LTBLPTR addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -101,7 +99,7 @@ override method @pic18Instruction_LTBLPTR addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_MNOP addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -109,7 +107,7 @@ override method @pic18Instruction_MNOP addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_NOPBRA addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -117,7 +115,7 @@ override method @pic18Instruction_NOPBRA addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_banksel addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -125,7 +123,7 @@ override method @pic18Instruction_banksel addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_checknobank addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -133,7 +131,7 @@ override method @pic18Instruction_checknobank addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_banksel_register addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -141,7 +139,7 @@ override method @pic18Instruction_banksel_register addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_computed_bra addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -152,7 +150,7 @@ override method @pic18Instruction_computed_bra addUsedRoutines
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_computed_goto addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -163,7 +161,7 @@ override method @pic18Instruction_computed_goto addUsedRoutines
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_computed_rcall addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -174,7 +172,7 @@ override method @pic18Instruction_computed_rcall addUsedRoutines
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_computed_retlw addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -182,7 +180,7 @@ override method @pic18Instruction_computed_retlw addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_do_while addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -194,7 +192,7 @@ override method @pic18Instruction_do_while addUsedRoutines
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_nobanksel addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -202,7 +200,7 @@ override method @pic18Instruction_nobanksel addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_savebank addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -211,7 +209,7 @@ override method @pic18Instruction_savebank addUsedRoutines
   addPic18UsedRoutinesFromInstructionList ( !self.mInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_structured_if addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -221,7 +219,7 @@ override method @pic18Instruction_structured_if addUsedRoutines
   addPic18UsedRoutinesFromInstructionList (!self.mElseInstructionList !inMacroMap !?ioUsedRoutines )
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_macro addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -231,7 +229,7 @@ override method @pic18Instruction_macro addUsedRoutines
   addPic18UsedRoutinesFromInstructionList (!instructionList !inMacroMap !?ioUsedRoutines)
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_FA addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -239,7 +237,7 @@ override method @pic18Instruction_FA addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_FBA addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -247,7 +245,7 @@ override method @pic18Instruction_FBA addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_FDA addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -255,7 +253,7 @@ override method @pic18Instruction_FDA addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_JSR addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -264,7 +262,7 @@ override method @pic18Instruction_JSR addUsedRoutines
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_LFSR addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -272,7 +270,7 @@ override method @pic18Instruction_LFSR addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_MOVFF addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -280,7 +278,7 @@ override method @pic18Instruction_MOVFF addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_TBLWT addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -288,7 +286,7 @@ override method @pic18Instruction_TBLWT addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_TBLRD addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -296,7 +294,7 @@ override method @pic18Instruction_TBLRD addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_literalOperation addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -304,7 +302,7 @@ override method @pic18Instruction_literalOperation addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_fnop addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -312,7 +310,7 @@ override method @pic18Instruction_fnop addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_withNoOperand addUsedRoutines
   ?let @pic18MacroMap unused inMacroMap
@@ -320,7 +318,7 @@ override method @pic18Instruction_withNoOperand addUsedRoutines
 {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_block addUsedRoutines
   ?let @pic18MacroMap inMacroMap
@@ -331,7 +329,7 @@ override method @pic18Instruction_block addUsedRoutines
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 proc addPic18UsedRoutinesFromInstructionList
   ?let @pic18InstructionList inInstructionList
@@ -343,7 +341,7 @@ proc addPic18UsedRoutinesFromInstructionList
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 func pic18_computeUsedRoutines
   ?let @pic18InterruptDefinitionList inInterruptDefinitionList
@@ -352,9 +350,9 @@ func pic18_computeUsedRoutines
   ?let @routineDeclarationList inBootloaderRoutineDeclarationListForBootloaderImplementation
   ?let @routineDeclarationList inUserRoutineDeclarationListForUserProgramImplementation
   -> @stringset outUsedRoutineSet {
-#--- Main routine is used
+//--- Main routine is used
   outUsedRoutineSet = @stringset. setWithString { !"main"}
-#--- Routines called by interrupt routines are used
+//--- Routines called by interrupt routines are used
   for (* * mInstructionList *) in  inInterruptDefinitionList do
     addPic18UsedRoutinesFromInstructionList (
       !mInstructionList
@@ -362,15 +360,15 @@ func pic18_computeUsedRoutines
       !?outUsedRoutineSet
     )  
   end
-#--- bootloader routines are used
+//--- bootloader routines are used
   for (mRoutineName * * * *) in  inBootloaderRoutineDeclarationListForBootloaderImplementation do
     outUsedRoutineSet ++= mRoutineName.string
   end
-#--- user routines are used
+//--- user routines are used
   for (mRoutineName * * * *) in  inUserRoutineDeclarationListForUserProgramImplementation do
     outUsedRoutineSet ++= mRoutineName.string
   end
-#--- Loop for accumulating used routines
+//--- Loop for accumulating used routines
   var s =@stringset ()
   loop( [inRoutineDefinitionList count])
   while s != outUsedRoutineSet do
@@ -383,5 +381,5 @@ func pic18_computeUsedRoutines
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 

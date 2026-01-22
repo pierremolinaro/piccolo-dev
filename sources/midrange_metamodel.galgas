@@ -1,48 +1,46 @@
-
-
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 abstract class @midrange_instruction {
   public let @location mInstructionLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 list @midrange_instructionList {
   public let @midrange_instruction mInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_nobanksel : @midrange_instruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_banksel : @midrange_instruction {
   public let @luint mBankIndex
   public let @bool mWarningOnUselessBanksel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrangeInstruction_checkbank : @midrange_instruction {
   public let @uint mBankIndex
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrangeInstruction_checknobank : @midrange_instruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_banksel_register : @midrange_instruction {
   public let @registerExpression mRegister
   public let @bool mWarningOnUselessBanksel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_savebank : @midrange_instruction {
   public let @registerExpression mRegister
@@ -50,7 +48,7 @@ class @midrange_instruction_savebank : @midrange_instruction {
   public let @location mEndOfSaveBankInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_STATIC_REPEAT : @midrange_instruction {
   public let @lstring mConstantName
@@ -60,7 +58,7 @@ class @midrange_instruction_STATIC_REPEAT : @midrange_instruction {
   public let @location mEndOfInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @midrange_instruction_FD_base_code %equatable {
   case ADDWF  case ANDWF  case COMF  case DECF  case DECFSZ  case INCF  case INCFSZ  case IORWF  case MOVF  case RLF  case RRF  case SUBWF  case SWAPF  case XORWF
@@ -85,7 +83,7 @@ getter @midrange_instruction_FD_base_code mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_FD : @midrange_instruction {
   public let @midrange_instruction_FD_base_code mInstruction_FD_base_code
@@ -93,7 +91,7 @@ class @midrange_instruction_FD : @midrange_instruction {
   public let @bool m_W_isDestination
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @midrange_F_instruction_base_code {
   case CLRF  case MOVWF
@@ -106,14 +104,14 @@ getter @midrange_F_instruction_base_code mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_F : @midrange_instruction {
   public let @midrange_F_instruction_base_code mFAinstruction
   public let @registerExpression mRegisterExpression
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @midrange_bit_oriented_op {
   case BCF  case BSF
@@ -126,7 +124,7 @@ getter @midrange_bit_oriented_op mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_FB : @midrange_instruction {
   public let @midrange_bit_oriented_op mBitOrientedOp
@@ -134,51 +132,51 @@ class @midrange_instruction_FB : @midrange_instruction {
   public let @bitNumberExpression mBitNumber
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_CALL : @midrange_instruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_JSR : @midrange_instruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_JUMP : @midrange_instruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_GOTO : @midrange_instruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_CLRWDT : @midrange_instruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_CLRW : @midrange_instruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_NOP : @midrange_instruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_SLEEP : @midrange_instruction {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @midrange_literal_instruction_opcode %equatable {
   case ADDLW  case ANDLW  case IORLW  case MOVLW  case RETLW  case SUBLW  case XORLW
@@ -196,33 +194,33 @@ getter @midrange_literal_instruction_opcode mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_literalOperation : @midrange_instruction {
   public let @midrange_literal_instruction_opcode mLiteralInstruction
   public let @immediatExpression mImmediatExpression
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_MNOP : @midrange_instruction {
   public let @luint mOccurrenceFactor
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_FOREVER : @midrange_instruction {
   public let @midrange_instructionList mInstructionList
   public let @location mEndOfInstructionList
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 abstract class @midrange_instruction_IF_SEMI_COLON : @midrange_instruction {
   public let @midrange_instruction mInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_IF_BitTest : @midrange_instruction_IF_SEMI_COLON {
   public let @bool mSkipIfSet
@@ -232,9 +230,9 @@ class @midrange_instruction_IF_BitTest : @midrange_instruction_IF_SEMI_COLON {
 
 method @midrange_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
   if self.mSkipIfSet then
-    outBaseCode = 0x1C00 # BTFSS
+    outBaseCode = 0x1C00 // BTFSS
   else
-    outBaseCode = 0x1800 # BTFSC
+    outBaseCode = 0x1800 // BTFSC
   end
 } 
 
@@ -247,7 +245,7 @@ method @midrange_instruction_IF_BitTest getMnemonic !@string outMnemonic {
 } 
 
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_IF_IncDec : @midrange_instruction_IF_SEMI_COLON {
   public let @bool mIncrement
@@ -255,12 +253,12 @@ class @midrange_instruction_IF_IncDec : @midrange_instruction_IF_SEMI_COLON {
   public let @bool m_W_isDestination
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 abstract class @midrange_conditionExpression {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_incDecRegisterInCondition : @midrange_conditionExpression {
   public let @registerExpression mRegisterExpression
@@ -269,28 +267,28 @@ class @midrange_incDecRegisterInCondition : @midrange_conditionExpression {
   public let @bool mBranchIfZero
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_negateCondition : @midrange_conditionExpression {
   public let @midrange_conditionExpression mCondition
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_andCondition : @midrange_conditionExpression {
   public let @midrange_conditionExpression mLeftExpression
   public let @midrange_conditionExpression mRightExpression
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_bitTest_in_structured_if_condition : @midrange_conditionExpression {
   public let @registerExpression mRegisterExpression
   public let @bitNumberExpression mBitNumber
-#  @bool mBTFSSinstruction
+//  @bool mBTFSSinstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_structured_if : @midrange_instruction {
   public let @midrange_conditionExpression mIfCondition
@@ -299,7 +297,7 @@ class @midrange_instruction_structured_if : @midrange_instruction {
   public let @location mEndOfElsePartLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 list @midrange_partList {
   public let @midrange_conditionExpression mCondition
@@ -307,7 +305,7 @@ list @midrange_partList {
   public let @location mEndOfPartLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @midrange_instruction_do_while : @midrange_instruction {
   public let @midrange_instructionList mRepeatedInstructionList
@@ -315,7 +313,7 @@ class @midrange_instruction_do_while : @midrange_instruction {
   public let @midrange_partList mWhilePartList
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 list @midrange_interruptDefinitionList {
   public let @location mInterruptLocation
@@ -325,7 +323,7 @@ list @midrange_interruptDefinitionList {
   public let @location mEndOfInterruptLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 list @midrange_routineDefinitionList {
   public let @lstring mRoutineName
@@ -338,7 +336,7 @@ list @midrange_routineDefinitionList {
   public let @location mEndOfRoutineLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 struct @midrange_model {
   public let @lstring mProgramName
@@ -355,5 +353,5 @@ struct @midrange_model {
   public let @location mEndOfProgram
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

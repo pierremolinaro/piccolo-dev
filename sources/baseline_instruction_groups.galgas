@@ -1,5 +1,5 @@
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @baseline_instruction_FD_base_code %equatable {
   case ADDWF  case ANDWF  case COMF  case DECF  case DECFSZ  case INCF  case INCFSZ  case IORWF  case MOVF  case RLF  case RRF  case SUBWF  case SWAPF  case XORWF
@@ -24,7 +24,7 @@ getter @baseline_instruction_FD_base_code mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @baseline_F_instruction_base_code {
   case CLRF  case MOVWF
@@ -37,13 +37,13 @@ getter @baseline_F_instruction_base_code mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @baseline_bit_oriented_op {
   case BCF  case BSF
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @baseline_bit_oriented_op mnemonic -> @string outResult {
   switch self
@@ -52,13 +52,13 @@ getter @baseline_bit_oriented_op mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @baseline_literal_instruction_opcode %equatable {
   case ANDLW  case IORLW  case MOVLW  case RETLW  case XORLW
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @baseline_literal_instruction_opcode mnemonic -> @string outResult {
   switch self
@@ -70,13 +70,13 @@ getter @baseline_literal_instruction_opcode mnemonic -> @string outResult {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 enum @baseline_WO_OPERAND_group {
   case CLRW  case NOP  case CLRWDT  case OPTION_  case SLEEP
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 getter @baseline_WO_OPERAND_group mnemonic -> @string outResult {
   switch self
@@ -88,5 +88,5 @@ getter @baseline_WO_OPERAND_group mnemonic -> @string outResult {
   end
 } 
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

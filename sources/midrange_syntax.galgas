@@ -1,6 +1,6 @@
 syntax midrange_syntax (piccolo_lexique) {
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
@@ -26,7 +26,7 @@ rule <bit_number_parsing>
 rule <immediate_expression>
   !@immediatExpression outExpression
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <start_symbol> {
   $midrange$
@@ -79,7 +79,7 @@ rule <start_symbol> {
       !?needsComputedGoto4
   end
   $end$
-#--- Semantic analysis
+//--- Semantic analysis
   if @uint. errorCount == 0 then
     let piccoloModel = @midrange_model {
       !programName
@@ -157,7 +157,7 @@ label importBootloaderSpecification
   $end$
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_instruction_list>
   !@midrange_instructionList outInstructionList
@@ -180,7 +180,7 @@ rule <midrange_instruction_list>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_interrupt_definition>
   ?!@midrange_interruptDefinitionList ioInterruptDefinitionList
@@ -208,7 +208,7 @@ rule <midrange_interrupt_definition>
    !.here
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_routine_definition>
   ?!@midrange_routineDefinitionList ioRoutineDefinitionList
@@ -224,7 +224,7 @@ rule <midrange_routine_definition>
   end
   $routine$
   $identifier$ ?let @lstring routineName indexing routineDefinition
-#--- Page
+//--- Page
   let @luint page
   select
     page = @luint { !0 !@location.here}
@@ -232,7 +232,7 @@ rule <midrange_routine_definition>
     $page$
     $integer$ ? page
   end
-#--- Bank
+//--- Bank
   let @luint requiredBank
   let @luint returnedBank
   let @bool preservesBank
@@ -293,7 +293,7 @@ rule <midrange_routine_definition>
     !@location.here
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_structured_instruction>
   !@midrange_instruction outInstruction
@@ -580,7 +580,7 @@ rule <midrange_structured_instruction>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_structured_if_instruction>
   ?let @lstring ifLabel
@@ -647,7 +647,7 @@ rule <midrange_structured_if_instruction>
     !endOfElsePartLocation}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
   select
@@ -698,7 +698,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
       !registerExpression
       !W_isDestination
     }
-  #--- Emit a warning if instruction is "movf" and W is not destination
+  //--- Emit a warning if instruction is "movf" and W is not destination
     if (baseCode == .MOVF) && not W_isDestination then
       warning instructionLocation :  "This instruction does not move data, it only sets flags. "
         "Use 'movf *, reg' instead of 'movf reg' to suppress this warning" 
@@ -713,7 +713,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
       !instructionLocation
       !.MOVF
       !registerName
-      !false # W is not destination
+      !false // W is not destination
     }
   or
     let @midrange_F_instruction_base_code FAinstruction
@@ -796,7 +796,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_condition_factor>
   !@midrange_conditionExpression outCondition {
@@ -805,14 +805,14 @@ rule <midrange_condition_factor>
   outCondition = @midrange_negateCondition { !condition}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_condition_factor>
   !@midrange_conditionExpression outCondition {
   <midrange_condition_expression> ? outCondition
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_condition_factor>
   !@midrange_conditionExpression outCondition {
@@ -858,7 +858,7 @@ rule <midrange_condition_factor>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_condition_expression>
   !@midrange_conditionExpression outCondition {
@@ -875,7 +875,7 @@ rule <midrange_condition_expression>
   $)$
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <midrange_condition_term>
   !@midrange_conditionExpression outCondition {
@@ -888,6 +888,6 @@ rule <midrange_condition_term>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 }

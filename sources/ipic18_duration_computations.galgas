@@ -6,9 +6,9 @@ map @blockDurationMap {
   search searchKey error message "the '%K' entry is not declared"
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
-#! terminatorMinMaxDuration
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
+//! terminatorMinMaxDuration
+//----------------------------------------------------------------------------------------------------------------------*
 
 abstract method @ipic18AbstractBlockTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
@@ -16,7 +16,7 @@ abstract method @ipic18AbstractBlockTerminator terminatorMinMaxDuration
   !@uint outMin
   !@uint outMax
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ReturnTerminator terminatorMinMaxDuration
   ?let @blockDurationMap unused inExploredBlockMap
@@ -28,7 +28,7 @@ override method @ipic18ReturnTerminator terminatorMinMaxDuration
   outMax = 2
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18RetlwTerminator terminatorMinMaxDuration
   ?let @blockDurationMap unused inExploredBlockMap
@@ -40,7 +40,7 @@ override method @ipic18RetlwTerminator terminatorMinMaxDuration
   outMax = 2
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18RetfieTerminator terminatorMinMaxDuration
   ?let @blockDurationMap unused inExploredBlockMap
@@ -52,7 +52,7 @@ override method @ipic18RetfieTerminator terminatorMinMaxDuration
   outMax = 2
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
@@ -60,7 +60,7 @@ override method @ipic18JumpTerminator terminatorMinMaxDuration
   !@uint outMin
   !@uint outMax
 {
-  if [inExploredBlockMap hasKey !self.mLabel.string] then # Solved
+  if [inExploredBlockMap hasKey !self.mLabel.string] then // Solved
     [inExploredBlockMap searchKey !self.mLabel ?let @uint min ?let @uint max]
     if self.mLabel.string == inNextLabel then
       outMin = min
@@ -69,13 +69,13 @@ override method @ipic18JumpTerminator terminatorMinMaxDuration
       outMin = 2 + min
       outMax = 2 + max
     end
-  else # Unknown
+  else // Unknown
     outMin = @uint.max
     outMax = 0
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @pic18TestRegisterTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
@@ -85,8 +85,8 @@ override method @pic18TestRegisterTerminator terminatorMinMaxDuration
 {
   [self.mSingleInstructionTerminatorIfConditionTrue duration !inExploredBlockMap !inNextLabel ?let trueMin ?let trueMax]
   [self.mSingleInstructionTerminatorIfConditionFalse duration !inExploredBlockMap !"" ?let falseMin ?let falseMax]
-  if (trueMin <= trueMax) && (falseMin <= falseMax) then # Solved
-    if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then # No code for true terminator
+  if (trueMin <= trueMax) && (falseMin <= falseMax) then // Solved
+    if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then // No code for true terminator
       let trueBranchMinDuration = trueMin + 2
       let trueBranchMaxDuration = trueMax + 2
       let falseBranchMinDuration = falseMin + 1
@@ -101,13 +101,13 @@ override method @pic18TestRegisterTerminator terminatorMinMaxDuration
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     end
-  else # Not solved
+  else // Not solved
     outMin = @uint.max
     outMax = 0
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @pic18RegisterComparisonTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
@@ -117,8 +117,8 @@ override method @pic18RegisterComparisonTerminator terminatorMinMaxDuration
 {
   [self.mSingleInstructionTerminatorIfConditionTrue duration !inExploredBlockMap !inNextLabel ?let trueMin ?let trueMax]
   [self.mSingleInstructionTerminatorIfConditionFalse duration !inExploredBlockMap !inNextLabel ?let falseMin ?let falseMax]
-  if (trueMin <= trueMax) && (falseMin <= falseMax) then # Solved
-    if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then # No code for true terminator
+  if (trueMin <= trueMax) && (falseMin <= falseMax) then // Solved
+    if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then // No code for true terminator
       let trueBranchMinDuration = trueMin + 2
       let trueBranchMaxDuration = trueMax + 2
       let falseBranchMinDuration = falseMin + 1
@@ -133,13 +133,13 @@ override method @pic18RegisterComparisonTerminator terminatorMinMaxDuration
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
     end
-  else # Not solved
+  else // Not solved
     outMin = @uint.max
     outMax = 0
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @pic18BitTestTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
@@ -149,15 +149,15 @@ override method @pic18BitTestTerminator terminatorMinMaxDuration
 {
   [self.mSingleInstructionTerminatorIfConditionTrue duration !inExploredBlockMap !inNextLabel ?let trueMin ?let trueMax]
   [self.mSingleInstructionTerminatorIfConditionFalse duration !inExploredBlockMap !inNextLabel ?let falseMin ?let falseMax]
-  if (trueMin <= trueMax) && (falseMin <= falseMax) then # Solved
-    if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then # No code for true terminator
+  if (trueMin <= trueMax) && (falseMin <= falseMax) then // Solved
+    if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then // No code for true terminator
       let trueBranchMinDuration = trueMin + 2
       let trueBranchMaxDuration = trueMax + 2
       let falseBranchMinDuration = falseMin + 1
       let falseBranchMaxDuration = falseMax + 1
       outMin = if falseBranchMinDuration < trueBranchMinDuration then falseBranchMinDuration else trueBranchMinDuration end
       outMax = if falseBranchMaxDuration > trueBranchMaxDuration then falseBranchMaxDuration else trueBranchMaxDuration end
-    elsif [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextLabel] == 0 then # No code for false terminator
+    elsif [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextLabel] == 0 then // No code for false terminator
       let falseBranchMinDuration = falseMin + 2
       let falseBranchMaxDuration = falseMax + 2
       let trueBranchMinDuration = trueMin + 1
@@ -172,13 +172,13 @@ override method @pic18BitTestTerminator terminatorMinMaxDuration
       outMin = if trueBranchMinDuration < falseBranchMinDuration then trueBranchMinDuration else falseBranchMinDuration end
       outMax = if trueBranchMaxDuration > falseBranchMaxDuration then trueBranchMaxDuration else falseBranchMaxDuration end
     end
-  else # Not solved
+  else // Not solved
     outMin = @uint.max
     outMax = 0
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
@@ -189,14 +189,14 @@ override method @ipic18ConditionalJumpTerminator terminatorMinMaxDuration
   if [inExploredBlockMap hasKey !self.mTargetLabelWhenTrue.string] && [inExploredBlockMap hasKey !self.mTargetLabelWhenFalse.string] then
     [inExploredBlockMap searchKey !self.mTargetLabelWhenTrue ?let trueMin ?let trueMax]
     [inExploredBlockMap searchKey !self.mTargetLabelWhenFalse ?let falseMin ?let falseMax]
-    if self.mTargetLabelWhenTrue.string == inNextLabel then # No code for true terminator
+    if self.mTargetLabelWhenTrue.string == inNextLabel then // No code for true terminator
       let trueBranchMinDuration = trueMin + 1
       let trueBranchMaxDuration = trueMax + 1
       let falseBranchMinDuration = falseMin + 2
       let falseBranchMaxDuration = falseMax + 2
       outMin = if trueBranchMinDuration < falseBranchMinDuration then trueBranchMinDuration else falseBranchMinDuration end
       outMax = if trueBranchMaxDuration > falseBranchMaxDuration then trueBranchMaxDuration else falseBranchMaxDuration end
-    elsif self.mTargetLabelWhenFalse.string == inNextLabel then # No code for false terminator
+    elsif self.mTargetLabelWhenFalse.string == inNextLabel then // No code for false terminator
       let falseBranchMinDuration = falseMin + 1
       let falseBranchMaxDuration = falseMax + 1
       let trueBranchMinDuration = trueMin + 2
@@ -211,13 +211,13 @@ override method @ipic18ConditionalJumpTerminator terminatorMinMaxDuration
       outMin = if trueBranchMinDuration < falseBranchMinDuration then trueBranchMinDuration else falseBranchMinDuration end
       outMax = if trueBranchMaxDuration > falseBranchMaxDuration then trueBranchMaxDuration else falseBranchMaxDuration end
     end
-  else # Not solved
+  else // Not solved
     outMin = @uint.max
     outMax = 0
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18IncDecRegisterTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
@@ -227,15 +227,15 @@ override method @ipic18IncDecRegisterTerminator terminatorMinMaxDuration
 {
   [self.mSingleInstructionTerminatorIfConditionTrue duration !inExploredBlockMap !inNextLabel ?let trueMin ?let trueMax]
   [self.mSingleInstructionTerminatorIfConditionFalse duration !inExploredBlockMap !inNextLabel ?let falseMin ?let falseMax]
-  if (trueMin <= trueMax) && (falseMin <= falseMax) then # Solved
-    if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then # No code for true terminator
+  if (trueMin <= trueMax) && (falseMin <= falseMax) then // Solved
+    if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextLabel] == 0 then // No code for true terminator
       let trueBranchMinDuration = trueMin + 1
       let trueBranchMaxDuration = trueMax + 1
       let falseBranchMinDuration = falseMin + 2
       let falseBranchMaxDuration = falseMax + 2
       outMin = if trueBranchMinDuration < falseBranchMinDuration then trueBranchMinDuration else falseBranchMinDuration end
       outMax = if trueBranchMaxDuration > falseBranchMaxDuration then trueBranchMaxDuration else falseBranchMaxDuration end
-    elsif [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextLabel] == 0 then # No code for false terminator
+    elsif [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextLabel] == 0 then // No code for false terminator
       let falseBranchMinDuration = falseMin + 1
       let falseBranchMaxDuration = falseMax + 1
       let trueBranchMinDuration = trueMin + 2
@@ -250,13 +250,13 @@ override method @ipic18IncDecRegisterTerminator terminatorMinMaxDuration
       outMin = if trueBranchMinDuration < falseBranchMinDuration then trueBranchMinDuration else falseBranchMinDuration end
       outMax = if trueBranchMaxDuration > falseBranchMaxDuration then trueBranchMaxDuration else falseBranchMaxDuration end
     end
-  else # Not solved
+  else // Not solved
     outMin = @uint.max
     outMax = 0
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
@@ -266,12 +266,12 @@ override method @ipic18ComputedGotoTerminator terminatorMinMaxDuration
 {
   outMin = @uint.max
   outMax = 0
-#---
+//---
   var solved = true
   for (aLabel) in self.mTargetLabels while solved do
     solved = [inExploredBlockMap hasKey !aLabel.string]
   end
-#---
+//---
   if solved then
     for (aLabel) in self.mTargetLabels do
       [inExploredBlockMap searchKey !aLabel ?let min ?let max]
@@ -282,13 +282,13 @@ override method @ipic18ComputedGotoTerminator terminatorMinMaxDuration
         outMax = max
       end
     end
-  #--- Add RCALL execution (2), computed goto 4 execution (8), GOTO (2)
+  //--- Add RCALL execution (2), computed goto 4 execution (8), GOTO (2)
     outMin = outMin + 12
     outMax = outMax + 12
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+////////----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator terminatorMinMaxDuration
   ?let @blockDurationMap unused inExploredBlockMap
@@ -296,14 +296,14 @@ override method @ipic18ComputedRETLWTerminator terminatorMinMaxDuration
   !@uint outMin
   !@uint outMax
 {
-  outMin = 11 # RCALL (2), _computed_goto2 (7), RETLW (2)
+  outMin = 11 // RCALL (2), _computed_goto2 (7), RETLW (2)
   if not self.mUsesRCALL then
     outMin += 1
   end
   outMax = outMin
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
@@ -313,12 +313,12 @@ override method @ipic18ComputedBraTerminator terminatorMinMaxDuration
 {
   outMin = @uint.max
   outMax = 0
-#---
+//---
   var solved = true
   for (aLabel) in self.mTargetLabels while solved do
     solved = [inExploredBlockMap hasKey !aLabel.string]
   end
-#---
+//---
   if solved then
     for (aLabel) in self.mTargetLabels do
       [inExploredBlockMap searchKey !aLabel ?let min ?let max]
@@ -329,15 +329,15 @@ override method @ipic18ComputedBraTerminator terminatorMinMaxDuration
         outMax = max
       end
     end
-  #--- Add RCALL execution (2), computed goto 2 execution (7), BRA (2)
+  //--- Add RCALL execution (2), computed goto 2 execution (7), BRA (2)
     outMin = outMin + 11
     outMax = outMax + 11
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
-#! @ipic18SingleInstructionTerminator duration
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
+//! @ipic18SingleInstructionTerminator duration
+//----------------------------------------------------------------------------------------------------------------------*
 
 abstract method @ipic18SingleInstructionTerminator duration
   ?let @blockDurationMap unused inExploredBlockMap
@@ -345,7 +345,7 @@ abstract method @ipic18SingleInstructionTerminator duration
   !@uint outMin
   !@uint outMax
   
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ReturnTerminator duration
   ?let @blockDurationMap unused inExploredBlockMap
@@ -357,7 +357,7 @@ override method @ipic18ReturnTerminator duration
   outMax = 2
 }
   
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18RetlwTerminator duration
   ?let @blockDurationMap unused inExploredBlockMap
@@ -369,7 +369,7 @@ override method @ipic18RetlwTerminator duration
   outMax = 2
 }
   
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18RetfieTerminator duration
   ?let @blockDurationMap unused inExploredBlockMap
@@ -381,7 +381,7 @@ override method @ipic18RetfieTerminator duration
   outMax = 2
 }
   
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator duration
   ?let @blockDurationMap inExploredBlockMap
@@ -403,9 +403,9 @@ override method @ipic18JumpTerminator duration
   end
 }
   
-#----------------------------------------------------------------------------------------------------------------------*
-#! minMaxDuration
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
+//! minMaxDuration
+//----------------------------------------------------------------------------------------------------------------------*
 
 method @ipic18SequentialInstruction minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
@@ -416,7 +416,7 @@ method @ipic18SequentialInstruction minMaxDuration
   outMax = 1
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//////----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_TBLRD minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
@@ -427,7 +427,7 @@ override method @ipic18_intermediate_instruction_TBLRD minMaxDuration
   outMax = 2
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_TBLWT minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
@@ -438,7 +438,7 @@ override method @ipic18_intermediate_instruction_TBLWT minMaxDuration
   outMax = 2
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_MNOP minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
@@ -449,7 +449,7 @@ override method @ipic18_intermediate_instruction_MNOP minMaxDuration
   outMax = self.mOccurrenceFactor.uint
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_NOPBRA minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
@@ -460,7 +460,7 @@ override method @ipic18_intermediate_instruction_NOPBRA minMaxDuration
   outMax = self.mOccurrenceFactor.uint * 2
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_LFSR minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
@@ -471,7 +471,7 @@ override method @ipic18_intermediate_instruction_LFSR minMaxDuration
   outMax = 2
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_MOVFF minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
@@ -482,7 +482,7 @@ override method @ipic18_intermediate_instruction_MOVFF minMaxDuration
   outMax = 2
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_JSR minMaxDuration
   ?@blockDurationMap inExploredBlockMap
@@ -499,7 +499,7 @@ override method @ipic18_intermediate_JSR minMaxDuration
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_condition_skip_instruction minMaxDuration
   ?@blockDurationMap inExploredBlockMap
@@ -513,7 +513,7 @@ override method @ipic18_condition_skip_instruction minMaxDuration
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall minMaxDuration
   ?@blockDurationMap inExploredBlockMap
@@ -530,7 +530,7 @@ override method @ipic18_intermediate_instruction_computed_rcall minMaxDuration
   if solved then
     for (instr * *) in self.mTargetInstructions do (idx)
       [instr minMaxDuration !inExploredBlockMap ?@uint min ?@uint max]
-    #--- For all branches (but the last one) add BRA execution (2 cycles)
+    //--- For all branches (but the last one) add BRA execution (2 cycles)
       if idx < ([self.mTargetInstructions count] - 1) then
         min = min + 2
         max = max + 2
@@ -542,30 +542,30 @@ override method @ipic18_intermediate_instruction_computed_rcall minMaxDuration
         outMax = max
       end
     end
-  #--- Add RCALL execution (2), computed_goto4 execution (8)
+  //--- Add RCALL execution (2), computed_goto4 execution (8)
     outMin = outMin + 10
     outMax = outMax + 10
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
-#! Routine ipic18DurationComputations
+//! Routine ipic18DurationComputations
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 proc ipic18DurationComputations
   ?!@ipic18BlockList ioBlockList
   !@blockDurationMap outBlockDurationMap
 {
-#--- Next label list
+//--- Next label list
   var @stringlist nextLabelList = @()
   for (mBlock) in ioBlockList do
     nextLabelList += !mBlock.mLabel.string
   end
   nextLabelList += !""
   [!?nextLabelList popFirst ?*]
-#--- Compute durations
+//--- Compute durations
   outBlockDurationMap = @()
   var continue = true
   loop ([ioBlockList count] + 1) while continue do
@@ -579,7 +579,7 @@ proc ipic18DurationComputations
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 method @ipic18Block computeDuration
   ?!@blockDurationMap ioExploredBlockMap
@@ -587,7 +587,7 @@ method @ipic18Block computeDuration
   !@ipic18Block outNewBlock
   ?!@bool ioContinue
 {
-  if self.mTerminatorMin <= self.mTerminatorMax then # Already solved
+  if self.mTerminatorMin <= self.mTerminatorMax then // Already solved
     outNewBlock = self
   else
     [self.mTerminator terminatorMinMaxDuration !ioExploredBlockMap !inNextLabel ?let terminatorMin ?let terminatorMax]
@@ -610,7 +610,7 @@ method @ipic18Block computeDuration
         [!?computedInstructionList insertAtIndex !instr !@uint.max !0 !0]
       end
     end
-    if ok then # Solved
+    if ok then // Solved
       outNewBlock = @ipic18Block {
         !self.mAddress
         !self.mLabel
@@ -621,13 +621,13 @@ method @ipic18Block computeDuration
       }
       ioContinue = true
       [!?ioExploredBlockMap insertKey !self.mLabel !min !max]
-    else # Not solved
+    else // Not solved
       outNewBlock = self
     end
   end
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 proc ipic18PrintDurations
   ?!@string ioListFileContents 
@@ -643,4 +643,4 @@ proc ipic18PrintDurations
   ioListFileContents += "\n"
 }
 
-#----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*

@@ -4,7 +4,7 @@ map @blockMapForStackComputation {
   search searchKey error message "the '%K' block is not declared"
 }
 
-#------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------*
 
 map @routineCallMap {
   public let @stringset mCalledRoutineSet
@@ -12,7 +12,7 @@ map @routineCallMap {
   insert insertKey error message "the '%K' entry is already declared in %L"
 }
 
-#------------------------------------------------------------------------------*
+//------------------------------------------------------------------------------*
 
 map @routineStackRequirementMap {
   public let @uint mLevels
@@ -20,18 +20,18 @@ map @routineStackRequirementMap {
   search searchKey error message "the '%K' entry is not declared"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#! exploreAccessibleBlocksForStackComputations
+//! exploreAccessibleBlocksForStackComputations
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 abstract method @ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
   ?!@stringset unused ioExploredBlockSet
   !@uint outStackNeeds
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18AbstractConditionTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
@@ -51,7 +51,7 @@ override method @ipic18AbstractConditionTerminator exploreAccessibleBlocksForSta
   outStackNeeds = if trueStackNeeds > falseStackNeeds then trueStackNeeds else falseStackNeeds end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
@@ -66,7 +66,7 @@ override method @ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComp
   outStackNeeds = 1
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
@@ -81,7 +81,7 @@ override method @ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackCom
   outStackNeeds = 1
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
@@ -94,7 +94,7 @@ override method @ipic18JumpTerminator exploreAccessibleBlocksForStackComputation
   outStackNeeds = 0
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
@@ -110,7 +110,7 @@ override method @ipic18ConditionalJumpTerminator exploreAccessibleBlocksForStack
   outStackNeeds = 0
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
@@ -120,7 +120,7 @@ override method @ipic18ComputedRETLWTerminator exploreAccessibleBlocksForStackCo
   outStackNeeds = 1
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ReturnTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
@@ -130,7 +130,7 @@ override method @ipic18ReturnTerminator exploreAccessibleBlocksForStackComputati
   outStackNeeds = 0
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18RetlwTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
@@ -140,7 +140,7 @@ override method @ipic18RetlwTerminator exploreAccessibleBlocksForStackComputatio
   outStackNeeds = 0
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18RetfieTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
@@ -150,25 +150,25 @@ override method @ipic18RetfieTerminator exploreAccessibleBlocksForStackComputati
   outStackNeeds = 0
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#! buildCalledRoutineSetForStackComputations
+//! buildCalledRoutineSetForStackComputations
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18SequentialInstruction buildCalledRoutineSetForStackComputations
   ?!@stringset unused ioRoutineCalledSet
 {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_JSR buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
   ioRoutineCalledSet ++= self.mTargetLabel.string
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
@@ -177,18 +177,18 @@ override method @ipic18_intermediate_instruction_computed_rcall buildCalledRouti
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_condition_skip_instruction buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
   [self.mEmbeddedInstruction buildCalledRoutineSetForStackComputations !?ioRoutineCalledSet]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#! Routine ipic18StackComputations
+//! Routine ipic18StackComputations
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc ipic18StackComputations
   ?!@string ioListFileContents
@@ -197,23 +197,23 @@ proc ipic18StackComputations
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
   ioListFileContents += "*" + ["STACK COMPUTATIONS" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-#--- Find all absolute blocks
+//--- Find all absolute blocks
   var startLabelsToExplore =@stringset ()
   var blockMapForStackComputation =@blockMapForStackComputation ()
   for (mBlock) in  inBlockList do
-    if mBlock.mAddress != @uint. max then # Absolute block
+    if mBlock.mAddress != @uint. max then // Absolute block
       startLabelsToExplore ++= mBlock.mLabel.string    
     end  
     [!?blockMapForStackComputation insertKey !mBlock.mLabel !mBlock]
   end
-#--- Explore all blocks to find called routines
+//--- Explore all blocks to find called routines
   var @routineCallMap routineCallMap = @()
   loop( [inBlockList count] + 1)
   while [startLabelsToExplore count] > 0
   do
     let startLabel = [startLabelsToExplore anyString]
     [!?startLabelsToExplore removeKey !startLabel]
-  #--- Explore accessible blocks
+  //--- Explore accessible blocks
     var blockToExploreSet =@stringset ()
     blockToExploreSet ++= startLabel
     var @stringset exploredBlockSet = @()
@@ -245,8 +245,8 @@ proc ipic18StackComputations
       end
     end
   end
-#  log routineCallMap ;
-#--- Compute stack requirement of every routine
+//  log routineCallMap ;
+//--- Compute stack requirement of every routine
   var @routineStackRequirementMap routineStackRequirementMap = @()
   var progress = true
   loop( [routineCallMap count] + 1)
@@ -280,7 +280,7 @@ proc ipic18StackComputations
     ioListFileContents += [[mLevels string]stringByLeftPadding !6 !' '] + " " + lkey + "\n"
   end
   ioListFileContents += "\n"
-#--- Recursive routines
+//--- Recursive routines
   let @bool noRecursiveRoutine = [routineCallMap count] == 0
   if not noRecursiveRoutine then
     if not [option piccoloOptions.doNotWarnRecursive value] then
@@ -292,7 +292,7 @@ proc ipic18StackComputations
     end  
     ioListFileContents += "\n"
   end
-#--- Total stack requirements
+//--- Total stack requirements
   if noRecursiveRoutine then
     [routineStackRequirementMap searchKey ![".START" nowhere] ?let @uint mainLevels]
     var @uint totalLevels = mainLevels
@@ -311,6 +311,6 @@ proc ipic18StackComputations
   end
 }      
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 

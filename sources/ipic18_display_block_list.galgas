@@ -1,10 +1,8 @@
+//----------------------------------------------------------------------------*
 
+//! Block display
 
-#----------------------------------------------------------------------------*
-
-#! Block display
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18Block display
   ?let @string inNextBlockLabel
@@ -14,24 +12,24 @@ method @ipic18Block display
     ioListFileContents += ", ORG " + [self.mAddress hexString]
   end
   ioListFileContents += ":\n"
-#--- Instruction list
+//--- Instruction list
   for (mInstruction * *) in  self.mInstructionList do
     let @stringlist d = [mInstruction instructionDisplay]
     for (mValue) in  d do 
       ioListFileContents += "  " + mValue + "\n"
     end
   end
-#--- Terminator
+//--- Terminator
   ioListFileContents += "  "
   ioListFileContents += [self.mTerminator terminatorDisplay !inNextBlockLabel]
   ioListFileContents += "\n\n"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#! Block list display
+//! Block list display
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc displayBlockList
   ?let @string inTitle
@@ -51,5 +49,5 @@ proc displayBlockList
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 

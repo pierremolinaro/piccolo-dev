@@ -1,6 +1,6 @@
 syntax baseline_syntax (piccolo_lexique) {
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
@@ -23,7 +23,7 @@ rule <bit_number_parsing>
 rule <immediate_expression>
   !@immediatExpression outExpression
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <section_list>
   ?!@baseline_routineDefinitionList ioRoutineDefinitionList
@@ -62,7 +62,7 @@ rule <section_list>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_instruction_list>
   !@baseline_instructionList outInstructionList
@@ -81,7 +81,7 @@ rule <baseline_instruction_list>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_routine_definition>
   ?!@baseline_routineDefinitionList ioRoutineDefinitionList {
@@ -94,7 +94,7 @@ rule <baseline_routine_definition>
   end
   $routine$
   $identifier$ ?let @lstring routineName indexing routineDefinition
-#--- Page
+//--- Page
   let @luint page
   select
     page = @luint { !0 !@location.here}
@@ -102,7 +102,7 @@ rule <baseline_routine_definition>
     $page$
     $integer$ ? page
   end
-#---
+//---
   ${$
   var @labelMap labelMap = @()
   <baseline_instruction_list>
@@ -117,7 +117,7 @@ rule <baseline_routine_definition>
     !@location.here
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_structured_instruction>
   !@baseline_instruction outInstruction
@@ -332,7 +332,7 @@ rule <baseline_structured_instruction>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_structured_if_instruction>
   ?let @lstring ifLabel
@@ -383,7 +383,7 @@ rule <baseline_structured_if_instruction>
     !endOfElsePartLocation}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
   select
@@ -434,7 +434,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
       !registerExpression
       !W_isDestination
     }
-  #--- Emit a warning if instruction is "movf" and W is not destination
+  //--- Emit a warning if instruction is "movf" and W is not destination
     if (baseCode == .MOVF) && not W_isDestination then
       warning instructionLocation :  "This instruction does not move data, it only sets flags. "
         "Use 'movf *, reg' instead of 'movf reg' to suppress this warning" 
@@ -449,7 +449,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
       !instructionLocation
       !.MOVF
       !registerName
-      !false # W is not destination
+      !false // W is not destination
     }
   or
     let @baseline_F_instruction_base_code FAinstruction
@@ -535,7 +535,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_condition_factor>
   !@baseline_conditionExpression outCondition {
@@ -544,14 +544,14 @@ rule <baseline_condition_factor>
   outCondition = @baseline_negateCondition { !condition}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_condition_factor>
   !@baseline_conditionExpression outCondition {
   <baseline_condition_expression> ? outCondition
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_condition_factor>
   !@baseline_conditionExpression outCondition {
@@ -597,7 +597,7 @@ rule <baseline_condition_factor>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_condition_expression>
   !@baseline_conditionExpression outCondition {
@@ -614,7 +614,7 @@ rule <baseline_condition_expression>
   $)$
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <baseline_condition_term>
   !@baseline_conditionExpression outCondition {
@@ -627,6 +627,6 @@ rule <baseline_condition_term>
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 }

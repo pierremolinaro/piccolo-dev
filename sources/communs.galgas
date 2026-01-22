@@ -1,6 +1,6 @@
 syntax communs (piccolo_lexique) {
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <configuration_definition>
   ?!@configDefinitionList ioConfigDefinitionList
@@ -25,7 +25,7 @@ rule <configuration_definition>
   ioConfigDefinitionList += !defLocation !settingList
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <declaration_in_ram> !@declarationInRam outDeclaration {
   let @registerProtection protection
@@ -58,7 +58,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
     var @sint sliceIndex = 8
     repeat
      select
-        var @uint sliceWidth = 0 # Means undefined
+        var @uint sliceWidth = 0 // Means undefined
         repeat
           var @uint sliceBase = 0
           if sliceIndex >= 0 then
@@ -120,7 +120,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
   outDeclaration = @byteDeclarationInRam {!name !sizeExpression !bitSliceTable !bitDefinitionString !protection}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <ram_definition>
   ?!@ramDefinitionList ioRamDefinitionList
@@ -138,7 +138,7 @@ rule <ram_definition>
   $}$
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <constant_definition>
   ?!@constantDefinitionList ioConstantDefinitionList {
@@ -149,7 +149,7 @@ rule <constant_definition>
   ioConstantDefinitionList += !constantName !expression
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <immediate_expression> !@immediatExpression outExpression {
   <immediate_bitwise_term> ?outExpression
@@ -165,7 +165,7 @@ rule <immediate_expression> !@immediatExpression outExpression {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule  <immediate_bitwise_term> !@immediatExpression outExpression {
   <immediate_bitwise_factor> ?outExpression
@@ -177,7 +177,7 @@ rule  <immediate_bitwise_term> !@immediatExpression outExpression {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <immediate_bitwise_factor> !@immediatExpression outExpression {
   <immediate_term> ?outExpression
@@ -209,7 +209,7 @@ rule <immediate_bitwise_factor> !@immediatExpression outExpression {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <immediate_term> !@immediatExpression outExpression {
   <immediate_factor> ?outExpression
@@ -233,7 +233,7 @@ rule <immediate_term> !@immediatExpression outExpression {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <immediate_factor> !@immediatExpression outExpression {
   <immediate_primary> ?outExpression
@@ -254,7 +254,7 @@ rule <immediate_factor> !@immediatExpression outExpression {
 }
 
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <immediate_primary> !@immediatExpression outExpression {
   select
@@ -311,7 +311,7 @@ rule <immediate_primary> !@immediatExpression outExpression {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <register_parsing> !@registerExpression outRegisterExpression {
   $identifier$ ?let @lstring registerName indexing variableUse
@@ -333,7 +333,7 @@ rule <register_parsing> !@registerExpression outRegisterExpression {
   }
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
   $identifier$ ?let @lstring bitNumberLabel
@@ -348,14 +348,14 @@ rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
   outBitNumber = @bitNumberLabelValue {!bitNumberLabel !bitIndex}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
   $integer$ ?let bitIndex
   outBitNumber = @bitNumberLiteralValue {!bitIndex}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
   $($
@@ -365,7 +365,7 @@ rule <bit_number_parsing> !@bitNumberExpression outBitNumber {
   outBitNumber = @bitNumberLiteralExpression {!bitNumberExpression !endOfExpression}
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <optional_w_as_dest> !@bool out_W_isDestination {
   select
@@ -377,6 +377,6 @@ rule <optional_w_as_dest> !@bool out_W_isDestination {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 }

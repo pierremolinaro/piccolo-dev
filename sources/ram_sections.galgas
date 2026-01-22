@@ -1,10 +1,8 @@
-
-
-#----------------------------------------------------------------------------*
-#                                                                            *
-#           R A M    D E C L A R A T I O N    A N A L Y S I S                *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//           R A M    D E C L A R A T I O N    A N A L Y S I S                *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 abstract method @declarationInRam handleDeclaration
   ?let @constantMap inConstantMap
@@ -14,7 +12,7 @@ abstract method @declarationInRam handleDeclaration
   ?let @lstring inCurrentRamBank
   ?!@declaredByteMap ioDeclaredByteMap
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @byteDeclarationInRam handleDeclaration
   ?let @constantMap inConstantMap
@@ -60,11 +58,11 @@ override method @byteDeclarationInRam handleDeclaration
   end
 }
 
-#----------------------------------------------------------------------------*
-#                                                                            *
-#               S E M A N T I C    A N A L Y S I S                           *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//               S E M A N T I C    A N A L Y S I S                           *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 proc analyze_ram_sections
   ?let @string inListingTitle
@@ -109,5 +107,5 @@ proc analyze_ram_sections
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

@@ -280,3 +280,25 @@ void routine_ipic_31__38_RelativeBranchOverflow_3F__3F__21_ (const class GGS_ipi
                                                              class Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'ipic18DurationComputations&!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_ipic_31__38_DurationComputations_26__21_ (class GGS_ipic_31__38_BlockList & ioArgument0,
+                                                       class GGS_blockDurationMap & outArgument1,
+                                                       class Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'ipic18PrintDurations&?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_ipic_31__38_PrintDurations_26__3F_ (class GGS_string & ioArgument0,
+                                                 const class GGS_blockDurationMap constinArgument1,
+                                                 class Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+

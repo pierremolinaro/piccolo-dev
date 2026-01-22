@@ -135,8 +135,6 @@ class GGS_pic_31__38__5F_dataMap : public AC_GALGAS_root {
                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38__5F_dataMap class_func_emptyMap (LOCATION_ARGS) ;
-
   public: static class GGS_pic_31__38__5F_dataMap class_func_mapWithMapToOverride (const class GGS_pic_31__38__5F_dataMap & inOperand0
                                                                                    COMMA_LOCATION_ARGS) ;
 
@@ -292,13 +290,6 @@ class GGS_pic_31__38__5F_dataMap_2E_element : public AC_GALGAS_root {
   public: static GGS_pic_31__38__5F_dataMap_2E_element extractObject (const GGS_object & inObject,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38__5F_dataMap_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                             const class GGS_uintlist & inOperand1,
-                                                                             const class GGS_bool & inOperand2,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -664,11 +655,6 @@ class GGS_ipic_31__38_ReturnTerminator : public GGS_ipic_31__38_SingleInstructio
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ReturnTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_ReturnTerminator & inOperand) const ;
 
@@ -897,12 +883,6 @@ class GGS_ipic_31__38_RetlwTerminator : public GGS_ipic_31__38_SingleInstruction
   public: static GGS_ipic_31__38_RetlwTerminator extractObject (const GGS_object & inObject,
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_RetlwTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                       const class GGS_uint & inOperand1,
-                                                                       class Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_RetlwTerminator & inOperand) const ;
@@ -1135,12 +1115,6 @@ class GGS_ipic_31__38_RetfieTerminator : public GGS_ipic_31__38_SingleInstructio
   public: static GGS_ipic_31__38_RetfieTerminator extractObject (const GGS_object & inObject,
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_RetfieTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                        const class GGS_bool & inOperand1,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_RetfieTerminator & inOperand) const ;
@@ -1376,13 +1350,6 @@ class GGS_ipic_31__38_JumpTerminator : public GGS_ipic_31__38_SingleInstructionT
   public: static GGS_ipic_31__38_JumpTerminator extractObject (const GGS_object & inObject,
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_JumpTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                      const class GGS_lstring & inOperand1,
-                                                                      const class GGS_jumpInstructionKind & inOperand2,
-                                                                      class Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_JumpTerminator & inOperand) const ;
@@ -1651,13 +1618,6 @@ class GGS_ipic_31__38_ComputedGotoTerminator : public GGS_ipic_31__38_AbstractBl
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ComputedGotoTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                              const class GGS_lstringlist & inOperand1,
-                                                                              const class GGS_bool & inOperand2,
-                                                                              class Compiler * inCompiler
-                                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_ComputedGotoTerminator & inOperand) const ;
 
@@ -1912,13 +1872,6 @@ class GGS_ipic_31__38_ComputedRETLWTerminator : public GGS_ipic_31__38_AbstractB
   public: static GGS_ipic_31__38_ComputedRETLWTerminator extractObject (const GGS_object & inObject,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ComputedRETLWTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                               const class GGS_uintlist & inOperand1,
-                                                                               const class GGS_bool & inOperand2,
-                                                                               class Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_ComputedRETLWTerminator & inOperand) const ;
@@ -2268,16 +2221,6 @@ class GGS_ipic_31__38_ConditionalJumpTerminator : public GGS_ipic_31__38_Abstrac
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ConditionalJumpTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                                 const class GGS_conditional_5F_branch & inOperand1,
-                                                                                 const class GGS_lstring & inOperand2,
-                                                                                 const class GGS_conditionalBranchMode & inOperand3,
-                                                                                 const class GGS_lstring & inOperand4,
-                                                                                 const class GGS_conditionalBranchMode & inOperand5,
-                                                                                 class Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_ConditionalJumpTerminator & inOperand) const ;
 
@@ -2546,13 +2489,6 @@ class GGS_ipic_31__38_ComputedBraTerminator : public GGS_ipic_31__38_AbstractBlo
   public: static GGS_ipic_31__38_ComputedBraTerminator extractObject (const GGS_object & inObject,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_ComputedBraTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                             const class GGS_lstringlist & inOperand1,
-                                                                             const class GGS_bool & inOperand2,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_ComputedBraTerminator & inOperand) const ;
@@ -3011,13 +2947,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_registerExpression : public AC_GALGAS_
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_registerExpression class_func_new (const class GGS_string & inOperand0,
-                                                                                              const class GGS_uint & inOperand1,
-                                                                                              const class GGS_bool & inOperand2,
-                                                                                              class Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -3075,15 +3004,6 @@ class GGS_pic_31__38_RegisterComparisonTerminator : public GGS_ipic_31__38_Abstr
   public: static GGS_pic_31__38_RegisterComparisonTerminator extractObject (const GGS_object & inObject,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_RegisterComparisonTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                                   const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                   const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                   const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                   const class GGS_ipic_31__38_RegisterComparison & inOperand4,
-                                                                                   class Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_pic_31__38_RegisterComparisonTerminator & inOperand) const ;
@@ -3334,16 +3254,6 @@ class GGS_ipic_31__38_IncDecRegisterTerminator : public GGS_ipic_31__38_Abstract
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_IncDecRegisterTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                                const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                                const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                                const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                const class GGS_bool & inOperand4,
-                                                                                const class GGS_bool & inOperand5,
-                                                                                class Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_IncDecRegisterTerminator & inOperand) const ;
 
@@ -3575,14 +3485,6 @@ class GGS_pic_31__38_TestRegisterTerminator : public GGS_ipic_31__38_AbstractCon
   public: static GGS_pic_31__38_TestRegisterTerminator extractObject (const GGS_object & inObject,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_TestRegisterTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                             const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                             const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                             const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_pic_31__38_TestRegisterTerminator & inOperand) const ;
@@ -3827,15 +3729,6 @@ class GGS_pic_31__38_BitTestTerminator : public GGS_ipic_31__38_AbstractConditio
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_pic_31__38_BitTestTerminator class_func_new (const class GGS_location & inOperand0,
-                                                                        const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand1,
-                                                                        const class GGS_ipic_31__38_SingleInstructionTerminator & inOperand2,
-                                                                        const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                        const class GGS_uint & inOperand4,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_pic_31__38_BitTestTerminator & inOperand) const ;
 
@@ -4063,12 +3956,6 @@ class GGS_ipic_31__38_InstructionWithNoOperand : public GGS_ipic_31__38_Sequenti
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38_InstructionWithNoOperand class_func_new (const class GGS_location & inOperand0,
-                                                                                const class GGS_pic_31__38_InstructionWithNoOperandKind & inOperand1,
-                                                                                class Compiler * inCompiler
-                                                                                COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38_InstructionWithNoOperand & inOperand) const ;
 
@@ -4268,14 +4155,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public GGS_ipic_3
   public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA extractObject (const GGS_object & inObject,
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA class_func_new (const class GGS_location & inOperand0,
-                                                                                              const class GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST & inOperand1,
-                                                                                              const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                              const class GGS_bool & inOperand3,
-                                                                                              class Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA & inOperand) const ;
@@ -4561,13 +4440,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public GGS_ipic_31
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA class_func_new (const class GGS_location & inOperand0,
-                                                                                             const class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code & inOperand1,
-                                                                                             const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                             class Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA & inOperand) const ;
 
@@ -4785,12 +4657,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication
                                                                                                            Compiler * inCompiler
                                                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication class_func_new (const class GGS_string & inOperand0,
-                                                                                                                  const class GGS_uint & inOperand1,
-                                                                                                                  class Compiler * inCompiler
-                                                                                                                  COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -4846,13 +4712,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public GGS_ipic
   public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF extractObject (const GGS_object & inObject,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand1,
-                                                                                                const class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & inOperand2,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF & inOperand) const ;
@@ -5052,13 +4911,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : publ
                                                                                                     Compiler * inCompiler
                                                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation class_func_new (const class GGS_location & inOperand0,
-                                                                                                           const class GGS_literal_5F_instruction_5F_opcode & inOperand1,
-                                                                                                           const class GGS_uint & inOperand2,
-                                                                                                           class Compiler * inCompiler
-                                                                                                           COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation & inOperand) const ;
 
@@ -5247,13 +5099,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public GGS_ipic_
   public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR extractObject (const GGS_object & inObject,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR class_func_new (const class GGS_location & inOperand0,
-                                                                                               const class GGS_luint & inOperand1,
-                                                                                               const class GGS_uint & inOperand2,
-                                                                                               class Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR & inOperand) const ;
@@ -5456,14 +5301,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public GGS_ipic_3
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA class_func_new (const class GGS_location & inOperand0,
-                                                                                              const class GGS_bit_5F_oriented_5F_op & inOperand1,
-                                                                                              const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand2,
-                                                                                              const class GGS_uint & inOperand3,
-                                                                                              class Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA & inOperand) const ;
 
@@ -5655,13 +5492,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_JSR : public GGS_ipic_31__38_Sequentia
   public: static GGS_ipic_31__38__5F_intermediate_5F_JSR extractObject (const GGS_object & inObject,
                                                                         Compiler * inCompiler
                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_JSR class_func_new (const class GGS_location & inOperand0,
-                                                                               const class GGS_lstring & inOperand1,
-                                                                               const class GGS_jumpInstructionKind & inOperand2,
-                                                                               class Compiler * inCompiler
-                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_JSR & inOperand) const ;
@@ -5900,12 +5730,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public GGS_ipic
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_luint & inOperand1,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB & inOperand) const ;
 
@@ -6088,12 +5912,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public GGS_ipic_
   public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP extractObject (const GGS_object & inObject,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP class_func_new (const class GGS_location & inOperand0,
-                                                                                               const class GGS_uint & inOperand1,
-                                                                                               class Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP & inOperand) const ;
@@ -6278,12 +6096,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public GGS_ipic
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_uint & inOperand1,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK & inOperand) const ;
 
@@ -6466,12 +6278,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public GGS_ipic
   public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD extractObject (const GGS_object & inObject,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_tableAccessOption & inOperand1,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD & inOperand) const ;
@@ -6662,12 +6468,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public GGS_ipic
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT class_func_new (const class GGS_location & inOperand0,
-                                                                                                const class GGS_tableAccessOption & inOperand1,
-                                                                                                class Compiler * inCompiler
-                                                                                                COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT & inOperand) const ;
 
@@ -6856,12 +6656,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public GGS_ipic_
   public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP extractObject (const GGS_object & inObject,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP class_func_new (const class GGS_location & inOperand0,
-                                                                                               const class GGS_luint & inOperand1,
-                                                                                               class Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP & inOperand) const ;
@@ -7054,12 +6848,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public GGS_ipi
   public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA extractObject (const GGS_object & inObject,
                                                                                           Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA class_func_new (const class GGS_location & inOperand0,
-                                                                                                 const class GGS_luint & inOperand1,
-                                                                                                 class Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA & inOperand) const ;
@@ -7259,14 +7047,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public GGS_ipic_31
                                                                                       Compiler * inCompiler
                                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W class_func_new (const class GGS_location & inOperand0,
-                                                                                             const class GGS_lstring & inOperand1,
-                                                                                             const class GGS_uint & inOperand2,
-                                                                                             const class GGS_uint & inOperand3,
-                                                                                             class Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W & inOperand) const ;
 
@@ -7458,13 +7238,6 @@ class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : pub
   public: static GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall extractObject (const GGS_object & inObject,
                                                                                                      Compiler * inCompiler
                                                                                                      COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall class_func_new (const class GGS_location & inOperand0,
-                                                                                                            const class GGS_ipic_31__38_SequentialInstructionList & inOperand1,
-                                                                                                            const class GGS_bool & inOperand2,
-                                                                                                            class Compiler * inCompiler
-                                                                                                            COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall & inOperand) const ;
@@ -7911,15 +7684,6 @@ class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public GGS_ipic_3
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip class_func_new (const class GGS_location & inOperand0,
-                                                                                              const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                              const class GGS_bool & inOperand2,
-                                                                                              const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                              const class GGS_uint & inOperand4,
-                                                                                              class Compiler * inCompiler
-                                                                                              COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip & inOperand) const ;
 
@@ -8221,14 +7985,6 @@ class GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public GG
   public: static GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register extractObject (const GGS_object & inObject,
                                                                                                Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register class_func_new (const class GGS_location & inOperand0,
-                                                                                                      const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                                      const class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & inOperand2,
-                                                                                                      const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                                      class Compiler * inCompiler
-                                                                                                      COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register & inOperand) const ;
@@ -8532,15 +8288,6 @@ class GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public GGS_ipic_31__38__5
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA class_func_new (const class GGS_location & inOperand0,
-                                                                                      const class GGS_ipic_31__38_SequentialInstruction & inOperand1,
-                                                                                      const class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & inOperand2,
-                                                                                      const class GGS_ipic_31__38__5F_intermediate_5F_registerExpression & inOperand3,
-                                                                                      const class GGS_bool & inOperand4,
-                                                                                      class Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Comparison
   public: ComparisonResult objectCompare (const GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA & inOperand) const ;
 
@@ -8783,12 +8530,6 @@ class GGS_symbolTableForBlockOptimization_2E_element : public AC_GALGAS_root {
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_symbolTableForBlockOptimization_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                                      const class GGS_uint & inOperand1,
-                                                                                      class Compiler * inCompiler
-                                                                                      COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -9013,8 +8754,6 @@ class GGS_symbolTableForClusterOrdering : public AC_GALGAS_root {
                                                                   COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_symbolTableForClusterOrdering class_func_emptyMap (LOCATION_ARGS) ;
-
   public: static class GGS_symbolTableForClusterOrdering class_func_mapWithMapToOverride (const class GGS_symbolTableForClusterOrdering & inOperand0
                                                                                           COMMA_LOCATION_ARGS) ;
 
@@ -9148,12 +8887,6 @@ class GGS_symbolTableForClusterOrdering_2E_element : public AC_GALGAS_root {
   public: static GGS_symbolTableForClusterOrdering_2E_element extractObject (const GGS_object & inObject,
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_symbolTableForClusterOrdering_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                                    const class GGS_uint & inOperand1,
-                                                                                    class Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -9315,12 +9048,6 @@ class GGS_branchOverflowMapDictionary_2E_element : public AC_GALGAS_root {
   public: static GGS_branchOverflowMapDictionary_2E_element extractObject (const GGS_object & inObject,
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_branchOverflowMapDictionary_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                                                  const class GGS_stringlist & inOperand1,
-                                                                                  class Compiler * inCompiler
-                                                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -9507,9 +9234,6 @@ class GGS_branchOverflowMapDictionary final : public GenericDictionary <GGS_stri
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_branchOverflowMapDictionary class_func_emptyDict (LOCATION_ARGS) ;
-
 //--------------------------------- += operator (with list of field expressions)
   public: VIRTUAL_IN_DEBUG void addAssignOperation (const class GGS_string & inOperand0,
                                                     const class GGS_stringlist & inOperand1,
@@ -9623,10 +9347,6 @@ class GGS_branchOverflowMap : public AC_GALGAS_root {
   public: static GGS_branchOverflowMap extractObject (const GGS_object & inObject,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_branchOverflowMap class_func_new (Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -9800,8 +9520,6 @@ class GGS_symbolTableForRelativesResolution : public AC_GALGAS_root {
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_symbolTableForRelativesResolution class_func_emptyMap (LOCATION_ARGS) ;
-
   public: static class GGS_symbolTableForRelativesResolution class_func_mapWithMapToOverride (const class GGS_symbolTableForRelativesResolution & inOperand0
                                                                                               COMMA_LOCATION_ARGS) ;
 
@@ -9967,12 +9685,6 @@ class GGS_symbolTableForRelativesResolution_2E_element : public AC_GALGAS_root {
   public: static GGS_symbolTableForRelativesResolution_2E_element extractObject (const GGS_object & inObject,
                                                                                  Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
-
-//--------------------------------- GALGAS class functions
-  public: static class GGS_symbolTableForRelativesResolution_2E_element class_func_new (const class GGS_lstring & inOperand0,
-                                                                                        const class GGS_uint & inOperand1,
-                                                                                        class Compiler * inCompiler
-                                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
@@ -10197,8 +9909,6 @@ class GGS_codeList : public AC_GALGAS_root {
                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------- GALGAS class functions
-  public: static class GGS_codeList class_func_emptyList (LOCATION_ARGS) ;
-
   public: static class GGS_codeList class_func_listWithValue (const class GGS_string & inOperand0,
                                                               const class GGS_uintlist & inOperand1
                                                               COMMA_LOCATION_ARGS) ;
@@ -10376,12 +10086,6 @@ class GGS_codeList_2E_element : public AC_GALGAS_root {
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- GALGAS class functions
-  public: static class GGS_codeList_2E_element class_func_new (const class GGS_string & inOperand0,
-                                                               const class GGS_uintlist & inOperand1,
-                                                               class Compiler * inCompiler
-                                                               COMMA_LOCATION_ARGS) ;
-
 //--------------------------------- Implementation of getter 'description'
   public: VIRTUAL_IN_DEBUG void description (String & ioString,
                                              const int32_t inIndentation) const override ;
@@ -10404,4 +10108,362 @@ class GGS_codeList_2E_element : public AC_GALGAS_root {
 //--------------------------------------------------------------------------------------------------
 
 extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_codeList_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38__5F_dataAddressMap map
+//--------------------------------------------------------------------------------------------------
+
+#include "SharedGenericPtrWithValueSemantics.h"
+
+template <typename INFO> class GenericMapRoot ;
+
+//--------------------------------------------------------------------------------------------------
+
+class DownEnumerator_pic_31__38__5F_dataAddressMap final {
+
+  public: DownEnumerator_pic_31__38__5F_dataAddressMap (const class GGS_pic_31__38__5F_dataAddressMap & inMap) ;
+
+  public: ~ DownEnumerator_pic_31__38__5F_dataAddressMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex >= 0 ; }
+
+  public: inline void gotoNextObject (void) { mIndex -= 1 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+
+  public: class GGS_uint current_mDataAddress (LOCATION_ARGS) const ;
+
+  public: class GGS_pic_31__38__5F_dataAddressMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: DownEnumerator_pic_31__38__5F_dataAddressMap (const DownEnumerator_pic_31__38__5F_dataAddressMap &) = delete ;
+  private: DownEnumerator_pic_31__38__5F_dataAddressMap & operator = (const DownEnumerator_pic_31__38__5F_dataAddressMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class UpEnumerator_pic_31__38__5F_dataAddressMap final {
+  public: UpEnumerator_pic_31__38__5F_dataAddressMap (const class GGS_pic_31__38__5F_dataAddressMap & inMap)  ;
+
+  public: ~ UpEnumerator_pic_31__38__5F_dataAddressMap (void) = default ;
+
+  public: inline bool hasCurrentObject (void) const { return mIndex < mInfoArray.count () ; }
+
+  public: inline void gotoNextObject (void) { mIndex += 1 ; }
+
+  public: inline void rewind (void) { mIndex = 0 ; }
+
+  public: class GGS_lstring current_lkey (LOCATION_ARGS) const ;
+  public: class GGS_uint current_mDataAddress (LOCATION_ARGS) const ;
+  public: class GGS_pic_31__38__5F_dataAddressMap_2E_element current (LOCATION_ARGS) const ;
+
+  private: GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>> mInfoArray ;
+  private: int32_t mIndex ;
+
+  private: UpEnumerator_pic_31__38__5F_dataAddressMap (const UpEnumerator_pic_31__38__5F_dataAddressMap &) = delete ;
+  private: UpEnumerator_pic_31__38__5F_dataAddressMap & operator = (const UpEnumerator_pic_31__38__5F_dataAddressMap &) = delete ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38__5F_dataAddressMap : public AC_GALGAS_root {
+
+//--- Private property
+  private: OptionalSharedRef <GenericMapRoot <GGS_pic_31__38__5F_dataAddressMap_2E_element>> mSharedRoot ;
+
+//--- Default constructor
+  public: GGS_pic_31__38__5F_dataAddressMap (void) ;
+
+//--- Virtual destructor
+  public: virtual ~ GGS_pic_31__38__5F_dataAddressMap (void) ;
+
+//--- Handle copy
+  public: GGS_pic_31__38__5F_dataAddressMap (const GGS_pic_31__38__5F_dataAddressMap & inSource) ;
+  public: GGS_pic_31__38__5F_dataAddressMap & operator = (const GGS_pic_31__38__5F_dataAddressMap & inSource) ;
+
+//--- Build
+  protected: void build (LOCATION_ARGS) ;
+
+//--- isValid
+  public: bool isValid (void) const override ;
+
+//--- Drop
+  public: void drop (void) override ;
+
+//--- Description
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+
+
+//--- performInsert
+  protected: void performInsert (const class GGS_pic_31__38__5F_dataAddressMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) ;
+ 
+//--- infoForKey
+  protected: const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> infoForKey (const String & inKey) const ;
+ 
+//--- Count
+  public: int32_t count (void) const ;
+ 
+//--- sortedInfoArray
+  protected: GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>> sortedInfoArray (void) const ;
+
+//--- findNearestKey
+  protected: void findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_pic_31__38__5F_dataAddressMap init (Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38__5F_dataAddressMap extractObject (const GGS_object & inObject,
+                                                                  Compiler * inCompiler
+                                                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- GALGAS class functions
+  public: static class GGS_pic_31__38__5F_dataAddressMap class_func_mapWithMapToOverride (const class GGS_pic_31__38__5F_dataAddressMap & inOperand0
+                                                                                          COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+  public: VIRTUAL_IN_DEBUG void setter_insertKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uint constinArgument1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) ;
+
+  public: VIRTUAL_IN_DEBUG void setter_setMDataAddressForKey (class GGS_uint constinArgument0,
+                                                              class GGS_string constinArgument1,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Instance Methods
+  public: VIRTUAL_IN_DEBUG void method_searchKey (class GGS_lstring constinArgument0,
+                                                  class GGS_uint & outArgument1,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) const ;
+
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_count (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKey (const class GGS_string & constinOperand0
+                                                         COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_bool getter_hasKeyAtLevel (const class GGS_string & constinOperand0,
+                                                                const class GGS_uint & constinOperand1
+                                                                COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_lstringlist getter_keyList (Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_stringset getter_keySet (Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_levels (LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_location getter_locationForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_uint getter_mDataAddressForKey (const class GGS_string & constinOperand0,
+                                                                     Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) const ;
+
+  public: VIRTUAL_IN_DEBUG class GGS_pic_31__38__5F_dataAddressMap getter_overriddenMap (Compiler * inCompiler
+                                                                                         COMMA_LOCATION_ARGS) const ;
+
+
+//--------------------------------- Read subscripts
+  public: VIRTUAL_IN_DEBUG class GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ readSubscript__3F_ (const class GGS_string & in0,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) const ;
+
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+//--------------------------------- Friend
+  friend class UpEnumerator_pic_31__38__5F_dataAddressMap ;
+  friend class DownEnumerator_pic_31__38__5F_dataAddressMap ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: @pic_31__38__5F_dataAddressMap_2E_element struct
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38__5F_dataAddressMap_2E_element : public AC_GALGAS_root {
+//--------------------------------- Properties
+  public: GGS_lstring mProperty_lkey ;
+  public: inline GGS_lstring readProperty_lkey (void) const {
+    return mProperty_lkey ;
+  }
+
+  public: GGS_uint mProperty_mDataAddress ;
+  public: inline GGS_uint readProperty_mDataAddress (void) const {
+    return mProperty_mDataAddress ;
+  }
+
+//--------------------------------- Accessors
+  public: VIRTUAL_IN_DEBUG bool isValid (void) const override ;
+  public: VIRTUAL_IN_DEBUG void drop (void) override ;
+
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38__5F_dataAddressMap_2E_element (void) ;
+
+//--------------------------------- Property setters
+  public: inline void setter_setLkey (const GGS_lstring & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_lkey = inValue ;
+  }
+
+  public: inline void setter_setMDataAddress (const GGS_uint & inValue COMMA_UNUSED_LOCATION_ARGS) {
+    mProperty_mDataAddress = inValue ;
+  }
+
+//--------------------------------- Set initialized properties
+  private: void setInitializedProperties (Compiler * inCompiler) ;
+
+//--------------------------------- Native constructor
+  public: GGS_pic_31__38__5F_dataAddressMap_2E_element (const GGS_lstring & in_lkey,
+                                                        const GGS_uint & in_mDataAddress) ;
+
+//--------------------------------- Copy constructor
+  public: GGS_pic_31__38__5F_dataAddressMap_2E_element (const GGS_pic_31__38__5F_dataAddressMap_2E_element & inSource) ;
+
+//--------------------------------- Assignment operator
+  public: GGS_pic_31__38__5F_dataAddressMap_2E_element & operator = (const GGS_pic_31__38__5F_dataAddressMap_2E_element & inSource) ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+  public: static GGS_pic_31__38__5F_dataAddressMap_2E_element init_21__21_ (const class GGS_lstring & inOperand0,
+                                                                            const class GGS_uint & inOperand1,
+                                                                            Compiler * inCompiler
+                                                                            COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38__5F_dataAddressMap_2E_element extractObject (const GGS_object & inObject,
+                                                                             Compiler * inCompiler
+                                                                             COMMA_LOCATION_ARGS) ;
+
+//--------------------------------- Implementation of getter 'description'
+  public: VIRTUAL_IN_DEBUG void description (String & ioString,
+                                             const int32_t inIndentation) const override ;
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap_2E_element ;
+
+//--------------------------------------------------------------------------------------------------
+// Phase 1: pic18_dataAddressMap.element? optional
+//--------------------------------------------------------------------------------------------------
+
+class GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ : public AC_GALGAS_root {
+//--------------------------------- Private property
+  private: GGS_pic_31__38__5F_dataAddressMap_2E_element mValue ;
+  private: OptionalState mState ;
+
+//--------------------------------- Default constructor
+  public: GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ (void) ;
+
+//--------------------------------- Constructor from unwrapped type
+  public: GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ (const GGS_pic_31__38__5F_dataAddressMap_2E_element & inSource) ;
+
+//--------------------------------- Constructor from weak type
+
+//--------------------------------- nil initializer
+  public: static GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ init_nil (void) ;
+
+  public: inline bool isNil (void) const { return mState == OptionalState::isNil ; }
+
+  public: bool isValuated (void) const ;
+  public: inline GGS_pic_31__38__5F_dataAddressMap_2E_element unwrappedValue (void) const {
+    return mValue ;
+  }
+
+//--------------------------------- GALGAS read only properties
+  public: inline GGS_bool readProperty_isNil (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::isNil) ;
+  }
+
+  public: inline GGS_bool readProperty_isSome (void) const {
+    return GGS_bool (mState != OptionalState::invalid, mState == OptionalState::valuated) ;
+  }
+
+  
+//--- Methods that every type should implement
+  public: virtual bool isValid (void) const override ;
+  
+  public: virtual void drop (void) override ;
+
+  public: virtual void description (String & ioString,
+                                    const int32_t inIndentation) const override ;
+
+//-- Start of type generic part
+
+//--------------------------------- Initializers
+
+//--------------------------------- Object cloning
+  protected: virtual AC_GALGAS_root * clonedObject (void) const override ;
+
+//--------------------------------- Object extraction
+  public: static GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ extractObject (const GGS_object & inObject,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) ;
+
+
+//--------------------------------- Setters
+
+//--------------------------------- Instance Methods
+//--------------------------------- Class Methods
+
+//--------------------------------- Getters
+
+//--------------------------------- Read subscripts
+
+
+//--------------------------------- Introspection
+  public: VIRTUAL_IN_DEBUG const GALGAS_TypeDescriptor * staticTypeDescriptor (void) const override ;
+ 
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap_2E_element_3F_ ;
 

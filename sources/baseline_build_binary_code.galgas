@@ -1,6 +1,4 @@
-
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc emitBaselineCodeAtWordAddress
   ?let @uint inCode
@@ -15,7 +13,7 @@ proc emitBaselineCodeAtWordAddress
   ioWordAddress = ioWordAddress + 1
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc emitNoBaselineCodeAtWordAddress
   ?let @uint inWordAddress
@@ -27,7 +25,7 @@ proc emitNoBaselineCodeAtWordAddress
   ioListFileContents += "\n"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 map @baseline_symbolTable {
   public let @uint mRoutineAddress
@@ -35,18 +33,18 @@ map @baseline_symbolTable {
   search searchKey error message "the '%K' label is not declared"
 }
 
-#----------------------------------------------------------------------------*
-#                                                                            *
-#                          enterLabelAtAddress                               *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//                          enterLabelAtAddress                               *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 method @baseline_assembly_instruction enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
   ?!@uint unused ioWordAddress {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_pseudo_LABEL enterLabelAtAddress
   ?!@baseline_symbolTable ioRoutineSymbolTable
@@ -54,7 +52,7 @@ override method @baseline_assembly_pseudo_LABEL enterLabelAtAddress
   [!?ioRoutineSymbolTable insertKey !self.mLabel !ioWordAddress]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_pseudo_ORG enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
@@ -62,7 +60,7 @@ override method @baseline_assembly_pseudo_ORG enterLabelAtAddress
   ioWordAddress = self.mOrigin
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_actualInstruction enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
@@ -70,18 +68,18 @@ override method @baseline_assembly_actualInstruction enterLabelAtAddress
   ioWordAddress = ioWordAddress  + [self length]
 }
 
-#----------------------------------------------------------------------------*
-#                                                                            *
-#               C O D E    G E N E R A T I O N                               *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//               C O D E    G E N E R A T I O N                               *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 abstract method @baseline_assembly_instruction generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -93,7 +91,7 @@ override method @baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAdd
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -105,7 +103,7 @@ override method @baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddre
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -116,13 +114,13 @@ override method @baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-#--- Emit Code
+//--- Emit Code
   var @uint code
   switch self.mInstruction
   case ADDWF  : code = 0x01C0
@@ -147,7 +145,7 @@ override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_instruction_F generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -162,7 +160,7 @@ override method @baseline_assembly_instruction_F generateBinaryCodeAtAddress
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_instruction_FB generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -178,37 +176,37 @@ override method @baseline_assembly_instruction_FB generateBinaryCodeAtAddress
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-#--- Emit Code
+//--- Emit Code
   var @uint code
   if self.mSkipIfSet then
-    code = 0x0700 # "BTFSS"
+    code = 0x0700 // "BTFSS"
   else
-    code = 0x0600 # BTFSC
+    code = 0x0600 // BTFSC
   end
   code = code | (self.mRegisterDescription.mRegisterAddress & 0x1F)
   code = code | (self.mBitNumber << 5)
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_GOTO generateBinaryCodeAtAddress
   ?let @baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-#---
+//---
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?let @uint targetAddress]
-#---
+//---
   emitBaselineCodeAtWordAddress ( !0x0A00 | (targetAddress & 0x1FF) !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_SKIP generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -217,19 +215,19 @@ override method @baseline_assembly_SKIP generateBinaryCodeAtAddress
   emitBaselineCodeAtWordAddress ( !0x0A00 | ((ioWordAddress + 2) & 0x1FF) !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_CALL generateBinaryCodeAtAddress
   ?let @baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
-#---
+//---
   [inRoutineSymbolTable searchKey !self.mTargetLabel ?let targetAddress]
-#---
+//---
   emitBaselineCodeAtWordAddress ( !0x0900 | (targetAddress & 0xFF) !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -237,9 +235,9 @@ override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeA
   ?!@uint ioWordAddress {
   var @uint code
   if self.mIncrement then
-    code = 0x03C0 # INCFSZ
+    code = 0x03C0 // INCFSZ
   else
-    code = 0x02C0 # DECFSZ
+    code = 0x02C0 // DECFSZ
   end
   if not self.m_W_isDestination then
     code = code | 0x0020
@@ -248,7 +246,7 @@ override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeA
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -265,7 +263,7 @@ override method @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_TRIS generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -274,7 +272,7 @@ override method @baseline_assembly_TRIS generateBinaryCodeAtAddress
   emitBaselineCodeAtWordAddress ( !self.mOpcode !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_instruction_literalOperation generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
@@ -292,7 +290,7 @@ override method @baseline_assembly_instruction_literalOperation generateBinaryCo
   emitBaselineCodeAtWordAddress ( !code !?ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
   ?let @baseline_symbolTable inRoutineSymbolTable
@@ -307,18 +305,18 @@ override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
 
-#----------------------------------------------------------------------------*
-#                                                                            *
-#               S E M A N T I C    A N A L Y S I S                           *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//               S E M A N T I C    A N A L Y S I S                           *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 proc build_baseline_binary_code
   ?let @baseline_assembly_instructionList inAssemblyInstructionList
   ?let @uint inROMsize
   ?!@string ioListFileContents
   !@uint outUsedROMsize {
-#-------------------------------- First pass: build label map
+//-------------------------------- First pass: build label map
   var symbolTable =@baseline_symbolTable ()
   var @uint currentWordAddress = 0
   for (mInstruction) in  inAssemblyInstructionList do
@@ -326,7 +324,7 @@ proc build_baseline_binary_code
   end
   let @uint lastAddressForFirstPass = currentWordAddress
   outUsedROMsize = currentWordAddress
-#-------------------------------- Second pass: generate code
+//-------------------------------- Second pass: generate code
   currentWordAddress = 0
   setEmitAddress ( !0 )
   for (mInstruction) in  inAssemblyInstructionList do
@@ -348,5 +346,5 @@ proc build_baseline_binary_code
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 

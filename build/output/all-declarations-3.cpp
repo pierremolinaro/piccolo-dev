@@ -8,501 +8,6 @@
 #include "all-declarations-3.h"
 
 //--------------------------------------------------------------------------------------------------
-//  Map type @pic_31__38__5F_dataAddressMap
-//--------------------------------------------------------------------------------------------------
-
-#include "GALGAS_GenericMapRoot.h"
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap::GGS_pic_31__38__5F_dataAddressMap (void) :
-mSharedRoot () {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap::~ GGS_pic_31__38__5F_dataAddressMap (void) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap::GGS_pic_31__38__5F_dataAddressMap (const GGS_pic_31__38__5F_dataAddressMap & inSource) :
-mSharedRoot (inSource.mSharedRoot) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap & GGS_pic_31__38__5F_dataAddressMap::operator = (const GGS_pic_31__38__5F_dataAddressMap & inSource) {
-  mSharedRoot = inSource.mSharedRoot ;
-  return * this ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_pic_31__38__5F_dataAddressMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::class_func_emptyMap (LOCATION_ARGS) {
-  GGS_pic_31__38__5F_dataAddressMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_pic_31__38__5F_dataAddressMap::getter_hasKey (const GGS_string & inKey
-                                                           COMMA_UNUSED_LOCATION_ARGS) const {
-  GGS_bool result ;
-  if (isValid () && inKey.isValid ()) {
-    result = GGS_bool (mSharedRoot->hasKey (inKey.stringValue (), 0)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool GGS_pic_31__38__5F_dataAddressMap::getter_hasKeyAtLevel (const GGS_string & inKey,
-                                                                  const GGS_uint & inLevel
-                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
-  GGS_bool result ;
-  if (isValid () && inKey.isValid ()) {
-    result = GGS_bool (mSharedRoot->hasKey (inKey.stringValue (), inLevel.uintValue ())) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint GGS_pic_31__38__5F_dataAddressMap::getter_count (UNUSED_LOCATION_ARGS) const {
-  GGS_uint result ;
-  if (isValid ()) {
-    result = GGS_uint (uint32_t (mSharedRoot->count ())) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint GGS_pic_31__38__5F_dataAddressMap::getter_levels (UNUSED_LOCATION_ARGS) const {
-  GGS_uint result ;
-  if (isValid ()) {
-    result = GGS_uint (mSharedRoot->levels ()) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_location GGS_pic_31__38__5F_dataAddressMap::getter_locationForKey (const GGS_string & inKey,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const {
-  GGS_location result ;
-  if (isValid () && inKey.isValid ()) {
-    const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> info = infoForKey (inKey.stringValue ()) ;
-    if (info.isNil ()) {
-      String message = "'locationForKey' map reader run-time error: the '" ;
-      message.appendString (inKey.stringValue ()) ;
-      message.appendCString ("' does not exist in map") ;
-      inCompiler->onTheFlyRunTimeError (message COMMA_THERE) ;
-    }else{
-      result = info->mProperty_lkey.mProperty_location ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstringlist GGS_pic_31__38__5F_dataAddressMap::getter_keyList (Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) const {
-  GGS_lstringlist result ;
-  if (isValid ()) {
-    result = GGS_lstringlist::init (inCompiler COMMA_THERE) ;
-    mSharedRoot->populateKeyList (result) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-bool GGS_pic_31__38__5F_dataAddressMap::isValid (void) const {
-  return mSharedRoot.isNotNil () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::drop (void)  {
-  mSharedRoot.setToNil () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::build (LOCATION_ARGS) {
-  mSharedRoot = OptionalSharedRef <GenericMapRoot <GGS_pic_31__38__5F_dataAddressMap_2E_element>>::make (THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::performInsert (const GGS_pic_31__38__5F_dataAddressMap_2E_element & inElement,
-                                 const char * inInsertErrorMessage,
-                                 const char * inShadowErrorMessage,
-                                 Compiler * inCompiler
-                                 COMMA_LOCATION_ARGS) {
-  if (isValid () && inElement.mProperty_lkey.isValid ()) {
-    OptionalSharedRef <GenericMapNode <GGS_pic_31__38__5F_dataAddressMap_2E_element>> existingNode ;
-    const bool allowReplacing = false ;
-    mSharedRoot.insulate (THERE) ;
-    mSharedRoot->insertOrReplaceInfo (
-      inElement,
-      allowReplacing,
-      existingNode
-      COMMA_THERE
-    ) ;
-    const GGS_lstring lkey = inElement.mProperty_lkey ;
-    if (existingNode.isNotNil ()) {
-      const GGS_location lstring_existingKey_location = existingNode->mSharedInfo->mProperty_lkey.mProperty_location ;
-      inCompiler->semanticErrorWith_K_L_message (lkey, inInsertErrorMessage, lstring_existingKey_location COMMA_THERE) ;
-    }else if ((inShadowErrorMessage != nullptr) && (mSharedRoot->overriddenRoot ().isNotNil ())) {
-      const auto existingInfo = mSharedRoot->overriddenRoot ()->infoForKey (lkey.mProperty_string.stringValue()) ;
-      if (existingInfo.isNotNil ()) {
-        const GGS_location lstring_existingKey_location = existingInfo->mProperty_lkey.mProperty_location ;
-        inCompiler->semanticErrorWith_K_L_message (lkey, inShadowErrorMessage, lstring_existingKey_location COMMA_THERE) ;
-      }
-    }
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>
-GGS_pic_31__38__5F_dataAddressMap::infoForKey (const String & inKey) const {
-  if (mSharedRoot.isNotNil ()) {
-    return mSharedRoot->infoForKey (inKey) ;
-  }else{
-    return SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> () ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-int32_t GGS_pic_31__38__5F_dataAddressMap::count (void) const  {
-  if (mSharedRoot.isNotNil ()) {
-    return mSharedRoot->count () ;
-  }else{
-    return 0 ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>>
-GGS_pic_31__38__5F_dataAddressMap::sortedInfoArray (void) const {
-  if (mSharedRoot.isNotNil ()) {
-    return mSharedRoot->sortedInfoArray () ;
-  }else{
-    return GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>> () ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_stringset GGS_pic_31__38__5F_dataAddressMap::getter_keySet (Compiler * inCompiler
-                                                       COMMA_LOCATION_ARGS) const {
-  GGS_stringset result ;
-  if (isValid ()) {
-    result = GGS_stringset::init (inCompiler COMMA_THERE) ;
-    mSharedRoot->populateKeySet (result, inCompiler) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::findNearestKey (const String & inKey,
-                                  GenericUniqueArray <String> & outNearestKeyArray) const {
-  mSharedRoot->findNearestKey (inKey, outNearestKeyArray) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ GGS_pic_31__38__5F_dataAddressMap
-::readSubscript__3F_ (const class GGS_string & inKey,
-                      Compiler * /* inCompiler */
-                      COMMA_UNUSED_LOCATION_ARGS) const {
-  GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ result ;
-  if (isValid () && inKey.isValid ()) {
-    const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> info = infoForKey (inKey.stringValue ()) ;
-    if (info.isNil ()) {
-      result = GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_::init_nil () ;
-    }else{
-      GGS_pic_31__38__5F_dataAddressMap_2E_element element ;
-      element.mProperty_lkey = info->mProperty_lkey ;
-      element.mProperty_mDataAddress = info->mProperty_mDataAddress ;
-      result = element ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::class_func_mapWithMapToOverride (const GGS_pic_31__38__5F_dataAddressMap & inMapToOverride
-                                                                                                      COMMA_LOCATION_ARGS) {
-  GGS_pic_31__38__5F_dataAddressMap result ;
-  if (inMapToOverride.isValid ()) {
-    result.mSharedRoot = OptionalSharedRef <GenericMapRoot <GGS_pic_31__38__5F_dataAddressMap_2E_element>>::make (inMapToOverride.mSharedRoot COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::getter_overriddenMap (Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) const {
-  GGS_pic_31__38__5F_dataAddressMap result ;
-  if (isValid ()) {
-    result.mSharedRoot = mSharedRoot->overriddenRoot () ;
-    if (result.mSharedRoot.isNil ()) {
-      inCompiler->onTheFlySemanticError ("getter 'overriddenMap': no overriden map" COMMA_THERE) ;
-    }
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::setter_insertKey (GGS_lstring inLKey,
-                                                          GGS_uint inArgument0,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) {
-  const GGS_pic_31__38__5F_dataAddressMap_2E_element element (inLKey, inArgument0) ;
-  const char * kInsertErrorMessage = "the '%K' data is already declared" ;
-  const char * kShadowErrorMessage = nullptr ;
-  performInsert (element, kInsertErrorMessage, kShadowErrorMessage, inCompiler COMMA_THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::method_searchKey (GGS_lstring inLKey,
-                                                          GGS_uint & outArgument0,
-                                                          Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) const {
-  SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> info ;
-  if (isValid () && inLKey.isValid ()) {
-    const String key = inLKey.mProperty_string.stringValue () ;
-    info = infoForKey (key) ;
-    if (info.isNil ()) {
-      GenericUniqueArray <String> nearestKeyArray ;
-      findNearestKey (key, nearestKeyArray) ;
-      const char * kSearchErrorMessage = "the '%K' data is not declared" ;
-      inCompiler->semanticErrorWith_K_message (inLKey, nearestKeyArray, kSearchErrorMessage COMMA_THERE) ;
-    }
-  }
-  if (info.isNil ()) {
-    outArgument0.drop () ;
-  }else{
-    outArgument0 = info->mProperty_mDataAddress ;
-  }
-}
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint GGS_pic_31__38__5F_dataAddressMap::getter_mDataAddressForKey (const GGS_string & inKey,
-                                                                       Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) const {
-  GGS_uint result ;
-  if (isValid () && inKey.isValid ()) {
-    const String key = inKey.stringValue () ;
-    const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> info = infoForKey (key) ;
-    if (info.isNil ()) {
-      String message = "cannot read property in map: the '" ;
-      message.appendString (key) ;
-      message.appendCString ("' key does not exist") ;
-      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
-    }else{
-      result = info->mProperty_mDataAddress ;
-    }
-  }
-  return result ;
-}
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::setter_setMDataAddressForKey (GGS_uint inValue,
-                                                                      GGS_string inKey,
-                                                                      Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) {
-  if (isValid () && inKey.isValid ()) {
-    const String key = inKey.stringValue () ;
-    mSharedRoot.insulate (HERE) ;
-    OptionalSharedRef <GenericMapNode <GGS_pic_31__38__5F_dataAddressMap_2E_element>> node = mSharedRoot->searchNode (key) ;
-    if (node.isNil ()) {
-      String message = "cannot write property in map: the '" ;
-      message.appendString (key) ;
-      message.appendCString ("' key does not exist") ;
-      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
-    }else{
-      node->mSharedInfo->mProperty_mDataAddress = inValue ;
-    }
-  }
-}
-//--------------------------------------------------------------------------------------------------
-
-static void GGS_pic_31__38__5F_dataAddressMap_internalDescription (const GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>> & inArray,
-                                                        String & ioString,
-                                                        const int32_t inIndentation) {
-  const int32_t n = inArray.count () ;
-  ioString.appendString (" (") ;
-  ioString.appendSigned (n) ;
-  ioString.appendString (" object") ;
-  if (n > 1) {
-    ioString.appendString ("s") ;
-  }
-  ioString.appendString ("):") ;
-  for (int32_t i = 0 ; i < n ; i++) {
-    ioString.appendNewLine () ;
-    ioString.appendStringMultiple ("| ", inIndentation) ;
-    ioString.appendString ("|-at ") ;
-    ioString.appendSigned (i) ;
-    ioString.appendString (": key '") ;
-    ioString.appendString (inArray (i COMMA_HERE)->mProperty_lkey.mProperty_string.stringValue ()) ;
-    ioString.appendString ("'") ;
-    ioString.appendNewLine () ;
-    ioString.appendStringMultiple ("| ", inIndentation + 2) ;
-    ioString.appendString ("mDataAddress:") ;
-    inArray (i COMMA_HERE)->mProperty_mDataAddress.description (ioString, inIndentation + 1) ;
-  }
-}
-
-//--------------------------------------------------------------------------------------------------
-
-void GGS_pic_31__38__5F_dataAddressMap::description (String & ioString,
-                                          const int32_t inIndentation) const {
-  ioString.appendCString ("<map @") ;
-  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
-  if (isValid ()) {
-    const GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>> array = sortedInfoArray () ;
-    GGS_pic_31__38__5F_dataAddressMap_internalDescription (array, ioString, inIndentation) ;
-    OptionalSharedRef <GenericMapRoot <GGS_pic_31__38__5F_dataAddressMap_2E_element>> subRoot = mSharedRoot->overriddenRoot () ;
-    uint32_t idx = 0 ;
-    while (subRoot.isNotNil ()) {
-     idx += 1 ;
-     ioString.appendNewLine () ;
-     ioString.appendStringMultiple ("| ", inIndentation + 1) ;
-     ioString.appendString (" override #") ;
-     ioString.appendUnsigned (idx) ;
-     const auto subRootArray = subRoot->sortedInfoArray () ;
-     GGS_pic_31__38__5F_dataAddressMap_internalDescription (subRootArray, ioString, inIndentation) ;
-     subRoot = subRoot->overriddenRoot () ;
-    }
-  }else{
-    ioString.appendCString (" not built") ;
-  }
-  ioString.appendCString (">") ;
-}
-
-
-
-//--------------------------------------------------------------------------------------------------
-//  Down Enumerator for @pic_31__38__5F_dataAddressMap
-//--------------------------------------------------------------------------------------------------
-
-DownEnumerator_pic_31__38__5F_dataAddressMap::DownEnumerator_pic_31__38__5F_dataAddressMap (const GGS_pic_31__38__5F_dataAddressMap & inMap) :
-mInfoArray (inMap.sortedInfoArray ()),
-mIndex (0) {
-  mIndex = mInfoArray.count () - 1 ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap_2E_element DownEnumerator_pic_31__38__5F_dataAddressMap::current (LOCATION_ARGS) const {
-  return mInfoArray (mIndex COMMA_THERE).value () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring DownEnumerator_pic_31__38__5F_dataAddressMap::current_lkey (LOCATION_ARGS) const {
-  return mInfoArray (mIndex COMMA_THERE)->mProperty_lkey ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint DownEnumerator_pic_31__38__5F_dataAddressMap::current_mDataAddress (LOCATION_ARGS) const {
-  return mInfoArray (mIndex COMMA_THERE)->mProperty_mDataAddress ;
-}
-
-//--------------------------------------------------------------------------------------------------
-//  Up Enumerator for @pic_31__38__5F_dataAddressMap
-//--------------------------------------------------------------------------------------------------
-
-UpEnumerator_pic_31__38__5F_dataAddressMap::UpEnumerator_pic_31__38__5F_dataAddressMap (const GGS_pic_31__38__5F_dataAddressMap & inMap) :
-mInfoArray (inMap.sortedInfoArray ()),
-mIndex (0) {
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap_2E_element UpEnumerator_pic_31__38__5F_dataAddressMap::current (LOCATION_ARGS) const {
-  return mInfoArray (mIndex COMMA_THERE).value () ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_lstring UpEnumerator_pic_31__38__5F_dataAddressMap::current_lkey (LOCATION_ARGS) const {
-  return mInfoArray (mIndex COMMA_THERE)->mProperty_lkey ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_uint UpEnumerator_pic_31__38__5F_dataAddressMap::current_mDataAddress (LOCATION_ARGS) const {
-  return mInfoArray (mIndex COMMA_THERE)->mProperty_mDataAddress ;
-}
-
-
-//--------------------------------------------------------------------------------------------------
-//     @pic18_dataAddressMap generic code implementation
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap ("pic18_dataAddressMap",
-                                                                                  nullptr) ;
-
-//--------------------------------------------------------------------------------------------------
-
-const GALGAS_TypeDescriptor * GGS_pic_31__38__5F_dataAddressMap::staticTypeDescriptor (void) const {
-  return & kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-AC_GALGAS_root * GGS_pic_31__38__5F_dataAddressMap::clonedObject (void) const {
-  AC_GALGAS_root * result = nullptr ;
-  if (isValid ()) {
-    macroMyNew (result, GGS_pic_31__38__5F_dataAddressMap (*this)) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::extractObject (const GGS_object & inObject,
-                                                                                    Compiler * inCompiler
-                                                                                    COMMA_LOCATION_ARGS) {
-  GGS_pic_31__38__5F_dataAddressMap result ;
-  const GGS_pic_31__38__5F_dataAddressMap * p = (const GGS_pic_31__38__5F_dataAddressMap *) inObject.embeddedObject () ;
-  if (nullptr != p) {
-    if (nullptr != dynamic_cast <const GGS_pic_31__38__5F_dataAddressMap *> (p)) {
-      result = *p ;
-    }else{
-      inCompiler->castError ("pic18_dataAddressMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
-    }  
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //
 //Abstract extension method '@ipic18SequentialInstruction generateCode'
 //
@@ -594,14 +99,6 @@ GGS_declaredRoutineMap & GGS_declaredRoutineMap::operator = (const GGS_declaredR
 //--------------------------------------------------------------------------------------------------
 
 GGS_declaredRoutineMap GGS_declaredRoutineMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_declaredRoutineMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_declaredRoutineMap GGS_declaredRoutineMap::class_func_emptyMap (LOCATION_ARGS) {
   GGS_declaredRoutineMap result ;
   result.build (THERE) ;
   return result ;
@@ -1431,14 +928,6 @@ void GGS_pic_31__38_InstructionList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_InstructionList GGS_pic_31__38_InstructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_pic_31__38_InstructionList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_pic_31__38_InstructionList GGS_pic_31__38_InstructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_pic_31__38_InstructionList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -2211,14 +1700,6 @@ void GGS_baseline_5F_intermediate_5F_instructionList::description (String & ioSt
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_instructionList GGS_baseline_5F_intermediate_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_instructionList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_intermediate_5F_instructionList GGS_baseline_5F_intermediate_5F_instructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_baseline_5F_intermediate_5F_instructionList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -2669,14 +2150,6 @@ GGS_baseline_5F_intermediate_5F_NULL::GGS_baseline_5F_intermediate_5F_NULL (cons
 GGS_baseline_5F_intermediate_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_NULL) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_intermediate_5F_NULL GGS_baseline_5F_intermediate_5F_NULL::class_func_new (Compiler * inCompiler COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_NULL result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_NULL (inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 //Pointer class for @baseline_intermediate_NULL class
 //--------------------------------------------------------------------------------------------------
@@ -3153,16 +2626,6 @@ GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::GGS_baseline_5F_intermediate_5F_
 GGS_baseline_5F_intermediate_5F_pseudo (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::class_func_new (const GGS_uint & in_mPage,
-                                                                                                               Compiler * inCompiler
-                                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE (in_mPage,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_uint GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE::readProperty_mPage (void) const {
@@ -4060,19 +3523,6 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_instruction_5F_FD GGS_baseline_5F_intermediate_5F_instruction_5F_FD::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                     const GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code & in_mInstruction,
-                                                                                                                     const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                     const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                                     Compiler * inCompiler
-                                                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_instruction_5F_FD result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FD (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_m_5F_W_5F_isDestination,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code GGS_baseline_5F_intermediate_5F_instruction_5F_FD::readProperty_mInstruction (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code () ;
@@ -4399,18 +3849,6 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_instruction_5F_F GGS_baseline_5F_intermediate_5F_instruction_5F_F::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                   const GGS_baseline_5F_F_5F_instruction_5F_base_5F_code & in_mInstruction,
-                                                                                                                   const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                   Compiler * inCompiler
-                                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_instruction_5F_F result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_F (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_F_5F_instruction_5F_base_5F_code GGS_baseline_5F_intermediate_5F_instruction_5F_F::readProperty_mInstruction (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_F_5F_instruction_5F_base_5F_code () ;
@@ -4719,19 +4157,6 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_FB::GGS_baseline_5F_intermediate_
 GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_intermediate_5F_instruction_5F_FB GGS_baseline_5F_intermediate_5F_instruction_5F_FB::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                     const GGS_baseline_5F_bit_5F_oriented_5F_op & in_mInstruction,
-                                                                                                                     const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                     const GGS_uint & in_mBitNumber,
-                                                                                                                     Compiler * inCompiler
-                                                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_instruction_5F_FB result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_FB (in_mInstructionLocation, in_mInstruction, in_mRegisterDescription, in_mBitNumber,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_bit_5F_oriented_5F_op GGS_baseline_5F_intermediate_5F_instruction_5F_FB::readProperty_mInstruction (void) const {
@@ -5061,19 +4486,6 @@ GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::GGS_baseline_5F_inte
 GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                       const GGS_bool & in_mSkipIfSet,
-                                                                                                                                       const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                                       const GGS_uint & in_mBitNumber,
-                                                                                                                                       Compiler * inCompiler
-                                                                                                                                       COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip (in_mInstructionLocation, in_mSkipIfSet, in_mRegisterDescription, in_mBitNumber,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_bool GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip::readProperty_mSkipIfSet (void) const {
@@ -5887,17 +5299,6 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                             const GGS_baseline_5F_WO_5F_OPERAND_5F_group & in_mInstruction,
-                                                                                                             Compiler * inCompiler
-                                                                                                             COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND (in_mInstructionLocation, in_mInstruction,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_WO_5F_OPERAND_5F_group GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND::readProperty_mInstruction (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_WO_5F_OPERAND_5F_group () ;
@@ -6308,18 +5709,6 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                                 const GGS_baseline_5F_literal_5F_instruction_5F_opcode & in_mInstruction,
-                                                                                                                                                 const GGS_uint & in_mLiteralValue,
-                                                                                                                                                 Compiler * inCompiler
-                                                                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation (in_mInstructionLocation, in_mInstruction, in_mLiteralValue,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_baseline_5F_literal_5F_instruction_5F_opcode GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::readProperty_mInstruction (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_baseline_5F_literal_5F_instruction_5F_opcode () ;
@@ -6624,17 +6013,6 @@ GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                         const GGS_luint & in_mOccurrenceFactor,
-                                                                                                                         Compiler * inCompiler
-                                                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP (in_mInstructionLocation, in_mOccurrenceFactor,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_luint GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP::readProperty_mOccurrenceFactor (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_luint () ;
@@ -6930,21 +6308,6 @@ GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::GGS_baseline_5F_inter
 GGS_baseline_5F_intermediate_5F_actualInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                     const GGS_baseline_5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                                     const GGS_string & in_mTargetLabel,
-                                                                                                                                     const GGS_bool & in_mIncrement,
-                                                                                                                                     const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                                                     const GGS_bool & in_mBranchIfZero,
-                                                                                                                                     Compiler * inCompiler
-                                                                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition result ;
-  macroMyNew (result.mObjectPtr, cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition (in_mInstructionLocation, in_mRegisterDescription, in_mTargetLabel, in_mIncrement, in_m_5F_W_5F_isDestination, in_mBranchIfZero,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_baseline_5F_intermediate_5F_registerExpression GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::readProperty_mRegisterDescription (void) const {
@@ -7301,14 +6664,6 @@ GGS_midrange_5F_symbolTable & GGS_midrange_5F_symbolTable::operator = (const GGS
 //--------------------------------------------------------------------------------------------------
 
 GGS_midrange_5F_symbolTable GGS_midrange_5F_symbolTable::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_symbolTable result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_symbolTable GGS_midrange_5F_symbolTable::class_func_emptyMap (LOCATION_ARGS) {
   GGS_midrange_5F_symbolTable result ;
   result.build (THERE) ;
   return result ;
@@ -8626,14 +7981,6 @@ void GGS_midrange_5F_instructionList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_instructionList GGS_midrange_5F_instructionList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_midrange_5F_instructionList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_midrange_5F_instructionList GGS_midrange_5F_instructionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_midrange_5F_instructionList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -9088,16 +8435,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_nobanksel) ;
 }
 //--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_nobanksel GGS_midrange_5F_instruction_5F_nobanksel::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_nobanksel result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_nobanksel (in_mInstructionLocation,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @midrange_instruction_nobanksel class
 //--------------------------------------------------------------------------------------------------
 
@@ -9366,18 +8703,6 @@ GGS_midrange_5F_instruction_5F_banksel::GGS_midrange_5F_instruction_5F_banksel (
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_banksel) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_banksel GGS_midrange_5F_instruction_5F_banksel::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                               const GGS_luint & in_mBankIndex,
-                                                                                               const GGS_bool & in_mWarningOnUselessBanksel,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_banksel result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_banksel (in_mInstructionLocation, in_mBankIndex, in_mWarningOnUselessBanksel,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_luint GGS_midrange_5F_instruction_5F_banksel::readProperty_mBankIndex (void) const {
@@ -9684,17 +9009,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrangeInstruction_5F_checkbank GGS_midrangeInstruction_5F_checkbank::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                           const GGS_uint & in_mBankIndex,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_midrangeInstruction_5F_checkbank result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrangeInstruction_5F_checkbank (in_mInstructionLocation, in_mBankIndex,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_midrangeInstruction_5F_checkbank::readProperty_mBankIndex (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -9975,16 +9289,6 @@ GGS_midrangeInstruction_5F_checknobank::GGS_midrangeInstruction_5F_checknobank (
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrangeInstruction_5F_checknobank) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrangeInstruction_5F_checknobank GGS_midrangeInstruction_5F_checknobank::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_midrangeInstruction_5F_checknobank result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrangeInstruction_5F_checknobank (in_mInstructionLocation,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 //Pointer class for @midrangeInstruction_checknobank class
 //--------------------------------------------------------------------------------------------------
@@ -11619,16 +10923,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_CLRWDT) ;
 }
 //--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_CLRWDT GGS_midrange_5F_instruction_5F_CLRWDT::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_CLRWDT result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_CLRWDT (in_mInstructionLocation,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @midrange_instruction_CLRWDT class
 //--------------------------------------------------------------------------------------------------
 
@@ -11891,16 +11185,6 @@ GGS_midrange_5F_instruction_5F_CLRW::GGS_midrange_5F_instruction_5F_CLRW (const 
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_CLRW) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_CLRW GGS_midrange_5F_instruction_5F_CLRW::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_CLRW result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_CLRW (in_mInstructionLocation,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 //Pointer class for @midrange_instruction_CLRW class
 //--------------------------------------------------------------------------------------------------
@@ -12165,16 +11449,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_NOP) ;
 }
 //--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_NOP GGS_midrange_5F_instruction_5F_NOP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                       Compiler * inCompiler
-                                                                                       COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_NOP result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_NOP (in_mInstructionLocation,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @midrange_instruction_NOP class
 //--------------------------------------------------------------------------------------------------
 
@@ -12437,16 +11711,6 @@ GGS_midrange_5F_instruction_5F_SLEEP::GGS_midrange_5F_instruction_5F_SLEEP (cons
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_SLEEP) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_SLEEP GGS_midrange_5F_instruction_5F_SLEEP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                           Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_SLEEP result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_SLEEP (in_mInstructionLocation,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 //Pointer class for @midrange_instruction_SLEEP class
 //--------------------------------------------------------------------------------------------------
@@ -12773,18 +12037,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_instruction_5F_literalOperation GGS_midrange_5F_instruction_5F_literalOperation::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                 const GGS_midrange_5F_literal_5F_instruction_5F_opcode & in_mLiteralInstruction,
-                                                                                                                 const GGS_immediatExpression & in_mImmediatExpression,
-                                                                                                                 Compiler * inCompiler
-                                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_literalOperation result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_literalOperation (in_mInstructionLocation, in_mLiteralInstruction, in_mImmediatExpression,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_midrange_5F_literal_5F_instruction_5F_opcode GGS_midrange_5F_instruction_5F_literalOperation::readProperty_mLiteralInstruction (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_midrange_5F_literal_5F_instruction_5F_opcode () ;
@@ -13089,17 +12341,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_instruction_5F_MNOP GGS_midrange_5F_instruction_5F_MNOP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                         const GGS_luint & in_mOccurrenceFactor,
-                                                                                         Compiler * inCompiler
-                                                                                         COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_MNOP result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_MNOP (in_mInstructionLocation, in_mOccurrenceFactor,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_luint GGS_midrange_5F_instruction_5F_MNOP::readProperty_mOccurrenceFactor (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_luint () ;
@@ -13386,18 +12627,6 @@ GGS_midrange_5F_instruction_5F_FOREVER::GGS_midrange_5F_instruction_5F_FOREVER (
 GGS_midrange_5F_instruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_FOREVER) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_instruction_5F_FOREVER GGS_midrange_5F_instruction_5F_FOREVER::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                               const GGS_midrange_5F_instructionList & in_mInstructionList,
-                                                                                               const GGS_location & in_mEndOfInstructionList,
-                                                                                               Compiler * inCompiler
-                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_FOREVER result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_FOREVER (in_mInstructionLocation, in_mInstructionList, in_mEndOfInstructionList,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_midrange_5F_instructionList GGS_midrange_5F_instruction_5F_FOREVER::readProperty_mInstructionList (void) const {
@@ -14533,16 +13762,6 @@ GGS_midrange_5F_conditionExpression (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_negateCondition GGS_midrange_5F_negateCondition::class_func_new (const GGS_midrange_5F_conditionExpression & in_mCondition,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_negateCondition result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_negateCondition (in_mCondition,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_midrange_5F_conditionExpression GGS_midrange_5F_negateCondition::readProperty_mCondition (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_midrange_5F_conditionExpression () ;
@@ -14822,17 +14041,6 @@ GGS_midrange_5F_andCondition::GGS_midrange_5F_andCondition (const cPtr_midrange_
 GGS_midrange_5F_conditionExpression (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_andCondition) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_andCondition GGS_midrange_5F_andCondition::class_func_new (const GGS_midrange_5F_conditionExpression & in_mLeftExpression,
-                                                                           const GGS_midrange_5F_conditionExpression & in_mRightExpression,
-                                                                           Compiler * inCompiler
-                                                                           COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_andCondition result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_andCondition (in_mLeftExpression, in_mRightExpression,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_midrange_5F_conditionExpression GGS_midrange_5F_andCondition::readProperty_mLeftExpression (void) const {
@@ -15266,20 +14474,6 @@ GGS_midrange_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_midrange_5F_instruction_5F_structured_5F_if GGS_midrange_5F_instruction_5F_structured_5F_if::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                 const GGS_midrange_5F_conditionExpression & in_mIfCondition,
-                                                                                                                 const GGS_midrange_5F_instructionList & in_mThenInstructionList,
-                                                                                                                 const GGS_midrange_5F_instructionList & in_mElseInstructionList,
-                                                                                                                 const GGS_location & in_mEndOfElsePartLocation,
-                                                                                                                 Compiler * inCompiler
-                                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_midrange_5F_instruction_5F_structured_5F_if result ;
-  macroMyNew (result.mObjectPtr, cPtr_midrange_5F_instruction_5F_structured_5F_if (in_mInstructionLocation, in_mIfCondition, in_mThenInstructionList, in_mElseInstructionList, in_mEndOfElsePartLocation,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_midrange_5F_conditionExpression GGS_midrange_5F_instruction_5F_structured_5F_if::readProperty_mIfCondition (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_midrange_5F_conditionExpression () ;
@@ -15704,14 +14898,6 @@ void GGS_midrange_5F_partList::description (String & ioString,
     ioString.appendCString (" not built") ;
   }
   ioString.appendCString (">") ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_midrange_5F_partList GGS_midrange_5F_partList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_midrange_5F_partList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -16250,6 +15436,1173 @@ GGS_midrange_5F_partList GGS_midrange_5F_partList::extractObject (const GGS_obje
       result = *p ;
     }else{
       inCompiler->castError ("midrange_partList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// @midrange_5F_instruction_5F_do_5F_while reference class
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_midrange_5F_instruction_5F_do_5F_while::objectCompare (const GGS_midrange_5F_instruction_5F_do_5F_while & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    const size_t myObjectPtr = size_t (mObjectPtr) ;
+    const size_t operandObjectPtr = size_t (inOperand.mObjectPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while::GGS_midrange_5F_instruction_5F_do_5F_while (void) :
+GGS_midrange_5F_instruction () {
+}
+
+//--- Synthetized initializer ----------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while GGS_midrange_5F_instruction_5F_do_5F_while::
+init_21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                      const GGS_midrange_5F_instructionList & in_mRepeatedInstructionList,
+                      const GGS_location & in_mEndOfRepeatedInstructionList,
+                      const GGS_midrange_5F_partList & in_mWhilePartList,
+                      Compiler * inCompiler
+                      COMMA_LOCATION_ARGS) {
+  cPtr_midrange_5F_instruction_5F_do_5F_while * object = nullptr ;
+  macroMyNew (object, cPtr_midrange_5F_instruction_5F_do_5F_while (inCompiler COMMA_THERE)) ;
+  object->midrange_5F_instruction_5F_do_5F_while_init_21__21__21__21_ (in_mInstructionLocation, in_mRepeatedInstructionList, in_mEndOfRepeatedInstructionList, in_mWhilePartList, inCompiler) ;
+  const GGS_midrange_5F_instruction_5F_do_5F_while result (object) ;
+  macroDetachSharedObject (object) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void cPtr_midrange_5F_instruction_5F_do_5F_while::
+midrange_5F_instruction_5F_do_5F_while_init_21__21__21__21_ (const GGS_location & in_mInstructionLocation,
+                                                             const GGS_midrange_5F_instructionList & in_mRepeatedInstructionList,
+                                                             const GGS_location & in_mEndOfRepeatedInstructionList,
+                                                             const GGS_midrange_5F_partList & in_mWhilePartList,
+                                                             Compiler * /* inCompiler */) {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mRepeatedInstructionList = in_mRepeatedInstructionList ;
+  mProperty_mEndOfRepeatedInstructionList = in_mEndOfRepeatedInstructionList ;
+  mProperty_mWhilePartList = in_mWhilePartList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while::GGS_midrange_5F_instruction_5F_do_5F_while (const cPtr_midrange_5F_instruction_5F_do_5F_while * inSourcePtr) :
+GGS_midrange_5F_instruction (inSourcePtr) {
+  macroNullOrValidSharedObject (inSourcePtr, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instructionList GGS_midrange_5F_instruction_5F_do_5F_while::readProperty_mRepeatedInstructionList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_midrange_5F_instructionList () ;
+  }else{
+    cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
+    return p->mProperty_mRepeatedInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location GGS_midrange_5F_instruction_5F_do_5F_while::readProperty_mEndOfRepeatedInstructionList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_location () ;
+  }else{
+    cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
+    return p->mProperty_mEndOfRepeatedInstructionList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_partList GGS_midrange_5F_instruction_5F_do_5F_while::readProperty_mWhilePartList (void) const {
+  if (nullptr == mObjectPtr) {
+    return GGS_midrange_5F_partList () ;
+  }else{
+    cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) mObjectPtr ;
+    macroValidSharedObject (p, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
+    return p->mProperty_mWhilePartList ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+//Pointer class for @midrange_instruction_do_while class
+//--------------------------------------------------------------------------------------------------
+
+cPtr_midrange_5F_instruction_5F_do_5F_while::cPtr_midrange_5F_instruction_5F_do_5F_while (Compiler * inCompiler COMMA_LOCATION_ARGS) :
+cPtr_midrange_5F_instruction (inCompiler COMMA_THERE),
+mProperty_mRepeatedInstructionList (),
+mProperty_mEndOfRepeatedInstructionList (),
+mProperty_mWhilePartList () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cPtr_midrange_5F_instruction_5F_do_5F_while::cPtr_midrange_5F_instruction_5F_do_5F_while (const GGS_location & in_mInstructionLocation,
+                                                                                          const GGS_midrange_5F_instructionList & in_mRepeatedInstructionList,
+                                                                                          const GGS_location & in_mEndOfRepeatedInstructionList,
+                                                                                          const GGS_midrange_5F_partList & in_mWhilePartList,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) :
+cPtr_midrange_5F_instruction (in_mInstructionLocation, inCompiler COMMA_THERE),
+mProperty_mRepeatedInstructionList (),
+mProperty_mEndOfRepeatedInstructionList (),
+mProperty_mWhilePartList () {
+  mProperty_mInstructionLocation = in_mInstructionLocation ;
+  mProperty_mRepeatedInstructionList = in_mRepeatedInstructionList ;
+  mProperty_mEndOfRepeatedInstructionList = in_mEndOfRepeatedInstructionList ;
+  mProperty_mWhilePartList = in_mWhilePartList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * cPtr_midrange_5F_instruction_5F_do_5F_while::classDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while ;
+}
+
+void cPtr_midrange_5F_instruction_5F_do_5F_while::description (String & ioString,
+                                                               const int32_t inIndentation) const {
+  ioString.appendCString ("[@midrange_instruction_do_while:") ;
+  mProperty_mInstructionLocation.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mRepeatedInstructionList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mEndOfRepeatedInstructionList.description (ioString, inIndentation+1) ;
+  ioString.appendCString (", ") ;
+  mProperty_mWhilePartList.description (ioString, inIndentation+1) ;
+  ioString.appendCString ("]") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+acPtr_class * cPtr_midrange_5F_instruction_5F_do_5F_while::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  acPtr_class * ptr = nullptr ;
+  macroMyNew (ptr, cPtr_midrange_5F_instruction_5F_do_5F_while (mProperty_mInstructionLocation, mProperty_mRepeatedInstructionList, mProperty_mEndOfRepeatedInstructionList, mProperty_mWhilePartList, inCompiler COMMA_THERE)) ;
+  return ptr ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+#ifndef DO_NOT_GENERATE_CHECKINGS
+  void cPtr_midrange_5F_instruction_5F_do_5F_while::printNonNullClassInstanceProperties (void) const {
+    cPtr_midrange_5F_instruction::printNonNullClassInstanceProperties () ;
+    mProperty_mRepeatedInstructionList.printNonNullClassInstanceProperties ("mRepeatedInstructionList") ;
+    mProperty_mEndOfRepeatedInstructionList.printNonNullClassInstanceProperties ("mEndOfRepeatedInstructionList") ;
+    mProperty_mWhilePartList.printNonNullClassInstanceProperties ("mWhilePartList") ;
+  }
+#endif
+
+//--------------------------------------------------------------------------------------------------
+//     @midrange_instruction_do_while generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while ("midrange_instruction_do_while",
+                                                                                           & kTypeDescriptor_GALGAS_midrange_5F_instruction) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_midrange_5F_instruction_5F_do_5F_while::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_midrange_5F_instruction_5F_do_5F_while::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_midrange_5F_instruction_5F_do_5F_while (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while GGS_midrange_5F_instruction_5F_do_5F_while::extractObject (const GGS_object & inObject,
+                                                                                                      Compiler * inCompiler
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_midrange_5F_instruction_5F_do_5F_while result ;
+  const GGS_midrange_5F_instruction_5F_do_5F_while * p = (const GGS_midrange_5F_instruction_5F_do_5F_while *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_midrange_5F_instruction_5F_do_5F_while *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("midrange_instruction_do_while", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+ComparisonResult GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::objectCompare (const GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak & inOperand) const {
+  ComparisonResult result = ComparisonResult::invalid ;
+  if (isValid () && inOperand.isValid ()) {
+    cPtr_weakReference_proxy * myPtr = mProxyPtr ;
+    const size_t myObjectPtr = size_t (myPtr) ;
+    cPtr_weakReference_proxy * operandPtr = inOperand.mProxyPtr ;
+    const size_t operandObjectPtr = size_t (operandPtr) ;
+    if (myObjectPtr < operandObjectPtr) {
+      result = ComparisonResult::firstOperandLowerThanSecond ;
+    }else if (myObjectPtr > operandObjectPtr) {
+      result = ComparisonResult::firstOperandGreaterThanSecond ;
+    }else{
+      result = ComparisonResult::operandEqual ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak (void) :
+GGS_midrange_5F_instruction_2E_weak () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak & GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::operator = (const GGS_midrange_5F_instruction_5F_do_5F_while & inSource) {
+  cPtr_weakReference_proxy * proxyPtr = nullptr ;
+  acStrongPtr_class * p = (acStrongPtr_class *) inSource.ptr () ;
+  if (p != nullptr) {
+    proxyPtr = p->getProxy () ;
+  }
+  macroAssignSharedObject (mProxyPtr, proxyPtr) ;
+  return *this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak (const GGS_midrange_5F_instruction_5F_do_5F_while & inSource) :
+GGS_midrange_5F_instruction_2E_weak (inSource) {
+}
+
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::class_func_nil (LOCATION_ARGS) {
+  GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak result ;
+  macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (THERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::unwrappedValue (void) const {
+  GGS_midrange_5F_instruction_5F_do_5F_while result ;
+  if (isValid ()) {
+    const cPtr_midrange_5F_instruction_5F_do_5F_while * p = (cPtr_midrange_5F_instruction_5F_do_5F_while *) ptr () ;
+    if (nullptr != p) {
+      result = GGS_midrange_5F_instruction_5F_do_5F_while (p) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::bang_midrange_5F_instruction_5F_do_5F_while_2E_weak (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  GGS_midrange_5F_instruction_5F_do_5F_while result ;
+  if (mProxyPtr != nullptr) {
+    acStrongPtr_class * strongPtr = mProxyPtr->strongObject () ;
+    if (strongPtr == nullptr) {
+      inCompiler->onTheFlySemanticError ("weak reference is nil" COMMA_THERE) ;
+    }else{
+      macroValidSharedObject (strongPtr, cPtr_midrange_5F_instruction_5F_do_5F_while) ;
+      result = GGS_midrange_5F_instruction_5F_do_5F_while ((cPtr_midrange_5F_instruction_5F_do_5F_while *) strongPtr) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//     @midrange_instruction_do_while.weak generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while_2E_weak ("midrange_instruction_do_while.weak",
+                                                                                                   & kTypeDescriptor_GALGAS_midrange_5F_instruction_2E_weak) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_midrange_5F_instruction_5F_do_5F_while_2E_weak ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak::extractObject (const GGS_object & inObject,
+                                                                                                                      Compiler * inCompiler
+                                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak result ;
+  const GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak * p = (const GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("midrange_instruction_do_while.weak", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//Class for element of '@midrange_5F_interruptDefinitionList' list
+//--------------------------------------------------------------------------------------------------
+
+class cCollectionElement_midrange_5F_interruptDefinitionList : public cCollectionElement {
+  public: GGS_midrange_5F_interruptDefinitionList_2E_element mObject ;
+
+//--- Class functions
+  public: cCollectionElement_midrange_5F_interruptDefinitionList (const GGS_location & in_mInterruptLocation,
+                                                                  const GGS_midrange_5F_instructionList & in_mInstructionList,
+                                                                  const GGS_lstring & in_mFirstSaveRegister,
+                                                                  const GGS_lstring & in_mSecondSaveRegister,
+                                                                  const GGS_location & in_mEndOfInterruptLocation
+                                                                  COMMA_LOCATION_ARGS) ;
+  public: cCollectionElement_midrange_5F_interruptDefinitionList (const GGS_midrange_5F_interruptDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+
+//--- Virtual method that checks that all attributes are valid
+  public: virtual bool isValid (void) const ;
+
+//--- Virtual method that returns a copy of current object
+  public: virtual cCollectionElement * copy (void) ;
+} ;
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement_midrange_5F_interruptDefinitionList::cCollectionElement_midrange_5F_interruptDefinitionList (const GGS_location & in_mInterruptLocation,
+                                                                                                                const GGS_midrange_5F_instructionList & in_mInstructionList,
+                                                                                                                const GGS_lstring & in_mFirstSaveRegister,
+                                                                                                                const GGS_lstring & in_mSecondSaveRegister,
+                                                                                                                const GGS_location & in_mEndOfInterruptLocation
+                                                                                                                COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (in_mInterruptLocation, in_mInstructionList, in_mFirstSaveRegister, in_mSecondSaveRegister, in_mEndOfInterruptLocation) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement_midrange_5F_interruptDefinitionList::cCollectionElement_midrange_5F_interruptDefinitionList (const GGS_midrange_5F_interruptDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) :
+cCollectionElement (THERE),
+mObject (inElement.mProperty_mInterruptLocation, inElement.mProperty_mInstructionList, inElement.mProperty_mFirstSaveRegister, inElement.mProperty_mSecondSaveRegister, inElement.mProperty_mEndOfInterruptLocation) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool cCollectionElement_midrange_5F_interruptDefinitionList::isValid (void) const {
+  return true ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+cCollectionElement * cCollectionElement_midrange_5F_interruptDefinitionList::copy (void) {
+  cCollectionElement * result = nullptr ;
+  macroMyNew (result, cCollectionElement_midrange_5F_interruptDefinitionList (mObject.mProperty_mInterruptLocation, mObject.mProperty_mInstructionList, mObject.mProperty_mFirstSaveRegister, mObject.mProperty_mSecondSaveRegister, mObject.mProperty_mEndOfInterruptLocation COMMA_HERE)) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+// List type @midrange_5F_interruptDefinitionList
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList::GGS_midrange_5F_interruptDefinitionList (void) :
+mArray () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList::GGS_midrange_5F_interruptDefinitionList (const capCollectionElementArray & inArray) :
+mArray () {
+  mArray.setCapacity (std::max (16, int32_t (inArray.count ()))) ;
+  for (uint32_t i = 0 ; i < inArray.count () ; i++) {
+    const capCollectionElement v = inArray.objectAtIndex (i COMMA_HERE) ;
+    cCollectionElement_midrange_5F_interruptDefinitionList * p = (cCollectionElement_midrange_5F_interruptDefinitionList *) v.ptr () ;
+    macroValidSharedObject (p, cCollectionElement_midrange_5F_interruptDefinitionList) ;
+    const GGS_midrange_5F_interruptDefinitionList_2E_element element (p->mObject.mProperty_mInterruptLocation, p->mObject.mProperty_mInstructionList, p->mObject.mProperty_mFirstSaveRegister, p->mObject.mProperty_mSecondSaveRegister, p->mObject.mProperty_mEndOfInterruptLocation) ;
+    mArray.appendObject (element) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::makeAttributesFromObjects (capCollectionElement & outAttributes,
+                                                                         const GGS_location & in_mInterruptLocation,
+                                                                         const GGS_midrange_5F_instructionList & in_mInstructionList,
+                                                                         const GGS_lstring & in_mFirstSaveRegister,
+                                                                         const GGS_lstring & in_mSecondSaveRegister,
+                                                                         const GGS_location & in_mEndOfInterruptLocation
+                                                                         COMMA_LOCATION_ARGS) {
+  cCollectionElement_midrange_5F_interruptDefinitionList * p = nullptr ;
+  macroMyNew (p, cCollectionElement_midrange_5F_interruptDefinitionList (in_mInterruptLocation, in_mInstructionList, in_mFirstSaveRegister, in_mSecondSaveRegister, in_mEndOfInterruptLocation COMMA_THERE)) ;
+  outAttributes.setPointer (p) ;
+  macroDetachSharedObject (p) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint GGS_midrange_5F_interruptDefinitionList::getter_count (UNUSED_LOCATION_ARGS) const {
+  GGS_uint result ;
+  if (isValid ()) {
+    result = GGS_uint (count ()) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_range GGS_midrange_5F_interruptDefinitionList::getter_range (UNUSED_LOCATION_ARGS) const {
+  GGS_range result ;
+  if (isValid ()) {
+    result = GGS_range (0, count ()) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::description (String & ioString,
+                                                           const int32_t inIndentation) const {
+  ioString.appendCString ("<list @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  ioString.appendCString (" (") ;
+  ioString.appendUnsigned (count()) ;
+  ioString.appendCString (" object") ;
+  ioString.appendString ((count() > 1) ? "s" : "") ;
+  ioString.appendCString ("):") ;
+  if (isValid ()) {
+    for (uint32_t i = 0 ; i < count () ; i++) {
+      ioString.appendNewLine () ;
+      ioString.appendStringMultiple ("| ", inIndentation) ;
+      ioString.appendString ("|-at ") ;
+      ioString.appendUnsigned (i) ;
+      ioString.appendNewLine () ;
+      ioString.appendStringMultiple ("| ", inIndentation + 1) ;
+      ioString.appendString ("mInterruptLocation:") ;
+      mArray (int32_t (i) COMMA_HERE).mProperty_mInterruptLocation.description (ioString, inIndentation + 1) ;
+      ioString.appendNewLine () ;
+      ioString.appendStringMultiple ("| ", inIndentation + 1) ;
+      ioString.appendString ("mInstructionList:") ;
+      mArray (int32_t (i) COMMA_HERE).mProperty_mInstructionList.description (ioString, inIndentation + 1) ;
+      ioString.appendNewLine () ;
+      ioString.appendStringMultiple ("| ", inIndentation + 1) ;
+      ioString.appendString ("mFirstSaveRegister:") ;
+      mArray (int32_t (i) COMMA_HERE).mProperty_mFirstSaveRegister.description (ioString, inIndentation + 1) ;
+      ioString.appendNewLine () ;
+      ioString.appendStringMultiple ("| ", inIndentation + 1) ;
+      ioString.appendString ("mSecondSaveRegister:") ;
+      mArray (int32_t (i) COMMA_HERE).mProperty_mSecondSaveRegister.description (ioString, inIndentation + 1) ;
+      ioString.appendNewLine () ;
+      ioString.appendStringMultiple ("| ", inIndentation + 1) ;
+      ioString.appendString ("mEndOfInterruptLocation:") ;
+      mArray (int32_t (i) COMMA_HERE).mProperty_mEndOfInterruptLocation.description (ioString, inIndentation + 1) ;
+    }
+  }else{
+    ioString.appendCString (" not built") ;
+  }
+  ioString.appendCString (">") ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList GGS_midrange_5F_interruptDefinitionList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
+  GGS_midrange_5F_interruptDefinitionList result ;
+  result.mArray.setCapacity (16) ; // Build
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::plusPlusAssignOperation (const GGS_midrange_5F_interruptDefinitionList_2E_element & inValue
+                                                                       COMMA_UNUSED_LOCATION_ARGS) {
+  if (isValid () && inValue.isValid ()) {
+    mArray.appendObject (inValue) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList GGS_midrange_5F_interruptDefinitionList::class_func_listWithValue (const GGS_location & inOperand0,
+                                                                                                           const GGS_midrange_5F_instructionList & inOperand1,
+                                                                                                           const GGS_lstring & inOperand2,
+                                                                                                           const GGS_lstring & inOperand3,
+                                                                                                           const GGS_location & inOperand4
+                                                                                                           COMMA_LOCATION_ARGS) {
+  const GGS_midrange_5F_interruptDefinitionList_2E_element element (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  GGS_midrange_5F_interruptDefinitionList result ;
+  if (element.isValid ()) {
+    result.mArray.setCapacity (16) ; // Build
+    result.plusPlusAssignOperation (element COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::addAssignOperation (const GGS_location & inOperand0,
+                                                                  const GGS_midrange_5F_instructionList & inOperand1,
+                                                                  const GGS_lstring & inOperand2,
+                                                                  const GGS_lstring & inOperand3,
+                                                                  const GGS_location & inOperand4
+                                                                  COMMA_LOCATION_ARGS) {
+  const GGS_midrange_5F_interruptDefinitionList_2E_element newElement (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  plusPlusAssignOperation (newElement COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_append (const GGS_location inOperand0,
+                                                             const GGS_midrange_5F_instructionList inOperand1,
+                                                             const GGS_lstring inOperand2,
+                                                             const GGS_lstring inOperand3,
+                                                             const GGS_location inOperand4,
+                                                             Compiler * /* inCompiler */
+                                                             COMMA_LOCATION_ARGS) {
+  const GGS_midrange_5F_interruptDefinitionList_2E_element newElement (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  if (isValid () && newElement.isValid ()) {
+    plusPlusAssignOperation (newElement COMMA_THERE) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_insertAtIndex (const GGS_location inOperand0,
+                                                                    const GGS_midrange_5F_instructionList inOperand1,
+                                                                    const GGS_lstring inOperand2,
+                                                                    const GGS_lstring inOperand3,
+                                                                    const GGS_location inOperand4,
+                                                                    const GGS_uint inInsertionIndex,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) {
+  const GGS_midrange_5F_interruptDefinitionList_2E_element newElement (inOperand0, inOperand1, inOperand2, inOperand3, inOperand4) ;
+  if (isValid () && inInsertionIndex.isValid () && newElement.isValid ()) {
+    const int32_t idx = int32_t (inInsertionIndex.uintValue ()) ;
+    if (idx <= mArray.count ()) {
+      mArray.insertObjectAtIndex (newElement, idx COMMA_THERE) ;
+    }else{
+      String message = "cannot insert at index " ;
+      message.appendSigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_removeAtIndex (GGS_location & outOperand0,
+                                                                    GGS_midrange_5F_instructionList & outOperand1,
+                                                                    GGS_lstring & outOperand2,
+                                                                    GGS_lstring & outOperand3,
+                                                                    GGS_location & outOperand4,
+                                                                    const GGS_uint inRemoveIndex,
+                                                                    Compiler * inCompiler
+                                                                    COMMA_LOCATION_ARGS) {
+  bool removed = false ;
+  if (isValid () && inRemoveIndex.isValid ()) {
+    const int32_t idx = int32_t (inRemoveIndex.uintValue ()) ;
+    if (idx < mArray.count ()) {
+      removed = true ;
+      outOperand0 = mArray (idx COMMA_HERE).mProperty_mInterruptLocation ;
+      outOperand1 = mArray (idx COMMA_HERE).mProperty_mInstructionList ;
+      outOperand2 = mArray (idx COMMA_HERE).mProperty_mFirstSaveRegister ;
+      outOperand3 = mArray (idx COMMA_HERE).mProperty_mSecondSaveRegister ;
+      outOperand4 = mArray (idx COMMA_HERE).mProperty_mEndOfInterruptLocation ;
+      mArray.removeObjectAtIndex (idx COMMA_HERE) ;
+    }else{
+      String message = "cannot remove at index " ;
+      message.appendSigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  if (!removed) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_popFirst (GGS_location & outOperand0,
+                                                               GGS_midrange_5F_instructionList & outOperand1,
+                                                               GGS_lstring & outOperand2,
+                                                               GGS_lstring & outOperand3,
+                                                               GGS_location & outOperand4,
+                                                               Compiler * inCompiler
+                                                               COMMA_LOCATION_ARGS) {
+  bool removed = false ;
+  if (isValid ()) {
+    if (mArray.count () > 0) {
+      removed = true ;
+      outOperand0 = mArray (0 COMMA_THERE).mProperty_mInterruptLocation ;
+      outOperand1 = mArray (0 COMMA_THERE).mProperty_mInstructionList ;
+      outOperand2 = mArray (0 COMMA_THERE).mProperty_mFirstSaveRegister ;
+      outOperand3 = mArray (0 COMMA_THERE).mProperty_mSecondSaveRegister ;
+      outOperand4 = mArray (0 COMMA_THERE).mProperty_mEndOfInterruptLocation ;
+      mArray.removeObjectAtIndex (0 COMMA_HERE) ;
+    }else{
+      const String message = "cannot remove first element, list is empty" ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  if (!removed) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_popLast (GGS_location & outOperand0,
+                                                              GGS_midrange_5F_instructionList & outOperand1,
+                                                              GGS_lstring & outOperand2,
+                                                              GGS_lstring & outOperand3,
+                                                              GGS_location & outOperand4,
+                                                              Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) {
+  bool removed = false ;
+  if (isValid ()) {
+    if (mArray.count () > 0) {
+      removed = true ;
+      outOperand0 = mArray.lastObject (HERE).mProperty_mInterruptLocation ;
+      outOperand1 = mArray.lastObject (HERE).mProperty_mInstructionList ;
+      outOperand2 = mArray.lastObject (HERE).mProperty_mFirstSaveRegister ;
+      outOperand3 = mArray.lastObject (HERE).mProperty_mSecondSaveRegister ;
+      outOperand4 = mArray.lastObject (HERE).mProperty_mEndOfInterruptLocation ;
+      mArray.removeLastObject (HERE) ;
+    }else{
+      const String message = "cannot remove last element, list is empty" ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  if (!removed) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::method_first (GGS_location & outOperand0,
+                                                            GGS_midrange_5F_instructionList & outOperand1,
+                                                            GGS_lstring & outOperand2,
+                                                            GGS_lstring & outOperand3,
+                                                            GGS_location & outOperand4,
+                                                            Compiler * inCompiler
+                                                            COMMA_LOCATION_ARGS) const {
+  bool found = false ;
+  if (isValid ()) {
+    if (mArray.count () > 0) {
+      found = true ;
+      outOperand0 = mArray (0 COMMA_THERE).mProperty_mInterruptLocation ;
+      outOperand1 = mArray (0 COMMA_THERE).mProperty_mInstructionList ;
+      outOperand2 = mArray (0 COMMA_THERE).mProperty_mFirstSaveRegister ;
+      outOperand3 = mArray (0 COMMA_THERE).mProperty_mSecondSaveRegister ;
+      outOperand4 = mArray (0 COMMA_THERE).mProperty_mEndOfInterruptLocation ;
+    }else{
+      const String message = "cannot get first element, list is empty" ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  if (!found) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::method_last (GGS_location & outOperand0,
+                                                           GGS_midrange_5F_instructionList & outOperand1,
+                                                           GGS_lstring & outOperand2,
+                                                           GGS_lstring & outOperand3,
+                                                           GGS_location & outOperand4,
+                                                           Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) const {
+  bool found = false ;
+  if (isValid ()) {
+    if (mArray.count () > 0) {
+      found = true ;
+      outOperand0 = mArray.lastObject (HERE).mProperty_mInterruptLocation ;
+      outOperand1 = mArray.lastObject (HERE).mProperty_mInstructionList ;
+      outOperand2 = mArray.lastObject (HERE).mProperty_mFirstSaveRegister ;
+      outOperand3 = mArray.lastObject (HERE).mProperty_mSecondSaveRegister ;
+      outOperand4 = mArray.lastObject (HERE).mProperty_mEndOfInterruptLocation ;
+    }else{
+      const String message = "cannot get last element, list is empty" ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  if (!found) {
+    outOperand0.drop () ;
+    outOperand1.drop () ;
+    outOperand2.drop () ;
+    outOperand3.drop () ;
+    outOperand4.drop () ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList GGS_midrange_5F_interruptDefinitionList::add_operation (const GGS_midrange_5F_interruptDefinitionList & inOperand,
+                                                                                                Compiler * /* inCompiler */
+                                                                                                COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_midrange_5F_interruptDefinitionList result ;
+  if (isValid () && inOperand.isValid ()) {
+    result = *this ;
+    result.mArray.setCapacity (1 + result.mArray.count () + inOperand.mArray.count ()) ;
+    for (int32_t i = 0 ; i < inOperand.mArray.count () ; i++) {
+      result.mArray.appendObject (inOperand.mArray (i COMMA_HERE)) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList GGS_midrange_5F_interruptDefinitionList::subList (const int32_t inStart,
+                                                                                          const int32_t inLength,
+                                                                                          Compiler * inCompiler
+                                                                                          COMMA_LOCATION_ARGS) const {
+  GGS_midrange_5F_interruptDefinitionList result ;
+  const bool ok = (inStart >= 0) && (inLength >= 0) && ((inStart + inLength) <= int32_t (count ())) ;
+  if (ok) {
+    result.mArray.setCapacity (std::max (16, inLength)) ;
+    for (int32_t i = inStart ; i < (inStart + inLength) ; i++) {
+      result.mArray.appendObject (mArray (i COMMA_HERE)) ;
+    }
+  }else{
+    String message = "cannot get sublist [start: " ;
+    message.appendSigned (inStart) ;
+    message.appendCString (", length: ") ;
+    message.appendSigned (inLength) ;
+    message.appendCString ("], list count is ") ;
+    message.appendSigned (mArray.count ()) ;
+    inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList GGS_midrange_5F_interruptDefinitionList::getter_subListWithRange (const GGS_range & inRange,
+                                                                                                          Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) const {
+  GGS_midrange_5F_interruptDefinitionList result ;
+  if (isValid () && inRange.isValid ()) {
+    const int32_t start  = int32_t (inRange.mProperty_start.uintValue ()) ;
+    const int32_t length = int32_t (inRange.mProperty_length.uintValue ()) ;
+    result = subList (start, length, inCompiler COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList GGS_midrange_5F_interruptDefinitionList::getter_subListFromIndex (const GGS_uint & inIndex,
+                                                                                                          Compiler * inCompiler
+                                                                                                          COMMA_LOCATION_ARGS) const {
+  GGS_midrange_5F_interruptDefinitionList result ;
+  if (isValid () && inIndex.isValid ()) {
+    const int32_t start  = int32_t (inIndex.uintValue ()) ;
+    const int32_t length = int32_t (count ()) - start ;
+    result = subList (start, length, inCompiler COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList GGS_midrange_5F_interruptDefinitionList::getter_subListToIndex (const GGS_uint & inIndex,
+                                                                                                        Compiler * inCompiler
+                                                                                                        COMMA_LOCATION_ARGS) const {
+  GGS_midrange_5F_interruptDefinitionList result ;
+  if (isValid () && inIndex.isValid ()) {
+    const int32_t start  = 0 ;
+    const int32_t length = int32_t (inIndex.uintValue ()) + 1 ;
+    result = subList (start, length, inCompiler COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::plusAssignOperation (const GGS_midrange_5F_interruptDefinitionList inList,
+                                                                   Compiler * /* inCompiler */
+                                                                   COMMA_UNUSED_LOCATION_ARGS) {
+  if (isValid () && inList.isValid ()) {
+    mArray.setCapacity (1 + mArray.count () + inList.mArray.count ()) ;
+    for (int32_t i=0 ; i < int32_t (inList.count ()) ; i++) {
+      mArray.appendObject (inList.mArray (i COMMA_HERE)) ;
+    }
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_setMInterruptLocationAtIndex (GGS_location inOperand,
+                                                                                   GGS_uint inIndex,
+                                                                                   Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand.isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      mArray (int32_t (idx) COMMA_HERE).mProperty_mInterruptLocation = inOperand ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+}
+//--------------------------------------------------------------------------------------------------
+  
+GGS_location GGS_midrange_5F_interruptDefinitionList::getter_mInterruptLocationAtIndex (const GGS_uint & inIndex,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
+  GGS_location result ;
+  if (isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      result = mArray (int32_t (idx) COMMA_HERE).mProperty_mInterruptLocation ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_setMInstructionListAtIndex (GGS_midrange_5F_instructionList inOperand,
+                                                                                 GGS_uint inIndex,
+                                                                                 Compiler * inCompiler
+                                                                                 COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand.isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      mArray (int32_t (idx) COMMA_HERE).mProperty_mInstructionList = inOperand ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+}
+//--------------------------------------------------------------------------------------------------
+  
+GGS_midrange_5F_instructionList GGS_midrange_5F_interruptDefinitionList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
+                                                                                                         Compiler * inCompiler
+                                                                                                         COMMA_LOCATION_ARGS) const {
+  GGS_midrange_5F_instructionList result ;
+  if (isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      result = mArray (int32_t (idx) COMMA_HERE).mProperty_mInstructionList ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_setMFirstSaveRegisterAtIndex (GGS_lstring inOperand,
+                                                                                   GGS_uint inIndex,
+                                                                                   Compiler * inCompiler
+                                                                                   COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand.isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      mArray (int32_t (idx) COMMA_HERE).mProperty_mFirstSaveRegister = inOperand ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+}
+//--------------------------------------------------------------------------------------------------
+  
+GGS_lstring GGS_midrange_5F_interruptDefinitionList::getter_mFirstSaveRegisterAtIndex (const GGS_uint & inIndex,
+                                                                                       Compiler * inCompiler
+                                                                                       COMMA_LOCATION_ARGS) const {
+  GGS_lstring result ;
+  if (isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      result = mArray (int32_t (idx) COMMA_HERE).mProperty_mFirstSaveRegister ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_setMSecondSaveRegisterAtIndex (GGS_lstring inOperand,
+                                                                                    GGS_uint inIndex,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand.isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      mArray (int32_t (idx) COMMA_HERE).mProperty_mSecondSaveRegister = inOperand ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+}
+//--------------------------------------------------------------------------------------------------
+  
+GGS_lstring GGS_midrange_5F_interruptDefinitionList::getter_mSecondSaveRegisterAtIndex (const GGS_uint & inIndex,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) const {
+  GGS_lstring result ;
+  if (isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      result = mArray (int32_t (idx) COMMA_HERE).mProperty_mSecondSaveRegister ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GGS_midrange_5F_interruptDefinitionList::setter_setMEndOfInterruptLocationAtIndex (GGS_location inOperand,
+                                                                                        GGS_uint inIndex,
+                                                                                        Compiler * inCompiler
+                                                                                        COMMA_LOCATION_ARGS) {
+  if (isValid () && inOperand.isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      mArray (int32_t (idx) COMMA_HERE).mProperty_mEndOfInterruptLocation = inOperand ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+}
+//--------------------------------------------------------------------------------------------------
+  
+GGS_location GGS_midrange_5F_interruptDefinitionList::getter_mEndOfInterruptLocationAtIndex (const GGS_uint & inIndex,
+                                                                                             Compiler * inCompiler
+                                                                                             COMMA_LOCATION_ARGS) const {
+  GGS_location result ;
+  if (isValid () && inIndex.isValid ()) {
+    const uint32_t idx = inIndex.uintValue () ;
+    if (idx < count ()) {
+      result = mArray (int32_t (idx) COMMA_HERE).mProperty_mEndOfInterruptLocation ;
+    }else{
+      String message = "cannot access at index " ;
+      message.appendUnsigned (idx) ;
+      message.appendCString (", list count is ") ;
+      message.appendSigned (mArray.count ()) ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+// Down Enumerator for @midrange_5F_interruptDefinitionList
+//--------------------------------------------------------------------------------------------------
+
+DownEnumerator_midrange_5F_interruptDefinitionList::DownEnumerator_midrange_5F_interruptDefinitionList (const GGS_midrange_5F_interruptDefinitionList & inEnumeratedObject) :
+mArray (inEnumeratedObject.sortedElementArray ()),
+mIndex (0) {
+  mIndex = mArray.count () - 1 ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList_2E_element DownEnumerator_midrange_5F_interruptDefinitionList::current (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location DownEnumerator_midrange_5F_interruptDefinitionList::current_mInterruptLocation (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mInterruptLocation ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instructionList DownEnumerator_midrange_5F_interruptDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mInstructionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring DownEnumerator_midrange_5F_interruptDefinitionList::current_mFirstSaveRegister (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mFirstSaveRegister ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring DownEnumerator_midrange_5F_interruptDefinitionList::current_mSecondSaveRegister (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mSecondSaveRegister ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location DownEnumerator_midrange_5F_interruptDefinitionList::current_mEndOfInterruptLocation (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mEndOfInterruptLocation ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+// Up Enumerator for @midrange_5F_interruptDefinitionList
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_midrange_5F_interruptDefinitionList::UpEnumerator_midrange_5F_interruptDefinitionList (const GGS_midrange_5F_interruptDefinitionList & inEnumeratedObject) :
+mArray (inEnumeratedObject.sortedElementArray ()),
+mIndex (0) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList_2E_element UpEnumerator_midrange_5F_interruptDefinitionList::current (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location UpEnumerator_midrange_5F_interruptDefinitionList::current_mInterruptLocation (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mInterruptLocation ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_instructionList UpEnumerator_midrange_5F_interruptDefinitionList::current_mInstructionList (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mInstructionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_midrange_5F_interruptDefinitionList::current_mFirstSaveRegister (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mFirstSaveRegister ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_midrange_5F_interruptDefinitionList::current_mSecondSaveRegister (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mSecondSaveRegister ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location UpEnumerator_midrange_5F_interruptDefinitionList::current_mEndOfInterruptLocation (LOCATION_ARGS) const {
+  return mArray (mIndex COMMA_THERE).mProperty_mEndOfInterruptLocation ;
+}
+
+
+
+
+//--------------------------------------------------------------------------------------------------
+//     @midrange_interruptDefinitionList generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList ("midrange_interruptDefinitionList",
+                                                                                        nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_midrange_5F_interruptDefinitionList::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_midrange_5F_interruptDefinitionList ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_midrange_5F_interruptDefinitionList::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_midrange_5F_interruptDefinitionList (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_midrange_5F_interruptDefinitionList GGS_midrange_5F_interruptDefinitionList::extractObject (const GGS_object & inObject,
+                                                                                                Compiler * inCompiler
+                                                                                                COMMA_LOCATION_ARGS) {
+  GGS_midrange_5F_interruptDefinitionList result ;
+  const GGS_midrange_5F_interruptDefinitionList * p = (const GGS_midrange_5F_interruptDefinitionList *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_midrange_5F_interruptDefinitionList *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("midrange_interruptDefinitionList", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

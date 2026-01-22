@@ -1,6 +1,4 @@
-
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 map @declaredRoutineMap {
   public let @luint mRequiredBank
@@ -12,7 +10,7 @@ map @declaredRoutineMap {
   search searchKey error message "the '%K' routine is not declared"
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 method @pic18PiccoloInstruction performInlining
   ?let @stringset unused inInlinedRoutineSet
@@ -22,7 +20,7 @@ method @pic18PiccoloInstruction performInlining
   ioInstructionList += !self
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_block performInlining
   ?let @stringset inInlinedRoutineSet
@@ -53,7 +51,7 @@ override method @pic18Instruction_block performInlining
   }
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_FOREVER performInlining
   ?let @stringset inInlinedRoutineSet
@@ -74,7 +72,7 @@ override method @pic18Instruction_FOREVER performInlining
     !self.mEndOfInstructionList}
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_do_while performInlining
   ?let @stringset inInlinedRoutineSet
@@ -106,7 +104,7 @@ override method @pic18Instruction_do_while performInlining
     !whilePartList}
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_savebank performInlining
   ?let @stringset inInlinedRoutineSet
@@ -127,7 +125,7 @@ override method @pic18Instruction_savebank performInlining
     !self.mEndOfSaveBankInstruction}
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_structured_if performInlining
   ?let @stringset inInlinedRoutineSet
@@ -156,7 +154,7 @@ override method @pic18Instruction_structured_if performInlining
     !self.mEndOfElsePartLocation}
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @pic18Instruction_JSR performInlining
                       ?let @stringset inInlinedRoutineSet
@@ -170,8 +168,8 @@ override method @pic18Instruction_JSR performInlining
     [inDeclaredRoutineMap searchKey
       !self.mTargetLabel
       ?let @luint requiredBank
-      ?* #??@luint returnedBank
-      ?* #??@bool preservesBank
+      ?* //??@luint returnedBank
+      ?* //??@bool preservesBank
       ?let @bool isNoReturn
       ?let @pic18InstructionList instructionList
     ]
@@ -183,7 +181,7 @@ override method @pic18Instruction_JSR performInlining
       end
       var @stringset currentlyInlinedRoutineSet = inCurrentlyInlinedRoutineSet
       currentlyInlinedRoutineSet ++= self.mTargetLabel.string
-      #ioInstructionList .= instructionList ;
+      //ioInstructionList .= instructionList ;
       for (mInstruction) in  instructionList do
         [mInstruction performInlining
           !inInlinedRoutineSet
@@ -202,7 +200,7 @@ override method @pic18Instruction_JSR performInlining
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 proc performInlineFromInstructionList
   ?let @pic18InstructionList inInstructionList
@@ -221,7 +219,7 @@ proc performInlineFromInstructionList
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 proc pic18PerformRoutineInline
   ?let @stringset inInlinedRoutineSet
@@ -229,7 +227,7 @@ proc pic18PerformRoutineInline
   ?!@pic18InterruptDefinitionList ioInterruptDefinitionList
   ?!@pic18RoutineDefinitionList ioRoutineDefinitionList
 {
-#--- Interrupt routines
+//--- Interrupt routines
   var interruptDefinitionList =@pic18InterruptDefinitionList ()
   for (mInterruptName mFastReturn mInstructionList mEndOfInterruptLocation) in  ioInterruptDefinitionList do
     performInlineFromInstructionList (
@@ -246,7 +244,7 @@ proc pic18PerformRoutineInline
       !mEndOfInterruptLocation
   end
   ioInterruptDefinitionList = interruptDefinitionList
-#--- Regular routines
+//--- Regular routines
   var routineDefinitionList =@pic18RoutineDefinitionList ()
   for (mRoutineName mRequiredBank mReturnedBank mPreservesBank mIsNoReturn mInstructionList mEndOfRoutineLocation) in  ioRoutineDefinitionList do
     performInlineFromInstructionList (
@@ -268,5 +266,5 @@ proc pic18PerformRoutineInline
   ioRoutineDefinitionList = routineDefinitionList
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 

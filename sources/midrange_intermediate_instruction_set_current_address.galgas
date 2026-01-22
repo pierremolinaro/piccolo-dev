@@ -1,16 +1,16 @@
 
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @midrange_intermediate_instruction setCurrentAddress ?!@uint ioCurrentAddress {
   ioCurrentAddress = ioCurrentAddress + [self instructionLength]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @midrange_intermediate_pseudo_ORG setCurrentAddress ?!@uint ioCurrentAddress {
   ioCurrentAddress = self.mOrigin
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 

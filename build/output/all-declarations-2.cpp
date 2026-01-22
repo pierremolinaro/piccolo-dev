@@ -14,35 +14,35 @@
 void cParser_communs::rule_communs_configuration_5F_definition_i0_ (GGS_configDefinitionList & ioArgument_ioConfigDefinitionList,
                                                                     Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("communs.galgas", 8)) ;
-  GGS_location var_defLocation_199 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 9)) ;
-  GGS_configSettingList var_settingList_234 = GGS_configSettingList::init (inCompiler COMMA_HERE) ;
+  GGS_location var_defLocation_200 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 9)) ;
+  GGS_configSettingList var_settingList_235 = GGS_configSettingList::init (inCompiler COMMA_HERE) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 11)) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_communs_0 (inCompiler) == 2) {
-      GGS_lstring var_settingName_323 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_settingName_324 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 14)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 15)) ;
-      GGS_lstring var_settingValue_360 ;
+      GGS_lstring var_settingValue_361 ;
       switch (select_communs_1 (inCompiler)) {
       case 1: {
-        var_settingValue_360 = inCompiler->synthetizedAttribute_tokenString () ;
+        var_settingValue_361 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 18)) ;
       } break ;
       case 2: {
-        var_settingValue_360 = inCompiler->synthetizedAttribute_tokenString () ;
+        var_settingValue_361 = inCompiler->synthetizedAttribute_tokenString () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("communs.galgas", 20)) ;
       } break ;
       default:
         break ;
       }
-      var_settingList_234.addAssignOperation (var_settingName_323, var_settingValue_360  COMMA_SOURCE_FILE ("communs.galgas", 22)) ;
+      var_settingList_235.addAssignOperation (var_settingName_324, var_settingValue_361  COMMA_SOURCE_FILE ("communs.galgas", 22)) ;
     }else{
       repeatFlag_0 = false ;
     }
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 24)) ;
-  ioArgument_ioConfigDefinitionList.addAssignOperation (var_defLocation_199, var_settingList_234  COMMA_SOURCE_FILE ("communs.galgas", 25)) ;
+  ioArgument_ioConfigDefinitionList.addAssignOperation (var_defLocation_200, var_settingList_235  COMMA_SOURCE_FILE ("communs.galgas", 25)) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -105,170 +105,170 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_indexing (Lexi
 void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GGS_declarationInRam & outArgument_outDeclaration,
                                                                  Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outDeclaration.drop () ; // Release 'out' argument
-  GGS_registerProtection var_protection_730 ;
+  GGS_registerProtection var_protection_732 ;
   switch (select_communs_2 (inCompiler)) {
   case 1: {
-    var_protection_730 = GGS_registerProtection::class_func_publicRegister (SOURCE_FILE ("communs.galgas", 33)) ;
+    var_protection_732 = GGS_registerProtection::class_func_publicRegister (SOURCE_FILE ("communs.galgas", 33)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_protected COMMA_SOURCE_FILE ("communs.galgas", 35)) ;
-    var_protection_730 = GGS_registerProtection::class_func_protectedRegister (SOURCE_FILE ("communs.galgas", 36)) ;
+    var_protection_732 = GGS_registerProtection::class_func_protectedRegister (SOURCE_FILE ("communs.galgas", 36)) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_private COMMA_SOURCE_FILE ("communs.galgas", 38)) ;
-    var_protection_730 = GGS_registerProtection::class_func_privateRegister (SOURCE_FILE ("communs.galgas", 39)) ;
+    var_protection_732 = GGS_registerProtection::class_func_privateRegister (SOURCE_FILE ("communs.galgas", 39)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_byte COMMA_SOURCE_FILE ("communs.galgas", 41)) ;
-  GGS_lstring var_name_937 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_name_939 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableDeclaration, "") ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 42)) ;
-  GGS_immediatExpression var_sizeExpression_997 ;
+  GGS_immediatExpression var_sizeExpression_999 ;
   switch (select_communs_3 (inCompiler)) {
   case 1: {
-    var_sizeExpression_997 = GGS_immediatInteger::init_21_ (GGS_luint::init_21__21_ (GGS_uint (uint32_t (1U)), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 45)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+    var_sizeExpression_999 = GGS_immediatInteger::init_21_ (GGS_luint::init_21__21_ (GGS_uint (uint32_t (1U)), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 45)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 47)) ;
-    nt_immediate_5F_expression_ (var_sizeExpression_997, inCompiler) ;
+    nt_immediate_5F_expression_ (var_sizeExpression_999, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 49)) ;
   } break ;
   default:
     break ;
   }
-  GGS_bitSliceTable var_bitSliceTable_1152 = GGS_bitSliceTable::init (inCompiler COMMA_HERE) ;
-  GGS_string var_bitDefinitionString_1200 ;
+  GGS_bitSliceTable var_bitSliceTable_1154 = GGS_bitSliceTable::init (inCompiler COMMA_HERE) ;
+  GGS_string var_bitDefinitionString_1202 ;
   switch (select_communs_4 (inCompiler)) {
   case 1: {
-    var_bitDefinitionString_1200 = GGS_string::makeEmptyString () ;
+    var_bitDefinitionString_1202 = GGS_string::makeEmptyString () ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("communs.galgas", 56)) ;
-    var_bitDefinitionString_1200 = GGS_string (" <") ;
-    GGS_sint var_sliceIndex_1316 = GGS_sint (int32_t (8L)) ;
+    var_bitDefinitionString_1202 = GGS_string (" <") ;
+    GGS_sint var_sliceIndex_1318 = GGS_sint (int32_t (8L)) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
       switch (select_communs_6 (inCompiler)) {
       case 1: {
-        GGS_uint var_sliceWidth_1372 = GGS_uint (uint32_t (0U)) ;
+        GGS_uint var_sliceWidth_1374 = GGS_uint (uint32_t (0U)) ;
         bool repeatFlag_1 = true ;
         while (repeatFlag_1) {
-          GGS_uint var_sliceBase_1440 = GGS_uint (uint32_t (0U)) ;
+          GGS_uint var_sliceBase_1443 = GGS_uint (uint32_t (0U)) ;
           GalgasBool test_2 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_2) {
-            test_2 = GGS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1316.objectCompare (GGS_sint (int32_t (0L)))).boolEnum () ;
+            test_2 = GGS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1318.objectCompare (GGS_sint (int32_t (0L)))).boolEnum () ;
             if (GalgasBool::boolTrue == test_2) {
-              var_sliceBase_1440 = var_sliceIndex_1316.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
+              var_sliceBase_1443 = var_sliceIndex_1318.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 65)) ;
             }
           }
-          GGS_lstring var_sliceName_1581 = inCompiler->synthetizedAttribute_tokenString () ;
+          GGS_lstring var_sliceName_1584 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 67)) ;
           switch (select_communs_8 (inCompiler)) {
           case 1: {
             GalgasBool test_3 = GalgasBool::boolTrue ;
             if (GalgasBool::boolTrue == test_3) {
-              test_3 = GGS_bool (ComparisonKind::notEqual, var_sliceWidth_1372.objectCompare (GGS_uint (uint32_t (0U)))).operator_and (GGS_bool (ComparisonKind::notEqual, var_sliceWidth_1372.objectCompare (GGS_uint (uint32_t (1U)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
+              test_3 = GGS_bool (ComparisonKind::notEqual, var_sliceWidth_1374.objectCompare (GGS_uint (uint32_t (0U)))).operator_and (GGS_bool (ComparisonKind::notEqual, var_sliceWidth_1374.objectCompare (GGS_uint (uint32_t (1U)))) COMMA_SOURCE_FILE ("communs.galgas", 69)).boolEnum () ;
               if (GalgasBool::boolTrue == test_3) {
                 GenericArray <FixItDescription> fixItArray4 ;
-                inCompiler->emitSemanticError (var_sliceName_1581.readProperty_location (), GGS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_1581.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)), fixItArray4  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
+                inCompiler->emitSemanticError (var_sliceName_1584.readProperty_location (), GGS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_1584.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 70)), fixItArray4  COMMA_SOURCE_FILE ("communs.galgas", 70)) ;
               }
             }
-            var_sliceWidth_1372 = GGS_uint (uint32_t (1U)) ;
-            var_bitDefinitionString_1200.plusAssignOperation(var_sliceName_1581.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
+            var_sliceWidth_1374 = GGS_uint (uint32_t (1U)) ;
+            var_bitDefinitionString_1202.plusAssignOperation(var_sliceName_1584.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 73)) ;
           } break ;
           case 2: {
             inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 75)) ;
-            GGS_luint var_sliceSize_1911 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+            GGS_luint var_sliceSize_1914 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
             inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 76)) ;
             GalgasBool test_5 = GalgasBool::boolTrue ;
             if (GalgasBool::boolTrue == test_5) {
-              test_5 = GGS_bool (ComparisonKind::notEqual, var_sliceWidth_1372.objectCompare (GGS_uint (uint32_t (0U)))).operator_and (GGS_bool (ComparisonKind::notEqual, var_sliceWidth_1372.objectCompare (var_sliceSize_1911.readProperty_uint ())) COMMA_SOURCE_FILE ("communs.galgas", 77)).boolEnum () ;
+              test_5 = GGS_bool (ComparisonKind::notEqual, var_sliceWidth_1374.objectCompare (GGS_uint (uint32_t (0U)))).operator_and (GGS_bool (ComparisonKind::notEqual, var_sliceWidth_1374.objectCompare (var_sliceSize_1914.readProperty_uint ())) COMMA_SOURCE_FILE ("communs.galgas", 77)).boolEnum () ;
               if (GalgasBool::boolTrue == test_5) {
                 GenericArray <FixItDescription> fixItArray6 ;
-                inCompiler->emitSemanticError (var_sliceName_1581.readProperty_location (), GGS_string ("a slice of ").add_operation (var_sliceWidth_1372.getter_string (SOURCE_FILE ("communs.galgas", 78)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GGS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (var_sliceName_1581.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)), fixItArray6  COMMA_SOURCE_FILE ("communs.galgas", 78)) ;
+                inCompiler->emitSemanticError (var_sliceName_1584.readProperty_location (), GGS_string ("a slice of ").add_operation (var_sliceWidth_1374.getter_string (SOURCE_FILE ("communs.galgas", 78)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GGS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (var_sliceName_1584.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 78)), fixItArray6  COMMA_SOURCE_FILE ("communs.galgas", 78)) ;
               }
             }
-            var_sliceWidth_1372 = var_sliceSize_1911.readProperty_uint () ;
-            var_sliceBase_1440 = var_sliceBase_1440.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)).substract_operation (var_sliceSize_1911.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)) ;
-            var_bitDefinitionString_1200.plusAssignOperation(var_sliceName_1581.readProperty_string ().add_operation (GGS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (var_sliceSize_1911.readProperty_uint ().getter_string (SOURCE_FILE ("communs.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 82)) ;
+            var_sliceWidth_1374 = var_sliceSize_1914.readProperty_uint () ;
+            var_sliceBase_1443 = var_sliceBase_1443.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)).substract_operation (var_sliceSize_1914.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 81)) ;
+            var_bitDefinitionString_1202.plusAssignOperation(var_sliceName_1584.readProperty_string ().add_operation (GGS_string ("["), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (var_sliceSize_1914.readProperty_uint ().getter_string (SOURCE_FILE ("communs.galgas", 82)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 82)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 82)) ;
             inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 83)) ;
           } break ;
           default:
             break ;
           }
-          GGS_uint var_base_2357 = GGS_uint (uint32_t (0U)) ;
+          GGS_uint var_base_2360 = GGS_uint (uint32_t (0U)) ;
           GalgasBool test_7 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_7) {
-            test_7 = GGS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1316.objectCompare (var_sliceWidth_1372.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)))).boolEnum () ;
+            test_7 = GGS_bool (ComparisonKind::greaterOrEqual, var_sliceIndex_1318.objectCompare (var_sliceWidth_1374.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 86)))).boolEnum () ;
             if (GalgasBool::boolTrue == test_7) {
-              var_base_2357 = var_sliceIndex_1316.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)).substract_operation (var_sliceWidth_1372, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)) ;
+              var_base_2360 = var_sliceIndex_1318.getter_uint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)).substract_operation (var_sliceWidth_1374, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 87)) ;
             }
           }
           {
-          var_bitSliceTable_1152.setter_insertKey (var_sliceName_1581, var_base_2357, var_sliceWidth_1372, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 89)) ;
+          var_bitSliceTable_1154.setter_insertKey (var_sliceName_1584, var_base_2360, var_sliceWidth_1374, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 89)) ;
           }
           if (select_communs_7 (inCompiler) == 2) {
             inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 91)) ;
-            var_bitDefinitionString_1200.plusAssignOperation(GGS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 92)) ;
+            var_bitDefinitionString_1202.plusAssignOperation(GGS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 92)) ;
           }else{
             repeatFlag_1 = false ;
           }
         }
-        var_sliceIndex_1316 = var_sliceIndex_1316.substract_operation (var_sliceWidth_1372.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
+        var_sliceIndex_1318 = var_sliceIndex_1318.substract_operation (var_sliceWidth_1374.getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 94)) ;
       } break ;
       case 2: {
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 96)) ;
-        var_bitDefinitionString_1200.plusAssignOperation(GGS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 97)) ;
-        var_sliceIndex_1316.minusAssignOperation(GGS_sint (int32_t (1L)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 98)) ;
+        var_bitDefinitionString_1202.plusAssignOperation(GGS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 97)) ;
+        var_sliceIndex_1318.minusAssignOperation(GGS_sint (int32_t (1L)), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 98)) ;
       } break ;
       case 3: {
-        GGS_luint var_bitCount_2788 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        GGS_luint var_bitCount_2791 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 100)) ;
         GalgasBool test_8 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_8) {
-          test_8 = GGS_bool (ComparisonKind::equal, var_bitCount_2788.readProperty_uint ().objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+          test_8 = GGS_bool (ComparisonKind::equal, var_bitCount_2791.readProperty_uint ().objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
           if (GalgasBool::boolTrue == test_8) {
             GenericArray <FixItDescription> fixItArray9 ;
-            inCompiler->emitSemanticError (var_bitCount_2788.readProperty_location (), GGS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 102)) ;
+            inCompiler->emitSemanticError (var_bitCount_2791.readProperty_location (), GGS_string ("the bit count should be > 0"), fixItArray9  COMMA_SOURCE_FILE ("communs.galgas", 102)) ;
           }
         }
-        UpEnumerator_range enumerator_2941 (GGS_range (GGS_uint (uint32_t (0U)), var_bitCount_2788.readProperty_uint ().substract_operation (GGS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104)))) ;
-        while (enumerator_2941.hasCurrentObject ()) {
-          var_bitDefinitionString_1200.plusAssignOperation(GGS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 105)) ;
-          enumerator_2941.gotoNextObject () ;
-          if (enumerator_2941.hasCurrentObject ()) {
-            var_bitDefinitionString_1200.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 106)) ;
+        UpEnumerator_range enumerator_2944 (GGS_range (GGS_uint (uint32_t (0U)), var_bitCount_2791.readProperty_uint ().substract_operation (GGS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 104)))) ;
+        while (enumerator_2944.hasCurrentObject ()) {
+          var_bitDefinitionString_1202.plusAssignOperation(GGS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 105)) ;
+          enumerator_2944.gotoNextObject () ;
+          if (enumerator_2944.hasCurrentObject ()) {
+            var_bitDefinitionString_1202.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 106)) ;
           }
         }
-        var_sliceIndex_1316 = var_sliceIndex_1316.substract_operation (var_bitCount_2788.readProperty_uint ().getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)) ;
+        var_sliceIndex_1318 = var_sliceIndex_1318.substract_operation (var_bitCount_2791.readProperty_uint ().getter_sint (inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 108)) ;
       } break ;
       default:
         break ;
       }
       if (select_communs_5 (inCompiler) == 2) {
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 111)) ;
-        var_bitDefinitionString_1200.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 112)) ;
+        var_bitDefinitionString_1202.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 112)) ;
       }else{
         repeatFlag_0 = false ;
       }
     }
     GalgasBool test_10 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_10) {
-      test_10 = GGS_bool (ComparisonKind::notEqual, var_sliceIndex_1316.objectCompare (GGS_sint (int32_t (0L)))).boolEnum () ;
+      test_10 = GGS_bool (ComparisonKind::notEqual, var_sliceIndex_1318.objectCompare (GGS_sint (int32_t (0L)))).boolEnum () ;
       if (GalgasBool::boolTrue == test_10) {
         GenericArray <FixItDescription> fixItArray11 ;
-        inCompiler->emitSemanticError (var_name_937.readProperty_location (), GGS_string ("Incorrect bit definition for register '").add_operation (var_name_937.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GGS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GGS_sint (int32_t (8L)).substract_operation (var_sliceIndex_1316, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).getter_string (SOURCE_FILE ("communs.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GGS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)), fixItArray11  COMMA_SOURCE_FILE ("communs.galgas", 115)) ;
+        inCompiler->emitSemanticError (var_name_939.readProperty_location (), GGS_string ("Incorrect bit definition for register '").add_operation (var_name_939.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GGS_string ("': "), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GGS_sint (int32_t (8L)).substract_operation (var_sliceIndex_1318, inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).getter_string (SOURCE_FILE ("communs.galgas", 115)), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)).add_operation (GGS_string (" bits (s) are defined, instead of 8"), inCompiler COMMA_SOURCE_FILE ("communs.galgas", 115)), fixItArray11  COMMA_SOURCE_FILE ("communs.galgas", 115)) ;
       }
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 117)) ;
-    var_bitDefinitionString_1200.plusAssignOperation(GGS_string (">"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 118)) ;
+    var_bitDefinitionString_1202.plusAssignOperation(GGS_string (">"), inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 118)) ;
   } break ;
   default:
     break ;
   }
-  outArgument_outDeclaration = GGS_byteDeclarationInRam::init_21__21__21__21__21_ (var_name_937, var_sizeExpression_997, var_bitSliceTable_1152, var_bitDefinitionString_1200, var_protection_730, inCompiler COMMA_HERE) ;
+  outArgument_outDeclaration = GGS_byteDeclarationInRam::init_21__21__21__21__21_ (var_name_939, var_sizeExpression_999, var_bitSliceTable_1154, var_bitDefinitionString_1202, var_protection_732, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -439,21 +439,21 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_indexing (Lexique
 void cParser_communs::rule_communs_ram_5F_definition_i2_ (GGS_ramDefinitionList & ioArgument_ioRamDefinitionList,
                                                           Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("communs.galgas", 128)) ;
-  GGS_lstring var_bankName_3669 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_bankName_3673 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 129)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 130)) ;
-  GGS_declarationInRamList var_declarationInRamList_3690 = GGS_declarationInRamList::init (inCompiler COMMA_HERE) ;
+  GGS_declarationInRamList var_declarationInRamList_3694 = GGS_declarationInRamList::init (inCompiler COMMA_HERE) ;
   bool repeatFlag_0 = true ;
   while (repeatFlag_0) {
     if (select_communs_9 (inCompiler) == 2) {
-      GGS_declarationInRam var_declaration_3802 ;
-      nt_declaration_5F_in_5F_ram_ (var_declaration_3802, inCompiler) ;
-      var_declarationInRamList_3690.addAssignOperation (var_declaration_3802  COMMA_SOURCE_FILE ("communs.galgas", 135)) ;
+      GGS_declarationInRam var_declaration_3806 ;
+      nt_declaration_5F_in_5F_ram_ (var_declaration_3806, inCompiler) ;
+      var_declarationInRamList_3694.addAssignOperation (var_declaration_3806  COMMA_SOURCE_FILE ("communs.galgas", 135)) ;
     }else{
       repeatFlag_0 = false ;
     }
   }
-  ioArgument_ioRamDefinitionList.addAssignOperation (var_bankName_3669, var_declarationInRamList_3690  COMMA_SOURCE_FILE ("communs.galgas", 137)) ;
+  ioArgument_ioRamDefinitionList.addAssignOperation (var_bankName_3673, var_declarationInRamList_3694  COMMA_SOURCE_FILE ("communs.galgas", 137)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 138)) ;
 }
 
@@ -497,13 +497,13 @@ void cParser_communs::rule_communs_ram_5F_definition_i2_indexing (Lexique_piccol
 void cParser_communs::rule_communs_constant_5F_definition_i3_ (GGS_constantDefinitionList & ioArgument_ioConstantDefinitionList,
                                                                Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_const COMMA_SOURCE_FILE ("communs.galgas", 145)) ;
-  GGS_lstring var_constantName_4104 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_constantName_4109 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_constantDeclaration, "") ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 146)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3D_ COMMA_SOURCE_FILE ("communs.galgas", 147)) ;
-  GGS_immediatExpression var_expression_4202 ;
-  nt_immediate_5F_expression_ (var_expression_4202, inCompiler) ;
-  ioArgument_ioConstantDefinitionList.addAssignOperation (var_constantName_4104, var_expression_4202  COMMA_SOURCE_FILE ("communs.galgas", 149)) ;
+  GGS_immediatExpression var_expression_4207 ;
+  nt_immediate_5F_expression_ (var_expression_4207, inCompiler) ;
+  ioArgument_ioConstantDefinitionList.addAssignOperation (var_constantName_4109, var_expression_4207  COMMA_SOURCE_FILE ("communs.galgas", 149)) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -538,15 +538,15 @@ void cParser_communs::rule_communs_immediate_5F_expression_i4_ (GGS_immediatExpr
     switch (select_communs_10 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("communs.galgas", 158)) ;
-      GGS_immediatExpression var_rightExpression_4514 ;
-      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4514, inCompiler) ;
-      outArgument_outExpression = GGS_immediatOr::init_21__21_ (outArgument_outExpression, var_rightExpression_4514, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_4520 ;
+      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4520, inCompiler) ;
+      outArgument_outExpression = GGS_immediatOr::init_21__21_ (outArgument_outExpression, var_rightExpression_4520, inCompiler COMMA_HERE) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("communs.galgas", 162)) ;
-      GGS_immediatExpression var_rightExpression_4667 ;
-      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4667, inCompiler) ;
-      outArgument_outExpression = GGS_immediatXor::init_21__21_ (outArgument_outExpression, var_rightExpression_4667, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_4673 ;
+      nt_immediate_5F_bitwise_5F_term_ (var_rightExpression_4673, inCompiler) ;
+      outArgument_outExpression = GGS_immediatXor::init_21__21_ (outArgument_outExpression, var_rightExpression_4673, inCompiler COMMA_HERE) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -610,9 +610,9 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_term_i5_ (GGS_immedia
   while (repeatFlag_0) {
     if (select_communs_11 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("communs.galgas", 174)) ;
-      GGS_immediatExpression var_rightExpression_4989 ;
-      nt_immediate_5F_bitwise_5F_factor_ (var_rightExpression_4989, inCompiler) ;
-      outArgument_outExpression = GGS_immediatAnd::init_21__21_ (outArgument_outExpression, var_rightExpression_4989, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_4996 ;
+      nt_immediate_5F_bitwise_5F_factor_ (var_rightExpression_4996, inCompiler) ;
+      outArgument_outExpression = GGS_immediatAnd::init_21__21_ (outArgument_outExpression, var_rightExpression_4996, inCompiler COMMA_HERE) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -661,39 +661,39 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_factor_i6_ (GGS_immed
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3D__3D_ COMMA_SOURCE_FILE ("communs.galgas", 186)) ;
-    GGS_immediatExpression var_rightExpression_5291 ;
-    nt_immediate_5F_term_ (var_rightExpression_5291, inCompiler) ;
-    outArgument_outExpression = GGS_immediatEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5291, inCompiler COMMA_HERE) ;
+    GGS_immediatExpression var_rightExpression_5299 ;
+    nt_immediate_5F_term_ (var_rightExpression_5299, inCompiler) ;
+    outArgument_outExpression = GGS_immediatEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5299, inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__21__3D_ COMMA_SOURCE_FILE ("communs.galgas", 190)) ;
-    GGS_immediatExpression var_rightExpression_5422 ;
-    nt_immediate_5F_term_ (var_rightExpression_5422, inCompiler) ;
-    outArgument_outExpression = GGS_immediatNotEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5422, inCompiler COMMA_HERE) ;
+    GGS_immediatExpression var_rightExpression_5430 ;
+    nt_immediate_5F_term_ (var_rightExpression_5430, inCompiler) ;
+    outArgument_outExpression = GGS_immediatNotEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5430, inCompiler COMMA_HERE) ;
   } break ;
   case 4: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E__3D_ COMMA_SOURCE_FILE ("communs.galgas", 194)) ;
-    GGS_immediatExpression var_rightExpression_5556 ;
-    nt_immediate_5F_term_ (var_rightExpression_5556, inCompiler) ;
-    outArgument_outExpression = GGS_immediatGreaterOrEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5556, inCompiler COMMA_HERE) ;
+    GGS_immediatExpression var_rightExpression_5564 ;
+    nt_immediate_5F_term_ (var_rightExpression_5564, inCompiler) ;
+    outArgument_outExpression = GGS_immediatGreaterOrEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5564, inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C__3D_ COMMA_SOURCE_FILE ("communs.galgas", 198)) ;
-    GGS_immediatExpression var_rightExpression_5696 ;
-    nt_immediate_5F_term_ (var_rightExpression_5696, inCompiler) ;
-    outArgument_outExpression = GGS_immediatLowerOrEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5696, inCompiler COMMA_HERE) ;
+    GGS_immediatExpression var_rightExpression_5704 ;
+    nt_immediate_5F_term_ (var_rightExpression_5704, inCompiler) ;
+    outArgument_outExpression = GGS_immediatLowerOrEqualTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5704, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 202)) ;
-    GGS_immediatExpression var_rightExpression_5833 ;
-    nt_immediate_5F_term_ (var_rightExpression_5833, inCompiler) ;
-    outArgument_outExpression = GGS_immediatGreaterTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5833, inCompiler COMMA_HERE) ;
+    GGS_immediatExpression var_rightExpression_5841 ;
+    nt_immediate_5F_term_ (var_rightExpression_5841, inCompiler) ;
+    outArgument_outExpression = GGS_immediatGreaterTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5841, inCompiler COMMA_HERE) ;
   } break ;
   case 7: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("communs.galgas", 206)) ;
-    GGS_immediatExpression var_rightExpression_5965 ;
-    nt_immediate_5F_term_ (var_rightExpression_5965, inCompiler) ;
-    outArgument_outExpression = GGS_immediatLowerTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5965, inCompiler COMMA_HERE) ;
+    GGS_immediatExpression var_rightExpression_5973 ;
+    nt_immediate_5F_term_ (var_rightExpression_5973, inCompiler) ;
+    outArgument_outExpression = GGS_immediatLowerTest::init_21__21_ (outArgument_outExpression, var_rightExpression_5973, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -784,27 +784,27 @@ void cParser_communs::rule_communs_immediate_5F_term_i7_ (GGS_immediatExpression
     switch (select_communs_13 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2B_ COMMA_SOURCE_FILE ("communs.galgas", 218)) ;
-      GGS_immediatExpression var_rightExpression_6268 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6268, inCompiler) ;
-      outArgument_outExpression = GGS_immediatAdd::init_21__21_ (outArgument_outExpression, var_rightExpression_6268, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_6277 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6277, inCompiler) ;
+      outArgument_outExpression = GGS_immediatAdd::init_21__21_ (outArgument_outExpression, var_rightExpression_6277, inCompiler COMMA_HERE) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 222)) ;
-      GGS_immediatExpression var_rightExpression_6396 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6396, inCompiler) ;
-      outArgument_outExpression = GGS_immediatSub::init_21__21_ (outArgument_outExpression, var_rightExpression_6396, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_6405 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6405, inCompiler) ;
+      outArgument_outExpression = GGS_immediatSub::init_21__21_ (outArgument_outExpression, var_rightExpression_6405, inCompiler COMMA_HERE) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C__3C_ COMMA_SOURCE_FILE ("communs.galgas", 226)) ;
-      GGS_immediatExpression var_rightExpression_6525 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6525, inCompiler) ;
-      outArgument_outExpression = GGS_immediatLeftShift::init_21__21_ (outArgument_outExpression, var_rightExpression_6525, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_6534 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6534, inCompiler) ;
+      outArgument_outExpression = GGS_immediatLeftShift::init_21__21_ (outArgument_outExpression, var_rightExpression_6534, inCompiler COMMA_HERE) ;
     } break ;
     case 5: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E__3E_ COMMA_SOURCE_FILE ("communs.galgas", 230)) ;
-      GGS_immediatExpression var_rightExpression_6660 ;
-      nt_immediate_5F_factor_ (var_rightExpression_6660, inCompiler) ;
-      outArgument_outExpression = GGS_immediatRightShift::init_21__21_ (outArgument_outExpression, var_rightExpression_6660, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_6669 ;
+      nt_immediate_5F_factor_ (var_rightExpression_6669, inCompiler) ;
+      outArgument_outExpression = GGS_immediatRightShift::init_21__21_ (outArgument_outExpression, var_rightExpression_6669, inCompiler COMMA_HERE) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -885,21 +885,21 @@ void cParser_communs::rule_communs_immediate_5F_factor_i8_ (GGS_immediatExpressi
     switch (select_communs_14 (inCompiler)) {
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("communs.galgas", 242)) ;
-      GGS_immediatExpression var_rightExpression_6968 ;
-      nt_immediate_5F_primary_ (var_rightExpression_6968, inCompiler) ;
-      outArgument_outExpression = GGS_immediatMul::init_21__21_ (outArgument_outExpression, var_rightExpression_6968, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_6978 ;
+      nt_immediate_5F_primary_ (var_rightExpression_6978, inCompiler) ;
+      outArgument_outExpression = GGS_immediatMul::init_21__21_ (outArgument_outExpression, var_rightExpression_6978, inCompiler COMMA_HERE) ;
     } break ;
     case 3: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__25_ COMMA_SOURCE_FILE ("communs.galgas", 246)) ;
-      GGS_immediatExpression var_rightExpression_7097 ;
-      nt_immediate_5F_primary_ (var_rightExpression_7097, inCompiler) ;
-      outArgument_outExpression = GGS_immediatMod::init_21__21_ (outArgument_outExpression, var_rightExpression_7097, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_7107 ;
+      nt_immediate_5F_primary_ (var_rightExpression_7107, inCompiler) ;
+      outArgument_outExpression = GGS_immediatMod::init_21__21_ (outArgument_outExpression, var_rightExpression_7107, inCompiler COMMA_HERE) ;
     } break ;
     case 4: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 250)) ;
-      GGS_immediatExpression var_rightExpression_7226 ;
-      nt_immediate_5F_primary_ (var_rightExpression_7226, inCompiler) ;
-      outArgument_outExpression = GGS_immediatDiv::init_21__21_ (outArgument_outExpression, var_rightExpression_7226, inCompiler COMMA_HERE) ;
+      GGS_immediatExpression var_rightExpression_7236 ;
+      nt_immediate_5F_primary_ (var_rightExpression_7236, inCompiler) ;
+      outArgument_outExpression = GGS_immediatDiv::init_21__21_ (outArgument_outExpression, var_rightExpression_7236, inCompiler COMMA_HERE) ;
     } break ;
     default:
       repeatFlag_0 = false ;
@@ -969,48 +969,48 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GGS_immediatExpress
   switch (select_communs_15 (inCompiler)) {
   case 1: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 261)) ;
-    GGS_immediatExpression var_expression_7484 ;
-    nt_immediate_5F_primary_ (var_expression_7484, inCompiler) ;
-    outArgument_outExpression = GGS_immediatNegate::init_21_ (var_expression_7484, inCompiler COMMA_HERE) ;
+    GGS_immediatExpression var_expression_7495 ;
+    nt_immediate_5F_primary_ (var_expression_7495, inCompiler) ;
+    outArgument_outExpression = GGS_immediatNegate::init_21_ (var_expression_7495, inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7E_ COMMA_SOURCE_FILE ("communs.galgas", 265)) ;
-    GGS_immediatExpression var_expression_7588 ;
-    nt_immediate_5F_primary_ (var_expression_7588, inCompiler) ;
-    outArgument_outExpression = GGS_immediatComplement::init_21_ (var_expression_7588, inCompiler COMMA_HERE) ;
+    GGS_immediatExpression var_expression_7599 ;
+    nt_immediate_5F_primary_ (var_expression_7599, inCompiler) ;
+    outArgument_outExpression = GGS_immediatComplement::init_21_ (var_expression_7599, inCompiler COMMA_HERE) ;
   } break ;
   case 3: {
-    GGS_luint var_constant_7685 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GGS_luint var_constant_7696 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 269)) ;
-    outArgument_outExpression = GGS_immediatInteger::init_21_ (var_constant_7685, inCompiler COMMA_HERE) ;
+    outArgument_outExpression = GGS_immediatInteger::init_21_ (var_constant_7696, inCompiler COMMA_HERE) ;
   } break ;
   case 4: {
-    GGS_lchar var_literalCharValue_7780 = inCompiler->synthetizedAttribute_charValue () ;
+    GGS_lchar var_literalCharValue_7791 = inCompiler->synthetizedAttribute_charValue () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_char COMMA_SOURCE_FILE ("communs.galgas", 272)) ;
-    outArgument_outExpression = GGS_immediatInteger::init_21_ (GGS_luint::init_21__21_ (var_literalCharValue_7780.readProperty_char ().getter_uint (SOURCE_FILE ("communs.galgas", 273)), var_literalCharValue_7780.readProperty_location (), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+    outArgument_outExpression = GGS_immediatInteger::init_21_ (GGS_luint::init_21__21_ (var_literalCharValue_7791.readProperty_char ().getter_uint (SOURCE_FILE ("communs.galgas", 273)), var_literalCharValue_7791.readProperty_location (), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
   } break ;
   case 5: {
-    GGS_lstring var_registerName_7941 = inCompiler->synthetizedAttribute_tokenString () ;
+    GGS_lstring var_registerName_7952 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableUse, "") ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 275)) ;
-    GGS_immediatExpression var_offset_8003 ;
-    GGS_location var_endOfOffsetExpression_8028 ;
+    GGS_immediatExpression var_offset_8014 ;
+    GGS_location var_endOfOffsetExpression_8039 ;
     switch (select_communs_16 (inCompiler)) {
     case 1: {
-      var_offset_8003 = GGS_immediatInteger::init_21_ (GGS_luint::init_21__21_ (GGS_uint (uint32_t (0U)), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 279)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
-      var_endOfOffsetExpression_8028 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 280)) ;
+      var_offset_8014 = GGS_immediatInteger::init_21_ (GGS_luint::init_21__21_ (GGS_uint (uint32_t (0U)), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 279)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+      var_endOfOffsetExpression_8039 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 280)) ;
     } break ;
     case 2: {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 282)) ;
-      nt_immediate_5F_expression_ (var_offset_8003, inCompiler) ;
-      var_endOfOffsetExpression_8028 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 284)) ;
+      nt_immediate_5F_expression_ (var_offset_8014, inCompiler) ;
+      var_endOfOffsetExpression_8039 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 284)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 285)) ;
     } break ;
     default:
       break ;
     }
-    GGS_registerExpression var_registerExpression_8262 = GGS_registerExpression::init_21__21__21_ (var_registerName_7941, var_offset_8003, var_endOfOffsetExpression_8028, inCompiler COMMA_HERE) ;
-    outArgument_outExpression = GGS_immediatRegister::init_21_ (var_registerExpression_8262, inCompiler COMMA_HERE) ;
+    GGS_registerExpression var_registerExpression_8273 = GGS_registerExpression::init_21__21__21_ (var_registerName_7952, var_offset_8014, var_endOfOffsetExpression_8039, inCompiler COMMA_HERE) ;
+    outArgument_outExpression = GGS_immediatRegister::init_21_ (var_registerExpression_8273, inCompiler COMMA_HERE) ;
   } break ;
   case 6: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 294)) ;
@@ -1018,18 +1018,18 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GGS_immediatExpress
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 296)) ;
   } break ;
   case 7: {
-    GGS_lstring var_registerName_8534 = inCompiler->synthetizedAttribute_tokenString () ;
+    GGS_lstring var_registerName_8545 = inCompiler->synthetizedAttribute_tokenString () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 298)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 299)) ;
-    GGS_immediatSliceExpressionList var_sliceExpressionList_8563 = GGS_immediatSliceExpressionList::init (inCompiler COMMA_HERE) ;
+    GGS_immediatSliceExpressionList var_sliceExpressionList_8574 = GGS_immediatSliceExpressionList::init (inCompiler COMMA_HERE) ;
     bool repeatFlag_0 = true ;
     while (repeatFlag_0) {
-      GGS_lstring var_sliceName_8660 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_sliceName_8671 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 302)) ;
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 303)) ;
-      GGS_immediatExpression var_expression_8714 ;
-      nt_immediate_5F_expression_ (var_expression_8714, inCompiler) ;
-      var_sliceExpressionList_8563.addAssignOperation (var_sliceName_8660, var_expression_8714  COMMA_SOURCE_FILE ("communs.galgas", 305)) ;
+      GGS_immediatExpression var_expression_8725 ;
+      nt_immediate_5F_expression_ (var_expression_8725, inCompiler) ;
+      var_sliceExpressionList_8574.addAssignOperation (var_sliceName_8671, var_expression_8725  COMMA_SOURCE_FILE ("communs.galgas", 305)) ;
       if (select_communs_17 (inCompiler) == 2) {
         inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 307)) ;
       }else{
@@ -1037,7 +1037,7 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GGS_immediatExpress
       }
     }
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 309)) ;
-    outArgument_outExpression = GGS_immediatSlice::init_21__21_ (var_registerName_8534, var_sliceExpressionList_8563, inCompiler COMMA_HERE) ;
+    outArgument_outExpression = GGS_immediatSlice::init_21__21_ (var_registerName_8545, var_sliceExpressionList_8574, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -1168,26 +1168,26 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_indexing (Lexique_pic
 void cParser_communs::rule_communs_register_5F_parsing_i10_ (GGS_registerExpression & outArgument_outRegisterExpression,
                                                              Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outRegisterExpression.drop () ; // Release 'out' argument
-  GGS_lstring var_registerName_9048 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_registerName_9060 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableUse, "") ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 317)) ;
-  GGS_immediatExpression var_offset_9108 ;
-  GGS_location var_endOfOffsetExpression_9131 ;
+  GGS_immediatExpression var_offset_9120 ;
+  GGS_location var_endOfOffsetExpression_9143 ;
   switch (select_communs_18 (inCompiler)) {
   case 1: {
-    var_offset_9108 = GGS_immediatInteger::init_21_ (GGS_luint::init_21__21_ (GGS_uint (uint32_t (0U)), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 321)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
-    var_endOfOffsetExpression_9131 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 322)) ;
+    var_offset_9120 = GGS_immediatInteger::init_21_ (GGS_luint::init_21__21_ (GGS_uint (uint32_t (0U)), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 321)), inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+    var_endOfOffsetExpression_9143 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 322)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 324)) ;
-    nt_immediate_5F_expression_ (var_offset_9108, inCompiler) ;
-    var_endOfOffsetExpression_9131 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 326)) ;
+    nt_immediate_5F_expression_ (var_offset_9120, inCompiler) ;
+    var_endOfOffsetExpression_9143 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 326)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 327)) ;
   } break ;
   default:
     break ;
   }
-  outArgument_outRegisterExpression = GGS_registerExpression::init_21__21__21_ (var_registerName_9048, var_offset_9108, var_endOfOffsetExpression_9131, inCompiler COMMA_HERE) ;
+  outArgument_outRegisterExpression = GGS_registerExpression::init_21__21__21_ (var_registerName_9060, var_offset_9120, var_endOfOffsetExpression_9143, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -1232,23 +1232,23 @@ void cParser_communs::rule_communs_register_5F_parsing_i10_indexing (Lexique_pic
 void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_ (GGS_bitNumberExpression & outArgument_outBitNumber,
                                                                   Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
-  GGS_lstring var_bitNumberLabel_9599 = inCompiler->synthetizedAttribute_tokenString () ;
+  GGS_lstring var_bitNumberLabel_9612 = inCompiler->synthetizedAttribute_tokenString () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 339)) ;
-  GGS_luint var_bitIndex_9627 ;
+  GGS_luint var_bitIndex_9640 ;
   switch (select_communs_19 (inCompiler)) {
   case 1: {
-    var_bitIndex_9627 = GGS_luint::init_21__21_ (GGS_uint (uint32_t (0U)), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 342)), inCompiler COMMA_HERE) ;
+    var_bitIndex_9640 = GGS_luint::init_21__21_ (GGS_uint (uint32_t (0U)), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 342)), inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 344)) ;
-    var_bitIndex_9627 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    var_bitIndex_9640 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 345)) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 346)) ;
   } break ;
   default:
     break ;
   }
-  outArgument_outBitNumber = GGS_bitNumberLabelValue::init_21__21_ (var_bitNumberLabel_9599, var_bitIndex_9627, inCompiler COMMA_HERE) ;
+  outArgument_outBitNumber = GGS_bitNumberLabelValue::init_21__21_ (var_bitNumberLabel_9612, var_bitIndex_9640, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -1291,9 +1291,9 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_indexing (Lexiqu
 void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i12_ (GGS_bitNumberExpression & outArgument_outBitNumber,
                                                                   Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
-  GGS_luint var_bitIndex_9946 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  GGS_luint var_bitIndex_9960 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 354)) ;
-  outArgument_outBitNumber = GGS_bitNumberLiteralValue::init_21_ (var_bitIndex_9946, inCompiler COMMA_HERE) ;
+  outArgument_outBitNumber = GGS_bitNumberLiteralValue::init_21_ (var_bitIndex_9960, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -1315,11 +1315,11 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i13_ (GGS_bitNumberE
                                                                   Lexique_piccolo_5F_lexique * inCompiler) {
   outArgument_outBitNumber.drop () ; // Release 'out' argument
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 361)) ;
-  GGS_immediatExpression var_bitNumberExpression_10165 ;
-  nt_immediate_5F_expression_ (var_bitNumberExpression_10165, inCompiler) ;
-  GGS_location var_endOfExpression_10191 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 363)) ;
+  GGS_immediatExpression var_bitNumberExpression_10180 ;
+  nt_immediate_5F_expression_ (var_bitNumberExpression_10180, inCompiler) ;
+  GGS_location var_endOfExpression_10206 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 363)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 364)) ;
-  outArgument_outBitNumber = GGS_bitNumberLiteralExpression::init_21__21_ (var_bitNumberExpression_10165, var_endOfExpression_10191, inCompiler COMMA_HERE) ;
+  outArgument_outBitNumber = GGS_bitNumberLiteralExpression::init_21__21_ (var_bitNumberExpression_10180, var_endOfExpression_10206, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -1422,14 +1422,6 @@ GGS_pic_31__38__5F_dataMap & GGS_pic_31__38__5F_dataMap::operator = (const GGS_p
 //--------------------------------------------------------------------------------------------------
 
 GGS_pic_31__38__5F_dataMap GGS_pic_31__38__5F_dataMap::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_pic_31__38__5F_dataMap result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38__5F_dataMap GGS_pic_31__38__5F_dataMap::class_func_emptyMap (LOCATION_ARGS) {
   GGS_pic_31__38__5F_dataMap result ;
   result.build (THERE) ;
   return result ;
@@ -2366,16 +2358,6 @@ GGS_ipic_31__38_SingleInstructionTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38_ReturnTerminator) ;
 }
 //--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38_ReturnTerminator GGS_ipic_31__38_ReturnTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_ReturnTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ReturnTerminator (in_mInstructionLocation,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //Pointer class for @ipic18ReturnTerminator class
 //--------------------------------------------------------------------------------------------------
 
@@ -2641,17 +2623,6 @@ GGS_ipic_31__38_RetlwTerminator::GGS_ipic_31__38_RetlwTerminator (const cPtr_ipi
 GGS_ipic_31__38_SingleInstructionTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38_RetlwTerminator) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38_RetlwTerminator GGS_ipic_31__38_RetlwTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                 const GGS_uint & in_mLiteralValue,
-                                                                                 Compiler * inCompiler
-                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_RetlwTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_RetlwTerminator (in_mInstructionLocation, in_mLiteralValue,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_uint GGS_ipic_31__38_RetlwTerminator::readProperty_mLiteralValue (void) const {
@@ -2937,17 +2908,6 @@ GGS_ipic_31__38_RetfieTerminator::GGS_ipic_31__38_RetfieTerminator (const cPtr_i
 GGS_ipic_31__38_SingleInstructionTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38_RetfieTerminator) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38_RetfieTerminator GGS_ipic_31__38_RetfieTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                   const GGS_bool & in_mFastReturn,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_RetfieTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_RetfieTerminator (in_mInstructionLocation, in_mFastReturn,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_bool GGS_ipic_31__38_RetfieTerminator::readProperty_mFastReturn (void) const {
@@ -3611,18 +3571,6 @@ GGS_ipic_31__38_ComputedRETLWTerminator::GGS_ipic_31__38_ComputedRETLWTerminator
 GGS_ipic_31__38_AbstractBlockTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38_ComputedRETLWTerminator) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38_ComputedRETLWTerminator GGS_ipic_31__38_ComputedRETLWTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                 const GGS_uintlist & in_mLiteralValues,
-                                                                                                 const GGS_bool & in_mUsesRCALL,
-                                                                                                 Compiler * inCompiler
-                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_ComputedRETLWTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ComputedRETLWTerminator (in_mInstructionLocation, in_mLiteralValues, in_mUsesRCALL,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_uintlist GGS_ipic_31__38_ComputedRETLWTerminator::readProperty_mLiteralValues (void) const {
@@ -4401,18 +4349,6 @@ GGS_ipic_31__38_AbstractBlockTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38_ComputedBraTerminator GGS_ipic_31__38_ComputedBraTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                             const GGS_lstringlist & in_mTargetLabels,
-                                                                                             const GGS_bool & in_mUsesRCALL,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_ComputedBraTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_ComputedBraTerminator (in_mInstructionLocation, in_mTargetLabels, in_mUsesRCALL,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_lstringlist GGS_ipic_31__38_ComputedBraTerminator::readProperty_mTargetLabels (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_lstringlist () ;
@@ -4968,21 +4904,6 @@ mProperty_mNeedsBSR (inOperand2) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38__5F_intermediate_5F_registerExpression::class_func_new (const GGS_string & in_mAssemblyString,
-                                                                                                                               const GGS_uint & in_mRegisterAddress,
-                                                                                                                               const GGS_bool & in_mNeedsBSR,
-                                                                                                                               Compiler * inCompiler
-                                                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_registerExpression result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mAssemblyString = in_mAssemblyString ;
-  result.mProperty_mRegisterAddress = in_mRegisterAddress ;
-  result.mProperty_mNeedsBSR = in_mNeedsBSR ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_ipic_31__38__5F_intermediate_5F_registerExpression::isValid (void) const {
   return mProperty_mAssemblyString.isValid () && mProperty_mRegisterAddress.isValid () && mProperty_mNeedsBSR.isValid () ;
 }
@@ -5243,21 +5164,6 @@ GGS_ipic_31__38_IncDecRegisterTerminator::GGS_ipic_31__38_IncDecRegisterTerminat
 GGS_ipic_31__38_AbstractConditionTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38_IncDecRegisterTerminator) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38_IncDecRegisterTerminator GGS_ipic_31__38_IncDecRegisterTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                   const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                                                                   const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                                                                   const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                   const GGS_bool & in_mIncrement,
-                                                                                                   const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                   Compiler * inCompiler
-                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38_IncDecRegisterTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38_IncDecRegisterTerminator (in_mInstructionLocation, in_mSingleInstructionTerminatorIfConditionTrue, in_mSingleInstructionTerminatorIfConditionFalse, in_mRegisterDescription, in_mIncrement, in_m_5F_W_5F_isDestination,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_ipic_31__38_IncDecRegisterTerminator::readProperty_mRegisterDescription (void) const {
@@ -5597,19 +5503,6 @@ GGS_ipic_31__38_AbstractConditionTerminator (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_pic_31__38_TestRegisterTerminator GGS_pic_31__38_TestRegisterTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                             const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                                                             const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                                                             const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                             Compiler * inCompiler
-                                                                                             COMMA_LOCATION_ARGS) {
-  GGS_pic_31__38_TestRegisterTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_TestRegisterTerminator (in_mInstructionLocation, in_mSingleInstructionTerminatorIfConditionTrue, in_mSingleInstructionTerminatorIfConditionFalse, in_mRegisterDescription,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_pic_31__38_TestRegisterTerminator::readProperty_mRegisterDescription (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38__5F_intermediate_5F_registerExpression () ;
@@ -5910,20 +5803,6 @@ GGS_pic_31__38_BitTestTerminator::GGS_pic_31__38_BitTestTerminator (const cPtr_p
 GGS_ipic_31__38_AbstractConditionTerminator (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_pic_31__38_BitTestTerminator) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_pic_31__38_BitTestTerminator GGS_pic_31__38_BitTestTerminator::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                   const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionTrue,
-                                                                                   const GGS_ipic_31__38_SingleInstructionTerminator & in_mSingleInstructionTerminatorIfConditionFalse,
-                                                                                   const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                   const GGS_uint & in_mBitNumber,
-                                                                                   Compiler * inCompiler
-                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_pic_31__38_BitTestTerminator result ;
-  macroMyNew (result.mObjectPtr, cPtr_pic_31__38_BitTestTerminator (in_mInstructionLocation, in_mSingleInstructionTerminatorIfConditionTrue, in_mSingleInstructionTerminatorIfConditionFalse, in_mRegisterDescription, in_mBitNumber,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_ipic_31__38__5F_intermediate_5F_registerExpression GGS_pic_31__38_BitTestTerminator::readProperty_mRegisterDescription (void) const {
@@ -7222,18 +7101,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                             const GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code & in_mFAinstruction,
-                                                                                                                             const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                             Compiler * inCompiler
-                                                                                                                             COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA (in_mInstructionLocation, in_mFAinstruction, in_mRegisterDescription,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::readProperty_mFAinstruction (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code () ;
@@ -7529,19 +7396,6 @@ mProperty_mRegisterAddress (inOperand1) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::class_func_new (const GGS_string & in_mAssemblyString,
-                                                                                                                                                                       const GGS_uint & in_mRegisterAddress,
-                                                                                                                                                                       Compiler * inCompiler
-                                                                                                                                                                       COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication result ;
-  result.setInitializedProperties (inCompiler) ;
-  result.mProperty_mAssemblyString = in_mAssemblyString ;
-  result.mProperty_mRegisterAddress = in_mRegisterAddress ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication::isValid (void) const {
   return mProperty_mAssemblyString.isValid () && mProperty_mRegisterAddress.isValid () ;
 }
@@ -7668,18 +7522,6 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::GGS_ipic_31__38__5F_in
 GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                   const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & in_mSourceRegisterDescription,
-                                                                                                                                   const GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication & in_mDestinationRegisterDescription,
-                                                                                                                                   Compiler * inCompiler
-                                                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF (in_mInstructionLocation, in_mSourceRegisterDescription, in_mDestinationRegisterDescription,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::readProperty_mSourceRegisterDescription (void) const {
@@ -8308,18 +8150,6 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::GGS_ipic_31__38__5F_int
 GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                 const GGS_luint & in_mFSRindex,
-                                                                                                                                 const GGS_uint & in_mValue,
-                                                                                                                                 Compiler * inCompiler
-                                                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR (in_mInstructionLocation, in_mFSRindex, in_mValue,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_luint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::readProperty_mFSRindex (void) const {
@@ -8986,17 +8816,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                   const GGS_luint & in_mBankIndex,
-                                                                                                                                   Compiler * inCompiler
-                                                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB (in_mInstructionLocation, in_mBankIndex,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_luint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB::readProperty_mBankIndex (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_luint () ;
@@ -9282,17 +9101,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                 const GGS_uint & in_mBlankValue,
-                                                                                                                                 Compiler * inCompiler
-                                                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP (in_mInstructionLocation, in_mBlankValue,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::readProperty_mBlankValue (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_uint () ;
@@ -9576,17 +9384,6 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::GGS_ipic_31__38__5F_in
 GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                   const GGS_uint & in_mBlankValue,
-                                                                                                                                   Compiler * inCompiler
-                                                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK (in_mInstructionLocation, in_mBlankValue,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_uint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK::readProperty_mBlankValue (void) const {
@@ -10129,17 +9926,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                   const GGS_tableAccessOption & in_mOption,
-                                                                                                                                   Compiler * inCompiler
-                                                                                                                                   COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT (in_mInstructionLocation, in_mOption,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_tableAccessOption GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT::readProperty_mOption (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_tableAccessOption () ;
@@ -10425,17 +10211,6 @@ GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                 const GGS_luint & in_mOccurrenceFactor,
-                                                                                                                                 Compiler * inCompiler
-                                                                                                                                 COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP (in_mInstructionLocation, in_mOccurrenceFactor,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_luint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP::readProperty_mOccurrenceFactor (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_luint () ;
@@ -10719,17 +10494,6 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::GGS_ipic_31__38__5F_i
 GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                     const GGS_luint & in_mOccurrenceFactor,
-                                                                                                                                     Compiler * inCompiler
-                                                                                                                                     COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA (in_mInstructionLocation, in_mOccurrenceFactor,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_luint GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA::readProperty_mOccurrenceFactor (void) const {
@@ -11140,18 +10904,6 @@ GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::GGS_ipic_3
 GGS_ipic_31__38_SequentialInstruction (inSourcePtr) {
   macroNullOrValidSharedObject (inSourcePtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall) ;
 }
-//--------------------------------------------------------------------------------------------------
-
-GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                                           const GGS_ipic_31__38_SequentialInstructionList & in_mTargetInstructions,
-                                                                                                                                                           const GGS_bool & in_mUsesRCALL,
-                                                                                                                                                           Compiler * inCompiler
-                                                                                                                                                           COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall (in_mInstructionLocation, in_mTargetInstructions, in_mUsesRCALL,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
 //--------------------------------------------------------------------------------------------------
 
 GGS_ipic_31__38_SequentialInstructionList GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall::readProperty_mTargetInstructions (void) const {
@@ -11713,20 +11465,6 @@ GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                               const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                                                                                                                               const GGS_bool & in_mSkipIfSet,
-                                                                                                                               const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                               const GGS_uint & in_mBitNumber,
-                                                                                                                               Compiler * inCompiler
-                                                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip (in_mInstructionLocation, in_mEmbeddedInstruction, in_mSkipIfSet, in_mRegisterDescription, in_mBitNumber,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip::readProperty_mSkipIfSet (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_bool () ;
@@ -12193,19 +11931,6 @@ GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                                                               const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                                                                                                                                               const GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code & in_mCompareInstruction,
-                                                                                                                                               const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                                                               Compiler * inCompiler
-                                                                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register (in_mInstructionLocation, in_mEmbeddedInstruction, in_mCompareInstruction, in_mRegisterDescription,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code GGS_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register::readProperty_mCompareInstruction (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code () ;
@@ -12656,20 +12381,6 @@ GGS_ipic_31__38__5F_condition_5F_skip_5F_instruction (inSourcePtr) {
 }
 //--------------------------------------------------------------------------------------------------
 
-GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::class_func_new (const GGS_location & in_mInstructionLocation,
-                                                                                                               const GGS_ipic_31__38_SequentialInstruction & in_mEmbeddedInstruction,
-                                                                                                               const GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code & in_mInstruction_5F_FDA_5F_base_5F_code,
-                                                                                                               const GGS_ipic_31__38__5F_intermediate_5F_registerExpression & in_mRegisterDescription,
-                                                                                                               const GGS_bool & in_m_5F_W_5F_isDestination,
-                                                                                                               Compiler * inCompiler
-                                                                                                               COMMA_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA result ;
-  macroMyNew (result.mObjectPtr, cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA (in_mInstructionLocation, in_mEmbeddedInstruction, in_mInstruction_5F_FDA_5F_base_5F_code, in_mRegisterDescription, in_m_5F_W_5F_isDestination,  inCompiler COMMA_THERE)) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA::readProperty_mInstruction_5F_FDA_5F_base_5F_code (void) const {
   if (nullptr == mObjectPtr) {
     return GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code () ;
@@ -12971,14 +12682,6 @@ GGS_symbolTableForBlockOptimization & GGS_symbolTableForBlockOptimization::opera
 //--------------------------------------------------------------------------------------------------
 
 GGS_symbolTableForBlockOptimization GGS_symbolTableForBlockOptimization::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_symbolTableForBlockOptimization result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_symbolTableForBlockOptimization GGS_symbolTableForBlockOptimization::class_func_emptyMap (LOCATION_ARGS) {
   GGS_symbolTableForBlockOptimization result ;
   result.build (THERE) ;
   return result ;
@@ -13473,14 +13176,6 @@ GGS_symbolTableForClusterOrdering GGS_symbolTableForClusterOrdering::init (Compi
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_symbolTableForClusterOrdering GGS_symbolTableForClusterOrdering::class_func_emptyMap (LOCATION_ARGS) {
-  GGS_symbolTableForClusterOrdering result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_bool GGS_symbolTableForClusterOrdering::getter_hasKey (const GGS_string & inKey
                                                            COMMA_UNUSED_LOCATION_ARGS) const {
   GGS_bool result ;
@@ -13938,12 +13633,6 @@ GGS_branchOverflowMapDictionary GGS_branchOverflowMapDictionary::builtDictionary
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_branchOverflowMapDictionary GGS_branchOverflowMapDictionary::class_func_emptyDict (LOCATION_ARGS) {
-  return GGS_branchOverflowMapDictionary::builtDictionary (THERE) ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_branchOverflowMapDictionary GGS_branchOverflowMapDictionary::init (Compiler * COMMA_LOCATION_ARGS) {
   return GGS_branchOverflowMapDictionary::builtDictionary (THERE) ;
 }
@@ -14255,15 +13944,6 @@ mProperty_dictionary (inOperand0) {
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_branchOverflowMap GGS_branchOverflowMap::class_func_new (Compiler * inCompiler
-                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_branchOverflowMap result ;
-  result.setInitializedProperties (inCompiler) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 bool GGS_branchOverflowMap::isValid (void) const {
   return mProperty_dictionary.isValid () ;
 }
@@ -14339,10 +14019,10 @@ GGS_stringlist extensionGetter_listForKey (const GGS_branchOverflowMap & inObjec
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
     const GGS_branchOverflowMap temp_1 = inObject ;
-    test_0 = temp_1.readProperty_dictionary ().getter_hasKey (constinArgument_inKey COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 412)).boolEnum () ;
+    test_0 = temp_1.readProperty_dictionary ().getter_hasKey (constinArgument_inKey COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 410)).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
       const GGS_branchOverflowMap temp_2 = inObject ;
-      temp_2.readProperty_dictionary ().method_searchKey (constinArgument_inKey, result_result, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 413)) ;
+      temp_2.readProperty_dictionary ().method_searchKey (constinArgument_inKey, result_result, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas", 411)) ;
     }
   }
   if (GalgasBool::boolFalse == test_0) {
@@ -14480,14 +14160,6 @@ GGS_symbolTableForRelativesResolution & GGS_symbolTableForRelativesResolution::o
 //--------------------------------------------------------------------------------------------------
 
 GGS_symbolTableForRelativesResolution GGS_symbolTableForRelativesResolution::init (Compiler * COMMA_LOCATION_ARGS) {
-  GGS_symbolTableForRelativesResolution result ;
-  result.build (THERE) ;
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
-GGS_symbolTableForRelativesResolution GGS_symbolTableForRelativesResolution::class_func_emptyMap (LOCATION_ARGS) {
   GGS_symbolTableForRelativesResolution result ;
   result.build (THERE) ;
   return result ;
@@ -15080,14 +14752,6 @@ void GGS_codeList::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-GGS_codeList GGS_codeList::class_func_emptyList (UNUSED_LOCATION_ARGS) {
-  GGS_codeList result ;
-  result.mArray.setCapacity (16) ; // Build
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
-
 GGS_codeList GGS_codeList::init (Compiler * COMMA_UNUSED_LOCATION_ARGS) {
   GGS_codeList result ;
   result.mArray.setCapacity (16) ; // Build
@@ -15552,6 +15216,493 @@ GGS_codeList GGS_codeList::extractObject (const GGS_object & inObject,
       result = *p ;
     }else{
       inCompiler->castError ("codeList", p->dynamicTypeDescriptor () COMMA_THERE) ;
+    }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Map type @pic_31__38__5F_dataAddressMap
+//--------------------------------------------------------------------------------------------------
+
+#include "GALGAS_GenericMapRoot.h"
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap::GGS_pic_31__38__5F_dataAddressMap (void) :
+mSharedRoot () {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap::~ GGS_pic_31__38__5F_dataAddressMap (void) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap::GGS_pic_31__38__5F_dataAddressMap (const GGS_pic_31__38__5F_dataAddressMap & inSource) :
+mSharedRoot (inSource.mSharedRoot) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap & GGS_pic_31__38__5F_dataAddressMap::operator = (const GGS_pic_31__38__5F_dataAddressMap & inSource) {
+  mSharedRoot = inSource.mSharedRoot ;
+  return * this ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::init (Compiler * COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38__5F_dataAddressMap result ;
+  result.build (THERE) ;
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_pic_31__38__5F_dataAddressMap::getter_hasKey (const GGS_string & inKey
+                                                           COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_bool result ;
+  if (isValid () && inKey.isValid ()) {
+    result = GGS_bool (mSharedRoot->hasKey (inKey.stringValue (), 0)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool GGS_pic_31__38__5F_dataAddressMap::getter_hasKeyAtLevel (const GGS_string & inKey,
+                                                                  const GGS_uint & inLevel
+                                                                  COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_bool result ;
+  if (isValid () && inKey.isValid ()) {
+    result = GGS_bool (mSharedRoot->hasKey (inKey.stringValue (), inLevel.uintValue ())) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint GGS_pic_31__38__5F_dataAddressMap::getter_count (UNUSED_LOCATION_ARGS) const {
+  GGS_uint result ;
+  if (isValid ()) {
+    result = GGS_uint (uint32_t (mSharedRoot->count ())) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint GGS_pic_31__38__5F_dataAddressMap::getter_levels (UNUSED_LOCATION_ARGS) const {
+  GGS_uint result ;
+  if (isValid ()) {
+    result = GGS_uint (mSharedRoot->levels ()) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_location GGS_pic_31__38__5F_dataAddressMap::getter_locationForKey (const GGS_string & inKey,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const {
+  GGS_location result ;
+  if (isValid () && inKey.isValid ()) {
+    const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> info = infoForKey (inKey.stringValue ()) ;
+    if (info.isNil ()) {
+      String message = "'locationForKey' map reader run-time error: the '" ;
+      message.appendString (inKey.stringValue ()) ;
+      message.appendCString ("' does not exist in map") ;
+      inCompiler->onTheFlyRunTimeError (message COMMA_THERE) ;
+    }else{
+      result = info->mProperty_lkey.mProperty_location ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstringlist GGS_pic_31__38__5F_dataAddressMap::getter_keyList (Compiler * inCompiler
+                                                                   COMMA_LOCATION_ARGS) const {
+  GGS_lstringlist result ;
+  if (isValid ()) {
+    result = GGS_lstringlist::init (inCompiler COMMA_THERE) ;
+    mSharedRoot->populateKeyList (result) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+bool GGS_pic_31__38__5F_dataAddressMap::isValid (void) const {
+  return mSharedRoot.isNotNil () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38__5F_dataAddressMap::drop (void)  {
+  mSharedRoot.setToNil () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38__5F_dataAddressMap::build (LOCATION_ARGS) {
+  mSharedRoot = OptionalSharedRef <GenericMapRoot <GGS_pic_31__38__5F_dataAddressMap_2E_element>>::make (THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38__5F_dataAddressMap::performInsert (const GGS_pic_31__38__5F_dataAddressMap_2E_element & inElement,
+                                 const char * inInsertErrorMessage,
+                                 const char * inShadowErrorMessage,
+                                 Compiler * inCompiler
+                                 COMMA_LOCATION_ARGS) {
+  if (isValid () && inElement.mProperty_lkey.isValid ()) {
+    OptionalSharedRef <GenericMapNode <GGS_pic_31__38__5F_dataAddressMap_2E_element>> existingNode ;
+    const bool allowReplacing = false ;
+    mSharedRoot.insulate (THERE) ;
+    mSharedRoot->insertOrReplaceInfo (
+      inElement,
+      allowReplacing,
+      existingNode
+      COMMA_THERE
+    ) ;
+    const GGS_lstring lkey = inElement.mProperty_lkey ;
+    if (existingNode.isNotNil ()) {
+      const GGS_location lstring_existingKey_location = existingNode->mSharedInfo->mProperty_lkey.mProperty_location ;
+      inCompiler->semanticErrorWith_K_L_message (lkey, inInsertErrorMessage, lstring_existingKey_location COMMA_THERE) ;
+    }else if ((inShadowErrorMessage != nullptr) && (mSharedRoot->overriddenRoot ().isNotNil ())) {
+      const auto existingInfo = mSharedRoot->overriddenRoot ()->infoForKey (lkey.mProperty_string.stringValue()) ;
+      if (existingInfo.isNotNil ()) {
+        const GGS_location lstring_existingKey_location = existingInfo->mProperty_lkey.mProperty_location ;
+        inCompiler->semanticErrorWith_K_L_message (lkey, inShadowErrorMessage, lstring_existingKey_location COMMA_THERE) ;
+      }
+    }
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>
+GGS_pic_31__38__5F_dataAddressMap::infoForKey (const String & inKey) const {
+  if (mSharedRoot.isNotNil ()) {
+    return mSharedRoot->infoForKey (inKey) ;
+  }else{
+    return SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> () ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+int32_t GGS_pic_31__38__5F_dataAddressMap::count (void) const  {
+  if (mSharedRoot.isNotNil ()) {
+    return mSharedRoot->count () ;
+  }else{
+    return 0 ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>>
+GGS_pic_31__38__5F_dataAddressMap::sortedInfoArray (void) const {
+  if (mSharedRoot.isNotNil ()) {
+    return mSharedRoot->sortedInfoArray () ;
+  }else{
+    return GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>> () ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_stringset GGS_pic_31__38__5F_dataAddressMap::getter_keySet (Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) const {
+  GGS_stringset result ;
+  if (isValid ()) {
+    result = GGS_stringset::init (inCompiler COMMA_THERE) ;
+    mSharedRoot->populateKeySet (result, inCompiler) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38__5F_dataAddressMap::findNearestKey (const String & inKey,
+                                  GenericUniqueArray <String> & outNearestKeyArray) const {
+  mSharedRoot->findNearestKey (inKey, outNearestKeyArray) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ GGS_pic_31__38__5F_dataAddressMap
+::readSubscript__3F_ (const class GGS_string & inKey,
+                      Compiler * /* inCompiler */
+                      COMMA_UNUSED_LOCATION_ARGS) const {
+  GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ result ;
+  if (isValid () && inKey.isValid ()) {
+    const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> info = infoForKey (inKey.stringValue ()) ;
+    if (info.isNil ()) {
+      result = GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_::init_nil () ;
+    }else{
+      GGS_pic_31__38__5F_dataAddressMap_2E_element element ;
+      element.mProperty_lkey = info->mProperty_lkey ;
+      element.mProperty_mDataAddress = info->mProperty_mDataAddress ;
+      result = element ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::class_func_mapWithMapToOverride (const GGS_pic_31__38__5F_dataAddressMap & inMapToOverride
+                                                                                                      COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38__5F_dataAddressMap result ;
+  if (inMapToOverride.isValid ()) {
+    result.mSharedRoot = OptionalSharedRef <GenericMapRoot <GGS_pic_31__38__5F_dataAddressMap_2E_element>>::make (inMapToOverride.mSharedRoot COMMA_THERE) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::getter_overriddenMap (Compiler * inCompiler
+                                                                                           COMMA_LOCATION_ARGS) const {
+  GGS_pic_31__38__5F_dataAddressMap result ;
+  if (isValid ()) {
+    result.mSharedRoot = mSharedRoot->overriddenRoot () ;
+    if (result.mSharedRoot.isNil ()) {
+      inCompiler->onTheFlySemanticError ("getter 'overriddenMap': no overriden map" COMMA_THERE) ;
+    }
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38__5F_dataAddressMap::setter_insertKey (GGS_lstring inLKey,
+                                                          GGS_uint inArgument0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) {
+  const GGS_pic_31__38__5F_dataAddressMap_2E_element element (inLKey, inArgument0) ;
+  const char * kInsertErrorMessage = "the '%K' data is already declared" ;
+  const char * kShadowErrorMessage = nullptr ;
+  performInsert (element, kInsertErrorMessage, kShadowErrorMessage, inCompiler COMMA_THERE) ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38__5F_dataAddressMap::method_searchKey (GGS_lstring inLKey,
+                                                          GGS_uint & outArgument0,
+                                                          Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) const {
+  SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> info ;
+  if (isValid () && inLKey.isValid ()) {
+    const String key = inLKey.mProperty_string.stringValue () ;
+    info = infoForKey (key) ;
+    if (info.isNil ()) {
+      GenericUniqueArray <String> nearestKeyArray ;
+      findNearestKey (key, nearestKeyArray) ;
+      const char * kSearchErrorMessage = "the '%K' data is not declared" ;
+      inCompiler->semanticErrorWith_K_message (inLKey, nearestKeyArray, kSearchErrorMessage COMMA_THERE) ;
+    }
+  }
+  if (info.isNil ()) {
+    outArgument0.drop () ;
+  }else{
+    outArgument0 = info->mProperty_mDataAddress ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint GGS_pic_31__38__5F_dataAddressMap::getter_mDataAddressForKey (const GGS_string & inKey,
+                                                                       Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) const {
+  GGS_uint result ;
+  if (isValid () && inKey.isValid ()) {
+    const String key = inKey.stringValue () ;
+    const SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element> info = infoForKey (key) ;
+    if (info.isNil ()) {
+      String message = "cannot read property in map: the '" ;
+      message.appendString (key) ;
+      message.appendCString ("' key does not exist") ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }else{
+      result = info->mProperty_mDataAddress ;
+    }
+  }
+  return result ;
+}
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38__5F_dataAddressMap::setter_setMDataAddressForKey (GGS_uint inValue,
+                                                                      GGS_string inKey,
+                                                                      Compiler * inCompiler
+                                                                      COMMA_LOCATION_ARGS) {
+  if (isValid () && inKey.isValid ()) {
+    const String key = inKey.stringValue () ;
+    mSharedRoot.insulate (HERE) ;
+    OptionalSharedRef <GenericMapNode <GGS_pic_31__38__5F_dataAddressMap_2E_element>> node = mSharedRoot->searchNode (key) ;
+    if (node.isNil ()) {
+      String message = "cannot write property in map: the '" ;
+      message.appendString (key) ;
+      message.appendCString ("' key does not exist") ;
+      inCompiler->onTheFlySemanticError (message COMMA_THERE) ;
+    }else{
+      node->mSharedInfo->mProperty_mDataAddress = inValue ;
+    }
+  }
+}
+//--------------------------------------------------------------------------------------------------
+
+static void GGS_pic_31__38__5F_dataAddressMap_internalDescription (const GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>> & inArray,
+                                                        String & ioString,
+                                                        const int32_t inIndentation) {
+  const int32_t n = inArray.count () ;
+  ioString.appendString (" (") ;
+  ioString.appendSigned (n) ;
+  ioString.appendString (" object") ;
+  if (n > 1) {
+    ioString.appendString ("s") ;
+  }
+  ioString.appendString ("):") ;
+  for (int32_t i = 0 ; i < n ; i++) {
+    ioString.appendNewLine () ;
+    ioString.appendStringMultiple ("| ", inIndentation) ;
+    ioString.appendString ("|-at ") ;
+    ioString.appendSigned (i) ;
+    ioString.appendString (": key '") ;
+    ioString.appendString (inArray (i COMMA_HERE)->mProperty_lkey.mProperty_string.stringValue ()) ;
+    ioString.appendString ("'") ;
+    ioString.appendNewLine () ;
+    ioString.appendStringMultiple ("| ", inIndentation + 2) ;
+    ioString.appendString ("mDataAddress:") ;
+    inArray (i COMMA_HERE)->mProperty_mDataAddress.description (ioString, inIndentation + 1) ;
+  }
+}
+
+//--------------------------------------------------------------------------------------------------
+
+void GGS_pic_31__38__5F_dataAddressMap::description (String & ioString,
+                                          const int32_t inIndentation) const {
+  ioString.appendCString ("<map @") ;
+  ioString.appendString (staticTypeDescriptor ()->mGalgasTypeName) ;
+  if (isValid ()) {
+    const GenericArray <SharedGenericPtrWithValueSemantics <GGS_pic_31__38__5F_dataAddressMap_2E_element>> array = sortedInfoArray () ;
+    GGS_pic_31__38__5F_dataAddressMap_internalDescription (array, ioString, inIndentation) ;
+    OptionalSharedRef <GenericMapRoot <GGS_pic_31__38__5F_dataAddressMap_2E_element>> subRoot = mSharedRoot->overriddenRoot () ;
+    uint32_t idx = 0 ;
+    while (subRoot.isNotNil ()) {
+     idx += 1 ;
+     ioString.appendNewLine () ;
+     ioString.appendStringMultiple ("| ", inIndentation + 1) ;
+     ioString.appendString (" override #") ;
+     ioString.appendUnsigned (idx) ;
+     const auto subRootArray = subRoot->sortedInfoArray () ;
+     GGS_pic_31__38__5F_dataAddressMap_internalDescription (subRootArray, ioString, inIndentation) ;
+     subRoot = subRoot->overriddenRoot () ;
+    }
+  }else{
+    ioString.appendCString (" not built") ;
+  }
+  ioString.appendCString (">") ;
+}
+
+
+
+//--------------------------------------------------------------------------------------------------
+//  Down Enumerator for @pic_31__38__5F_dataAddressMap
+//--------------------------------------------------------------------------------------------------
+
+DownEnumerator_pic_31__38__5F_dataAddressMap::DownEnumerator_pic_31__38__5F_dataAddressMap (const GGS_pic_31__38__5F_dataAddressMap & inMap) :
+mInfoArray (inMap.sortedInfoArray ()),
+mIndex (0) {
+  mIndex = mInfoArray.count () - 1 ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap_2E_element DownEnumerator_pic_31__38__5F_dataAddressMap::current (LOCATION_ARGS) const {
+  return mInfoArray (mIndex COMMA_THERE).value () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring DownEnumerator_pic_31__38__5F_dataAddressMap::current_lkey (LOCATION_ARGS) const {
+  return mInfoArray (mIndex COMMA_THERE)->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint DownEnumerator_pic_31__38__5F_dataAddressMap::current_mDataAddress (LOCATION_ARGS) const {
+  return mInfoArray (mIndex COMMA_THERE)->mProperty_mDataAddress ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//  Up Enumerator for @pic_31__38__5F_dataAddressMap
+//--------------------------------------------------------------------------------------------------
+
+UpEnumerator_pic_31__38__5F_dataAddressMap::UpEnumerator_pic_31__38__5F_dataAddressMap (const GGS_pic_31__38__5F_dataAddressMap & inMap) :
+mInfoArray (inMap.sortedInfoArray ()),
+mIndex (0) {
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap_2E_element UpEnumerator_pic_31__38__5F_dataAddressMap::current (LOCATION_ARGS) const {
+  return mInfoArray (mIndex COMMA_THERE).value () ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_lstring UpEnumerator_pic_31__38__5F_dataAddressMap::current_lkey (LOCATION_ARGS) const {
+  return mInfoArray (mIndex COMMA_THERE)->mProperty_lkey ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_uint UpEnumerator_pic_31__38__5F_dataAddressMap::current_mDataAddress (LOCATION_ARGS) const {
+  return mInfoArray (mIndex COMMA_THERE)->mProperty_mDataAddress ;
+}
+
+
+//--------------------------------------------------------------------------------------------------
+//     @pic18_dataAddressMap generic code implementation
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap ("pic18_dataAddressMap",
+                                                                                  nullptr) ;
+
+//--------------------------------------------------------------------------------------------------
+
+const GALGAS_TypeDescriptor * GGS_pic_31__38__5F_dataAddressMap::staticTypeDescriptor (void) const {
+  return & kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+AC_GALGAS_root * GGS_pic_31__38__5F_dataAddressMap::clonedObject (void) const {
+  AC_GALGAS_root * result = nullptr ;
+  if (isValid ()) {
+    macroMyNew (result, GGS_pic_31__38__5F_dataAddressMap (*this)) ;
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+
+GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::extractObject (const GGS_object & inObject,
+                                                                                    Compiler * inCompiler
+                                                                                    COMMA_LOCATION_ARGS) {
+  GGS_pic_31__38__5F_dataAddressMap result ;
+  const GGS_pic_31__38__5F_dataAddressMap * p = (const GGS_pic_31__38__5F_dataAddressMap *) inObject.embeddedObject () ;
+  if (nullptr != p) {
+    if (nullptr != dynamic_cast <const GGS_pic_31__38__5F_dataAddressMap *> (p)) {
+      result = *p ;
+    }else{
+      inCompiler->castError ("pic18_dataAddressMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
   }
   return result ;

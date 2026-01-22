@@ -1,49 +1,47 @@
-
-
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 abstract class @baseline_assembly_instruction {
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 list @baseline_assembly_instructionList {
   public let @baseline_assembly_instruction mInstruction
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_pseudo_ORG : @baseline_assembly_instruction {
   public let @uint mOrigin
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_pseudo_BEGINOFROUTINE : @baseline_assembly_instruction {
   public let @lstring mRoutineName
   public let @bool mIsRegular
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_pseudo_ENDOFROUTINE : @baseline_assembly_instruction {
   public let @lstring mRoutineName
   public let @uint mPage
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_pseudo_LABEL : @baseline_assembly_instruction {
   public let @lstring mLabel
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 abstract class @baseline_assembly_actualInstruction : @baseline_assembly_instruction {
   public let @location mInstructionLocation
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_instruction_FD : @baseline_assembly_actualInstruction {
   public let @baseline_instruction_FD_base_code mInstruction
@@ -51,14 +49,14 @@ class @baseline_assembly_instruction_FD : @baseline_assembly_actualInstruction {
   public let @bool m_W_isDestination
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_instruction_F : @baseline_assembly_actualInstruction {
   public let @baseline_F_instruction_base_code mInstruction
   public let @baseline_intermediate_registerExpression mRegisterDescription
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_instruction_FB : @baseline_assembly_actualInstruction {
   public let @baseline_bit_oriented_op mInstruction
@@ -66,7 +64,7 @@ class @baseline_assembly_instruction_FB : @baseline_assembly_actualInstruction {
   public let @uint mBitNumber
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_instruction_BitTestSkip : @baseline_assembly_actualInstruction {
   public let @bool mSkipIfSet
@@ -74,44 +72,44 @@ class @baseline_assembly_instruction_BitTestSkip : @baseline_assembly_actualInst
   public let @uint mBitNumber
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_GOTO : @baseline_assembly_actualInstruction {
   public let @lstring mTargetLabel
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_SKIP : @baseline_assembly_actualInstruction {
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_CALL : @baseline_assembly_actualInstruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_assembly_WO_OPERAND : @baseline_assembly_actualInstruction {
   public let @baseline_WO_OPERAND_group mInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_assembly_TRIS : @baseline_assembly_actualInstruction {
   public let @lstring mOperand
   public let @uint mOpcode
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_instruction_literalOperation : @baseline_assembly_actualInstruction {
   public let @baseline_literal_instruction_opcode mInstruction
   public let @uint mLiteralValue
 }
 
-#---------------------------------------------------------------------------------------------------
+//---------------------------------------------------------------------------------------------------
 
 class @baseline_assembly_incDecRegisterInCondition : @baseline_assembly_actualInstruction {
   public let @baseline_intermediate_registerExpression mRegisterDescription
@@ -119,5 +117,5 @@ class @baseline_assembly_incDecRegisterInCondition : @baseline_assembly_actualIn
   public let @bool m_W_isDestination
 }
 
-#---------------------------------------------------------------------------------------------------
+////---------------------------------------------------------------------------------------------------
 

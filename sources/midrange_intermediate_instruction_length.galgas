@@ -1,34 +1,34 @@
 
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 abstract getter @midrange_intermediate_instruction instructionLength -> @uint
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override getter @midrange_intermediate_NULL instructionLength -> @uint outLength {
   outLength = 0
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override getter @midrange_intermediate_pseudo_ORG instructionLength -> @uint outLength {
   outLength = 0
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override getter @midrange_intermediate_pseudo_LABEL instructionLength -> @uint outLength {
   outLength = 0
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override getter @midrange_intermediate_actualInstruction instructionLength -> @uint outLength {
   outLength = 1
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override
 getter @midrange_intermediate_JUMP instructionLength -> @uint outLength {
@@ -41,7 +41,7 @@ getter @midrange_intermediate_JUMP instructionLength -> @uint outLength {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override
 getter @midrange_intermediate_JSR instructionLength -> @uint outLength {
@@ -54,14 +54,14 @@ getter @midrange_intermediate_JSR instructionLength -> @uint outLength {
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override
 getter @midrange_intermediate_instruction_MNOP instructionLength -> @uint outLength {
   outLength = self.mOccurrenceFactor.uint
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override
 getter @midrange_intermediate_incDecRegisterInCondition instructionLength -> @uint outLength {
@@ -72,5 +72,5 @@ getter @midrange_intermediate_incDecRegisterInCondition instructionLength -> @ui
   end 
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

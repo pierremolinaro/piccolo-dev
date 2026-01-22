@@ -14,16 +14,16 @@ style stringStyle -> "String Constants:"
 style commentStyle -> "Comments:"
 style labelStyle -> "Labels:"
 
-#--- Indexing keys
+//--- Indexing keys
 indexing routineDefinition : "Routine Definition"
 indexing routineCall : "Routine Call"
 indexing variableDeclaration : "Variable Declaration"
 indexing variableUse : "Variable Use"
 indexing constantDeclaration : "Constant Declaration"
 
-# -------------------------- identifier or key word --------------------
-# keywords can be written in lower or upper case
-# for identifiers, case is significant
+// -------------------------- identifier or key word --------------------
+// keywords can be written in lower or upper case
+// for identifiers, case is significant
 
 $identifier$ ! tokenString error message "an identifier"
 
@@ -163,7 +163,7 @@ rule isUnicodeLetter {
   default $identifier$
 }
 
-#------------------------------- Label ------------------
+//------------------------------- Label ------------------
 $label$ ! tokenString  style labelStyle error message "a label beginning with '@'"
 rule '@' {
   repeat
@@ -173,7 +173,7 @@ rule '@' {
   send $label$
 }
 
-#------------------------------- Integer, floating Point Constant ------------------
+//------------------------------- Integer, floating Point Constant ------------------
 $integer$ ! uint32value  style integerStyle error message "a 32-bit unsigned number"
 
 message hexNumberTooLarge : "hex number too large"
@@ -213,7 +213,7 @@ rule '0'->'9' {
   send $integer$
 }
 
-#--------------------------------- Character constant ------------------------------------
+//--------------------------------- Character constant ------------------------------------
 $literal_char$ ! charValue  style characterStyle error message "a character constant"
 
 message incorrectCharConstant : "incorrect literal character"
@@ -266,7 +266,7 @@ rule '\'' {
   end
 }
 
-# ----------------------------- Delimitors ---------------------------------------
+// ----------------------------- Delimitors ---------------------------------------
 list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
   "*",  "*+",   ",",  "!=", "<=", ">=",
   "*-", "+*",   ";",  ":",  "==", "<", ">",
@@ -277,7 +277,7 @@ list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
 
 rule list delimitorsList
 
-# -------------------- Characters string --------------------------------------
+// -------------------- Characters string --------------------------------------
 $literal_string$ ! tokenString  style stringStyle %nonAtomicSelection error message "a character string constant \"...\""
 
 message incorrectStringEnd : "string does not end with '\"'"
@@ -324,7 +324,7 @@ rule '"' {
   end
 }
 
-# ------------------------------------ Comment ----------------------------
+// ------------------------------------ Comment ----------------------------
 $comment$  style commentStyle %nonAtomicSelection error message "a comment"
 $commentMark$  style commentStyle %nonAtomicSelection error message "a comment"
 rule '#' {
@@ -343,10 +343,10 @@ rule '#' {
 }
 
 
-# --------------------- separators -----------------------------------------
+// --------------------- separators -----------------------------------------
 rule '\u0001' -> ' ' {
 }
 
-#------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 
 }

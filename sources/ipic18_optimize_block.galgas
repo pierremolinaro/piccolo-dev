@@ -1,7 +1,5 @@
-
-#!Terminator optimizeTerminator
-
-#----------------------------------------------------------------------------*
+//!Terminator optimizeTerminator
+//----------------------------------------------------------------------------*
 
 abstract method @ipic18AbstractBlockTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -12,7 +10,7 @@ abstract method @ipic18AbstractBlockTerminator optimizeTerminator
   ?!@string ioListFileContents
   !@ipic18AbstractBlockTerminator outOptimizedTerminator
 
-#----------------------------------------------------------------------------*
+////----------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -25,7 +23,7 @@ override method @ipic18ComputedBraTerminator optimizeTerminator
   outOptimizedTerminator = self
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -38,7 +36,7 @@ override method @ipic18ComputedGotoTerminator optimizeTerminator
   outOptimizedTerminator = self
 }
 
-#----------------------------------------------------------------------------*
+////----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -52,8 +50,8 @@ override method @ipic18JumpTerminator optimizeTerminator
   if inBlockLabel != self.mLabel.string then
     [inSymbolTable searchKey !self.mLabel ?let @uint targetBlockIndex]
     let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
-    if (targetBlock.mAddress == @uint. max) # Relocatable
-     & ([targetBlock.mInstructionList count] == 0) # Empty block
+    if (targetBlock.mAddress == @uint. max) ////// Relocatable
+     & ([targetBlock.mInstructionList count] == 0) //// Empty block
      & (targetBlock.mTerminator is >= @ipic18SingleInstructionTerminator) then
       let @bool optimize
       if (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
@@ -75,7 +73,7 @@ override method @ipic18JumpTerminator optimizeTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//////----------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -86,7 +84,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
   ?!@string ioListFileContents
   !@ipic18AbstractBlockTerminator outOptimizedTerminator
 {
-#---- Useless condition ?
+//---- Useless condition ?
   if self.mTargetLabelWhenTrue.string == self.mTargetLabelWhenFalse.string then
     outOptimizedTerminator = @ipic18JumpTerminator {
       !self.mInstructionLocation
@@ -98,13 +96,13 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
     warning self.mInstructionLocation : "useless condition deleted"
   else
     var @bool optimized = false
-  #--- Optimize true label
+  ////////////--- Optimize true label
     var @lstring targetLabelWhenTrue = self.mTargetLabelWhenTrue
     if inBlockLabel != self.mTargetLabelWhenTrue.string then
       [inSymbolTable searchKey !self.mTargetLabelWhenTrue ?let @uint targetBlockIndex]
       let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
-      if targetBlock.mAddress == @uint.max, # Relocatable
-             [targetBlock.mInstructionList count] == 0, # Empty block
+      if targetBlock.mAddress == @uint.max, // Relocatable
+             [targetBlock.mInstructionList count] == 0, // Empty block
              let targetBlockJumpTerminator = targetBlock.mTerminator as @ipic18JumpTerminator then
         targetLabelWhenTrue = targetBlockJumpTerminator.mLabel
         if self.mTargetLabelWhenTrue.string != targetLabelWhenTrue.string then
@@ -117,13 +115,13 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
         end
       end
     end
-  #--- Optimize false label
+  //--- Optimize false label
     var @lstring targetLabelWhenFalse = self.mTargetLabelWhenFalse
     if inBlockLabel != self.mTargetLabelWhenFalse.string then
       [inSymbolTable searchKey !self.mTargetLabelWhenFalse ?let @uint targetBlockIndex]
       let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
-      if targetBlock.mAddress == @uint.max, # Relocatable
-            [targetBlock.mInstructionList count] == 0, # Empty block
+      if targetBlock.mAddress == @uint.max, // Relocatable
+            [targetBlock.mInstructionList count] == 0, // Empty block
             let targetBlockJumpTerminator = targetBlock.mTerminator as @ipic18JumpTerminator then
          targetLabelWhenFalse = targetBlockJumpTerminator.mLabel
          if self.mTargetLabelWhenFalse.string != targetLabelWhenFalse.string then
@@ -136,7 +134,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
         end
       end
     end
-  #--- Optimized ?
+  //--- Optimized ?
     if optimized then
       ioOptimizationDone = true
       outOptimizedTerminator = @ipic18ConditionalJumpTerminator {
@@ -152,7 +150,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18AbstractConditionTerminator getOptimizedTerminators
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -165,7 +163,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
   !@ipic18SingleInstructionTerminator outOptimizedFalseTerminator
   !@bool outIdenticalTerminators
 {
-#---
+//---
   [self.mSingleInstructionTerminatorIfConditionTrue optimizeTerminator
     !inSymbolTable
     !inOptimizeFlagStruct
@@ -176,7 +174,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
     ?let @ipic18AbstractBlockTerminator optimizedTrueTerminator
   ]
   outOptimizedTrueTerminator = ( optimizedTrueTerminator as @ipic18SingleInstructionTerminator)
-#---
+//---
   [self.mSingleInstructionTerminatorIfConditionFalse optimizeTerminator
     !inSymbolTable
     !inOptimizeFlagStruct
@@ -187,7 +185,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
     ?let @ipic18AbstractBlockTerminator optimizedFalseTerminator
   ]
   outOptimizedFalseTerminator = ( optimizedFalseTerminator as @ipic18SingleInstructionTerminator)
-#---- Useless condition ?
+//---- Useless condition ?
   if (outOptimizedTrueTerminator is >= @ipic18ReturnTerminator) & (outOptimizedFalseTerminator is >= @ipic18ReturnTerminator) then
     outIdenticalTerminators = true
   elsif (outOptimizedTrueTerminator is >= @ipic18RetlwTerminator) & (outOptimizedFalseTerminator is >= @ipic18RetlwTerminator) then
@@ -203,7 +201,7 @@ method @ipic18AbstractConditionTerminator getOptimizedTerminators
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18IncDecRegisterTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -214,7 +212,7 @@ override method @ipic18IncDecRegisterTerminator optimizeTerminator
   ?!@string ioListFileContents
   !@ipic18AbstractBlockTerminator outOptimizedTerminator {
   var @bool optimization = false
-#---
+////---
   [self getOptimizedTerminators
     !inSymbolTable
     !inOptimizeFlagStruct
@@ -243,7 +241,7 @@ override method @ipic18IncDecRegisterTerminator optimizeTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18BitTestTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -254,7 +252,7 @@ override method @pic18BitTestTerminator optimizeTerminator
   ?!@string ioListFileContents
   !@ipic18AbstractBlockTerminator outOptimizedTerminator {
   var @bool optimization = false
-#---
+//---
   [self getOptimizedTerminators
     !inSymbolTable
     !inOptimizeFlagStruct
@@ -284,7 +282,7 @@ override method @pic18BitTestTerminator optimizeTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18RegisterComparisonTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -324,7 +322,7 @@ override method @pic18RegisterComparisonTerminator optimizeTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+////----------------------------------------------------------------------------*
 
 override method @pic18TestRegisterTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -363,7 +361,7 @@ override method @pic18TestRegisterTerminator optimizeTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18RetfieTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -376,7 +374,7 @@ override method @ipic18RetfieTerminator optimizeTerminator
   outOptimizedTerminator = self
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18RetlwTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -389,7 +387,7 @@ override method @ipic18RetlwTerminator optimizeTerminator
   outOptimizedTerminator = self
 }
 
-#----------------------------------------------------------------------------*
+////////----------------------------------------------------------------------------*
 
 override method @ipic18ReturnTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -402,7 +400,7 @@ override method @ipic18ReturnTerminator optimizeTerminator
   outOptimizedTerminator = self
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -415,11 +413,11 @@ override method @ipic18ComputedRETLWTerminator optimizeTerminator
   outOptimizedTerminator = self
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator enterTerminatorReferencedLabels
+//!Terminator enterTerminatorReferencedLabels
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc enterGoto2block
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -437,7 +435,7 @@ proc enterGoto2block
   end 
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc enterGoto4block
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -455,14 +453,14 @@ proc enterGoto4block
   end 
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 abstract method @ipic18AbstractBlockTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
   ?let @ipic18BlockList inBlockList
   ?!@stringset ioReferencedBlockSet
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -475,7 +473,7 @@ override method @ipic18ComputedRETLWTerminator enterTerminatorReferencedLabels
   )
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -500,7 +498,7 @@ override method @ipic18ComputedBraTerminator enterTerminatorReferencedLabels
   end
 }
 
-#----------------------------------------------------------------------------*
+//////----------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -525,7 +523,7 @@ override method @ipic18ComputedGotoTerminator enterTerminatorReferencedLabels
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -543,7 +541,7 @@ override method @ipic18JumpTerminator enterTerminatorReferencedLabels
   end 
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -571,7 +569,7 @@ override method @ipic18ConditionalJumpTerminator enterTerminatorReferencedLabels
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18SingleInstructionTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -579,7 +577,7 @@ override method @ipic18SingleInstructionTerminator enterTerminatorReferencedLabe
   ?!@stringset unused ioReferencedBlockSet {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18AbstractConditionTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -589,11 +587,11 @@ override method @ipic18AbstractConditionTerminator enterTerminatorReferencedLabe
   [self.mSingleInstructionTerminatorIfConditionFalse enterTerminatorReferencedLabels !inSymbolTable !inBlockList !?ioReferencedBlockSet]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Instruction enterInstructionReferencedLabels
+//!Instruction enterInstructionReferencedLabels
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18SequentialInstruction enterInstructionReferencedLabels
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -601,7 +599,7 @@ method @ipic18SequentialInstruction enterInstructionReferencedLabels
   ?!@stringset unused ioReferencedBlockSet {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_JSR enterInstructionReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -619,7 +617,7 @@ override method @ipic18_intermediate_JSR enterInstructionReferencedLabels
   end 
 }
 
-#----------------------------------------------------------------------------*
+////----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall enterInstructionReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -639,7 +637,7 @@ override method @ipic18_intermediate_instruction_computed_rcall enterInstruction
   end
 }
 
-#----------------------------------------------------------------------------*
+//////----------------------------------------------------------------------------*
 
 override method @ipic18_condition_skip_instruction  enterInstructionReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -652,11 +650,11 @@ override method @ipic18_condition_skip_instruction  enterInstructionReferencedLa
   ]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Instruction optimization
+//!Instruction optimization
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18SequentialInstruction optimizeInstruction
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -672,7 +670,7 @@ method @ipic18SequentialInstruction optimizeInstruction
   outNOPsubstitution = false
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_JSR optimizeInstruction
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -687,25 +685,25 @@ override method @ipic18_intermediate_JSR optimizeInstruction
   outOptimizedInstruction = self
   outOptimizationDone = false
   outNOPsubstitution = false
-#---
+//---
   [inSymbolTable searchKey !self.mTargetLabel ?let @uint targetBlockIndex] 
   let @ipic18Block targetBloc = [inBlockList mBlockAtIndex !targetBlockIndex]  
-#--- Remove empty routine calls
+//--- Remove empty routine calls
   if inOptimizeFlagStruct.mRemoveEmptyRoutine
-   & ([targetBloc.mInstructionList count] == 0) # Empty block
-   & (targetBloc.mAddress == @uint. max) # Relocatable
-   & (targetBloc.mTerminator is >= @ipic18ReturnTerminator) then # Ends with RETURN
+   & ([targetBloc.mInstructionList count] == 0) // Empty block
+   & (targetBloc.mAddress == @uint. max) // Relocatable
+   & (targetBloc.mTerminator is >= @ipic18ReturnTerminator) then // Ends with RETURN
     outOptimizationDone = true
     ioListFileContents += "  [E] " + inBlockLabel + ": "
     ioListFileContents += "call to empty " + self.mTargetLabel + " routine deleted"
     ioListFileContents += "\n"
     outOptimizedInstruction = @ipic18InstructionWithNoOperand { !self.mInstructionLocation !@pic18InstructionWithNoOperandKind. NOP}
     outNOPsubstitution = true
-#--- Replace call to a RETLW routine with a MOVLW instruction
+//--- Replace call to a RETLW routine with a MOVLW instruction
   elsif inOptimizeFlagStruct.mJSRtoRETLWreplacedByMOVLW
-       & ([targetBloc.mInstructionList count] == 0) # Empty Block
-       & (targetBloc.mAddress == @uint. max) # Relocatable
-       & (targetBloc.mTerminator is >= @ipic18RetlwTerminator) then # Ends with RETLW
+       & ([targetBloc.mInstructionList count] == 0) // Empty Block
+       & (targetBloc.mAddress == @uint. max) // Relocatable
+       & (targetBloc.mTerminator is >= @ipic18RetlwTerminator) then // Ends with RETLW
     let @ipic18RetlwTerminator t = ( targetBloc.mTerminator as @ipic18RetlwTerminator)
     outOptimizationDone = true
     ioListFileContents += "  [R] " + inBlockLabel + ": "
@@ -715,11 +713,11 @@ override method @ipic18_intermediate_JSR optimizeInstruction
       !self.mInstructionLocation
       !@literal_instruction_opcode. MOVLW
       !t.mLiteralValue}
-#--- Replace call to a single instruction routine with the routine instruction
+//--- Replace call to a single instruction routine with the routine instruction
   elsif inOptimizeFlagStruct.mJSRtoOneInstructionRoutineReplacedByInstruction
-      & ([targetBloc.mInstructionList count] == 1) # One instruction bloc
-      & (targetBloc.mAddress == @uint. max) # Relocatable
-      & (targetBloc.mTerminator is >= @ipic18ReturnTerminator) then # Ends with Return
+      & ([targetBloc.mInstructionList count] == 1) // One instruction bloc
+      & (targetBloc.mAddress == @uint. max) // Relocatable
+      & (targetBloc.mTerminator is >= @ipic18ReturnTerminator) then // Ends with Return
     outOptimizedInstruction = [targetBloc.mInstructionList mInstructionAtIndex !0]
     outOptimizationDone = true
     ioListFileContents += "  [I] " + inBlockLabel + ", "
@@ -728,7 +726,7 @@ override method @ipic18_intermediate_JSR optimizeInstruction
   end    
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruction
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -742,7 +740,7 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
 {
   outOptimizationDone = false
   outNOPsubstitution = false
-#---
+//---
   var @ipic18SequentialInstructionList optimizedInstructionList = @()
   for (mInstruction * *) in  self.mTargetInstructions do
     var @bool opt = false
@@ -750,10 +748,10 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
       let @ipic18_intermediate_JSR jsr = ( mInstruction as @ipic18_intermediate_JSR)
       [inSymbolTable searchKey !jsr.mTargetLabel ?let @uint targetBlockIndex] 
       let @ipic18Block targetBloc = [inBlockList mBlockAtIndex !targetBlockIndex]  
-      if (targetBloc.mTerminator is >= @ipic18ReturnTerminator) # One instruction bloc
-       & (targetBloc.mAddress == @uint. max) then # Relocatable bloc
+      if (targetBloc.mTerminator is >= @ipic18ReturnTerminator) // One instruction bloc
+       & (targetBloc.mAddress == @uint. max) then // Relocatable bloc
         if inOptimizeFlagStruct.mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank
-         & [targetBloc.mInstructionList count] == 0 then # Empty block, replace by NOP
+         & [targetBloc.mInstructionList count] == 0 then // Empty block, replace by NOP
           opt = true
           outOptimizationDone = true
           optimizedInstructionList += !@ipic18_intermediate_instruction_BLANK { !jsr.mInstructionLocation !0} !@uint.max !0
@@ -761,9 +759,9 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
           ioListFileContents += "JSR " + jsr.mTargetLabel + " to empty routine replaced by BLANK 0"
           ioListFileContents += "\n"
         elsif inOptimizeFlagStruct.mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction
-         & ([targetBloc.mInstructionList count] == 1) then # One instruction block
+         & ([targetBloc.mInstructionList count] == 1) then // One instruction block
           let @ipic18SequentialInstruction inst = [targetBloc.mInstructionList mInstructionAtIndex !0]
-          if [inst instructionSize] == 2 then # Instruction size == 2, perform replacement
+          if [inst instructionSize] == 2 then // Instruction size == 2, perform replacement
             opt = true
             outOptimizationDone = true
             optimizedInstructionList += !inst !@uint.max !0
@@ -788,7 +786,7 @@ override method @ipic18_intermediate_instruction_computed_rcall optimizeInstruct
   end  
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_skip_instruction_BitTestSkip optimizeInstruction
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -800,7 +798,7 @@ override method @ipic18_skip_instruction_BitTestSkip optimizeInstruction
   !@ipic18SequentialInstruction outOptimizedInstruction
   !@bool outNOPsubstitution {
   outNOPsubstitution = false
-#---
+//---
   [self.mEmbeddedInstruction optimizeInstruction
     !inSymbolTable
     !inOptimizeFlagStruct
@@ -823,7 +821,7 @@ override method @ipic18_skip_instruction_BitTestSkip optimizeInstruction
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_skip_instruction_compare_register optimizeInstruction
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -835,7 +833,7 @@ override method @ipic18_skip_instruction_compare_register optimizeInstruction
   !@ipic18SequentialInstruction outOptimizedInstruction
   !@bool outNOPsubstitution {
   outNOPsubstitution = false
-#---
+//---
   [self.mEmbeddedInstruction optimizeInstruction
     !inSymbolTable
     !inOptimizeFlagStruct
@@ -857,7 +855,7 @@ override method @ipic18_skip_instruction_compare_register optimizeInstruction
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_skip_instruction_FDA optimizeInstruction
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -869,7 +867,7 @@ override method @ipic18_skip_instruction_FDA optimizeInstruction
   !@ipic18SequentialInstruction outOptimizedInstruction
   !@bool outNOPsubstitution {
   outNOPsubstitution = false
-#---
+//---
   [self.mEmbeddedInstruction optimizeInstruction
     !inSymbolTable
     !inOptimizeFlagStruct
@@ -892,11 +890,11 @@ override method @ipic18_skip_instruction_FDA optimizeInstruction
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Instruction list optimization
+//!Instruction list optimization
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc instructionListOptimization
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -929,11 +927,11 @@ proc instructionListOptimization
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Block optimization
+//!Block optimization
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18SequentialInstructionList enterInstructionReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -948,7 +946,7 @@ method @ipic18SequentialInstructionList enterInstructionReferencedLabels
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18Block enterReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -966,7 +964,7 @@ method @ipic18Block enterReferencedLabels
   ]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 method @ipic18Block optimize
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -975,7 +973,7 @@ method @ipic18Block optimize
   ?!@bool ioOptimizationDone
   ?!@string ioListFileContents
   !@ipic18Block outOptimizedBlock {
-#----- Optimize instruction list
+//----- Optimize instruction list
   instructionListOptimization (
     !inSymbolTable
     !inOptimizeFlagStruct
@@ -986,44 +984,44 @@ method @ipic18Block optimize
     !?ioListFileContents
     ?var @ipic18SequentialInstructionList optimizedInstructionList
   )
-#--- Transform MOVLW k ; RETURN to RETLW
+//--- Transform MOVLW k ; RETURN to RETLW
   var @ipic18AbstractBlockTerminator optimizedTerminator = self.mTerminator
   if ([optimizedInstructionList count] > 0) & (self.mTerminator is >= @ipic18ReturnTerminator) then
     [optimizedInstructionList last ?let @ipic18SequentialInstruction lastInstruction ?2*]
     if let op = lastInstruction as @ipic18_intermediate_instruction_literalOperation then
-#    case == @ipic18_intermediate_instruction_literalOperation op :
+//    case == @ipic18_intermediate_instruction_literalOperation op :
       if inOptimizeFlagStruct.mMOVLWfollowedByRETreplacedByRETLW & (op.mLiteralInstruction == @literal_instruction_opcode. MOVLW) then
         [!?optimizedInstructionList popLast ?3*]
         optimizedTerminator = @ipic18RetlwTerminator { !op.mInstructionLocation !op.mLiteralValue}
         optimized = true
         ioListFileContents += "  [M] " + self.mLabel + ": MOVLW k ; RETURN --> RETLW k\n"
       end
-  #--- Transform JSR label ; RETURN to JUMP label
+  //--- Transform JSR label ; RETURN to JUMP label
     elsif let jsr = lastInstruction as @ipic18_intermediate_JSR then
-#    case == @ipic18_intermediate_JSR jsr :
+//    case == @ipic18_intermediate_JSR jsr :
       if inOptimizeFlagStruct.mJSRfollowedByRETreplacedByJUMP then
         [!?optimizedInstructionList popLast ?3*]
         optimizedTerminator = @ipic18JumpTerminator {!jsr.mInstructionLocation !jsr.mTargetLabel !jsr.mKind}
         optimized = true
         ioListFileContents += "  [J] " + self.mLabel + ": JSR " + jsr.mTargetLabel + " ; RETURN --> JUMP " + jsr.mTargetLabel + "\n"
       end
-  #--- Transform computed rcall ; RETURN to computed bra
-#    case == @ipic18_intermediate_instruction_computed_rcall computedRCALL :
-#      if inOptimizeFlagStruct.mComputedRCALLFollowedByRETURNreplacedByComputedBRA then
-#        [!?optimizedInstructionList popLast ?*]
-#        optimizedTerminator = @ipic18ComputedBraTerminator.new {
-#          ![computedRCALL mInstructionLocation]
-#          ![computedRCALL mTargetLabels]
-#          ![computedRCALL mKind]
-#         }
-#        optimized = true
-#        ioListFileContents += "  [J] " + mLabel + ": JSR " + [jsr mTargetLabel] + " ; RETURN --> JUMP " + [jsr mTargetLabel] + "\n"
-#      end
+  //--- Transform computed rcall ; RETURN to computed bra
+//    case == @ipic18_intermediate_instruction_computed_rcall computedRCALL :
+//      if inOptimizeFlagStruct.mComputedRCALLFollowedByRETURNreplacedByComputedBRA then
+//        [!?optimizedInstructionList popLast ?*]
+//        optimizedTerminator = @ipic18ComputedBraTerminator.new {
+//          ![computedRCALL mInstructionLocation]
+//          ![computedRCALL mTargetLabels]
+//          ![computedRCALL mKind]
+//         }
+//        optimized = true
+//        ioListFileContents += "  [J] " + mLabel + ": JSR " + [jsr mTargetLabel] + " ; RETURN --> JUMP " + [jsr mTargetLabel] + "\n"
+//      end
     else
     end
   end
-#--- Optimize terminator 
-# DO NOT OPTIMIZE WHEN TERMINATOR HAS BEEN CHANGED IN PREVIOUS INSTRUCTIONS
+//--- Optimize terminator 
+// DO NOT OPTIMIZE WHEN TERMINATOR HAS BEEN CHANGED IN PREVIOUS INSTRUCTIONS
   if not optimized then
     [self.mTerminator optimizeTerminator
       !inSymbolTable
@@ -1035,7 +1033,7 @@ method @ipic18Block optimize
       ?optimizedTerminator
     ]
   end
-#--- Return optimized block
+//--- Return optimized block
   if optimized then
     ioOptimizationDone = true
     outOptimizedBlock = @ipic18Block {
@@ -1051,50 +1049,50 @@ method @ipic18Block optimize
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!optimizeFlagStruct
+//!optimizeFlagStruct
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 struct @optimizeFlagStruct {
- public let @bool mRemoveEmptyRoutine # [E]
- public let @bool mJSRtoRETLWreplacedByMOVLW # [R]
- public let @bool mJSRfollowedByRETreplacedByJUMP # [J]
- public let @bool mMOVLWfollowedByRETreplacedByRETLW # [M]
- public let @bool mJSRtoOneInstructionRoutineReplacedByInstruction # [I]
- public let @bool mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction # [i]
- public let @bool mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank # [e]
+ public let @bool mRemoveEmptyRoutine // [E]
+ public let @bool mJSRtoRETLWreplacedByMOVLW // [R]
+ public let @bool mJSRfollowedByRETreplacedByJUMP // [J]
+ public let @bool mMOVLWfollowedByRETreplacedByRETLW // [M]
+ public let @bool mJSRtoOneInstructionRoutineReplacedByInstruction // [I]
+ public let @bool mJSRtoOneInstructionRoutineInComputedRCALLreplacedByInstruction // [i]
+ public let @bool mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank // [e]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 getter @bool flagValue ->@string outResult {
   outResult = if self then "enabled" else "disabled" end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc ipic18OptimizeBlocks
   ?!@string ioListFileContents
   ?!@ipic18BlockList ioGeneratedBlockList {
-#--- Optimization flags
+//--- Optimization flags
   let optimizeFlagStruct = @optimizeFlagStruct {
-    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'E'] # [E]
-    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'R'] # [R]
-    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'J'] # [J]
-    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'M'] # [M]
-    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'I'] # [I]
-    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'i'] # [i]
-    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'e'] # [e]
-#    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'c'] # [c]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'E'] // [E]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'R'] // [R]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'J'] // [J]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'M'] // [M]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'I'] // [I]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'i'] // [i]
+    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'e'] // [e]
+//    ![option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'c'] // [c]
   }
-#---
+//---
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
   ioListFileContents += "*" + ["BLOCK REPRESENTATION OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
   ioListFileContents += "Optimization flags:\n"
-#  ioListFileContents += "  [c] computed RCALL followed by RETURN replaced by computed BRA: " + [optimizeFlagStruct.mComputedRCALLFollowedByRETURNreplacedByComputedBRA flagValue] + "\n"
+//  ioListFileContents += "  [c] computed RCALL followed by RETURN replaced by computed BRA: " + [optimizeFlagStruct.mComputedRCALLFollowedByRETURNreplacedByComputedBRA flagValue] + "\n"
   ioListFileContents += "  [D] Dead code elimination: always enabled\n"
   ioListFileContents += "  [E] Empty routine elimination: " + [optimizeFlagStruct.mRemoveEmptyRoutine flagValue] + "\n"
   ioListFileContents += "  [e] In Computed RCALL, empty routine call replaced by BLANK: " + [optimizeFlagStruct.mJSRtoEmptyRoutineInComputedRCALLreplacedByBlank flagValue] + "\n"
@@ -1108,7 +1106,7 @@ proc ipic18OptimizeBlocks
   if @application.verboseOutput then
     print (!"Optimizations:\n")
   end
-#--- Optimizations loops
+////--- Optimizations loops
   var @bool optimizationDone = true
   var @uint optimizationPass = 0
   loop( [ioGeneratedBlockList count] + 1)
@@ -1120,15 +1118,15 @@ proc ipic18OptimizeBlocks
     if @application.verboseOutput then
       print (!"  Pass " + optimizationPass + " : " + blockCountBeforeOptimization + " blocks.\n")
     end
-  #-------------------------------- Build label map
+  //-------------------------------- Build label map
     var symbolTable =@symbolTableForBlockOptimization ()
     for (mBlock) in  ioGeneratedBlockList do(blockIndex)
       [!?symbolTable insertKey !mBlock.mLabel !blockIndex]
     end
-  #-------------------------------- Build referenced label set
+  //-------------------------------- Build referenced label set
     var referencedBlockSet =@stringset ()
     for (mBlock) in  ioGeneratedBlockList do
-      if mBlock.mAddress != @uint. max then # Only absolute blocks
+      if mBlock.mAddress != @uint. max then // Only absolute blocks
         [mBlock enterReferencedLabels
           !symbolTable
           !ioGeneratedBlockList
@@ -1136,7 +1134,7 @@ proc ipic18OptimizeBlocks
         ]
       end
     end
-  #-------------------------------- Optimize blocks
+  //-------------------------------- Optimize blocks
     var optimizedBlockList =@ipic18BlockList ()
     for (mBlock) in  ioGeneratedBlockList do
       if [referencedBlockSet hasKey !mBlock.mLabel.string] | (mBlock.mAddress != @uint. max) then
@@ -1162,6 +1160,6 @@ proc ipic18OptimizeBlocks
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 

@@ -1,12 +1,10 @@
-
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 list @clusterList {
   public let @ipic18BlockList mBlockList
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 map @neededConversionForClusterOrder {
   public let @uint mConversions
@@ -14,7 +12,7 @@ map @neededConversionForClusterOrder {
   search searchKey error message "the '%K' key is not declared"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 func sortKey ?let @clusterList inClusterList -> @string outKey {
   outKey = ""
@@ -26,7 +24,7 @@ func sortKey ?let @clusterList inClusterList -> @string outKey {
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 proc perform_cluster_ordering
   ?let @clusterList inInitialClusterList
@@ -44,11 +42,11 @@ proc perform_cluster_ordering
     ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
     let @string s = "Cluster ordering optimization (" + clusterCount + " cluster" + if clusterCount > 1 then "s" else "" end + "):\n"
     ioListFileContents += s + "\n"
-  #---
+  //---
     if @application.verboseOutput then
       print (!s)
     end
-  #------------------- Optimization loop
+  //------------------- Optimization loop
     var @clusterList clusterList = inInitialClusterList
     var neededConversionForClusterOrder =@neededConversionForClusterOrder ()
     var @bool continue = true
@@ -57,7 +55,7 @@ proc perform_cluster_ordering
     while continue do
       pass += 1
       ioListFileContents += "Pass " + pass + ":\n"
-    #--- Build working block list and symbol table
+    //--- Build working block list and symbol table
       var workingBlockList =@ipic18BlockList ()
       var symbolTable =@symbolTableForClusterOrdering ()
       for (mBlockList) in  clusterList do(clusterIndex)
@@ -66,7 +64,7 @@ proc perform_cluster_ordering
           [!?symbolTable insertKey !mBlock.mLabel !clusterIndex]
         end
       end
-    #--- Add symbols from last relocatable blocks
+    //--- Add symbols from last relocatable blocks
       let @uint insertionIdx = [workingBlockList count]
       for > (mBlock) in  ioBlockList while continue do
         continue = mBlock.mAddress != @uint. max
@@ -75,10 +73,10 @@ proc perform_cluster_ordering
           [!?workingBlockList insertAtIndex !mBlock !insertionIdx]
         end
       end 
-    #--- Check for overflows
+    //--- Check for overflows
       ipic18RelativeBranchOverflow (
         !workingBlockList
-        !ioBlockList # For entering absolute labels
+        !ioBlockList // For entering absolute labels
         ?let @branchOverflowMap overflowMap
       )
       var @uint overflowCount = 0
@@ -105,7 +103,7 @@ proc perform_cluster_ordering
         end
         print (!s)
       end
-    #--- Correction
+    //--- Correction
       var @bool correctionLoop = true
       for (key mList) in overflowMap.dictionary while correctionLoop do
         for (mValue) in  mList while correctionLoop do
@@ -174,9 +172,9 @@ proc perform_cluster_ordering
       print (!"\n")
     end
     ioListFileContents += "\n"
-  #---------------------------------- Build the new ordered block list
+  //---------------------------------- Build the new ordered block list
     var newBlockList =@ipic18BlockList ()
-  #--- First insert absolute blocks from 0
+  //--- First insert absolute blocks from 0
     continue = true
     for (mBlock) in  ioBlockList while continue do
       continue = mBlock.mAddress != @uint. max
@@ -184,11 +182,11 @@ proc perform_cluster_ordering
         newBlockList += !mBlock
       end
     end 
-  #--- Insert sorted blocks 
+  //--- Insert sorted blocks 
     for (mBlockList) in  clusterList do
       newBlockList += mBlockList
     end
-  #--- Insert absolute blocks from the end
+  //--- Insert absolute blocks from the end
     let @uint insertionIndex = [newBlockList count]
     continue = true
     for > (mBlock) in  ioBlockList while continue do
@@ -197,11 +195,11 @@ proc perform_cluster_ordering
         [!?newBlockList insertAtIndex !mBlock !insertionIndex]
       end
     end 
-  #--- Set result
+  //--- Set result
     ioBlockList = newBlockList
   end
 }      
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 

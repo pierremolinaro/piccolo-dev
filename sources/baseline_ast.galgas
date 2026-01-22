@@ -1,18 +1,16 @@
-
-
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 abstract class @baseline_instruction {
   public let @location mInstructionLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 list @baseline_instructionList {
   public let @baseline_instruction mInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_FD : @baseline_instruction {
   public let @baseline_instruction_FD_base_code mInstruction_FD_base_code
@@ -20,14 +18,14 @@ class @baseline_instruction_FD : @baseline_instruction {
   public let @bool m_W_isDestination
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_F : @baseline_instruction {
   public let @baseline_F_instruction_base_code mFAinstruction
   public let @registerExpression mRegisterExpression
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_FB : @baseline_instruction {
   public let @baseline_bit_oriented_op mBitOrientedOp
@@ -35,63 +33,63 @@ class @baseline_instruction_FB : @baseline_instruction {
   public let @bitNumberExpression mBitNumber
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_CALL : @baseline_instruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_JSR : @baseline_instruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_GOTO : @baseline_instruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_JUMP : @baseline_instruction {
   public let @lstring mTargetLabel
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_WO_OPERAND : @baseline_instruction {
   public let @baseline_WO_OPERAND_group mInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_TRIS : @baseline_instruction {
   public let @lstring mOperand
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_literalOperation : @baseline_instruction {
   public let @baseline_literal_instruction_opcode mLiteralInstruction
   public let @immediatExpression mImmediatExpression
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_MNOP : @baseline_instruction {
   public let @luint mOccurrenceFactor
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_FOREVER : @baseline_instruction {
   public let @baseline_instructionList mInstructionList
   public let @location mEndOfInstructionList
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
   public let @lstring mConstantName
@@ -101,13 +99,13 @@ class @baseline_instruction_STATIC_REPEAT : @baseline_instruction {
   public let @location mEndOfInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 abstract class @baseline_instruction_IF_SEMI_COLON : @baseline_instruction {
   public let @baseline_instruction mInstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_IF_BitTest : @baseline_instruction_IF_SEMI_COLON {
   public let @bool mSkipIfSet
@@ -117,9 +115,9 @@ class @baseline_instruction_IF_BitTest : @baseline_instruction_IF_SEMI_COLON {
 
 method @baseline_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
   if self.mSkipIfSet then
-    outBaseCode = 0x1C00 # BTFSS
+    outBaseCode = 0x1C00 // BTFSS
   else
-    outBaseCode = 0x1800 # BTFSC
+    outBaseCode = 0x1800 // BTFSC
   end
 } 
 
@@ -132,7 +130,7 @@ method @baseline_instruction_IF_BitTest getMnemonic !@string outMnemonic {
 } 
 
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_IF_IncDec : @baseline_instruction_IF_SEMI_COLON {
   public let @bool mIncrement
@@ -140,12 +138,12 @@ class @baseline_instruction_IF_IncDec : @baseline_instruction_IF_SEMI_COLON {
   public let @bool m_W_isDestination
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 abstract class @baseline_conditionExpression {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_incDecRegisterInCondition : @baseline_conditionExpression {
   public let @registerExpression mRegisterExpression
@@ -154,28 +152,28 @@ class @baseline_incDecRegisterInCondition : @baseline_conditionExpression {
   public let @bool mBranchIfZero
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_negateCondition : @baseline_conditionExpression {
   public let @baseline_conditionExpression mCondition
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_andCondition : @baseline_conditionExpression {
   public let @baseline_conditionExpression mLeftExpression
   public let @baseline_conditionExpression mRightExpression
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_bitTest_in_structured_if_condition : @baseline_conditionExpression {
   public let @registerExpression mRegisterExpression
   public let @bitNumberExpression mBitNumber
-#  @bool mBTFSSinstruction
+//  @bool mBTFSSinstruction
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_structured_if : @baseline_instruction {
   public let @baseline_conditionExpression mIfCondition
@@ -184,7 +182,7 @@ class @baseline_instruction_structured_if : @baseline_instruction {
   public let @location mEndOfElsePartLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 list @baseline_partList {
   public let @baseline_conditionExpression mCondition
@@ -192,7 +190,7 @@ list @baseline_partList {
   public let @location mEndOfPartLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 class @baseline_instruction_do_while : @baseline_instruction {
   public let @baseline_instructionList mRepeatedInstructionList
@@ -200,7 +198,7 @@ class @baseline_instruction_do_while : @baseline_instruction {
   public let @baseline_partList mWhilePartList
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 list @baseline_routineDefinitionList {
   public let @lstring mRoutineName
@@ -210,7 +208,7 @@ list @baseline_routineDefinitionList {
   public let @location mEndOfRoutineLocation
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 struct @baseline_model {
   public let @lstring mProgramName
@@ -224,5 +222,5 @@ struct @baseline_model {
   public let @location mEndOfProgram
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

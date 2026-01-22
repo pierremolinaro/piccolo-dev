@@ -1,26 +1,24 @@
+//----------------------------------------------------------------------------*
 
+//!Abstract readers
 
-#----------------------------------------------------------------------------*
-
-#!Abstract readers
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 abstract getter @ipic18AbstractBlockTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 abstract getter @ipic18AbstractBlockTerminator terminatorSize
   ?let @string inNextBlockLabel
   -> @uint
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @ipic18ReturnTerminator
+//!Terminator @ipic18ReturnTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ReturnTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
@@ -28,7 +26,7 @@ override getter @ipic18ReturnTerminator terminatorDisplay
   outResult = "RETURN"
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ReturnTerminator terminatorSize
   ?let @string unused inNextBlockLabel
@@ -36,7 +34,7 @@ override getter @ipic18ReturnTerminator terminatorSize
   outSize = 2
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ReturnTerminator generateTerminatorCode
   ?let @uint unused inAddress
@@ -48,7 +46,7 @@ override method @ipic18ReturnTerminator generateTerminatorCode
     !@uintlist. listWithValue { !0x0012}}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ReturnTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -56,11 +54,11 @@ override getter @ipic18ReturnTerminator isEqualToTerminator
   outResult = (inTerminator is == @ipic18ReturnTerminator)
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @ipic18RetfieTerminator
+//!Terminator @ipic18RetfieTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18RetfieTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
@@ -71,7 +69,7 @@ override getter @ipic18RetfieTerminator terminatorDisplay
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18RetfieTerminator terminatorSize
   ?let @string unused inNextBlockLabel
@@ -79,7 +77,7 @@ override getter @ipic18RetfieTerminator terminatorSize
   outSize = 2
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18RetfieTerminator generateTerminatorCode
   ?let @uint unused inAddress
@@ -91,7 +89,7 @@ override method @ipic18RetfieTerminator generateTerminatorCode
     !@uintlist. listWithValue { !if self.mFastReturn then 0x0011 else 0x0010 end}}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18RetfieTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -99,11 +97,11 @@ override getter @ipic18RetfieTerminator isEqualToTerminator
   outResult = (inTerminator is == @ipic18RetfieTerminator)
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @ipic18RetlwTerminator
+//!Terminator @ipic18RetlwTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18RetlwTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
@@ -111,7 +109,7 @@ override getter @ipic18RetlwTerminator terminatorDisplay
   outResult = "RETLW " + [self.mLiteralValue hexString]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18RetlwTerminator terminatorSize
   ?let @string unused inNextBlockLabel
@@ -119,7 +117,7 @@ override getter @ipic18RetlwTerminator terminatorSize
   outSize = 2
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18RetlwTerminator generateTerminatorCode
   ?let @uint unused inAddress
@@ -131,16 +129,16 @@ override method @ipic18RetlwTerminator generateTerminatorCode
     !@uintlist. listWithValue { !0x0C00 | self.mLiteralValue}}
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18RetlwTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
-#  outResult = (inTerminator is == @ipic18RetlwTerminator)
-#  if outResult then
-#    let @ipic18RetlwTerminator t = ( inTerminator as @ipic18RetlwTerminator)
-#    outResult = mLiteralValue == [t mLiteralValue]
-#  end
+//  outResult = (inTerminator is == @ipic18RetlwTerminator)
+//  if outResult then
+//    let @ipic18RetlwTerminator t = ( inTerminator as @ipic18RetlwTerminator)
+//    outResult = mLiteralValue == [t mLiteralValue]
+//  end
 
   if let t = inTerminator as @ipic18RetlwTerminator then
     outResult = self.mLiteralValue == t.mLiteralValue
@@ -149,11 +147,11 @@ override getter @ipic18RetlwTerminator isEqualToTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!@ipic18JumpTerminator
+//!@ipic18JumpTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18JumpTerminator terminatorSize
   ?let @string inNextBlockLabel
@@ -170,7 +168,7 @@ override getter @ipic18JumpTerminator terminatorSize
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
@@ -190,7 +188,7 @@ override method @ipic18JumpTerminator terminatorRelativeBranchOverflow
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
@@ -215,12 +213,12 @@ override method @ipic18JumpTerminator performTerminatorRelativeBranchResolution
         + pic18_BRA_RCALL_displacement (!inSymbolTable !self.mLabel !inAddress) + ") too large for BRA "
         + self.mLabel + " instruction (limited to [-1024, 1023])"
       end
-    case absolute : # Allways ok
+    case absolute : // Allways ok
     end
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18JumpTerminator terminatorDisplay
   ?let @string inNextBlockLabel
@@ -238,7 +236,7 @@ override getter @ipic18JumpTerminator terminatorDisplay
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -258,7 +256,7 @@ override method @ipic18JumpTerminator generateTerminatorCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18JumpTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -270,11 +268,11 @@ override getter @ipic18JumpTerminator isEqualToTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!@ipic18AbstractConditionTerminator
+//!@ipic18AbstractConditionTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18AbstractConditionTerminator terminatorSize
   ?let @string inNextBlockLabel
@@ -284,7 +282,7 @@ override getter @ipic18AbstractConditionTerminator terminatorSize
     + [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextBlockLabel]    
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18AbstractConditionTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
@@ -308,11 +306,11 @@ override method @ipic18AbstractConditionTerminator terminatorRelativeBranchOverf
   ]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @pic18RegisterComparisonTerminator
+//!Terminator @pic18RegisterComparisonTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18RegisterComparisonTerminator terminatorSize
   ?let @string inNextBlockLabel
@@ -322,7 +320,7 @@ override getter @pic18RegisterComparisonTerminator terminatorSize
     + [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !""]    
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18RegisterComparisonTerminator terminatorDisplay
   ?let @string inNextBlockLabel
@@ -342,7 +340,7 @@ override getter @pic18RegisterComparisonTerminator terminatorDisplay
   outResult += [self.mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !""]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18RegisterComparisonTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
@@ -383,7 +381,7 @@ override method @pic18RegisterComparisonTerminator performTerminatorRelativeBran
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18RegisterComparisonTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -430,7 +428,7 @@ override method @pic18RegisterComparisonTerminator generateTerminatorCode
    outCode += trueTerminatorCode
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18RegisterComparisonTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -451,11 +449,11 @@ override getter @pic18RegisterComparisonTerminator isEqualToTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @pic18TestRegisterTerminator
+//!Terminator @pic18TestRegisterTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18TestRegisterTerminator terminatorSize
   ?let @string inNextBlockLabel
@@ -465,7 +463,7 @@ override getter @pic18TestRegisterTerminator terminatorSize
     + [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !""]    
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18TestRegisterTerminator terminatorDisplay
   ?let @string inNextBlockLabel
@@ -477,7 +475,7 @@ override getter @pic18TestRegisterTerminator terminatorDisplay
   outResult += [self.mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !""]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18TestRegisterTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
@@ -517,7 +515,7 @@ override method @pic18TestRegisterTerminator performTerminatorRelativeBranchReso
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18TestRegisterTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -534,7 +532,7 @@ override method @pic18TestRegisterTerminator generateTerminatorCode
   outCode = @codeList. listWithValue {
     !assemblyCode
     !@uintlist. listWithValue { !binCode}}
-#--- Generate complementary code (true terminator first terminator)
+//--- Generate complementary code (true terminator first terminator)
   [self.mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode
     !inAddress + 2
     !inSymbolTable
@@ -551,7 +549,7 @@ override method @pic18TestRegisterTerminator generateTerminatorCode
    outCode += trueTerminatorCode
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18TestRegisterTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -569,11 +567,11 @@ override getter @pic18TestRegisterTerminator isEqualToTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @pic18BitTestTerminator
+//!Terminator @pic18BitTestTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18BitTestTerminator terminatorDisplay
   ?let @string inNextBlockLabel
@@ -584,7 +582,7 @@ override getter @pic18BitTestTerminator terminatorDisplay
   outResult += [self.mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !inNextBlockLabel]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18BitTestTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
@@ -625,7 +623,7 @@ override method @pic18BitTestTerminator performTerminatorRelativeBranchResolutio
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18BitTestTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -634,7 +632,7 @@ override method @pic18BitTestTerminator generateTerminatorCode
   !@codeList outCode
 {
   if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
-  #--- Generate direct code (no code for true terminator)
+  //--- Generate direct code (no code for true terminator)
     var @uint binCode = 0xB000
     var @string assemblyCode = "    BTFSC " + self.mRegisterDescription.mAssemblyString + ", " + self.mBitNumber
     binCode = binCode | (self.mRegisterDescription.mRegisterAddress & 255)
@@ -654,7 +652,7 @@ override method @pic18BitTestTerminator generateTerminatorCode
      ]
      outCode += falseTerminatorCode
   else
-  #--- Generate complementary code (true terminator first terminator)
+  //--- Generate complementary code (true terminator first terminator)
     var @uint binCode = 0xA000
     var @string assemblyCode = "    BTFSS " + self.mRegisterDescription.mAssemblyString + ", " + self.mBitNumber
     binCode = binCode | (self.mRegisterDescription.mRegisterAddress & 255)
@@ -683,7 +681,7 @@ override method @pic18BitTestTerminator generateTerminatorCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @pic18BitTestTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -704,11 +702,11 @@ override getter @pic18BitTestTerminator isEqualToTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @ipic18IncDecRegisterTerminator
+//!Terminator @ipic18IncDecRegisterTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18IncDecRegisterTerminator terminatorDisplay
   ?let @string inNextBlockLabel
@@ -730,7 +728,7 @@ override getter @ipic18IncDecRegisterTerminator terminatorDisplay
   outResult += [self.mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !inNextBlockLabel]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
@@ -772,7 +770,7 @@ override method @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchR
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18IncDecRegisterTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -780,7 +778,7 @@ override method @ipic18IncDecRegisterTerminator generateTerminatorCode
   ?let @string inNextBlockLabel
   !@codeList outCode {
   if [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
-  #--- Generate direct code (no code for true terminator)
+  //--- Generate direct code (no code for true terminator)
     var @uint binCode =        if self.mIncrement then 0x3C00   else 0x2C00 end
     var @string assemblyCode = if self.mIncrement then "    INCFSZ" else "    DECFSZ" end
     assemblyCode += " " + self.mRegisterDescription.mAssemblyString
@@ -806,7 +804,7 @@ override method @ipic18IncDecRegisterTerminator generateTerminatorCode
      ]
      outCode += falseTerminatorCode
   else
-  #--- Generate complementary code (true terminator first terminator)
+  //--- Generate complementary code (true terminator first terminator)
     var @uint binCode =        if self.mIncrement then 0x4800   else 0x4C00 end
     var @string assemblyCode = if self.mIncrement then "    INFSNZ" else "    DCFSNZ" end
     assemblyCode += " " + self.mRegisterDescription.mAssemblyString
@@ -841,7 +839,7 @@ override method @ipic18IncDecRegisterTerminator generateTerminatorCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18IncDecRegisterTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -865,11 +863,11 @@ override getter @ipic18IncDecRegisterTerminator isEqualToTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @ipic18ComputedRETLWTerminator
+//!Terminator @ipic18ComputedRETLWTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedRETLWTerminator terminatorSize
   ?let @string unused inNextBlockLabel
@@ -882,7 +880,7 @@ override getter @ipic18ComputedRETLWTerminator terminatorSize
   outSize = outSize + 2 * [self.mLiteralValues count]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedRETLWTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
@@ -893,7 +891,7 @@ override getter @ipic18ComputedRETLWTerminator terminatorDisplay
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
@@ -913,7 +911,7 @@ override method @ipic18ComputedRETLWTerminator performTerminatorRelativeBranchRe
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
@@ -928,7 +926,7 @@ override method @ipic18ComputedRETLWTerminator terminatorRelativeBranchOverflow
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -949,7 +947,7 @@ override method @ipic18ComputedRETLWTerminator generateTerminatorCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedRETLWTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -964,11 +962,11 @@ override getter @ipic18ComputedRETLWTerminator isEqualToTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @ipic18ComputedGotoTerminator
+//!Terminator @ipic18ComputedGotoTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedGotoTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
@@ -984,7 +982,7 @@ override getter @ipic18ComputedGotoTerminator terminatorDisplay
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedGotoTerminator terminatorSize
   ?let @string unused inNextBlockLabel
@@ -997,7 +995,7 @@ override getter @ipic18ComputedGotoTerminator terminatorSize
   outSize = outSize + 4 * [self.mTargetLabels count]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
@@ -1017,7 +1015,7 @@ override method @ipic18ComputedGotoTerminator performTerminatorRelativeBranchRes
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
@@ -1032,7 +1030,7 @@ override method @ipic18ComputedGotoTerminator terminatorRelativeBranchOverflow
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -1052,7 +1050,7 @@ override method @ipic18ComputedGotoTerminator generateTerminatorCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedGotoTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -1067,11 +1065,11 @@ override getter @ipic18ComputedGotoTerminator isEqualToTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @ipic18ComputedBraTerminator
+//!Terminator @ipic18ComputedBraTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedBraTerminator terminatorSize
   ?let @string unused inNextBlockLabel
@@ -1084,7 +1082,7 @@ override getter @ipic18ComputedBraTerminator terminatorSize
   outSize = outSize + 2 * [self.mTargetLabels count]
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedBraTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
@@ -1095,7 +1093,7 @@ override getter @ipic18ComputedBraTerminator terminatorDisplay
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
@@ -1122,7 +1120,7 @@ override method @ipic18ComputedBraTerminator performTerminatorRelativeBranchReso
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
@@ -1147,7 +1145,7 @@ override method @ipic18ComputedBraTerminator terminatorRelativeBranchOverflow
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -1171,7 +1169,7 @@ override method @ipic18ComputedBraTerminator generateTerminatorCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ComputedBraTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -1187,96 +1185,15 @@ override getter @ipic18ComputedBraTerminator isEqualToTerminator
 }
 
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#!Terminator @ipic18ConditionalBranchTerminator
+//!Terminator @ipic18ConditionalBranchTerminator
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
-#override reader @ipic18ConditionalBranchTerminator terminatorDisplay
-#  ??@string inNextBlockLabel
-#  ->@string outResult
-#:
-#  switch mConditionalBranch
-#  when bz : outResult := "Z" ;
-#  when bn  : outResult := "N" ;
-#  when bc :  outResult := "C" ;
-#  when bov :  outResult := "OV" ;
-#  when bnz : outResult := "NZ" ;
-#  when bnn  : outResult := "NN" ;
-#  when bnc :  outResult := "NC" ;
-#  when bnov :  outResult := "NOV" ;
-#  end switch ;
-#  outResult .= " ? " ;
-#  outResult .= [mSingleInstructionTerminatorIfConditionTrue terminatorDisplay !inNextBlockLabel] ;
-#  outResult .= " : " ;
-#  outResult .= [mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !inNextBlockLabel] ;
-#end reader ;
+//!Terminator @ipic18ConditionalJumpTerminator
 
-#----------------------------------------------------------------------------*
-
-#override method @ipic18ConditionalBranchTerminator generateTerminatorCode
-#  ??@uint inAddress
-#  ??@symbolTableForRelativesResolution inSymbolTable
-#  ??@string inNextBlockLabel
-#  !@codeList outCode
-#:
-#  if [mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel] == 0 then
-#    if (mSingleInstructionTerminatorIfConditionFalse is == @ipic18JumpTerminator) then
-#      const @ipic18JumpTerminator t := (cast mSingleInstructionTerminatorIfConditionFalse : @ipic18JumpTerminator) ;
-#      [inSymbolTable searchKey ![t mLabel]  ??@uint targetAddress] ;
-#    #--- Code : !Bcc F
-#      outCode := pic18_Bcc_instruction_code [!inAddress !targetAddress ![t mLabel] !mConditionalBranch !false] ;
-#    else # False terminator is not a jump : just skip it : Bcc T ; <<false terminator >>
-#      const @ipic18JumpTerminator t := (cast mSingleInstructionTerminatorIfConditionTrue : @ipic18JumpTerminator) ;
-#      [inSymbolTable searchKey ![t mLabel]  ??@uint targetAddress] ;
-#      outCode := pic18_Bcc_instruction_code [!inAddress !targetAddress ![t mLabel] !mConditionalBranch !true] ;
-#      [mSingleInstructionTerminatorIfConditionFalse generateTerminatorCode !inAddress + 2 !inSymbolTable !"" ??@codeList code] ;
-#      outCode .= code ;
-#    end if ;
-#  elsif [mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextBlockLabel] == 0 then
-#    if (mSingleInstructionTerminatorIfConditionTrue is == @ipic18JumpTerminator) then
-#      const @ipic18JumpTerminator t := (cast mSingleInstructionTerminatorIfConditionTrue : @ipic18JumpTerminator) ;
-#      [inSymbolTable searchKey ![t mLabel]  ??@uint targetAddress] ;
-#    #--- Code : Bcc T
-#      outCode := pic18_Bcc_instruction_code [!inAddress !targetAddress ![t mLabel] !mConditionalBranch !true] ;
-#    else # True terminator is not a jump : just skip it : !Bcc f ; <<true terminator >>
-#      const @ipic18JumpTerminator t := (cast mSingleInstructionTerminatorIfConditionFalse : @ipic18JumpTerminator) ;
-#      [inSymbolTable searchKey ![t mLabel]  ??@uint targetAddress] ;
-#      outCode := pic18_Bcc_instruction_code [!inAddress !targetAddress ![t mLabel] !mConditionalBranch !false] ;
-#      [mSingleInstructionTerminatorIfConditionTrue generateTerminatorCode !inAddress + 2 !inSymbolTable !"" ??@codeList code] ;
-#      outCode .= code ;
-#    end if ;
-#  else
-#  
-#  end if ;
-#end method ;
-
-#----------------------------------------------------------------------------*
-
-#override reader @ipic18ConditionalBranchTerminator isEqualToTerminator
-#  ??@ipic18AbstractBlockTerminator inTerminator
-#  -> @bool outResult
-#:
-#  outResult := (inTerminator is == @ipic18ConditionalBranchTerminator) ;
-#  if outResult then
-#    const @ipic18ConditionalBranchTerminator t := (cast inTerminator : @ipic18ConditionalBranchTerminator) ;
-#    outResult := mConditionalBranch == [t mConditionalBranch] ;
-#    if outResult then
-#      outResult := [mSingleInstructionTerminatorIfConditionTrue isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionTrue]] ;
-#    end if ;
-#    if outResult then
-#      outResult := [mSingleInstructionTerminatorIfConditionFalse isEqualToTerminator ![t mSingleInstructionTerminatorIfConditionFalse]] ;
-#    end if ;
-#  end if ;
-#end reader ;
-
-
-#----------------------------------------------------------------------------*
-
-#!Terminator @ipic18ConditionalJumpTerminator
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ConditionalJumpTerminator terminatorDisplay
   ?let @string inNextBlockLabel
@@ -1305,7 +1222,7 @@ override getter @ipic18ConditionalJumpTerminator terminatorDisplay
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
@@ -1319,37 +1236,37 @@ override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranch
   var @conditionalBranchMode branchModeOnTrueLabel = self.mBranchModeOnTrueLabel
   if self.mTargetLabelWhenTrue.string == inNextBlockLabel then
     switch self.mBranchModeOnFalseLabel
-    case native : # !Bcc F
+    case native : // !Bcc F
       if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenFalse !inAddress) then
         branchModeOnFalseLabel = @conditionalBranchMode. ipicBRA
         ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenFalse + "\n"
       end
-    case ipicBRA : # Bcc Z ; BRA F ; Z:
+    case ipicBRA : // Bcc Z ; BRA F ; Z:
       if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse !inAddress + 2) then
         branchModeOnFalseLabel = @conditionalBranchMode. ipicGOTO
         ioListFileContents += "  " + inBlockLabel + ", terminator will use GOTO " + self.mTargetLabelWhenFalse + "\n"
       end
-    case ipicGOTO : # Bcc Z ; GOTO F ; Z:
+    case ipicGOTO : // Bcc Z ; GOTO F ; Z:
     end
   elsif self.mTargetLabelWhenFalse.string == inNextBlockLabel then
     switch self.mBranchModeOnTrueLabel
-    case native : # Bcc T
+    case native : // Bcc T
       if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress) then
         branchModeOnTrueLabel = @conditionalBranchMode. ipicBRA
         ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenFalse + "\n"
       end
-    case ipicBRA : # !Bcc Z ; BRA T ; Z:
+    case ipicBRA : // !Bcc Z ; BRA T ; Z:
       if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress + 2) then
         branchModeOnTrueLabel = @conditionalBranchMode. ipicGOTO
         ioListFileContents += "  " + inBlockLabel + ", terminator will use GOTO " + self.mTargetLabelWhenTrue + "\n"
       end
-    case ipicGOTO : # !Bcc Z ; GOTO T ; Z:
+    case ipicGOTO : // !Bcc Z ; GOTO T ; Z:
     end
   else
     switch self.mBranchModeOnFalseLabel
     case native :
       switch self.mBranchModeOnTrueLabel
-      case native, ipicBRA : # !Bcc F ; BRA T
+      case native, ipicBRA : // !Bcc F ; BRA T
         if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenFalse !inAddress) then
           branchModeOnFalseLabel = @conditionalBranchMode. ipicBRA
           ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenFalse + "\n"
@@ -1358,11 +1275,11 @@ override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranch
           branchModeOnTrueLabel = @conditionalBranchMode. ipicBRA
           ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenTrue + "\n"
         end
-      case ipicGOTO : # !Bcc F ; GOTO T
+      case ipicGOTO : // !Bcc F ; GOTO T
       end
     case ipicBRA :
       switch self.mBranchModeOnTrueLabel
-      case native   : # Bcc T ; BRA F
+      case native   : // Bcc T ; BRA F
         if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress) then
           branchModeOnTrueLabel = @conditionalBranchMode. ipicBRA
           ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenTrue + "\n"
@@ -1371,7 +1288,7 @@ override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranch
           branchModeOnFalseLabel = @conditionalBranchMode. ipicBRA
           ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenFalse + "\n"
         end
-      case ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
+      case ipicBRA  : // Bcc Z ; BRA F ; Z: BRA T
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse!inAddress+2) then
           branchModeOnFalseLabel = @conditionalBranchMode. ipicBRA
           ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenFalse + "\n"
@@ -1380,7 +1297,7 @@ override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranch
           branchModeOnTrueLabel = @conditionalBranchMode. ipicBRA
           ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenTrue + "\n"
         end
-      case ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
+      case ipicGOTO : // Bcc Z ; BRA F ; Z: GOTO T
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse!inAddress+2) then
           branchModeOnFalseLabel = @conditionalBranchMode. ipicBRA
           ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenFalse + "\n"
@@ -1388,17 +1305,17 @@ override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranch
       end
     case ipicGOTO :
       switch self.mBranchModeOnTrueLabel
-      case native   : # Bcc T ; GOTO F
+      case native   : // Bcc T ; GOTO F
         if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress) then
           branchModeOnTrueLabel = @conditionalBranchMode. ipicBRA
           ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenTrue + "\n"
         end
-      case ipicBRA  : # Bcc Z ; GOTO F ; Z: BRA T
+      case ipicBRA  : // Bcc Z ; GOTO F ; Z: BRA T
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress+6) then
           branchModeOnTrueLabel = @conditionalBranchMode. ipicBRA
           ioListFileContents += "  " + inBlockLabel + ", terminator will use BRA " + self.mTargetLabelWhenTrue + "\n"
         end
-      case ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
+      case ipicGOTO : // Bcc Z ; GOTO F ; Z: GOTO T
       end
     end
   end
@@ -1416,7 +1333,7 @@ override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranch
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
@@ -1426,121 +1343,121 @@ override method @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflo
   ?!@branchOverflowMap ioOverflowMap {
   if self.mTargetLabelWhenTrue.string == inNextBlockLabel then
     switch self.mBranchModeOnFalseLabel
-    case native : # !Bcc F
+    case native : // !Bcc F
       if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenFalse !inAddress) then
         [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
       end
-    case ipicBRA : # Bcc Z ; BRA F ; Z:
+    case ipicBRA : // Bcc Z ; BRA F ; Z:
       if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse !inAddress + 2) then
         [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
       end
-    case ipicGOTO : # Bcc Z ; GOTO F ; Z:
+    case ipicGOTO : // Bcc Z ; GOTO F ; Z:
     end
   elsif self.mTargetLabelWhenFalse.string == inNextBlockLabel then
     switch self.mBranchModeOnTrueLabel
-    case native : # Bcc T
+    case native : // Bcc T
       if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress) then
         [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
       end
-    case ipicBRA : # !Bcc Z ; BRA T ; Z:
+    case ipicBRA : // !Bcc Z ; BRA T ; Z:
       if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress + 2) then
         [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
       end
-    case ipicGOTO : # !Bcc Z ; GOTO T ; Z:
+    case ipicGOTO : // !Bcc Z ; GOTO T ; Z:
     end
   else
     switch self.mBranchModeOnFalseLabel
     case native :
       switch self.mBranchModeOnTrueLabel
-      case native, ipicBRA : # !Bcc F ; BRA T
+      case native, ipicBRA : // !Bcc F ; BRA T
         if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenFalse !inAddress) then
           [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
         end
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress+2) then
           [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
-      case ipicGOTO : # !Bcc F ; GOTO T
+      case ipicGOTO : // !Bcc F ; GOTO T
       end
     case ipicBRA :
       switch self.mBranchModeOnTrueLabel
-      case native   : # Bcc T ; BRA F
+      case native   : // Bcc T ; BRA F
         if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress) then
           [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse!inAddress+2) then
           [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
         end
-      case ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
+      case ipicBRA  : // Bcc Z ; BRA F ; Z: BRA T
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse!inAddress+2) then
           [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
         end
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress+4) then
           [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
-      case ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
+      case ipicGOTO : // Bcc Z ; BRA F ; Z: GOTO T
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenFalse!inAddress+2) then
           [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenFalse.string]
         end
       end
     case ipicGOTO :
       switch self.mBranchModeOnTrueLabel
-      case native   : # Bcc T ; GOTO F
+      case native   : // Bcc T ; GOTO F
         if not pic18_checkBCC (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress) then
-#          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+//          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
           [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
-      case ipicBRA  : # Bcc Z ; GOTO F ; Z: BRA T
+      case ipicBRA  : // Bcc Z ; GOTO F ; Z: BRA T
         if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabelWhenTrue !inAddress+6) then
-#          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
+//          ioOverflowMap += !inBlockLabel !self.mTargetLabelWhenTrue.string
           [!?ioOverflowMap insertKey !inBlockLabel !self.mTargetLabelWhenTrue.string]
         end
-      case ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
+      case ipicGOTO : // Bcc Z ; GOTO F ; Z: GOTO T
       end
     end
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ConditionalJumpTerminator terminatorSize
   ?let @string inNextBlockLabel
   -> @uint outSize {
   if self.mTargetLabelWhenTrue.string == inNextBlockLabel then
     switch self.mBranchModeOnFalseLabel
-    case native  : outSize = 2  # !Bcc F
-    case ipicBRA  : outSize = 4 # Bcc Z ; BRA F ; Z:
-    case ipicGOTO : outSize = 6 # Bcc Z ; GOTO F ; Z:
+    case native  : outSize = 2  // !Bcc F
+    case ipicBRA  : outSize = 4 // Bcc Z ; BRA F ; Z:
+    case ipicGOTO : outSize = 6 // Bcc Z ; GOTO F ; Z:
     end
   elsif self.mTargetLabelWhenFalse.string == inNextBlockLabel then
     switch self.mBranchModeOnTrueLabel
-    case native   : outSize = 2 # Bcc T
-    case ipicBRA  : outSize = 4 # !Bcc Z ; BRA T ; Z:
-    case ipicGOTO : outSize = 6 # !Bcc Z ; GOTO T ; Z:
+    case native   : outSize = 2 // Bcc T
+    case ipicBRA  : outSize = 4 // !Bcc Z ; BRA T ; Z:
+    case ipicGOTO : outSize = 6 // !Bcc Z ; GOTO T ; Z:
     end
   else
     switch self.mBranchModeOnFalseLabel
     case native :
       switch self.mBranchModeOnTrueLabel
-      case native, ipicBRA : outSize = 4 # !Bcc F ; BRA T
-      case ipicGOTO : outSize = 6 # !Bcc F ; GOTO T
+      case native, ipicBRA : outSize = 4 // !Bcc F ; BRA T
+      case ipicGOTO : outSize = 6 // !Bcc F ; GOTO T
       end
     case ipicBRA :
       switch self.mBranchModeOnTrueLabel
-      case native   : outSize = 4 # Bcc T ; BRA F
-      case ipicBRA  : outSize = 6 # Bcc Z ; BRA F ; Z: BRA T
-      case ipicGOTO : outSize = 8 # Bcc Z ; BRA F ; Z: GOTO T
+      case native   : outSize = 4 // Bcc T ; BRA F
+      case ipicBRA  : outSize = 6 // Bcc Z ; BRA F ; Z: BRA T
+      case ipicGOTO : outSize = 8 // Bcc Z ; BRA F ; Z: GOTO T
       end
     case ipicGOTO :
       switch self.mBranchModeOnTrueLabel
-      case native   : outSize = 6 # Bcc T ; GOTO F
-      case ipicBRA  : outSize = 8 # Bcc Z ; GOTO F ; Z: BRA T
-      case ipicGOTO : outSize = 10 # Bcc Z ; GOTO F ; Z: GOTO T
+      case native   : outSize = 6 // Bcc T ; GOTO F
+      case ipicBRA  : outSize = 8 // Bcc Z ; GOTO F ; Z: BRA T
+      case ipicGOTO : outSize = 10 // Bcc Z ; GOTO F ; Z: GOTO T
       end
     end
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator generateTerminatorCode
   ?let @uint inAddress
@@ -1552,26 +1469,26 @@ override method @ipic18ConditionalJumpTerminator generateTerminatorCode
   let Zlabel = @lstring { !"_Bcc_" + [inAddress xString] !self.mInstructionLocation}
   if self.mTargetLabelWhenTrue.string == inNextBlockLabel then
     switch self.mBranchModeOnFalseLabel
-    case native : # !Bcc F
+    case native : // !Bcc F
       outCode = pic18_Bcc_instruction_code (!inAddress !falseTargetAddress !self.mTargetLabelWhenFalse !self.mConditionalBranch !true)
-    case ipicBRA : # Bcc Z ; BRA F ; Z:
+    case ipicBRA : // Bcc Z ; BRA F ; Z:
       outCode = pic18_Bcc_instruction_code (!inAddress !inAddress + 4 !Zlabel !self.mConditionalBranch !false)
       outCode += pic18_BRA_instruction_code (!inAddress+2 !falseTargetAddress !self.mTargetLabelWhenFalse)
       outCode += pic18_definition_label (!Zlabel)
-    case ipicGOTO : # Bcc Z ; GOTO F ; Z:
+    case ipicGOTO : // Bcc Z ; GOTO F ; Z:
       outCode = pic18_Bcc_instruction_code (!inAddress !inAddress + 6 !Zlabel !self.mConditionalBranch !false)
       outCode += pic18_GOTO_instruction_code (!falseTargetAddress !self.mTargetLabelWhenFalse)
       outCode += pic18_definition_label (!Zlabel)
     end
   elsif self.mTargetLabelWhenFalse.string == inNextBlockLabel then
     switch self.mBranchModeOnTrueLabel
-    case native : # Bcc T
+    case native : // Bcc T
       outCode = pic18_Bcc_instruction_code (!inAddress !trueTargetAddress !self.mTargetLabelWhenTrue !self.mConditionalBranch !false)
-    case ipicBRA : # !Bcc Z ; BRA T ; Z:
+    case ipicBRA : // !Bcc Z ; BRA T ; Z:
       outCode = pic18_Bcc_instruction_code (!inAddress !inAddress + 4 !Zlabel !self.mConditionalBranch !true)
       outCode += pic18_BRA_instruction_code (!inAddress+2 !trueTargetAddress !self.mTargetLabelWhenTrue)
       outCode += pic18_definition_label (!Zlabel)
-    case ipicGOTO : # !Bcc Z ; GOTO T ; Z:
+    case ipicGOTO : // !Bcc Z ; GOTO T ; Z:
       outCode = pic18_Bcc_instruction_code (!inAddress !inAddress + 6 !Zlabel !self.mConditionalBranch !true)
       outCode += pic18_GOTO_instruction_code (!trueTargetAddress !self.mTargetLabelWhenTrue)
       outCode += pic18_definition_label (!Zlabel)
@@ -1580,24 +1497,24 @@ override method @ipic18ConditionalJumpTerminator generateTerminatorCode
     switch self.mBranchModeOnFalseLabel
     case native :
       switch self.mBranchModeOnTrueLabel
-      case native, ipicBRA : # !Bcc F ; BRA T
+      case native, ipicBRA : // !Bcc F ; BRA T
         outCode = pic18_Bcc_instruction_code (!inAddress !falseTargetAddress !self.mTargetLabelWhenFalse !self.mConditionalBranch !true)
         outCode += pic18_BRA_instruction_code (!inAddress+2 !trueTargetAddress !self.mTargetLabelWhenTrue)
-      case ipicGOTO : # !Bcc F ; GOTO T
+      case ipicGOTO : // !Bcc F ; GOTO T
         outCode = pic18_Bcc_instruction_code (!inAddress !falseTargetAddress !self.mTargetLabelWhenFalse !self.mConditionalBranch !true)
         outCode += pic18_GOTO_instruction_code (!trueTargetAddress !self.mTargetLabelWhenTrue)
       end
     case ipicBRA :
       switch self.mBranchModeOnTrueLabel
-      case native   : # Bcc T ; BRA F
+      case native   : // Bcc T ; BRA F
         outCode = pic18_Bcc_instruction_code (!inAddress !trueTargetAddress !self.mTargetLabelWhenTrue !self.mConditionalBranch !true)
         outCode += pic18_BRA_instruction_code (!inAddress+2 !falseTargetAddress !self.mTargetLabelWhenFalse)
-      case ipicBRA  : # Bcc Z ; BRA F ; Z: BRA T
+      case ipicBRA  : // Bcc Z ; BRA F ; Z: BRA T
         outCode = pic18_Bcc_instruction_code (!inAddress !inAddress + 4 !Zlabel !self.mConditionalBranch !true)
         outCode += pic18_BRA_instruction_code (!inAddress+2 !falseTargetAddress !self.mTargetLabelWhenFalse)
         outCode += pic18_definition_label (!Zlabel)
         outCode += pic18_BRA_instruction_code (!inAddress !trueTargetAddress !self.mTargetLabelWhenTrue)
-      case ipicGOTO : # Bcc Z ; BRA F ; Z: GOTO T
+      case ipicGOTO : // Bcc Z ; BRA F ; Z: GOTO T
         outCode = pic18_Bcc_instruction_code (!inAddress !inAddress + 4 !Zlabel !self.mConditionalBranch !true)
         outCode += pic18_BRA_instruction_code (!inAddress+2 !falseTargetAddress !self.mTargetLabelWhenFalse)
         outCode += pic18_definition_label (!Zlabel)
@@ -1605,15 +1522,15 @@ override method @ipic18ConditionalJumpTerminator generateTerminatorCode
       end
     case ipicGOTO :
       switch self.mBranchModeOnTrueLabel
-      case native   : # Bcc T ; GOTO F
+      case native   : // Bcc T ; GOTO F
         outCode = pic18_Bcc_instruction_code (!inAddress !trueTargetAddress !self.mTargetLabelWhenTrue !self.mConditionalBranch !true)
         outCode += pic18_GOTO_instruction_code (!falseTargetAddress !self.mTargetLabelWhenFalse)
-      case ipicBRA  : # Bcc Z ; GOTO F ; Z: BRA T
+      case ipicBRA  : // Bcc Z ; GOTO F ; Z: BRA T
         outCode = pic18_Bcc_instruction_code (!inAddress !inAddress + 6 !Zlabel !self.mConditionalBranch !true)
         outCode += pic18_GOTO_instruction_code (!falseTargetAddress !self.mTargetLabelWhenFalse)
         outCode += pic18_definition_label (!Zlabel)
         outCode += pic18_BRA_instruction_code (!inAddress+6 !trueTargetAddress !self.mTargetLabelWhenTrue)
-      case ipicGOTO : # Bcc Z ; GOTO F ; Z: GOTO T
+      case ipicGOTO : // Bcc Z ; GOTO F ; Z: GOTO T
         outCode = pic18_Bcc_instruction_code (!inAddress !inAddress + 6 !Zlabel !self.mConditionalBranch !true)
         outCode += pic18_GOTO_instruction_code (!falseTargetAddress !self.mTargetLabelWhenFalse)
         outCode += pic18_definition_label (!Zlabel)
@@ -1623,7 +1540,7 @@ override method @ipic18ConditionalJumpTerminator generateTerminatorCode
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @ipic18ConditionalJumpTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
@@ -1647,5 +1564,5 @@ override getter @ipic18ConditionalJumpTerminator isEqualToTerminator
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 

@@ -1,97 +1,95 @@
-
-
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 abstract method @baseline_instruction addUsedRoutines
   ?!@stringset ioUsedRoutines
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_IF_BitTest addUsedRoutines
   ?!@stringset ioUsedRoutines {
   [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_IF_SEMI_COLON addUsedRoutines
   ?!@stringset ioUsedRoutines {
   [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_IF_IncDec addUsedRoutines
   ?!@stringset ioUsedRoutines {
   [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_JUMP addUsedRoutines
   ?!@stringset ioUsedRoutines {
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_GOTO addUsedRoutines
   ?!@stringset ioUsedRoutines {
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_CALL addUsedRoutines
   ?!@stringset ioUsedRoutines {
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_FOREVER addUsedRoutines
   ?!@stringset ioUsedRoutines {
   addBaselineUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_STATIC_REPEAT addUsedRoutines
   ?!@stringset ioUsedRoutines {
   addBaselineUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_MNOP addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_TRIS addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_WO_OPERAND addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_F addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_FB addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_do_while addUsedRoutines
   ?!@stringset ioUsedRoutines {
@@ -101,7 +99,7 @@ override method @baseline_instruction_do_while addUsedRoutines
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_structured_if addUsedRoutines
   ?!@stringset ioUsedRoutines {
@@ -109,26 +107,26 @@ override method @baseline_instruction_structured_if addUsedRoutines
   addBaselineUsedRoutinesFromInstructionList ( !self.mElseInstructionList !?ioUsedRoutines )
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_FD addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_JSR addUsedRoutines
   ?!@stringset ioUsedRoutines {
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 override method @baseline_instruction_literalOperation addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 proc addBaselineUsedRoutinesFromInstructionList
   ?let @baseline_instructionList inInstructionList
@@ -138,14 +136,14 @@ proc addBaselineUsedRoutinesFromInstructionList
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 
 func baseline_computeUsedRoutines
   ?let @baseline_routineDefinitionList inRoutineDefinitionList
   -> @stringset outUsedRoutineSet {
-#--- Main routine is used
+//--- Main routine is used
   outUsedRoutineSet = @stringset. setWithString { !"main"}
-#--- Loop for accumulating used routines
+//--- Loop for accumulating used routines
   var s = @stringset ()
   loop( [inRoutineDefinitionList count])
   while s != outUsedRoutineSet do
@@ -158,5 +156,5 @@ func baseline_computeUsedRoutines
   end
 }
 
-#---------------------------------------------------------------------------*
+//---------------------------------------------------------------------------*
 

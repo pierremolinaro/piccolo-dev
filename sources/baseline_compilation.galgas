@@ -1,24 +1,22 @@
-
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 map @baseline_declaredRoutineMap {
   insert insertKey error message "the '%K' routine is already declared"
   search searchKey error message "the '%K' routine is not declared"
 }
 
-#----------------------------------------------------------------------------*
-#                                                                            *
-#    S H O U L D    T E R M I N A T E    W I T H    M O V L W                *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//    S H O U L D    T E R M I N A T E    W I T H    M O V L W                *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 method @baseline_instruction shouldTerminateWithMOVLW
   ?let @string inErrorMessage {
   error self.mInstructionLocation : inErrorMessage
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_instruction_literalOperation shouldTerminateWithMOVLW
   ?let @string inErrorMessage {
@@ -27,24 +25,24 @@ override method @baseline_instruction_literalOperation shouldTerminateWithMOVLW
   end
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_instruction_CALL shouldTerminateWithMOVLW
   ?let @string unused inErrorMessage {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
   ?let @string unused inErrorMessage {
-#--- THEN branch
+//--- THEN branch
   if [self.mThenInstructionList count] == 0 then
     error self.mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
    [self.mThenInstructionList last ?let @baseline_instruction lastInstruction]
    [lastInstruction shouldTerminateWithMOVLW !"the 'then' branch of this 'if' instruction must terminate with a MOVLW instruction"]
   end
-#--- ELSE branch
+//--- ELSE branch
   if [self.mElseInstructionList count] == 0 then
     error self.mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
@@ -54,39 +52,39 @@ override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
 
 }
 
-#----------------------------------------------------------------------------*
-#                                                                            *
-#    N O    R E T U R N    C H E C K I N G                                   *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//    N O    R E T U R N    C H E C K I N G                                   *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 method @baseline_instruction shouldNotContinueInSequence ?let @string inErrorMessage {
   error self.mInstructionLocation : inErrorMessage
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_instruction_GOTO shouldNotContinueInSequence
   ?let @string unused inErrorMessage {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_instruction_JUMP shouldNotContinueInSequence
   ?let @string unused inErrorMessage {
 }
 
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @baseline_instruction_FOREVER shouldNotContinueInSequence
   ?let @string unused inErrorMessage {
 }
 
-#----------------------------------------------------------------------------*
-#                                                                            *
-#               S E M A N T I C    A N A L Y S I S                           *
-#                                                                            *
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
+//                                                                            *
+//               S E M A N T I C    A N A L Y S I S                           *
+//                                                                            *
+//----------------------------------------------------------------------------*
 
 proc baseline_analysis
   ?let @baseline_model inPiccoloModel
@@ -97,27 +95,27 @@ proc baseline_analysis
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
   end
   var @string listFileContents = ""
-#-------------------------------- Analyze Device
+//-------------------------------- Analyze Device
   parseDeviceDefinition ( !inPiccoloModel.mDeviceName ?let piccoloDeviceModel )
   switch piccoloDeviceModel.mProcessorType
     case baseline :
     case pic18_60, pic18_80 : error inPiccoloModel.mDeviceName: "a pic18 device is not accepted here : only a baseline device"
     case midrange : error inPiccoloModel.mDeviceName: "a mid-ranfe device is not accepted here : only a baseline device"
   end
-#-------------------------------- Config definition
+//-------------------------------- Config definition
   buildConfig (
     !piccoloDeviceModel.mConfigRegisterMap
     !inPiccoloModel.mConfigDefinitionList
     !?listFileContents
     ?let actualConfigurationMap
   )
-#-------------------------------- Build constant map
+//-------------------------------- Build constant map
   var @constantMap constantMap = @()
   var @registerTable registerTable = piccoloDeviceModel.mRegisterTable
-#--- Add "ROM_SIZE" constant
-#  @lstring romSizeString [new !"ROM_SIZE" !here] ;
-#  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
-#--- Add declared constants
+//--- Add "ROM_SIZE" constant
+//  @lstring romSizeString [new !"ROM_SIZE" !here] ;
+//  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
+//--- Add declared constants
   var @stringset usedRegisters = @()
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
@@ -127,7 +125,7 @@ proc baseline_analysis
       [!?constantMap insertKey !mConstantName !result]
     end
   end
-#-------------------------------- Ram definition
+//-------------------------------- Ram definition
   var @ramBankTable ramBank = piccoloDeviceModel.mRamBankTable
   analyze_ram_sections (
     !"DECLARED VARIABLES"
@@ -140,19 +138,19 @@ proc baseline_analysis
     !?registerTable
     ?let @declaredByteMap declaredByteMap
   )
-#-------------------------------- Build routine map
+//-------------------------------- Build routine map
   var routineMap =@baselineRoutineMap ()
   for (mRoutineName mPage mIsNoReturn * *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage]
   end
-#-------------------------------- Print constant map
+//-------------------------------- Print constant map
   if [option piccoloOptions.ouputListingFile value] then
     print_constant_definition (
       !constantMap
       !?listFileContents
     )
   end
-#-------------------------------- Check the "main" routine is declared
+//-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
     [routineMap searchKey !@lstring { !"main" !@location.here} ?let @bool isNoReturn ?let @luint page]
     if not isNoReturn then
@@ -164,7 +162,7 @@ proc baseline_analysis
   else
     error inPiccoloModel.mEndOfProgram: "the program should declare the \"main\" routine"
   end
-#-------------------------------- Check page routine specification is compatible with device
+//-------------------------------- Check page routine specification is compatible with device
   var @bool needsToSavePCLATH = false
   let @uint totalPageCount = (piccoloDeviceModel.mRomSize.uint + 511) / 512
   for (* mPage * * *) in  inPiccoloModel.mRoutineDefinitionList do
@@ -175,7 +173,7 @@ proc baseline_analysis
       error mPage:"invalid value ("+ mPage.uint + "); the device has " + totalPageCount + " 512 word page(s) on rom"
     end
   end
-#-------------------------------- Order routines to place "main" routine first
+//-------------------------------- Order routines to place "main" routine first
   var sortedRoutineDefinitionList =@baseline_routineDefinitionList ()
   for (mRoutineName mPage mIsNoReturn mInstructionList mEndOfRoutineLocation) in  inPiccoloModel.mRoutineDefinitionList do
     if mRoutineName.string == "main" then
@@ -196,7 +194,7 @@ proc baseline_analysis
         !mEndOfRoutineLocation
     end
   end
-#-------------------------------- Check and translate routines
+//-------------------------------- Check and translate routines
   var intermediateInstructionList =@baseline_intermediate_instructionList ()
   if @uint. errorCount == 0 then
     var @uint currentPage = 0
@@ -205,16 +203,16 @@ proc baseline_analysis
       var @bool pseudo_PAGE_generated = false
       for (mRoutineName mPage mIsNoReturn mInstructionList *) in  sortedRoutineDefinitionList do
         if mPage.uint == currentPage then
-        #---
+        //---
           if not pseudo_PAGE_generated then
             pseudo_PAGE_generated = true
             intermediateInstructionList += !@baseline_intermediate_pseudo_PAGE { !currentPage}
           end
-        #---
+        //---
           let @routineKind routineKind
           if mIsNoReturn then
             routineKind = @routineKind. noReturnRoutine
-          #--- Check does not continue in sequence
+          //--- Check does not continue in sequence
             if [mInstructionList count] == 0 then
               error mRoutineName : "a noreturn routine should terminate by a GOTO or a FOREVER loop"
             else
@@ -223,7 +221,7 @@ proc baseline_analysis
             end
           else
             routineKind = @routineKind. regularRoutine
-          #--- Check instruction list terminates by a MOVLW instruction
+          //--- Check instruction list terminates by a MOVLW instruction
             if [mInstructionList count] == 0 then
               error mRoutineName : "a baseline routine must end with a MOVLW instruction"
             else
@@ -231,7 +229,7 @@ proc baseline_analysis
              [lastInstruction shouldTerminateWithMOVLW !"the last routine instruction should be MOVLW"]
             end
           end
-        #--- Check and translate instructions
+        //--- Check and translate instructions
           if mRoutineName.string != "main" then
             intermediateInstructionList += !@baseline_intermediate_pseudo_BEGIN_ROUTINE { !mRoutineName !not mIsNoReturn}
             intermediateInstructionList += !@baseline_intermediate_pseudo_LABEL { !mRoutineName}
@@ -247,7 +245,7 @@ proc baseline_analysis
             !?listFileContents
             ?let @bool continuesInSequence
             !routineKind
-            !not mIsNoReturn # Last instruction should be RETLW ?
+            !not mIsNoReturn // Last instruction should be RETLW ?
             !?usedRegisters
           )
           intermediateInstructionList += !@baseline_intermediate_pseudo_END_ROUTINE { !mRoutineName !currentPage}
@@ -259,7 +257,7 @@ proc baseline_analysis
       currentPage += 1
     end
   end
-#-------------------------------- Compute used routine set
+//-------------------------------- Compute used routine set
   let @stringset usedRoutineSet = baseline_computeUsedRoutines (
     !inPiccoloModel.mRoutineDefinitionList
   )
@@ -267,7 +265,7 @@ proc baseline_analysis
   for (mRoutineName * * * *) in  inPiccoloModel.mRoutineDefinitionList do
     [!?declaredRoutineMap insertKey !mRoutineName]
   end
-#-------------------------------- Check used routines
+//-------------------------------- Check used routines
   var unusedRoutineDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
@@ -284,7 +282,7 @@ proc baseline_analysis
       warning lkey : "the '" + lkey + "' routine is unused"
     end
   end
-#----------------------------------------------------------- Check declared bytes are used
+//----------------------------------------------------------- Check declared bytes are used
   var unusedDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRegisterList do
     if not [registerTable hasKey !mValue.string] then
@@ -301,7 +299,7 @@ proc baseline_analysis
       warning lkey : "the '" + lkey + "' byte is unused"
     end
   end
-#-------------------------------- Print intermediate Instruction List
+//-------------------------------- Print intermediate Instruction List
   if (@uint. errorCount == 0) & [option piccoloOptions.ouputListingFile value] then
     listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     listFileContents += "*" + ["INTERMEDIATE INSTRUCTION LIST" stringByLeftAndRightPadding !117 !' '] + "*\n"
@@ -319,11 +317,11 @@ proc baseline_analysis
     listFileContents += "\n"
     listFileContents += "Code size without optimization: " + [currentAddress string] + " words.\n\n"
   end
-#-------------------------------- Perform Code Optimization
+//-------------------------------- Perform Code Optimization
   if (@uint. errorCount == 0) & [option piccoloOptions.performOptimizations value] then
     perform_baseline_optimizations ( !?intermediateInstructionList !?listFileContents )
   end
-#-------------------------------- Build assembly instruction list
+//-------------------------------- Build assembly instruction list
   initCodeGenerator ()
   let sr = @registerExpression {
     ! @{!"STATUS" !.here}
@@ -347,7 +345,7 @@ proc baseline_analysis
       !?assemblyInstructionList
     )
   end
-#-------------------------------- Build binary code
+//-------------------------------- Build binary code
   if @uint. errorCount == 0 then
     listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
     listFileContents += "*" + ["GENERATED CODE" stringByLeftAndRightPadding !117 !' '] + "*\n"
@@ -360,24 +358,24 @@ proc baseline_analysis
       ?let @uint unused usedROMsize
     )
   end
-#-------------------------------- Listing file
+//-------------------------------- Listing file
   if [option piccoloOptions.ouputListingFile value] then
     let @string listFile = [inSourceFileName deletingPathExtension] + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
-#-------------------------------- Code generation
-#--- If no error, generate object file(s)
+//-------------------------------- Code generation
+//--- If no error, generate object file(s)
   if @uint. errorCount == 0 then
-#  #--- Generate hex file
-#    @uint usedROMsize ;
-#    build_midrange_intermediate_binary_code
-#      !registerTable
-#      ![[piccoloDeviceModel mBankCount] uint]
-#      !generatedInstructionList
-#      ![[piccoloDeviceModel mRomSize] uint]
-#      !actualConfigurationMap
-#      ?usedROMsize
-#    ;
+//  //--- Generate hex file
+//    @uint usedROMsize ;
+//    build_midrange_intermediate_binary_code
+//      !registerTable
+//      ![[piccoloDeviceModel mBankCount] uint]
+//      !generatedInstructionList
+//      ![[piccoloDeviceModel mRomSize] uint]
+//      !actualConfigurationMap
+//      ?usedROMsize
+//    ;
     getGeneratedContents (?var @string contents)
     var @string destinationFile = [inSourceFileName deletingPathExtension] + ".hex"
     [contents writeToFileWhenDifferentContents !destinationFile ?*]
@@ -390,22 +388,22 @@ proc baseline_analysis
       destinationFile = [inSourceFileName deletingPathExtension] + ".h"
       [contents writeToFileWhenDifferentContents !destinationFile ?*]
     end
-#  #--- Write infos (if verbose mode)
-#    if [option.verbose_output value] then
-#      @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " words;" ;
-#      verboseMessage .= " used: " . [usedROMsize string] . " words (" ;
-#      verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
-#      foreach ramBank do
-#        @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
-#        @uint usedSize := mFirstFreeAddress - mFirstAddress ;
-#        verboseMessage .= "  RAM bank '" . lkey . "': " ;
-#        verboseMessage .= [bankSize string] . " bytes, used " ;
-#        verboseMessage .= [usedSize string] . " bytes (" ;
-#        verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;
-#      end foreach ;
-#      message verboseMessage ;
-#    end if ;
-  #--- Generate asm file, if corresponding option enabled
+//  //--- Write infos (if verbose mode)
+//    if [option.verbose_output value] then
+//      @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " words;" ;
+//      verboseMessage .= " used: " . [usedROMsize string] . " words (" ;
+//      verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
+//      foreach ramBank do
+//        @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
+//        @uint usedSize := mFirstFreeAddress - mFirstAddress ;
+//        verboseMessage .= "  RAM bank '" . lkey . "': " ;
+//        verboseMessage .= [bankSize string] . " bytes, used " ;
+//        verboseMessage .= [usedSize string] . " bytes (" ;
+//        verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;
+//      end foreach ;
+//      message verboseMessage ;
+//    end if ;
+  //--- Generate asm file, if corresponding option enabled
     if [option piccoloOptions.generateAssembly value] then
       var @string assemblyCode = "  processor " + inPiccoloModel.mDeviceName + "\n\n"
       for (mInstruction) in  assemblyInstructionList do
@@ -426,7 +424,7 @@ proc baseline_analysis
       let @string asmDestinationFile = [inSourceFileName deletingPathExtension] + ".asm"
       [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*]
     end
-  else # There are errors : delete hex and asm files
+  else // There are errors : delete hex and asm files
     let @string hexDestinationFile = [inSourceFileName deletingPathExtension] + ".hex"
     if [hexDestinationFile fileExists] then
       [@string deleteFile !hexDestinationFile]
@@ -438,5 +436,5 @@ proc baseline_analysis
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

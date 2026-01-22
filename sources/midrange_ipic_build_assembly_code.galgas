@@ -1,21 +1,21 @@
 
 
-#----------------------------------------------------*
-#                BUILD ASSEMBLY CODE                 *
-#----------------------------------------------------*
+//----------------------------------------------------*
+//                BUILD ASSEMBLY CODE                 *
+//----------------------------------------------------*
 
 abstract method @midrange_intermediate_instruction buildAssemblyCode
   ?!@string unused ioString 
   ?!@uint unused ioLocalLabelIndex
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_NULL buildAssemblyCode
   ?!@string unused ioString 
   ?!@uint unused ioLocalLabelIndex {
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_pseudo_ORG buildAssemblyCode
   ?!@string ioString
@@ -23,7 +23,7 @@ override method @midrange_intermediate_pseudo_ORG buildAssemblyCode
   ioString += "  ORG " + [self.mOrigin hexString] + "\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_pseudo_LABEL buildAssemblyCode
   ?!@string ioString
@@ -31,7 +31,7 @@ override method @midrange_intermediate_pseudo_LABEL buildAssemblyCode
   ioString += self.mLabel.string + ":\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_FD buildAssemblyCode
   ?!@string ioString
@@ -45,7 +45,7 @@ override method @midrange_intermediate_instruction_FD buildAssemblyCode
   ioString += "\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_FB buildAssemblyCode
   ?!@string ioString
@@ -56,7 +56,7 @@ override method @midrange_intermediate_instruction_FB buildAssemblyCode
   ioString += "\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
   ?!@string ioString
@@ -72,7 +72,7 @@ override method @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
   ioString += "\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_F buildAssemblyCode
   ?!@string ioString
@@ -81,7 +81,7 @@ override method @midrange_intermediate_instruction_F buildAssemblyCode
   ioString += "\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCode
   ?!@string ioString
@@ -108,7 +108,7 @@ override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCo
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_JUMP buildAssemblyCode
   ?!@string ioString
@@ -126,7 +126,7 @@ override method @midrange_intermediate_JUMP buildAssemblyCode
   ioString += "  GOTO   " + self.mTargetLabel.string + "\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_GOTO buildAssemblyCode
   ?!@string ioString
@@ -134,7 +134,7 @@ override method @midrange_intermediate_GOTO buildAssemblyCode
   ioString += "  GOTO   " + self.mTargetLabel.string + "\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_JSR buildAssemblyCode
   ?!@string ioString
@@ -162,7 +162,7 @@ override method @midrange_intermediate_JSR buildAssemblyCode
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_CALL buildAssemblyCode
   ?!@string ioString
@@ -170,7 +170,7 @@ override method @midrange_intermediate_CALL buildAssemblyCode
   ioString += "  CALL  " + self.mTargetLabel.string + "\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_CLRWDT buildAssemblyCode
   ?!@string ioString
@@ -178,7 +178,7 @@ override method @midrange_intermediate_instruction_CLRWDT buildAssemblyCode
   ioString += "  CLRWDT\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_CLRW buildAssemblyCode
   ?!@string ioString
@@ -186,7 +186,7 @@ override method @midrange_intermediate_instruction_CLRW buildAssemblyCode
   ioString += "  CLRW\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_NOP buildAssemblyCode
   ?!@string ioString
@@ -194,7 +194,7 @@ override method @midrange_intermediate_instruction_NOP buildAssemblyCode
   ioString += "  NOP\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
   ?!@string ioString
@@ -202,7 +202,7 @@ override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
   ioString += "  RETURN\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
  override method @midrange_intermediate_instruction_RETFIE buildAssemblyCode
   ?!@string ioString
@@ -210,7 +210,7 @@ override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
   ioString += "  RETFIE\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
  override method @midrange_intermediate_instruction_SLEEP buildAssemblyCode
   ?!@string ioString
@@ -218,7 +218,7 @@ override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
   ioString += "  SLEEP\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_literalOperation buildAssemblyCode
   ?!@string ioString
@@ -226,7 +226,7 @@ override method @midrange_intermediate_instruction_literalOperation buildAssembl
   ioString += "  " + [self.mLiteralInstruction mnemonic] + " " + [self.mLiteralValue hexString] + "\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 override method @midrange_intermediate_instruction_MNOP buildAssemblyCode
   ?!@string ioString
@@ -243,55 +243,55 @@ override method @midrange_intermediate_instruction_MNOP buildAssemblyCode
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
-#override method @midrange_intermediate_instruction_computed_retlw buildAssemblyCode
-#  ?!@string ioString
-#  ?!@uint unused ioLocalLabelIndex
-#:
-#  if mUsesRCALL then
-#    ioString .= "  RCALL _computed_goto_2\n" ;
-#  else
-#    ioString .= "  CALL _computed_goto_2\n" ;
-#  end if ;
-#  foreach mLiteralValues do
-#    ioString .= "  RETLW " . [mValue hexString] . "\n" ;
-#  end foreach ;
-#end method ;
+//override method @midrange_intermediate_instruction_computed_retlw buildAssemblyCode
+//  ?!@string ioString
+//  ?!@uint unused ioLocalLabelIndex
+//:
+//  if mUsesRCALL then
+//    ioString .= "  RCALL _computed_goto_2\n" ;
+//  else
+//    ioString .= "  CALL _computed_goto_2\n" ;
+//  end if ;
+//  foreach mLiteralValues do
+//    ioString .= "  RETLW " . [mValue hexString] . "\n" ;
+//  end foreach ;
+//end method ;
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
-#override method @midrange_intermediate_instruction_computed_bra buildAssemblyCode
-#  ?!@string ioString
-#  ?!@uint unused ioLocalLabelIndex
-#:
-#  if mUsesRCALL then
-#    ioString .= "  RCALL _computed_goto_2\n" ;
-#  else
-#    ioString .= "  CALL _computed_goto_2\n" ;
-#  end if ;
-#  foreach mTargetLabels do
-#    ioString .= "  BRA " . [mValue string] . "\n" ;
-#  end foreach ;
-#end method ;
+//override method @midrange_intermediate_instruction_computed_bra buildAssemblyCode
+//  ?!@string ioString
+//  ?!@uint unused ioLocalLabelIndex
+//:
+//  if mUsesRCALL then
+//    ioString .= "  RCALL _computed_goto_2\n" ;
+//  else
+//    ioString .= "  CALL _computed_goto_2\n" ;
+//  end if ;
+//  foreach mTargetLabels do
+//    ioString .= "  BRA " . [mValue string] . "\n" ;
+//  end foreach ;
+//end method ;
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
-#override method @midrange_intermediate_instruction_computed_goto buildAssemblyCode
-#  ?!@string ioString
-#  ?!@uint unused ioLocalLabelIndex
-#:
-#  if mUsesRCALL then
-#    ioString .= "  RCALL _computed_goto_4\n" ;
-#  else
-#    ioString .= "  CALL _computed_goto_4\n" ;
-#  end if ;
-#  foreach mTargetLabels do
-#    ioString .= "  GOTO " . [mValue string] . "\n" ;
-#  end foreach ;
-#end method ;
+//override method @midrange_intermediate_instruction_computed_goto buildAssemblyCode
+//  ?!@string ioString
+//  ?!@uint unused ioLocalLabelIndex
+//:
+//  if mUsesRCALL then
+//    ioString .= "  RCALL _computed_goto_4\n" ;
+//  else
+//    ioString .= "  CALL _computed_goto_4\n" ;
+//  end if ;
+//  foreach mTargetLabels do
+//    ioString .= "  GOTO " . [mValue string] . "\n" ;
+//  end foreach ;
+//end method ;
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 proc midrange_build_assembly_code
   ?let @string inProcessorName
@@ -303,7 +303,7 @@ proc midrange_build_assembly_code
   outAssemblyCode = "  errorlevel -302 ; No Warning on registers not in bank 0\n" 
   outAssemblyCode += "  errorlevel -306 ; No Warning on crossing page boundary\n\n" 
   outAssemblyCode += "  PROCESSOR " + inProcessorName + "\n\n"
-#--- Code
+//--- Code
   outAssemblyCode += ";--- Code\n"
   outAssemblyCode += "  ORG 0\n"
   var @uint bccLabelIndex = 0
@@ -311,14 +311,14 @@ proc midrange_build_assembly_code
     [mInstruction buildAssemblyCode !?outAssemblyCode !?bccLabelIndex]
   end
   outAssemblyCode += "\n"
-#--- Prefined registers
+//--- Prefined registers
   outAssemblyCode += ";--- Prefefined registers\n"
   for (lkey mRegisterAddressList * * * *) in  inPredefinedRegisters do
     let @uint firstRegister ; [mRegisterAddressList first ?firstRegister]
     outAssemblyCode += lkey.string + " EQU " + [firstRegister hexString] + "\n"
   end
   outAssemblyCode += "\n"
-#--- User defined registers in ram
+//--- User defined registers in ram
   outAssemblyCode += ";--- User defined registers (in RAM)\n"
   for (lkey mRegisterAddressList * * * *) in  inAllRegisters do
     if not [inPredefinedRegisters hasKey !lkey.string] then
@@ -327,20 +327,20 @@ proc midrange_build_assembly_code
     end
   end
   outAssemblyCode += "\n"
-#--- PICCOLO defined symbols
+//--- PICCOLO defined symbols
   outAssemblyCode += ";--- Piccolo defined symbol\n"
   outAssemblyCode += "W EQU 1\n\n"
-#-------------------------------- Add Configuration
+//-------------------------------- Add Configuration
   if [inActualConfigurationMap count] > 0 then
     outAssemblyCode += ";--- Configuration\n\n"
     for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do
       outAssemblyCode += "  __config " + [mRegisterAddress hexString] + ", " + [mRegisterValue & 255 hexString] + "\n"
     end
   end
-#-------------------------------- End
+//-------------------------------- End
   outAssemblyCode += ";---\n\n"
   outAssemblyCode += "  END\n\n"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 

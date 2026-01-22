@@ -12,9 +12,9 @@ style integerStyle -> "Integer Constants:"
 style stringStyle -> "String Constants:"
 style commentStyle -> "Comments:"
 
-# -------------------------- identifier or key word --------------------
-# keywords can be written in lower or upper case
-# for identifiers, case is significant
+// -------------------------- identifier or key word --------------------
+// keywords can be written in lower or upper case
+// for identifiers, case is significant
 
 $identifier$ ! tokenString error message "an identifier"
 
@@ -48,7 +48,7 @@ rule 'a'->'z' |  'A'->'Z' {
     default $identifier$
 }
 
-#------------------------------- Integer Point Constant ------------------
+//------------------------------- Integer Point Constant ------------------
 $integer$ ! uint32value  style integerStyle error message "a 32-bit unsigned number"
 
 message hexNumberTooLarge : "hex number too large"
@@ -78,7 +78,7 @@ rule '0'->'9' {
   send $integer$
 }
 
-# ----------------------------- Delimitors ---------------------------------------
+// ----------------------------- Delimitors ---------------------------------------
 list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
   "<",     ">",   ",",
   "-",    "/",   ";",      ":",
@@ -87,7 +87,7 @@ list delimitorsList style delimitersStyle error message "the '%K' delimitor"{
 
 rule list delimitorsList
 
-# -------------------- Characters string --------------------------------------
+// -------------------- Characters string --------------------------------------
 $string$ ! tokenString  style stringStyle error message "a character string constant \"...\""
 
 message incorrectCharConstant : "incorrect literal character"
@@ -136,7 +136,7 @@ rule '"' {
   end
 }
 
-# ------------------------------------ Comment ----------------------------
+// ------------------------------------ Comment ----------------------------
 $comment$  style commentStyle error message "a comment"
 rule '#' {
   repeat
@@ -145,10 +145,10 @@ rule '#' {
   drop $comment$
 }
 
-# --------------------- separators -----------------------------------------
+// --------------------- separators -----------------------------------------
 rule '\u0001' -> ' ' {
 }
 
-#------------------------------------------------------------------------------------
+//------------------------------------------------------------------------------------
 
 }

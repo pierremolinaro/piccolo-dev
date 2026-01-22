@@ -1,6 +1,6 @@
 syntax baseline_program (piccolo_lexique) {
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <section_list>
   ?!@baseline_routineDefinitionList ioRoutineDefinitionList
@@ -10,7 +10,7 @@ rule <section_list>
   ?!@configDefinitionList ioConfigDefinitionList
   ?!@constantDefinitionList ioConstantDefinitionList
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 rule <start_symbol> {
   $baseline$
@@ -31,7 +31,7 @@ rule <start_symbol> {
     !?configDefinitionList
     !?constantDefinitionList
   $end$
-#--- Semantic analysis
+//--- Semantic analysis
   if @uint. errorCount == 0 then
     let piccoloModel = @baseline_model {
       !programName
@@ -79,6 +79,6 @@ label importBootloaderSpecification
   $end$
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 }

@@ -1,6 +1,4 @@
-
-
-#----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 map @configFieldMap {
   public let @lstring mRegisterName
@@ -11,16 +9,16 @@ map @configFieldMap {
   search searchKey error message "the '%K' configuration field is not declared"
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 proc actualBuildConfig
  ?let @configRegisterMap inConfigRegisterMap
  ?let @configDefinitionList inConfigDefinitionList
  ?!@string ioListFileContents
  !@actualConfigurationMap outActualConfigurationMap {
-#--- From config description of device, build dictionary of all settings
-# This should succeed, since absence of potentiel setting name conflict has been
-# checked when parsing device definition string.
+//--- From config description of device, build dictionary of all settings
+// This should succeed, since absence of potentiel setting name conflict has been
+// checked when parsing device definition string.
   outActualConfigurationMap = @actualConfigurationMap ()
   var configFieldMap =@configFieldMap ()
   for (lkey mRegisterAddress mRegisterWidth mConfigRegisterMaskMap *) in  inConfigRegisterMap do
@@ -31,7 +29,7 @@ proc actualBuildConfig
       [!?configFieldMap insertKey !other_lkey !registerName !other_mMaskValue !other_mDescription !other_mFieldSettingMap]
     end
   end
-#--- Analyze config parts
+//--- Analyze config parts
   var actualSettingNameSet =@stringset ()
   for (* mSettingList) in  inConfigDefinitionList do
     for (mSettingName mSettingValue) in  mSettingList do
@@ -57,7 +55,7 @@ proc actualBuildConfig
       end
     end
   end
-#--- Check if all settings are actually defined
+//--- Check if all settings are actually defined
   let @stringset notDefinedSetting = [configFieldMap keySet] - actualSettingNameSet
   if [notDefinedSetting count] > 0 then
     var @string errorMessage = "the following configuration settings are not defined:"
@@ -66,7 +64,7 @@ proc actualBuildConfig
     end
     error @location.here : errorMessage
   end
-#--- Display conguration information in log file
+//--- Display conguration information in log file
   for (lkey mRegisterAddress mRegisterValue) in  outActualConfigurationMap do
     ioListFileContents += "Register '" + lkey + "' at " + [mRegisterAddress hexString] + " set to " + [mRegisterValue hexString] + "\n"
     [inConfigRegisterMap searchKey !lkey ?* ?* ?let configRegisterMaskMap ?*]
@@ -80,7 +78,7 @@ proc actualBuildConfig
     end
     ioListFileContents += "\n"
   end
-#--- Detect illegal configurations
+//--- Detect illegal configurations
   for (lkey * mRegisterValue) in  outActualConfigurationMap do
     [inConfigRegisterMap searchKey !lkey ?* ?* ?* ?let illegalMaskList]
      for (mIllegalValue mIllegalMask mDescription) in  illegalMaskList do
@@ -93,18 +91,18 @@ proc actualBuildConfig
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
 proc buildConfig
  ?let @configRegisterMap inConfigRegisterMap
  ?let @configDefinitionList inConfigDefinitionList
  ?!@string ioListFileContents
  !@actualConfigurationMap outActualConfigurationMap {
-#--- Log
+//--- Log
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
   ioListFileContents += "*" + ["MICROCONTROLLER CONFIGURATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
   ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-#--- 
+//--- 
   if [inConfigDefinitionList count] > 0 then
     actualBuildConfig (
       !inConfigRegisterMap
@@ -118,5 +116,5 @@ proc buildConfig
   end
 }
 
-#----------------------------------------------------*
+//----------------------------------------------------*
 
