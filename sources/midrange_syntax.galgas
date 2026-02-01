@@ -144,15 +144,20 @@ label importBootloaderSpecification
       $,$
     end
   while
-     parse<configuration_definition>
+  //   parse<configuration_definition>
+    <configuration_definition> !?%from @()
   while
-     parse<ram_definition>
+   //  parse<ram_definition>
+   <ram_definition> !?%from @()
   while
-     parse<constant_definition>
+   //  parse<constant_definition>
+   <constant_definition> !?%from @()
   while
-     parse<midrange_interrupt_definition>
+   //  parse<midrange_interrupt_definition>
+   <midrange_interrupt_definition> !?%from @() !?%from false !?%from false
   while
-     parse<midrange_routine_definition>
+//     parse<midrange_routine_definition>
+   <midrange_routine_definition> !?%from @() !?%from false !?%from false
   end
   $end$
 }

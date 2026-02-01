@@ -75,7 +75,8 @@ label importBootloaderSpecification
       outBootloaderReservedROMsize
   $literal_string$ ? *
   $:$
-   parse<section_list>
+//   parse<section_list>
+   <section_list> !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @()
   $end$
 }
 

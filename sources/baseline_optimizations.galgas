@@ -8,8 +8,8 @@ map @baselineSymbolTableForOptimizations {
 }
 
 //----------------------------------------------------------------------------*
-////                                                                            *
-////    S E T    C U R R E N T    A D D R E S S                                 *
+//                                                                            *
+//    S E T    C U R R E N T    A D D R E S S                                 *
 //                                                                            *
 //----------------------------------------------------------------------------*
 
@@ -47,7 +47,7 @@ override getter @baseline_intermediate_pseudo_PAGE isLABEL -> @bool outIsLABEL {
   outIsLABEL = true
 }
 
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @baseline_intermediate_pseudo_END_ROUTINE isLABEL -> @bool outIsLABEL {
   outIsLABEL = true
@@ -343,7 +343,7 @@ method @baseline_intermediate_JUMP optimizeJUMP
         + " replaced by JUMP " + goto.mTargetLabel + "\n"
     end
   elsif let jump = firstInstruction as @baseline_intermediate_JUMP then
-////  case == @baseline_intermediate_JUMP jump :
+//  case == @baseline_intermediate_JUMP jump :
     if self.mTargetLabel != jump.mTargetLabel then
       [!?ioGeneratedInstructionList setMInstructionAtIndex
         !@baseline_intermediate_JUMP {

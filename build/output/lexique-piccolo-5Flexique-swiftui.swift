@@ -223,8 +223,8 @@ class ScannerFor_piccolo_lexique : AbstractScanner {
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
-  final override func blockComment () -> String? {
-    return gBlockComment_piccolo_lexique
+  final override func lineComment () -> String? {
+    return gLineComment_piccolo_lexique
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -

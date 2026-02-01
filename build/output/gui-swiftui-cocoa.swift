@@ -123,7 +123,7 @@ let gPopUpData_piccolo_lexique : [[UInt16]] = [
 //   Block Comment for 'piccolo_lexique' lexique
 //--------------------------------------------------------------------------------------------------
 
-let gBlockComment_piccolo_lexique : String? = "#"
+let gLineComment_piccolo_lexique : String? = "#"
 
 //--------------------------------------------------------------------------------------------------
 //   Popup list data for 'piccoloDevice_lexique' lexique
@@ -137,7 +137,7 @@ let gPopUpData_piccoloDevice_lexique : [[UInt16]] = [
 //   Block Comment for 'piccoloDevice_lexique' lexique
 //--------------------------------------------------------------------------------------------------
 
-let gBlockComment_piccoloDevice_lexique : String? = "#"
+let gLineComment_piccoloDevice_lexique : String? = "#"
 
 
 //--------------------------------------------------------------------------------------------------

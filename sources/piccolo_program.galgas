@@ -6,7 +6,7 @@ before {
    | [option piccolo_options_not_in_cocoa.outputBaselineDeviceList value]
    | [option piccolo_options_not_in_cocoa.outputMidrangeDeviceList value] then
   //--- Enumerate devices
-    let @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePathes]
+    let @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePaths]
     var pic18_devices =@stringlist ()
     var midrange_devices =@stringlist ()
     var baseline_devices =@stringlist ()
@@ -86,7 +86,7 @@ before {
       [dir makeDirectory]
     end
     let @filewrapper fw = [filewrapper embeddedDevices]
-    let @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePathes]
+    let @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePaths]
     for (mValue) in  allDevices do
       let @string definitionString = [fw textFileContentsAtPath !mValue]
       [definitionString writeToFile !dir + mValue]

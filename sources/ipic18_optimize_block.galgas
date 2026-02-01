@@ -10,7 +10,7 @@ abstract method @ipic18AbstractBlockTerminator optimizeTerminator
   ?!@string ioListFileContents
   !@ipic18AbstractBlockTerminator outOptimizedTerminator
 
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedBraTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -36,7 +36,7 @@ override method @ipic18ComputedGotoTerminator optimizeTerminator
   outOptimizedTerminator = self
 }
 
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -50,8 +50,8 @@ override method @ipic18JumpTerminator optimizeTerminator
   if inBlockLabel != self.mLabel.string then
     [inSymbolTable searchKey !self.mLabel ?let @uint targetBlockIndex]
     let @ipic18Block targetBlock = [inBlockList mBlockAtIndex !targetBlockIndex]
-    if (targetBlock.mAddress == @uint. max) ////// Relocatable
-     & ([targetBlock.mInstructionList count] == 0) //// Empty block
+    if (targetBlock.mAddress == @uint. max) // Relocatable
+     & ([targetBlock.mInstructionList count] == 0) // Empty block
      & (targetBlock.mTerminator is >= @ipic18SingleInstructionTerminator) then
       let @bool optimize
       if (targetBlock.mTerminator is >= @ipic18JumpTerminator) then
@@ -73,7 +73,7 @@ override method @ipic18JumpTerminator optimizeTerminator
   end
 }
 
-//////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ConditionalJumpTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -96,7 +96,7 @@ override method @ipic18ConditionalJumpTerminator optimizeTerminator
     warning self.mInstructionLocation : "useless condition deleted"
   else
     var @bool optimized = false
-  ////////////--- Optimize true label
+  //--- Optimize true label
     var @lstring targetLabelWhenTrue = self.mTargetLabelWhenTrue
     if inBlockLabel != self.mTargetLabelWhenTrue.string then
       [inSymbolTable searchKey !self.mTargetLabelWhenTrue ?let @uint targetBlockIndex]
@@ -212,7 +212,7 @@ override method @ipic18IncDecRegisterTerminator optimizeTerminator
   ?!@string ioListFileContents
   !@ipic18AbstractBlockTerminator outOptimizedTerminator {
   var @bool optimization = false
-////---
+//---
   [self getOptimizedTerminators
     !inSymbolTable
     !inOptimizeFlagStruct
@@ -322,7 +322,7 @@ override method @pic18RegisterComparisonTerminator optimizeTerminator
   end
 }
 
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @pic18TestRegisterTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -387,7 +387,7 @@ override method @ipic18RetlwTerminator optimizeTerminator
   outOptimizedTerminator = self
 }
 
-////////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ReturnTerminator optimizeTerminator
   ?let @symbolTableForBlockOptimization unused inSymbolTable
@@ -498,7 +498,7 @@ override method @ipic18ComputedBraTerminator enterTerminatorReferencedLabels
   end
 }
 
-//////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18ComputedGotoTerminator enterTerminatorReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -617,7 +617,7 @@ override method @ipic18_intermediate_JSR enterInstructionReferencedLabels
   end 
 }
 
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_computed_rcall enterInstructionReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -637,7 +637,7 @@ override method @ipic18_intermediate_instruction_computed_rcall enterInstruction
   end
 }
 
-//////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @ipic18_condition_skip_instruction  enterInstructionReferencedLabels
   ?let @symbolTableForBlockOptimization inSymbolTable
@@ -1106,7 +1106,7 @@ proc ipic18OptimizeBlocks
   if @application.verboseOutput then
     print (!"Optimizations:\n")
   end
-////--- Optimizations loops
+//--- Optimizations loops
   var @bool optimizationDone = true
   var @uint optimizationPass = 0
   loop( [ioGeneratedBlockList count] + 1)

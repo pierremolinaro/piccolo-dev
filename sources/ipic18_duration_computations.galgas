@@ -288,7 +288,7 @@ override method @ipic18ComputedGotoTerminator terminatorMinMaxDuration
   end
 }
 
-////////----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ComputedRETLWTerminator terminatorMinMaxDuration
   ?let @blockDurationMap unused inExploredBlockMap
@@ -416,7 +416,7 @@ method @ipic18SequentialInstruction minMaxDuration
   outMax = 1
 }
 
-//////----------------------------------------------------------------------------------------------------------------------*
+//----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18_intermediate_instruction_TBLRD minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap

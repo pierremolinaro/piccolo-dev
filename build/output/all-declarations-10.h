@@ -22,8 +22,6 @@ class cParser_piccoloDevice_5F_syntax {
   protected: virtual void nt_start_5F_symbol_ (class GGS_piccoloDeviceModel & outArgument0,
                                                class Lexique_piccoloDevice_5F_lexique * inLexique) = 0 ;
 
-  protected: virtual void nt_start_5F_symbol_parse (class Lexique_piccoloDevice_5F_lexique * inLexique) = 0 ;
-
   protected: virtual void nt_start_5F_symbol_indexing (class Lexique_piccoloDevice_5F_lexique * inLexique) = 0 ;
 
 
@@ -31,7 +29,7 @@ class cParser_piccoloDevice_5F_syntax {
   protected: void rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_ (GGS_piccoloDeviceModel & outArgument0,
                                                                     Lexique_piccoloDevice_5F_lexique * inLexique) ;
 
-  protected: void rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_parse (Lexique_piccoloDevice_5F_lexique * inLexique) ;
+/*  protected: void rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_parse (Lexique_piccoloDevice_5F_lexique * inLexique) ; */
 
   protected: void rule_piccoloDevice_5F_syntax_start_5F_symbol_i0_indexing (Lexique_piccoloDevice_5F_lexique * inLexique) ;
 
@@ -159,7 +157,7 @@ void extensionMethod_computeDuration (const class GGS_ipic_31__38_Block inObject
 class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax {
 //------------------------------------- 'start_symbol' non terminal
 //--- 'parse' label
-  public: virtual void nt_start_5F_symbol_parse (Lexique_piccoloDevice_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_start_5F_symbol_parse (Lexique_piccoloDevice_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_start_5F_symbol_indexing (Lexique_piccoloDevice_5F_lexique * inCompiler) ;

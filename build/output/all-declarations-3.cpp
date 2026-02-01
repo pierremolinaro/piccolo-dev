@@ -8,65 +8,6 @@
 #include "all-declarations-3.h"
 
 //--------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@ipic18SequentialInstruction generateCode'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_generateCode (cPtr_ipic_31__38_SequentialInstruction * inObject,
-                                       const GGS_uint constin_inAddress,
-                                       const GGS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                       const GGS_pic_31__38__5F_dataAddressMap constin_inDataMap,
-                                       GGS_codeList & out_outCode,
-                                       Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outCode.drop () ;
-//--- Find method
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
-    inObject->method_generateCode (constin_inAddress, constin_inSymbolTable, constin_inDataMap, out_outCode, inCompiler COMMA_THERE) ;
-  }
-}
-//--------------------------------------------------------------------------------------------------
-//
-//Abstract extension method '@ipic18AbstractBlockTerminator generateTerminatorCode'
-//
-//--------------------------------------------------------------------------------------------------
-
-void callExtensionMethod_generateTerminatorCode (cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                 const GGS_uint constin_inAddress,
-                                                 const GGS_symbolTableForRelativesResolution constin_inSymbolTable,
-                                                 const GGS_string constin_inNextBlockLabel,
-                                                 GGS_codeList & out_outCode,
-                                                 Compiler * inCompiler
-                                                 COMMA_LOCATION_ARGS) {
-//--- Drop output arguments
-  out_outCode.drop () ;
-//--- Find method
-  if (nullptr != inObject) {
-    macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
-    inObject->method_generateTerminatorCode (constin_inAddress, constin_inSymbolTable, constin_inNextBlockLabel, out_outCode, inCompiler COMMA_THERE) ;
-  }
-}
-//--------------------------------------------------------------------------------------------------
-//
-//Abstract extension getter '@ipic18AbstractBlockTerminator isEqualToTerminator'
-//
-//--------------------------------------------------------------------------------------------------
-
-GGS_bool callExtensionGetter_isEqualToTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
-                                                  const GGS_ipic_31__38_AbstractBlockTerminator in_inTerminator,
-                                                  Compiler * inCompiler
-                                                  COMMA_LOCATION_ARGS) {
-  GGS_bool result ;
-  if (nullptr != inObject) {
-    result = inObject->getter_isEqualToTerminator (in_inTerminator, inCompiler COMMA_THERE) ;
-  }
-  return result ;
-}
-
-//--------------------------------------------------------------------------------------------------
 //  Map type @declaredRoutineMap
 //--------------------------------------------------------------------------------------------------
 

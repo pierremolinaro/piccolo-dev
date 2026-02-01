@@ -76,7 +76,7 @@ enum @routineKind %equatable {
 //                                                                            *
 //                    IMMEDIAT EXPRESSION EVALUATION                          *
 //                                                                            *
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 abstract method @immediatExpression eval
   ?let @registerTable inRegisterTable
@@ -141,7 +141,7 @@ override method @immediatAdd eval
   outResult = leftResult + rightResult
 }
 
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @immediatSub eval
   ?let @registerTable inRegisterTable

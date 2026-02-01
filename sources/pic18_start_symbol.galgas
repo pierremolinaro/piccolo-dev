@@ -126,7 +126,8 @@ label importBootloaderSpecification
   end
   $literal_string$ ? *
   $:$
-   parse<body>
+//   parse<body>
+   <body> !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from false !?%from false
   $end$
 }
 

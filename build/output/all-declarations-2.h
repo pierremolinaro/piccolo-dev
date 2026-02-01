@@ -10467,3 +10467,42 @@ class GGS_pic_31__38__5F_dataAddressMap_2E_element_3F_ : public AC_GALGAS_root {
 
 extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38__5F_dataAddressMap_2E_element_3F_ ;
 
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@ipic18SequentialInstruction generateCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_generateCode (class cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                       const class GGS_uint constin_inAddress,
+                                       const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                       const class GGS_pic_31__38__5F_dataAddressMap constin_inDataMap,
+                                       class GGS_codeList & out_outCode,
+                                       class Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@ipic18AbstractBlockTerminator generateTerminatorCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_generateTerminatorCode (class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                 const class GGS_uint constin_inAddress,
+                                                 const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                 const class GGS_string constin_inNextBlockLabel,
+                                                 class GGS_codeList & out_outCode,
+                                                 class Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension getter '@ipic18AbstractBlockTerminator isEqualToTerminator'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_bool callExtensionGetter_isEqualToTerminator (const class cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                        const class GGS_ipic_31__38_AbstractBlockTerminator constin_inTerminator,
+                                                        class Compiler * inCompiler
+                                                        COMMA_LOCATION_ARGS) ;
+

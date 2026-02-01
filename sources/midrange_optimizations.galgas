@@ -2,7 +2,7 @@
 //                                                                            *
 //                   isLABELorORG                                             *
 //                                                                            *
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 getter @midrange_intermediate_instruction isLABELorORG -> @bool outIsLABELorORG {
   outIsLABELorORG = false
@@ -30,7 +30,7 @@ getter @midrange_intermediate_instruction isNULL -> @bool outIsNULL {
   outIsNULL = false
 }
 
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override getter @midrange_intermediate_NULL isNULL -> @bool outIsNULL {
   outIsNULL = true
@@ -51,7 +51,7 @@ override method @midrange_intermediate_JUMP enterReferencedLabel ?!@stringset io
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
-////----------------------------------------------------------------------------*
+//----------------------------------------------------------------------------*
 
 override method @midrange_intermediate_GOTO enterReferencedLabel ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel.string
@@ -94,7 +94,7 @@ getter @midrange_intermediate_instruction_BitTestSkip isSkippingInstruction -> @
 
 
 //----------------------------------------------------------------------------*
-////                                                                            *
+//                                                                            *
 //                   nextInstructionIsReachable                               *
 //                                                                            *
 //----------------------------------------------------------------------------*
@@ -338,30 +338,6 @@ method @midrange_intermediate_GOTO optimizeGOTO
     end
   end      
 }
-
-//----------------------------------------------------------------------------*
-
-//method @midrange_intermediate_CALL.optimizeCALL
-//  ??@uint inLineIndex
-//  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
-//  ?!@string ioListFileContents
-//  ?!@bool ioOptimizationsDone
-//:
-////--- Find first executable instruction
-//  @midrange_intermediate_instruction firstInstruction ;
-//  findFirstInstructionFromAddress !inLineIndex + 1 !ioGeneratedInstructionList ?firstInstruction ;
-////--- Optimization from found first instruction
-//  cast firstInstruction :
-//  when == @midrange_intermediate_instruction_RETURN do
-//    [!?ioGeneratedInstructionList setMInstructionAtIndex
-//      ![@midrange_intermediate_GOTO new !mInstructionLocation !mTargetLabel]
-//      !inLineIndex
-//    ] ;
-//    ioOptimizationsDone := true ;
-//    ioListFileContents .= "  line " . [inLineIndex string] . ": JSR followed by RETURN replaced by JUMP\n" ;
-//  else
-//  end cast ;
-//end method ;
 
 //----------------------------------------------------------------------------*
 

@@ -515,7 +515,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
                                         public cParser_communs {
 //------------------------------------- 'baseline_condition_expression' non terminal
 //--- 'parse' label
-  public: virtual void nt_baseline_5F_condition_5F_expression_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_baseline_5F_condition_5F_expression_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_baseline_5F_condition_5F_expression_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -526,7 +526,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'baseline_condition_factor' non terminal
 //--- 'parse' label
-  public: virtual void nt_baseline_5F_condition_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_baseline_5F_condition_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_baseline_5F_condition_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -537,7 +537,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'baseline_condition_term' non terminal
 //--- 'parse' label
-  public: virtual void nt_baseline_5F_condition_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_baseline_5F_condition_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_baseline_5F_condition_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -548,7 +548,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'baseline_instruction_list' non terminal
 //--- 'parse' label
-  public: virtual void nt_baseline_5F_instruction_5F_list_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_baseline_5F_instruction_5F_list_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_baseline_5F_instruction_5F_list_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -560,7 +560,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'baseline_routine_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_baseline_5F_routine_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_baseline_5F_routine_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_baseline_5F_routine_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -571,7 +571,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'baseline_simple_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_baseline_5F_simple_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_baseline_5F_simple_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_baseline_5F_simple_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -582,7 +582,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'baseline_structured_if_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_baseline_5F_structured_5F_if_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_baseline_5F_structured_5F_if_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_baseline_5F_structured_5F_if_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -595,7 +595,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'baseline_structured_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_baseline_5F_structured_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_baseline_5F_structured_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_baseline_5F_structured_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -607,7 +607,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'bit_number_parsing' non terminal
 //--- 'parse' label
-  public: virtual void nt_bit_5F_number_5F_parsing_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_bit_5F_number_5F_parsing_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_bit_5F_number_5F_parsing_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -618,7 +618,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'block_termination' non terminal
 //--- 'parse' label
-  public: virtual void nt_block_5F_termination_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_block_5F_termination_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_block_5F_termination_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -629,7 +629,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'body' non terminal
 //--- 'parse' label
-  public: virtual void nt_body_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_body_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_body_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -652,7 +652,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'checkpic_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_checkpic_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_checkpic_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_checkpic_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -663,7 +663,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'condition_expression' non terminal
 //--- 'parse' label
-  public: virtual void nt_condition_5F_expression_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_condition_5F_expression_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_condition_5F_expression_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -674,7 +674,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'condition_factor' non terminal
 //--- 'parse' label
-  public: virtual void nt_condition_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_condition_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_condition_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -685,7 +685,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'condition_term' non terminal
 //--- 'parse' label
-  public: virtual void nt_condition_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_condition_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_condition_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -696,7 +696,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'configuration_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_configuration_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_configuration_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_configuration_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -707,7 +707,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'constant_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_constant_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_constant_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_constant_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -718,7 +718,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'data_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_data_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_data_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_data_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -729,7 +729,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'declaration_in_ram' non terminal
 //--- 'parse' label
-  public: virtual void nt_declaration_5F_in_5F_ram_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_declaration_5F_in_5F_ram_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_declaration_5F_in_5F_ram_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -740,7 +740,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'immediate_bitwise_factor' non terminal
 //--- 'parse' label
-  public: virtual void nt_immediate_5F_bitwise_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_immediate_5F_bitwise_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_immediate_5F_bitwise_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -751,7 +751,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'immediate_bitwise_term' non terminal
 //--- 'parse' label
-  public: virtual void nt_immediate_5F_bitwise_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_immediate_5F_bitwise_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_immediate_5F_bitwise_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -762,7 +762,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'immediate_expression' non terminal
 //--- 'parse' label
-  public: virtual void nt_immediate_5F_expression_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_immediate_5F_expression_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_immediate_5F_expression_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -773,7 +773,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'immediate_factor' non terminal
 //--- 'parse' label
-  public: virtual void nt_immediate_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_immediate_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_immediate_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -784,7 +784,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'immediate_primary' non terminal
 //--- 'parse' label
-  public: virtual void nt_immediate_5F_primary_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_immediate_5F_primary_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_immediate_5F_primary_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -795,7 +795,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'immediate_term' non terminal
 //--- 'parse' label
-  public: virtual void nt_immediate_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_immediate_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_immediate_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -806,7 +806,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'instruction_list' non terminal
 //--- 'parse' label
-  public: virtual void nt_instruction_5F_list_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_instruction_5F_list_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_instruction_5F_list_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -820,7 +820,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'interrupt_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_interrupt_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_interrupt_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_interrupt_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -833,7 +833,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'midrange_condition_expression' non terminal
 //--- 'parse' label
-  public: virtual void nt_midrange_5F_condition_5F_expression_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_midrange_5F_condition_5F_expression_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_midrange_5F_condition_5F_expression_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -844,7 +844,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'midrange_condition_factor' non terminal
 //--- 'parse' label
-  public: virtual void nt_midrange_5F_condition_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_midrange_5F_condition_5F_factor_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_midrange_5F_condition_5F_factor_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -855,7 +855,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'midrange_condition_term' non terminal
 //--- 'parse' label
-  public: virtual void nt_midrange_5F_condition_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_midrange_5F_condition_5F_term_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_midrange_5F_condition_5F_term_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -866,7 +866,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'midrange_instruction_list' non terminal
 //--- 'parse' label
-  public: virtual void nt_midrange_5F_instruction_5F_list_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_midrange_5F_instruction_5F_list_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_midrange_5F_instruction_5F_list_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -880,7 +880,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'midrange_interrupt_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_midrange_5F_interrupt_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_midrange_5F_interrupt_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_midrange_5F_interrupt_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -893,7 +893,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'midrange_routine_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_midrange_5F_routine_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_midrange_5F_routine_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_midrange_5F_routine_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -906,7 +906,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'midrange_simple_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_midrange_5F_simple_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_midrange_5F_simple_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_midrange_5F_simple_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -917,7 +917,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'midrange_structured_if_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_midrange_5F_structured_5F_if_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -932,7 +932,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'midrange_structured_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_midrange_5F_structured_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_midrange_5F_structured_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_midrange_5F_structured_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -946,7 +946,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'optional_w_as_dest' non terminal
 //--- 'parse' label
-  public: virtual void nt_optional_5F_w_5F_as_5F_dest_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_optional_5F_w_5F_as_5F_dest_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_optional_5F_w_5F_as_5F_dest_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -957,7 +957,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'parse_bootloader' non terminal
 //--- 'parse' label
-  public: virtual void nt_parse_5F_bootloader_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_parse_5F_bootloader_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_parse_5F_bootloader_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -979,7 +979,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'ram_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_ram_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_ram_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_ram_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -990,7 +990,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'register_parsing' non terminal
 //--- 'parse' label
-  public: virtual void nt_register_5F_parsing_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_register_5F_parsing_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_register_5F_parsing_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -1001,7 +1001,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'routine_declaration' non terminal
 //--- 'parse' label
-  public: virtual void nt_routine_5F_declaration_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_routine_5F_declaration_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_routine_5F_declaration_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -1012,7 +1012,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'routine_definition' non terminal
 //--- 'parse' label
-  public: virtual void nt_routine_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_routine_5F_definition_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_routine_5F_definition_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -1025,7 +1025,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'section_list' non terminal
 //--- 'parse' label
-  public: virtual void nt_section_5F_list_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_section_5F_list_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_section_5F_list_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -1041,7 +1041,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'simple_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_simple_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_simple_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_simple_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -1052,7 +1052,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'start_symbol' non terminal
 //--- 'parse' label
-  public: virtual void nt_start_5F_symbol_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_start_5F_symbol_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_start_5F_symbol_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -1124,7 +1124,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'structured_if_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_structured_5F_if_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_structured_5F_if_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_structured_5F_if_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;
@@ -1139,7 +1139,7 @@ class cGrammar_pic_31__38__5F_grammar : public cParser_pic_31__38__5F_syntax,
 
 //------------------------------------- 'structured_instruction' non terminal
 //--- 'parse' label
-  public: virtual void nt_structured_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ;
+ /*  public: virtual void nt_structured_5F_instruction_parse (Lexique_piccolo_5F_lexique * inCompiler) ; */
 
 //--- indexing
   public: virtual void nt_structured_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inCompiler) ;

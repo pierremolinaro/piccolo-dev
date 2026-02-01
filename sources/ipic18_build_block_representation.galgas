@@ -981,7 +981,7 @@ override method @pic18Instruction_LTBLPTR analyze
     error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 0xFF_FFFF)"
   end
   let @uint address = [result uint]
-////--- Upper byte
+//--- Upper byte
   let TBLPTRU = @registerExpression {
     !@lstring { !"TBLPTRU" !self.mInstructionLocation}
     !@immediatInteger {! @{!0 !.here}}
@@ -1409,7 +1409,7 @@ override method @pic18Instruction_JUMP analyze
   end
 //--- Build block
   ioGeneratedBlockList += !@ipic18Block {
-    !@uint. max //// relocatable
+    !@uint. max // relocatable
     !ioBlockLabel
     !ioGeneratedInstructionList
     !@ipic18JumpTerminator { !self.mInstructionLocation !self.mTargetLabel !@jumpInstructionKind. ipicRelative}
@@ -1636,7 +1636,7 @@ override method @pic18Instruction_computed_bra analyze
 //---
   switch inRoutineKind
   case regularRoutine :
-  case noReturnRoutine : //// ok
+  case noReturnRoutine : // ok
   case interruptRoutine :
     error self.mInstructionLocation:"an interrupt routine does not accept computed bra instruction"
   end
@@ -1709,7 +1709,7 @@ override method @pic18Instruction_computed_retlw analyze
     end
     literalValues += ![v & 0x000000FF uint]
   end
-////--- Build block
+//--- Build block
   ioGeneratedBlockList += !@ipic18Block {
     !@uint. max // relocatable
     !ioBlockLabel
@@ -1973,7 +1973,7 @@ override method @pic18Instruction_IF_IncDec analyze
   if currentBank != currentBank then
     error self.mEmbeddedInstruction.mInstructionLocation : "this instruction does not preserve bank setting"
   end
-////--- Generate instruction
+//--- Generate instruction
   ioGeneratedInstructionList += !@ipic18_skip_instruction_FDA {
     !self.mInstructionLocation
     !embeddedInstruction
@@ -2003,7 +2003,7 @@ override method @pic18Instruction_structured_if analyze
   ?let @bool inShouldPreserveBSR
   ?let @routineKind inRoutineKind
   ?!@stringset ioUsedRegisters {
-////--- Save bank settings
+//--- Save bank settings
   var @uint elseBranchFinalBank = ioCurrentBank
   var @uint thenBranchFinalBank = ioCurrentBank
 //--- Labels
@@ -2100,12 +2100,12 @@ override method @pic18Instruction_structured_if analyze
     }
   end
   ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
-////---
+//---
   if elseBranchFinalBank == thenBranchFinalBank then
     ioCurrentBank = elseBranchFinalBank
   else
     error self.mEndOfElsePartLocation:"This branch does not leave bank selection value as the first one does"
-    elseBranchFinalBank = @uint. max //// No available value for BSR
+    elseBranchFinalBank = @uint. max // No available value for BSR
   end
 //---
   if thenContinuesInSequence | elseContinuesInSequence then
@@ -3124,26 +3124,6 @@ proc build_ipic18_block_representation_list
     end
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mRequiredBank.uint !mReturnedBank.uint !mPreservesBank]
   end
-//-------------------------------- Build constant map
-//  var constantMap = @constantMap ()
-////--- Add "ROM_SIZE" and "RAM_SIZE" constants
-//  [!?constantMap insertKey !@lstring. new { !"ROM_SIZE" !@location.here} !inROMSize]
-//  [!?constantMap insertKey !@lstring. new { !"RAM_SIZE" !@location.here} !inRAMSize]
-////--- Add "BOOTLOADER_RESERVED_SIZE" constant
-//  if inProgramKind != @programKind. regularProgram then
-//    var bootloaderSizeString =@lstring.new{ !"BOOTLOADER_RESERVED_SIZE" !@location.here}
-//    [!?constantMap insertKey !bootloaderSizeString ![[inBootloaderReservedROMsize uint] sint64]]
-//  end
-////--- Add declared constants
-//  var usedRegisters = @stringset ()
-//  for () in  inConstantDefinitionList do
-//    [mExpression eval !inRegisterTable !constantMap ?let @sint64 result !?usedRegisters]
-//    if [inRegisterTable hasKey ![mConstantName string]] then
-//      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
-//    else
-//      [!?constantMap insertKey !mConstantName !result]
-//    end
-//  end
 //-------------------------------- Analyze Data
   pic18_analyze_data_sections (
     !inDataList

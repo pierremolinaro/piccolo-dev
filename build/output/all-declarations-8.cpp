@@ -14588,14 +14588,6 @@ static const int32_t gProductionsTable_baseline_include_grammar [190 * 2] = {
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_configuration_5F_definition_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 11) {
-  rule_communs_configuration_5F_definition_i0_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_configuration_5F_definition_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 11) {
   rule_communs_configuration_5F_definition_i0_indexing(inLexique) ;
@@ -14618,14 +14610,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_configuration_5F_definition_ (G
 //                          'ram_definition' non terminal implementation                            
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_ram_5F_definition_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 13) {
-  rule_communs_ram_5F_definition_i2_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_ram_5F_definition_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 13) {
@@ -14650,14 +14634,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_ram_5F_definition_ (GGS_ramDefi
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_constant_5F_definition_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 14) {
-  rule_communs_constant_5F_definition_i3_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_constant_5F_definition_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 14) {
   rule_communs_constant_5F_definition_i3_indexing(inLexique) ;
@@ -14680,14 +14656,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_constant_5F_definition_ (GGS_co
 //                         'register_parsing' non terminal implementation                           
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_register_5F_parsing_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 21) {
-  rule_communs_register_5F_parsing_i10_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_register_5F_parsing_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 21) {
@@ -14712,14 +14680,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_register_5F_parsing_ (GGS_regis
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_optional_5F_w_5F_as_5F_dest_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 25) {
-  rule_communs_optional_5F_w_5F_as_5F_dest_i14_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_optional_5F_w_5F_as_5F_dest_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 25) {
   rule_communs_optional_5F_w_5F_as_5F_dest_i14_indexing(inLexique) ;
@@ -14742,23 +14702,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_optional_5F_w_5F_as_5F_dest_ (G
 //                        'bit_number_parsing' non terminal implementation                          
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_bit_5F_number_5F_parsing_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 22 :
-      rule_communs_bit_5F_number_5F_parsing_i11_parse(inLexique) ;
-    break ;
-  case 23 :
-      rule_communs_bit_5F_number_5F_parsing_i12_parse(inLexique) ;
-    break ;
-  case 24 :
-      rule_communs_bit_5F_number_5F_parsing_i13_parse(inLexique) ;
-    break ;
-  default :
-    inLexique->internalBottomUpParserError (HERE) ;
-    break ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_bit_5F_number_5F_parsing_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -14801,14 +14744,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_bit_5F_number_5F_parsing_ (GGS_
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_expression_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 15) {
-  rule_communs_immediate_5F_expression_i4_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_expression_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 15) {
   rule_communs_immediate_5F_expression_i4_indexing(inLexique) ;
@@ -14831,14 +14766,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_expression_ (GGS_i
 //                           'section_list' non terminal implementation                             
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_section_5F_list_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 0) {
-  rule_baseline_5F_syntax_section_5F_list_i0_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_section_5F_list_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 0) {
@@ -14990,14 +14917,6 @@ void cGrammar_baseline_5F_include_5F_grammar::_performSourceStringParsing_ (Comp
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_instruction_5F_list_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 1) {
-  rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_instruction_5F_list_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 1) {
   rule_baseline_5F_syntax_baseline_5F_instruction_5F_list_i1_indexing(inLexique) ;
@@ -15022,14 +14941,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_instruction_5F_list
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_routine_5F_definition_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 2) {
-  rule_baseline_5F_syntax_baseline_5F_routine_5F_definition_i2_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_routine_5F_definition_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 2) {
   rule_baseline_5F_syntax_baseline_5F_routine_5F_definition_i2_indexing(inLexique) ;
@@ -15052,14 +14963,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_routine_5F_definiti
 //                 'baseline_structured_instruction' non terminal implementation                    
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_instruction_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 3) {
-  rule_baseline_5F_syntax_baseline_5F_structured_5F_instruction_i3_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 3) {
@@ -15084,14 +14987,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_instr
 //                'baseline_structured_if_instruction' non terminal implementation                  
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_if_5F_instruction_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 4) {
-  rule_baseline_5F_syntax_baseline_5F_structured_5F_if_5F_instruction_i4_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_if_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 4) {
@@ -15118,14 +15013,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_structured_5F_if_5F
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_simple_5F_instruction_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 5) {
-  rule_baseline_5F_syntax_baseline_5F_simple_5F_instruction_i5_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_simple_5F_instruction_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 5) {
   rule_baseline_5F_syntax_baseline_5F_simple_5F_instruction_i5_indexing(inLexique) ;
@@ -15148,23 +15035,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_simple_5F_instructi
 //                    'baseline_condition_factor' non terminal implementation                       
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_condition_5F_factor_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  switch (inLexique->nextProductionIndex ()) {
-  case 6 :
-      rule_baseline_5F_syntax_baseline_5F_condition_5F_factor_i6_parse(inLexique) ;
-    break ;
-  case 7 :
-      rule_baseline_5F_syntax_baseline_5F_condition_5F_factor_i7_parse(inLexique) ;
-    break ;
-  case 8 :
-      rule_baseline_5F_syntax_baseline_5F_condition_5F_factor_i8_parse(inLexique) ;
-    break ;
-  default :
-    inLexique->internalBottomUpParserError (HERE) ;
-    break ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_condition_5F_factor_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   switch (inLexique->nextProductionIndex ()) {
@@ -15207,14 +15077,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_condition_5F_factor
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_condition_5F_expression_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 9) {
-  rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_condition_5F_expression_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 9) {
   rule_baseline_5F_syntax_baseline_5F_condition_5F_expression_i9_indexing(inLexique) ;
@@ -15237,14 +15099,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_condition_5F_expres
 //                     'baseline_condition_term' non terminal implementation                        
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_condition_5F_term_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 10) {
-  rule_baseline_5F_syntax_baseline_5F_condition_5F_term_i10_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_condition_5F_term_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 10) {
@@ -15269,14 +15123,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_baseline_5F_condition_5F_term_ 
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_declaration_5F_in_5F_ram_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 12) {
-  rule_communs_declaration_5F_in_5F_ram_i1_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_declaration_5F_in_5F_ram_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 12) {
   rule_communs_declaration_5F_in_5F_ram_i1_indexing(inLexique) ;
@@ -15299,14 +15145,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_declaration_5F_in_5F_ram_ (GGS_
 //                      'immediate_bitwise_term' non terminal implementation                        
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_term_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 16) {
-  rule_communs_immediate_5F_bitwise_5F_term_i5_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_term_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 16) {
@@ -15331,14 +15169,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_term_ (
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_factor_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 17) {
-  rule_communs_immediate_5F_bitwise_5F_factor_i6_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_factor_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 17) {
   rule_communs_immediate_5F_bitwise_5F_factor_i6_indexing(inLexique) ;
@@ -15361,14 +15191,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_bitwise_5F_factor_
 //                          'immediate_term' non terminal implementation                            
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_term_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 18) {
-  rule_communs_immediate_5F_term_i7_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_term_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 18) {
@@ -15393,14 +15215,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_term_ (GGS_immedia
 //
 //--------------------------------------------------------------------------------------------------
 
-void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_factor_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 19) {
-  rule_communs_immediate_5F_factor_i8_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
-
 void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_factor_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 19) {
   rule_communs_immediate_5F_factor_i8_indexing(inLexique) ;
@@ -15423,14 +15237,6 @@ void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_factor_ (GGS_immed
 //                        'immediate_primary' non terminal implementation                           
 //
 //--------------------------------------------------------------------------------------------------
-
-void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_primary_parse (Lexique_piccolo_5F_lexique * inLexique) {
-  if (inLexique->nextProductionIndex () == 20) {
-  rule_communs_immediate_5F_primary_i9_parse(inLexique) ;
-  }else{
-    inLexique->internalBottomUpParserError (HERE) ;
-  }
-}
 
 void cGrammar_baseline_5F_include_5F_grammar::nt_immediate_5F_primary_indexing (Lexique_piccolo_5F_lexique * inLexique) {
   if (inLexique->nextProductionIndex () == 20) {

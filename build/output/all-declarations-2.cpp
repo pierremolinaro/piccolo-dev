@@ -47,34 +47,6 @@ void cParser_communs::rule_communs_configuration_5F_definition_i0_ (GGS_configDe
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_communs::rule_communs_configuration_5F_definition_i0_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("communs.galgas", 8)) ;
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 11)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_communs_0 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 14)) ;
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 15)) ;
-      switch (select_communs_1 (inCompiler)) {
-      case 1: {
-        inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 18)) ;
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_string COMMA_SOURCE_FILE ("communs.galgas", 20)) ;
-      } break ;
-      default:
-        break ;
-      }
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 24)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_communs::rule_communs_configuration_5F_definition_i0_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("communs.galgas", 8)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 11)) ;
@@ -273,88 +245,6 @@ void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_ (GGS_declaration
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_communs_2 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_protected COMMA_SOURCE_FILE ("communs.galgas", 35)) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_private COMMA_SOURCE_FILE ("communs.galgas", 38)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_byte COMMA_SOURCE_FILE ("communs.galgas", 41)) ;
-  inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableDeclaration, "") ;
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 42)) ;
-  switch (select_communs_3 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 47)) ;
-    nt_immediate_5F_expression_parse (inCompiler) ;
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 49)) ;
-  } break ;
-  default:
-    break ;
-  }
-  switch (select_communs_4 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("communs.galgas", 56)) ;
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
-      switch (select_communs_6 (inCompiler)) {
-      case 1: {
-        bool repeatFlag_1 = true ;
-        while (repeatFlag_1) {
-          inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 67)) ;
-          switch (select_communs_8 (inCompiler)) {
-          case 1: {
-          } break ;
-          case 2: {
-            inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 75)) ;
-            inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 76)) ;
-            inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 83)) ;
-          } break ;
-          default:
-            break ;
-          }
-          if (select_communs_7 (inCompiler) == 2) {
-            inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 91)) ;
-          }else{
-            repeatFlag_1 = false ;
-          }
-        }
-      } break ;
-      case 2: {
-        inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 96)) ;
-      } break ;
-      case 3: {
-        inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 100)) ;
-      } break ;
-      default:
-        break ;
-      }
-      if (select_communs_5 (inCompiler) == 2) {
-        inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 111)) ;
-      }else{
-        repeatFlag_0 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 117)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_communs::rule_communs_declaration_5F_in_5F_ram_i1_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_communs_2 (inCompiler)) {
   case 1: {
@@ -459,24 +349,6 @@ void cParser_communs::rule_communs_ram_5F_definition_i2_ (GGS_ramDefinitionList 
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_communs::rule_communs_ram_5F_definition_i2_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("communs.galgas", 128)) ;
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 129)) ;
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("communs.galgas", 130)) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_communs_9 (inCompiler) == 2) {
-      nt_declaration_5F_in_5F_ram_parse (inCompiler) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("communs.galgas", 138)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_communs::rule_communs_ram_5F_definition_i2_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("communs.galgas", 128)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 129)) ;
@@ -504,17 +376,6 @@ void cParser_communs::rule_communs_constant_5F_definition_i3_ (GGS_constantDefin
   GGS_immediatExpression var_expression_4207 ;
   nt_immediate_5F_expression_ (var_expression_4207, inCompiler) ;
   ioArgument_ioConstantDefinitionList.addAssignOperation (var_constantName_4109, var_expression_4207  COMMA_SOURCE_FILE ("communs.galgas", 149)) ;
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_communs::rule_communs_constant_5F_definition_i3_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_const COMMA_SOURCE_FILE ("communs.galgas", 145)) ;
-  inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_constantDeclaration, "") ;
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 146)) ;
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3D_ COMMA_SOURCE_FILE ("communs.galgas", 147)) ;
-  nt_immediate_5F_expression_parse (inCompiler) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -557,29 +418,6 @@ void cParser_communs::rule_communs_immediate_5F_expression_i4_ (GGS_immediatExpr
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_communs::rule_communs_immediate_5F_expression_i4_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_immediate_5F_bitwise_5F_term_parse (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_communs_10 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("communs.galgas", 158)) ;
-      nt_immediate_5F_bitwise_5F_term_parse (inCompiler) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5E_ COMMA_SOURCE_FILE ("communs.galgas", 162)) ;
-      nt_immediate_5F_bitwise_5F_term_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_communs::rule_communs_immediate_5F_expression_i4_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
   nt_immediate_5F_bitwise_5F_term_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
@@ -617,22 +455,6 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_term_i5_ (GGS_immedia
       repeatFlag_0 = false ;
     }
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_communs::rule_communs_immediate_5F_bitwise_5F_term_i5_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_immediate_5F_bitwise_5F_factor_parse (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    if (select_communs_11 (inCompiler) == 2) {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("communs.galgas", 174)) ;
-      nt_immediate_5F_bitwise_5F_factor_parse (inCompiler) ;
-    }else{
-      repeatFlag_0 = false ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -698,43 +520,6 @@ void cParser_communs::rule_communs_immediate_5F_bitwise_5F_factor_i6_ (GGS_immed
   default:
     break ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_communs::rule_communs_immediate_5F_bitwise_5F_factor_i6_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_immediate_5F_term_parse (inCompiler) ;
-  switch (select_communs_12 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3D__3D_ COMMA_SOURCE_FILE ("communs.galgas", 186)) ;
-    nt_immediate_5F_term_parse (inCompiler) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__21__3D_ COMMA_SOURCE_FILE ("communs.galgas", 190)) ;
-    nt_immediate_5F_term_parse (inCompiler) ;
-  } break ;
-  case 4: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E__3D_ COMMA_SOURCE_FILE ("communs.galgas", 194)) ;
-    nt_immediate_5F_term_parse (inCompiler) ;
-  } break ;
-  case 5: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C__3D_ COMMA_SOURCE_FILE ("communs.galgas", 198)) ;
-    nt_immediate_5F_term_parse (inCompiler) ;
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("communs.galgas", 202)) ;
-    nt_immediate_5F_term_parse (inCompiler) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("communs.galgas", 206)) ;
-    nt_immediate_5F_term_parse (inCompiler) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -815,37 +600,6 @@ void cParser_communs::rule_communs_immediate_5F_term_i7_ (GGS_immediatExpression
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_communs::rule_communs_immediate_5F_term_i7_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_immediate_5F_factor_parse (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_communs_13 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2B_ COMMA_SOURCE_FILE ("communs.galgas", 218)) ;
-      nt_immediate_5F_factor_parse (inCompiler) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 222)) ;
-      nt_immediate_5F_factor_parse (inCompiler) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3C__3C_ COMMA_SOURCE_FILE ("communs.galgas", 226)) ;
-      nt_immediate_5F_factor_parse (inCompiler) ;
-    } break ;
-    case 5: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3E__3E_ COMMA_SOURCE_FILE ("communs.galgas", 230)) ;
-      nt_immediate_5F_factor_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_communs::rule_communs_immediate_5F_term_i7_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
   nt_immediate_5F_factor_indexing (inCompiler) ;
   bool repeatFlag_0 = true ;
@@ -906,33 +660,6 @@ void cParser_communs::rule_communs_immediate_5F_factor_i8_ (GGS_immediatExpressi
       break ;
     }
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_communs::rule_communs_immediate_5F_factor_i8_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  nt_immediate_5F_primary_parse (inCompiler) ;
-  bool repeatFlag_0 = true ;
-  while (repeatFlag_0) {
-    switch (select_communs_14 (inCompiler)) {
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2A_ COMMA_SOURCE_FILE ("communs.galgas", 242)) ;
-      nt_immediate_5F_primary_parse (inCompiler) ;
-    } break ;
-    case 3: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__25_ COMMA_SOURCE_FILE ("communs.galgas", 246)) ;
-      nt_immediate_5F_primary_parse (inCompiler) ;
-    } break ;
-    case 4: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("communs.galgas", 250)) ;
-      nt_immediate_5F_primary_parse (inCompiler) ;
-    } break ;
-    default:
-      repeatFlag_0 = false ;
-      break ;
-    }
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -1046,66 +773,6 @@ void cParser_communs::rule_communs_immediate_5F_primary_i9_ (GGS_immediatExpress
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_communs::rule_communs_immediate_5F_primary_i9_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_communs_15 (inCompiler)) {
-  case 1: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("communs.galgas", 261)) ;
-    nt_immediate_5F_primary_parse (inCompiler) ;
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7E_ COMMA_SOURCE_FILE ("communs.galgas", 265)) ;
-    nt_immediate_5F_primary_parse (inCompiler) ;
-  } break ;
-  case 3: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 269)) ;
-  } break ;
-  case 4: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_literal_5F_char COMMA_SOURCE_FILE ("communs.galgas", 272)) ;
-  } break ;
-  case 5: {
-    inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableUse, "") ;
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 275)) ;
-    switch (select_communs_16 (inCompiler)) {
-    case 1: {
-    } break ;
-    case 2: {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 282)) ;
-      nt_immediate_5F_expression_parse (inCompiler) ;
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 285)) ;
-    } break ;
-    default:
-      break ;
-    }
-  } break ;
-  case 6: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 294)) ;
-    nt_immediate_5F_expression_parse (inCompiler) ;
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 296)) ;
-  } break ;
-  case 7: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 298)) ;
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 299)) ;
-    bool repeatFlag_0 = true ;
-    while (repeatFlag_0) {
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 302)) ;
-      inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("communs.galgas", 303)) ;
-      nt_immediate_5F_expression_parse (inCompiler) ;
-      if (select_communs_17 (inCompiler) == 2) {
-        inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 307)) ;
-      }else{
-        repeatFlag_0 = false ;
-      }
-    }
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 309)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_communs::rule_communs_immediate_5F_primary_i9_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
   switch (select_communs_15 (inCompiler)) {
   case 1: {
@@ -1192,25 +859,6 @@ void cParser_communs::rule_communs_register_5F_parsing_i10_ (GGS_registerExpress
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_communs::rule_communs_register_5F_parsing_i10_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableUse, "") ;
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 317)) ;
-  switch (select_communs_18 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 324)) ;
-    nt_immediate_5F_expression_parse (inCompiler) ;
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 327)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_communs::rule_communs_register_5F_parsing_i10_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->enterIndexing (Lexique_piccolo_5F_lexique::kIndexing_variableUse, "") ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 317)) ;
@@ -1253,24 +901,6 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_ (GGS_bitNumberE
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 339)) ;
-  switch (select_communs_19 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("communs.galgas", 344)) ;
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 345)) ;
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("communs.galgas", 346)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i11_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("communs.galgas", 339)) ;
   switch (select_communs_19 (inCompiler)) {
@@ -1298,13 +928,6 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i12_ (GGS_bitNumberE
 
 //------------------------------------------------------------------------------------------------
 
-void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i12_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 354)) ;
-  inCompiler->resetTemplateString () ;
-}
-
-//------------------------------------------------------------------------------------------------
-
 void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i12_indexing (Lexique_piccolo_5F_lexique * inCompiler) {
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("communs.galgas", 354)) ;
 }
@@ -1320,15 +943,6 @@ void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i13_ (GGS_bitNumberE
   GGS_location var_endOfExpression_10206 = GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("communs.galgas", 363)) ;
   inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 364)) ;
   outArgument_outBitNumber = GGS_bitNumberLiteralExpression::init_21__21_ (var_bitNumberExpression_10180, var_endOfExpression_10206, inCompiler COMMA_HERE) ;
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_communs::rule_communs_bit_5F_number_5F_parsing_i13_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__28_ COMMA_SOURCE_FILE ("communs.galgas", 361)) ;
-  nt_immediate_5F_expression_parse (inCompiler) ;
-  inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__29_ COMMA_SOURCE_FILE ("communs.galgas", 364)) ;
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -1356,22 +970,6 @@ void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i14_ (GGS_bool & 
   default:
     break ;
   }
-}
-
-//------------------------------------------------------------------------------------------------
-
-void cParser_communs::rule_communs_optional_5F_w_5F_as_5F_dest_i14_parse (Lexique_piccolo_5F_lexique * inCompiler) {
-  switch (select_communs_20 (inCompiler)) {
-  case 1: {
-  } break ;
-  case 2: {
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("communs.galgas", 374)) ;
-    inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken_w COMMA_SOURCE_FILE ("communs.galgas", 375)) ;
-  } break ;
-  default:
-    break ;
-  }
-  inCompiler->resetTemplateString () ;
 }
 
 //------------------------------------------------------------------------------------------------
@@ -15704,6 +15302,65 @@ GGS_pic_31__38__5F_dataAddressMap GGS_pic_31__38__5F_dataAddressMap::extractObje
     }else{
       inCompiler->castError ("pic18_dataAddressMap", p->dynamicTypeDescriptor () COMMA_THERE) ;
     }  
+  }
+  return result ;
+}
+
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@ipic18SequentialInstruction generateCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_generateCode (cPtr_ipic_31__38_SequentialInstruction * inObject,
+                                       const GGS_uint constin_inAddress,
+                                       const GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                       const GGS_pic_31__38__5F_dataAddressMap constin_inDataMap,
+                                       GGS_codeList & out_outCode,
+                                       Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) {
+//--- Drop output arguments
+  out_outCode.drop () ;
+//--- Find method
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
+    inObject->method_generateCode (constin_inAddress, constin_inSymbolTable, constin_inDataMap, out_outCode, inCompiler COMMA_THERE) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension method '@ipic18AbstractBlockTerminator generateTerminatorCode'
+//
+//--------------------------------------------------------------------------------------------------
+
+void callExtensionMethod_generateTerminatorCode (cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                 const GGS_uint constin_inAddress,
+                                                 const GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                 const GGS_string constin_inNextBlockLabel,
+                                                 GGS_codeList & out_outCode,
+                                                 Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) {
+//--- Drop output arguments
+  out_outCode.drop () ;
+//--- Find method
+  if (nullptr != inObject) {
+    macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
+    inObject->method_generateTerminatorCode (constin_inAddress, constin_inSymbolTable, constin_inNextBlockLabel, out_outCode, inCompiler COMMA_THERE) ;
+  }
+}
+//--------------------------------------------------------------------------------------------------
+//
+//Abstract extension getter '@ipic18AbstractBlockTerminator isEqualToTerminator'
+//
+//--------------------------------------------------------------------------------------------------
+
+GGS_bool callExtensionGetter_isEqualToTerminator (const cPtr_ipic_31__38_AbstractBlockTerminator * inObject,
+                                                  const GGS_ipic_31__38_AbstractBlockTerminator in_inTerminator,
+                                                  Compiler * inCompiler
+                                                  COMMA_LOCATION_ARGS) {
+  GGS_bool result ;
+  if (nullptr != inObject) {
+    result = inObject->getter_isEqualToTerminator (in_inTerminator, inCompiler COMMA_THERE) ;
   }
   return result ;
 }
