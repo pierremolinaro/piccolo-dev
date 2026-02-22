@@ -511,7 +511,7 @@ func pic18_checkBCC
   ?let @uint inCurrentAddress
   ->@bool outDisplacementOK {
   [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
-  let @sint displacement = ([targetAddress sint] - 2 - [inCurrentAddress sint]) >> 1
+  let @sint displacement = (targetAddress.sint - 2 - inCurrentAddress.sint) >> 1
   outDisplacementOK =  (displacement <= 127) & (displacement >= - 128)
 }
 
@@ -524,7 +524,7 @@ func pic18_checkBRA_RCALL
   ->@bool outDisplacementOK {
 //--- The target label is not defined if 
   [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
-  let @sint displacement = ([targetAddress sint] - 2 - [inCurrentAddress sint]) >> 1
+  let @sint displacement = (targetAddress.sint - 2 - inCurrentAddress.sint) >> 1
   outDisplacementOK =  (displacement <= 1023) & (displacement >= - 1024)
 }
 
@@ -536,7 +536,7 @@ func pic18_BRA_RCALL_displacement
   ?let @uint inCurrentAddress
   ->@sint outDisplacement {
   [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
-  outDisplacement = ([targetAddress sint] - 2 - [inCurrentAddress sint]) >> 1
+  outDisplacement = (targetAddress.sint - 2 - inCurrentAddress.sint) >> 1
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
@@ -552,7 +552,7 @@ func pic18_Bcc_instruction_code
   ?let @conditional_branch inConditionalBranch
   ?let @bool inComplemented
   ->@codeList outCode {  
-  let @sint displacement = ([inTargetAddress sint] - 2 - [inConditionalBranchInstructionAddress sint]) >> 1
+  let @sint displacement = (inTargetAddress.sint - 2 - inConditionalBranchInstructionAddress.sint) >> 1
   if (displacement > 127) | (displacement < - 128) then
     error inTargetLabel: "** INTERNAL ERROR ** displacement too large for conditional branch instruction"
   end
@@ -587,7 +587,7 @@ func pic18_Bcc_instruction_code
   end
   outCode = @codeList. listWithValue {
     !"    " + mnemonic + " " + inTargetLabel
-    !@uintlist. listWithValue { !baseCode | [displacement & 0x0FF uint]}}
+    !@uintlist. listWithValue { !baseCode | (displacement & 0x0FF).uint}}
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
@@ -597,14 +597,14 @@ func pic18_RCALL_instruction_code
   ?let @uint inTargetAddress
   ?let @lstring inTargetLabel
   ->@codeList outCode {
-  let @sint displacement = ([inTargetAddress sint] - 2 - [inRCALLinstructionAddress sint]) >> 1
+  let @sint displacement = (inTargetAddress.sint - 2 - inRCALLinstructionAddress.sint) >> 1
   if (displacement > 1023) | (displacement < - 1024) then
-    error inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ [displacement  string]
+    error inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ displacement.string
     + ") for RCALL instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)"
   end
   outCode = @codeList. listWithValue {
     !"    RCALL " + inTargetLabel
-    !@uintlist. listWithValue { !0xD800 | [displacement & 0x07FF uint]}}
+    !@uintlist. listWithValue { !0xD800 | (displacement & 0x07FF).uint}}
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
@@ -614,14 +614,14 @@ func pic18_BRA_instruction_code
   ?let @uint inTargetAddress
   ?let @lstring inTargetLabel
   ->@codeList outCode {
-  let @sint displacement = ([inTargetAddress sint] - 2 - [inRCALLinstructionAddress sint]) >> 1
+  let @sint displacement = (inTargetAddress.sint - 2 - inRCALLinstructionAddress.sint) >> 1
   if (displacement > 1023) | (displacement < - 1024) then
-    error inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ [displacement  string]
+    error inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ displacement.string
     + ") for BRA instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)"
   end
   outCode = @codeList. listWithValue {
     !"    BRA " + inTargetLabel
-    !@uintlist. listWithValue { !0xD000 | [displacement & 0x07FF uint]}}
+    !@uintlist. listWithValue { !0xD000 | (displacement & 0x07FF).uint}}
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————

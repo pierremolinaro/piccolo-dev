@@ -39,7 +39,7 @@ rule <section_list>
     repeat
       $identifier$ ?let @lstring unusedRegister
       unusedRegisterList += !unusedRegister
-    while 
+    while
       $,$
     end
   while
@@ -48,7 +48,7 @@ rule <section_list>
     repeat
       $identifier$ ?let @lstring unusedRoutine
       ioUnusedRoutineList += !unusedRoutine
-    while 
+    while
       $,$
     end
   while
@@ -159,7 +159,7 @@ rule <baseline_structured_instruction>
     if doLabel.string != endDoLabel.string then
       error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
-    end 
+    end
   or
     $jump$
     let @location instructionLocation = @location.here
@@ -195,7 +195,7 @@ rule <baseline_structured_instruction>
     if foreverLabel.string != endForeverLabel.string then
       error endForeverLabel : "'end' label does not match 'fovever' label, it should be "
          + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
-    end 
+    end
     outInstruction = @baseline_instruction_FOREVER {
       !instructionLocation
       !instructionList
@@ -244,7 +244,7 @@ rule <baseline_structured_instruction>
       $,$ ; $w$ ; w_isTarget = true
     end
     $identifier$ ?let @lstring conditionString
-    let @string condition = [conditionString.string uppercaseString]
+    let @string condition = conditionString.string.uppercased
     if condition != "NZ" then
       error conditionString:"invalid '" + condition + "' condition; it should be 'nz'"
     end
@@ -277,7 +277,7 @@ rule <baseline_structured_instruction>
     if ifLabel.string != endIfLabel.string then
       error endIfLabel : "'end' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
-    end 
+    end
   or
     $do$
     let @lstring doLabel
@@ -302,7 +302,7 @@ rule <baseline_structured_instruction>
       if doLabel.string != whileLabel.string then
         error whileLabel : "'while' label does not match 'do' label, it should be "
            + (if doLabel.string != "" then doLabel.string else "empty" end)
-      end 
+      end
       <baseline_condition_expression> ?let whileCondition
       <baseline_instruction_list> ?let instructionList !?ioLabelMap
       whilePartList += !whileCondition !instructionList !@location.here
@@ -318,7 +318,7 @@ rule <baseline_structured_instruction>
     if doLabel.string != endDoLabel.string then
       error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
-    end 
+    end
     outInstruction = @baseline_instruction_do_while {
       !instructionLocation
       !repeatedInstructionList
@@ -356,7 +356,7 @@ rule <baseline_structured_if_instruction>
     if ifLabel.string != elsifIfLabel.string then
       error elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
-    end 
+    end
     <baseline_structured_if_instruction> !ifLabel ?let elsifPartInstruction !?ioLabelMap
     elseInstructionList = @baseline_instructionList ()
     elseInstructionList += !elsifPartInstruction
@@ -371,7 +371,7 @@ rule <baseline_structured_if_instruction>
     if ifLabel.string != elseLabel.string then
       error elseLabel : "'else' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
-    end 
+    end
     <baseline_instruction_list> ?elseInstructionList !?ioLabelMap
   end
   let @location endOfElsePartLocation = @location.here
@@ -437,7 +437,7 @@ rule <baseline_simple_instruction> !@baseline_instruction outInstruction {
   //--- Emit a warning if instruction is "movf" and W is not destination
     if (baseCode == .MOVF) && not W_isDestination then
       warning instructionLocation :  "This instruction does not move data, it only sets flags. "
-        "Use 'movf *, reg' instead of 'movf reg' to suppress this warning" 
+        "Use 'movf *, reg' instead of 'movf reg' to suppress this warning"
     end
   or
     $movf$
@@ -570,7 +570,7 @@ rule <baseline_condition_factor>
       $,$ ; $w$ ; W_isDestination = true
     end
     $identifier$ ?let @lstring conditionString
-    let @string condition = [conditionString.string uppercaseString]
+    let @string condition = conditionString.string.uppercased
     let @bool branchIfZero
     if condition == "Z" then
       branchIfZero = true

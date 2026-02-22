@@ -11,7 +11,7 @@ override method @baseline_intermediate_NULL print ?!@string ioListFileContents {
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_intermediate_pseudo_PAGE print ?!@string ioListFileContents {
-  ioListFileContents += "ORG " + [self.mPage * 512 hexString]
+  ioListFileContents += "ORG " + (self.mPage * 512).hexString
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -35,7 +35,7 @@ override method @baseline_intermediate_pseudo_LABEL print ?!@string ioListFileCo
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_intermediate_instruction_FD print ?!@string ioListFileContents {
-  ioListFileContents += [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
+  ioListFileContents += self.mInstruction.mnemonic + " " + self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     ioListFileContents += ", W"
   end
@@ -44,13 +44,13 @@ override method @baseline_intermediate_instruction_FD print ?!@string ioListFile
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_intermediate_instruction_F print ?!@string ioListFileContents {
-  ioListFileContents += [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
+  ioListFileContents += self.mInstruction.mnemonic + " " + self.mRegisterDescription.mAssemblyString
 }
 
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_intermediate_instruction_FB print ?!@string ioListFileContents {
-  ioListFileContents += [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
+  ioListFileContents += self.mInstruction.mnemonic + " " + self.mRegisterDescription.mAssemblyString + ", " + self.mBitNumber.string
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -61,7 +61,7 @@ override method @baseline_intermediate_instruction_BitTestSkip print ?!@string i
   else
     ioListFileContents += "BTFSC"
   end
-  ioListFileContents += " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
+  ioListFileContents += " " + self.mRegisterDescription.mAssemblyString + ", " + self.mBitNumber.string
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -93,13 +93,13 @@ override method @baseline_intermediate_JSR print ?!@string ioListFileContents {
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_intermediate_instruction_literalOperation print ?!@string ioListFileContents {
-  ioListFileContents += [self.mInstruction mnemonic] + " " + [self.mLiteralValue hexString]
+  ioListFileContents += self.mInstruction.mnemonic + " " + self.mLiteralValue.hexString
 }
 
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_intermediate_instruction_MNOP print ?!@string ioListFileContents {
-  ioListFileContents += "MNOP " + [self.mOccurrenceFactor.uint string]
+  ioListFileContents += "MNOP " + self.mOccurrenceFactor.uint.string
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -126,7 +126,7 @@ override method @baseline_intermediate_incDecRegisterInCondition print ?!@string
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_intermediate_WO_OPERAND print ?!@string ioListFileContents {
-  ioListFileContents += [self.mInstruction mnemonic]
+  ioListFileContents += self.mInstruction.mnemonic
 }
 
 //---------------------------------------------------------------------------------------------------

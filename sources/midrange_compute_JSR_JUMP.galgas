@@ -34,7 +34,7 @@ method @midrange_intermediate_pseudo_ORG defineLabelAtAddress
   ?!@uint ioAddress {
   if (ioAddress > self.mOrigin) then
     error @location.here :"internal error: current address ("
-     + [ioAddress hexString] + ") is greater than origin (" + [self.mOrigin hexString] + ")"
+     + ioAddress.hexString + ") is greater than origin (" + self.mOrigin.hexString + ")"
   end
   ioAddress = self.mOrigin
 }
@@ -45,7 +45,7 @@ override
 method @midrange_intermediate_actualInstruction defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress {
-  let @uint nextAddress = ioAddress  + [self instructionLength]
+  let @uint nextAddress = ioAddress  + self.instructionLength
   if ((nextAddress ^ ioAddress) & 0xF800) != 0 then
     error self.mInstructionLocation:"Routine too long, crosses page boundary at this instruction"
   end
@@ -140,7 +140,7 @@ override method @midrange_intermediate_JUMP compute
       !bit12}
     [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex]
     ioJUMP_or_JSR_fixed = true
-    ioListFileContents += "  line " + [inIndex string] + ":  JUMP to other page fixed\n"
+    ioListFileContents += "  line " + inIndex.string + ":  JUMP to other page fixed\n"
   end
 }
 
@@ -183,7 +183,7 @@ override method @midrange_intermediate_JSR compute
       !bit12}
     [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex]
     ioJUMP_or_JSR_fixed = true
-    ioListFileContents += "  line " + [inIndex string] + ":  JSR to other page fixed\n"
+    ioListFileContents += "  line " + inIndex.string + ":  JSR to other page fixed\n"
   end
 }
 
@@ -199,107 +199,10 @@ override method @midrange_intermediate_pseudo_LABEL compute
   [inRoutineSymbolTable searchKey !self.mLabel ?let targetAddress]
   if (targetAddress != ioAddress) then
     error self.mLabel: "Internal second pass error: the '" + self.mLabel
-    + "' label gets " + [ioAddress hexString] + " value in second pass, while it gets "
-    + [targetAddress hexString] + " in first pass"
+    + "' label gets " + ioAddress.hexString + " value in second pass, while it gets "
+    + targetAddress.hexString + " in first pass"
   end
 }
-
-//----------------------------------------------------------------------------*
-
-//override method @midrange_intermediate_instruction_computed_retlw compute
-//  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
-//  ?!@uint ioAddress
-//  ?!@bool ioJUMP_or_JSR_fixed
-//  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
-//  ??@uint inIndex
-//  ?!@string ioListFileContents
-//:
-//  if mUsesRCALL then
-//    @uint targetAddress ;
-//    [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
-//    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
-//    if (displacement > 1023S) | (displacement < - 1024S) then
-//      ioJUMP_or_JSR_fixed := true ;
-//      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED RETLW with RCALL overflow, converted to COMPUTED RETLW with CALL\n" ;
-//      @ipic_actualInstruction instruction := [@midrange_intermediate_instruction_computed_retlw new
-//        !mInstructionLocation
-//        !mLiteralValues
-//        !false
-//      ] ;
-//      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
-//    end if ;
-//  end if ;
-//end method ;
-
-//----------------------------------------------------------------------------*
-
-//override method @midrange_intermediate_instruction_computed_bra compute
-//  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
-//  ?!@uint ioAddress
-//  ?!@bool ioJUMP_or_JSR_fixed
-//  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
-//  ??@uint inIndex
-//  ?!@string ioListFileContents
-//:
-//  if mUsesRCALL then
-//    @uint targetAddress ;
-//    [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_2" !here] ?targetAddress] ;
-//    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
-//    if (displacement > 1023S) | (displacement < - 1024S) then
-//      ioJUMP_or_JSR_fixed := true ;
-//      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED BRA with RCALL overflow, converted to COMPUTED BRA with CALL\n" ;
-//      @ipic_actualInstruction instruction := [@midrange_intermediate_instruction_computed_bra new
-//        !mInstructionLocation
-//        !mTargetLabels
-//        !false
-//      ] ;
-//      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
-//    end if ;
-//  end if ;
-//  @uint addressForCheckingBRA := ioAddress + 2 ;
-//  if not mUsesRCALL then
-//    addressForCheckingBRA := addressForCheckingBRA + 2 ; // GOTO takes 2 more bytes
-//  end if ;
-//  foreach mTargetLabels do
-//    @uint targetAddress ;
-//    [inRoutineSymbolTable searchKey !mValue ?targetAddress] ;
-//    @sint displacement := ([targetAddress sint] - 2S - [addressForCheckingBRA sint]) >> 1 ;
-//    if (displacement > 1023S) | (displacement < - 1024S) then
-//      error mValue: "displacement (" . [displacement string] . ") too large for BRA instruction (limited to [-1024, 1023])" ;
-//    end if ;
-//    addressForCheckingBRA := addressForCheckingBRA + 2 ;
-//  end foreach ;
-//end method ;
-
-//----------------------------------------------------------------------------*
-
-//override method @midrange_intermediate_instruction_computed_goto compute
-//  ??@midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
-//  ?!@uint ioAddress
-//  ?!@bool ioJUMP_or_JSR_fixed
-//  ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
-//  ??@uint inIndex
-//  ?!@string ioListFileContents
-//:
-//  if mUsesRCALL then
-//    @uint targetAddress ;
-//    [inRoutineSymbolTable searchKey ![@lstring new !"_computed_goto_4" !here] ?targetAddress] ;
-//    @sint displacement := ([targetAddress sint] - 2S - [ioAddress sint]) >> 1 ;
-//    if (displacement > 1023S) | (displacement < - 1024S) then
-//      ioJUMP_or_JSR_fixed := true ;
-//      ioListFileContents .= "  line " . [inIndex string] . ":  COMPUTED GOTO with RCALL overflow, converted to COMPUTED GOTO with CALL\n" ;
-//      @ipic_actualInstruction instruction := [@midrange_intermediate_instruction_computed_goto new
-//        !mInstructionLocation
-//        !mTargetLabels
-//        !false
-//      ] ;
-//      [!?ioGeneratedInstructionList setMInstructionAtIndex !instruction !inIndex] ;
-//    end if ;
-//  end if ;
-//  foreach mTargetLabels do
-//    [inRoutineSymbolTable searchKey !mValue ?*] ;
-//  end foreach ;
-//end method ;
 
 //----------------------------------------------------------------------------*
 //                                                                            *
@@ -310,17 +213,17 @@ override method @midrange_intermediate_pseudo_LABEL compute
 proc midrange_compute_JSR_JUMP
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents {
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  ioListFileContents += "*" + ["COMPUTE JSR and JUMP" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["COMPUTE JSR and JUMP" leftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
   var @bool JUMP_or_JSR_fixed = true
   var @uint iteration = 0
-  loop( [ioGeneratedInstructionList count])
+  loop( ioGeneratedInstructionList.count)
   while JUMP_or_JSR_fixed & (@uint. errorCount == 0)
   do
     JUMP_or_JSR_fixed = false
     iteration += 1
-    ioListFileContents += "Pass " + [iteration string] + ":\n"
+    ioListFileContents += "Pass " + iteration.string + ":\n"
   //-------------------------------- First pass: build label map
     var symbolTable =@midrange_symbolTableForConvertingRelatives ()
     var @uint currentAddress = 0
@@ -332,16 +235,16 @@ proc midrange_compute_JSR_JUMP
     currentAddress = 0
     for (mInstruction) in  ioGeneratedInstructionList do(idx)
       [mInstruction compute !symbolTable !?currentAddress !?JUMP_or_JSR_fixed !?ioGeneratedInstructionList !idx !?ioListFileContents]
-      currentAddress = currentAddress  + [mInstruction instructionLength]
+      currentAddress = currentAddress  + mInstruction.instructionLength
     end
     if lastAddressForFirstPass != currentAddress then
-      error @location.here: "Internal second pass error: the last address gets " + [currentAddress hexString]
+      error @location.here: "Internal second pass error: the last address gets " + currentAddress.hexString
       + " value when checking relative branches, while it gets "
-      + [lastAddressForFirstPass hexString] + " value when computing routine map"
+      + lastAddressForFirstPass.hexString + " value when computing routine map"
     end
     if not JUMP_or_JSR_fixed then
       ioListFileContents += "  No JUMP, no JSR to fix\n\n"
-      ioListFileContents += "Program size: " + [currentAddress string] + " instructions\n\n"
+      ioListFileContents += "Program size: " + currentAddress.string + " instructions\n\n"
     end
   end
 }

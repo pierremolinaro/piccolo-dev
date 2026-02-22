@@ -194,24 +194,24 @@ proc ipic18StackComputations
   ?!@string ioListFileContents
   ?let @ipic18BlockList inBlockList
 {
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  ioListFileContents += "*" + ["STACK COMPUTATIONS" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["STACK COMPUTATIONS" leftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
 //--- Find all absolute blocks
   var startLabelsToExplore =@stringset ()
   var blockMapForStackComputation =@blockMapForStackComputation ()
   for (mBlock) in  inBlockList do
     if mBlock.mAddress != @uint. max then // Absolute block
-      startLabelsToExplore ++= mBlock.mLabel.string    
-    end  
+      startLabelsToExplore ++= mBlock.mLabel.string
+    end
     [!?blockMapForStackComputation insertKey !mBlock.mLabel !mBlock]
   end
 //--- Explore all blocks to find called routines
   var @routineCallMap routineCallMap = @()
-  loop( [inBlockList count] + 1)
-  while [startLabelsToExplore count] > 0
+  loop( inBlockList.count + 1)
+  while startLabelsToExplore.count > 0
   do
-    let startLabel = [startLabelsToExplore anyString]
+    let startLabel = startLabelsToExplore.anyString
     [!?startLabelsToExplore removeKey !startLabel]
   //--- Explore accessible blocks
     var blockToExploreSet =@stringset ()
@@ -219,13 +219,13 @@ proc ipic18StackComputations
     var @stringset exploredBlockSet = @()
     var @stringset calledRoutineSet = @()
     var @uint terminatorStackNeeds = 0
-    loop( [inBlockList count] + 1)
-    while [blockToExploreSet count] > 0
+    loop( inBlockList.count + 1)
+    while blockToExploreSet.count > 0
     do
-      let @string b = [blockToExploreSet anyString]
+      let @string b = blockToExploreSet.anyString
       [!?blockToExploreSet removeKey !b]
       exploredBlockSet ++= b
-      [blockMapForStackComputation searchKey ![b nowhere] ?let @ipic18Block aBlock]
+      [blockMapForStackComputation searchKey !b.nowhere ?let @ipic18Block aBlock]
       [aBlock.mTerminator exploreAccessibleBlocksForStackComputations
         !?blockToExploreSet
         !?exploredBlockSet
@@ -238,7 +238,7 @@ proc ipic18StackComputations
         [mInstruction buildCalledRoutineSetForStackComputations !?calledRoutineSet]
       end
     end
-    [!?routineCallMap insertKey ![startLabel nowhere] !calledRoutineSet !terminatorStackNeeds]
+    [!?routineCallMap insertKey !startLabel.nowhere !calledRoutineSet !terminatorStackNeeds]
     for (key) in  calledRoutineSet do
       if not [routineCallMap hasKey !key] then
         startLabelsToExplore ++= key
@@ -249,7 +249,7 @@ proc ipic18StackComputations
 //--- Compute stack requirement of every routine
   var @routineStackRequirementMap routineStackRequirementMap = @()
   var progress = true
-  loop( [routineCallMap count] + 1)
+  loop( routineCallMap.count + 1)
   while progress
   do
     progress = false
@@ -261,7 +261,7 @@ proc ipic18StackComputations
       for (key) in mCalledRoutineSet while solved do
         solved = [routineStackRequirementMap hasKey !key]
         if solved then
-          [routineStackRequirementMap searchKey ![key nowhere] ?let @uint rLevel]
+          [routineStackRequirementMap searchKey !key.nowhere ?let @uint rLevel]
           if levels <= rLevel then
             levels = rLevel + 1
           end
@@ -277,11 +277,11 @@ proc ipic18StackComputations
   end
   ioListFileContents += "Levels Routine\n"
   for (lkey mLevels) in  routineStackRequirementMap do
-    ioListFileContents += [[mLevels string]stringByLeftPadding !6 !' '] + " " + lkey + "\n"
+    ioListFileContents += [mLevels.string leftPadding !6 !' '] + " " + lkey + "\n"
   end
   ioListFileContents += "\n"
 //--- Recursive routines
-  let @bool noRecursiveRoutine = [routineCallMap count] == 0
+  let @bool noRecursiveRoutine = routineCallMap.count == 0
   if not noRecursiveRoutine then
     if not [option piccoloOptions.doNotWarnRecursive value] then
       warning @location. nowhere: "There are recursive routines"
@@ -289,19 +289,19 @@ proc ipic18StackComputations
     ioListFileContents += "The following routines are recursive:\n"
     for (lkey * *) in  routineCallMap do
       ioListFileContents += "  - " + lkey + "\n"
-    end  
+    end
     ioListFileContents += "\n"
   end
 //--- Total stack requirements
   if noRecursiveRoutine then
-    [routineStackRequirementMap searchKey ![".START" nowhere] ?let @uint mainLevels]
+    [routineStackRequirementMap searchKey !".START".nowhere ?let @uint mainLevels]
     var @uint totalLevels = mainLevels
     if [routineStackRequirementMap hasKey !".HIGH_INTERRUPT"] then
-      [routineStackRequirementMap searchKey ![".HIGH_INTERRUPT" nowhere] ?let @uint highIntLevels]
+      [routineStackRequirementMap searchKey !".HIGH_INTERRUPT".nowhere ?let @uint highIntLevels]
       totalLevels = totalLevels + highIntLevels + 1
     end
     if [routineStackRequirementMap hasKey !".LOW_INTERRUPT"] then
-      [routineStackRequirementMap searchKey ![".LOW_INTERRUPT" nowhere] ?let @uint lowIntLevels]
+      [routineStackRequirementMap searchKey !".LOW_INTERRUPT".nowhere ?let @uint lowIntLevels]
       totalLevels = totalLevels + lowIntLevels + 1
     end
     print (!"Max stack depth: " + totalLevels + "\n\n")
@@ -309,7 +309,7 @@ proc ipic18StackComputations
       error @location. nowhere: "Max stack depth is greater than 31"
     end
   end
-}      
+}
 
 //----------------------------------------------------------------------------*
 

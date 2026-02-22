@@ -21,7 +21,7 @@ method @registerExpression resolveMidrangeAccess
 //--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
   if offset > 0 then
-    assemblyString += " + " + [[offset uint] hexString]
+    assemblyString += " + " + offset.uint.hexString
   end
 //--- 
   [inRegisterTable searchKey
@@ -34,7 +34,7 @@ method @registerExpression resolveMidrangeAccess
   ]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:true !protection]
 //---
-  if [offset uint] >= size then
+  if offset.uint >= size then
     error self.mEndOfOffsetExpression: "maximum index value is " + (size - 1)
   end
 //--- Find acceptable bank settings
@@ -59,7 +59,7 @@ method @registerExpression resolveMidrangeAccess
     if not ok then
       var @string acceptableBankMessage = ""
       for (mValue) in  registerAddressList
-      do acceptableBankMessage += [mValue >> 7 string]
+      do acceptableBankMessage += (mValue >> 7).string
       between acceptableBankMessage += ", "
       end
       error self.mRegisterName:"as no bank is currently known, the '" + self.mRegisterName + "' register accessible from bank "+ acceptableBankMessage  + ", but should be able to be accessed from any bank setting"
@@ -73,16 +73,16 @@ method @registerExpression resolveMidrangeAccess
     if not found then
       var @string acceptableBankMessage = ""
       for (mValue) in  registerAddressList
-      do acceptableBankMessage += [mValue >> 7 string]
+      do acceptableBankMessage += (mValue >> 7).string
       between acceptableBankMessage += ", "
       end
-      error self.mRegisterName:"the '" + self.mRegisterName + "' register cannot be accessed from bank " + [inCurrentBank string] + " (valid bank setting: " + acceptableBankMessage + ")"
+      error self.mRegisterName:"the '" + self.mRegisterName + "' register cannot be accessed from bank " + inCurrentBank.string + " (valid bank setting: " + acceptableBankMessage + ")"
     end
   end
 //---
   outIPICregisterDescription = @midrange_intermediate_registerExpression {
     !assemblyString
-    !registerAddress + [offset uint]}
+    !registerAddress + offset.uint}
 }
 
 //----------------------------------------------------*

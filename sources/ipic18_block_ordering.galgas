@@ -366,9 +366,9 @@ proc buildOrderedGraph
   ?!@ipic18BlockList ioBlockList
   ?let @string inSourceFileName
   ?!@string ioListFileContents {
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  ioListFileContents += "*" + ["BLOCK ORDERING OPTIMIZATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["BLOCK ORDERING OPTIMIZATION" leftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
   ioListFileContents += "Block ordering optimization:\n"
   let @uint n = blockDiscontinuityCount (!ioBlockList)
   ioListFileContents += "  jump count before optimization: " + n + "\n"
@@ -399,18 +399,18 @@ proc buildOrderedGraph
       !@lstringlist. listWithValue { !mValue}
       !visitedNodeSet
     ]
-    for (mValue) in  [gg keyList] do
+    for (mValue) in  gg.keyList do
       visitedNodeSet ++=  mValue
-    end    
+    end
     [!?gg removeEdgesToDominators]
-    [[gg reversedGraph] depthFirstTopologicalSort
+    [gg.reversedGraph depthFirstTopologicalSort
       ?let @stringlist partialOrderedLabelList
       ?3*
     ]
     newOrderedLabelList += partialOrderedLabelList
     var cluster =@ipic18BlockList ()
     for (mValue) in  partialOrderedLabelList do
-      [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
+      [symbolTable searchKey !mValue.nowhere ?let @uint blockIndex]
       let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
       cluster += !b
     end
@@ -424,19 +424,19 @@ proc buildOrderedGraph
         !@lstringlist. listWithValue { !mBlock.mLabel}
         !visitedNodeSet
       ]
-      for (mValue) in  [gg keyList] do
+      for (mValue) in  gg.keyList do
         visitedNodeSet ++=  mValue
       end
       [!?gg removeEdgesToNode !mBlock.mLabel.string]
       [!?gg removeEdgesToDominators]
-      [[gg reversedGraph] depthFirstTopologicalSort
+      [gg.reversedGraph depthFirstTopologicalSort
         ?let @stringlist partialOrderedLabelList
         ?3*
       ]
       newOrderedLabelList += partialOrderedLabelList
       var cluster =@ipic18BlockList ()
       for (mValue) in  partialOrderedLabelList do
-        [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
+        [symbolTable searchKey !mValue.nowhere ?let @uint blockIndex]
         let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
         cluster += !b
       end
@@ -452,31 +452,31 @@ proc buildOrderedGraph
     if continue then
       orderedBlockList += !mBlock
     end
-  end 
-//--- Insert sorted blocks 
+  end
+//--- Insert sorted blocks
   for (mValue) in  newOrderedLabelList do
-    [symbolTable searchKey ![mValue nowhere] ?let @uint blockIndex]
+    [symbolTable searchKey !mValue.nowhere ?let @uint blockIndex]
     let @ipic18Block b = [ioBlockList mBlockAtIndex !blockIndex]
     orderedBlockList += !b
   end
 //--- First insert absolute blocks from the end
-  let @uint insertionIndex = [orderedBlockList count]
+  let @uint insertionIndex = orderedBlockList.count
   continue = true
   for > (mBlock) in  ioBlockList while continue do
     continue = mBlock.mAddress != @uint. max
     if continue then
       [!?orderedBlockList insertAtIndex !mBlock !insertionIndex]
     end
-  end 
+  end
 //------------------------ Messaging
   let @uint p = blockDiscontinuityCount (!orderedBlockList)
   ioListFileContents += "  jump count after optimization: " + p + "\n\n"
   if @application.verboseOutput then
-    print (![n string] + " -> " + p + ".\n\n")
+    print (!n.string + " -> " + p + ".\n\n")
   end
 //--- Write Graphviz file
   if [option piccoloOptions.generateGraphvizFiles value] then
-    [[g graphviz] writeToFileWhenDifferentContents !inSourceFileName+ ".blockOrderingConstraints.dot" ?*]
+    [g.graphviz writeToFileWhenDifferentContents !inSourceFileName+ ".blockOrderingConstraints.dot" ?*]
   end
 //--- Check block definition
   var newSymbolSet =@stringset ()
@@ -547,7 +547,7 @@ func blockDiscontinuityCount ?let @ipic18BlockList inBlockList -> @uint outResul
   for (mBlock) in  inBlockList do(blockIndex)
     if mBlock.mAddress == @uint. max then // Only relocatable block
       let @string nextBlockLabel
-      if (blockIndex+1) < [inBlockList count] then
+      if (blockIndex+1) < inBlockList.count then
         nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
       else
         nextBlockLabel = ""

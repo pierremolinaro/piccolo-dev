@@ -5,8 +5,8 @@ proc emitMidrangeCodeAtWordAddress
   ?!@uint ioWordAddress
   ?let @midrange_intermediate_instruction inInstruction
   ?!@string ioListFileContents {
-  ioListFileContents += "   " + [ioWordAddress * 2 x4String]
-  ioListFileContents += " " + [inCode x4String] + " "
+  ioListFileContents += "   " + (ioWordAddress * 2).x4String
+  ioListFileContents += " " + inCode.x4String + " "
   [inInstruction print !?ioListFileContents]
   ioListFileContents += "\n"
   emitCode ( !inCode )
@@ -20,8 +20,8 @@ proc emitMidrangeDirectCodeAtWordAddress
   ?!@uint ioWordAddress
   ?let @string inInstructionDescriptionString
   ?!@string ioListFileContents {
-  ioListFileContents += "   " + [ioWordAddress * 2 x4String]
-  ioListFileContents += " " + [inCode x4String]
+  ioListFileContents += "   " + (ioWordAddress * 2).x4String
+  ioListFileContents += " " + inCode.x4String
   ioListFileContents += " " + inInstructionDescriptionString + "\n"
   emitCode ( !inCode )
   ioWordAddress = ioWordAddress + 1
@@ -33,7 +33,7 @@ proc emitNoMidrangeCodeAtWordAddress
   ?let @uint inWordAddress
   ?let @midrange_intermediate_instruction inInstruction
   ?!@string ioListFileContents {
-  ioListFileContents += "   " + [inWordAddress * 2 x4String]
+  ioListFileContents += "   " + (inWordAddress * 2).x4String
   ioListFileContents += "      "
   [inInstruction print !?ioListFileContents]
   ioListFileContents += "\n"
@@ -81,7 +81,7 @@ override
 method @midrange_intermediate_actualInstruction enterLabelAtAddress
   ?!@midrange_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress {
-  ioAddress = ioAddress  + [self instructionLength]
+  ioAddress = ioAddress  + self.instructionLength
 }
 
 //----------------------------------------------------------------------------*
@@ -155,7 +155,7 @@ override method @midrange_intermediate_instruction_FD generateBinaryCodeAtAddres
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 //--- Emit Code
-  var @uint code = [self.mInstruction_FD_base_code basecode]
+  var @uint code = self.mInstruction_FD_base_code.basecode
   if not self.m_W_isDestination then
     code = code | 0x80
   end
@@ -182,7 +182,7 @@ override method @midrange_intermediate_instruction_F generateBinaryCodeAtAddress
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 //--- Emit Code
-  var @uint code = [self.mFinstruction baseCode]
+  var @uint code = self.mFinstruction.baseCode
   code = code | (self.mRegisterDescription.mRegisterAddress & 127)
   emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
 }
@@ -207,7 +207,7 @@ override method @midrange_intermediate_instruction_FB generateBinaryCodeAtAddres
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 //--- Emit Code
-  var @uint code = [self.mBitOrientedOp baseCode]
+  var @uint code = self.mBitOrientedOp.baseCode
   code = code | (self.mRegisterDescription.mRegisterAddress & 127)
   code = code | (self.mBitNumber << 7)
   emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
@@ -254,7 +254,7 @@ proc emit_midrange_GOTOinstruction
   ?let @uint inTargetAddress
   ?!@string ioListFileContents {
   if ((ioAddress ^ inTargetAddress) & 0xF800) != 0 then
-    error inIntructionLocation : "GOTO (from " + [ioAddress hexString] + " to " + [inTargetAddress hexString] + ") crosses page boundary"
+    error inIntructionLocation : "GOTO (from " + ioAddress.hexString + " to " + inTargetAddress.hexString + ") crosses page boundary"
   end
   emit_midrange_GOTOinstruction_nocheck ( !inTargetLabel !inTargetAddress !?ioAddress !?ioListFileContents )
 }
@@ -279,7 +279,7 @@ proc emit_midrange_CALLinstruction
   ?let @uint inTargetAddress
   ?!@string ioListFileContents {
   if ((ioAddress ^ inTargetAddress) & 0xF800) != 0 then
-    error inIntructionLocation : "CALL (from " + [ioAddress hexString] + " to " + [inTargetAddress hexString] + ") crosses page boundary"
+    error inIntructionLocation : "CALL (from " + ioAddress.hexString + " to " + inTargetAddress.hexString + ") crosses page boundary"
   end
   emit_midrange_CALLinstruction_nocheck ( !inTargetLabel !inTargetAddress !?ioAddress !?ioListFileContents )
 }
@@ -312,7 +312,7 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
     !?usedRegisters
   ]
 //---
-  switch self.mBit11 
+  switch self.mBit11
   case set   :
     emitMidrangeDirectCodeAtWordAddress (
       ! 0x1400 | (3 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
@@ -329,7 +329,7 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
      )
   case noChange :
   end
-  switch self.mBit12 
+  switch self.mBit12
   case set   :
     emitMidrangeDirectCodeAtWordAddress (
       ! 0x1400 | (4 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
@@ -393,7 +393,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
     !?usedRegisters
   ]
 //---
-  switch self.mBit11 
+  switch self.mBit11
   case set :
     emitMidrangeDirectCodeAtWordAddress (
       ! 0x1400 | (3 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
@@ -410,7 +410,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
      )
   case noChange :
   end
-  switch self.mBit12 
+  switch self.mBit12
   case set :
     emitMidrangeDirectCodeAtWordAddress (
       ! 0x1400 | (4 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
@@ -428,7 +428,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
   case noChange :
   end
   emit_midrange_CALLinstruction_nocheck ( !self.mTargetLabel.string !targetAddress !?ioAddress !?ioListFileContents )
-  switch self.mBit11 
+  switch self.mBit11
   case set :
     emitMidrangeDirectCodeAtWordAddress (
       ! 0x1000 | (3 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
@@ -445,7 +445,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
      )
   case noChange :
   end
-  switch self.mBit12 
+  switch self.mBit12
   case set :
     emitMidrangeDirectCodeAtWordAddress (
       ! 0x1000 | (4 << 7) | (PCLATH_IPICregisterDescription.mRegisterAddress & 0x7F)
@@ -606,7 +606,7 @@ override method @midrange_intermediate_instruction_literalOperation generateBina
   ?!@string ioListFileContents
   ?!@uint ioAddress {
 //--- Emit Code
-  var @uint code = [self.mLiteralInstruction baseCode]
+  var @uint code = self.mLiteralInstruction.baseCode
   code = code | self.mLiteralValue
   emitMidrangeCodeAtWordAddress ( !code !?ioAddress !self !?ioListFileContents )
 }
@@ -623,8 +623,8 @@ override method @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
   [inRoutineSymbolTable searchKey !self.mLabel ?let @uint targetAddress]
   if (targetAddress != ioAddress) then
     error self.mLabel: "Internal second pass error: the '" + self.mLabel
-    + "' label gets " + [ioAddress hexString] + " value in second pass, while it gets "
-    + [targetAddress hexString] + " in first pass"
+    + "' label gets " + ioAddress.hexString + " value in second pass, while it gets "
+    + targetAddress.hexString + " in first pass"
   end
   emitNoMidrangeCodeAtWordAddress ( !ioAddress !self !?ioListFileContents )
 }
@@ -674,9 +674,9 @@ proc build_midrange_ipic_binary_code
   let @uint lastAddressForFirstPass = currentAddress
   outUsedROMsize = currentAddress
 //-------------------------------- Second pass: generate code
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  ioListFileContents += "*" + ["GENERATED CODE" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["GENERATED CODE" leftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
   ioListFileContents += "Address Code Mnemonic\n"
   initCodeGenerator ( )
   currentAddress = 0
@@ -690,17 +690,16 @@ proc build_midrange_ipic_binary_code
       !?ioListFileContents
       !?currentAddress
     ]
-   // currentAddress := currentAddress  + [mInstruction instructionLength] ;
     checkCurrentEmitAddress ( !currentAddress * 2 )
   end
   if lastAddressForFirstPass != currentAddress then
-    error @location.here: "Internal second pass error: the last address gets " + [currentAddress hexString]
+    error @location.here: "Internal second pass error: the last address gets " + currentAddress.hexString
     + " value in second pass, while it gets "
-    + [lastAddressForFirstPass hexString] + " value in first pass"
+    + lastAddressForFirstPass.hexString + " value in first pass"
   elsif lastAddressForFirstPass > inROMsize then
-    error @location.here: "Program too large: " + [lastAddressForFirstPass string]
+    error @location.here: "Program too large: " + lastAddressForFirstPass.string
     + " bytes (rom size is "
-    + [inROMsize string] + " bytes)"
+    + inROMsize.string + " bytes)"
   end
 //-------------------------------- Add Configuration
   for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do

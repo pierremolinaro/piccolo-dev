@@ -29,14 +29,14 @@ method @registerTable checkPrivateAccess
   case protectedRegister :
     if inWriteAccess && [self hasKey !inKey] then
       let declarationLocation = [self locationForKey !inKey]
-      if [declarationLocation file] != [inKey.location file] then
+      if declarationLocation.file != inKey.location.file then
         error inKey : "register is protected, write is reserved to instructions in declaration file"
       end
     end
   case privateRegister :
     if [self hasKey !inKey] then
       let declarationLocation = [self locationForKey !inKey]
-      if [declarationLocation file] != [inKey.location file] then
+      if declarationLocation.file != inKey.location.file then
         error inKey : "register is private to declaration file"
       end
     end

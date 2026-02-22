@@ -26,10 +26,10 @@ getter @uint x4String ->@string outResult {
   if self > 0xFFFF then
     outResult = "****"
   else
-    outResult = [self >> 12 xString]
-    outResult += [(self >> 8) & 0xF xString]
-    outResult += [(self >> 4) & 0xF xString]
-    outResult += [self & 0xF xString]
+    outResult  = (self >> 12).xString
+    outResult += ((self >> 8) & 0xF).xString
+    outResult += ((self >> 4) & 0xF).xString
+    outResult += (self & 0xF).xString
   end
 }
 
@@ -38,8 +38,8 @@ getter @uint x4String ->@string outResult {
 proc checkCurrentEmitAddress ?let @uint inCurrentAddress {
   currentEmitAddress (?let addr)
   if (@uint. errorCount == 0) & (addr != inCurrentAddress) then
-    error @location.here:"internal error: current emit address is " + [addr hexString]
-    + "; it should be " + [inCurrentAddress hexString]
+    error @location.here:"internal error: current emit address is " + addr.hexString
+    + "; it should be " + inCurrentAddress.hexString
   end
 }
 
@@ -92,7 +92,7 @@ override method @immediatInteger eval
   !@sint64 outResult
   ?!@stringset unused ioUsedRegisters
 {
-  outResult = [self.mValue.uint sint64]
+  outResult = self.mValue.uint.sint64
 }
 
 //----------------------------------------------------------------------------*
@@ -112,11 +112,11 @@ override method @immediatRegister eval
     if offset < 0 then
       error self.mRegister.mEndOfOffsetExpression
       :"index (" + offset + ") should be >= 0"
-    elsif [offset uint] >= size then
+    elsif offset.uint >= size then
       error self.mRegister.mEndOfOffsetExpression
-      :"index (" + offset + ") should be lower than size (" + [size string] + ")"
+      :"index (" + offset + ") should be lower than size (" + size.string + ")"
     end
-    outResult = [registerAddress sint64] + offset
+    outResult = registerAddress.sint64 + offset
   elsif [inConstantMap hasKey !self.mRegister.mRegisterName.string] then
     [inConstantMap searchKey !self.mRegister.mRegisterName ?outResult]
     [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
@@ -234,7 +234,7 @@ override method @immediatLeftShift eval
   ?!@stringset ioUsedRegisters {
   [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
   [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
-  outResult = leftResult << [rightResult uint]
+  outResult = leftResult << rightResult.uint
 }
 
 //----------------------------------------------------------------------------*
@@ -246,7 +246,7 @@ override method @immediatRightShift eval
   ?!@stringset ioUsedRegisters {
   [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
   [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
-  outResult = leftResult >> [rightResult uint]
+  outResult = leftResult >> rightResult.uint
 }
 
 //----------------------------------------------------------------------------*
@@ -389,8 +389,8 @@ override method @immediatSlice eval
       [bitSliceTable searchKey !mSliceName ?let sliceIndex ?let sliceSize]
       [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
       if (result < 0) | (result > ((1 << sliceSize) - 1)) then
-        error mSliceName:"invalid immediat value associated to the '" + mSliceName + "' bit field, evaluated as " + [result string]
-        + " (should be between 0 and " + [(1 << sliceSize) - 1 string] + ")"
+        error mSliceName:"invalid immediat value associated to the '" + mSliceName + "' bit field, evaluated as " + result.string
+        + " (should be between 0 and " + ((1 << sliceSize) - 1).string + ")"
       end
       outResult = outResult | (result << sliceIndex)
       end
@@ -420,7 +420,7 @@ override method @bitNumberLiteralValue getBitNumber
   !@uint outBitNumber
 {
   if self.mBitNumberLiteralValue.uint > 7 then
-    error self.mBitNumberLiteralValue:"The bit number is " + [self.mBitNumberLiteralValue.uint string] + " (should be <= 7)"
+    error self.mBitNumberLiteralValue:"The bit number is " + self.mBitNumberLiteralValue.uint.string + " (should be <= 7)"
   end
   outBitNumber = self.mBitNumberLiteralValue.uint
 }
@@ -436,8 +436,8 @@ override method @bitNumberLabelValue getBitNumber
 {
   [inBitSliceTable searchKey !self.mBitNumberLabelValue ?let sliceIndex ?let sliceSize]
   if self.mBitNumberIndexValue.uint > sliceSize then
-    error self.mBitNumberIndexValue: "The " + [self.mBitNumberIndexValue.uint string]
-    + " index is too large (should be < " + [sliceSize string] + ")"
+    error self.mBitNumberIndexValue: "The " + self.mBitNumberIndexValue.uint.string
+    + " index is too large (should be < " + sliceSize.string + ")"
   end
   outBitNumber = sliceIndex + self.mBitNumberIndexValue.uint
 }
@@ -457,7 +457,7 @@ override method @bitNumberLiteralExpression getBitNumber
   elsif result > 7 then
     error self.mEndOfExpression: "bit index is " + result + ", but should be <= 7" : outBitNumber
   else
-    outBitNumber = [result uint]
+    outBitNumber = result.uint
   end
 }
 
@@ -480,13 +480,13 @@ map @symbolTableForOptimizations {
 proc print_constant_definition
   ?let @constantMap inConstantMap
   ?!@string ioListFileContents {
-  if [inConstantMap count] > 0 then
-    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-    ioListFileContents += "*" + ["CONSTANTS" stringByLeftAndRightPadding !117 !' '] + "*\n"
-    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-    ioListFileContents += ["Constant" stringByLeftPadding !40 !' '] + " Value\n"
+  if inConstantMap.count > 0 then
+    ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+    ioListFileContents += "*" + ["CONSTANTS" leftAndRightPadding !117 !' '] + "*\n"
+    ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
+    ioListFileContents += ["Constant" leftPadding !40 !' '] + " Value\n"
     for (lkey mValue) in  inConstantMap do
-      ioListFileContents += [lkey.string stringByLeftPadding !40 !' '] + " " + [mValue string] + "\n"
+      ioListFileContents += [lkey.string leftPadding !40 !' '] + " " + mValue.string + "\n"
     end
     ioListFileContents += "\n"
   end

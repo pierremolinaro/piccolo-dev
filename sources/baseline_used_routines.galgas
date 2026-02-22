@@ -145,7 +145,7 @@ func baseline_computeUsedRoutines
   outUsedRoutineSet = @stringset. setWithString { !"main"}
 //--- Loop for accumulating used routines
   var s = @stringset ()
-  loop( [inRoutineDefinitionList count])
+  loop( inRoutineDefinitionList.count)
   while s != outUsedRoutineSet do
     s = outUsedRoutineSet
     for (mRoutineName * * mInstructionList *) in  inRoutineDefinitionList do

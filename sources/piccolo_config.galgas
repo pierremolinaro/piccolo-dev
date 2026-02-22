@@ -44,7 +44,7 @@ proc actualBuildConfig
         [outActualConfigurationMap searchKey !registerName ?* ?registerValue]
         registerValue = (registerValue & ~ settingMask) | settingValue
         [!?outActualConfigurationMap setMRegisterValueForKey !registerValue !registerName.string]
-      elsif [fieldSettingMap count] > 0 then
+      elsif fieldSettingMap.count > 0 then
         let errorMessage = "the '" + mSettingValue + "' value is not defined for configuration setting '"
         + mSettingName + "'"
         var @stringlist replacementSuggestions = @()
@@ -56,8 +56,8 @@ proc actualBuildConfig
     end
   end
 //--- Check if all settings are actually defined
-  let @stringset notDefinedSetting = [configFieldMap keySet] - actualSettingNameSet
-  if [notDefinedSetting count] > 0 then
+  let @stringset notDefinedSetting = configFieldMap.keySet - actualSettingNameSet
+  if notDefinedSetting.count > 0 then
     var @string errorMessage = "the following configuration settings are not defined:"
     for (key) in  notDefinedSetting do
       errorMessage += "\n-  " + key
@@ -66,13 +66,13 @@ proc actualBuildConfig
   end
 //--- Display conguration information in log file
   for (lkey mRegisterAddress mRegisterValue) in  outActualConfigurationMap do
-    ioListFileContents += "Register '" + lkey + "' at " + [mRegisterAddress hexString] + " set to " + [mRegisterValue hexString] + "\n"
+    ioListFileContents += "Register '" + lkey + "' at " + mRegisterAddress.hexString + " set to " + mRegisterValue.hexString + "\n"
     [inConfigRegisterMap searchKey !lkey ?* ?* ?let configRegisterMaskMap ?*]
     for (others_lkey others_mMaskValue * others_mFieldSettingMap) in  configRegisterMaskMap do
       let @lstring settingName = others_lkey
       for (second_lkey second_mValue *) in  others_mFieldSettingMap do
         if (mRegisterValue & others_mMaskValue.uint) == second_mValue then
-          ioListFileContents += "  setting '" + settingName + "' set to " + [second_mValue hexString] + " (\"" + second_lkey + "\")\n"
+          ioListFileContents += "  setting '" + settingName + "' set to " + second_mValue.hexString + " (\"" + second_lkey + "\")\n"
         end
       end
     end
@@ -99,11 +99,11 @@ proc buildConfig
  ?!@string ioListFileContents
  !@actualConfigurationMap outActualConfigurationMap {
 //--- Log
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  ioListFileContents += "*" + ["MICROCONTROLLER CONFIGURATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-//--- 
-  if [inConfigDefinitionList count] > 0 then
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["MICROCONTROLLER CONFIGURATION" leftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
+//---
+  if inConfigDefinitionList.count > 0 then
     actualBuildConfig (
       !inConfigRegisterMap
       !inConfigDefinitionList

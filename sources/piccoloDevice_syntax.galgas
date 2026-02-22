@@ -119,12 +119,12 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
             $[$
             $integer$ ?let @luint sliceSize
             if (sliceWidth != 0) & (sliceWidth != sliceSize.uint) then
-              error sliceName:"a slice of " + [sliceWidth string] + " bits is expected for '" + sliceName + "'" 
+              error sliceName:"a slice of " + sliceWidth.string + " bits is expected for '" + sliceName + "'" 
             end
             sliceWidth = sliceSize.uint
             sliceBase = sliceBase + 1 - sliceSize.uint
             $]$
-            bitDefinitionString += sliceName.string + "[" + [sliceSize.uint string] + "]" 
+            bitDefinitionString += sliceName.string + "[" + sliceSize.uint.string + "]" 
           end
           [!?bitSliceTable insertKey !sliceName !sliceIndex-sliceWidth !sliceWidth]
         while

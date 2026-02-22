@@ -42,7 +42,7 @@ override method @byteDeclarationInRam handleDeclaration
     [!?ioRegisterTable insertKey
       !self.mName
       !addressList
-      ![size uint]
+      !size.uint
       !self.mBitSliceTable
       !self.mBitDefinitionString
       !self.mProtection
@@ -50,7 +50,7 @@ override method @byteDeclarationInRam handleDeclaration
     if [inConstantMap hasKey !self.mName] then
       error self.mName : "this symbol is already declared as a constant"
     end
-    firstFreeAddress = firstFreeAddress + [size uint]
+    firstFreeAddress = firstFreeAddress + size.uint
     [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress !inCurrentRamBank.string]
     if firstFreeAddress > lastAddressPlusOne then
       error self.mName: "overflow in '" + inCurrentRamBank + "' ram bank for '" + self.mName + "' declaration"
@@ -89,15 +89,15 @@ proc analyze_ram_sections
     end
   end
   if [option piccoloOptions.ouputListingFile value] then
-    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-    ioListFileContents += "*" + [inListingTitle stringByLeftAndRightPadding !117 !' '] + "*\n"
-    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-    ioListFileContents += ["Variable" stringByLeftPadding !40 !' '] + " Address\n"
+    ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+    ioListFileContents += "*" + [inListingTitle leftAndRightPadding !117 !' '] + "*\n"
+    ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
+    ioListFileContents += ["Variable" leftPadding !40 !' '] + " Address\n"
     for (lkey mRegisterAddressList * * mBitDefinitionString *) in  ioAllRegisters do
       if not [inSpecialRegisterTable hasKey !lkey.string] then
-        ioListFileContents += [lkey.string stringByLeftPadding !40 !' '] + " "
+        ioListFileContents += [lkey.string leftPadding !40 !' '] + " "
         for (mValue) in  mRegisterAddressList
-        do ioListFileContents += [mValue hexString]
+        do ioListFileContents += mValue.hexString
         between ioListFileContents += ", "
         end
         ioListFileContents += mBitDefinitionString + "\n"

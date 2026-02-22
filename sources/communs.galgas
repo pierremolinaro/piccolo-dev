@@ -62,7 +62,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
         repeat
           var @uint sliceBase = 0
           if sliceIndex >= 0 then
-            sliceBase = [sliceIndex uint]
+            sliceBase = sliceIndex.uint
           end
           $identifier$ ?let @lstring sliceName
           select
@@ -75,23 +75,23 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
             $[$
             $integer$ ?let @luint sliceSize
             if (sliceWidth != 0) & (sliceWidth != sliceSize.uint) then
-              error sliceName:"a slice of " + [sliceWidth string] + " bits is expected for '" + sliceName + "'" 
+              error sliceName:"a slice of " + sliceWidth.string + " bits is expected for '" + sliceName + "'" 
             end
             sliceWidth = sliceSize.uint
             sliceBase = sliceBase + 1 - sliceSize.uint
-            bitDefinitionString += sliceName.string + "[" + [sliceSize.uint string] + "]" 
+            bitDefinitionString += sliceName.string + "[" + sliceSize.uint.string + "]" 
             $]$
           end
           var @uint base = 0
-          if sliceIndex >= [sliceWidth sint] then
-            base = [sliceIndex uint] - sliceWidth
+          if sliceIndex >= sliceWidth.sint then
+            base = sliceIndex.uint - sliceWidth
           end
           [!?bitSliceTable insertKey !sliceName !base !sliceWidth]
         while
           $/$
           bitDefinitionString += "/"
         end
-        sliceIndex = sliceIndex - [sliceWidth sint]
+        sliceIndex = sliceIndex - sliceWidth.sint
       or
         $-$
         bitDefinitionString += "-"
@@ -105,14 +105,14 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
           do bitDefinitionString += "-"
           between bitDefinitionString += ", "
         end
-        sliceIndex = sliceIndex - [bitCount.uint sint]
+        sliceIndex = sliceIndex - bitCount.uint.sint
       end
     while
       $,$
       bitDefinitionString += ", " 
     end
     if sliceIndex != 0 then
-      error name:"Incorrect bit definition for register '" + name + "': " + [8 - sliceIndex string] + " bits (s) are defined, instead of 8"
+      error name:"Incorrect bit definition for register '" + name + "': " + (8 - sliceIndex).string + " bits (s) are defined, instead of 8"
     end
     $>$
     bitDefinitionString += ">"
@@ -270,7 +270,7 @@ rule <immediate_primary> !@immediatExpression outExpression {
     outExpression = @immediatInteger { !constant}
   or
     $literal_char$ ?let @lchar literalCharValue
-    outExpression = @immediatInteger { !@luint { ![literalCharValue.char uint] !literalCharValue.location}}
+    outExpression = @immediatInteger { !@luint { !literalCharValue.char.uint !literalCharValue.location}}
   or
     $identifier$ ?let @lstring registerName indexing variableUse
     let @immediatExpression offset

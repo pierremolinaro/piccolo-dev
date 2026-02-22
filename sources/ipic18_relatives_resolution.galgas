@@ -23,7 +23,7 @@ method @ipic18Block performRelativesResolution
       ?let @ipic18SequentialInstruction modifiedInstruction
     ]
     modifiedInstructionList += !modifiedInstruction !@uint.max !0
-    address = address + [mInstruction instructionSize]
+    address = address + mInstruction.instructionSize
   end
 //--- Terminator
   [self.mTerminator performTerminatorRelativeBranchResolution
@@ -57,7 +57,7 @@ proc performRelativesResolution
   var @uint blockStartAddress = 0
   for (mBlock) in  ioBlockList do(blockIndex)
     let @string nextBlockLabel
-    if (blockIndex+1) < [ioBlockList count] then
+    if (blockIndex+1) < ioBlockList.count then
       nextBlockLabel = [ioBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
       nextBlockLabel = ""
@@ -91,7 +91,7 @@ getter @ipic18Block blockSize
   ->@uint outResult {
   outResult = [self.mTerminator terminatorSize !inNextBlockLabel]
   for (mInstruction * *) in  self.mInstructionList do
-    outResult = outResult + [mInstruction instructionSize]  
+    outResult = outResult + mInstruction.instructionSize
   end
 }
 
@@ -108,7 +108,7 @@ proc computeLabelAbsoluteAddressMap
   var @uint blockStartAddress = 0
   for (mBlock) in  inGeneratedBlockList do(blockIndex)
     let @string nextBlockLabel
-    if (blockIndex+1) < [inGeneratedBlockList count] then
+    if (blockIndex+1) < inGeneratedBlockList.count then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
       nextBlockLabel = ""
@@ -129,7 +129,7 @@ proc computeLabelAbsoluteAddressMap
       if not [outSymbolTable hasKey !mBlock.mLabel.string] then
         [!?outSymbolTable insertKey !mBlock.mLabel !mBlock.mAddress]
       end
-    end  
+    end
   end
 }
 
@@ -142,13 +142,13 @@ proc ipic18RelativesResolution
   if @application.verboseOutput then
     print (!"Relative branch conversion to absolute:\n")
   end
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  ioListFileContents += "*" + ["RELATIVES RESOLUTION" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["RELATIVES RESOLUTION" leftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
 //---
   var @bool resolutionDone = false
   var @uint pass = 0
-  loop( [ioGeneratedBlockList count] + 1)
+  loop( ioGeneratedBlockList.count + 1)
   while (not resolutionDone) & (@uint. errorCount == 0) do
     pass += 1
     computeLabelAbsoluteAddressMap (
@@ -173,7 +173,7 @@ proc ipic18RelativesResolution
       elsif conversionCount == 1 then
         s += "1 conversion"
       else
-        s += [conversionCount string] + " conversions"
+        s += conversionCount.string + " conversions"
       end
       print (!s + "\n")
     end
@@ -204,7 +204,7 @@ method @ipic18Block relativeBranchOverflow
       !inSymbolTable
       !?ioOverflowMap
     ]
-    address = address + [mInstruction instructionSize]
+    address = address + mInstruction.instructionSize
   end
 //--- Terminator
   [self.mTerminator terminatorRelativeBranchOverflow
@@ -234,7 +234,7 @@ proc ipic18RelativeBranchOverflow
   var @uint blockStartAddress = 0
   for (mBlock) in  inBlockList do(blockIndex)
     let @string nextBlockLabel
-    if (blockIndex+1) < [inBlockList count] then
+    if (blockIndex+1) < inBlockList.count then
       nextBlockLabel = [inBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
       nextBlockLabel = ""
@@ -254,4 +254,3 @@ proc ipic18RelativeBranchOverflow
 }
 
 //----------------------------------------------------------------------------*
-

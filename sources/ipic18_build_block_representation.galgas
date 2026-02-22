@@ -19,9 +19,9 @@ method @registerExpression analyzeRegisterExpression
 //--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
   if offset > 0 then
-    assemblyString += " + " + [[offset uint] hexString]
+    assemblyString += " + " + offset.uint.hexString
   end
-//--- 
+//---
   var @uint registerAddress = 0
   [inRegisterTable searchKey
     !self.mRegisterName
@@ -35,8 +35,8 @@ method @registerExpression analyzeRegisterExpression
 //---
   if offset < 0 then
     error self.mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0"
-  elsif [offset uint] >= size then
-    error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
+  elsif offset.uint >= size then
+    error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + size.string
   end
 //---
   var @bool found = false
@@ -50,11 +50,11 @@ method @registerExpression analyzeRegisterExpression
     [registerAddressList first ?registerAddress]
     let @uint neededBank = registerAddress >> 8
     if (neededBank != inCurrentBank) then
-      var @string errorMessage = "Accessing the '" + self.mRegisterName + "' needs the bank selection set to " + [neededBank string]
+      var @string errorMessage = "Accessing the '" + self.mRegisterName + "' needs the bank selection set to " + neededBank.string
       if inCurrentBank == @uint. max then
         errorMessage += ", but current bank selection cannot be known"
       else
-        errorMessage += ", but current bank selection is set to " + [inCurrentBank string]
+        errorMessage += ", but current bank selection is set to " + inCurrentBank.string
       end
       error self.mRegisterName: errorMessage
     end
@@ -62,7 +62,7 @@ method @registerExpression analyzeRegisterExpression
 //---
   outIPICregisterDescription = @ipic18_intermediate_registerExpression {
     !assemblyString
-    !registerAddress + [offset uint]
+    !registerAddress + offset.uint
     !needsBSRaccess
   }
 }
@@ -81,20 +81,20 @@ method @registerExpression analyzeRegisterExpressionWithoutCheckingBank
   var @string assemblyString = self.mRegisterName.string
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   if offset > 0 then
-    assemblyString += " + " + [[offset uint] hexString]
+    assemblyString += " + " + offset.uint.hexString
   end
-//--- 
+//---
   [inRegisterTable searchKey !self.mRegisterName ?let @uintlist registerAddressList ?let @uint size ?2* ?let protection]
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:inWriteAccess !protection]
   [registerAddressList first ?let @uint registerAddress]
 //---
-  if [offset uint] >= size then
-    error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string]
+  if offset.uint >= size then
+    error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + size.string
   end
 //---
   outIPICregisterDescription = @ipic18_intermediate_registerExpressionWithoutBSRIndication {
     !assemblyString
-    !registerAddress + [offset uint]
+    !registerAddress + offset.uint
   }
 }
 
@@ -113,11 +113,11 @@ method @registerExpression getRegisterAddress
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   if offset < 0 then
     error self.mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0" : outRegisterAddress
-  elsif [offset uint] >= size then
-    error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + [size string] : outRegisterAddress
+  elsif offset.uint >= size then
+    error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + size.string : outRegisterAddress
   else
     [registerAddressList first ?outRegisterAddress]
-    outRegisterAddress = outRegisterAddress + [offset uint]
+    outRegisterAddress = outRegisterAddress + offset.uint
   end
 }
 
@@ -307,13 +307,13 @@ override method @pic18Instruction_literalOperation analyzeSimpleInstruction
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 //---
    if (result > 255) | (result < -128) then
-     error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between -128 and 255)"
+     error self.mInstructionLocation:"immediate value is evaluated as " + result.string + " (should be between -128 and 255)"
    end
-//---  
+//---
   outInstruction = @ipic18_intermediate_instruction_literalOperation {
     !self.mInstructionLocation
     !self.mLiteralInstruction
-    ![result & 0x000000FF uint]}
+    !(result & 0x000000FF).uint}
 }
 
 //----------------------------------------------------*
@@ -331,12 +331,12 @@ override method @pic18Instruction_fnop analyzeSimpleInstruction
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 //---
    if (result > 0xFFF) | (result < 0) then
-     error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 4095)"
+     error self.mInstructionLocation:"immediate value is evaluated as " + result.string + " (should be between 0 and 4095)"
    end
-//---  
+//---
   outInstruction = @ipic18_intermediate_instruction_FNOP {
     !self.mInstructionLocation
-    ![result uint]}
+    !result.uint}
 }
 
 //----------------------------------------------------*
@@ -352,18 +352,18 @@ override method @pic18Instruction_LFSR analyzeSimpleInstruction
   ?!@stringset ioUsedRegisters
   !@ipic18SequentialInstruction outInstruction {
   if self.mFSRindex.uint > 2 then
-    error self.mFSRindex:"the LFSR register idx (" + [self.mFSRindex.uint string] + ") should be lower or equal to 2"
+    error self.mFSRindex:"the LFSR register idx (" + self.mFSRindex.uint.string + ") should be lower or equal to 2"
   end
 //---
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 //---
   if (result > 0xFFF) | (result < 0) then
-    error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 4095)"
+    error self.mInstructionLocation:"immediate value is evaluated as " + result.string + " (should be between 0 and 4095)"
   end
   outInstruction = @ipic18_intermediate_instruction_LFSR {
     !self.mInstructionLocation
     !self.mFSRindex
-    ![result uint]}
+    !result.uint}
 }
 
 //----------------------------------------------------*
@@ -381,12 +381,12 @@ override method @pic18Instruction_JSR analyzeSimpleInstruction
 //--- Check instruction
   [inRoutineMap searchKey !self.mTargetLabel ?let @bool isNoReturn ?let @uint requiredBank ?let @uint returnedBank ?let @bool preservesBank]
   if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
-    var @string errorMessage = "the routine '" + self.mTargetLabel + "' requires bank selection to be set to " + [requiredBank string]
+    var @string errorMessage = "the routine '" + self.mTargetLabel + "' requires bank selection to be set to " + requiredBank.string
     errorMessage += ", but bank selection "
     if ioCurrentBank == @uint. max then
       errorMessage += "is not defined"
     else
-      errorMessage += "is set to " + [ioCurrentBank string]
+      errorMessage += "is set to " + ioCurrentBank.string
     end
     error self.mTargetLabel:errorMessage
   end
@@ -542,7 +542,7 @@ override method @pic18Instruction_FOREVER analyze
   end
   let @uint finalBank = ioCurrentBank
 //--- Get loop label
-  let loopLabel = @lstring { !".L" + ioLocalLabelIndex !self.mInstructionLocation} 
+  let loopLabel = @lstring { !".L" + ioLocalLabelIndex !self.mInstructionLocation}
   ioLocalLabelIndex += 1
 //--- Store current block
   ioGeneratedBlockList += !@ipic18Block {
@@ -592,7 +592,7 @@ override method @pic18Instruction_FOREVER analyze
     error self.mEndOfInstructionList:"\"forever\" instruction list does not leave bank selection unchanged"
   end
 //--- Indicate next code is not reacheable
-  ioBlockLabel = ["" nowhere]
+  ioBlockLabel = "".nowhere
 }
 
 //----------------------------------------------------*
@@ -685,7 +685,7 @@ override method @pic18Instruction_savebank analyze
     !?ioListFileContents
     !?finalBank
     !false // Do not preserve bank now
-    !inRoutineKind 
+    !inRoutineKind
     !?ioUsedRegisters
   )
   if ioBlockLabel.string == "" then
@@ -747,7 +747,7 @@ override method @pic18Instruction_repetitionStatique analyze
     !?ioListFileContents
     !?finalBank
     !true // Preserve bank now
-    !inRoutineKind 
+    !inRoutineKind
     !?ioUsedRegisters
   )
   if ioBlockLabel.string == "" then
@@ -758,7 +758,7 @@ override method @pic18Instruction_repetitionStatique analyze
   end
 //--- Generate instruction list (other passes)
   var idx = lowerBound + 1
-  loop ([upperBound - lowerBound + 1 uint]) while (idx <= upperBound) && (@uint.errorCount == 0) do
+  loop ((upperBound - lowerBound + 1).uint) while (idx <= upperBound) && (@uint.errorCount == 0) do
     var constantMap = inConstantMap
     [!?constantMap insertKey !self.mConstantName !idx]
     analyzeInstructionList (
@@ -776,7 +776,7 @@ override method @pic18Instruction_repetitionStatique analyze
       !?ioListFileContents
       !?ioCurrentBank
       !true // Preserve bank now
-      !inRoutineKind 
+      !inRoutineKind
       !?ioUsedRegisters
     )
     idx += 1
@@ -811,7 +811,7 @@ override method @pic18Instruction_banksel analyze
     ioCurrentBank = self.mBankIndex.uint
     ioGeneratedInstructionList += !@ipic18_intermediate_instruction_MOVLB { !self.mInstructionLocation !self.mBankIndex} !@uint.max !0
   elsif self.mWarningOnUselessBanksel then
-    warning self.mBankIndex:"useless instruction: the bank " + [ioCurrentBank string] + " is already selected"
+    warning self.mBankIndex:"useless instruction: the bank " + ioCurrentBank.string + " is already selected"
   end
 }
 
@@ -978,9 +978,9 @@ override method @pic18Instruction_LTBLPTR analyze
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 //---
   if (result > 0xFF_FFFF) | (result < 0) then
-    error self.mInstructionLocation:"immediate value is evaluated as " + [result string] + " (should be between 0 and 0xFF_FFFF)"
+    error self.mInstructionLocation:"immediate value is evaluated as " + result.string + " (should be between 0 and 0xFF_FFFF)"
   end
-  let @uint address = [result uint]
+  let @uint address = result.uint
 //--- Upper byte
   let TBLPTRU = @registerExpression {
     !@lstring { !"TBLPTRU" !self.mInstructionLocation}
@@ -1003,7 +1003,7 @@ override method @pic18Instruction_LTBLPTR analyze
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. CLRF
       !outIPICregisterDescription
-    }  
+    }
     !@uint.max
     !0
   elsif upper == 0xFF then
@@ -1011,7 +1011,7 @@ override method @pic18Instruction_LTBLPTR analyze
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. SETF
       !outIPICregisterDescription
-    }  
+    }
     !@uint.max
     !0
   else
@@ -1026,7 +1026,7 @@ override method @pic18Instruction_LTBLPTR analyze
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. MOVWF
       !outIPICregisterDescription
-    }  
+    }
     !@uint.max
     !0
   end
@@ -1052,7 +1052,7 @@ override method @pic18Instruction_LTBLPTR analyze
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. CLRF
       !outIPICregisterDescription
-    }  
+    }
     !@uint.max
     !0
   elsif high == 0xFF then
@@ -1060,7 +1060,7 @@ override method @pic18Instruction_LTBLPTR analyze
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. SETF
       !outIPICregisterDescription
-    }  
+    }
     !@uint.max
     !0
   else
@@ -1075,7 +1075,7 @@ override method @pic18Instruction_LTBLPTR analyze
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. MOVWF
       !outIPICregisterDescription
-    }  
+    }
     !@uint.max
     !0
   end
@@ -1101,7 +1101,7 @@ override method @pic18Instruction_LTBLPTR analyze
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. CLRF
       !outIPICregisterDescription
-    }  
+    }
     !@uint.max
     !0
   elsif low == 0xFF then
@@ -1109,7 +1109,7 @@ override method @pic18Instruction_LTBLPTR analyze
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. SETF
       !outIPICregisterDescription
-    }  
+    }
     !@uint.max
     !0
   else
@@ -1124,7 +1124,7 @@ override method @pic18Instruction_LTBLPTR analyze
       !self.mInstructionLocation
       !@FA_sequential_instruction_base_code. MOVWF
       !outIPICregisterDescription
-    }  
+    }
     !@uint.max
     !0
   end
@@ -1154,8 +1154,8 @@ override method @pic18Instruction_LDATA16PTR analyze
     error self.mDataName : "this data is a byte array; use ldata8ptr"
   end
 //--- Check index
-  if self.mDataIndex.uint >= [data count] then
-    error self.mDataIndex: "index should be < " + [data count]
+  if self.mDataIndex.uint >= data.count then
+    error self.mDataIndex: "index should be < " + data.count
   end
 //--- Upper byte
   let TBLPTRU = @registerExpression {
@@ -1185,7 +1185,7 @@ override method @pic18Instruction_LDATA16PTR analyze
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
-  }  
+  }
   !@uint.max
   !0
 //--- High byte
@@ -1216,7 +1216,7 @@ override method @pic18Instruction_LDATA16PTR analyze
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
-  }  
+  }
   !@uint.max
   !0
 //--- Low byte
@@ -1247,7 +1247,7 @@ override method @pic18Instruction_LDATA16PTR analyze
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
-  }  
+  }
   !@uint.max
   !0
 }
@@ -1276,8 +1276,8 @@ override method @pic18Instruction_LDATA8PTR analyze
     error self.mDataName : "this data is a 16-bit word array; use ldata16ptr"
   end
 //--- Check index
-  if self.mDataIndex.uint >= ([data count] * 2) then
-    error self.mDataIndex: "index should be < " + ([data count] * 2)
+  if self.mDataIndex.uint >= (data.count * 2) then
+    error self.mDataIndex: "index should be < " + (data.count * 2)
   end
 //--- Upper byte
   let TBLPTRU = @registerExpression {
@@ -1307,7 +1307,7 @@ override method @pic18Instruction_LDATA8PTR analyze
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
-  }  
+  }
   !@uint.max
   !0
 //--- High byte
@@ -1338,7 +1338,7 @@ override method @pic18Instruction_LDATA8PTR analyze
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
-  }  
+  }
   !@uint.max
   !0
 //--- Low byte
@@ -1369,7 +1369,7 @@ override method @pic18Instruction_LDATA8PTR analyze
     !self.mInstructionLocation
     !@FA_sequential_instruction_base_code. MOVWF
     !outIPICregisterDescription
-  }  
+  }
   !@uint.max
   !0
 }
@@ -1395,12 +1395,12 @@ override method @pic18Instruction_JUMP analyze
 //--- Check instruction
   [inRoutineMap searchKey !self.mTargetLabel ?let @bool isNoReturn ?let @uint requiredBank ?* ?*]
   if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
-    var @string errorMessage = "the routine '" + self.mTargetLabel + "' requires bank selection to be set to " + [requiredBank string]
+    var @string errorMessage = "the routine '" + self.mTargetLabel + "' requires bank selection to be set to " + requiredBank.string
     errorMessage += ", but bank selection "
     if ioCurrentBank == @uint. max then
       errorMessage += "is not defined"
     else
-      errorMessage += "is set to " + [ioCurrentBank string]
+      errorMessage += "is set to " + ioCurrentBank.string
     end
     error self.mTargetLabel:errorMessage
   end
@@ -1418,7 +1418,7 @@ override method @pic18Instruction_JUMP analyze
   }
   ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 //--- No following code
-  ioBlockLabel = ["" nowhere]
+  ioBlockLabel = "".nowhere
 }
 
 //----------------------------------------------------*
@@ -1445,12 +1445,12 @@ override method @pic18Instruction_computed_rcall analyze
   for (mValue) in  self.mTargetLabels do
     [inRoutineMap searchKey !mValue ?let @bool isNoReturn ?let @uint requiredBank ?let @uint returnedBank ?let @bool preservesBank]
     if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
-      var @string errorMessage = "the routine '" + mValue + "' requires bank selection to be set to " + [requiredBank string]
+      var @string errorMessage = "the routine '" + mValue + "' requires bank selection to be set to " + requiredBank.string
       errorMessage += ", but bank selection "
       if ioCurrentBank == @uint. max then
         errorMessage += "is not defined"
       else
-        errorMessage += "is set to " + [ioCurrentBank string]
+        errorMessage += "is set to " + ioCurrentBank.string
       end
       error mValue: errorMessage
     end
@@ -1463,18 +1463,18 @@ override method @pic18Instruction_computed_rcall analyze
       if not someReturnsBank then
         returnedBankSelection = returnedBank
         someReturnsBank = true
-      elsif returnedBankSelection != returnedBank then 
+      elsif returnedBankSelection != returnedBank then
         var @string errorMessage = "the '" + mValue + "' routine returns "
         if returnedBank == @uint. max then
           errorMessage += "no bank selection"
         else
-          errorMessage += "bank selection set to  "+ [returnedBank string]
+          errorMessage += "bank selection set to  "+ returnedBank.string
         end
         errorMessage += ", but previous routine(s) return(s) "
         if returnedBankSelection == @uint. max then
           errorMessage += "no bank selection"
         else
-          errorMessage += "bank selection set to  "+ [returnedBankSelection string]
+          errorMessage += "bank selection set to  "+ returnedBankSelection.string
         end
         error mValue: errorMessage
       end
@@ -1486,11 +1486,11 @@ override method @pic18Instruction_computed_rcall analyze
 //---
   [self.mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
   if size < 2 then
-    error self.mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
+    error self.mInstructionLocation:"the computed range (" + size.string + ") should be greater or equal to 2"
   elsif size > 64 then
-    error self.mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 64"
-  elsif [size uint] != [self.mTargetLabels count] then
-    error self.mInstructionLocation:"the routine name list length (" + [[self.mTargetLabels count] string] + ") should be equal to the computed range (" + [size string] + ")"
+    error self.mInstructionLocation:"the computed range (" + size.string + ") should be lower or equal to 64"
+  elsif size.uint != self.mTargetLabels.count then
+    error self.mInstructionLocation:"the routine name list length (" + self.mTargetLabels.count.string + ") should be equal to the computed range (" + size.string + ")"
   end
 //---
   var targetInstructionList =@ipic18SequentialInstructionList ()
@@ -1502,7 +1502,7 @@ override method @pic18Instruction_computed_rcall analyze
     !self.mInstructionLocation
     !targetInstructionList
     !self.mUsesRelativeCall
-    
+
   }
   !@uint.max
   !0
@@ -1530,12 +1530,12 @@ override method @pic18Instruction_computed_goto analyze
   for (mValue) in  self.mTargetLabels do
     [inRoutineMap searchKey !mValue ?let @bool isNoReturn ?let @uint requiredBank ?* ?*]
     if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
-      var @string errorMessage = "the routine '" + mValue + "' requires bank selection to be set to " + [requiredBank string]
+      var @string errorMessage = "the routine '" + mValue + "' requires bank selection to be set to " + requiredBank.string
       errorMessage += ", but bank selection "
       if ioCurrentBank == @uint. max then
         errorMessage += "is not defined"
       else
-        errorMessage += "is set to " + [ioCurrentBank string]
+        errorMessage += "is set to " + ioCurrentBank.string
       end
       error mValue: errorMessage
     end
@@ -1552,11 +1552,11 @@ override method @pic18Instruction_computed_goto analyze
 //---
   [self.mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
   if size < 2 then
-    error self.mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
+    error self.mInstructionLocation:"the computed range (" + size.string + ") should be greater or equal to 2"
   elsif size > 64 then
-    error self.mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 64"
-  elsif [size uint] != [self.mTargetLabels count] then
-    error self.mInstructionLocation:"the routine name list length (" + [[self.mTargetLabels count] string] + ") should be equal to the computed range (" + [size string] + ")"
+    error self.mInstructionLocation:"the computed range (" + size.string + ") should be lower or equal to 64"
+  elsif size.uint != self.mTargetLabels.count then
+    error self.mInstructionLocation:"the routine name list length (" + self.mTargetLabels.count.string + ") should be equal to the computed range (" + size.string + ")"
   end
 //--- Build block
   ioGeneratedBlockList += !@ipic18Block {
@@ -1572,7 +1572,7 @@ override method @pic18Instruction_computed_goto analyze
     }
   ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 //--- No following code
-  ioBlockLabel = ["" nowhere]
+  ioBlockLabel = "".nowhere
 }
 
 //----------------------------------------------------*
@@ -1601,21 +1601,21 @@ override method @pic18Instruction_computed_bra analyze
     [inRoutineMap searchKey !mValue ?let @bool isNoReturn ?let @uint requiredBank ?let @uint returnedBank ?let @bool preservesBank]
   //--- Check bank "requires"
     if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
-      var @string errorMessage = "the routine '" + mValue + "' requires bank selection to be set to " + [requiredBank string]
+      var @string errorMessage = "the routine '" + mValue + "' requires bank selection to be set to " + requiredBank.string
       errorMessage += ", but bank selection "
       if ioCurrentBank == @uint. max then
         errorMessage += "is not defined"
       else
-        errorMessage += "is set to " + [ioCurrentBank string]
+        errorMessage += "is set to " + ioCurrentBank.string
       end
       error mValue: errorMessage
-    end    
+    end
   //--- Check bank "preserved", "ensures"
     if preservesBank then
       allReturnBank = false
     elsif (returnedBankValue != @uint. max) & (returnedBankValue != returnedBank) then
-      error mValue:"this routine ensures setting of bank '" + [returnedBank string] + "', but "
-      + "previous routine(s) ensure setting of bank '" + [returnedBankValue string] + "'."
+      error mValue:"this routine ensures setting of bank '" + returnedBank.string + "', but "
+      + "previous routine(s) ensure setting of bank '" + returnedBankValue.string + "'."
     else
       allPreserveBankSetting = false
       returnedBankValue = returnedBank
@@ -1643,11 +1643,11 @@ override method @pic18Instruction_computed_bra analyze
 //---
   [self.mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
   if size < 2 then
-    error self.mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
+    error self.mInstructionLocation:"the computed range (" + size.string + ") should be greater or equal to 2"
   elsif size > 128 then
-    error self.mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 128"
-  elsif [size uint] != [self.mTargetLabels count] then
-    error self.mInstructionLocation:"the routine name list length (" + [[self.mTargetLabels count] string] + ") should be equal to the computed range (" + [size string] + ")"
+    error self.mInstructionLocation:"the computed range (" + size.string + ") should be lower or equal to 128"
+  elsif size.uint != self.mTargetLabels.count then
+    error self.mInstructionLocation:"the routine name list length (" + self.mTargetLabels.count.string + ") should be equal to the computed range (" + size.string + ")"
   end
 //--- Build block
   ioGeneratedBlockList += !@ipic18Block {
@@ -1663,7 +1663,7 @@ override method @pic18Instruction_computed_bra analyze
     }
   ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 //--- No following code
-  ioBlockLabel = ["" nowhere]
+  ioBlockLabel = "".nowhere
 }
 
 //----------------------------------------------------*
@@ -1694,20 +1694,20 @@ override method @pic18Instruction_computed_retlw analyze
 //---
   [self.mSizeExpression eval !inRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
   if size < 2 then
-    error self.mInstructionLocation:"the computed range (" + [size string] + ") should be greater or equal to 2"
+    error self.mInstructionLocation:"the computed range (" + size.string + ") should be greater or equal to 2"
   elsif size > 128 then
-    error self.mInstructionLocation:"the computed range (" + [size string] + ") should be lower or equal to 128"
-  elsif [size uint] != [self.mImmediateExpressionList count] then
-    error self.mInstructionLocation:"the constant list length (" + [[self.mImmediateExpressionList count] string] + ") should be equal to the computed range (" + [size string] + ")"
+    error self.mInstructionLocation:"the computed range (" + size.string + ") should be lower or equal to 128"
+  elsif size.uint != self.mImmediateExpressionList.count then
+    error self.mInstructionLocation:"the constant list length (" + self.mImmediateExpressionList.count.string + ") should be equal to the computed range (" + size.string + ")"
   end
-//--- 
+//---
   var literalValues =@uintlist ()
   for (mExpression *) in  self.mImmediateExpressionList do(idx)
     [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 v !?ioUsedRegisters]
     if (v > 255) | (v < -128) then
-      error self.mInstructionLocation:"immediate value with idx " + [idx string] + " is evaluated as " + [v string] + " (should be <= 255)"
+      error self.mInstructionLocation:"immediate value with idx " + idx.string + " is evaluated as " + v.string + " (should be <= 255)"
     end
-    literalValues += ![v & 0x000000FF uint]
+    literalValues += !(v & 0x000000FF).uint
   end
 //--- Build block
   ioGeneratedBlockList += !@ipic18Block {
@@ -1723,7 +1723,7 @@ override method @pic18Instruction_computed_retlw analyze
     }
   ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
 //--- No following code
-  ioBlockLabel = ["" nowhere]
+  ioBlockLabel = "".nowhere
 }
 
 //----------------------------------------------------*
@@ -1746,12 +1746,12 @@ override method @pic18Instruction_JUMPCC analyze
   ?!@stringset unused ioUsedRegisters {
   [inRoutineMap searchKey !self.mTargetLabel ?let @bool isNoReturn ?let @uint requiredBank ?* ?*]
   if (requiredBank != @uint. max) & (requiredBank != ioCurrentBank) then
-    var @string errorMessage = "the routine '" + self.mTargetLabel + "' requires bank selection to be set to " + [requiredBank string]
+    var @string errorMessage = "the routine '" + self.mTargetLabel + "' requires bank selection to be set to " + requiredBank.string
     errorMessage += ", but bank selection "
     if ioCurrentBank == @uint. max then
       errorMessage += "is not defined"
     else
-      errorMessage += "is set to " + [ioCurrentBank string]
+      errorMessage += "is set to " + ioCurrentBank.string
     end
     error self.mTargetLabel:errorMessage
   end
@@ -1766,7 +1766,7 @@ override method @pic18Instruction_JUMPCC analyze
     mode = @conditionalBranchMode. ipicBRA
   end
 //--- Create the continuation label
-  let label0 = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let label0 = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation}
   ioLocalLabelIndex += 1
 //--- Build block
   ioGeneratedBlockList += !@ipic18Block {
@@ -2007,11 +2007,11 @@ override method @pic18Instruction_structured_if analyze
   var @uint elseBranchFinalBank = ioCurrentBank
   var @uint thenBranchFinalBank = ioCurrentBank
 //--- Labels
-  let conditionTrueLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let conditionTrueLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation}
   ioLocalLabelIndex += 1
-  let conditionFalseLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let conditionFalseLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation}
   ioLocalLabelIndex += 1
-  let exitLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let exitLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation}
   ioLocalLabelIndex += 1
 //---- Analyze condition
   [self.mIfCondition analyzeCondition
@@ -2111,7 +2111,7 @@ override method @pic18Instruction_structured_if analyze
   if thenContinuesInSequence | elseContinuesInSequence then
     ioBlockLabel = exitLabel
   else
-    ioBlockLabel = ["" nowhere]
+    ioBlockLabel = "".nowhere
   end
 }
 
@@ -2135,9 +2135,9 @@ override method @pic18Instruction_macro analyze
   ?!@stringset ioUsedRegisters
 {
   [inMacroMap searchKey !self.mMacroName ?let constantNameList ?let instructionList]
-  if [self.mExpressionList count] != [constantNameList count] then
+  if self.mExpressionList.count != constantNameList.count then
     error self.mInstructionLocation
-    : [[constantNameList count] string] + " argument(s) required"
+    : constantNameList.count.string + " argument(s) required"
   end
   var @constantMap constantMap = inConstantMap
   for (mExpression *) in self.mExpressionList, (constantName) in constantNameList do
@@ -2184,7 +2184,7 @@ override method @pic18Instruction_do_while analyze
   ?let @routineKind inRoutineKind
   ?!@stringset ioUsedRegisters {
 //--- Labels
-  let startLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let startLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation}
   ioLocalLabelIndex += 1
 //--- Save current block
   ioGeneratedBlockList += !@ipic18Block {
@@ -2227,9 +2227,9 @@ override method @pic18Instruction_do_while analyze
 //--- While branches
   for (mCondition mInstructionList mEndOfPartLocation) in  self.mWhilePartList do
   //--- Labels
-    let conditionTrueLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+    let conditionTrueLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation}
     ioLocalLabelIndex += 1
-   let conditionFalseLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+   let conditionFalseLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation}
    ioLocalLabelIndex += 1
   //---- Analyze condition
     [mCondition analyzeCondition
@@ -2338,16 +2338,16 @@ override method @exitBlockTerminationForBlockInstruction addVisitedBlocks
   ?!@bool unused ioContinueAccessibilityExploration {
   ioContinuesInSequence = true
   if [ioBlockInitialBankSelectionMap hasKey !"-"] then
-    [ioBlockInitialBankSelectionMap searchKey !["-" nowhere] ?let @uint otherInitialBlockSetting ?let @string otherBlockName]
+    [ioBlockInitialBankSelectionMap searchKey !"-".nowhere ?let @uint otherInitialBlockSetting ?let @string otherBlockName]
     if otherInitialBlockSetting != inInitialBlockSetting then
       error self.mLocation: "this block exits from block instruction and sets bank selection to "
-      + if inInitialBlockSetting == @uint. max then "no bank" else [inInitialBlockSetting string] end
+      + if inInitialBlockSetting == @uint. max then "no bank" else inInitialBlockSetting.string end
       + ", '" + otherBlockName + "' block also exits, but sets bank selection to "
-      + if otherInitialBlockSetting == @uint. max then "no bank" else [otherInitialBlockSetting string] end
+      + if otherInitialBlockSetting == @uint. max then "no bank" else otherInitialBlockSetting.string end
       + "; theses two settings should be the same"
     end
   else
-    [!?ioBlockInitialBankSelectionMap insertKey !["-" nowhere] !inInitialBlockSetting !inCurrentBlockName]
+    [!?ioBlockInitialBankSelectionMap insertKey !"-".nowhere !inInitialBlockSetting !inCurrentBlockName]
   end
 }
 
@@ -2369,9 +2369,9 @@ override method @gotoTerminationForBlockInstruction addVisitedBlocks
       [ioBlockInitialBankSelectionMap searchKey !self.mNextBlock ?let @uint otherInitialBlockSetting ?let @string otherBlockName]
       if otherInitialBlockSetting != inInitialBlockSetting then
         error self.mNextBlock: "this block goes to '" + self.mNextBlock + "' block and sets bank selection to "
-        + if inInitialBlockSetting == @uint. max then "no bank" else [inInitialBlockSetting string] end
+        + if inInitialBlockSetting == @uint. max then "no bank" else inInitialBlockSetting.string end
         + ", '" + otherBlockName + "' block goes to the same block, but sets bank selection to "
-        + if otherInitialBlockSetting == @uint. max then "no bank" else [otherInitialBlockSetting string] end
+        + if otherInitialBlockSetting == @uint. max then "no bank" else otherInitialBlockSetting.string end
         + "; theses two settings should be the same"
       end
     else
@@ -2391,12 +2391,12 @@ override method @testTerminationForBlockInstruction addVisitedBlocks
   ?!@bool ioContinuesInSequence
   ?!@bool ioContinueAccessibilityExploration {
   [self.mTrueTermination addVisitedBlocks
-    !?ioVisitedBlockSet 
-    !inBlockMap 
-    !inCurrentBlockName 
-    !inInitialBlockSetting 
-    !?ioBlockInitialBankSelectionMap 
-    !?ioContinuesInSequence 
+    !?ioVisitedBlockSet
+    !inBlockMap
+    !inCurrentBlockName
+    !inInitialBlockSetting
+    !?ioBlockInitialBankSelectionMap
+    !?ioContinuesInSequence
     !?ioContinueAccessibilityExploration
   ]
   [self.mFalseTermination addVisitedBlocks
@@ -2473,9 +2473,9 @@ override method @testTerminationForBlockInstruction generateBlock
   ?!@stringset ioUsedRegisters
   ?let @string inLabelForBlock
   !@ipic18AbstractBlockTerminator outTerminator {
-  let conditionTrueLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mLocation} 
+  let conditionTrueLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mLocation}
   ioLocalLabelIndex += 1
-  let conditionFalseLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mLocation} 
+  let conditionFalseLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mLocation}
   ioLocalLabelIndex += 1
 //--- Generate condition
   [self.mCondition analyzeCondition
@@ -2552,7 +2552,7 @@ override method @pic18Instruction_block analyze
   ?!@stringset ioUsedRegisters
 {
 //----------------- Block labels prefix
-  let @string labelForBlock = ".L" + [ioLocalLabelIndex string] + "_" 
+  let @string labelForBlock = ".L" + ioLocalLabelIndex.string + "_"
   ioLocalLabelIndex += 1
 //---------------- Save current block
   ioGeneratedBlockList += !@ipic18Block {
@@ -2581,18 +2581,18 @@ override method @pic18Instruction_block analyze
   var handledBlockSet =@stringset ()
   var @bool continueAccessibilityExploration = true
   var @bool continuesInSequence = false
-  loop( [self.mBlockList count] + 1) while continueAccessibilityExploration do
+  loop( self.mBlockList.count + 1) while continueAccessibilityExploration do
     continueAccessibilityExploration = false
     for currentBlockName in accessibleBlockSet - handledBlockSet do
       handledBlockSet ++= currentBlockName
       [blockMap searchKey
-        ![currentBlockName nowhere]
+        !currentBlockName.nowhere
         ?let @pic18InstructionList instructionList
         ?let @abstractBlockTerminationForBlockInstruction blockTermination
         ?let @location endOfBlock
       ]
     //--- Generate code
-      [blockInitialBankSelectionMap searchKey ![currentBlockName nowhere] ?var @uint currentBank ?*]
+      [blockInitialBankSelectionMap searchKey !currentBlockName.nowhere ?var @uint currentBank ?*]
       ioBlockLabel = @lstring { !labelForBlock + currentBlockName ![blockMap locationForKey !currentBlockName]}
       analyzeInstructionList (
         !instructionList
@@ -2648,9 +2648,9 @@ override method @pic18Instruction_block analyze
 //---
   if continuesInSequence then
     ioBlockLabel = @lstring { !labelForBlock + "_exit" !self.mStartBlockName.location}
-    [blockInitialBankSelectionMap searchKey !["-" nowhere] ?ioCurrentBank ?*]
+    [blockInitialBankSelectionMap searchKey !"-".nowhere ?ioCurrentBank ?*]
   else
-    ioBlockLabel = ["" nowhere]
+    ioBlockLabel = "".nowhere
   end
 }
 
@@ -2926,7 +2926,7 @@ override method @pic18AndCondition analyzeCondition
   ?!@stringset ioUsedRegisters
   !@ipic18AbstractBlockTerminator outCurrentBlockTerminator {
 //--- Create an intermédiate label for handling true condition of left expression
-  let conditionTrueLabel = @lstring { !".L" + [ioLocalLabelIndex string] !inConditionTrueLabel.location} 
+  let conditionTrueLabel = @lstring { !".L" + ioLocalLabelIndex.string !inConditionTrueLabel.location}
   ioLocalLabelIndex += 1
 //--- Left expression
   [self.mLeftExpression analyzeCondition
@@ -2991,7 +2991,7 @@ proc analyzeInstructionList
   for (mInstruction) in  inInstructionList do
     if ioBlockLabel.string == "" then
       error mInstruction.mInstructionLocation : "Unreachable code"
-      ioBlockLabel = ["?" nowhere]
+      ioBlockLabel = "?".nowhere
     end
     [mInstruction analyze
       !inAccessBankSplitOffset
@@ -3031,18 +3031,18 @@ proc pic18_analyze_data_sections
   outDataMap = @()
   for (name valueList isData8) in  inDataDefinitionList
   before
-    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-    ioListFileContents += "*" + ["DATA DECLARATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
-    ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+    ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+    ioListFileContents += "*" + ["DATA DECLARATION" leftAndRightPadding !117 !' '] + "*\n"
+    ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
   do
     var @uintlist data = @()
     if isData8 then
-      if ([valueList count] & 1) != 0 then
+      if (valueList.count & 1) != 0 then
         error name : "the data8 byte count should be even"
       end
-      ioListFileContents += "Data8 '" + name + "', " + ([valueList count] / 2)
-        + " words (" + [valueList count] + " bytes).\n" 
-      [!?ioConstantMap insertKey ! @{ !name.string + "_BYTE_COUNT" !name} ![[valueList count] sint64]]
+      ioListFileContents += "Data8 '" + name + "', " + (valueList.count / 2)
+        + " words (" + valueList.count + " bytes).\n"
+      [!?ioConstantMap insertKey ! @{ !name.string + "_BYTE_COUNT" !name} !valueList.count.sint64]
       var @sint byte = 0
       for (expression errorLocation) in  valueList do (idx)
         [expression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
@@ -3053,13 +3053,13 @@ proc pic18_analyze_data_sections
         elsif (idx & 1) == 0 then
           byte = value
         else
-          data += ![(value << 8) | byte uint]
+          data += !((value << 8) | byte).uint
         end
       end
     else
-      ioListFileContents += "Data16 '" + name + "', " + [valueList count]
-        + " words (" + [valueList count] * 2 + " bytes).\n" 
-      [!?ioConstantMap insertKey ! @{ !name.string + "_BYTE_COUNT" !name} ![[valueList count] * 2 sint64]]
+      ioListFileContents += "Data16 '" + name + "', " + valueList.count
+        + " words (" + valueList.count * 2 + " bytes).\n"
+      [!?ioConstantMap insertKey ! @{ !name.string + "_BYTE_COUNT" !name} !(valueList.count * 2).sint64]
       for (mExpression mErrorLocation) in  valueList do
         [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 value !?ioUsedRegisters]
         if value < 0 then
@@ -3067,7 +3067,7 @@ proc pic18_analyze_data_sections
         elsif value > 65535 then
           error mErrorLocation: "data16 value is " + value + " (greater than 2**16-1)"
         else
-          data += ![value uint]
+          data += !value.uint
         end
       end
     end
@@ -3177,7 +3177,7 @@ proc build_ipic18_block_representation_list
   for (mRoutineName * * * *) in  inUserRoutineDeclarationListForUserProgramImplementation do
     generatedBlockList += !@ipic18Block {
       !entryPoint
-      !["_entry_user_" + [entryPoint xString] nowhere]
+      !("_entry_user_" + entryPoint.xString).nowhere
       !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
@@ -3189,20 +3189,20 @@ proc build_ipic18_block_representation_list
   if inProgramKind != @programKind. userProgram then
     generatedBlockList += !@ipic18Block {
       !0
-      ![".START" nowhere]
+      !".START".nowhere
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator { !@location. nowhere !["main" nowhere] !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !@location. nowhere !"main".nowhere !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
   end
 //-------------------------------- At 0x04, generate the first bootloader entry point (if any)
   var @routineDeclarationList tempBootloaderRoutineDeclarationList = inBootloaderRoutineDeclarationListForBootloaderImplementation
-  if [tempBootloaderRoutineDeclarationList count] > 0 then
+  if tempBootloaderRoutineDeclarationList.count > 0 then
     [!?tempBootloaderRoutineDeclarationList popFirst ?let @lstring routineName ?* ?* ?* ?*]
     generatedBlockList += !@ipic18Block {
       !0x04
-      !["_entry_bootloader_04" nowhere]
+      !"_entry_bootloader_04".nowhere
       !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
@@ -3213,22 +3213,22 @@ proc build_ipic18_block_representation_list
   if inHasHighInterrupt then
     generatedBlockList += !@ipic18Block {
       !0x08
-      ![".HIGH_INTERRUPT" nowhere]
+      !".HIGH_INTERRUPT".nowhere
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator { !@location. nowhere !["_high_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !@location. nowhere !"_high_interrupt".nowhere !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
   end
 //-------------------------------- At 0x0C, 0x10, 0x14, generate the bootloader entry points (if they exists)
   entryPoint = 0x0C
-  loop( [tempBootloaderRoutineDeclarationList count])
-  while ([tempBootloaderRoutineDeclarationList count] > 0) & (entryPoint < 0x18) 
+  loop( tempBootloaderRoutineDeclarationList.count)
+  while (tempBootloaderRoutineDeclarationList.count > 0) & (entryPoint < 0x18)
   do
     [!?tempBootloaderRoutineDeclarationList popFirst ?let @lstring routineName ?* ?* ?* ?*]
     generatedBlockList += !@ipic18Block {
       !entryPoint
-      !["_entry_bootloader_" + [entryPoint xString] nowhere]
+      !("_entry_bootloader_" + entryPoint.xString).nowhere
       !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator { !routineName.location !routineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
@@ -3240,9 +3240,9 @@ proc build_ipic18_block_representation_list
   if inHasLowInterrupt then
     generatedBlockList += !@ipic18Block {
       !0x18
-      ![".LOW_INTERRUPT" nowhere]
+      !".LOW_INTERRUPT".nowhere
       !@ipic18SequentialInstructionList ()
-      !@ipic18JumpTerminator { !@location. nowhere !["_low_interrupt" nowhere] !@jumpInstructionKind. ipicRelative}
+      !@ipic18JumpTerminator { !@location. nowhere !"_low_interrupt".nowhere !@jumpInstructionKind. ipicRelative}
       !@uint.max
       !0
     }
@@ -3252,7 +3252,7 @@ proc build_ipic18_block_representation_list
   for (mRoutineName * * * *) in  tempBootloaderRoutineDeclarationList do
     generatedBlockList += !@ipic18Block {
       !entryPoint
-      !["_entry_bootloader_" + [entryPoint xString] nowhere]
+      !("_entry_bootloader_" + entryPoint.xString).nowhere
       !@ipic18SequentialInstructionList ()
       !@ipic18JumpTerminator { !mRoutineName.location !mRoutineName !@jumpInstructionKind. ipicRelative}
       !@uint.max
@@ -3427,7 +3427,7 @@ proc build_ipic18_block_representation_list
   ]
 //--- Description of register TOSH
   let TOSHregister = @registerExpression {
-    !@lstring {!"TOSH" !.here} 
+    !@lstring {!"TOSH" !.here}
     !@immediatInteger {! @{!0 !.here}}
     !.here
   }
@@ -3467,9 +3467,9 @@ proc build_ipic18_block_representation_list
 //--- computed_goto4
   let goto4Block = @ipic18Block {
     !@uint. max // Relocatable
-    !["_computed_goto_4" nowhere]
+    !"_computed_goto_4".nowhere
     !@ipic18SequentialInstructionList. listWithValue { !ADDWF_WREG !@uint.max !0}
-    !@ipic18JumpTerminator { !@location. nowhere !["_computed_goto_2" nowhere] !@jumpInstructionKind. ipicRelative}
+    !@ipic18JumpTerminator { !@location. nowhere !"_computed_goto_2".nowhere !@jumpInstructionKind. ipicRelative}
     !@uint.max
     !0
   }
@@ -3502,7 +3502,7 @@ proc build_ipic18_block_representation_list
 //--- computed_goto2
   let goto2Block = @ipic18Block {
     !@uint. max // Relocatable
-    !["_computed_goto_2" nowhere]
+    !"_computed_goto_2".nowhere
     !goto2InstructionList
     !@ipic18ReturnTerminator { !@location. nowhere}
     !@uint.max
@@ -3594,7 +3594,7 @@ proc build_ipic18_block_representation_list
       !inSourceFileName
       !inProgramKind
       !inBootloaderReservedROMsize.uint
-      ![inROMSize uint]
+      !inROMSize.uint
       !inProcessorName
       !inPredefinedRegisters
       !inRegisterTable
@@ -3608,16 +3608,16 @@ proc build_ipic18_block_representation_list
   //----------------------------------------------------------- Print usage
     if @application.verboseOutput then
       var @string verboseMessage = "Resource usage:\n"
-      verboseMessage += "  ROM, used " + [usedROMsize string]
+      verboseMessage += "  ROM, used " + usedROMsize.string
       verboseMessage += " / " + inROMSize + " bytes ("
-      verboseMessage += [(usedROMsize * 100) / inROMSize string] + "%)\n"
+      verboseMessage += ((usedROMsize * 100) / inROMSize).string + "%)\n"
       for (lkey mFirstAddress mFirstFreeAddress mLastAddressPlusOne *) in inRamBank do
         let @uint bankSize = mLastAddressPlusOne - mFirstAddress
         let @uint usedSize = mFirstFreeAddress - mFirstAddress
         verboseMessage += "  Bank '" + lkey + "': "
-        verboseMessage += [usedSize string] + " / "
-        verboseMessage += [bankSize string] + " bytes ("
-        verboseMessage += [(usedSize * 100) / bankSize string] + "%)\n"
+        verboseMessage += usedSize.string + " / "
+        verboseMessage += bankSize.string + " bytes ("
+        verboseMessage += ((usedSize * 100) / bankSize).string + "%)\n"
       end
       print (!verboseMessage)
     end

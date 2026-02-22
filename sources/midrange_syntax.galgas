@@ -49,7 +49,7 @@ rule <start_symbol> {
     repeat
       $identifier$ ?let @lstring unusedRegister
       unusedRegisterList += !unusedRegister
-    while 
+    while
       $,$
     end
   while
@@ -58,7 +58,7 @@ rule <start_symbol> {
     repeat
       $identifier$ ?let @lstring unusedRoutine
       unusedRoutineList += !unusedRoutine
-    while 
+    while
       $,$
     end
   while
@@ -97,12 +97,12 @@ rule <start_symbol> {
     }
     midrange_analyze ( !piccoloModel !@string. stringWithSourceFilePath )
   else
-    let @string hexDestinationFile = [@string. stringWithSourceFilePath deletingPathExtension] + ".hex"
-    if [hexDestinationFile fileExists] then
+    let @string hexDestinationFile = @string.stringWithSourceFilePath.deletingPathExtension + ".hex"
+    if hexDestinationFile.fileExists then
       [@string deleteFile !hexDestinationFile]
     end
-    let @string asmDestinationFile = [@string. stringWithSourceFilePath deletingPathExtension] + ".asm"
-    if [asmDestinationFile fileExists] then
+    let @string asmDestinationFile = @string.stringWithSourceFilePath.deletingPathExtension + ".asm"
+    if asmDestinationFile.fileExists then
       [@string deleteFile !asmDestinationFile]
     end
   end
@@ -132,7 +132,7 @@ label importBootloaderSpecification
     $byte$
     repeat
       $identifier$ ?*
-    while 
+    while
       $,$
     end
   while
@@ -140,7 +140,7 @@ label importBootloaderSpecification
     $routine$
     repeat
       $identifier$ ?*
-    while 
+    while
       $,$
     end
   while
@@ -189,7 +189,7 @@ rule <midrange_instruction_list>
 
 rule <midrange_interrupt_definition>
   ?!@midrange_interruptDefinitionList ioInterruptDefinitionList
-  ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4 {
   $interrupt$
   let @location interruptionLocation = @location.here
@@ -217,7 +217,7 @@ rule <midrange_interrupt_definition>
 
 rule <midrange_routine_definition>
   ?!@midrange_routineDefinitionList ioRoutineDefinitionList
-  ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
 {
   let @bool noreturn
@@ -345,7 +345,7 @@ rule <midrange_structured_instruction>
     if doLabel.string != endDoLabel.string then
       error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
-    end 
+    end
   or
     $checkbank$
     $integer$ ?let @luint bankIndex
@@ -422,7 +422,7 @@ rule <midrange_structured_instruction>
     if foreverLabel.string != endForeverLabel.string then
       error endForeverLabel : "'end' label does not match 'fovever' label, it should be "
          + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
-    end 
+    end
     outInstruction = @midrange_instruction_FOREVER {
       !instructionLocation
       !instructionList
@@ -470,7 +470,7 @@ rule <midrange_structured_instruction>
       $,$ ; $w$ ; w_isTarget = true
     end
     $identifier$ ?let @lstring conditionString
-    let @string condition = [conditionString.string uppercaseString]
+    let @string condition = conditionString.string.uppercased
     if condition != "NZ" then
       error conditionString:"invalid '" + condition + "' condition; it should be 'nz'"
     end
@@ -508,7 +508,7 @@ rule <midrange_structured_instruction>
     if ifLabel.string != endIfLabel.string then
       error endIfLabel : "'end' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
-    end 
+    end
   or
     $do$
     let @lstring doLabel
@@ -537,7 +537,7 @@ rule <midrange_structured_instruction>
       if doLabel.string != whileLabel.string then
         error whileLabel : "'while' label does not match 'do' label, it should be "
            + (if doLabel.string != "" then doLabel.string else "empty" end)
-      end 
+      end
       <midrange_condition_expression> ?let whileCondition
       <midrange_instruction_list>
         ?let instructionList
@@ -557,7 +557,7 @@ rule <midrange_structured_instruction>
     if doLabel.string != endDoLabel.string then
       error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
-    end 
+    end
     outInstruction = @midrange_instruction_do_while {
       !instructionLocation
       !repeatedInstructionList
@@ -616,7 +616,7 @@ rule <midrange_structured_if_instruction>
     if ifLabel.string != elsifIfLabel.string then
       error elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
-    end 
+    end
     <midrange_structured_if_instruction>
       !ifLabel
       ?let elsifPartInstruction
@@ -636,7 +636,7 @@ rule <midrange_structured_if_instruction>
     if ifLabel.string != elseLabel.string then
       error elseLabel : "'else' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
-    end 
+    end
     <midrange_instruction_list>
       ?elseInstructionList
       !?ioNeedsComputedGoto2
@@ -706,7 +706,7 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
   //--- Emit a warning if instruction is "movf" and W is not destination
     if (baseCode == .MOVF) && not W_isDestination then
       warning instructionLocation :  "This instruction does not move data, it only sets flags. "
-        "Use 'movf *, reg' instead of 'movf reg' to suppress this warning" 
+        "Use 'movf *, reg' instead of 'movf reg' to suppress this warning"
     end
   or
     $movf$
@@ -836,7 +836,7 @@ rule <midrange_condition_factor>
       $,$ ; $w$ ; W_isDestination = true
     end
     $identifier$ ?let @lstring conditionString
-    let @string condition = [conditionString.string uppercaseString]
+    let @string condition = conditionString.string.uppercased
     let @bool branchIfZero
     if condition == "Z" then
       branchIfZero = true

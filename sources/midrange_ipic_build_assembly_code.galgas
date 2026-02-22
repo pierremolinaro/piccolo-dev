@@ -20,7 +20,7 @@ override method @midrange_intermediate_NULL buildAssemblyCode
 override method @midrange_intermediate_pseudo_ORG buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  ORG " + [self.mOrigin hexString] + "\n"
+  ioString += "  ORG " + self.mOrigin.hexString + "\n"
 }
 
 //----------------------------------------------------*
@@ -36,7 +36,7 @@ override method @midrange_intermediate_pseudo_LABEL buildAssemblyCode
 override method @midrange_intermediate_instruction_FD buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  " + [self.mInstruction_FD_base_code mnemonic] + " " + self.mRegisterDescription.mAssemblyString
+  ioString += "  " + self.mInstruction_FD_base_code.mnemonic + " " + self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     ioString += ", W"
   else
@@ -50,9 +50,9 @@ override method @midrange_intermediate_instruction_FD buildAssemblyCode
 override method @midrange_intermediate_instruction_FB buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  " + [self.mBitOrientedOp mnemonic]
+  ioString += "  " + self.mBitOrientedOp.mnemonic
   ioString += "  " + self.mRegisterDescription.mAssemblyString
-  ioString += ", " + [self.mBitNumber string]
+  ioString += ", " + self.mBitNumber.string
   ioString += "\n"
 }
 
@@ -68,7 +68,7 @@ override method @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
     ioString += "BTFSC"
   end
   ioString += "  " + self.mRegisterDescription.mAssemblyString
-  ioString += ", " + [self.mBitNumber string]
+  ioString += ", " + self.mBitNumber.string
   ioString += "\n"
 }
 
@@ -77,7 +77,7 @@ override method @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
 override method @midrange_intermediate_instruction_F buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  " + [self.mFinstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
+  ioString += "  " + self.mFinstruction.mnemonic + " " + self.mRegisterDescription.mAssemblyString
   ioString += "\n"
 }
 
@@ -99,7 +99,7 @@ override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCo
   end
   ioString += "\n"
   if self.mBranchIfZero then
-    let @string localLabel = ".LL" + [ioLocalLabelIndex string] ; ioLocalLabelIndex += 1
+    let @string localLabel = ".LL" + ioLocalLabelIndex.string ; ioLocalLabelIndex += 1
     ioString += "  GOTO " + localLabel + "\n"
     ioString += "  GOTO " + self.mTargetLabel + "\n"
     ioString += localLabel + ":\n"
@@ -223,7 +223,7 @@ override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
 override method @midrange_intermediate_instruction_literalOperation buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  ioString += "  " + [self.mLiteralInstruction mnemonic] + " " + [self.mLiteralValue hexString] + "\n"
+  ioString += "  " + self.mLiteralInstruction.mnemonic + " " + self.mLiteralValue.hexString + "\n"
 }
 
 //----------------------------------------------------*
@@ -242,54 +242,6 @@ override method @midrange_intermediate_instruction_MNOP buildAssemblyCode
     idx += 1
   end
 }
-
-//----------------------------------------------------*
-
-//override method @midrange_intermediate_instruction_computed_retlw buildAssemblyCode
-//  ?!@string ioString
-//  ?!@uint unused ioLocalLabelIndex
-//:
-//  if mUsesRCALL then
-//    ioString .= "  RCALL _computed_goto_2\n" ;
-//  else
-//    ioString .= "  CALL _computed_goto_2\n" ;
-//  end if ;
-//  foreach mLiteralValues do
-//    ioString .= "  RETLW " . [mValue hexString] . "\n" ;
-//  end foreach ;
-//end method ;
-
-//----------------------------------------------------*
-
-//override method @midrange_intermediate_instruction_computed_bra buildAssemblyCode
-//  ?!@string ioString
-//  ?!@uint unused ioLocalLabelIndex
-//:
-//  if mUsesRCALL then
-//    ioString .= "  RCALL _computed_goto_2\n" ;
-//  else
-//    ioString .= "  CALL _computed_goto_2\n" ;
-//  end if ;
-//  foreach mTargetLabels do
-//    ioString .= "  BRA " . [mValue string] . "\n" ;
-//  end foreach ;
-//end method ;
-
-//----------------------------------------------------*
-
-//override method @midrange_intermediate_instruction_computed_goto buildAssemblyCode
-//  ?!@string ioString
-//  ?!@uint unused ioLocalLabelIndex
-//:
-//  if mUsesRCALL then
-//    ioString .= "  RCALL _computed_goto_4\n" ;
-//  else
-//    ioString .= "  CALL _computed_goto_4\n" ;
-//  end if ;
-//  foreach mTargetLabels do
-//    ioString .= "  GOTO " . [mValue string] . "\n" ;
-//  end foreach ;
-//end method ;
 
 //----------------------------------------------------*
 
@@ -315,7 +267,7 @@ proc midrange_build_assembly_code
   outAssemblyCode += ";--- Prefefined registers\n"
   for (lkey mRegisterAddressList * * * *) in  inPredefinedRegisters do
     let @uint firstRegister ; [mRegisterAddressList first ?firstRegister]
-    outAssemblyCode += lkey.string + " EQU " + [firstRegister hexString] + "\n"
+    outAssemblyCode += lkey.string + " EQU " + firstRegister.hexString + "\n"
   end
   outAssemblyCode += "\n"
 //--- User defined registers in ram
@@ -323,7 +275,7 @@ proc midrange_build_assembly_code
   for (lkey mRegisterAddressList * * * *) in  inAllRegisters do
     if not [inPredefinedRegisters hasKey !lkey.string] then
       let @uint firstRegister ; [mRegisterAddressList first ?firstRegister]
-      outAssemblyCode += lkey.string + " EQU " + [firstRegister hexString] + "\n"
+      outAssemblyCode += lkey.string + " EQU " + firstRegister.hexString + "\n"
     end
   end
   outAssemblyCode += "\n"
@@ -331,10 +283,10 @@ proc midrange_build_assembly_code
   outAssemblyCode += ";--- Piccolo defined symbol\n"
   outAssemblyCode += "W EQU 1\n\n"
 //-------------------------------- Add Configuration
-  if [inActualConfigurationMap count] > 0 then
+  if inActualConfigurationMap.count > 0 then
     outAssemblyCode += ";--- Configuration\n\n"
     for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do
-      outAssemblyCode += "  __config " + [mRegisterAddress hexString] + ", " + [mRegisterValue & 255 hexString] + "\n"
+      outAssemblyCode += "  __config " + mRegisterAddress.hexString + ", " + (mRegisterValue & 255).hexString + "\n"
     end
   end
 //-------------------------------- End

@@ -344,7 +344,7 @@ abstract method @ipic18SingleInstructionTerminator duration
   ?let @string unused inNextLabel
   !@uint outMin
   !@uint outMax
-  
+
 //----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18ReturnTerminator duration
@@ -356,7 +356,7 @@ override method @ipic18ReturnTerminator duration
   outMin = 2
   outMax = 2
 }
-  
+
 //----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18RetlwTerminator duration
@@ -368,7 +368,7 @@ override method @ipic18RetlwTerminator duration
   outMin = 2
   outMax = 2
 }
-  
+
 //----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18RetfieTerminator duration
@@ -380,7 +380,7 @@ override method @ipic18RetfieTerminator duration
   outMin = 2
   outMax = 2
 }
-  
+
 //----------------------------------------------------------------------------------------------------------------------*
 
 override method @ipic18JumpTerminator duration
@@ -390,7 +390,7 @@ override method @ipic18JumpTerminator duration
   !@uint outMax
 {
   if [inExploredBlockMap hasKey !self.mLabel.string] then
-    [inExploredBlockMap searchKey !self.mLabel ?let min ?let max] 
+    [inExploredBlockMap searchKey !self.mLabel ?let min ?let max]
     outMin = min
     outMax = max
     if self.mLabel.string != inNextLabel then
@@ -402,7 +402,7 @@ override method @ipic18JumpTerminator duration
     outMax = 0
   end
 }
-  
+
 //----------------------------------------------------------------------------------------------------------------------*
 //! minMaxDuration
 //----------------------------------------------------------------------------------------------------------------------*
@@ -531,7 +531,7 @@ override method @ipic18_intermediate_instruction_computed_rcall minMaxDuration
     for (instr * *) in self.mTargetInstructions do (idx)
       [instr minMaxDuration !inExploredBlockMap ?@uint min ?@uint max]
     //--- For all branches (but the last one) add BRA execution (2 cycles)
-      if idx < ([self.mTargetInstructions count] - 1) then
+      if idx < (self.mTargetInstructions.count - 1) then
         min = min + 2
         max = max + 2
       end
@@ -568,7 +568,7 @@ proc ipic18DurationComputations
 //--- Compute durations
   outBlockDurationMap = @()
   var continue = true
-  loop ([ioBlockList count] + 1) while continue do
+  loop (ioBlockList.count + 1) while continue do
     continue = false
     let tempBlockList = ioBlockList
     ioBlockList = @()
@@ -630,15 +630,15 @@ method @ipic18Block computeDuration
 //----------------------------------------------------------------------------------------------------------------------*
 
 proc ipic18PrintDurations
-  ?!@string ioListFileContents 
+  ?!@string ioListFileContents
   ?let @blockDurationMap inBlockDurationMap
 {
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  ioListFileContents += "*" + ["TIMINGS" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-  ioListFileContents += ["Label" stringByLeftPadding !100 !' '] + ": min ... max\n" 
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["TIMINGS" leftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
+  ioListFileContents += ["Label" leftPadding !100 !' '] + ": min ... max\n"
   for (key min max) in inBlockDurationMap do
-    ioListFileContents += [key.string stringByLeftPadding !100 !' '] + ": " + min + " ... " + max + "\n" 
+    ioListFileContents += [key.string leftPadding !100 !' '] + ": " + min + " ... " + max + "\n"
   end
   ioListFileContents += "\n"
 }

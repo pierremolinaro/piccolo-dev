@@ -3,7 +3,7 @@
 //----------------------------------------------------------------------------*
 
 method @midrange_intermediate_instruction setCurrentAddress ?!@uint ioCurrentAddress {
-  ioCurrentAddress = ioCurrentAddress + [self instructionLength]
+  ioCurrentAddress = ioCurrentAddress + self.instructionLength
 }
 
 //----------------------------------------------------------------------------*

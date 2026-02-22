@@ -41,13 +41,13 @@ override getter @baseline_intermediate_actualInstruction length -> @uint {
 //---------------------------------------------------------------------------------------------------
 
 override getter @baseline_intermediate_JUMP length -> @uint {
-  result = 1 + [self.mCurrentPage ^ self.mTargetPage oneBitCount]
+  result = 1 + (self.mCurrentPage ^ self.mTargetPage).oneBitCount
 }
 
 //---------------------------------------------------------------------------------------------------
 
 override getter @baseline_intermediate_JSR length -> @uint {
-  result = 1 + 2 * [self.mCurrentPage ^ self.mTargetPage oneBitCount]
+  result = 1 + 2 * (self.mCurrentPage ^ self.mTargetPage).oneBitCount
 }
 
 //---------------------------------------------------------------------------------------------------

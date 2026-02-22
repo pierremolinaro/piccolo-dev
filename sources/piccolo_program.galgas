@@ -6,35 +6,29 @@ before {
    | [option piccolo_options_not_in_cocoa.outputBaselineDeviceList value]
    | [option piccolo_options_not_in_cocoa.outputMidrangeDeviceList value] then
   //--- Enumerate devices
-    let @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePaths]
+    let @stringlist allDevices = [filewrapper embeddedDevices].allTextFilePaths
     var pic18_devices =@stringlist ()
     var midrange_devices =@stringlist ()
     var baseline_devices =@stringlist ()
   //--- Parse them
     for (mValue) in  allDevices do
-      let @string name = [[mValue lastPathComponent] deletingPathExtension]
+      let @string name = mValue.lastPathComponent.deletingPathExtension
       parseDeviceDefinition ( !@lstring { !name !@location.here} ? let @piccoloDeviceModel piccoloDeviceModel )
       switch piccoloDeviceModel.mProcessorType
       case pic18_60, pic18_80 :
         pic18_devices += !name
       case midrange :
         midrange_devices += !name
-//        if not [piccoloDeviceModel->mRamBankTable hasKey !"gprnobnk"] then
-//          message name . " has no common bank\n" ;
-//        end if ;
-//      if [[piccoloDeviceModel mBankCount] uint] > 4 then
-//        message name . " has " . [[[piccoloDeviceModel mBankCount] uint] string] . " banks\n" ;
-//      end if ;
       case baseline :
         baseline_devices += !name
       end
     end
   //--- Print baseline device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputBaselineDeviceList value] then
-      print (![[baseline_devices count] string] + " baseline devices supported by Piccolo " + @application.projectVersionString + ":\n")
+      print (!baseline_devices.count.string + " baseline devices supported by Piccolo " + @application.projectVersionString + ":\n")
       var @uint idx = 0
       for (mValue) in  baseline_devices do
-        print (![mValue stringByRightPadding !15 !' '])
+        print (![mValue rightPadding !15 !' '])
         idx += 1
         if idx == 5 then
           idx = 0
@@ -47,10 +41,10 @@ before {
     end
   //--- Print mid-range device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputMidrangeDeviceList value] then
-      print (![[midrange_devices count] string] + " mid-range devices supported by Piccolo " + @application.projectVersionString + ":\n")
+      print (!midrange_devices.count.string + " mid-range devices supported by Piccolo " + @application.projectVersionString + ":\n")
       var @uint idx = 0
       for (mValue) in  midrange_devices do
-        print (![mValue stringByRightPadding !15 !' '])
+        print (![mValue rightPadding !15 !' '])
         idx += 1
         if idx == 5 then
           idx = 0
@@ -63,10 +57,10 @@ before {
     end
   //--- Print pic18 device list
     if [option piccolo_options_not_in_cocoa.outputDeviceList value] | [option piccolo_options_not_in_cocoa.outputPic18DeviceList value] then
-      print (![[pic18_devices count] string] + " pic18 devices supported by Piccolo " + @application.projectVersionString + ":\n")
+      print (!pic18_devices.count.string + " pic18 devices supported by Piccolo " + @application.projectVersionString + ":\n")
       var @uint idx = 0
       for (mValue) in  pic18_devices do
-        print (![mValue stringByRightPadding !15 !' '])
+        print (![mValue rightPadding !15 !' '])
         idx += 1
         if idx == 5 then
           idx = 0
@@ -80,22 +74,22 @@ before {
   //---
   end
 //------------------------------------------------ Export Device definition files
-  if [[option piccolo_options_not_in_cocoa.exportDeviceFiles value] count] > 0 then
+  if [option piccolo_options_not_in_cocoa.exportDeviceFiles value].count > 0 then
     let @string dir = [option piccolo_options_not_in_cocoa.exportDeviceFiles value]
-    if not [dir directoryExists] then
+    if not dir.directoryExists then
       [dir makeDirectory]
     end
     let @filewrapper fw = [filewrapper embeddedDevices]
-    let @stringlist allDevices = [[filewrapper embeddedDevices] allTextFilePaths]
+    let @stringlist allDevices = [filewrapper embeddedDevices].allTextFilePaths
     for (mValue) in  allDevices do
       let @string definitionString = [fw textFileContentsAtPath !mValue]
       [definitionString writeToFile !dir + mValue]
     end
-    print (![[allDevices count] string] + " devices copied in '" + dir + "' directory\n")
+    print (!allDevices.count.string + " devices copied in '" + dir + "' directory\n")
   end
 //------------------------------------------------ Print RAM description
   let @string deviceForMemoryDescription = [option piccolo_options_not_in_cocoa.memoryDescription value]
-  if [deviceForMemoryDescription count] > 0 then
+  if deviceForMemoryDescription.count > 0 then
     let @string devicePath = "/" + deviceForMemoryDescription + ".piccoloDevice"
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
       parseDeviceDefinition (!@lstring { !deviceForMemoryDescription !@location.here} ?let piccoloDeviceModel)
@@ -104,37 +98,37 @@ before {
         totalRam  = totalRam  + mLastAddressPlusOne - mFirstFreeAddress
       end
       print (!deviceForMemoryDescription + " device:\n")
-      print (!"  " + [[piccoloDeviceModel.mRamBankTable count] string] + " RAM banks (total " + [totalRam string] + " bytes):\n")
+      print (!"  " + piccoloDeviceModel.mRamBankTable.count.string + " RAM banks (total " + totalRam.string + " bytes):\n")
       for (lkey * mFirstFreeAddress mLastAddressPlusOne mMirrorOffsetList) in  piccoloDeviceModel.mRamBankTable do
-        print (!"    bank \"" + lkey + "\" from " + [mFirstFreeAddress hexString]
-        + " to " + [mLastAddressPlusOne-1 hexString]
-        + " (" + [mLastAddressPlusOne-mFirstFreeAddress string] + " bytes)")
+        print (!"    bank \"" + lkey + "\" from " + mFirstFreeAddress.hexString
+        + " to " + (mLastAddressPlusOne-1).hexString
+        + " (" + (mLastAddressPlusOne-mFirstFreeAddress).string + " bytes)")
         for (mValue) in  mMirrorOffsetList
         before  print (!", mirror at ")
-        do print (![mFirstFreeAddress  + mValue hexString])
+        do print (!(mFirstFreeAddress  + mValue).hexString)
         between print (!", ")
         end
         print (!"\n")
       end
       switch piccoloDeviceModel.mProcessorType
       case pic18_60, pic18_80 :
-        print (!"  ROM size: " + [piccoloDeviceModel.mRomSize.uint string] + " bytes\n")
+        print (!"  ROM size: " + piccoloDeviceModel.mRomSize.uint.string + " bytes\n")
       case midrange :
         let @uint pageCount = (piccoloDeviceModel.mRomSize.uint + 2047) / 2048
-        var @string s = "" 
+        var @string s = ""
         if pageCount > 1 then
           s = "s"
         end
-        print (!"  ROM size: " + [piccoloDeviceModel.mRomSize.uint string] + " instructions ("
-        + [pageCount string] + " page" + s + ")\n")
-      case baseline : 
-        print (!"  ROM size: " + [piccoloDeviceModel.mRomSize.uint string] + " instructions\n")
+        print (!"  ROM size: " + piccoloDeviceModel.mRomSize.uint.string + " instructions ("
+        + pageCount.string + " page" + s + ")\n")
+      case baseline :
+        print (!"  ROM size: " + piccoloDeviceModel.mRomSize.uint.string + " instructions\n")
       end
       if piccoloDeviceModel.mEepromSize == 0 then
         print (!"  No EEPROM\n")
       else
-        print (!"  EEPROM size: " + [piccoloDeviceModel.mEepromSize string] + " bytes (at "
-        + [piccoloDeviceModel.mEepromAddress hexString] + ")\n")
+        print (!"  EEPROM size: " + piccoloDeviceModel.mEepromSize.string + " bytes (at "
+        + piccoloDeviceModel.mEepromAddress.hexString + ")\n")
       end
     else
       error .here:"The " + deviceForMemoryDescription + " device is not supported or does not exist"
@@ -142,15 +136,15 @@ before {
   end
 //------------------------------------------------ Print REGISTERS description
   let @string deviceForRegistersDescription = [option piccolo_options_not_in_cocoa.registerDescription value]
-  if [deviceForRegistersDescription count] > 0 then
+  if deviceForRegistersDescription.count > 0 then
     let @string devicePath = "/" + deviceForRegistersDescription + ".piccoloDevice"
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
       parseDeviceDefinition (!@lstring { ! deviceForRegistersDescription !@location.here} ?let piccoloDeviceModel)
-      print (!deviceForRegistersDescription + " has " + [[piccoloDeviceModel.mRegisterTable count] string] + " special registers:\n")
+      print (!deviceForRegistersDescription + " has " + piccoloDeviceModel.mRegisterTable.count.string + " special registers:\n")
       for register in  piccoloDeviceModel.mRegisterTable do
         var @string s = "  '" + register.lkey + "' at "
         for address in  register.mRegisterAddressList
-        do s += [address.mValue hexString]
+        do s += address.mValue.hexString
         between s += ", "
         end
         s += register.mBitDefinitionString + "\n"
@@ -162,20 +156,20 @@ before {
   end
 //------------------------------------------------ Print CONFIGURATION description
   let @string deviceForConfigDescription = [option piccolo_options_not_in_cocoa.configDescription value]
-  if [deviceForConfigDescription count] > 0 then
+  if deviceForConfigDescription.count > 0 then
     let @string devicePath = "/" + deviceForConfigDescription + ".piccoloDevice"
     if [[filewrapper embeddedDevices] fileExistsAtPath !devicePath] then
       parseDeviceDefinition (!@lstring { ! deviceForConfigDescription !@location.here} ?let piccoloDeviceModel)
-      print (!deviceForConfigDescription + " has " + [[piccoloDeviceModel.mConfigRegisterMap count] string] + " configuration registers:\n")
+      print (!deviceForConfigDescription + " has " + piccoloDeviceModel.mConfigRegisterMap.count.string + " configuration registers:\n")
       for (lkey mRegisterAddress mRegisterWidth mConfigRegisterMaskMap mIllegalMaskList) in  piccoloDeviceModel.mConfigRegisterMap do
-        var @string s = "REGISTER '" + lkey + "' at " + [mRegisterAddress.uint hexString] + ", width " + [mRegisterWidth.uint string] + "\n"
+        var @string s = "REGISTER '" + lkey + "' at " + mRegisterAddress.uint.hexString + ", width " + mRegisterWidth.uint.string + "\n"
         for (mIllegalValue mIllegalMask mDescription) in  mIllegalMaskList do
-          s += "  illegal value " + [mIllegalValue.uint hexString] + " mask " + [mIllegalMask.uint hexString] + " description \"" + mDescription + "\"\n"
+          s += "  illegal value " + mIllegalValue.uint.hexString + " mask " + mIllegalMask.uint.hexString + " description \"" + mDescription + "\"\n"
         end
         for (others_lkey others_mMaskValue others_mDescription others_mFieldSettingMap) in  mConfigRegisterMaskMap do
-          s += "  setting '" + others_lkey + "': mask " + [others_mMaskValue.uint hexString] + " description \"" + others_mDescription + "\"\n"
+          s += "  setting '" + others_lkey + "': mask " + others_mMaskValue.uint.hexString + " description \"" + others_mDescription + "\"\n"
           for (second_lkey second_mValue *) in  others_mFieldSettingMap do
-            s += "    value " + [second_mValue hexString] + " description \"" + second_lkey + "\"\n"
+            s += "    value " + second_mValue.hexString + " description \"" + second_lkey + "\"\n"
           end
         end
         print (!s)

@@ -10,20 +10,20 @@ map @generatedCodeMap { // Key is code address (decimal representation)
 //----------------------------------------------------------------------------*
 
 getter @uint x4string ->@string outResult {
-  outResult  = [self / 0x10_00 & 0xF xString]
-  outResult += [self / 0x10_0 & 0xF xString]
-  outResult += [self / 0x10_ & 0xF xString]
-  outResult += [self         & 0xF xString]
+  outResult  = (self / 0x10_00 & 0xF).xString
+  outResult += (self / 0x10_0 & 0xF).xString
+  outResult += (self / 0x10_ & 0xF).xString
+  outResult += (self         & 0xF).xString
 }
 
 //----------------------------------------------------------------------------*
 
 getter @uint x6string -> @string outResult {
-  outResult  = [self / 0x10_000 & 0xF xString]
-  outResult += [self / 0x10_00 & 0xF xString]
-  outResult += [self / 0x10_0 & 0xF xString]
-  outResult += [self / 0x10_ & 0xF xString]
-  outResult += [self         & 0xF xString]
+  outResult  = (self / 0x10_000 & 0xF).xString
+  outResult += (self / 0x10_00 & 0xF).xString
+  outResult += (self / 0x10_0 & 0xF).xString
+  outResult += (self / 0x10_ & 0xF).xString
+  outResult += (self         & 0xF).xString
 }
 
 //----------------------------------------------------------------------------*
@@ -38,52 +38,52 @@ proc generateLineWithCode
  {
 //--- Complete text with empty lines
   var @stringlist ipicText = inIpicText
-  loop( [inCode count] + 1)
-  while [ipicText count] < [inCode count] do
+  loop( inCode.count + 1)
+  while ipicText.count < inCode.count do
     ipicText += !""
   end
 //---
   var @uint address = inAddress
   var first = true
   for (mValue) in  ipicText, (mAssemblyCode mBinaryCode) in  inCode do
-    ioListFileContents += [address x6string]
-    address = address + 2 * [mBinaryCode count]
+    ioListFileContents += address.x6string
+    address = address + 2 * mBinaryCode.count
     var @string s = " "
     for (bin_mValue) in  mBinaryCode do
-      s += " " + [bin_mValue x4string]
+      s += " " + bin_mValue.x4string
     end
-    ioListFileContents += [s stringByRightPadding !13 !' ']
+    ioListFileContents += [s rightPadding !13 !' ']
     s = ""
     if first && (inMin <= inMax) then
       if inMin <= 99_999 then
-        s += [inMin string]
+        s += inMin.string
       else
         s += "*****"
       end
       s += "-"
       if inMax <= 99_999 then
-        s += [inMax string]
+        s += inMax.string
       else
         s += "*****"
       end
       s += " "
     end
-    ioListFileContents += [s stringByRightPadding !12 !' ']
-    ioListFileContents += [mAssemblyCode stringByRightPadding !50 !' ']
+    ioListFileContents += [s rightPadding !12 !' ']
+    ioListFileContents += [mAssemblyCode rightPadding !50 !' ']
     ioListFileContents += " "
     ioListFileContents += mValue
     ioListFileContents += "\n"
-    first = false 
+    first = false
   end
 //--- Display supplementary text
-  for (mValue) in  [ipicText subListFromIndex ![inCode count]] do
-    ioListFileContents += [address x6string]
-    ioListFileContents += ["" stringByRightPadding !76 !' ']
+  for (mValue) in  [ipicText subListFromIndex !inCode.count] do
+    ioListFileContents += address.x6string
+    ioListFileContents += ["" rightPadding !76 !' ']
     ioListFileContents += mValue
-    ioListFileContents += "\n" 
+    ioListFileContents += "\n"
   end
 }
-  
+
 //----------------------------------------------------------------------------*
 
 method @ipic18Block generateCodeForBlock
@@ -109,17 +109,17 @@ method @ipic18Block generateCodeForBlock
     ioAssemblyString += self.mLabel.string + ":\n"
   else
     var @codeList cd = @()
-    cd += !"ORG " + [inBlockAddress hexString] !@()
+    cd += !"ORG " + inBlockAddress.hexString !@()
     cd += !self.mLabel.string + ":" !@()
     generateLineWithCode (
       !inBlockAddress
       !cd
-      !@[@("LABEL " + self.mLabel + ", ORG "+ [inBlockAddress hexString])]
+      !@[@("LABEL " + self.mLabel + ", ORG "+ inBlockAddress.hexString)]
       !@uint.max
       !0
       !?ioListFileContents
-    )  
-    ioAssemblyString += "    ORG "+ [inBlockAddress hexString] + "\n"
+    )
+    ioAssemblyString += "    ORG "+ inBlockAddress.hexString + "\n"
     ioAssemblyString += self.mLabel.string + ":\n"
   end
 //--- Generate regular instructions
@@ -131,11 +131,11 @@ method @ipic18Block generateCodeForBlock
       !inDataMap
       ?let @codeList code
     ]
-    [!?ioGeneratedCodeMap insertKey ![[address string] nowhere] !code !mInstruction]
+    [!?ioGeneratedCodeMap insertKey !address.string.nowhere !code !mInstruction]
     generateLineWithCode (
       !address
       !code
-      ![mInstruction instructionDisplay]
+      !mInstruction.instructionDisplay
       !mMin
       !mMax
       !?ioListFileContents
@@ -146,15 +146,15 @@ method @ipic18Block generateCodeForBlock
       end
       ioAssemblyString += mAssemblyCode + "\n"
     end
-    address = address + [mInstruction instructionSize]
+    address = address + mInstruction.instructionSize
   //--- Check instruction size corresponds generated code size
     var @uint generatedCodeSize = 0
     for (* mBinaryCode) in code do
-      generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode count]
+      generatedCodeSize = generatedCodeSize + 2 * mBinaryCode.count
     end
-    if generatedCodeSize != [mInstruction instructionSize] then
+    if generatedCodeSize != mInstruction.instructionSize then
       let s = "*** INTERNAL ERROR ** generated code size ("
-      + generatedCodeSize + ") != instruction size (" + [mInstruction instructionSize] + ")"
+      + generatedCodeSize + ") != instruction size (" + mInstruction.instructionSize + ")"
       error .nowhere : s
       ioListFileContents += s + "\n"
     end
@@ -183,7 +183,7 @@ method @ipic18Block generateCodeForBlock
   //--- Check terminator size corresponds generated code size
     var generatedCodeSize = 0
     for (* mBinaryCode) in code do
-      generatedCodeSize = generatedCodeSize + 2 * [mBinaryCode count]
+      generatedCodeSize = generatedCodeSize + 2 * mBinaryCode.count
     end
     if generatedCodeSize != [self.mTerminator terminatorSize !inNextBlockLabel] then
       let s = "*** INTERNAL ERROR ** generated code size ("
@@ -216,9 +216,9 @@ proc ipic18GenerateCode
   !@uint outUsedROMsize
   !@generatedCodeMap outGeneratedCodeMap
 {
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  ioListFileContents += "*" + ["CODE GENERATION" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  ioListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  ioListFileContents += "*" + ["CODE GENERATION" leftAndRightPadding !117 !' '] + "*\n"
+  ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
   if @application.verboseOutput then
     print (!"Code generation:\n")
   end
@@ -234,8 +234,8 @@ proc ipic18GenerateCode
   var @pic18_dataAddressMap dataAddressMap = @()
   for (lkey mData *) in  inDataMap do
     [!?dataAddressMap insertKey !lkey !dataAddress]
-    dataAddress = dataAddress + [mData count] * 2
-  end 
+    dataAddress = dataAddress + mData.count * 2
+  end
 //---------------------------------- Generate code
   initCodeGenerator ( )
   var assemblyString = ""
@@ -244,7 +244,7 @@ proc ipic18GenerateCode
   outGeneratedCodeMap = @()
   for (mBlock) in  inGeneratedBlockList do(blockIndex)
     let @string nextBlockLabel
-    if (blockIndex+1) < [inGeneratedBlockList count] then
+    if (blockIndex+1) < inGeneratedBlockList.count then
       nextBlockLabel = [inGeneratedBlockList mBlockAtIndex !blockIndex+1].mLabel.string
     else
       nextBlockLabel = ""
@@ -275,13 +275,13 @@ proc ipic18GenerateCode
     setEmitAddress (!dataAddress )
     generateLineWithCode (
       !dataAddress
-      !@[@("    ORG " + [dataAddress hexString], @())]
-      !@[@("    ORG " + [dataAddress hexString])]
+      !@[@("    ORG " + dataAddress.hexString, @())]
+      !@[@("    ORG " + dataAddress.hexString)]
       !@uint.max
       !0
       !?ioListFileContents
     )
-    assemblyString += "    ORG " + [dataAddress hexString] + "\n"
+    assemblyString += "    ORG " + dataAddress.hexString + "\n"
   do
     generateLineWithCode (
       !dataAddress
@@ -293,20 +293,20 @@ proc ipic18GenerateCode
     )
     assemblyString += "_data_" + dataName + ":\n"
     for (data) in  dataValueList do
-      assemblyString += "    DW " + [data hexString] + "\n"
+      assemblyString += "    DW " + data.hexString + "\n"
       emitCode (!data)
       generateLineWithCode (
         !dataAddress
-        !@[@("    DW " + [data hexString], @[@(data)])]
-        !@[@("    DW " + [data hexString])]
+        !@[@("    DW " + data.hexString, @[@(data)])]
+        !@[@("    DW " + data.hexString)]
         !@uint.max
         !0
         !?ioListFileContents
       )
-      dataAddress = dataAddress + 2 
+      dataAddress = dataAddress + 2
     end
     ioListFileContents += "\n"
-  end 
+  end
   if @application.verboseOutput then
     print (!"  Relocatable code size: " + relocatableCodeSize + " bytes.\n\n")
   end
@@ -330,16 +330,16 @@ proc ipic18GenerateCode
   end
 //--- Generate file
   getGeneratedContents (?let @string contents)
-  var destinationFile = [inSourceFileName deletingPathExtension] + ".hex"
+  var destinationFile = inSourceFileName.deletingPathExtension + ".hex"
   [contents writeToFileWhenDifferentContents !destinationFile ?*]
 //--- Generate contents in C file ?
   if [option piccoloOptions.output_C_Array value] then
-    let baseName = [[inSourceFileName lastPathComponent] deletingPathExtension]
+    let baseName = inSourceFileName.lastPathComponent.deletingPathExtension
     get_C_ArrayImplementation (!baseName ?let @string cContents)
-    destinationFile = [inSourceFileName deletingPathExtension] + ".c"
+    destinationFile = inSourceFileName.deletingPathExtension + ".c"
     [cContents writeToFileWhenDifferentContents !destinationFile ?*]
     get_C_ArrayHeader (!baseName ?let @string hContents)
-    destinationFile = [inSourceFileName deletingPathExtension] + ".h"
+    destinationFile = inSourceFileName.deletingPathExtension + ".h"
     [hContents writeToFileWhenDifferentContents !destinationFile ?*]
   end
 //----------------------------- Generate assembly file ?
@@ -376,7 +376,7 @@ proc pic18GenerateAssemblyFile
   assemblyString += ";--- Prefefined registers\n"
   for (lkey mRegisterAddressList * * * *) in  inPredefinedRegisters do
     [mRegisterAddressList first ?let @uint firstRegister]
-    assemblyString += lkey.string + " EQU " + [firstRegister hexString] + "\n"
+    assemblyString += lkey.string + " EQU " + firstRegister.hexString + "\n"
   end
   assemblyString += "\n\n"
 //--- User defined registers in ram
@@ -384,7 +384,7 @@ proc pic18GenerateAssemblyFile
   for (lkey mRegisterAddressList * * * *) in  inAllRegisters do
     if not [inPredefinedRegisters hasKey !lkey.string] then
       [mRegisterAddressList first ?let @uint firstRegister]
-      assemblyString += lkey.string + " EQU " + [firstRegister hexString] + "\n"
+      assemblyString += lkey.string + " EQU " + firstRegister.hexString + "\n"
     end
   end
   assemblyString += "\n\n"
@@ -394,17 +394,17 @@ proc pic18GenerateAssemblyFile
   assemblyString += "FAST EQU 1\n"
   assemblyString += "BSR_ACCESS EQU 1\n\n"
 //-------------------------------- Add Configuration
-  if [inActualConfigurationMap count] > 0 then
+  if inActualConfigurationMap.count > 0 then
     assemblyString += ";--- Configuration\n\n"
     for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do
-      assemblyString += "  __config " + [mRegisterAddress hexString] + ", " + [mRegisterValue & 255 hexString] + "\n"
+      assemblyString += "  __config " + mRegisterAddress.hexString + ", " + (mRegisterValue & 255).hexString + "\n"
     end
   end
 //-------------------------------- End
   assemblyString += ";---\n\n"
   assemblyString += "  END\n\n"
 //-------------------------------- Generate file
-  let @string asmDestinationFile = [inSourceFileName deletingPathExtension] + ".asm"
+  let @string asmDestinationFile = inSourceFileName.deletingPathExtension + ".asm"
  [assemblyString writeToFileWhenDifferentContents !asmDestinationFile ?*]
 }
 

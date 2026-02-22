@@ -5,8 +5,8 @@ proc emitBaselineCodeAtWordAddress
   ?!@uint ioWordAddress
   ?let @baseline_assembly_instruction inInstruction
   ?!@string ioListFileContents {
-  ioListFileContents += "   " + [ioWordAddress * 2 x4String]
-  ioListFileContents += " " + [inCode x4String] + " "
+  ioListFileContents += "   " + (ioWordAddress * 2).x4String
+  ioListFileContents += " " + inCode.x4String + " "
   [inInstruction print !?ioListFileContents]
   ioListFileContents += "\n"
   emitCode ( !inCode )
@@ -19,7 +19,7 @@ proc emitNoBaselineCodeAtWordAddress
   ?let @uint inWordAddress
   ?let @baseline_assembly_instruction inInstruction
   ?!@string ioListFileContents {
-  ioListFileContents += "   " + [inWordAddress * 2 x4String]
+  ioListFileContents += "   " + (inWordAddress * 2).x4String
   ioListFileContents += "      "
   [inInstruction print !?ioListFileContents]
   ioListFileContents += "\n"
@@ -65,7 +65,7 @@ override method @baseline_assembly_pseudo_ORG enterLabelAtAddress
 override method @baseline_assembly_actualInstruction enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioWordAddress {
-  ioWordAddress = ioWordAddress  + [self length]
+  ioWordAddress = ioWordAddress  + self.length
 }
 
 //----------------------------------------------------------------------------*
@@ -299,8 +299,8 @@ override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
   [inRoutineSymbolTable searchKey !self.mLabel ?let targetAddress]
   if (targetAddress != ioWordAddress) then
     error self.mLabel: "Internal second pass error: the '" + self.mLabel
-    + "' label gets " + [ioWordAddress hexString] + " value in second pass, while it gets "
-    + [targetAddress hexString] + " in first pass"
+    + "' label gets " + ioWordAddress.hexString + " value in second pass, while it gets "
+    + targetAddress.hexString + " in first pass"
   end
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
@@ -336,13 +336,13 @@ proc build_baseline_binary_code
     checkCurrentEmitAddress ( !currentWordAddress * 2 )
   end
   if lastAddressForFirstPass != currentWordAddress then
-    error @location.here: "Internal second pass error: the last address gets " + [currentWordAddress hexString]
+    error @location.here: "Internal second pass error: the last address gets " + currentWordAddress.hexString
     + " value in second pass, while it gets "
-    + [lastAddressForFirstPass hexString] + " value in first pass"
+    + lastAddressForFirstPass.hexString + " value in first pass"
   elsif lastAddressForFirstPass > inROMsize then
-    error @location.here: "Program too large: " + [lastAddressForFirstPass string]
+    error @location.here: "Program too large: " + lastAddressForFirstPass.string
     + " bytes (rom size is "
-    + [inROMsize string] + " bytes)"
+    + inROMsize.string + " bytes)"
   end
 }
 

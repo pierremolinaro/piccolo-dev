@@ -5,7 +5,7 @@ abstract method @baseline_assembly_instruction print ?!@string ioListFileContent
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_pseudo_ORG print ?!@string ioListFileContents {
-  ioListFileContents += "  ORG " + [self.mOrigin hexString]
+  ioListFileContents += "  ORG " + self.mOrigin.hexString
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -29,7 +29,7 @@ override method @baseline_assembly_pseudo_LABEL print ?!@string ioListFileConten
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_instruction_FD print ?!@string ioListFileContents {
-  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
+  ioListFileContents += "  " + self.mInstruction.mnemonic + " " + self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     ioListFileContents += ", W"
   else
@@ -40,13 +40,13 @@ override method @baseline_assembly_instruction_FD print ?!@string ioListFileCont
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_instruction_F print ?!@string ioListFileContents {
-  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString
+  ioListFileContents += "  " + self.mInstruction.mnemonic + " " + self.mRegisterDescription.mAssemblyString
 }
 
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_instruction_FB print ?!@string ioListFileContents {
-  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
+  ioListFileContents += "  " + self.mInstruction.mnemonic + " " + self.mRegisterDescription.mAssemblyString + ", " + self.mBitNumber.string
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -57,7 +57,7 @@ override method @baseline_assembly_instruction_BitTestSkip print ?!@string ioLis
   else
     ioListFileContents += "  BTFSC "
   end
-  ioListFileContents += self.mRegisterDescription.mAssemblyString + ", " + [self.mBitNumber string]
+  ioListFileContents += self.mRegisterDescription.mAssemblyString + ", " + self.mBitNumber.string
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -82,7 +82,7 @@ override method @baseline_assembly_CALL print ?!@string ioListFileContents {
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_instruction_literalOperation print ?!@string ioListFileContents {
-  ioListFileContents += "  " + [self.mInstruction mnemonic] + " " + [self.mLiteralValue hexString]
+  ioListFileContents += "  " + self.mInstruction.mnemonic + " " + self.mLiteralValue.hexString
 }
 
 //---------------------------------------------------------------------------------------------------
@@ -104,7 +104,7 @@ override method @baseline_assembly_incDecRegisterInCondition print ?!@string ioL
 //---------------------------------------------------------------------------------------------------
 
 override method @baseline_assembly_WO_OPERAND print ?!@string ioListFileContents {
-  ioListFileContents += "  " + [self.mInstruction mnemonic]
+  ioListFileContents += "  " + self.mInstruction.mnemonic
 }
 
 //---------------------------------------------------------------------------------------------------

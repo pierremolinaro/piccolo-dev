@@ -47,7 +47,7 @@ rule <body>
     repeat
       $identifier$ ?let @lstring unusedRegister
       unusedRegisterList += !unusedRegister
-    while 
+    while
       $,$
     end
   while
@@ -56,7 +56,7 @@ rule <body>
     repeat
       $identifier$ ?let @lstring unusedRoutine
       unusedRoutineList += !unusedRoutine
-    while 
+    while
       $,$
     end
   while
@@ -64,7 +64,7 @@ rule <body>
     repeat
       $identifier$ ?let @lstring inlinedRoutine
       inlinedRoutineList += !inlinedRoutine
-    while 
+    while
       $,$
     end
   while
@@ -147,7 +147,7 @@ rule <checkpic_definition>
   end
   ioList += !loc !valueList
 }
-    
+
 //----------------------------------------------------*
 
 rule <data_definition> ?!@dataList ioDataList {
@@ -186,7 +186,7 @@ rule <data_definition> ?!@dataList ioDataList {
   $}$
   ioDataList += !dataName !valueList !true
 }
-    
+
 //----------------------------------------------------*
 
 rule <instruction_list>
@@ -214,7 +214,7 @@ rule <instruction_list>
 
 rule <interrupt_definition>
   ?!@pic18InterruptDefinitionList ioInterruptDefinitionList
-  ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4
 {
   $interrupt$
@@ -241,7 +241,7 @@ rule <interrupt_definition>
 
 rule <routine_definition>
   ?!@pic18RoutineDefinitionList ioRoutineDefinitionList
-  ?!@bool ioNeedsComputedGoto2 
+  ?!@bool ioNeedsComputedGoto2
   ?!@bool ioNeedsComputedGoto4 {
   let @bool noreturn
   select
@@ -339,7 +339,7 @@ rule <condition_factor>
       $,$ ; $w$ ; W_isDestination = true
     end
     $identifier$ ?let @lstring conditionString
-    let @string condition = [conditionString.string uppercaseString]
+    let @string condition = conditionString.string.uppercased
     let @bool branchIfZero
     if condition == "Z" then
       branchIfZero = true
@@ -385,7 +385,7 @@ rule <condition_factor>
   or
     <register_parsing> ?let registerName
     $identifier$ ?let @lstring conditionString
-    let @string condition = [conditionString.string uppercaseString]
+    let @string condition = conditionString.string.uppercased
     let @bool branchIfZero
     if condition == "Z" then
       branchIfZero = true
@@ -400,7 +400,7 @@ rule <condition_factor>
   or
     let @conditional_branch conditional_branch
     $identifier$ ?let @lstring conditionString
-    let @string condition = [conditionString.string uppercaseString]
+    let @string condition = conditionString.string.uppercased
     if condition == "Z" then
       conditional_branch = @conditional_branch. bz
     elsif condition == "NZ" then
@@ -516,7 +516,7 @@ rule <structured_instruction>
       if switchLabel.string != caseLabel.string then
         error caseLabel : "'case' label does not match 'switch' label, it should be "
            + (if switchLabel.string != "" then switchLabel.string else "empty" end)
-      end 
+      end
       let @location caseLocation = @location.here
       var caseExpressionList =@pic18CaseExpressionList ()
       repeat
@@ -559,7 +559,7 @@ rule <structured_instruction>
       if switchLabel.string != elseLabel.string then
         error elseLabel : "'else' label does not match 'switch' label, it should be "
            + (if switchLabel.string != "" then switchLabel.string else "empty" end)
-      end 
+      end
       elseLocation = @location.here
       <instruction_list>
         ?elseInstructionList
@@ -582,7 +582,7 @@ rule <structured_instruction>
     if switchLabel.string != endSwitchLabel.string then
       error switchLabel : "'end' label does not match 'switch' label, it should be "
          + (if switchLabel.string != "" then switchLabel.string else "empty" end)
-    end 
+    end
   or
     $block$
     let @location instructionLocation = @location.here
@@ -602,7 +602,7 @@ rule <structured_instruction>
       <block_termination> ?let @abstractBlockTerminationForBlockInstruction blockTermination
       blockList += !blockName !instructionList !blockTermination !endOfBlock
     while
-    end    
+    end
     outInstruction = @pic18Instruction_block {
       !instructionLocation
       !startBlockName
@@ -649,7 +649,7 @@ rule <structured_instruction>
     if doLabel.string != endDoLabel.string then
       error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
-    end 
+    end
   or
     $checkbank$
     $integer$ ?let @luint bankIndex
@@ -820,7 +820,7 @@ rule <structured_instruction>
     if foreverLabel.string != endForeverLabel.string then
       error endForeverLabel : "'end' label does not match 'fovever' label, it should be "
          + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
-    end 
+    end
     outInstruction = @pic18Instruction_FOREVER {
       !instructionLocation
       !instructionList
@@ -839,7 +839,7 @@ rule <structured_instruction>
       $>=$ ; $w$ ; opCode = @if_semi_colon_op. CPFSLT
     or
       $identifier$ ?let @lstring conditionString
-      let @string condition = [conditionString.string uppercaseString]
+      let @string condition = conditionString.string.uppercased
       if condition != "NZ" then
         error conditionString:"invalid '" + condition + "' condition; it should be 'nz'"
       end
@@ -897,7 +897,7 @@ rule <structured_instruction>
     end
     let @bool skipIfZero
     $identifier$ ?let @lstring conditionString
-    let @string condition = [conditionString.string uppercaseString]
+    let @string condition = conditionString.string.uppercased
     if condition == "Z" then
       skipIfZero = false
     elsif condition == "NZ" then
@@ -939,7 +939,7 @@ rule <structured_instruction>
     if ifLabel.string != endIfLabel.string then
       error endIfLabel : "'end' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
-    end 
+    end
   or
     $do$
     let @lstring doLabel
@@ -968,7 +968,7 @@ rule <structured_instruction>
       if doLabel.string != whileLabel.string then
         error whileLabel : "'while' label does not match 'do' label, it should be "
            + (if doLabel.string != "" then doLabel.string else "empty" end)
-      end 
+      end
       <condition_expression> ?let whileCondition
       <instruction_list>
         ?let instructionList
@@ -988,7 +988,7 @@ rule <structured_instruction>
     if doLabel.string != endDoLabel.string then
       error endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end)
-    end 
+    end
     outInstruction = @pic18Instruction_do_while {
       !instructionLocation
       !repeatedInstructionList
@@ -1036,7 +1036,7 @@ rule <structured_instruction>
     let @location instructionLocation = @location.here
     let @conditional_branch conditional_branch
     $identifier$ ?let @lstring conditionString
-    let @string condition = [conditionString.string uppercaseString]
+    let @string condition = conditionString.string.uppercased
     if condition == "Z" then
       conditional_branch = @conditional_branch. bz
     elsif condition == "NZ" then
@@ -1139,7 +1139,7 @@ rule <structured_if_instruction>
     if ifLabel.string != elsifIfLabel.string then
       error elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
-    end 
+    end
     <structured_if_instruction>
       !ifLabel
       ?let elsifPartInstruction
@@ -1159,7 +1159,7 @@ rule <structured_if_instruction>
     if ifLabel.string != elsifLabel.string then
       error elsifLabel : "'else' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end)
-    end 
+    end
     <instruction_list>
       ?elseInstructionList
       !?ioNeedsComputedGoto2
@@ -1244,7 +1244,7 @@ rule <simple_instruction> !@pic18PiccoloSimpleInstruction outInstruction {
   //--- Emit a warning if instruction is "movf" and W is not destination
     if (baseCode == .MOVF) && not W_isDestination then
       warning instructionLocation :  "This instruction does not move data, it only sets flags. "
-        "Use 'movf *, reg' instead of 'movf reg' to suppress this warning" 
+        "Use 'movf *, reg' instead of 'movf reg' to suppress this warning"
     end
   or
     $movf$

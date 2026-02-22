@@ -15,7 +15,7 @@ proc pic18BootloaderSpecificationAnalysis
   !@ramBankTable outRamBank
   !@registerTable outRegisterTable {
 //-------------------------------- Check source file name
-  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] deletingPathExtension]
+  let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inBootloaderName.string then
     error inBootloaderName: "the bootloader name ('" + inBootloaderName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
@@ -30,16 +30,16 @@ proc pic18BootloaderSpecificationAnalysis
     case baseline : error inDeviceName: "a baseline device is not accepted here" : outAccessBankSplitOffset
   end
 //-------------------------------- Check reserved ROM size < microcontroller ROM size
-  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  outListFileContents += "*" + ["BOOTLOADER FOOTPRINT" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+  outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  outListFileContents += "*" + ["BOOTLOADER FOOTPRINT" leftAndRightPadding !117 !' '] + "*\n"
+  outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
   if inReservedRomSize.uint >= outPiccoloDeviceModel.mRomSize.uint then
     error inReservedRomSize: "reserved size for bootloader ("
-    + [inReservedRomSize.uint string] + " bytes) is greater than ROM size ("
-    + [outPiccoloDeviceModel.mRomSize.uint string] + " bytes) of "
-    + inDeviceName + " micro controller" 
+    + inReservedRomSize.uint.string + " bytes) is greater than ROM size ("
+    + outPiccoloDeviceModel.mRomSize.uint.string + " bytes) of "
+    + inDeviceName + " micro controller"
   end
-  outListFileContents += "ROM size : " + [inReservedRomSize.uint string] + " bytes.\n\n"
+  outListFileContents += "ROM size : " + inReservedRomSize.uint.string + " bytes.\n\n"
 //-------------------------------- Check reserved RAM size <= microcontroller RAM size (in every bank)
   outRamBank = outPiccoloDeviceModel.mRamBankTable
   for (lkey mReservedSize) in  inBootloaderReservedRAMmap do
@@ -47,18 +47,18 @@ proc pic18BootloaderSpecificationAnalysis
     firstFreeAddress = firstFreeAddress + mReservedSize.uint
     if (firstFreeAddress > lastAddressPlusOne) then
       error mReservedSize: "reserved size is greater than size of '" + lkey + "' bank ("
-      + [lastAddressPlusOne - firstAddress string] + " bytes)"
+      + (lastAddressPlusOne - firstAddress).string + " bytes)"
     else
       [!?outRamBank setMFirstFreeAddressForKey !firstFreeAddress !lkey.string]
-      outListFileContents += "'" + lkey + "' RAM size : " + [mReservedSize.uint string] + " bytes (from "
-      + [firstAddress hexString] + " to " + [firstFreeAddress - 1 hexString] + ").\n\n"
+      outListFileContents += "'" + lkey + "' RAM size : " + mReservedSize.uint.string + " bytes (from "
+      + firstAddress.hexString + " to " + (firstFreeAddress - 1).hexString + ").\n\n"
     end
   end
 //-------------------------------- Check bootloader routines
-  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  outListFileContents += "*" + ["BOOTLOADER ROUTINES" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-  outListFileContents += ["Routine" stringByLeftPadding !40 !' '] + " Entry point address\n"
+  outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  outListFileContents += "*" + ["BOOTLOADER ROUTINES" leftAndRightPadding !117 !' '] + "*\n"
+  outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
+  outListFileContents += ["Routine" leftPadding !40 !' '] + " Entry point address\n"
   var routineNameSet =@stringset ()
   var @uint entryPointAddress = 0x4
   for (mRoutineName * * * *) in  inBootloaderRoutineDeclarationList do
@@ -66,7 +66,7 @@ proc pic18BootloaderSpecificationAnalysis
       error mRoutineName:"This routine is already declared"
     end
     routineNameSet ++= mRoutineName.string
-    outListFileContents += [mRoutineName.string stringByLeftPadding !40 !' '] + " " + [entryPointAddress hexString] + "\n"
+    outListFileContents += [mRoutineName.string leftPadding !40 !' '] + " " + entryPointAddress.hexString + "\n"
     entryPointAddress = entryPointAddress + 4
     if entryPointAddress == 0x08 then
       entryPointAddress = 0x0C
@@ -76,17 +76,17 @@ proc pic18BootloaderSpecificationAnalysis
   end
   outListFileContents += "\n"
 //-------------------------------- Check user program routines
-  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-  outListFileContents += "*" + ["USER PROGRAM ROUTINES" stringByLeftAndRightPadding !117 !' '] + "*\n"
-  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
-  outListFileContents += ["Routine" stringByLeftPadding !40 !' '] + " Entry point address\n"
+  outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+  outListFileContents += "*" + ["USER PROGRAM ROUTINES" leftAndRightPadding !117 !' '] + "*\n"
+  outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
+  outListFileContents += ["Routine" leftPadding !40 !' '] + " Entry point address\n"
   entryPointAddress = inReservedRomSize.uint
   for (mRoutineName * * * *) in  inUserRoutineDeclarationList do
     if [routineNameSet hasKey !mRoutineName.string] then
       error mRoutineName:"This routine is already declared"
     end
     routineNameSet ++= mRoutineName.string
-    outListFileContents += [mRoutineName.string stringByLeftPadding !40 !' '] + " " + [entryPointAddress hexString] + "\n"
+    outListFileContents += [mRoutineName.string leftPadding !40 !' '] + " " + entryPointAddress.hexString + "\n"
     entryPointAddress = entryPointAddress + 4
   end
   outListFileContents += "\n"
@@ -103,7 +103,7 @@ proc pic18BootloaderSpecificationAnalysis
     !?outRegisterTable
     ?*
   )
-  outListFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+  outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
 }
 
 //----------------------------------------------------------------------------*

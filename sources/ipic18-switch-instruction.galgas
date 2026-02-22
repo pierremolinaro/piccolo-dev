@@ -60,7 +60,7 @@ override method @pic18Instruction_switch analyze
 {
   var caseConstantMap =@caseConstantMap ()
 //--- Labels
-  let exitLabel = @lstring { !".L" + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+  let exitLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation} 
   ioLocalLabelIndex += 1
 //--- Comparison value
   var @sint64 lastComparisonValue = 0
@@ -73,10 +73,10 @@ override method @pic18Instruction_switch analyze
 //---
   for (mStartOfCase mCaseExpressionList mInstructionList) in  self.mCaseList do
   //--- Label
-    let conditionTrueLabel = @lstring { !".L.accepted." + [ioLocalLabelIndex string] !self.mInstructionLocation} 
+    let conditionTrueLabel = @lstring { !".L.accepted." + ioLocalLabelIndex.string !self.mInstructionLocation} 
   //--- Generate test blocks
     for (mCaseItem) in mCaseExpressionList do
-      let conditionLabel = [ioLocalLabelIndex string]
+      let conditionLabel = ioLocalLabelIndex.string
       ioLocalLabelIndex += 1
       [mCaseItem analyzeCaseItem
         !inRegisterTable
@@ -127,9 +127,9 @@ override method @pic18Instruction_switch analyze
     if finalBankSettingDefined then
       if finalBankSetting != branchFinalBank then
         error mStartOfCase: "this branch leaves bank setting to "
-        + if branchFinalBank == @uint. max then "'no selection'" else [branchFinalBank string] end
+        + if branchFinalBank == @uint. max then "'no selection'" else branchFinalBank.string end
         + ", but first branch leaves bank setting to "
-        + if finalBankSetting == @uint. max then "'no selection'" else [finalBankSetting string] end
+        + if finalBankSetting == @uint. max then "'no selection'" else finalBankSetting.string end
         + " (should be the same setting)"
       end
     else
@@ -174,9 +174,9 @@ override method @pic18Instruction_switch analyze
 //--- Bank setting
   if finalBankSetting != branchFinalBank then
     error self.mElseBranchStartLocation: "the 'else' branch leaves bank setting to "
-    + if branchFinalBank == @uint. max then "'no selection'" else [branchFinalBank string] end
+    + if branchFinalBank == @uint. max then "'no selection'" else branchFinalBank.string end
     + ", but first branch leaves bank setting to "
-    + if finalBankSetting == @uint. max then "'no selection'" else [finalBankSetting string] end
+    + if finalBankSetting == @uint. max then "'no selection'" else finalBankSetting.string end
     + " (should be the same setting)"
   end
 //---
@@ -184,7 +184,7 @@ override method @pic18Instruction_switch analyze
   if continuesInSequence then
     ioBlockLabel = exitLabel
   else
-    ioBlockLabel = ["" nowhere]
+    ioBlockLabel = "".nowhere
   end
 }
 
@@ -228,17 +228,17 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
     error self.mCaseExpressionLocation:"case value is evaluated as " + result + " (should be between 0 and 255)"
   end
 //--- Check constant is unique
-  if [ioCaseConstantMap hasKey ![result string]] then
+  if [ioCaseConstantMap hasKey !result.string] then
     error self.mCaseExpressionLocation : "the '" + result + "' constant is already used in switch instruction"
-    error [ioCaseConstantMap locationForKey ![result string]] : "the '" + result + "' constant is used here"
+    error [ioCaseConstantMap locationForKey !result.string] : "the '" + result + "' constant is used here"
   else
-    [!?ioCaseConstantMap insertKey ! @{ ![result string] !self.mCaseExpressionLocation}]
+    [!?ioCaseConstantMap insertKey ! @{ !result.string !self.mCaseExpressionLocation}]
   end
 //--- Generate addlw instruction  
   ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation {
     !self.mCaseExpressionLocation
     !.ADDLW
-    ![(ioLastComparisonValue - result) & 0xFF uint]
+    !((ioLastComparisonValue - result) & 0xFF).uint
   }
   !@uint.max
   !0
@@ -302,12 +302,12 @@ override method @pic18IntervalCaseItem analyzeCaseItem
   end
   if ok then
   //--- Check constant is unique
-    for n in @range {![minBound uint] ![maxBound - minBound + 1 uint]} do
-      if [ioCaseConstantMap hasKey ![n string]] then
+    for n in @range {!minBound.uint !(maxBound - minBound + 1).uint} do
+      if [ioCaseConstantMap hasKey !n.string] then
         error self.mCaseExpressionLocation : "the '" + n + "' constant is already used in switch instruction"
-        error [ioCaseConstantMap locationForKey ![n string]] : "the '" + n + "' constant is used here"
+        error [ioCaseConstantMap locationForKey !n.string] : "the '" + n + "' constant is used here"
       else
-        [!?ioCaseConstantMap insertKey !@lstring { ![n string] !self.mCaseExpressionLocation}]
+        [!?ioCaseConstantMap insertKey !@lstring { !n.string !self.mCaseExpressionLocation}]
       end
     end
   //--- Labels
@@ -318,13 +318,13 @@ override method @pic18IntervalCaseItem analyzeCaseItem
     let @ipic18SequentialInstruction secondTestInstruction = @ipic18_intermediate_instruction_literalOperation {
       !self.mCaseExpressionLocation
       !.ADDLW
-      ![maxBound - minBound + 1 uint]
+      !(maxBound - minBound + 1).uint
     }
   //---------------------- First test
     ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation {
         !self.mCaseExpressionLocation
         !.ADDLW
-        ![(ioLastComparisonValue + 255 - maxBound) & 0xFF uint]
+        !((ioLastComparisonValue + 255 - maxBound) & 0xFF).uint
       }
       !.max
       !0

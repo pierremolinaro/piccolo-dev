@@ -106,7 +106,7 @@ override getter @ipic18RetfieTerminator isEqualToTerminator
 override getter @ipic18RetlwTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
   ->@string outResult {
-  outResult = "RETLW " + [self.mLiteralValue hexString]
+  outResult = "RETLW " + self.mLiteralValue.hexString
 }
 
 //----------------------------------------------------------------------------*
@@ -576,7 +576,7 @@ override getter @pic18TestRegisterTerminator isEqualToTerminator
 override getter @pic18BitTestTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string outResult {
-  outResult = self.mRegisterDescription.mAssemblyString + "." + [self.mBitNumber string] + " ? "
+  outResult = self.mRegisterDescription.mAssemblyString + "." + self.mBitNumber.string + " ? "
   outResult += [self.mSingleInstructionTerminatorIfConditionTrue terminatorDisplay !inNextBlockLabel]
   outResult += " : "
   outResult += [self.mSingleInstructionTerminatorIfConditionFalse terminatorDisplay !inNextBlockLabel]
@@ -877,7 +877,7 @@ override getter @ipic18ComputedRETLWTerminator terminatorSize
   else
     outSize = 4
   end
-  outSize = outSize + 2 * [self.mLiteralValues count]
+  outSize = outSize + 2 * self.mLiteralValues.count
 }
 
 //----------------------------------------------------------------------------*
@@ -887,7 +887,7 @@ override getter @ipic18ComputedRETLWTerminator terminatorDisplay
   ->@string outResult {
   outResult = "COMPUTED RETLW"
   for (mValue) in  self.mLiteralValues do
-    outResult += " " + [mValue hexString]
+    outResult += " " + mValue.hexString
   end
 }
 
@@ -903,7 +903,7 @@ override method @ipic18ComputedRETLWTerminator performTerminatorRelativeBranchRe
   !@ipic18AbstractBlockTerminator outModifiedTerminator {
   outModifiedTerminator = self
   if self.mUsesRCALL then
-    if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress) then
+    if not pic18_checkBRA_RCALL (!inSymbolTable !"_computed_goto_2".nowhere !inAddress) then
       ioConversionCount += 1
       ioListFileContents += "  " + inBlockLabel + ": computed RETLW needs CALL _computed_goto_2\n"
       outModifiedTerminator = @ipic18ComputedRETLWTerminator { !self.mInstructionLocation !self.mLiteralValues !false}
@@ -920,7 +920,7 @@ override method @ipic18ComputedRETLWTerminator terminatorRelativeBranchOverflow
   ?let @string unused inNextBlockLabel
   ?!@branchOverflowMap ioOverflowMap {
   if self.mUsesRCALL then  
-    if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress) then
+    if not pic18_checkBRA_RCALL (!inSymbolTable !"_computed_goto_2".nowhere !inAddress) then
       [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_2"]
     end
   end
@@ -933,7 +933,7 @@ override method @ipic18ComputedRETLWTerminator generateTerminatorCode
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string unused inNextBlockLabel
   !@codeList outCode {
-  let @lstring goto2label = ["_computed_goto_2" nowhere]
+  let @lstring goto2label = "_computed_goto_2".nowhere
   [inSymbolTable searchKey !goto2label ?let @uint targetAddress]
   if self.mUsesRCALL then
     outCode = pic18_RCALL_instruction_code (!inAddress !targetAddress !goto2label)
@@ -942,7 +942,7 @@ override method @ipic18ComputedRETLWTerminator generateTerminatorCode
   end
   for (mValue) in  self.mLiteralValues do
     outCode +=
-      !"    RETLW " + [mValue hexString]
+      !"    RETLW " + mValue.hexString
       !@uintlist. listWithValue { !0x0C00 | mValue}
   end
 }
@@ -955,7 +955,7 @@ override getter @ipic18ComputedRETLWTerminator isEqualToTerminator
   outResult = (inTerminator is == @ipic18ComputedRETLWTerminator)
   if outResult then
     let @ipic18ComputedRETLWTerminator t = ( inTerminator as @ipic18ComputedRETLWTerminator)
-    outResult = [self.mLiteralValues count] == [t.mLiteralValues count]
+    outResult = self.mLiteralValues.count == t.mLiteralValues.count
     for (mValue) in  self.mLiteralValues, (t_mValue) in  t.mLiteralValues while outResult do
       outResult = mValue == t_mValue
     end
@@ -992,7 +992,7 @@ override getter @ipic18ComputedGotoTerminator terminatorSize
   else
     outSize = 4
   end
-  outSize = outSize + 4 * [self.mTargetLabels count]
+  outSize = outSize + 4 * self.mTargetLabels.count
 }
 
 //----------------------------------------------------------------------------*
@@ -1007,7 +1007,7 @@ override method @ipic18ComputedGotoTerminator performTerminatorRelativeBranchRes
   !@ipic18AbstractBlockTerminator outModifiedTerminator {
   outModifiedTerminator = self
   if self.mUsesRCALL then
-    if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress) then
+    if not pic18_checkBRA_RCALL (!inSymbolTable !"_computed_goto_2".nowhere !inAddress) then
       ioConversionCount += 1
       ioListFileContents += "  " + inBlockLabel + ": computed GOTO needs CALL _computed_goto_4\n"
       outModifiedTerminator = @ipic18ComputedGotoTerminator { !self.mInstructionLocation !self.mTargetLabels !false}
@@ -1024,7 +1024,7 @@ override method @ipic18ComputedGotoTerminator terminatorRelativeBranchOverflow
   ?let @string unused inNextBlockLabel
   ?!@branchOverflowMap ioOverflowMap {
   if self.mUsesRCALL then  
-    if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_4" nowhere] !inAddress) then
+    if not pic18_checkBRA_RCALL (!inSymbolTable !"_computed_goto_4".nowhere !inAddress) then
       [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_4"]
     end
   end
@@ -1037,7 +1037,7 @@ override method @ipic18ComputedGotoTerminator generateTerminatorCode
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string unused inNextBlockLabel
   !@codeList outCode {
-  let @lstring goto4label = ["_computed_goto_4" nowhere]
+  let @lstring goto4label = "_computed_goto_4".nowhere
   [inSymbolTable searchKey !goto4label ?let @uint targetAddress]
   if self.mUsesRCALL then
     outCode = pic18_RCALL_instruction_code (!inAddress !targetAddress !goto4label)
@@ -1058,7 +1058,7 @@ override getter @ipic18ComputedGotoTerminator isEqualToTerminator
   outResult = (inTerminator is == @ipic18ComputedGotoTerminator)
   if outResult then
     let @ipic18ComputedGotoTerminator t = ( inTerminator as @ipic18ComputedGotoTerminator)
-    outResult = [self.mTargetLabels count] == [t.mTargetLabels count]
+    outResult = self.mTargetLabels.count == t.mTargetLabels.count
     for (mValue) in  self.mTargetLabels, (t_mValue) in  t.mTargetLabels while outResult do
       outResult = mValue.string == t_mValue.string
     end
@@ -1079,7 +1079,7 @@ override getter @ipic18ComputedBraTerminator terminatorSize
   else
     outSize = 4
   end
-  outSize = outSize + 2 * [self.mTargetLabels count]
+  outSize = outSize + 2 * self.mTargetLabels.count
 }
 
 //----------------------------------------------------------------------------*
@@ -1112,7 +1112,7 @@ override method @ipic18ComputedBraTerminator performTerminatorRelativeBranchReso
   end
   outModifiedTerminator = self
   if self.mUsesRCALL then
-    if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress ) then
+    if not pic18_checkBRA_RCALL (!inSymbolTable !"_computed_goto_2".nowhere !inAddress ) then
       ioConversionCount += 1
       ioListFileContents += "  " + inBlockLabel + ": computed RETLW needs CALL _computed_goto_2\n"
       outModifiedTerminator = @ipic18ComputedBraTerminator { !self.mInstructionLocation !self.mTargetLabels !false}
@@ -1130,7 +1130,7 @@ override method @ipic18ComputedBraTerminator terminatorRelativeBranchOverflow
   ?!@branchOverflowMap ioOverflowMap {
   var @uint address
   if self.mUsesRCALL then  
-    if not pic18_checkBRA_RCALL (!inSymbolTable !["_computed_goto_2" nowhere] !inAddress) then
+    if not pic18_checkBRA_RCALL (!inSymbolTable !"_computed_goto_2".nowhere !inAddress) then
       [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_2"]
     end
     address = inAddress + 2
@@ -1152,7 +1152,7 @@ override method @ipic18ComputedBraTerminator generateTerminatorCode
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string unused inNextBlockLabel
   !@codeList outCode {
-  let @lstring goto2label = ["_computed_goto_2" nowhere]
+  let @lstring goto2label = "_computed_goto_2".nowhere
   [inSymbolTable searchKey !goto2label ?let @uint targetAddress]
   var @uint address
   if self.mUsesRCALL then
@@ -1177,7 +1177,7 @@ override getter @ipic18ComputedBraTerminator isEqualToTerminator
   outResult = (inTerminator is == @ipic18ComputedBraTerminator)
   if outResult then
     let @ipic18ComputedBraTerminator t = ( inTerminator as @ipic18ComputedBraTerminator)
-    outResult = [self.mTargetLabels count] == [t.mTargetLabels count]
+    outResult = self.mTargetLabels.count == t.mTargetLabels.count
     for (mValue) in  self.mTargetLabels, (t_mValue) in  t.mTargetLabels while outResult do
       outResult = mValue.string == t_mValue.string
     end
@@ -1466,7 +1466,7 @@ override method @ipic18ConditionalJumpTerminator generateTerminatorCode
   !@codeList outCode {
   [inSymbolTable searchKey !self.mTargetLabelWhenTrue  ?let @uint trueTargetAddress]
   [inSymbolTable searchKey !self.mTargetLabelWhenFalse ?let @uint falseTargetAddress]
-  let Zlabel = @lstring { !"_Bcc_" + [inAddress xString] !self.mInstructionLocation}
+  let Zlabel = @lstring { !"_Bcc_" + inAddress.xString !self.mInstructionLocation}
   if self.mTargetLabelWhenTrue.string == inNextBlockLabel then
     switch self.mBranchModeOnFalseLabel
     case native : // !Bcc F

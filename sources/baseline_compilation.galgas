@@ -21,7 +21,7 @@ method @baseline_instruction shouldTerminateWithMOVLW
 override method @baseline_instruction_literalOperation shouldTerminateWithMOVLW
   ?let @string inErrorMessage {
   if self.mLiteralInstruction != @baseline_literal_instruction_opcode. MOVLW then
-    error self.mInstructionLocation : inErrorMessage  
+    error self.mInstructionLocation : inErrorMessage
   end
 }
 
@@ -36,14 +36,14 @@ override method @baseline_instruction_CALL shouldTerminateWithMOVLW
 override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
   ?let @string unused inErrorMessage {
 //--- THEN branch
-  if [self.mThenInstructionList count] == 0 then
+  if self.mThenInstructionList.count == 0 then
     error self.mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
    [self.mThenInstructionList last ?let @baseline_instruction lastInstruction]
    [lastInstruction shouldTerminateWithMOVLW !"the 'then' branch of this 'if' instruction must terminate with a MOVLW instruction"]
   end
 //--- ELSE branch
-  if [self.mElseInstructionList count] == 0 then
+  if self.mElseInstructionList.count == 0 then
     error self.mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
   else
    [self.mElseInstructionList last ?let @baseline_instruction lastInstruction]
@@ -89,7 +89,7 @@ override method @baseline_instruction_FOREVER shouldNotContinueInSequence
 proc baseline_analysis
   ?let @baseline_model inPiccoloModel
   ?let @string inSourceFileName {
-  let @string sourceFileBaseName = [[inSourceFileName lastPathComponent] deletingPathExtension]
+  let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
     error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
     + "') should be identical to the file base name '" + sourceFileBaseName + "'"
@@ -112,9 +112,6 @@ proc baseline_analysis
 //-------------------------------- Build constant map
   var @constantMap constantMap = @()
   var @registerTable registerTable = piccoloDeviceModel.mRegisterTable
-//--- Add "ROM_SIZE" constant
-//  @lstring romSizeString [new !"ROM_SIZE" !here] ;
-//  [!?constantMap insertKey !romSizeString ![piccoloDeviceModel->mRomSize sint]] ;
 //--- Add declared constants
   var @stringset usedRegisters = @()
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
@@ -177,7 +174,7 @@ proc baseline_analysis
   var sortedRoutineDefinitionList =@baseline_routineDefinitionList ()
   for (mRoutineName mPage mIsNoReturn mInstructionList mEndOfRoutineLocation) in  inPiccoloModel.mRoutineDefinitionList do
     if mRoutineName.string == "main" then
-      [!?sortedRoutineDefinitionList insertAtIndex 
+      [!?sortedRoutineDefinitionList insertAtIndex
         !mRoutineName
         !mPage
         !mIsNoReturn
@@ -186,7 +183,7 @@ proc baseline_analysis
         !0
       ]
     else
-      sortedRoutineDefinitionList += 
+      sortedRoutineDefinitionList +=
         !mRoutineName
         !mPage
         !mIsNoReturn
@@ -213,7 +210,7 @@ proc baseline_analysis
           if mIsNoReturn then
             routineKind = @routineKind. noReturnRoutine
           //--- Check does not continue in sequence
-            if [mInstructionList count] == 0 then
+            if mInstructionList.count == 0 then
               error mRoutineName : "a noreturn routine should terminate by a GOTO or a FOREVER loop"
             else
              [mInstructionList last ?let @baseline_instruction lastInstruction]
@@ -222,7 +219,7 @@ proc baseline_analysis
           else
             routineKind = @routineKind. regularRoutine
           //--- Check instruction list terminates by a MOVLW instruction
-            if [mInstructionList count] == 0 then
+            if mInstructionList.count == 0 then
               error mRoutineName : "a baseline routine must end with a MOVLW instruction"
             else
              [mInstructionList last ?let @baseline_instruction lastInstruction]
@@ -301,21 +298,21 @@ proc baseline_analysis
   end
 //-------------------------------- Print intermediate Instruction List
   if (@uint. errorCount == 0) & [option piccoloOptions.ouputListingFile value] then
-    listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-    listFileContents += "*" + ["INTERMEDIATE INSTRUCTION LIST" stringByLeftAndRightPadding !117 !' '] + "*\n"
-    listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+    listFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+    listFileContents += "*" + ["INTERMEDIATE INSTRUCTION LIST" leftAndRightPadding !117 !' '] + "*\n"
+    listFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
     listFileContents += "Generated intermediate code:\n"
     listFileContents += " Line Length Mnemonic\n"
     var @uint currentAddress = 0
     for (mInstruction) in  intermediateInstructionList do(idx)
-      listFileContents += [[idx string] stringByLeftPadding !5 !' '] + " "
-      listFileContents += [[[mInstruction length] string] stringByLeftPadding !6 !' '] + " "
+      listFileContents += [idx.string leftPadding !5 !' '] + " "
+      listFileContents += [mInstruction.length.string leftPadding !6 !' '] + " "
       [mInstruction print !?listFileContents]
       listFileContents += "\n"
       [mInstruction setCurrentAddress !?currentAddress]
     end
     listFileContents += "\n"
-    listFileContents += "Code size without optimization: " + [currentAddress string] + " words.\n\n"
+    listFileContents += "Code size without optimization: " + currentAddress.string + " words.\n\n"
   end
 //-------------------------------- Perform Code Optimization
   if (@uint. errorCount == 0) & [option piccoloOptions.performOptimizations value] then
@@ -347,9 +344,9 @@ proc baseline_analysis
   end
 //-------------------------------- Build binary code
   if @uint. errorCount == 0 then
-    listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n"
-    listFileContents += "*" + ["GENERATED CODE" stringByLeftAndRightPadding !117 !' '] + "*\n"
-    listFileContents += ["" stringByLeftAndRightPadding !119 !'*'] + "\n\n"
+    listFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
+    listFileContents += "*" + ["GENERATED CODE" leftAndRightPadding !117 !' '] + "*\n"
+    listFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
     listFileContents += "Address Code Mnemonic\n"
     build_baseline_binary_code (
       !assemblyInstructionList
@@ -360,49 +357,24 @@ proc baseline_analysis
   end
 //-------------------------------- Listing file
   if [option piccoloOptions.ouputListingFile value] then
-    let @string listFile = [inSourceFileName deletingPathExtension] + ".list"
+    let @string listFile = inSourceFileName.deletingPathExtension + ".list"
     [listFileContents writeToFileWhenDifferentContents !listFile ?*]
   end
 //-------------------------------- Code generation
 //--- If no error, generate object file(s)
   if @uint. errorCount == 0 then
-//  //--- Generate hex file
-//    @uint usedROMsize ;
-//    build_midrange_intermediate_binary_code
-//      !registerTable
-//      ![[piccoloDeviceModel mBankCount] uint]
-//      !generatedInstructionList
-//      ![[piccoloDeviceModel mRomSize] uint]
-//      !actualConfigurationMap
-//      ?usedROMsize
-//    ;
     getGeneratedContents (?var @string contents)
-    var @string destinationFile = [inSourceFileName deletingPathExtension] + ".hex"
+    var @string destinationFile = inSourceFileName.deletingPathExtension + ".hex"
     [contents writeToFileWhenDifferentContents !destinationFile ?*]
     if [option piccoloOptions.output_C_Array value] then
-      let @string baseName = [[inSourceFileName lastPathComponent] deletingPathExtension]
+      let @string baseName = inSourceFileName.lastPathComponent.deletingPathExtension
       get_C_ArrayImplementation ( !baseName ?contents )
-      destinationFile = [inSourceFileName deletingPathExtension] + ".c"
+      destinationFile = inSourceFileName.deletingPathExtension + ".c"
       [contents writeToFileWhenDifferentContents !destinationFile ?*]
       get_C_ArrayHeader ( !baseName ?contents )
-      destinationFile = [inSourceFileName deletingPathExtension] + ".h"
+      destinationFile = inSourceFileName.deletingPathExtension + ".h"
       [contents writeToFileWhenDifferentContents !destinationFile ?*]
     end
-//  //--- Write infos (if verbose mode)
-//    if [option.verbose_output value] then
-//      @string verboseMessage := "  ROM size: " . [[[piccoloDeviceModel mRomSize] uint] string] . " words;" ;
-//      verboseMessage .= " used: " . [usedROMsize string] . " words (" ;
-//      verboseMessage .= [(usedROMsize * 100) / [[piccoloDeviceModel mRomSize] uint] string] . "%).\n" ;
-//      foreach ramBank do
-//        @uint bankSize := mLastAddressPlusOne - mFirstAddress ;
-//        @uint usedSize := mFirstFreeAddress - mFirstAddress ;
-//        verboseMessage .= "  RAM bank '" . lkey . "': " ;
-//        verboseMessage .= [bankSize string] . " bytes, used " ;
-//        verboseMessage .= [usedSize string] . " bytes (" ;
-//        verboseMessage .= [(usedSize * 100) / bankSize string] . "%).\n" ;
-//      end foreach ;
-//      message verboseMessage ;
-//    end if ;
   //--- Generate asm file, if corresponding option enabled
     if [option piccoloOptions.generateAssembly value] then
       var @string assemblyCode = "  processor " + inPiccoloModel.mDeviceName + "\n\n"
@@ -413,24 +385,24 @@ proc baseline_analysis
       assemblyCode += "\n;--- Registers\n"
       for (lkey mRegisterAddressList * * * *) in  registerTable do
         [mRegisterAddressList first ?let @uint address]
-        assemblyCode += lkey.string + " EQU " + [address hexString] + "\n"
+        assemblyCode += lkey.string + " EQU " + address.hexString + "\n"
       end
       assemblyCode += "W EQU 0\n\n"
       assemblyCode += ";--- Configuration\n"
       for (* mRegisterAddress mRegisterValue) in  actualConfigurationMap do
-        assemblyCode += "  __config " + [mRegisterAddress hexString] + ", " + [mRegisterValue & 255 hexString] + "\n"
+        assemblyCode += "  __config " + mRegisterAddress.hexString + ", " + (mRegisterValue & 255).hexString + "\n"
       end
       assemblyCode += "\n  END\n"
-      let @string asmDestinationFile = [inSourceFileName deletingPathExtension] + ".asm"
+      let @string asmDestinationFile = inSourceFileName.deletingPathExtension + ".asm"
       [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*]
     end
   else // There are errors : delete hex and asm files
-    let @string hexDestinationFile = [inSourceFileName deletingPathExtension] + ".hex"
-    if [hexDestinationFile fileExists] then
+    let @string hexDestinationFile = inSourceFileName.deletingPathExtension + ".hex"
+    if hexDestinationFile.fileExists then
       [@string deleteFile !hexDestinationFile]
     end
-    let @string asmDestinationFile = [inSourceFileName deletingPathExtension] + ".asm"
-    if [asmDestinationFile fileExists] then
+    let @string asmDestinationFile = inSourceFileName.deletingPathExtension + ".asm"
+    if asmDestinationFile.fileExists then
       [@string deleteFile !asmDestinationFile]
     end
   end
