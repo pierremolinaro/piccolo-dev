@@ -52,6 +52,7 @@ struct SettingsView : View {
     case commandLineOptions
     case piccolo_lexique_0
     case piccoloDevice_lexique_1
+    case allocationDebugView
   }
 
   // - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
@@ -67,6 +68,7 @@ struct SettingsView : View {
 
         Text ("Source").tag (SidebarItem.piccolo_lexique_0)
         Text ("Device Source").tag (SidebarItem.piccoloDevice_lexique_1)
+        Text ("Allocation Debug").tag (SidebarItem.allocationDebugView)
       }
       .toolbar (removing: .sidebarToggle)
     } detail: {
@@ -74,6 +76,7 @@ struct SettingsView : View {
         case .commandLineOptions : OptionView ()
         case .piccolo_lexique_0 : SettingViewFor_piccolo_lexique ()
         case .piccoloDevice_lexique_1 : SettingViewFor_piccoloDevice_lexique ()
+        case .allocationDebugView : AllocationDebugView ()
       }
     }
   }
