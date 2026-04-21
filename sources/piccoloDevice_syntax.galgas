@@ -23,7 +23,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   elsif processorName.string == "baseline" then
     processorType = @processorType. baseline
   else
-    error @location.here : "The '" + processorName + "' processor is not handled" : processorType
+    error @location.here : "The '" + processorName + "' processor is not handled" spoil (processorType)
   end
   $;$
   $romsize$

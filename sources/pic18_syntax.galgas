@@ -348,7 +348,7 @@ rule <condition_factor>
     else
       error conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z' and 'nz'"
-      : branchIfZero
+      spoil (branchIfZero)
     end
     outCondition = @pic18IncDecRegisterInCondition {
       !registerExpression
@@ -394,7 +394,7 @@ rule <condition_factor>
     else
       error conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z' and 'nz'"
-      : branchIfZero
+      spoil (branchIfZero)
     end
     outCondition = @pic18RegisterTestCondition { !registerName !branchIfZero}
   or
@@ -420,7 +420,7 @@ rule <condition_factor>
     else
       error conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
-      : conditional_branch
+      spoil (conditional_branch)
     end
     outCondition = @pic18BccInStructuredCondition { !conditionString.location !conditional_branch}
   end
@@ -903,7 +903,7 @@ rule <structured_instruction>
     elsif condition == "NZ" then
       skipIfZero = true
     else
-      error conditionString:"invalid '" + condition + "' condition; it should be 'z' or 'nz'" : skipIfZero
+      error conditionString:"invalid '" + condition + "' condition; it should be 'z' or 'nz'" spoil (skipIfZero)
     end
     $:$
     <simple_instruction> ?let @pic18PiccoloSimpleInstruction instruction
@@ -1056,7 +1056,7 @@ rule <structured_instruction>
     else
       error conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
-      : conditional_branch
+      spoil (conditional_branch)
     end
     $identifier$ ?let @lstring targetLabelName indexing routineCall
     outInstruction = @pic18Instruction_JUMPCC {

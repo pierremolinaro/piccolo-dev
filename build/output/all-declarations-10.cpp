@@ -63,32 +63,32 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   }
   inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 28)) ;
   inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_romsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 29)) ;
-  GGS_luint var_romSize_966 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  GGS_luint var_romSize_972 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
   inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 30)) ;
   inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 31)) ;
-  GGS_uint var_eepromSize_992 ;
-  GGS_uint var_eepromAddress_1015 ;
+  GGS_uint var_eepromSize_998 ;
+  GGS_uint var_eepromAddress_1021 ;
   switch (select_piccoloDevice_5F_syntax_0 (inCompiler)) {
   case 1: {
-    var_eepromSize_992 = GGS_uint (uint32_t (0U)) ;
-    var_eepromAddress_1015 = GGS_uint (uint32_t (0U)) ;
+    var_eepromSize_998 = GGS_uint (uint32_t (0U)) ;
+    var_eepromAddress_1021 = GGS_uint (uint32_t (0U)) ;
   } break ;
   case 2: {
     inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_eepromsize COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 38)) ;
-    GGS_luint var_l_5F_eepromSize_1127 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GGS_luint var_l_5F_eepromSize_1133 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 39)) ;
-    var_eepromSize_992 = var_l_5F_eepromSize_1127.readProperty_uint () ;
+    var_eepromSize_998 = var_l_5F_eepromSize_1133.readProperty_uint () ;
     inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 41)) ;
-    GGS_luint var_l_5F_eepromAddress_1210 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+    GGS_luint var_l_5F_eepromAddress_1216 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
     inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 42)) ;
-    var_eepromAddress_1015 = var_l_5F_eepromAddress_1210.readProperty_uint () ;
+    var_eepromAddress_1021 = var_l_5F_eepromAddress_1216.readProperty_uint () ;
     inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 44)) ;
   } break ;
   default:
     break ;
   }
   inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_bank COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 46)) ;
-  GGS_luint var_bankCount_1314 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+  GGS_luint var_bankCount_1320 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
   inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 47)) ;
   inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 48)) ;
   bool repeatFlag_5 = true ;
@@ -111,20 +111,20 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       repeatFlag_5 = false ;
     }
   }
-  GGS_ramBankTable var_ramBankTable_1525 = GGS_ramBankTable::init (inCompiler COMMA_HERE) ;
+  GGS_ramBankTable var_ramBankTable_1531 = GGS_ramBankTable::init (inCompiler COMMA_HERE) ;
   bool repeatFlag_6 = true ;
   while (repeatFlag_6) {
     if (select_piccoloDevice_5F_syntax_3 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_ram COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 63)) ;
-      GGS_lstring var_ramName_1614 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_ramName_1620 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 64)) ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3A_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 65)) ;
-      GGS_luint var_ramStart_1656 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      GGS_luint var_ramStart_1662 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 66)) ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_to COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 67)) ;
-      GGS_luint var_ramEnd_1700 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      GGS_luint var_ramEnd_1706 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 68)) ;
-      GGS_uintlist var_mirrorOffsetList_1715 = GGS_uintlist::init (inCompiler COMMA_HERE) ;
+      GGS_uintlist var_mirrorOffsetList_1721 = GGS_uintlist::init (inCompiler COMMA_HERE) ;
       switch (select_piccoloDevice_5F_syntax_4 (inCompiler)) {
       case 1: {
       } break ;
@@ -132,9 +132,9 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
         inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mirrorat COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 72)) ;
         bool repeatFlag_7 = true ;
         while (repeatFlag_7) {
-          GGS_luint var_mirrorStartAddress_1824 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+          GGS_luint var_mirrorStartAddress_1830 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 74)) ;
-          var_mirrorOffsetList_1715.addAssignOperation (var_mirrorStartAddress_1824.readProperty_uint ().substract_operation (var_ramStart_1656.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)) ;
+          var_mirrorOffsetList_1721.addAssignOperation (var_mirrorStartAddress_1830.readProperty_uint ().substract_operation (var_ramStart_1662.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75))  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 75)) ;
           if (select_piccoloDevice_5F_syntax_5 (inCompiler) == 2) {
             inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 77)) ;
           }else{
@@ -147,26 +147,26 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       }
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 80)) ;
       {
-      var_ramBankTable_1525.setter_insertKey (var_ramName_1614, var_ramStart_1656.readProperty_uint (), var_ramStart_1656.readProperty_uint (), var_ramEnd_1700.readProperty_uint ().add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 85)), var_mirrorOffsetList_1715, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 81)) ;
+      var_ramBankTable_1531.setter_insertKey (var_ramName_1620, var_ramStart_1662.readProperty_uint (), var_ramStart_1662.readProperty_uint (), var_ramEnd_1706.readProperty_uint ().add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 85)), var_mirrorOffsetList_1721, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 81)) ;
       }
     }else{
       repeatFlag_6 = false ;
     }
   }
-  GGS_registerTable var_registerTable_2155 = GGS_registerTable::init (inCompiler COMMA_HERE) ;
+  GGS_registerTable var_registerTable_2161 = GGS_registerTable::init (inCompiler COMMA_HERE) ;
   bool repeatFlag_8 = true ;
   while (repeatFlag_8) {
     if (select_piccoloDevice_5F_syntax_6 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_register COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 92)) ;
-      GGS_lstring var_registerName_2251 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_registerName_2257 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 93)) ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 94)) ;
-      GGS_uintlist var_registerAddressList_2281 = GGS_uintlist::init (inCompiler COMMA_HERE) ;
+      GGS_uintlist var_registerAddressList_2287 = GGS_uintlist::init (inCompiler COMMA_HERE) ;
       bool repeatFlag_9 = true ;
       while (repeatFlag_9) {
-        GGS_luint var_registerAddress_2354 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+        GGS_luint var_registerAddress_2360 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
         inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 97)) ;
-        var_registerAddressList_2281.addAssignOperation (var_registerAddress_2354.readProperty_uint ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 98)) ;
+        var_registerAddressList_2287.addAssignOperation (var_registerAddress_2360.readProperty_uint ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 98)) ;
         if (select_piccoloDevice_5F_syntax_7 (inCompiler) == 2) {
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 100)) ;
         }else{
@@ -174,165 +174,165 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
         }
       }
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 102)) ;
-      GGS_uint var_sliceIndex_2471 = GGS_uint (uint32_t (8U)) ;
-      GGS_bitSliceTable var_bitSliceTable_2494 = GGS_bitSliceTable::init (inCompiler COMMA_HERE) ;
-      GGS_string var_bitDefinitionString_2543 = GGS_string (" <") ;
+      GGS_uint var_sliceIndex_2477 = GGS_uint (uint32_t (8U)) ;
+      GGS_bitSliceTable var_bitSliceTable_2500 = GGS_bitSliceTable::init (inCompiler COMMA_HERE) ;
+      GGS_string var_bitDefinitionString_2549 = GGS_string (" <") ;
       bool repeatFlag_10 = true ;
       while (repeatFlag_10) {
         switch (select_piccoloDevice_5F_syntax_9 (inCompiler)) {
         case 1: {
-          GGS_uint var_sliceWidth_2612 = GGS_uint (uint32_t (0U)) ;
+          GGS_uint var_sliceWidth_2618 = GGS_uint (uint32_t (0U)) ;
           bool repeatFlag_11 = true ;
           while (repeatFlag_11) {
-            GGS_uint var_sliceBase_2681 = var_sliceIndex_2471 ;
-            GGS_lstring var_sliceName_2741 = inCompiler->synthetizedAttribute_tokenString () ;
+            GGS_uint var_sliceBase_2687 = var_sliceIndex_2477 ;
+            GGS_lstring var_sliceName_2747 = inCompiler->synthetizedAttribute_tokenString () ;
             inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 111)) ;
             switch (select_piccoloDevice_5F_syntax_11 (inCompiler)) {
             case 1: {
               GalgasBool test_12 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_12) {
-                test_12 = GGS_bool (ComparisonKind::notEqual, var_sliceWidth_2612.objectCompare (GGS_uint (uint32_t (0U)))).operator_and (GGS_bool (ComparisonKind::notEqual, var_sliceWidth_2612.objectCompare (GGS_uint (uint32_t (1U)))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 113)).boolEnum () ;
+                test_12 = GGS_bool (ComparisonKind::notEqual, var_sliceWidth_2618.objectCompare (GGS_uint (uint32_t (0U)))).operator_and (GGS_bool (ComparisonKind::notEqual, var_sliceWidth_2618.objectCompare (GGS_uint (uint32_t (1U)))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 113)).boolEnum () ;
                 if (GalgasBool::boolTrue == test_12) {
                   GenericArray <FixItDescription> fixItArray13 ;
-                  inCompiler->emitSemanticError (var_sliceName_2741.readProperty_location (), GGS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_2741.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), fixItArray13  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)) ;
+                  inCompiler->emitSemanticError (var_sliceName_2747.readProperty_location (), GGS_string ("a slice of 1 bit is expected for '").add_operation (var_sliceName_2747.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)), fixItArray13  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 114)) ;
                 }
               }
-              var_sliceWidth_2612 = GGS_uint (uint32_t (1U)) ;
-              var_bitDefinitionString_2543.plusAssignOperation(var_sliceName_2741.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 117)) ;
+              var_sliceWidth_2618 = GGS_uint (uint32_t (1U)) ;
+              var_bitDefinitionString_2549.plusAssignOperation(var_sliceName_2747.readProperty_string (), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 117)) ;
             } break ;
             case 2: {
               inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 119)) ;
-              GGS_luint var_sliceSize_3071 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+              GGS_luint var_sliceSize_3077 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
               inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 120)) ;
               GalgasBool test_14 = GalgasBool::boolTrue ;
               if (GalgasBool::boolTrue == test_14) {
-                test_14 = GGS_bool (ComparisonKind::notEqual, var_sliceWidth_2612.objectCompare (GGS_uint (uint32_t (0U)))).operator_and (GGS_bool (ComparisonKind::notEqual, var_sliceWidth_2612.objectCompare (var_sliceSize_3071.readProperty_uint ())) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)).boolEnum () ;
+                test_14 = GGS_bool (ComparisonKind::notEqual, var_sliceWidth_2618.objectCompare (GGS_uint (uint32_t (0U)))).operator_and (GGS_bool (ComparisonKind::notEqual, var_sliceWidth_2618.objectCompare (var_sliceSize_3077.readProperty_uint ())) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 121)).boolEnum () ;
                 if (GalgasBool::boolTrue == test_14) {
                   GenericArray <FixItDescription> fixItArray15 ;
-                  inCompiler->emitSemanticError (var_sliceName_2741.readProperty_location (), GGS_string ("a slice of ").add_operation (var_sliceWidth_2612.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GGS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (var_sliceName_2741.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), fixItArray15  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)) ;
+                  inCompiler->emitSemanticError (var_sliceName_2747.readProperty_location (), GGS_string ("a slice of ").add_operation (var_sliceWidth_2618.getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GGS_string (" bits is expected for '"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (var_sliceName_2747.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)), fixItArray15  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 122)) ;
                 }
               }
-              var_sliceWidth_2612 = var_sliceSize_3071.readProperty_uint () ;
-              var_sliceBase_2681 = var_sliceBase_2681.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)).substract_operation (var_sliceSize_3071.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)) ;
+              var_sliceWidth_2618 = var_sliceSize_3077.readProperty_uint () ;
+              var_sliceBase_2687 = var_sliceBase_2687.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)).substract_operation (var_sliceSize_3077.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 125)) ;
               inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__5D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 126)) ;
-              var_bitDefinitionString_2543.plusAssignOperation(var_sliceName_2741.readProperty_string ().add_operation (GGS_string ("["), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (var_sliceSize_3071.readProperty_uint ().getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)) ;
+              var_bitDefinitionString_2549.plusAssignOperation(var_sliceName_2747.readProperty_string ().add_operation (GGS_string ("["), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (var_sliceSize_3077.readProperty_uint ().getter_string (SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)).add_operation (GGS_string ("]"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 127)) ;
             } break ;
             default:
               break ;
             }
             {
-            var_bitSliceTable_2494.setter_insertKey (var_sliceName_2741, var_sliceIndex_2471.substract_operation (var_sliceWidth_2612, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 129)), var_sliceWidth_2612, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 129)) ;
+            var_bitSliceTable_2500.setter_insertKey (var_sliceName_2747, var_sliceIndex_2477.substract_operation (var_sliceWidth_2618, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 129)), var_sliceWidth_2618, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 129)) ;
             }
             if (select_piccoloDevice_5F_syntax_10 (inCompiler) == 2) {
               inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2F_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 131)) ;
-              var_bitDefinitionString_2543.plusAssignOperation(GGS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 132)) ;
+              var_bitDefinitionString_2549.plusAssignOperation(GGS_string ("/"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 132)) ;
             }else{
               repeatFlag_11 = false ;
             }
           }
-          var_sliceIndex_2471 = var_sliceIndex_2471.substract_operation (var_sliceWidth_2612, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 134)) ;
+          var_sliceIndex_2477 = var_sliceIndex_2477.substract_operation (var_sliceWidth_2618, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 134)) ;
         } break ;
         case 2: {
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 136)) ;
-          var_bitDefinitionString_2543.plusAssignOperation(GGS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 137)) ;
-          var_sliceIndex_2471.minusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 138)) ;
+          var_bitDefinitionString_2549.plusAssignOperation(GGS_string ("-"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 137)) ;
+          var_sliceIndex_2477.minusAssignOperation(GGS_uint (uint32_t (1U)), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 138)) ;
         } break ;
         default:
           break ;
         }
         if (select_piccoloDevice_5F_syntax_8 (inCompiler) == 2) {
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__2C_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 141)) ;
-          var_bitDefinitionString_2543.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 142)) ;
+          var_bitDefinitionString_2549.plusAssignOperation(GGS_string (", "), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 142)) ;
         }else{
           repeatFlag_10 = false ;
         }
       }
       GalgasBool test_16 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_16) {
-        test_16 = GGS_bool (ComparisonKind::notEqual, var_sliceIndex_2471.objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+        test_16 = GGS_bool (ComparisonKind::notEqual, var_sliceIndex_2477.objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
         if (GalgasBool::boolTrue == test_16) {
           GenericArray <FixItDescription> fixItArray17 ;
-          inCompiler->emitSemanticError (var_registerName_2251.readProperty_location (), GGS_string ("Incorrect bit definition for register '").add_operation (var_registerName_2251.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), fixItArray17  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)) ;
+          inCompiler->emitSemanticError (var_registerName_2257.readProperty_location (), GGS_string ("Incorrect bit definition for register '").add_operation (var_registerName_2257.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)).add_operation (GGS_string ("'"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)), fixItArray17  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 145)) ;
         }
       }
-      var_bitDefinitionString_2543.plusAssignOperation(GGS_string (">"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 147)) ;
+      var_bitDefinitionString_2549.plusAssignOperation(GGS_string (">"), inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 147)) ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3E_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 148)) ;
       {
-      var_registerTable_2155.setter_insertKey (var_registerName_2251, var_registerAddressList_2281, GGS_uint (uint32_t (1U)), var_bitSliceTable_2494, var_bitDefinitionString_2543, GGS_registerProtection::class_func_publicRegister (SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)) ;
+      var_registerTable_2161.setter_insertKey (var_registerName_2257, var_registerAddressList_2287, GGS_uint (uint32_t (1U)), var_bitSliceTable_2500, var_bitDefinitionString_2549, GGS_registerProtection::class_func_publicRegister (SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 149)) ;
       }
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__3B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 150)) ;
     }else{
       repeatFlag_8 = false ;
     }
   }
-  GGS_configRegisterMap var_configRegisterMap_4158 = GGS_configRegisterMap::init (inCompiler COMMA_HERE) ;
+  GGS_configRegisterMap var_configRegisterMap_4164 = GGS_configRegisterMap::init (inCompiler COMMA_HERE) ;
   bool repeatFlag_18 = true ;
   while (repeatFlag_18) {
     if (select_piccoloDevice_5F_syntax_12 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_configuration COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 155)) ;
-      GGS_lstring var_configRegisterName_4267 = inCompiler->synthetizedAttribute_tokenString () ;
+      GGS_lstring var_configRegisterName_4273 = inCompiler->synthetizedAttribute_tokenString () ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 156)) ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_at COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 157)) ;
-      GGS_luint var_configRegisterAddress_4321 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      GGS_luint var_configRegisterAddress_4327 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 158)) ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_width COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 159)) ;
-      GGS_luint var_configRegisterWidth_4381 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+      GGS_luint var_configRegisterWidth_4387 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 160)) ;
-      GGS_illegalMaskList var_illegalMaskList_4409 = GGS_illegalMaskList::init (inCompiler COMMA_HERE) ;
+      GGS_illegalMaskList var_illegalMaskList_4415 = GGS_illegalMaskList::init (inCompiler COMMA_HERE) ;
       bool repeatFlag_19 = true ;
       while (repeatFlag_19) {
         if (select_piccoloDevice_5F_syntax_13 (inCompiler) == 2) {
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_illegal COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 164)) ;
-          GGS_luint var_illegalValue_4511 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+          GGS_luint var_illegalValue_4517 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 165)) ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 166)) ;
-          GGS_luint var_illegalMask_4565 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+          GGS_luint var_illegalMask_4571 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 167)) ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_message COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 168)) ;
-          GGS_lstring var_illegalDescriptionString_4622 = inCompiler->synthetizedAttribute_tokenString () ;
+          GGS_lstring var_illegalDescriptionString_4628 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 169)) ;
-          var_illegalMaskList_4409.addAssignOperation (var_illegalValue_4511, var_illegalMask_4565, var_illegalDescriptionString_4622  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 170)) ;
+          var_illegalMaskList_4415.addAssignOperation (var_illegalValue_4517, var_illegalMask_4571, var_illegalDescriptionString_4628  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 170)) ;
         }else{
           repeatFlag_19 = false ;
         }
       }
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7B_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 172)) ;
-      GGS_configRegisterMaskMap var_configRegisterMaskMap_4749 = GGS_configRegisterMaskMap::init (inCompiler COMMA_HERE) ;
-      GGS_stringset var_settingNameSet_4806 = GGS_stringset::init (inCompiler COMMA_HERE) ;
+      GGS_configRegisterMaskMap var_configRegisterMaskMap_4755 = GGS_configRegisterMaskMap::init (inCompiler COMMA_HERE) ;
+      GGS_stringset var_settingNameSet_4812 = GGS_stringset::init (inCompiler COMMA_HERE) ;
       bool repeatFlag_20 = true ;
       while (repeatFlag_20) {
         if (select_piccoloDevice_5F_syntax_14 (inCompiler) == 2) {
-          GGS_lstring var_maskName_4890 = inCompiler->synthetizedAttribute_tokenString () ;
+          GGS_lstring var_maskName_4896 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_identifier COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 177)) ;
           GalgasBool test_21 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_21) {
-            test_21 = var_settingNameSet_4806.getter_hasKey (var_maskName_4890.readProperty_string () COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)).boolEnum () ;
+            test_21 = var_settingNameSet_4812.getter_hasKey (var_maskName_4896.readProperty_string () COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 178)).boolEnum () ;
             if (GalgasBool::boolTrue == test_21) {
               GenericArray <FixItDescription> fixItArray22 ;
-              inCompiler->emitSemanticError (var_maskName_4890.readProperty_location (), GGS_string ("The '").add_operation (var_maskName_4890.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)).add_operation (GGS_string ("' setting is already defined"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), fixItArray22  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)) ;
+              inCompiler->emitSemanticError (var_maskName_4896.readProperty_location (), GGS_string ("The '").add_operation (var_maskName_4896.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)).add_operation (GGS_string ("' setting is already defined"), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)), fixItArray22  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 179)) ;
             }
           }
-          var_settingNameSet_4806.plusPlusAssignOperation (var_maskName_4890.readProperty_string ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 181)) ;
+          var_settingNameSet_4812.plusPlusAssignOperation (var_maskName_4896.readProperty_string ()  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 181)) ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 182)) ;
-          GGS_luint var_maskValue_5121 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+          GGS_luint var_maskValue_5127 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 183)) ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 184)) ;
-          GGS_lstring var_maskDescriptionString_5180 = inCompiler->synthetizedAttribute_tokenString () ;
+          GGS_lstring var_maskDescriptionString_5186 = inCompiler->synthetizedAttribute_tokenString () ;
           inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 185)) ;
-          GGS_fieldSettingMap var_fieldSettingMap_5212 = GGS_fieldSettingMap::init (inCompiler COMMA_HERE) ;
+          GGS_fieldSettingMap var_fieldSettingMap_5218 = GGS_fieldSettingMap::init (inCompiler COMMA_HERE) ;
           bool repeatFlag_23 = true ;
           while (repeatFlag_23) {
             inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_setting COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 188)) ;
-            GGS_luint var_value_5310 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+            GGS_luint var_value_5316 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
             inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 189)) ;
             inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_mask COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 190)) ;
-            GGS_luint var_mask_5361 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
+            GGS_luint var_mask_5367 = inCompiler->synthetizedAttribute_uint_33__32_value () ;
             inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_integer COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 191)) ;
             inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_description COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 192)) ;
-            GGS_lstring var_descriptionString_5419 = inCompiler->synthetizedAttribute_tokenString () ;
+            GGS_lstring var_descriptionString_5425 = inCompiler->synthetizedAttribute_tokenString () ;
             inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken_string COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 193)) ;
             {
-            var_fieldSettingMap_5212.setter_insertKey (var_descriptionString_5419, var_value_5310.readProperty_uint (), var_mask_5361.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 194)) ;
+            var_fieldSettingMap_5218.setter_insertKey (var_descriptionString_5425, var_value_5316.readProperty_uint (), var_mask_5367.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 194)) ;
             }
             if (select_piccoloDevice_5F_syntax_15 (inCompiler) == 2) {
             }else{
@@ -340,7 +340,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
             }
           }
           {
-          var_configRegisterMaskMap_4749.setter_insertKey (var_maskName_4890, var_maskValue_5121, var_maskDescriptionString_5180, var_fieldSettingMap_5212, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 197)) ;
+          var_configRegisterMaskMap_4755.setter_insertKey (var_maskName_4896, var_maskValue_5127, var_maskDescriptionString_5186, var_fieldSettingMap_5218, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 197)) ;
           }
         }else{
           repeatFlag_20 = false ;
@@ -348,7 +348,7 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
       }
       inCompiler->acceptTerminal (Lexique_piccoloDevice_5F_lexique::kToken__7D_ COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 199)) ;
       {
-      var_configRegisterMap_4158.setter_insertKey (var_configRegisterName_4267, var_configRegisterAddress_4321, var_configRegisterWidth_4381, var_configRegisterMaskMap_4749, var_illegalMaskList_4409, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 200)) ;
+      var_configRegisterMap_4164.setter_insertKey (var_configRegisterName_4273, var_configRegisterAddress_4327, var_configRegisterWidth_4387, var_configRegisterMaskMap_4755, var_illegalMaskList_4415, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 200)) ;
       }
     }else{
       repeatFlag_18 = false ;
@@ -359,63 +359,63 @@ void cParser_piccoloDevice_5F_syntax::rule_piccoloDevice_5F_syntax_start_5F_symb
   if (GalgasBool::boolTrue == test_24) {
     test_24 = GGS_bool (ComparisonKind::equal, var_processorName_429.readProperty_string ().objectCompare (GGS_string ("pic18_60"))).operator_or (GGS_bool (ComparisonKind::equal, var_processorName_429.readProperty_string ().objectCompare (GGS_string ("pic18_80"))) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 210)).boolEnum () ;
     if (GalgasBool::boolTrue == test_24) {
-      GGS_uintlist joker_6042_5 ; // Joker input parameter
-      GGS_uint joker_6042_4 ; // Joker input parameter
-      GGS_bitSliceTable joker_6042_3 ; // Joker input parameter
-      GGS_string joker_6042_2 ; // Joker input parameter
-      GGS_registerProtection joker_6042_1 ; // Joker input parameter
-      var_registerTable_2155.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("BSR"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), inCompiler COMMA_HERE), joker_6042_5, joker_6042_4, joker_6042_3, joker_6042_2, joker_6042_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)) ;
-      GGS_uintlist joker_6113_5 ; // Joker input parameter
-      GGS_uint joker_6113_4 ; // Joker input parameter
-      GGS_bitSliceTable joker_6113_3 ; // Joker input parameter
-      GGS_string joker_6113_2 ; // Joker input parameter
-      GGS_registerProtection joker_6113_1 ; // Joker input parameter
-      var_registerTable_2155.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSL"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), inCompiler COMMA_HERE), joker_6113_5, joker_6113_4, joker_6113_3, joker_6113_2, joker_6113_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
-      GGS_uintlist joker_6184_5 ; // Joker input parameter
-      GGS_uint joker_6184_4 ; // Joker input parameter
-      GGS_bitSliceTable joker_6184_3 ; // Joker input parameter
-      GGS_string joker_6184_2 ; // Joker input parameter
-      GGS_registerProtection joker_6184_1 ; // Joker input parameter
-      var_registerTable_2155.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSH"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), inCompiler COMMA_HERE), joker_6184_5, joker_6184_4, joker_6184_3, joker_6184_2, joker_6184_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
-      GGS_uintlist joker_6255_5 ; // Joker input parameter
-      GGS_uint joker_6255_4 ; // Joker input parameter
-      GGS_bitSliceTable joker_6255_3 ; // Joker input parameter
-      GGS_string joker_6255_2 ; // Joker input parameter
-      GGS_registerProtection joker_6255_1 ; // Joker input parameter
-      var_registerTable_2155.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSU"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), inCompiler COMMA_HERE), joker_6255_5, joker_6255_4, joker_6255_3, joker_6255_2, joker_6255_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
+      GGS_uintlist joker_6048_5 ; // Joker input parameter
+      GGS_uint joker_6048_4 ; // Joker input parameter
+      GGS_bitSliceTable joker_6048_3 ; // Joker input parameter
+      GGS_string joker_6048_2 ; // Joker input parameter
+      GGS_registerProtection joker_6048_1 ; // Joker input parameter
+      var_registerTable_2161.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("BSR"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)), inCompiler COMMA_HERE), joker_6048_5, joker_6048_4, joker_6048_3, joker_6048_2, joker_6048_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 211)) ;
+      GGS_uintlist joker_6119_5 ; // Joker input parameter
+      GGS_uint joker_6119_4 ; // Joker input parameter
+      GGS_bitSliceTable joker_6119_3 ; // Joker input parameter
+      GGS_string joker_6119_2 ; // Joker input parameter
+      GGS_registerProtection joker_6119_1 ; // Joker input parameter
+      var_registerTable_2161.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSL"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)), inCompiler COMMA_HERE), joker_6119_5, joker_6119_4, joker_6119_3, joker_6119_2, joker_6119_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 212)) ;
+      GGS_uintlist joker_6190_5 ; // Joker input parameter
+      GGS_uint joker_6190_4 ; // Joker input parameter
+      GGS_bitSliceTable joker_6190_3 ; // Joker input parameter
+      GGS_string joker_6190_2 ; // Joker input parameter
+      GGS_registerProtection joker_6190_1 ; // Joker input parameter
+      var_registerTable_2161.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSH"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)), inCompiler COMMA_HERE), joker_6190_5, joker_6190_4, joker_6190_3, joker_6190_2, joker_6190_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 213)) ;
+      GGS_uintlist joker_6261_5 ; // Joker input parameter
+      GGS_uint joker_6261_4 ; // Joker input parameter
+      GGS_bitSliceTable joker_6261_3 ; // Joker input parameter
+      GGS_string joker_6261_2 ; // Joker input parameter
+      GGS_registerProtection joker_6261_1 ; // Joker input parameter
+      var_registerTable_2161.method_searchKey (GGS_lstring::init_21__21_ (GGS_string ("TOSU"), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)), inCompiler COMMA_HERE), joker_6261_5, joker_6261_4, joker_6261_3, joker_6261_2, joker_6261_1, inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 214)) ;
     }
   }
-  GGS_string var_sharedBankName_6324 = GGS_string::makeEmptyString () ;
+  GGS_string var_sharedBankName_6330 = GGS_string::makeEmptyString () ;
   GalgasBool test_25 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_25) {
     test_25 = GGS_bool (ComparisonKind::equal, var_processorName_429.readProperty_string ().objectCompare (GGS_string ("mid-range"))).boolEnum () ;
     if (GalgasBool::boolTrue == test_25) {
-      UpEnumerator_ramBankTable enumerator_6455 (var_ramBankTable_1525) ;
-      bool bool_26 = GGS_bool (ComparisonKind::equal, var_sharedBankName_6324.objectCompare (GGS_string::makeEmptyString ())).isValidAndTrue () ;
-      if (enumerator_6455.hasCurrentObject () && bool_26) {
-        while (enumerator_6455.hasCurrentObject () && bool_26) {
-          GGS_uint var_bankAccessibility_6538 = GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)).left_shift_operation (enumerator_6455.current_mFirstFreeAddress (HERE).right_shift_operation (GGS_bigint ("7", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)).getter_uint (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) ;
-          UpEnumerator_uintlist enumerator_6599 (enumerator_6455.current_mMirrorOffsetList (HERE)) ;
-          while (enumerator_6599.hasCurrentObject ()) {
-            var_bankAccessibility_6538 = var_bankAccessibility_6538.operator_or (GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).left_shift_operation (enumerator_6455.current_mFirstFreeAddress (HERE).add_operation (enumerator_6599.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).right_shift_operation (GGS_bigint ("7", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).getter_uint (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) ;
-            enumerator_6599.gotoNextObject () ;
+      UpEnumerator_ramBankTable enumerator_6461 (var_ramBankTable_1531) ;
+      bool bool_26 = GGS_bool (ComparisonKind::equal, var_sharedBankName_6330.objectCompare (GGS_string::makeEmptyString ())).isValidAndTrue () ;
+      if (enumerator_6461.hasCurrentObject () && bool_26) {
+        while (enumerator_6461.hasCurrentObject () && bool_26) {
+          GGS_uint var_bankAccessibility_6544 = GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)).left_shift_operation (enumerator_6461.current_mFirstFreeAddress (HERE).right_shift_operation (GGS_bigint ("7", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)).getter_uint (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 220)) ;
+          UpEnumerator_uintlist enumerator_6605 (enumerator_6461.current_mMirrorOffsetList (HERE)) ;
+          while (enumerator_6605.hasCurrentObject ()) {
+            var_bankAccessibility_6544 = var_bankAccessibility_6544.operator_or (GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).left_shift_operation (enumerator_6461.current_mFirstFreeAddress (HERE).add_operation (enumerator_6605.current_mValue (HERE), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).right_shift_operation (GGS_bigint ("7", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)).getter_uint (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 222)) ;
+            enumerator_6605.gotoNextObject () ;
           }
           GalgasBool test_27 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_27) {
-            test_27 = GGS_bool (ComparisonKind::equal, GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).left_shift_operation (var_bankCount_1314.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).objectCompare (var_bankAccessibility_6538.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).getter_bigint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)))).boolEnum () ;
+            test_27 = GGS_bool (ComparisonKind::equal, GGS_bigint ("1", inCompiler  COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).left_shift_operation (var_bankCount_1320.readProperty_uint (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).objectCompare (var_bankAccessibility_6544.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)).getter_bigint (SOURCE_FILE ("piccoloDevice_syntax.galgas", 224)))).boolEnum () ;
             if (GalgasBool::boolTrue == test_27) {
-              var_sharedBankName_6324 = enumerator_6455.current_lkey (HERE).readProperty_string () ;
+              var_sharedBankName_6330 = enumerator_6461.current_lkey (HERE).readProperty_string () ;
             }
           }
-          enumerator_6455.gotoNextObject () ;
-          if (enumerator_6455.hasCurrentObject ()) {
-            bool_26 = GGS_bool (ComparisonKind::equal, var_sharedBankName_6324.objectCompare (GGS_string::makeEmptyString ())).isValidAndTrue () ;
+          enumerator_6461.gotoNextObject () ;
+          if (enumerator_6461.hasCurrentObject ()) {
+            bool_26 = GGS_bool (ComparisonKind::equal, var_sharedBankName_6330.objectCompare (GGS_string::makeEmptyString ())).isValidAndTrue () ;
           }
         }
       }
     }
   }
-  outArgument_outPiccoloDeviceModel = GGS_piccoloDeviceModel::init_21__21__21__21__21__21__21__21__21__21_ (var_deviceName_338, var_processorType_390, var_romSize_966, var_bankCount_1314, var_registerTable_2155, var_ramBankTable_1525, var_eepromSize_992, var_eepromAddress_1015, var_configRegisterMap_4158, var_sharedBankName_6324, inCompiler COMMA_HERE) ;
+  outArgument_outPiccoloDeviceModel = GGS_piccoloDeviceModel::init_21__21__21__21__21__21__21__21__21__21_ (var_deviceName_338, var_processorType_390, var_romSize_972, var_bankCount_1320, var_registerTable_2161, var_ramBankTable_1531, var_eepromSize_998, var_eepromAddress_1021, var_configRegisterMap_4164, var_sharedBankName_6330, inCompiler COMMA_HERE) ;
 }
 
 //------------------------------------------------------------------------------------------------

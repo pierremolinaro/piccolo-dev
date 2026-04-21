@@ -174,7 +174,7 @@ override method @pic18Instruction_JSR performInlining
       ?let @pic18InstructionList instructionList
     ]
     if isNoReturn then
-      error self.mTargetLabel: "a \"noreturn\" routine cannot be inlined" : inlineDone
+      error self.mTargetLabel: "a \"noreturn\" routine cannot be inlined" spoil (inlineDone)
     else
       if requiredBank.uint != @uint. max then
         ioInstructionList += !@pic18Instruction_checkbank { !self.mInstructionLocation !requiredBank.uint}

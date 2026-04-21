@@ -69,10 +69,10 @@ label importBootloaderSpecification
   $baseline$
   $identifier$ ?let @lstring programName
   error programName: "this file does not define a bootloader specification"
-   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+   spoil (outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
       outUserRoutineDeclarationList, outDeviceName,
-      outBootloaderReservedROMsize
+      outBootloaderReservedROMsize)
   $literal_string$ ? *
   $:$
 //   parse<section_list>

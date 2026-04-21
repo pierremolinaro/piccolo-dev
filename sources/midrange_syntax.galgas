@@ -120,10 +120,10 @@ label importBootloaderSpecification
   $midrange$
   $identifier$ ?let @lstring programName
   error programName: "this file does not define a bootloader specification"
-   : outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+   spoil (outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
       outUserRoutineDeclarationList, outDeviceName,
-      outBootloaderReservedROMsize
+      outBootloaderReservedROMsize)
   $literal_string$ ? *
   $:$
   repeat
@@ -845,7 +845,7 @@ rule <midrange_condition_factor>
     else
       error conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z' and 'nz'"
-      : branchIfZero
+      spoil (branchIfZero)
     end
     outCondition = @midrange_incDecRegisterInCondition {
       !registerExpression

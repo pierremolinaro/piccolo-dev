@@ -26,8 +26,8 @@ proc pic18BootloaderSpecificationAnalysis
   switch outPiccoloDeviceModel.mProcessorType
     case pic18_60 : outAccessBankSplitOffset = 0x60
     case pic18_80 : outAccessBankSplitOffset = 0x80
-    case midrange : error inDeviceName: "a midrange device is not accepted here" : outAccessBankSplitOffset
-    case baseline : error inDeviceName: "a baseline device is not accepted here" : outAccessBankSplitOffset
+    case midrange : error inDeviceName: "a midrange device is not accepted here" spoil (outAccessBankSplitOffset)
+    case baseline : error inDeviceName: "a baseline device is not accepted here" spoil (outAccessBankSplitOffset)
   end
 //-------------------------------- Check reserved ROM size < microcontroller ROM size
   outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"

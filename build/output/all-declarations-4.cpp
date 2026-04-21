@@ -6933,12 +6933,12 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
     outArgument_outCondition = GGS_baseline_5F_incDecRegisterInCondition::init_21__21__21__21_ (var_registerExpression_15801, var_isIncrement_15666, var_W_5F_isDestination_15834, var_branchIfZero_16070, inCompiler COMMA_HERE) ;
   } break ;
   case 2: {
-    GGS_registerExpression var_registerExpression_16526 ;
-    nt_register_5F_parsing_ (var_registerExpression_16526, inCompiler) ;
+    GGS_registerExpression var_registerExpression_16532 ;
+    nt_register_5F_parsing_ (var_registerExpression_16532, inCompiler) ;
     inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__2E_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 591)) ;
-    GGS_bitNumberExpression var_bitNumberExpression_16583 ;
-    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_16583, inCompiler) ;
-    outArgument_outCondition = GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::init_21__21_ (var_registerExpression_16526, var_bitNumberExpression_16583, inCompiler COMMA_HERE) ;
+    GGS_bitNumberExpression var_bitNumberExpression_16589 ;
+    nt_bit_5F_number_5F_parsing_ (var_bitNumberExpression_16589, inCompiler) ;
+    outArgument_outCondition = GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition::init_21__21_ (var_registerExpression_16532, var_bitNumberExpression_16589, inCompiler COMMA_HERE) ;
   } break ;
   default:
     break ;
@@ -6994,11 +6994,11 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   while (repeatFlag_0) {
     if (select_baseline_5F_syntax_31 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__7C_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 608)) ;
-      GGS_baseline_5F_conditionExpression var_c_16988 ;
-      nt_baseline_5F_condition_5F_term_ (var_c_16988, inCompiler) ;
-      GGS_baseline_5F_conditionExpression var_rc_17028 = GGS_baseline_5F_negateCondition::init_21_ (var_c_16988, inCompiler COMMA_HERE) ;
-      GGS_baseline_5F_conditionExpression var_lc_17103 = GGS_baseline_5F_negateCondition::init_21_ (outArgument_outCondition, inCompiler COMMA_HERE) ;
-      outArgument_outCondition = GGS_baseline_5F_negateCondition::init_21_ (GGS_baseline_5F_andCondition::init_21__21_ (var_lc_17103, var_rc_17028, inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
+      GGS_baseline_5F_conditionExpression var_c_16994 ;
+      nt_baseline_5F_condition_5F_term_ (var_c_16994, inCompiler) ;
+      GGS_baseline_5F_conditionExpression var_rc_17034 = GGS_baseline_5F_negateCondition::init_21_ (var_c_16994, inCompiler COMMA_HERE) ;
+      GGS_baseline_5F_conditionExpression var_lc_17109 = GGS_baseline_5F_negateCondition::init_21_ (outArgument_outCondition, inCompiler COMMA_HERE) ;
+      outArgument_outCondition = GGS_baseline_5F_negateCondition::init_21_ (GGS_baseline_5F_andCondition::init_21__21_ (var_lc_17109, var_rc_17034, inCompiler COMMA_HERE), inCompiler COMMA_HERE) ;
     }else{
       repeatFlag_0 = false ;
     }
@@ -7033,9 +7033,9 @@ void cParser_baseline_5F_syntax::rule_baseline_5F_syntax_baseline_5F_condition_5
   while (repeatFlag_0) {
     if (select_baseline_5F_syntax_32 (inCompiler) == 2) {
       inCompiler->acceptTerminal (Lexique_piccolo_5F_lexique::kToken__26_ COMMA_SOURCE_FILE ("baseline_syntax.galgas", 624)) ;
-      GGS_baseline_5F_conditionExpression var_c_17492 ;
-      nt_baseline_5F_condition_5F_factor_ (var_c_17492, inCompiler) ;
-      outArgument_outCondition = GGS_baseline_5F_andCondition::init_21__21_ (outArgument_outCondition, var_c_17492, inCompiler COMMA_HERE) ;
+      GGS_baseline_5F_conditionExpression var_c_17498 ;
+      nt_baseline_5F_condition_5F_factor_ (var_c_17498, inCompiler) ;
+      outArgument_outCondition = GGS_baseline_5F_andCondition::init_21__21_ (outArgument_outCondition, var_c_17498, inCompiler COMMA_HERE) ;
     }else{
       repeatFlag_0 = false ;
     }

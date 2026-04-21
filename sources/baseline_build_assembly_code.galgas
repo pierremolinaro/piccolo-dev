@@ -205,7 +205,7 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
         end
         bitIndex = sliceIndex
       else
-        error self.mInstructionLocation : "internal error, cannot solve page bit addressing" : bitIndex
+        error self.mInstructionLocation : "internal error, cannot solve page bit addressing" spoil (bitIndex)
       end
       ioAssemblyInstructionList += !@baseline_assembly_instruction_FB {
         !self.mInstructionLocation
@@ -268,7 +268,7 @@ override method @baseline_intermediate_JSR generateAssemblyCode
         end
         bitIndex = sliceIndex
       else
-        error self.mInstructionLocation : "internal error, cannot solve page bit addressing" : bitIndex
+        error self.mInstructionLocation : "internal error, cannot solve page bit addressing" spoil (bitIndex)
       end
       ioAssemblyInstructionList += !@baseline_assembly_instruction_FB {
         !self.mInstructionLocation

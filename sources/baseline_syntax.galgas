@@ -579,7 +579,7 @@ rule <baseline_condition_factor>
     else
       error conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z' and 'nz'"
-      : branchIfZero
+      spoil (branchIfZero)
     end
     outCondition = @baseline_incDecRegisterInCondition {
       !registerExpression

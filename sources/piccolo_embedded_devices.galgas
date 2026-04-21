@@ -22,7 +22,7 @@ proc parseDeviceDefinition
     error
       inDeviceName:
       "The '" + inDeviceName + "' definition file is not defined"
-      : outPiccoloDeviceModel
+      spoil (outPiccoloDeviceModel)
   end
 }
 

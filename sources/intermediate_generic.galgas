@@ -125,7 +125,7 @@ override method @immediatRegister eval
       "index notation (" + offset + ") cannot be used with a constant"
     end
   else
-    error self.mRegister.mRegisterName: "'" + self.mRegister.mRegisterName + "' should be declared as ram register or as constant" : outResult
+    error self.mRegister.mRegisterName: "'" + self.mRegister.mRegisterName + "' should be declared as ram register or as constant" spoil (outResult)
   end
 }
 
@@ -453,9 +453,9 @@ override method @bitNumberLiteralExpression getBitNumber
 {
   [self.mBitNumberLiteralExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
   if result < 0 then
-    error self.mEndOfExpression : "bit index is " + result + ", but should be >= 0" : outBitNumber
+    error self.mEndOfExpression : "bit index is " + result + ", but should be >= 0" spoil (outBitNumber)
   elsif result > 7 then
-    error self.mEndOfExpression: "bit index is " + result + ", but should be <= 7" : outBitNumber
+    error self.mEndOfExpression: "bit index is " + result + ", but should be <= 7" spoil (outBitNumber)
   else
     outBitNumber = result.uint
   end

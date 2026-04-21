@@ -112,9 +112,9 @@ method @registerExpression getRegisterAddress
 //---
   [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   if offset < 0 then
-    error self.mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0" : outRegisterAddress
+    error self.mEndOfOffsetExpression: "offset (" + offset + ") should be >= 0" spoil (outRegisterAddress)
   elsif offset.uint >= size then
-    error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + size.string : outRegisterAddress
+    error self.mEndOfOffsetExpression: "this offset is too large: should be lower than " + size.string spoil (outRegisterAddress)
   else
     [registerAddressList first ?outRegisterAddress]
     outRegisterAddress = outRegisterAddress + offset.uint
@@ -216,7 +216,7 @@ override method @pic18Instruction_FA analyzeSimpleInstruction
   case NEGF : code = @FA_sequential_instruction_base_code. NEGF
   case SETF : code = @FA_sequential_instruction_base_code. SETF
   case CPFSEQ, CPFSGT, CPFSLT, TSTFSZ :
-    error @location. nowhere : "*** INTERNAL ERROR ***" : code
+    error @location. nowhere : "*** INTERNAL ERROR ***" spoil (code)
   end
   outInstruction = @ipic18_intermediate_instruction_FA {
     !self.mInstructionLocation

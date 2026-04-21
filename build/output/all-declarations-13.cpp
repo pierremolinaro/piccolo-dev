@@ -8358,15 +8358,15 @@ void cPtr_pic_31__38_Instruction_5F_FDA::method_analyzeSimpleInstruction (const 
                                                                           GGS_ipic_31__38_SequentialInstruction & outArgument_outInstruction,
                                                                           Compiler * inCompiler
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_registerExpression var_IPICregisterDescription_6649 ;
+  GGS_ipic_31__38__5F_intermediate_5F_registerExpression var_IPICregisterDescription_6661 ;
   const GGS_pic_31__38_Instruction_5F_FDA temp_0 = this ;
   const GGS_pic_31__38_Instruction_5F_FDA temp_1 = this ;
-  GGS_bitSliceTable joker_6677 ; // Joker input parameter
-  callExtensionMethod_analyzeRegisterExpression ((cPtr_registerExpression *) temp_0.readProperty_mRegisterExpression ().ptr (), constinArgument_inAccessBankSplitOffset, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, temp_1.readProperty_m_5F_W_5F_isDestination ().operator_not (SOURCE_FILE ("ipic18_build_block_representation.galgas", 176)), var_IPICregisterDescription_6649, joker_6677, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 171)) ;
+  GGS_bitSliceTable joker_6689 ; // Joker input parameter
+  callExtensionMethod_analyzeRegisterExpression ((cPtr_registerExpression *) temp_0.readProperty_mRegisterExpression ().ptr (), constinArgument_inAccessBankSplitOffset, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, temp_1.readProperty_m_5F_W_5F_isDestination ().operator_not (SOURCE_FILE ("ipic18_build_block_representation.galgas", 176)), var_IPICregisterDescription_6661, joker_6689, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 171)) ;
   const GGS_pic_31__38_Instruction_5F_FDA temp_2 = this ;
   const GGS_pic_31__38_Instruction_5F_FDA temp_3 = this ;
   const GGS_pic_31__38_Instruction_5F_FDA temp_4 = this ;
-  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::init_21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mInstruction_5F_FDA_5F_base_5F_code (), var_IPICregisterDescription_6649, temp_4.readProperty_m_5F_W_5F_isDestination (), inCompiler COMMA_HERE) ;
+  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA::init_21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mInstruction_5F_FDA_5F_base_5F_code (), var_IPICregisterDescription_6661, temp_4.readProperty_m_5F_W_5F_isDestination (), inCompiler COMMA_HERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8384,38 +8384,38 @@ void cPtr_pic_31__38_Instruction_5F_FA::method_analyzeSimpleInstruction (const G
                                                                          GGS_ipic_31__38_SequentialInstruction & outArgument_outInstruction,
                                                                          Compiler * inCompiler
                                                                          COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_registerExpression var_IPICregisterDescription_7583 ;
+  GGS_ipic_31__38__5F_intermediate_5F_registerExpression var_IPICregisterDescription_7595 ;
   const GGS_pic_31__38_Instruction_5F_FA temp_0 = this ;
-  GGS_bitSliceTable joker_7611 ; // Joker input parameter
-  callExtensionMethod_analyzeRegisterExpression ((cPtr_registerExpression *) temp_0.readProperty_mRegisterExpression ().ptr (), constinArgument_inAccessBankSplitOffset, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, GGS_bool (true), var_IPICregisterDescription_7583, joker_7611, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 201)) ;
-  GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code var_code_7683 ;
+  GGS_bitSliceTable joker_7623 ; // Joker input parameter
+  callExtensionMethod_analyzeRegisterExpression ((cPtr_registerExpression *) temp_0.readProperty_mRegisterExpression ().ptr (), constinArgument_inAccessBankSplitOffset, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, GGS_bool (true), var_IPICregisterDescription_7595, joker_7623, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 201)) ;
+  GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code var_code_7695 ;
   const GGS_pic_31__38_Instruction_5F_FA temp_1 = this ;
   switch (temp_1.readProperty_mFAinstruction ().enumValue ()) {
   case GGS_FA_5F_instruction_5F_base_5F_code::Enumeration::invalid:
     break ;
   case GGS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_CLRF:
     {
-      var_code_7683 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_CLRF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 213)) ;
+      var_code_7695 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_CLRF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 213)) ;
     }
     break ;
   case GGS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_MOVWF:
     {
-      var_code_7683 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_MOVWF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 214)) ;
+      var_code_7695 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_MOVWF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 214)) ;
     }
     break ;
   case GGS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_MULWF:
     {
-      var_code_7683 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_MULWF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 215)) ;
+      var_code_7695 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_MULWF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 215)) ;
     }
     break ;
   case GGS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_NEGF:
     {
-      var_code_7683 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_NEGF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 216)) ;
+      var_code_7695 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_NEGF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 216)) ;
     }
     break ;
   case GGS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_SETF:
     {
-      var_code_7683 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_SETF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 217)) ;
+      var_code_7695 = GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code::class_func_SETF (SOURCE_FILE ("ipic18_build_block_representation.galgas", 217)) ;
     }
     break ;
   case GGS_FA_5F_instruction_5F_base_5F_code::Enumeration::enum_CPFSEQ:
@@ -8425,12 +8425,12 @@ void cPtr_pic_31__38_Instruction_5F_FA::method_analyzeSimpleInstruction (const G
     {
       GenericArray <FixItDescription> fixItArray2 ;
       inCompiler->emitSemanticError (GGS_location::class_func_nowhere (SOURCE_FILE ("ipic18_build_block_representation.galgas", 219)), GGS_string ("*** INTERNAL ERROR ***"), fixItArray2  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 219)) ;
-      var_code_7683.drop () ; // Release error dropped variable
+      var_code_7695.drop () ; // Release error dropped variable
     }
     break ;
   }
   const GGS_pic_31__38_Instruction_5F_FA temp_3 = this ;
-  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::init_21__21__21_ (temp_3.readProperty_mInstructionLocation (), var_code_7683, var_IPICregisterDescription_7583, inCompiler COMMA_HERE) ;
+  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FA::init_21__21__21_ (temp_3.readProperty_mInstructionLocation (), var_code_7695, var_IPICregisterDescription_7595, inCompiler COMMA_HERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8448,14 +8448,14 @@ void cPtr_pic_31__38_Instruction_5F_MOVFF::method_analyzeSimpleInstruction (cons
                                                                             GGS_ipic_31__38_SequentialInstruction & outArgument_outInstruction,
                                                                             Compiler * inCompiler
                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication var_sourceIPICregisterDescription_8977 ;
+  GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication var_sourceIPICregisterDescription_8995 ;
   const GGS_pic_31__38_Instruction_5F_MOVFF temp_0 = this ;
-  callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank ((cPtr_registerExpression *) temp_0.readProperty_mSourceRegisterName ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, GGS_bool (false), var_sourceIPICregisterDescription_8977, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 239)) ;
-  GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication var_destinationIPICregisterDescription_9242 ;
+  callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank ((cPtr_registerExpression *) temp_0.readProperty_mSourceRegisterName ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, GGS_bool (false), var_sourceIPICregisterDescription_8995, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 239)) ;
+  GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication var_destinationIPICregisterDescription_9260 ;
   const GGS_pic_31__38_Instruction_5F_MOVFF temp_1 = this ;
-  callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank ((cPtr_registerExpression *) temp_1.readProperty_mDestinationRegisterName ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, GGS_bool (true), var_destinationIPICregisterDescription_9242, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 246)) ;
+  callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank ((cPtr_registerExpression *) temp_1.readProperty_mDestinationRegisterName ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, GGS_bool (true), var_destinationIPICregisterDescription_9260, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 246)) ;
   const GGS_pic_31__38_Instruction_5F_MOVFF temp_2 = this ;
-  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::init_21__21__21_ (temp_2.readProperty_mInstructionLocation (), var_sourceIPICregisterDescription_8977, var_destinationIPICregisterDescription_9242, inCompiler COMMA_HERE) ;
+  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF::init_21__21__21_ (temp_2.readProperty_mInstructionLocation (), var_sourceIPICregisterDescription_8995, var_destinationIPICregisterDescription_9260, inCompiler COMMA_HERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8473,16 +8473,16 @@ void cPtr_pic_31__38_Instruction_5F_FBA::method_analyzeSimpleInstruction (const 
                                                                           GGS_ipic_31__38_SequentialInstruction & outArgument_outInstruction,
                                                                           Compiler * inCompiler
                                                                           COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_ipic_31__38__5F_intermediate_5F_registerExpression var_IPICregisterDescription_10137 ;
-  GGS_bitSliceTable var_bitSliceTable_10185 ;
+  GGS_ipic_31__38__5F_intermediate_5F_registerExpression var_IPICregisterDescription_10155 ;
+  GGS_bitSliceTable var_bitSliceTable_10203 ;
   const GGS_pic_31__38_Instruction_5F_FBA temp_0 = this ;
-  callExtensionMethod_analyzeRegisterExpression ((cPtr_registerExpression *) temp_0.readProperty_mRegisterExpression ().ptr (), constinArgument_inAccessBankSplitOffset, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, GGS_bool (true), var_IPICregisterDescription_10137, var_bitSliceTable_10185, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 271)) ;
-  GGS_uint var_bitNumber_10353 ;
+  callExtensionMethod_analyzeRegisterExpression ((cPtr_registerExpression *) temp_0.readProperty_mRegisterExpression ().ptr (), constinArgument_inAccessBankSplitOffset, ioArgument_ioCurrentBank, constinArgument_inRegisterTable, constinArgument_inConstantMap, GGS_bool (true), var_IPICregisterDescription_10155, var_bitSliceTable_10203, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 271)) ;
+  GGS_uint var_bitNumber_10371 ;
   const GGS_pic_31__38_Instruction_5F_FBA temp_1 = this ;
-  callExtensionMethod_getBitNumber ((cPtr_bitNumberExpression *) temp_1.readProperty_mBitNumber ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable_10185, var_bitNumber_10353, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 281)) ;
+  callExtensionMethod_getBitNumber ((cPtr_bitNumberExpression *) temp_1.readProperty_mBitNumber ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, ioArgument_ioUsedRegisters, var_bitSliceTable_10203, var_bitNumber_10371, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 281)) ;
   const GGS_pic_31__38_Instruction_5F_FBA temp_2 = this ;
   const GGS_pic_31__38_Instruction_5F_FBA temp_3 = this ;
-  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::init_21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mBitOrientedOp (), var_IPICregisterDescription_10137, var_bitNumber_10353, inCompiler COMMA_HERE) ;
+  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA::init_21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mBitOrientedOp (), var_IPICregisterDescription_10155, var_bitNumber_10371, inCompiler COMMA_HERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8500,21 +8500,21 @@ void cPtr_pic_31__38_Instruction_5F_literalOperation::method_analyzeSimpleInstru
                                                                                        GGS_ipic_31__38_SequentialInstruction & outArgument_outInstruction,
                                                                                        Compiler * inCompiler
                                                                                        COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_sint_36__34_ var_result_11085 ;
+  GGS_sint_36__34_ var_result_11103 ;
   const GGS_pic_31__38_Instruction_5F_literalOperation temp_0 = this ;
-  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mImmediatExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result_11085, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 307)) ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mImmediatExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result_11103, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 307)) ;
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    test_1 = GGS_bool (ComparisonKind::greaterThan, var_result_11085.objectCompare (GGS_sint_36__34_ (int64_t (255LL)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_result_11085.objectCompare (GGS_sint_36__34_ (int64_t (-128LL)))) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 309)).boolEnum () ;
+    test_1 = GGS_bool (ComparisonKind::greaterThan, var_result_11103.objectCompare (GGS_sint_36__34_ (int64_t (255LL)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_result_11103.objectCompare (GGS_sint_36__34_ (int64_t (-128LL)))) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 309)).boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
       const GGS_pic_31__38_Instruction_5F_literalOperation temp_2 = this ;
       GenericArray <FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (temp_2.readProperty_mInstructionLocation (), GGS_string ("immediate value is evaluated as ").add_operation (var_result_11085.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 310)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 310)).add_operation (GGS_string (" (should be between -128 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 310)), fixItArray3  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 310)) ;
+      inCompiler->emitSemanticError (temp_2.readProperty_mInstructionLocation (), GGS_string ("immediate value is evaluated as ").add_operation (var_result_11103.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 310)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 310)).add_operation (GGS_string (" (should be between -128 and 255)"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 310)), fixItArray3  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 310)) ;
     }
   }
   const GGS_pic_31__38_Instruction_5F_literalOperation temp_4 = this ;
   const GGS_pic_31__38_Instruction_5F_literalOperation temp_5 = this ;
-  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::init_21__21__21_ (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mLiteralInstruction (), var_result_11085.operator_and (GGS_sint_36__34_ (int64_t (255LL)) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 316)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 316)), inCompiler COMMA_HERE) ;
+  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation::init_21__21__21_ (temp_4.readProperty_mInstructionLocation (), temp_5.readProperty_mLiteralInstruction (), var_result_11103.operator_and (GGS_sint_36__34_ (int64_t (255LL)) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 316)).getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 316)), inCompiler COMMA_HERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8532,20 +8532,20 @@ void cPtr_pic_31__38_Instruction_5F_fnop::method_analyzeSimpleInstruction (const
                                                                            GGS_ipic_31__38_SequentialInstruction & outArgument_outInstruction,
                                                                            Compiler * inCompiler
                                                                            COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_sint_36__34_ var_result_12012 ;
+  GGS_sint_36__34_ var_result_12030 ;
   const GGS_pic_31__38_Instruction_5F_fnop temp_0 = this ;
-  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mImmediatExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result_12012, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 331)) ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mImmediatExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result_12030, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 331)) ;
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    test_1 = GGS_bool (ComparisonKind::greaterThan, var_result_12012.objectCompare (GGS_sint_36__34_ (int64_t (4095LL)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_result_12012.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 333)).boolEnum () ;
+    test_1 = GGS_bool (ComparisonKind::greaterThan, var_result_12030.objectCompare (GGS_sint_36__34_ (int64_t (4095LL)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_result_12030.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 333)).boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
       const GGS_pic_31__38_Instruction_5F_fnop temp_2 = this ;
       GenericArray <FixItDescription> fixItArray3 ;
-      inCompiler->emitSemanticError (temp_2.readProperty_mInstructionLocation (), GGS_string ("immediate value is evaluated as ").add_operation (var_result_12012.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 334)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 334)).add_operation (GGS_string (" (should be between 0 and 4095)"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 334)), fixItArray3  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 334)) ;
+      inCompiler->emitSemanticError (temp_2.readProperty_mInstructionLocation (), GGS_string ("immediate value is evaluated as ").add_operation (var_result_12030.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 334)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 334)).add_operation (GGS_string (" (should be between 0 and 4095)"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 334)), fixItArray3  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 334)) ;
     }
   }
   const GGS_pic_31__38_Instruction_5F_fnop temp_4 = this ;
-  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::init_21__21_ (temp_4.readProperty_mInstructionLocation (), var_result_12012.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 339)), inCompiler COMMA_HERE) ;
+  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP::init_21__21_ (temp_4.readProperty_mInstructionLocation (), var_result_12030.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 339)), inCompiler COMMA_HERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------
@@ -8574,20 +8574,20 @@ void cPtr_pic_31__38_Instruction_5F_LFSR::method_analyzeSimpleInstruction (const
       inCompiler->emitSemanticError (temp_2.readProperty_mFSRindex ().readProperty_location (), GGS_string ("the LFSR register idx (").add_operation (temp_3.readProperty_mFSRindex ().readProperty_uint ().getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 355)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 355)).add_operation (GGS_string (") should be lower or equal to 2"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 355)), fixItArray4  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 355)) ;
     }
   }
-  GGS_sint_36__34_ var_result_13041 ;
+  GGS_sint_36__34_ var_result_13059 ;
   const GGS_pic_31__38_Instruction_5F_LFSR temp_5 = this ;
-  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_5.readProperty_mImmediatExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result_13041, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 358)) ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_5.readProperty_mImmediatExpression ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_result_13059, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 358)) ;
   GalgasBool test_6 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_6) {
-    test_6 = GGS_bool (ComparisonKind::greaterThan, var_result_13041.objectCompare (GGS_sint_36__34_ (int64_t (4095LL)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_result_13041.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 360)).boolEnum () ;
+    test_6 = GGS_bool (ComparisonKind::greaterThan, var_result_13059.objectCompare (GGS_sint_36__34_ (int64_t (4095LL)))).operator_or (GGS_bool (ComparisonKind::lowerThan, var_result_13059.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))) COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 360)).boolEnum () ;
     if (GalgasBool::boolTrue == test_6) {
       const GGS_pic_31__38_Instruction_5F_LFSR temp_7 = this ;
       GenericArray <FixItDescription> fixItArray8 ;
-      inCompiler->emitSemanticError (temp_7.readProperty_mInstructionLocation (), GGS_string ("immediate value is evaluated as ").add_operation (var_result_13041.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 361)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 361)).add_operation (GGS_string (" (should be between 0 and 4095)"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 361)), fixItArray8  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 361)) ;
+      inCompiler->emitSemanticError (temp_7.readProperty_mInstructionLocation (), GGS_string ("immediate value is evaluated as ").add_operation (var_result_13059.getter_string (SOURCE_FILE ("ipic18_build_block_representation.galgas", 361)), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 361)).add_operation (GGS_string (" (should be between 0 and 4095)"), inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 361)), fixItArray8  COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 361)) ;
     }
   }
   const GGS_pic_31__38_Instruction_5F_LFSR temp_9 = this ;
   const GGS_pic_31__38_Instruction_5F_LFSR temp_10 = this ;
-  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::init_21__21__21_ (temp_9.readProperty_mInstructionLocation (), temp_10.readProperty_mFSRindex (), var_result_13041.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 366)), inCompiler COMMA_HERE) ;
+  outArgument_outInstruction = GGS_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR::init_21__21__21_ (temp_9.readProperty_mInstructionLocation (), temp_10.readProperty_mFSRindex (), var_result_13059.getter_uint (inCompiler COMMA_SOURCE_FILE ("ipic18_build_block_representation.galgas", 366)), inCompiler COMMA_HERE) ;
 }
 
