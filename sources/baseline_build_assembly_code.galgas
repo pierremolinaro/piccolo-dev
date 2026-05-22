@@ -191,7 +191,7 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
           ?let @uint sliceSize
         ]
         if idx >= sliceSize then
-          error self.mInstructionLocation : "internal error, idx (" + idx + ") >= sliceSize (" + sliceSize + ")"
+          error (self.mInstructionLocation : "internal error, idx (" + idx + ") >= sliceSize (" + sliceSize + ")")
         end
         bitIndex = sliceIndex + idx
       elsif [inStatusRegisterBitSliceTable hasKey !"PA"+ idx] then
@@ -201,11 +201,11 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
           ?let @uint sliceSize
         ]
         if sliceSize != 1 then
-          error self.mInstructionLocation : "internal error: sliceSize (" + sliceSize + ") != 1"
+          error (self.mInstructionLocation : "internal error: sliceSize (" + sliceSize + ") != 1")
         end
         bitIndex = sliceIndex
       else
-        error self.mInstructionLocation : "internal error, cannot solve page bit addressing" spoil (bitIndex)
+        error (self.mInstructionLocation : "internal error, cannot solve page bit addressing" spoil bitIndex)
       end
       ioAssemblyInstructionList += !@baseline_assembly_instruction_FB {
         !self.mInstructionLocation
@@ -254,7 +254,7 @@ override method @baseline_intermediate_JSR generateAssemblyCode
           ?let @uint sliceSize
         ]
         if idx >= sliceSize then
-          error self.mInstructionLocation : "internal error, idx (" + idx + ") >= sliceSize (" + sliceSize + ")"
+          error (self.mInstructionLocation : "internal error, idx (" + idx + ") >= sliceSize (" + sliceSize + ")")
         end
         bitIndex = sliceIndex + idx
       elsif [inStatusRegisterBitSliceTable hasKey !"PA"+ idx] then
@@ -264,11 +264,11 @@ override method @baseline_intermediate_JSR generateAssemblyCode
           ?let @uint sliceSize
         ]
         if sliceSize != 1 then
-          error self.mInstructionLocation : "internal error: sliceSize (" + sliceSize + ") != 1"
+          error (self.mInstructionLocation : "internal error: sliceSize (" + sliceSize + ") != 1")
         end
         bitIndex = sliceIndex
       else
-        error self.mInstructionLocation : "internal error, cannot solve page bit addressing" spoil (bitIndex)
+        error (self.mInstructionLocation : "internal error, cannot solve page bit addressing" spoil bitIndex)
       end
       ioAssemblyInstructionList += !@baseline_assembly_instruction_FB {
         !self.mInstructionLocation

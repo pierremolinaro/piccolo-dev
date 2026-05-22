@@ -17,8 +17,8 @@ proc pic18BootloaderSpecificationAnalysis
 //-------------------------------- Check source file name
   let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inBootloaderName.string then
-    error inBootloaderName: "the bootloader name ('" + inBootloaderName
-    + "') should be identical to the file base name '" + sourceFileBaseName + "'"
+    error (inBootloaderName: "the bootloader name ('" + inBootloaderName
+    + "') should be identical to the file base name '" + sourceFileBaseName + "'")
   end
   outListFileContents = ""
 //-------------------------------- Analyze Device
@@ -26,18 +26,18 @@ proc pic18BootloaderSpecificationAnalysis
   switch outPiccoloDeviceModel.mProcessorType
     case pic18_60 : outAccessBankSplitOffset = 0x60
     case pic18_80 : outAccessBankSplitOffset = 0x80
-    case midrange : error inDeviceName: "a midrange device is not accepted here" spoil (outAccessBankSplitOffset)
-    case baseline : error inDeviceName: "a baseline device is not accepted here" spoil (outAccessBankSplitOffset)
+    case midrange : error (inDeviceName: "a midrange device is not accepted here" spoil outAccessBankSplitOffset)
+    case baseline : error (inDeviceName: "a baseline device is not accepted here" spoil outAccessBankSplitOffset)
   end
 //-------------------------------- Check reserved ROM size < microcontroller ROM size
   outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
   outListFileContents += "*" + ["BOOTLOADER FOOTPRINT" leftAndRightPadding !117 !' '] + "*\n"
   outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
   if inReservedRomSize.uint >= outPiccoloDeviceModel.mRomSize.uint then
-    error inReservedRomSize: "reserved size for bootloader ("
+    error (inReservedRomSize: "reserved size for bootloader ("
     + inReservedRomSize.uint.string + " bytes) is greater than ROM size ("
     + outPiccoloDeviceModel.mRomSize.uint.string + " bytes) of "
-    + inDeviceName + " micro controller"
+    + inDeviceName + " micro controller")
   end
   outListFileContents += "ROM size : " + inReservedRomSize.uint.string + " bytes.\n\n"
 //-------------------------------- Check reserved RAM size <= microcontroller RAM size (in every bank)
@@ -46,8 +46,8 @@ proc pic18BootloaderSpecificationAnalysis
     [outRamBank searchKey !lkey ?let firstAddress ?var firstFreeAddress ?let lastAddressPlusOne ?let unused mirrorOffsetList]
     firstFreeAddress = firstFreeAddress + mReservedSize.uint
     if (firstFreeAddress > lastAddressPlusOne) then
-      error mReservedSize: "reserved size is greater than size of '" + lkey + "' bank ("
-      + (lastAddressPlusOne - firstAddress).string + " bytes)"
+      error (mReservedSize: "reserved size is greater than size of '" + lkey + "' bank ("
+      + (lastAddressPlusOne - firstAddress).string + " bytes)")
     else
       [!?outRamBank setMFirstFreeAddressForKey !firstFreeAddress !lkey.string]
       outListFileContents += "'" + lkey + "' RAM size : " + mReservedSize.uint.string + " bytes (from "
@@ -63,7 +63,7 @@ proc pic18BootloaderSpecificationAnalysis
   var @uint entryPointAddress = 0x4
   for (mRoutineName * * * *) in  inBootloaderRoutineDeclarationList do
     if [routineNameSet hasKey !mRoutineName.string] then
-      error mRoutineName:"This routine is already declared"
+      error (mRoutineName:"This routine is already declared")
     end
     routineNameSet ++= mRoutineName.string
     outListFileContents += [mRoutineName.string leftPadding !40 !' '] + " " + entryPointAddress.hexString + "\n"
@@ -83,7 +83,7 @@ proc pic18BootloaderSpecificationAnalysis
   entryPointAddress = inReservedRomSize.uint
   for (mRoutineName * * * *) in  inUserRoutineDeclarationList do
     if [routineNameSet hasKey !mRoutineName.string] then
-      error mRoutineName:"This routine is already declared"
+      error (mRoutineName:"This routine is already declared")
     end
     routineNameSet ++= mRoutineName.string
     outListFileContents += [mRoutineName.string leftPadding !40 !' '] + " " + entryPointAddress.hexString + "\n"

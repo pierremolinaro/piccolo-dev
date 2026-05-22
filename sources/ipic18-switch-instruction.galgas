@@ -126,11 +126,11 @@ override method @pic18Instruction_switch analyze
     end
     if finalBankSettingDefined then
       if finalBankSetting != branchFinalBank then
-        error mStartOfCase: "this branch leaves bank setting to "
+        error (mStartOfCase: "this branch leaves bank setting to "
         + if branchFinalBank == @uint. max then "'no selection'" else branchFinalBank.string end
         + ", but first branch leaves bank setting to "
         + if finalBankSetting == @uint. max then "'no selection'" else finalBankSetting.string end
-        + " (should be the same setting)"
+        + " (should be the same setting)")
       end
     else
       finalBankSettingDefined = true
@@ -173,11 +173,11 @@ override method @pic18Instruction_switch analyze
   ioGeneratedInstructionList = @()
 //--- Bank setting
   if finalBankSetting != branchFinalBank then
-    error self.mElseBranchStartLocation: "the 'else' branch leaves bank setting to "
+    error (self.mElseBranchStartLocation: "the 'else' branch leaves bank setting to "
     + if branchFinalBank == @uint. max then "'no selection'" else branchFinalBank.string end
     + ", but first branch leaves bank setting to "
     + if finalBankSetting == @uint. max then "'no selection'" else finalBankSetting.string end
-    + " (should be the same setting)"
+    + " (should be the same setting)")
   end
 //---
   ioCurrentBank = finalBankSetting
@@ -225,12 +225,12 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
   [self.mCaseExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 //---
   if (result > 255) | (result < 0) then
-    error self.mCaseExpressionLocation:"case value is evaluated as " + result + " (should be between 0 and 255)"
+    error (self.mCaseExpressionLocation:"case value is evaluated as " + result + " (should be between 0 and 255)")
   end
 //--- Check constant is unique
   if [ioCaseConstantMap hasKey !result.string] then
-    error self.mCaseExpressionLocation : "the '" + result + "' constant is already used in switch instruction"
-    error [ioCaseConstantMap locationForKey !result.string] : "the '" + result + "' constant is used here"
+    error (self.mCaseExpressionLocation : "the '" + result + "' constant is already used in switch instruction")
+    error ([ioCaseConstantMap locationForKey !result.string] : "the '" + result + "' constant is used here")
   else
     [!?ioCaseConstantMap insertKey ! @{ !result.string !self.mCaseExpressionLocation}]
   end
@@ -286,26 +286,26 @@ override method @pic18IntervalCaseItem analyzeCaseItem
 //---
   var ok = true
   if (minBound > 255) | (minBound < 0) then
-    error self.mCaseExpressionLocation:"min bound is evaluated as " + minBound + " (should be between 0 and 255)"
+    error (self.mCaseExpressionLocation:"min bound is evaluated as " + minBound + " (should be between 0 and 255)")
     ok = false
   end
   if (maxBound > 255) | (maxBound < 0) then
-    error self.mCaseExpressionLocation:"max bound is evaluated as " + maxBound + " (should be between 0 and 255)"
+    error (self.mCaseExpressionLocation:"max bound is evaluated as " + maxBound + " (should be between 0 and 255)")
     ok = false
   end
   if maxBound <= minBound then
-    error self.mCaseExpressionLocation:"max bound (" + maxBound + ") should be greater than low bound (" + minBound + ")"
+    error (self.mCaseExpressionLocation:"max bound (" + maxBound + ") should be greater than low bound (" + minBound + ")")
     ok = false
   elsif (maxBound == 255) & (minBound == 0) then
-    error self.mCaseExpressionLocation : "condition is always true"
+    error (self.mCaseExpressionLocation : "condition is always true")
     ok = false
   end
   if ok then
   //--- Check constant is unique
     for n in @range {!minBound.uint !(maxBound - minBound + 1).uint} do
       if [ioCaseConstantMap hasKey !n.string] then
-        error self.mCaseExpressionLocation : "the '" + n + "' constant is already used in switch instruction"
-        error [ioCaseConstantMap locationForKey !n.string] : "the '" + n + "' constant is used here"
+        error (self.mCaseExpressionLocation : "the '" + n + "' constant is already used in switch instruction")
+        error ([ioCaseConstantMap locationForKey !n.string] : "the '" + n + "' constant is used here")
       else
         [!?ioCaseConstantMap insertKey !@lstring { !n.string !self.mCaseExpressionLocation}]
       end

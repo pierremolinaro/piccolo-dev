@@ -155,7 +155,7 @@ method @ipic18Block generateCodeForBlock
     if generatedCodeSize != mInstruction.instructionSize then
       let s = "*** INTERNAL ERROR ** generated code size ("
       + generatedCodeSize + ") != instruction size (" + mInstruction.instructionSize + ")"
-      error .nowhere : s
+      error (.nowhere : s)
       ioListFileContents += s + "\n"
     end
   end
@@ -188,7 +188,7 @@ method @ipic18Block generateCodeForBlock
     if generatedCodeSize != [self.mTerminator terminatorSize !inNextBlockLabel] then
       let s = "*** INTERNAL ERROR ** generated code size ("
       + generatedCodeSize + ") != instruction size (" + [self.mTerminator terminatorSize !inNextBlockLabel] + ")"
-      error .nowhere : s
+      error (.nowhere : s)
       ioListFileContents += s + "\n"
     end
 //---
@@ -315,11 +315,11 @@ proc ipic18GenerateCode
   switch inProgramKind
   case regularProgram, userProgram :
     if outUsedROMsize > inROMsize then
-      error .here : "the program uses " + outUsedROMsize + " bytes, greater than reserved size (" + inROMsize + " bytes)"
+      error (.here : "the program uses " + outUsedROMsize + " bytes, greater than reserved size (" + inROMsize + " bytes)")
     end
   case bootloaderProgram :
     if outUsedROMsize > inBootloaderReservedROMsize then
-      error .here : "the bootloader uses " + outUsedROMsize + " bytes, greater than reserved size (" + inBootloaderReservedROMsize + " bytes)"
+      error (.here : "the bootloader uses " + outUsedROMsize + " bytes, greater than reserved size (" + inBootloaderReservedROMsize + " bytes)")
     end
   end
 //----------------------------- Generate HEX file

@@ -23,7 +23,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   elsif processorName.string == "baseline" then
     processorType = @processorType. baseline
   else
-    error @location.here : "The '" + processorName + "' processor is not handled" spoil (processorType)
+    error (@location.here : "The '" + processorName + "' processor is not handled" spoil processorType)
   end
   $;$
   $romsize$
@@ -111,7 +111,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
           $identifier$ ?let @lstring sliceName
           select
             if (sliceWidth != 0) & (sliceWidth != 1) then
-              error sliceName:"a slice of 1 bit is expected for '" + sliceName + "'" 
+              error (sliceName:"a slice of 1 bit is expected for '" + sliceName + "'")
             end
             sliceWidth = 1
             bitDefinitionString += sliceName.string 
@@ -119,7 +119,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
             $[$
             $integer$ ?let @luint sliceSize
             if (sliceWidth != 0) & (sliceWidth != sliceSize.uint) then
-              error sliceName:"a slice of " + sliceWidth.string + " bits is expected for '" + sliceName + "'" 
+              error (sliceName:"a slice of " + sliceWidth.string + " bits is expected for '" + sliceName + "'")
             end
             sliceWidth = sliceSize.uint
             sliceBase = sliceBase + 1 - sliceSize.uint
@@ -142,7 +142,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       bitDefinitionString += ", " 
     end
     if sliceIndex != 0 then
-      error registerName:"Incorrect bit definition for register '" + registerName + "'"
+      error (registerName:"Incorrect bit definition for register '" + registerName + "'")
     end
     bitDefinitionString += ">"
     $>$
@@ -176,7 +176,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     while
       $identifier$ ?let @lstring maskName
       if [settingNameSet hasKey !maskName.string] then
-        error maskName:"The '" + maskName + "' setting is already defined"
+        error (maskName:"The '" + maskName + "' setting is already defined")
       end
       settingNameSet ++= maskName.string
       $mask$

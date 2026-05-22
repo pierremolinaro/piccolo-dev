@@ -51,11 +51,11 @@ rule <parse_bootloader>
     $=$
     $integer$ ?let @luint rs
     if outReservedRomSize.uint != 0 then
-      error rs : "ROM size already defined"
+      error (rs : "ROM size already defined")
     elsif rs.uint == 0 then
-      error rs: "ROM size should be > 0"
+      error (rs: "ROM size should be > 0")
     elsif (rs.uint mod 8) != 0 then
-      error rs: "ROM size should be a multiple of 8"
+      error (rs: "ROM size should be a multiple of 8")
     else
       outReservedRomSize = rs
     end
@@ -65,9 +65,9 @@ rule <parse_bootloader>
     $=$
     $integer$ ?let @luint rs
     if [outBootloaderReservedRAMmap hasKey !bankName.string] then
-      error rs : "RAM size already defined for '" + bankName + "' bank"
+      error (rs : "RAM size already defined for '" + bankName + "' bank")
     elsif rs.uint == 0 then
-      error rs: "RAM size should be > 0"
+      error (rs: "RAM size should be > 0")
     else
       [!?outBootloaderReservedRAMmap  insertKey !bankName !rs]
     end
@@ -184,7 +184,7 @@ rule <routine_declaration>
     select
       $preserved$
       if noreturn then
-        error @location.here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting"
+        error (@location.here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting")
       end
       preservesBank = true
       requiredBank = @luint { !@uint. max !@location.here}
@@ -199,14 +199,14 @@ rule <routine_declaration>
         $ensures$
         $integer$ ? returnedBank
         if noreturn then
-          error @location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting"
+          error (@location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting")
         end
       end
     or
       $ensures$
       $integer$ ? returnedBank
       if noreturn then
-        error @location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting"
+        error (@location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting")
       end
       preservesBank = false
       requiredBank = @luint { !@uint. max !@location.here}

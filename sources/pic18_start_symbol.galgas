@@ -110,8 +110,8 @@ label importBootloaderSpecification
   !@luint outBootloaderReservedROMsize {
   $pic18$
   $identifier$ ?let @lstring programName
-  error programName: "this file does not define a bootloader specification"
-   spoil (outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
+  error (programName: "this file does not define a bootloader specification"
+   spoil outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outDeviceName,
       outBootloaderRoutineDeclarationList,
       outUserRoutineDeclarationList,

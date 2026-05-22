@@ -554,7 +554,7 @@ func pic18_Bcc_instruction_code
   ->@codeList outCode {  
   let @sint displacement = (inTargetAddress.sint - 2 - inConditionalBranchInstructionAddress.sint) >> 1
   if (displacement > 127) | (displacement < - 128) then
-    error inTargetLabel: "** INTERNAL ERROR ** displacement too large for conditional branch instruction"
+    error (inTargetLabel: "** INTERNAL ERROR ** displacement too large for conditional branch instruction")
   end
 
   let @conditional_branch conditionalBranch
@@ -599,8 +599,8 @@ func pic18_RCALL_instruction_code
   ->@codeList outCode {
   let @sint displacement = (inTargetAddress.sint - 2 - inRCALLinstructionAddress.sint) >> 1
   if (displacement > 1023) | (displacement < - 1024) then
-    error inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ displacement.string
-    + ") for RCALL instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)"
+    error (inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ displacement.string
+    + ") for RCALL instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)")
   end
   outCode = @codeList. listWithValue {
     !"    RCALL " + inTargetLabel
@@ -616,8 +616,8 @@ func pic18_BRA_instruction_code
   ->@codeList outCode {
   let @sint displacement = (inTargetAddress.sint - 2 - inRCALLinstructionAddress.sint) >> 1
   if (displacement > 1023) | (displacement < - 1024) then
-    error inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ displacement.string
-    + ") for BRA instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)"
+    error (inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ displacement.string
+    + ") for BRA instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)")
   end
   outCode = @codeList. listWithValue {
     !"    BRA " + inTargetLabel

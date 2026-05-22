@@ -19,10 +19,10 @@ proc parseDeviceDefinition
     let @string definitionString = [fw textFileContentsAtPath !deviceFullName]
     grammar piccoloDevice_grammar (?outPiccoloDeviceModel) on definitionString : deviceFullName
   else
-    error
+    error (
       inDeviceName:
       "The '" + inDeviceName + "' definition file is not defined"
-      spoil (outPiccoloDeviceModel)
+      spoil outPiccoloDeviceModel)
   end
 }
 

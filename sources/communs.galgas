@@ -67,7 +67,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
           $identifier$ ?let @lstring sliceName
           select
             if (sliceWidth != 0) & (sliceWidth != 1) then
-              error sliceName:"a slice of 1 bit is expected for '" + sliceName + "'" 
+              error (sliceName:"a slice of 1 bit is expected for '" + sliceName + "'")
             end
             sliceWidth = 1
             bitDefinitionString += sliceName.string 
@@ -75,7 +75,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
             $[$
             $integer$ ?let @luint sliceSize
             if (sliceWidth != 0) & (sliceWidth != sliceSize.uint) then
-              error sliceName:"a slice of " + sliceWidth.string + " bits is expected for '" + sliceName + "'" 
+              error (sliceName:"a slice of " + sliceWidth.string + " bits is expected for '" + sliceName + "'")
             end
             sliceWidth = sliceSize.uint
             sliceBase = sliceBase + 1 - sliceSize.uint
@@ -99,7 +99,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
       or
         $integer$ ?let bitCount
         if bitCount.uint == 0 then
-          error bitCount.location: "the bit count should be > 0"
+          error (bitCount.location: "the bit count should be > 0")
         end
         for * in 0 ..< bitCount.uint
           do bitDefinitionString += "-"
@@ -112,7 +112,7 @@ rule <declaration_in_ram> !@declarationInRam outDeclaration {
       bitDefinitionString += ", " 
     end
     if sliceIndex != 0 then
-      error name:"Incorrect bit definition for register '" + name + "': " + (8 - sliceIndex).string + " bits (s) are defined, instead of 8"
+      error (name:"Incorrect bit definition for register '" + name + "': " + (8 - sliceIndex).string + " bits (s) are defined, instead of 8")
     end
     $>$
     bitDefinitionString += ">"

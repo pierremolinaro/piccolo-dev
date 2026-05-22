@@ -226,7 +226,7 @@ override method @ipic18IncDecRegisterTerminator optimizeTerminator
   ]
   if identicalTerminators then
     outOptimizedTerminator = self
-    error self.mInstructionLocation : "useless decf/incf condition should be replaced by decf/incf instruction"
+    error (self.mInstructionLocation : "useless decf/incf condition should be replaced by decf/incf instruction")
   elsif optimization then
     outOptimizedTerminator = @ipic18IncDecRegisterTerminator {
       !self.mInstructionLocation

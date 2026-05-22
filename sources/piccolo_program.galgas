@@ -131,7 +131,7 @@ before {
         + piccoloDeviceModel.mEepromAddress.hexString + ")\n")
       end
     else
-      error .here:"The " + deviceForMemoryDescription + " device is not supported or does not exist"
+      error (.here:"The " + deviceForMemoryDescription + " device is not supported or does not exist")
     end
   end
 //------------------------------------------------ Print REGISTERS description
@@ -151,7 +151,7 @@ before {
         print (!s)
       end
     else
-      error .here:"The " + deviceForRegistersDescription + " device is not supported or does not exist"
+      error (.here:"The " + deviceForRegistersDescription + " device is not supported or does not exist")
     end
   end
 //------------------------------------------------ Print CONFIGURATION description
@@ -175,7 +175,7 @@ before {
         print (!s)
       end
     else
-      error .here:"The " + deviceForConfigDescription + " device is not supported or does not exist"
+      error (.here:"The " + deviceForConfigDescription + " device is not supported or does not exist")
     end
   end
 }

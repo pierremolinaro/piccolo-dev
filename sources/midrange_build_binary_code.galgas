@@ -254,7 +254,7 @@ proc emit_midrange_GOTOinstruction
   ?let @uint inTargetAddress
   ?!@string ioListFileContents {
   if ((ioAddress ^ inTargetAddress) & 0xF800) != 0 then
-    error inIntructionLocation : "GOTO (from " + ioAddress.hexString + " to " + inTargetAddress.hexString + ") crosses page boundary"
+    error (inIntructionLocation : "GOTO (from " + ioAddress.hexString + " to " + inTargetAddress.hexString + ") crosses page boundary")
   end
   emit_midrange_GOTOinstruction_nocheck ( !inTargetLabel !inTargetAddress !?ioAddress !?ioListFileContents )
 }
@@ -279,7 +279,7 @@ proc emit_midrange_CALLinstruction
   ?let @uint inTargetAddress
   ?!@string ioListFileContents {
   if ((ioAddress ^ inTargetAddress) & 0xF800) != 0 then
-    error inIntructionLocation : "CALL (from " + ioAddress.hexString + " to " + inTargetAddress.hexString + ") crosses page boundary"
+    error (inIntructionLocation : "CALL (from " + ioAddress.hexString + " to " + inTargetAddress.hexString + ") crosses page boundary")
   end
   emit_midrange_CALLinstruction_nocheck ( !inTargetLabel !inTargetAddress !?ioAddress !?ioListFileContents )
 }
@@ -622,9 +622,9 @@ override method @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
   ?!@uint ioAddress {
   [inRoutineSymbolTable searchKey !self.mLabel ?let @uint targetAddress]
   if (targetAddress != ioAddress) then
-    error self.mLabel: "Internal second pass error: the '" + self.mLabel
+    error (self.mLabel: "Internal second pass error: the '" + self.mLabel
     + "' label gets " + ioAddress.hexString + " value in second pass, while it gets "
-    + targetAddress.hexString + " in first pass"
+    + targetAddress.hexString + " in first pass")
   end
   emitNoMidrangeCodeAtWordAddress ( !ioAddress !self !?ioListFileContents )
 }
@@ -693,13 +693,13 @@ proc build_midrange_ipic_binary_code
     checkCurrentEmitAddress ( !currentAddress * 2 )
   end
   if lastAddressForFirstPass != currentAddress then
-    error @location.here: "Internal second pass error: the last address gets " + currentAddress.hexString
+    error (@location.here: "Internal second pass error: the last address gets " + currentAddress.hexString
     + " value in second pass, while it gets "
-    + lastAddressForFirstPass.hexString + " value in first pass"
+    + lastAddressForFirstPass.hexString + " value in first pass")
   elsif lastAddressForFirstPass > inROMsize then
-    error @location.here: "Program too large: " + lastAddressForFirstPass.string
+    error (@location.here: "Program too large: " + lastAddressForFirstPass.string
     + " bytes (rom size is "
-    + inROMsize.string + " bytes)"
+    + inROMsize.string + " bytes)")
   end
 //-------------------------------- Add Configuration
   for (* mRegisterAddress mRegisterValue) in  inActualConfigurationMap do

@@ -11,8 +11,8 @@ proc pic18_analyze
 //-------------------------------- Check source file name
   let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
-    error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
-    + "') should be identical to the file base name '" + sourceFileBaseName + "'"
+    error (inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
+    + "') should be identical to the file base name '" + sourceFileBaseName + "'")
   end
   var @string listFileContents = ""
 //-------------------------------- Analyze Device
@@ -34,8 +34,8 @@ proc pic18_analyze
     switch piccoloDeviceModel.mProcessorType
       case pic18_60 : accessBankSplitOffset = 0x60
       case pic18_80 : accessBankSplitOffset = 0x80
-      case midrange : error inPiccoloModel.mDeviceNameOrBootLoaderReference: "a midrange device is not accepted here" spoil (accessBankSplitOffset)
-      case baseline : error inPiccoloModel.mDeviceNameOrBootLoaderReference: "a baseline device is not accepted here" spoil (accessBankSplitOffset)
+      case midrange : error (inPiccoloModel.mDeviceNameOrBootLoaderReference: "a midrange device is not accepted here" spoil accessBankSplitOffset)
+      case baseline : error (inPiccoloModel.mDeviceNameOrBootLoaderReference: "a baseline device is not accepted here" spoil accessBankSplitOffset)
     end
     ramBank = piccoloDeviceModel.mRamBankTable
     bootloaderReservedRAMmap = @bootloaderReservedRAMmap ()
@@ -105,7 +105,7 @@ proc pic18_analyze
   var unusedDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
-      error mValue : "the '" + mValue + "' routine is not declared"
+      error (mValue : "the '" + mValue + "' routine is not declared")
     elsif [unusedDeclarationUnicity hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' routine is already declared as unused"
     elsif [usedRoutineSet hasKey !mValue.string] then
@@ -122,7 +122,7 @@ proc pic18_analyze
   var inlinedRoutineSet =@stringset ()
   for (mValue) in  inPiccoloModel.mInlinedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
-      error mValue : "the '" + mValue + "' routine is not declared"
+      error (mValue : "the '" + mValue + "' routine is not declared")
     elsif not [usedRoutineSet hasKey !mValue.string] then
       warning mValue : "useless declaration, the '" + mValue + "' routine is unused"
     else
@@ -144,7 +144,7 @@ proc pic18_analyze
       found = mValue.string == piccoloDeviceName
     end
     if not found then
-      error mErrorLocation: "this code is not available for '" + piccoloDeviceName + "'"
+      error (mErrorLocation: "this code is not available for '" + piccoloDeviceName + "'")
     end
   end
 //-------------------------------- Interrupts ?
@@ -154,32 +154,32 @@ proc pic18_analyze
   var @bool lowInterruptIsFast = false
   for (mInterruptName mFastReturn * *) in  interruptDefinitionList do
     if inPiccoloModel.mProgramKind == @programKind. userProgram then
-      error mInterruptName: "interrupt routine is not allowed for a bootloader user program"
+      error (mInterruptName: "interrupt routine is not allowed for a bootloader user program")
     end
     if mInterruptName.string == "high" then
       highInterruptIsFast = mFastReturn
       if hasHighInterrupt then
-        error mInterruptName: "Only one 'high' interrupt routine is allowed"
+        error (mInterruptName: "Only one 'high' interrupt routine is allowed")
       end
       hasHighInterrupt = true
     elsif mInterruptName.string == "low" then
       lowInterruptIsFast = mFastReturn
       if hasLowInterrupt then
-        error mInterruptName: "Only one 'low' interrupt routine is allowed"
+        error (mInterruptName: "Only one 'low' interrupt routine is allowed")
       end
       hasLowInterrupt = true
     else
-      error mInterruptName: "An interrupt routine should be named 'low' or 'high'"
+      error (mInterruptName: "An interrupt routine should be named 'low' or 'high'")
     end
     if highInterruptIsFast & lowInterruptIsFast then
-      error mInterruptName:"either low interrupt or high interrupt can be \"fast\", not both"
+      error (mInterruptName:"either low interrupt or high interrupt can be \"fast\", not both")
     end
   end
 //-------------------------------- Config definition
   let @actualConfigurationMap actualConfigurationMap
   if inPiccoloModel.mProgramKind == @programKind. userProgram then
     for (mDefinitionLocation *) in  inPiccoloModel.mConfigDefinitionList do
-      error mDefinitionLocation: "configuration is not allowed for a bootloader user program"
+      error (mDefinitionLocation: "configuration is not allowed for a bootloader user program")
     end
     actualConfigurationMap = @actualConfigurationMap ()
   else
@@ -212,7 +212,7 @@ proc pic18_analyze
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !piccoloDeviceModel.mRegisterTable !constantMap ?let @sint64 result !?usedRegisters]
     if [piccoloDeviceModel.mRegisterTable hasKey !mConstantName.string] then
-      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
+      error (mConstantName: "'" + mConstantName + "' is already declared as ram register or special register")
     else
       [!?constantMap insertKey !mConstantName !result]
     end
@@ -236,16 +236,16 @@ proc pic18_analyze
         let @luint bootloaderReservedSize
         [bootloaderReservedRAMmap searchKey !lkey ?bootloaderReservedSize]
         if (mFirstFreeAddress - mFirstAddress) > bootloaderReservedSize.uint then
-          error @location.here: "for '" + lkey + "' RAM bank, the bootloader implementation declares "
+          error (@location.here: "for '" + lkey + "' RAM bank, the bootloader implementation declares "
           + (mFirstFreeAddress - mFirstAddress).string
           + " byte(s), althought the bootloader specification reserves "
           + bootloaderReservedSize.uint.string
-          + " byte(s)"
+          + " byte(s)")
         end
       elsif mFirstFreeAddress > mFirstAddress then
-        error @location.here: "for '" + lkey + "' RAM bank, the bootloader implementation declares "
+        error (@location.here: "for '" + lkey + "' RAM bank, the bootloader implementation declares "
         + (mFirstFreeAddress - mFirstAddress).string
-        + " byte(s), althought the bootloader specification reserves no space"
+        + " byte(s), althought the bootloader specification reserves no space")
       end
     end
   end

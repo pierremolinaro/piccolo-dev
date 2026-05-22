@@ -13,7 +13,7 @@ map @baseline_declaredRoutineMap {
 
 method @baseline_instruction shouldTerminateWithMOVLW
   ?let @string inErrorMessage {
-  error self.mInstructionLocation : inErrorMessage
+  error (self.mInstructionLocation : inErrorMessage)
 }
 
 //----------------------------------------------------------------------------*
@@ -21,7 +21,7 @@ method @baseline_instruction shouldTerminateWithMOVLW
 override method @baseline_instruction_literalOperation shouldTerminateWithMOVLW
   ?let @string inErrorMessage {
   if self.mLiteralInstruction != @baseline_literal_instruction_opcode. MOVLW then
-    error self.mInstructionLocation : inErrorMessage
+    error (self.mInstructionLocation : inErrorMessage)
   end
 }
 
@@ -37,14 +37,14 @@ override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
   ?let @string unused inErrorMessage {
 //--- THEN branch
   if self.mThenInstructionList.count == 0 then
-    error self.mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
+    error (self.mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction")
   else
    [self.mThenInstructionList last ?let @baseline_instruction lastInstruction]
    [lastInstruction shouldTerminateWithMOVLW !"the 'then' branch of this 'if' instruction must terminate with a MOVLW instruction"]
   end
 //--- ELSE branch
   if self.mElseInstructionList.count == 0 then
-    error self.mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction"
+    error (self.mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction")
   else
    [self.mElseInstructionList last ?let @baseline_instruction lastInstruction]
    [lastInstruction shouldTerminateWithMOVLW !"the 'else' branch of this 'if' instruction must terminate with a MOVLW instruction"]
@@ -59,7 +59,7 @@ override method @baseline_instruction_structured_if shouldTerminateWithMOVLW
 //----------------------------------------------------------------------------*
 
 method @baseline_instruction shouldNotContinueInSequence ?let @string inErrorMessage {
-  error self.mInstructionLocation : inErrorMessage
+  error (self.mInstructionLocation : inErrorMessage)
 }
 
 //----------------------------------------------------------------------------*
@@ -91,16 +91,16 @@ proc baseline_analysis
   ?let @string inSourceFileName {
   let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
-    error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
-    + "') should be identical to the file base name '" + sourceFileBaseName + "'"
+    error (inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
+    + "') should be identical to the file base name '" + sourceFileBaseName + "'")
   end
   var @string listFileContents = ""
 //-------------------------------- Analyze Device
   parseDeviceDefinition ( !inPiccoloModel.mDeviceName ?let piccoloDeviceModel )
   switch piccoloDeviceModel.mProcessorType
     case baseline :
-    case pic18_60, pic18_80 : error inPiccoloModel.mDeviceName: "a pic18 device is not accepted here : only a baseline device"
-    case midrange : error inPiccoloModel.mDeviceName: "a mid-ranfe device is not accepted here : only a baseline device"
+    case pic18_60, pic18_80 : error (inPiccoloModel.mDeviceName: "a pic18 device is not accepted here : only a baseline device")
+    case midrange : error (inPiccoloModel.mDeviceName: "a mid-ranfe device is not accepted here : only a baseline device")
   end
 //-------------------------------- Config definition
   buildConfig (
@@ -117,7 +117,7 @@ proc baseline_analysis
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
     if [registerTable hasKey !mConstantName.string] then
-      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
+      error (mConstantName: "'" + mConstantName + "' is already declared as ram register or special register")
     else
       [!?constantMap insertKey !mConstantName !result]
     end
@@ -151,13 +151,13 @@ proc baseline_analysis
   if [routineMap hasKey !"main"] then
     [routineMap searchKey !@lstring { !"main" !@location.here} ?let @bool isNoReturn ?let @luint page]
     if not isNoReturn then
-      error [routineMap locationForKey !"main"] :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main page 0\""
+      error ([routineMap locationForKey !"main"] :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main page 0\"")
     end
     if page.uint != 0 then
-      error page :"the \"main\" should be declared in page 0: \"noreturn main page 0\""
+      error (page :"the \"main\" should be declared in page 0: \"noreturn main page 0\"")
     end
   else
-    error inPiccoloModel.mEndOfProgram: "the program should declare the \"main\" routine"
+    error (inPiccoloModel.mEndOfProgram: "the program should declare the \"main\" routine")
   end
 //-------------------------------- Check page routine specification is compatible with device
   var @bool needsToSavePCLATH = false
@@ -167,7 +167,7 @@ proc baseline_analysis
       needsToSavePCLATH = true
     end
     if mPage.uint >= totalPageCount then
-      error mPage:"invalid value ("+ mPage.uint + "); the device has " + totalPageCount + " 512 word page(s) on rom"
+      error (mPage:"invalid value ("+ mPage.uint + "); the device has " + totalPageCount + " 512 word page(s) on rom")
     end
   end
 //-------------------------------- Order routines to place "main" routine first
@@ -211,7 +211,7 @@ proc baseline_analysis
             routineKind = @routineKind. noReturnRoutine
           //--- Check does not continue in sequence
             if mInstructionList.count == 0 then
-              error mRoutineName : "a noreturn routine should terminate by a GOTO or a FOREVER loop"
+              error (mRoutineName : "a noreturn routine should terminate by a GOTO or a FOREVER loop")
             else
              [mInstructionList last ?let @baseline_instruction lastInstruction]
              [lastInstruction shouldNotContinueInSequence !"a noreturn routine should terminate by a GOTO or a FOREVER loop"]
@@ -220,7 +220,7 @@ proc baseline_analysis
             routineKind = @routineKind. regularRoutine
           //--- Check instruction list terminates by a MOVLW instruction
             if mInstructionList.count == 0 then
-              error mRoutineName : "a baseline routine must end with a MOVLW instruction"
+              error (mRoutineName : "a baseline routine must end with a MOVLW instruction")
             else
              [mInstructionList last ?let @baseline_instruction lastInstruction]
              [lastInstruction shouldTerminateWithMOVLW !"the last routine instruction should be MOVLW"]
@@ -247,7 +247,7 @@ proc baseline_analysis
           )
           intermediateInstructionList += !@baseline_intermediate_pseudo_END_ROUTINE { !mRoutineName !currentPage}
           if mIsNoReturn & continuesInSequence then
-            error mRoutineName:"execution should not reach the end of a \"noreturn\" routine"
+            error (mRoutineName:"execution should not reach the end of a \"noreturn\" routine")
           end
         end
       end
@@ -266,7 +266,7 @@ proc baseline_analysis
   var unusedRoutineDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
-      error mValue : "the '" + mValue + "' routine is not declared"
+      error (mValue : "the '" + mValue + "' routine is not declared")
     elsif [unusedRoutineDeclarationUnicity hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' routine is already declared as unused"
     elsif [usedRoutineSet hasKey !mValue.string] then
@@ -283,7 +283,7 @@ proc baseline_analysis
   var unusedDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRegisterList do
     if not [registerTable hasKey !mValue.string] then
-      error mValue : "the '" + mValue + "' byte is not declared"
+      error (mValue : "the '" + mValue + "' byte is not declared")
     elsif [unusedDeclarationUnicity hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' byte is already declared as unused"
     elsif [usedRegisters hasKey !mValue.string] then

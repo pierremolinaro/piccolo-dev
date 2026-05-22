@@ -33,8 +33,8 @@ method @midrange_intermediate_pseudo_ORG defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress {
   if (ioAddress > self.mOrigin) then
-    error @location.here :"internal error: current address ("
-     + ioAddress.hexString + ") is greater than origin (" + self.mOrigin.hexString + ")"
+    error (@location.here :"internal error: current address ("
+     + ioAddress.hexString + ") is greater than origin (" + self.mOrigin.hexString + ")")
   end
   ioAddress = self.mOrigin
 }
@@ -47,7 +47,7 @@ method @midrange_intermediate_actualInstruction defineLabelAtAddress
   ?!@uint ioAddress {
   let @uint nextAddress = ioAddress  + self.instructionLength
   if ((nextAddress ^ ioAddress) & 0xF800) != 0 then
-    error self.mInstructionLocation:"Routine too long, crosses page boundary at this instruction"
+    error (self.mInstructionLocation:"Routine too long, crosses page boundary at this instruction")
   end
   ioAddress = nextAddress
 }
@@ -198,9 +198,9 @@ override method @midrange_intermediate_pseudo_LABEL compute
   ?!@string unused ioListFileContents {
   [inRoutineSymbolTable searchKey !self.mLabel ?let targetAddress]
   if (targetAddress != ioAddress) then
-    error self.mLabel: "Internal second pass error: the '" + self.mLabel
+    error (self.mLabel: "Internal second pass error: the '" + self.mLabel
     + "' label gets " + ioAddress.hexString + " value in second pass, while it gets "
-    + targetAddress.hexString + " in first pass"
+    + targetAddress.hexString + " in first pass")
   end
 }
 
@@ -238,9 +238,9 @@ proc midrange_compute_JSR_JUMP
       currentAddress = currentAddress  + mInstruction.instructionLength
     end
     if lastAddressForFirstPass != currentAddress then
-      error @location.here: "Internal second pass error: the last address gets " + currentAddress.hexString
+      error (@location.here: "Internal second pass error: the last address gets " + currentAddress.hexString
       + " value when checking relative branches, while it gets "
-      + lastAddressForFirstPass.hexString + " value when computing routine map"
+      + lastAddressForFirstPass.hexString + " value when computing routine map")
     end
     if not JUMP_or_JSR_fixed then
       ioListFileContents += "  No JUMP, no JSR to fix\n\n"

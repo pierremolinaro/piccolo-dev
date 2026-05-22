@@ -86,7 +86,7 @@ override method @baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAdd
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
   if self.mIsRegular & ((ioWordAddress & 0x0100) != 0) then
-    error self.mRoutineName : "the 8th bit of the routine address is not 0; a regular routine should be begin in the first half of a page"
+    error (self.mRoutineName : "the 8th bit of the routine address is not 0; a regular routine should be begin in the first half of a page")
   end
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
@@ -98,7 +98,7 @@ override method @baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddre
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
   if ioWordAddress > (self.mPage * 512 + 512) then
-    error self.mRoutineName : "the routine is too large, it does not lie in page " + self.mPage + " (" + (ioWordAddress - (self.mPage * 512 + 512)) + " word(s) in excess)"
+    error (self.mRoutineName : "the routine is too large, it does not lie in page " + self.mPage + " (" + (ioWordAddress - (self.mPage * 512 + 512)) + " word(s) in excess)")
   end
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
@@ -298,9 +298,9 @@ override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
   ?!@uint ioWordAddress {
   [inRoutineSymbolTable searchKey !self.mLabel ?let targetAddress]
   if (targetAddress != ioWordAddress) then
-    error self.mLabel: "Internal second pass error: the '" + self.mLabel
+    error (self.mLabel: "Internal second pass error: the '" + self.mLabel
     + "' label gets " + ioWordAddress.hexString + " value in second pass, while it gets "
-    + targetAddress.hexString + " in first pass"
+    + targetAddress.hexString + " in first pass")
   end
   emitNoBaselineCodeAtWordAddress ( !ioWordAddress !self !?ioListFileContents )
 }
@@ -336,13 +336,13 @@ proc build_baseline_binary_code
     checkCurrentEmitAddress ( !currentWordAddress * 2 )
   end
   if lastAddressForFirstPass != currentWordAddress then
-    error @location.here: "Internal second pass error: the last address gets " + currentWordAddress.hexString
+    error (@location.here: "Internal second pass error: the last address gets " + currentWordAddress.hexString
     + " value in second pass, while it gets "
-    + lastAddressForFirstPass.hexString + " value in first pass"
+    + lastAddressForFirstPass.hexString + " value in first pass")
   elsif lastAddressForFirstPass > inROMsize then
-    error @location.here: "Program too large: " + lastAddressForFirstPass.string
+    error (@location.here: "Program too large: " + lastAddressForFirstPass.string
     + " bytes (rom size is "
-    + inROMsize.string + " bytes)"
+    + inROMsize.string + " bytes)")
   end
 }
 

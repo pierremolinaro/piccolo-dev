@@ -153,7 +153,7 @@ rule <checkpic_definition>
 rule <data_definition> ?!@dataList ioDataList {
   select
     $data$
-    warning .here : "obsolete keyword" fixit { replace "data16" }
+    warning .here : "obsolete keyword" fixit replace "data16"
   or
     $data16$
   end
@@ -265,7 +265,7 @@ rule <routine_definition>
     select
       $preserved$
       if noreturn then
-        error @location.here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting"
+        error (@location.here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting")
       end
       preservesBank = true
       requiredBank = @luint { !@uint. max !@location.here}
@@ -280,14 +280,14 @@ rule <routine_definition>
         $ensures$
         $integer$ ? returnedBank
         if noreturn then
-          error @location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting"
+          error (@location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting")
         end
       end
     or
       $ensures$
       $integer$ ? returnedBank
       if noreturn then
-        error @location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting"
+        error (@location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting")
       end
       preservesBank = false
       requiredBank = @luint { !@uint. max !@location.here}
@@ -346,9 +346,9 @@ rule <condition_factor>
     elsif condition == "NZ" then
       branchIfZero = false
     else
-      error conditionString: "invalid '" + conditionString
+      error (conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z' and 'nz'"
-      spoil (branchIfZero)
+      spoil branchIfZero)
     end
     outCondition = @pic18IncDecRegisterInCondition {
       !registerExpression
@@ -392,9 +392,9 @@ rule <condition_factor>
     elsif condition == "NZ" then
       branchIfZero = false
     else
-      error conditionString: "invalid '" + conditionString
+      error (conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z' and 'nz'"
-      spoil (branchIfZero)
+      spoil branchIfZero)
     end
     outCondition = @pic18RegisterTestCondition { !registerName !branchIfZero}
   or
@@ -418,9 +418,9 @@ rule <condition_factor>
     elsif condition == "NOV" then
       conditional_branch = @conditional_branch. bnov
     else
-      error conditionString: "invalid '" + conditionString
+      error (conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
-      spoil (conditional_branch)
+      spoil conditional_branch)
     end
     outCondition = @pic18BccInStructuredCondition { !conditionString.location !conditional_branch}
   end
@@ -514,8 +514,8 @@ rule <structured_instruction>
         $label$ ?caseLabel
       end
       if switchLabel.string != caseLabel.string then
-        error caseLabel : "'case' label does not match 'switch' label, it should be "
-           + (if switchLabel.string != "" then switchLabel.string else "empty" end)
+        error (caseLabel : "'case' label does not match 'switch' label, it should be "
+           + (if switchLabel.string != "" then switchLabel.string else "empty" end))
       end
       let @location caseLocation = @location.here
       var caseExpressionList =@pic18CaseExpressionList ()
@@ -557,8 +557,8 @@ rule <structured_instruction>
         $label$ ?elseLabel
       end
       if switchLabel.string != elseLabel.string then
-        error elseLabel : "'else' label does not match 'switch' label, it should be "
-           + (if switchLabel.string != "" then switchLabel.string else "empty" end)
+        error (elseLabel : "'else' label does not match 'switch' label, it should be "
+           + (if switchLabel.string != "" then switchLabel.string else "empty" end))
       end
       elseLocation = @location.here
       <instruction_list>
@@ -580,8 +580,8 @@ rule <structured_instruction>
       $label$ ?endSwitchLabel
     end
     if switchLabel.string != endSwitchLabel.string then
-      error switchLabel : "'end' label does not match 'switch' label, it should be "
-         + (if switchLabel.string != "" then switchLabel.string else "empty" end)
+      error (switchLabel : "'end' label does not match 'switch' label, it should be "
+         + (if switchLabel.string != "" then switchLabel.string else "empty" end))
     end
   or
     $block$
@@ -647,8 +647,8 @@ rule <structured_instruction>
       $label$ ?endDoLabel
     end
     if doLabel.string != endDoLabel.string then
-      error endDoLabel : "'end' label does not match 'do' label, it should be "
-         + (if doLabel.string != "" then doLabel.string else "empty" end)
+      error (endDoLabel : "'end' label does not match 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end))
     end
   or
     $checkbank$
@@ -660,7 +660,7 @@ rule <structured_instruction>
   or
     select
       $ldataptr$
-      warning .here : "obsolete keyword" fixit { replace "ldata16ptr" }
+      warning .here : "obsolete keyword" fixit replace "ldata16ptr"
     or
       $ldata16ptr$
     end
@@ -818,8 +818,8 @@ rule <structured_instruction>
       $label$ ?endForeverLabel
     end
     if foreverLabel.string != endForeverLabel.string then
-      error endForeverLabel : "'end' label does not match 'fovever' label, it should be "
-         + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
+      error (endForeverLabel : "'end' label does not match 'fovever' label, it should be "
+         + (if foreverLabel.string != "" then foreverLabel.string else "empty" end))
     end
     outInstruction = @pic18Instruction_FOREVER {
       !instructionLocation
@@ -841,7 +841,7 @@ rule <structured_instruction>
       $identifier$ ?let @lstring conditionString
       let @string condition = conditionString.string.uppercased
       if condition != "NZ" then
-        error conditionString:"invalid '" + condition + "' condition; it should be 'nz'"
+        error (conditionString:"invalid '" + condition + "' condition; it should be 'nz'")
       end
       opCode = @if_semi_colon_op. TSTFSZ
     end
@@ -903,7 +903,7 @@ rule <structured_instruction>
     elsif condition == "NZ" then
       skipIfZero = true
     else
-      error conditionString:"invalid '" + condition + "' condition; it should be 'z' or 'nz'" spoil (skipIfZero)
+      error (conditionString:"invalid '" + condition + "' condition; it should be 'z' or 'nz'" spoil skipIfZero)
     end
     $:$
     <simple_instruction> ?let @pic18PiccoloSimpleInstruction instruction
@@ -937,8 +937,8 @@ rule <structured_instruction>
       $label$ ?endIfLabel
     end
     if ifLabel.string != endIfLabel.string then
-      error endIfLabel : "'end' label does not match 'if' label, it should be "
-         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+      error (endIfLabel : "'end' label does not match 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end))
     end
   or
     $do$
@@ -966,8 +966,8 @@ rule <structured_instruction>
         $label$ ?whileLabel
       end
       if doLabel.string != whileLabel.string then
-        error whileLabel : "'while' label does not match 'do' label, it should be "
-           + (if doLabel.string != "" then doLabel.string else "empty" end)
+        error (whileLabel : "'while' label does not match 'do' label, it should be "
+           + (if doLabel.string != "" then doLabel.string else "empty" end))
       end
       <condition_expression> ?let whileCondition
       <instruction_list>
@@ -986,8 +986,8 @@ rule <structured_instruction>
       $label$ ?endDoLabel
     end
     if doLabel.string != endDoLabel.string then
-      error endDoLabel : "'end' label does not match 'do' label, it should be "
-         + (if doLabel.string != "" then doLabel.string else "empty" end)
+      error (endDoLabel : "'end' label does not match 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end))
     end
     outInstruction = @pic18Instruction_do_while {
       !instructionLocation
@@ -1054,9 +1054,9 @@ rule <structured_instruction>
     elsif condition == "NOV" then
       conditional_branch = @conditional_branch. bnov
     else
-      error conditionString: "invalid '" + conditionString
+      error (conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z', 'nz', 'n', 'nn', 'c', 'nc', 'ov' and 'nov'"
-      spoil (conditional_branch)
+      spoil conditional_branch)
     end
     $identifier$ ?let @lstring targetLabelName indexing routineCall
     outInstruction = @pic18Instruction_JUMPCC {
@@ -1137,8 +1137,8 @@ rule <structured_if_instruction>
       $label$ ?elsifIfLabel
     end
     if ifLabel.string != elsifIfLabel.string then
-      error elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
-         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+      error (elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end))
     end
     <structured_if_instruction>
       !ifLabel
@@ -1157,8 +1157,8 @@ rule <structured_if_instruction>
       $label$ ?elsifLabel
     end
     if ifLabel.string != elsifLabel.string then
-      error elsifLabel : "'else' label does not match 'if' label, it should be "
-         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+      error (elsifLabel : "'else' label does not match 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end))
     end
     <instruction_list>
       ?elseInstructionList

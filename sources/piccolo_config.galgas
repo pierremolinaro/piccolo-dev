@@ -34,7 +34,7 @@ proc actualBuildConfig
   for (* mSettingList) in  inConfigDefinitionList do
     for (mSettingName mSettingValue) in  mSettingList do
       if [actualSettingNameSet hasKey !mSettingName.string] then
-        error mSettingName: "the '" + mSettingName + "' setting is already defined"
+        error (mSettingName: "the '" + mSettingName + "' setting is already defined")
       end
       actualSettingNameSet ++= mSettingName.string
       [configFieldMap searchKey !mSettingName ?let registerName ?2* ?let fieldSettingMap]
@@ -51,7 +51,7 @@ proc actualBuildConfig
         for (lkey * *) in  fieldSettingMap do
           replacementSuggestions += !"\"" + lkey + "\""
         end
-        error mSettingValue: errorMessage fixit { replace replacementSuggestions }
+        error (mSettingValue: errorMessage fixit replace replacementSuggestions)
       end
     end
   end
@@ -62,7 +62,7 @@ proc actualBuildConfig
     for (key) in  notDefinedSetting do
       errorMessage += "\n-  " + key
     end
-    error @location.here : errorMessage
+    error (@location.here : errorMessage)
   end
 //--- Display conguration information in log file
   for (lkey mRegisterAddress mRegisterValue) in  outActualConfigurationMap do
@@ -83,7 +83,7 @@ proc actualBuildConfig
     [inConfigRegisterMap searchKey !lkey ?* ?* ?* ?let illegalMaskList]
      for (mIllegalValue mIllegalMask mDescription) in  illegalMaskList do
       if (mRegisterValue & mIllegalMask.uint) == mIllegalValue.uint then
-        error @location.here:"illegal setting for '" + lkey + "' register: " + mDescription
+        error (@location.here:"illegal setting for '" + lkey + "' register: " + mDescription)
         ioListFileContents += "*** ILLEGAL SETTING for register '" + lkey + "' ***\n"
         ioListFileContents += "  message: " + mDescription + "\n\n"
       end

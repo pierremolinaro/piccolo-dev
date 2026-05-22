@@ -157,8 +157,8 @@ rule <baseline_structured_instruction>
       $label$ ?endDoLabel
     end
     if doLabel.string != endDoLabel.string then
-      error endDoLabel : "'end' label does not match 'do' label, it should be "
-         + (if doLabel.string != "" then doLabel.string else "empty" end)
+      error (endDoLabel : "'end' label does not match 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end))
     end
   or
     $jump$
@@ -193,8 +193,8 @@ rule <baseline_structured_instruction>
       $label$ ?endForeverLabel
     end
     if foreverLabel.string != endForeverLabel.string then
-      error endForeverLabel : "'end' label does not match 'fovever' label, it should be "
-         + (if foreverLabel.string != "" then foreverLabel.string else "empty" end)
+      error (endForeverLabel : "'end' label does not match 'fovever' label, it should be "
+         + (if foreverLabel.string != "" then foreverLabel.string else "empty" end))
     end
     outInstruction = @baseline_instruction_FOREVER {
       !instructionLocation
@@ -246,7 +246,7 @@ rule <baseline_structured_instruction>
     $identifier$ ?let @lstring conditionString
     let @string condition = conditionString.string.uppercased
     if condition != "NZ" then
-      error conditionString:"invalid '" + condition + "' condition; it should be 'nz'"
+      error (conditionString:"invalid '" + condition + "' condition; it should be 'nz'")
     end
     $:$
     <baseline_simple_instruction> ?let instruction
@@ -275,8 +275,8 @@ rule <baseline_structured_instruction>
       $label$ ?endIfLabel
     end
     if ifLabel.string != endIfLabel.string then
-      error endIfLabel : "'end' label does not match 'if' label, it should be "
-         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+      error (endIfLabel : "'end' label does not match 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end))
     end
   or
     $do$
@@ -300,8 +300,8 @@ rule <baseline_structured_instruction>
         $label$ ?whileLabel
       end
       if doLabel.string != whileLabel.string then
-        error whileLabel : "'while' label does not match 'do' label, it should be "
-           + (if doLabel.string != "" then doLabel.string else "empty" end)
+        error (whileLabel : "'while' label does not match 'do' label, it should be "
+           + (if doLabel.string != "" then doLabel.string else "empty" end))
       end
       <baseline_condition_expression> ?let whileCondition
       <baseline_instruction_list> ?let instructionList !?ioLabelMap
@@ -316,8 +316,8 @@ rule <baseline_structured_instruction>
       $label$ ?endDoLabel
     end
     if doLabel.string != endDoLabel.string then
-      error endDoLabel : "'end' label does not match 'do' label, it should be "
-         + (if doLabel.string != "" then doLabel.string else "empty" end)
+      error (endDoLabel : "'end' label does not match 'do' label, it should be "
+         + (if doLabel.string != "" then doLabel.string else "empty" end))
     end
     outInstruction = @baseline_instruction_do_while {
       !instructionLocation
@@ -354,8 +354,8 @@ rule <baseline_structured_if_instruction>
       $label$ ?elsifIfLabel
     end
     if ifLabel.string != elsifIfLabel.string then
-      error elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
-         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+      error (elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end))
     end
     <baseline_structured_if_instruction> !ifLabel ?let elsifPartInstruction !?ioLabelMap
     elseInstructionList = @baseline_instructionList ()
@@ -369,8 +369,8 @@ rule <baseline_structured_if_instruction>
       $label$ ?elseLabel
     end
     if ifLabel.string != elseLabel.string then
-      error elseLabel : "'else' label does not match 'if' label, it should be "
-         + (if ifLabel.string != "" then ifLabel.string else "empty" end)
+      error (elseLabel : "'else' label does not match 'if' label, it should be "
+         + (if ifLabel.string != "" then ifLabel.string else "empty" end))
     end
     <baseline_instruction_list> ?elseInstructionList !?ioLabelMap
   end
@@ -577,9 +577,9 @@ rule <baseline_condition_factor>
     elsif condition == "NZ" then
       branchIfZero = false
     else
-      error conditionString: "invalid '" + conditionString
+      error (conditionString: "invalid '" + conditionString
       + "' condition; valid ones are: 'z' and 'nz'"
-      spoil (branchIfZero)
+      spoil branchIfZero)
     end
     outCondition = @baseline_incDecRegisterInCondition {
       !registerExpression

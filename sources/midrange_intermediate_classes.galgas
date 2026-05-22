@@ -35,7 +35,7 @@ method @registerExpression resolveMidrangeAccess
   [inRegisterTable checkPrivateAccess !self.mRegisterName !write:true !protection]
 //---
   if offset.uint >= size then
-    error self.mEndOfOffsetExpression: "maximum index value is " + (size - 1)
+    error (self.mEndOfOffsetExpression: "maximum index value is " + (size - 1))
   end
 //--- Find acceptable bank settings
   var acceptableBanks =@uintlist ()
@@ -62,7 +62,7 @@ method @registerExpression resolveMidrangeAccess
       do acceptableBankMessage += (mValue >> 7).string
       between acceptableBankMessage += ", "
       end
-      error self.mRegisterName:"as no bank is currently known, the '" + self.mRegisterName + "' register accessible from bank "+ acceptableBankMessage  + ", but should be able to be accessed from any bank setting"
+      error (self.mRegisterName:"as no bank is currently known, the '" + self.mRegisterName + "' register accessible from bank "+ acceptableBankMessage  + ", but should be able to be accessed from any bank setting")
     end
   else
     var @bool found = false
@@ -76,7 +76,7 @@ method @registerExpression resolveMidrangeAccess
       do acceptableBankMessage += (mValue >> 7).string
       between acceptableBankMessage += ", "
       end
-      error self.mRegisterName:"the '" + self.mRegisterName + "' register cannot be accessed from bank " + inCurrentBank.string + " (valid bank setting: " + acceptableBankMessage + ")"
+      error (self.mRegisterName:"the '" + self.mRegisterName + "' register cannot be accessed from bank " + inCurrentBank.string + " (valid bank setting: " + acceptableBankMessage + ")")
     end
   end
 //---

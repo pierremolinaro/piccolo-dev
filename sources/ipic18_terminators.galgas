@@ -209,9 +209,9 @@ override method @ipic18JumpTerminator performTerminatorRelativeBranchResolution
       end
     case relative :
       if not pic18_checkBRA_RCALL (!inSymbolTable !self.mLabel !inAddress) then
-        error self.mInstructionLocation: "displacement ("
+        error (self.mInstructionLocation: "displacement ("
         + pic18_BRA_RCALL_displacement (!inSymbolTable !self.mLabel !inAddress) + ") too large for BRA "
-        + self.mLabel + " instruction (limited to [-1024, 1023])"
+        + self.mLabel + " instruction (limited to [-1024, 1023])")
       end
     case absolute : // Allways ok
     end
@@ -1105,9 +1105,9 @@ override method @ipic18ComputedBraTerminator performTerminatorRelativeBranchReso
   !@ipic18AbstractBlockTerminator outModifiedTerminator {
   for (mValue) in  self.mTargetLabels do
     if not pic18_checkBRA_RCALL (!inSymbolTable !mValue !inAddress) then
-      error self.mInstructionLocation: "displacement ("
+      error (self.mInstructionLocation: "displacement ("
       + pic18_BRA_RCALL_displacement (!inSymbolTable !mValue !inAddress) + ") too large for rcall "
-      + mValue + " instruction (limited to [-1024, 1023])"
+      + mValue + " instruction (limited to [-1024, 1023])")
     end
   end
   outModifiedTerminator = self

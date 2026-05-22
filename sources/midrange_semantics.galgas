@@ -14,22 +14,22 @@ map @midrange_declaredRoutineMap {
 proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceFileName {
   let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
-    error inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
-    + "') should be identical to the file base name '" + sourceFileBaseName + "'"
+    error (inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
+    + "') should be identical to the file base name '" + sourceFileBaseName + "'")
   end
   var @string listFileContents = ""
 //-------------------------------- Analyze Device
   parseDeviceDefinition (!inPiccoloModel.mDeviceName ?let piccoloDeviceModel)
   switch piccoloDeviceModel.mProcessorType
     case midrange :
-    case pic18_60, pic18_80 : error inPiccoloModel.mDeviceName: "a pic18 device is not accepted here : only a mid-range device"
-    case baseline : error inPiccoloModel.mDeviceName: "a baseline device is not accepted here : only a mid-range device"
+    case pic18_60, pic18_80 : error (inPiccoloModel.mDeviceName: "a pic18 device is not accepted here : only a mid-range device")
+    case baseline : error (inPiccoloModel.mDeviceName: "a baseline device is not accepted here : only a mid-range device")
   end
 //-------------------------------- Interrupts ?
   var @bool hasInterrupt = false
   for (mInterruptLocation * * * *) in  inPiccoloModel.mInterruptDefinitionList do
     if hasInterrupt then
-      error mInterruptLocation:"only one interrupt routine can be defined"
+      error (mInterruptLocation:"only one interrupt routine can be defined")
     end
     hasInterrupt = true
   end
@@ -51,7 +51,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
     [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
     if [registerTable hasKey !mConstantName.string] then
-      error mConstantName: "'" + mConstantName + "' is already declared as ram register or special register"
+      error (mConstantName: "'" + mConstantName + "' is already declared as ram register or special register")
     else
       [!?constantMap insertKey !mConstantName !result]
     end
@@ -95,7 +95,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
   var unusedRoutineDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRoutineList do
     if not [declaredRoutineMap hasKey !mValue.string] then
-      error mValue : "the '" + mValue + "' routine is not declared"
+      error (mValue : "the '" + mValue + "' routine is not declared")
     elsif [unusedRoutineDeclarationUnicity hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' routine is already declared as unused"
     elsif [usedRoutineSet hasKey !mValue.string] then
@@ -112,7 +112,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
   var unusedByteDeclarationUnicity =@stringset ()
   for (mValue) in  inPiccoloModel.mUnusedRegisterList do
     if not [registerTable hasKey !mValue.string] then
-      error mValue : "the '" + mValue + "' byte is not declared"
+      error (mValue : "the '" + mValue + "' byte is not declared")
     elsif [unusedByteDeclarationUnicity hasKey !mValue.string] then
       warning mValue : "the '" + mValue + "' byte is already declared as unused"
     elsif [usedRegisters hasKey !mValue.string] then

@@ -945,9 +945,9 @@ override method @ipic18_intermediate_JSR performInstructionRelativeBranchResolut
     end
   case relative :
     if not pic18_checkBRA_RCALL (!inSymbolTable !self.mTargetLabel !inAddress) then
-      error self.mInstructionLocation: "displacement ("
+      error (self.mInstructionLocation: "displacement ("
       + pic18_BRA_RCALL_displacement (!inSymbolTable !self.mTargetLabel !inAddress)
-      + ") too large for RCALL " + self.mTargetLabel + " instruction (limited to [-1024, 1023])"
+      + ") too large for RCALL " + self.mTargetLabel + " instruction (limited to [-1024, 1023])")
     end
   case absolute : // Allways ok
   end

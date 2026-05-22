@@ -85,7 +85,7 @@ proc handleMidrangeInstructionList
   outContinuesInSequence = true
   for (mInstruction) in  inInstructionList do
     if not outContinuesInSequence then
-      error mInstruction.mInstructionLocation : "Unreachable code"
+      error (mInstruction.mInstructionLocation : "Unreachable code")
       outContinuesInSequence = true
     end
     [mInstruction build_midrange_ipic_instructionList
@@ -121,7 +121,7 @@ override method @midrange_instruction_nobanksel build_midrange_ipic_instructionL
   ?let @routineKind unused inRoutineKind
   ?!@stringset unused ioUsedRegisters {
   if inShouldPreserveBank then
-    error self.mInstructionLocation: "cannot use \"nobank\" here: bank selection should be preserved (use it in a \"banksave\" construct)"
+    error (self.mInstructionLocation: "cannot use \"nobank\" here: bank selection should be preserved (use it in a \"banksave\" construct)")
   end
   ioCurrentBank = @uint. max
 //--- Generates no code
@@ -198,7 +198,7 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
     !?ioUsedRegisters
   )
   if not ioContinuesInSequence then
-    error self.mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list"
+    error (self.mEndOfSaveBankInstruction:"useless saving: execution does reach the end of \"savebank\" instruction list")
   end
 //--- Generate "SWAPF SAVE_REG, W" instruction
   ioGeneratedInstructionList += !@midrange_intermediate_instruction_FD {
@@ -229,7 +229,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
   ?let @routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters {
   if inShouldPreserveBank then
-    error self.mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)"
+    error (self.mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)")
   end
 //---
   let STATUS_register = @registerExpression {
@@ -251,7 +251,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
   let RP = @lstring { !"RP" !self.mInstructionLocation}
   [bitSliceTable searchKey !RP ?let @uint rpIndex ?let @uint sliceSize]
   if sliceSize < (inTotalBankCount - 1).significantBitCount then
-    error self.mInstructionLocation: "internal error: sliceSize == " + sliceSize.string + ", total bank count == " + inTotalBankCount.string
+    error (self.mInstructionLocation: "internal error: sliceSize == " + sliceSize.string + ", total bank count == " + inTotalBankCount.string)
   end
 //---
   if self.mBankIndex.uint == ioCurrentBank then
@@ -259,7 +259,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
       warning self.mBankIndex:"useless instruction: the bank " + ioCurrentBank.string + " is already selected"
     end
   elsif self.mBankIndex.uint >= inTotalBankCount then
-    error self.mBankIndex:"the bank " + self.mBankIndex.uint.string + " does not exist (the device has " + inTotalBankCount.string + " bank(s))"
+    error (self.mBankIndex:"the bank " + self.mBankIndex.uint.string + " does not exist (the device has " + inTotalBankCount.string + " bank(s))")
   elsif ioCurrentBank == @uint. max then // No currenly selected bank : set all bits
     var @uint shiftedBank = self.mBankIndex.uint
     var @uint idx = 0
@@ -326,7 +326,7 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
   ?let @routineKind unused inRoutineKind
   ?!@stringset ioUsedRegisters {
   if inShouldPreserveBank then
-    error self.mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)"
+    error (self.mInstructionLocation: "cannot use \"banksel\" here: bank selection should be preserved (use \"banksave\" instruction)")
   end
 //---
   let STATUS_register = @registerExpression {
@@ -346,7 +346,7 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
   let RP = @lstring { !"RP" !self.mInstructionLocation}
   [bitSliceTable searchKey !RP ?let @uint rpIndex ?let @uint sliceSize]
   if sliceSize < (inTotalBankCount - 1).significantBitCount then
-    error self.mInstructionLocation: "internal error: sliceSize == " + sliceSize.string + ", total bank count == " + inTotalBankCount.string
+    error (self.mInstructionLocation: "internal error: sliceSize == " + sliceSize.string + ", total bank count == " + inTotalBankCount.string)
   end
 //---
   [inRegisterTable searchKey
@@ -362,9 +362,9 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
 //---
   [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
   if offset < 0 then
-    error self.mRegister.mEndOfOffsetExpression : "index value (" + offset + ") should be <= 0 "
+    error (self.mRegister.mEndOfOffsetExpression : "index value (" + offset + ") should be <= 0 ")
   elsif offset.uint >= size then
-    error self.mRegister.mEndOfOffsetExpression : "maximum index value is " + (size - 1)
+    error (self.mRegister.mEndOfOffsetExpression : "maximum index value is " + (size - 1))
   end
 //---
   if newBank == ioCurrentBank then
@@ -372,7 +372,7 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
       warning self.mRegister.mRegisterName:"useless instruction: the bank " + ioCurrentBank.string + " is already selected"
     end
   elsif newBank >= inTotalBankCount then
-    error self.mRegister.mRegisterName:"the bank " + newBank.string + " does not exist (the device has " + inTotalBankCount.string + " bank(s))"
+    error (self.mRegister.mRegisterName:"the bank " + newBank.string + " does not exist (the device has " + inTotalBankCount.string + " bank(s))")
   elsif ioCurrentBank == @uint. max then // No currenly selected bank : set all bits
     var @uint shiftedBank = newBank
     var @uint idx = 0
@@ -552,10 +552,10 @@ override method @midrange_instruction_JSR build_midrange_ipic_instructionList
     else
       errorMessage += "is set to " + ioCurrentBank.string
     end
-    error self.mTargetLabel:errorMessage
+    error (self.mTargetLabel:errorMessage)
   end
   if isNoReturn then
-    error self.mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or JUMP instruction"
+    error (self.mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or JUMP instruction")
   end
   if not preservesBank then
     ioCurrentBank = returnedBank
@@ -585,11 +585,11 @@ override method @midrangeInstruction_checkbank build_midrange_ipic_instructionLi
   ?!@stringset unused ioUsedRegisters {
 //--- Check instruction
   if self.mBankIndex > 15 then
-    error self.mInstructionLocation:"Bank index should be <= 15"
+    error (self.mInstructionLocation:"Bank index should be <= 15")
   elsif ioCurrentBank == @uint. max then
-    error self.mInstructionLocation:"checkbank fail: there is no selected bank"
+    error (self.mInstructionLocation:"checkbank fail: there is no selected bank")
   elsif ioCurrentBank != self.mBankIndex then
-    error self.mInstructionLocation:"checkbank fail: the selected bank is " + ioCurrentBank + ", required bank is " + self.mBankIndex
+    error (self.mInstructionLocation:"checkbank fail: the selected bank is " + ioCurrentBank + ", required bank is " + self.mBankIndex)
   end
   ioCurrentBank = self.mBankIndex
 }
@@ -611,7 +611,7 @@ override method @midrangeInstruction_checknobank build_midrange_ipic_instruction
   ?!@stringset unused ioUsedRegisters {
 //--- Check instruction
   if ioCurrentBank != @uint. max then
-    error self.mInstructionLocation:"checknobank fail: the " + ioCurrentBank + " bank is selected"
+    error (self.mInstructionLocation:"checknobank fail: the " + ioCurrentBank + " bank is selected")
     ioCurrentBank = @uint. max
   end
 }
@@ -641,10 +641,10 @@ override method @midrange_instruction_CALL build_midrange_ipic_instructionList
     else
       errorMessage += "is set to " + ioCurrentBank.string
     end
-    error self.mTargetLabel:errorMessage
+    error (self.mTargetLabel:errorMessage)
   end
   if isNoReturn then
-    error self.mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or JUMP instruction"
+    error (self.mTargetLabel:"a \"noreturn\" routine should be called with a GOTO or JUMP instruction")
   end
   if not preservesBank then
     ioCurrentBank = returnedBank
@@ -680,10 +680,10 @@ override method @midrange_instruction_JUMP build_midrange_ipic_instructionList
     else
       errorMessage += "is set to " + ioCurrentBank.string
     end
-    error self.mTargetLabel:errorMessage
+    error (self.mTargetLabel:errorMessage)
   end
   if not isNoReturn then
-    error self.mTargetLabel:"a regular routine should be called with a CALL or JSR instruction"
+    error (self.mTargetLabel:"a regular routine should be called with a CALL or JSR instruction")
   end
   ioContinuesInSequence = false
 //---
@@ -719,10 +719,10 @@ override method @midrange_instruction_GOTO build_midrange_ipic_instructionList
     else
       errorMessage += "is set to " + ioCurrentBank.string
     end
-    error self.mTargetLabel:errorMessage
+    error (self.mTargetLabel:errorMessage)
   end
   if not isNoReturn then
-    error self.mTargetLabel:"a regular routine should be called with a CALL or JSR instruction"
+    error (self.mTargetLabel:"a regular routine should be called with a CALL or JSR instruction")
   end
   ioContinuesInSequence = false
 //---
@@ -825,7 +825,7 @@ override method @midrange_instruction_literalOperation build_midrange_ipic_instr
   [self.mImmediatExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
 //---
    if (result > 255) | (result < -128) then
-     error self.mInstructionLocation:"immediate value is evaluated as " + result.string + " (should be betwween -128 and 255)"
+     error (self.mInstructionLocation:"immediate value is evaluated as " + result.string + " (should be betwween -128 and 255)")
    end
 //---
   ioGeneratedInstructionList += !@midrange_intermediate_instruction_literalOperation {
@@ -876,10 +876,10 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
   ?!@stringset ioUsedRegisters {
   switch inRoutineKind
   case regularRoutine :
-    error self.mInstructionLocation:"a regular routine does not accept the \"forever\" instruction"
+    error (self.mInstructionLocation:"a regular routine does not accept the \"forever\" instruction")
   case noReturnRoutine : // ok
   case interruptRoutine :
-    error self.mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction"
+    error (self.mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction")
   end
 //--- Check instruction list does not change bank
   var @uint finalBank = ioCurrentBank
@@ -902,7 +902,7 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
     !?ioUsedRegisters
   )
   if ioCurrentBank != finalBank then
-    error self.mEndOfInstructionList:"instruction list does not leave bank selection unchanged"
+    error (self.mEndOfInstructionList:"instruction list does not leave bank selection unchanged")
   end
 //--- Generate JUMP to loop start
   ioGeneratedInstructionList += !@midrange_intermediate_GOTO {
@@ -932,9 +932,9 @@ override method @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instruct
   [self.mUpperBoundExpression eval !inRegisterTable !inConstantMap ?let @sint64 upperBound !?ioUsedRegisters]
 //---
   if lowerBound > upperBound then
-    error self.mInstructionLocation: "lower bound (" + lowerBound + ") greater then upper bound (" + upperBound + ")"
+    error (self.mInstructionLocation: "lower bound (" + lowerBound + ") greater then upper bound (" + upperBound + ")")
   elsif (upperBound - lowerBound) > 0xFFFF then
-    error self.mInstructionLocation:"repeat count (" + (upperBound - lowerBound) + ") too large (should be <= 0xFFFF)"
+    error (self.mInstructionLocation:"repeat count (" + (upperBound - lowerBound) + ") too large (should be <= 0xFFFF)")
   end
 //--- First pass (for lower bound
   var @uint finalBank = ioCurrentBank
@@ -956,10 +956,10 @@ override method @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instruct
     !?ioUsedRegisters
   )
   if ioCurrentBank != finalBank then
-    error self.mEndOfInstruction:"enclosed instruction list does not leave bank selection unchanged"
+    error (self.mEndOfInstruction:"enclosed instruction list does not leave bank selection unchanged")
   end
   if not ioContinuesInSequence then
-    error self.mEndOfInstruction:"enclosed instruction list contains an endless loop"
+    error (self.mEndOfInstruction:"enclosed instruction list contains an endless loop")
   end
 //--- Other passes
   var idx = lowerBound + 1
@@ -1446,7 +1446,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
   if elseBranchFinalBank == thenBranchFinalBank then
     ioCurrentBank = elseBranchFinalBank
   else
-    error self.mEndOfElsePartLocation:"This branch does not leave bank selection value as the first one does"
+    error (self.mEndOfElsePartLocation:"This branch does not leave bank selection value as the first one does")
     elseBranchFinalBank = @uint. max // No available value for bank selection
   end
 //---
@@ -1490,7 +1490,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
     !?ioUsedRegisters
   )
   if ioCurrentBank != finalBank then
-    error self.mEndOfRepeatedInstructionList:"This branch does not leave bank selection value unchanged"
+    error (self.mEndOfRepeatedInstructionList:"This branch does not leave bank selection value unchanged")
   end
 //--- while parts
   for (mCondition mInstructionList mEndOfPartLocation) in  self.mWhilePartList do
@@ -1540,7 +1540,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
         !?ioUsedRegisters
       )
       if ioCurrentBank != bank then
-        error mEndOfPartLocation:"This branch does not leave bank selection value unchanged"
+        error (mEndOfPartLocation:"This branch does not leave bank selection value unchanged")
       end
       ioGeneratedInstructionList += !@midrange_intermediate_GOTO { !self.mInstructionLocation !@lstring { !labelInstructionBegin !self.mInstructionLocation}}
       ioGeneratedInstructionList += !@midrange_intermediate_pseudo_LABEL { !@lstring { !nextBranchLabel !self.mInstructionLocation} !true}
@@ -1624,10 +1624,10 @@ proc build_midrange_assembly_instruction_list
   var routineMap =@routineMap ()
   for (mRoutineName * mRequiredBank mReturnedBank mPreservesBank mIsNoReturn * *) in  inPiccoloModel.mRoutineDefinitionList do
     if (mRequiredBank.uint != @uint. max) & (mRequiredBank.uint > 15) then
-      error mRequiredBank:"the required bank value should be lower or equal to 15"
+      error (mRequiredBank:"the required bank value should be lower or equal to 15")
     end
     if (mReturnedBank.uint != @uint. max) & (mReturnedBank.uint > 15) then
-      error mReturnedBank:"the returned bank value should be lower or equal to 15"
+      error (mReturnedBank:"the returned bank value should be lower or equal to 15")
     end
     [!?routineMap insertKey !mRoutineName !mIsNoReturn !mRequiredBank.uint !mReturnedBank.uint !mPreservesBank]
   end
@@ -1643,13 +1643,13 @@ proc build_midrange_assembly_instruction_list
     [routineMap searchKey !@lstring { !"main" !@location.here} ?let @bool isNoReturn ?let @uint requiredBank ?* ?*]
     let @location mainDeclarationLocation = [routineMap locationForKey!"main"]
     if not isNoReturn then
-      error mainDeclarationLocation :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\""
+      error (mainDeclarationLocation :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main bank:requires 0\"")
     end
     if requiredBank != 0 then
-      error mainDeclarationLocation :"the \"main\" should be declared with \"requires:bank 0\" qualifier: \"noreturn main bank:requires 0\""
+      error (mainDeclarationLocation :"the \"main\" should be declared with \"requires:bank 0\" qualifier: \"noreturn main bank:requires 0\"")
     end
   else
-    error inPiccoloModel.mEndOfProgram: "the program should declare the \"main\" routine"
+    error (inPiccoloModel.mEndOfProgram: "the program should declare the \"main\" routine")
   end
 //-------------------------------- Handle interrupt routine
   var @uint localLabelIndex = 0
@@ -1702,10 +1702,10 @@ proc build_midrange_assembly_instruction_list
           !?ioUsedRegisters
         )
         if (not mIsNoReturn) & (mReturnedBank.uint != @uint. max) & (currentBank != mReturnedBank.uint) then
-          error mRoutineName:"execution will not set bank selection to " + mReturnedBank.uint.string
+          error (mRoutineName:"execution will not set bank selection to " + mReturnedBank.uint.string)
         end
         if mIsNoReturn & continuesInSequence then
-          error mRoutineName:"execution should not reach the end of a \"noreturn\" routine"
+          error (mRoutineName:"execution should not reach the end of a \"noreturn\" routine")
         end
       //--- Add a RETURN instruction (if it is a regular routine)
         if not mIsNoReturn then
@@ -1750,7 +1750,7 @@ proc interruptRoutineShouldSavePCLATH
       outShouldSavePCLATH = true
     end
     if mPage.uint >= inTotalPageCount then
-      error mPage:"invalid value ("+ mPage.uint.string + "); the device has " + inTotalPageCount.string + " 2k page(s) on rom"
+      error (mPage:"invalid value ("+ mPage.uint.string + "); the device has " + inTotalPageCount.string + " 2k page(s) on rom")
     end
   end
   if not outShouldSavePCLATH then
@@ -1877,10 +1877,10 @@ proc generateInterruptRoutineForControllerWithSharedRAM
     bankAccessibility = bankAccessibility | (1 << (mValue >> 7))
   end
   if (bankAccessibility + 1) != (1 << inTotalBankCount) then
-    error inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable cannot be accessed from any bank"
+    error (inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable cannot be accessed from any bank")
   end
   if size != 1 then
-    error inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable size is " + size.string + " (it should be 1)"
+    error (inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable size is " + size.string + " (it should be 1)")
   end
 //--- Check secondSaveRegister register is defined in RAM, is accessible from any bank, and has a size of 1
   [inRegisterTable searchKey ! inSecondSaveRegister ?registerAddressList ?size ?2* ?let secondProtection]
@@ -1890,12 +1890,12 @@ proc generateInterruptRoutineForControllerWithSharedRAM
     bankAccessibility = bankAccessibility | (1 << (mValue >> 7))
   end
   if (bankAccessibility & 1) == 0 then
-    error inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable cannot be accessed from bank 0"
+    error (inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable cannot be accessed from bank 0")
   end
   if inNeedsToSavePCLATH & (size != 2) then
-    error inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable size is " + size.string + " (it should be 2)"
+    error (inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable size is " + size.string + " (it should be 2)")
   elsif (not inNeedsToSavePCLATH) & (size != 1) then
-    error inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable size is " + size.string + " (it should be 1)"
+    error (inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable size is " + size.string + " (it should be 1)")
   end
 //--- Generate save context instructions
   if @uint. errorCount == 0 then
@@ -1999,7 +1999,7 @@ proc generateInterruptRoutineForControllerWithSharedRAM
       !?ioUsedRegisters
     )
     if not continuesInSequence then
-      error inEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine"
+      error (inEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine")
     end
     if inNeedsToSavePCLATH then
       let reg = @registerExpression {
@@ -2072,12 +2072,12 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
     accessibleFromBank0 = (mValue & 0xF80) == 0
   end
   if not accessibleFromBank0 then
-    error inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable cannot be accessed from bank 0"
+    error (inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable cannot be accessed from bank 0")
   end
   if inNeedsToSavePCLATH & (size != 3) then
-    error inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable size is " + size.string + " (it should be 3)"
+    error (inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable size is " + size.string + " (it should be 3)")
   elsif (not inNeedsToSavePCLATH) & (size != 2) then
-    error inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable size is " + size.string + " (it should be 2)"
+    error (inFirstSaveRegister: "the '" + inFirstSaveRegister + "' variable size is " + size.string + " (it should be 2)")
   end
 //--- Check secondSaveRegister register is defined in RAM, is accessible from bank 1, and has a size of 1
   var @uintlist saveStatusRegisterAddressList = registerAddressList
@@ -2086,7 +2086,7 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
   [inRegisterTable checkPrivateAccess !inSecondSaveRegister !write:true !secondProtection]
   saveStatusRegisterAddressList = saveStatusRegisterAddressList + registerAddressList
   if size != 1 then
-    error inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable size is " + size.string + " (it should be 1)"
+    error (inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable size is " + size.string + " (it should be 1)")
   end
 //--- Check the second save register is in bank 1
   var @bool accessibleFromBank1 = false
@@ -2094,16 +2094,16 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
     accessibleFromBank1 = (mValue & 0xF80) == 0x80
   end
   if not accessibleFromBank1 then
-    error inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable cannot be accessed from bank 1"
+    error (inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable cannot be accessed from bank 1")
   end
 //--- Check offset of second save register in bank 1 == offset of first save register in bank 0
   var @bool offsetOk = true
   for (mValue) in  registerAddressList while offsetOk do
     offsetOk = offset == (mValue & 0x7F)
     if not offsetOk then
-      error inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable has an offset equal to "
+      error (inSecondSaveRegister: "the '" + inSecondSaveRegister + "' variable has an offset equal to "
       + (mValue & 0x7F).hexString + ", while '" + inFirstSaveRegister + "' has an offset equal to "
-      + offset.hexString + " (tthe two offsets should be equal)"
+      + offset.hexString + " (tthe two offsets should be equal)")
     end
   end
 //--- Generate save context instructions
@@ -2207,7 +2207,7 @@ proc generateInterruptRoutineForControllerWithoutSharedRAM
       !?ioUsedRegisters
     )
     if not continuesInSequence then
-      error inEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine"
+      error (inEndOfInterruptLocation:"execution cannot reach the end of the interrupt routine")
     end
     if inNeedsToSavePCLATH then
       let first_register_third_byte = @registerExpression {

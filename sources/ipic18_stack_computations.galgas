@@ -306,7 +306,7 @@ proc ipic18StackComputations
     end
     print (!"Max stack depth: " + totalLevels + "\n\n")
     if totalLevels > 31 then
-      error @location. nowhere: "Max stack depth is greater than 31"
+      error (@location. nowhere: "Max stack depth is greater than 31")
     end
   end
 }
