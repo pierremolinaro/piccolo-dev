@@ -936,7 +936,7 @@ static const GALGAS_TypeDescriptor * functionArgs_blockDiscontinuityCount [2] = 
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_blockDiscontinuityCount (Compiler * inCompiler,
-                                                                     const cObjectArray & inEffectiveParameterArray,
+                                                                     const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                      const GGS_location & /* inErrorLocation */
                                                                      COMMA_LOCATION_ARGS) {
   const GGS_ipic_31__38_BlockList operand0 = GGS_ipic_31__38_BlockList::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),

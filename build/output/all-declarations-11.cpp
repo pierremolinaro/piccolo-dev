@@ -2245,7 +2245,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_checkBCC [4] = 
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_checkBCC (Compiler * inCompiler,
-                                                                     const cObjectArray & inEffectiveParameterArray,
+                                                                     const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                      const GGS_location & /* inErrorLocation */
                                                                      COMMA_LOCATION_ARGS) {
   const GGS_symbolTableForRelativesResolution operand0 = GGS_symbolTableForRelativesResolution::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -2307,7 +2307,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_checkBRA_5F_RCA
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_checkBRA_5F_RCALL (Compiler * inCompiler,
-                                                                              const cObjectArray & inEffectiveParameterArray,
+                                                                              const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                               const GGS_location & /* inErrorLocation */
                                                                               COMMA_LOCATION_ARGS) {
   const GGS_symbolTableForRelativesResolution operand0 = GGS_symbolTableForRelativesResolution::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -2368,7 +2368,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_BRA_5F_RCALL_5F
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (Compiler * inCompiler,
-                                                                                         const cObjectArray & inEffectiveParameterArray,
+                                                                                         const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                                          const GGS_location & /* inErrorLocation */
                                                                                          COMMA_LOCATION_ARGS) {
   const GGS_symbolTableForRelativesResolution operand0 = GGS_symbolTableForRelativesResolution::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -2548,7 +2548,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_Bcc_5F_instruct
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_Bcc_5F_instruction_5F_code (Compiler * inCompiler,
-                                                                                       const cObjectArray & inEffectiveParameterArray,
+                                                                                       const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                                        const GGS_location & /* inErrorLocation */
                                                                                        COMMA_LOCATION_ARGS) {
   const GGS_uint operand0 = GGS_uint::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -2624,7 +2624,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_RCALL_5F_instru
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_RCALL_5F_instruction_5F_code (Compiler * inCompiler,
-                                                                                         const cObjectArray & inEffectiveParameterArray,
+                                                                                         const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                                          const GGS_location & /* inErrorLocation */
                                                                                          COMMA_LOCATION_ARGS) {
   const GGS_uint operand0 = GGS_uint::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -2692,7 +2692,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_BRA_5F_instruct
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_BRA_5F_instruction_5F_code (Compiler * inCompiler,
-                                                                                       const cObjectArray & inEffectiveParameterArray,
+                                                                                       const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                                        const GGS_location & /* inErrorLocation */
                                                                                        COMMA_LOCATION_ARGS) {
   const GGS_uint operand0 = GGS_uint::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -2752,7 +2752,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_CALL_5F_instruc
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_CALL_5F_instruction_5F_code (Compiler * inCompiler,
-                                                                                        const cObjectArray & inEffectiveParameterArray,
+                                                                                        const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                                         const GGS_location & /* inErrorLocation */
                                                                                         COMMA_LOCATION_ARGS) {
   const GGS_uint operand0 = GGS_uint::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -2808,7 +2808,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_GOTO_5F_instruc
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_GOTO_5F_instruction_5F_code (Compiler * inCompiler,
-                                                                                        const cObjectArray & inEffectiveParameterArray,
+                                                                                        const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                                         const GGS_location & /* inErrorLocation */
                                                                                         COMMA_LOCATION_ARGS) {
   const GGS_uint operand0 = GGS_uint::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -2859,7 +2859,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_definition_5F_l
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_definition_5F_label (Compiler * inCompiler,
-                                                                                const cObjectArray & inEffectiveParameterArray,
+                                                                                const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                                 const GGS_location & /* inErrorLocation */
                                                                                 COMMA_LOCATION_ARGS) {
   const GGS_lstring operand0 = GGS_lstring::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -5742,7 +5742,7 @@ static const GALGAS_TypeDescriptor * functionArgs_midrange_5F_computeUsedRoutine
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_midrange_5F_computeUsedRoutines (Compiler * inCompiler,
-                                                                             const cObjectArray & inEffectiveParameterArray,
+                                                                             const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                              const GGS_location & /* inErrorLocation */
                                                                              COMMA_LOCATION_ARGS) {
   const GGS_midrange_5F_interruptDefinitionList operand0 = GGS_midrange_5F_interruptDefinitionList::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -7902,7 +7902,7 @@ static const GALGAS_TypeDescriptor * functionArgs_acceptableTRISoperand [1] = {
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_acceptableTRISoperand (Compiler * inCompiler,
-                                                                   const cObjectArray & /* inEffectiveParameterArray */,
+                                                                   const GALGAS_ObjectArray & /* inEffectiveParameterArray */,
                                                                    const GGS_location & /* inErrorLocation */
                                                                    COMMA_LOCATION_ARGS) {
   return function_acceptableTRISoperand (inCompiler COMMA_THERE).getter_object (THERE) ;

@@ -696,7 +696,7 @@ static const GALGAS_TypeDescriptor * functionArgs_baseline_5F_computeUsedRoutine
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_baseline_5F_computeUsedRoutines (Compiler * inCompiler,
-                                                                             const cObjectArray & inEffectiveParameterArray,
+                                                                             const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                              const GGS_location & /* inErrorLocation */
                                                                              COMMA_LOCATION_ARGS) {
   const GGS_baseline_5F_routineDefinitionList operand0 = GGS_baseline_5F_routineDefinitionList::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),
@@ -1429,7 +1429,7 @@ static const GALGAS_TypeDescriptor * functionArgs_pic_31__38__5F_computeUsedRout
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_pic_31__38__5F_computeUsedRoutines (Compiler * inCompiler,
-                                                                                const cObjectArray & inEffectiveParameterArray,
+                                                                                const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                                                 const GGS_location & /* inErrorLocation */
                                                                                 COMMA_LOCATION_ARGS) {
   const GGS_pic_31__38_InterruptDefinitionList operand0 = GGS_pic_31__38_InterruptDefinitionList::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),

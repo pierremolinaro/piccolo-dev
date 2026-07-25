@@ -12933,7 +12933,7 @@ static const GALGAS_TypeDescriptor * functionArgs_sortKey [2] = {
 //--------------------------------------------------------------------------------------------------
 
 static GGS_object functionWithGenericHeader_sortKey (Compiler * inCompiler,
-                                                     const cObjectArray & inEffectiveParameterArray,
+                                                     const GALGAS_ObjectArray & inEffectiveParameterArray,
                                                      const GGS_location & /* inErrorLocation */
                                                      COMMA_LOCATION_ARGS) {
   const GGS_clusterList operand0 = GGS_clusterList::extractObject (inEffectiveParameterArray.objectAtIndex (0 COMMA_HERE),

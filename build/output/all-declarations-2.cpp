@@ -14216,49 +14216,49 @@ GGS_symbolTableForRelativesResolution GGS_symbolTableForRelativesResolution::ext
 //Class for element of '@codeList' list
 //--------------------------------------------------------------------------------------------------
 
-class cCollectionElement_codeList : public cCollectionElement {
+class CollectionElement_codeList : public CollectionElement {
   public: GGS_codeList_2E_element mObject ;
 
 //--- Class functions
-  public: cCollectionElement_codeList (const GGS_string & in_mAssemblyCode,
-                                       const GGS_uintlist & in_mBinaryCode
-                                       COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_codeList (const GGS_codeList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_codeList (const GGS_string & in_mAssemblyCode,
+                                      const GGS_uintlist & in_mBinaryCode
+                                      COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_codeList (const GGS_codeList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
+  public: virtual CollectionElement * copy (void) ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_codeList::cCollectionElement_codeList (const GGS_string & in_mAssemblyCode,
-                                                          const GGS_uintlist & in_mBinaryCode
-                                                          COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_codeList::CollectionElement_codeList (const GGS_string & in_mAssemblyCode,
+                                                        const GGS_uintlist & in_mBinaryCode
+                                                        COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (in_mAssemblyCode, in_mBinaryCode) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_codeList::cCollectionElement_codeList (const GGS_codeList_2E_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_codeList::CollectionElement_codeList (const GGS_codeList_2E_element & inElement COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (inElement.mProperty_mAssemblyCode, inElement.mProperty_mBinaryCode) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool cCollectionElement_codeList::isValid (void) const {
+bool CollectionElement_codeList::isValid (void) const {
   return true ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement * cCollectionElement_codeList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_codeList (mObject.mProperty_mAssemblyCode, mObject.mProperty_mBinaryCode COMMA_HERE)) ;
+CollectionElement * CollectionElement_codeList::copy (void) {
+  CollectionElement * result = nullptr ;
+  macroMyNew (result, CollectionElement_codeList (mObject.mProperty_mAssemblyCode, mObject.mProperty_mBinaryCode COMMA_HERE)) ;
   return result ;
 }
 
@@ -14277,8 +14277,8 @@ mArray () {
   mArray.setCapacity (std::max (16, int32_t (inArray.count ()))) ;
   for (uint32_t i = 0 ; i < inArray.count () ; i++) {
     const capCollectionElement v = inArray.objectAtIndex (i COMMA_HERE) ;
-    cCollectionElement_codeList * p = (cCollectionElement_codeList *) v.ptr () ;
-    macroValidSharedObject (p, cCollectionElement_codeList) ;
+    CollectionElement_codeList * p = (CollectionElement_codeList *) v.ptr () ;
+    macroValidSharedObject (p, CollectionElement_codeList) ;
     const GGS_codeList_2E_element element (p->mObject.mProperty_mAssemblyCode, p->mObject.mProperty_mBinaryCode) ;
     mArray.appendObject (element) ;
   }
@@ -14290,8 +14290,8 @@ void GGS_codeList::makeAttributesFromObjects (capCollectionElement & outAttribut
                                               const GGS_string & in_mAssemblyCode,
                                               const GGS_uintlist & in_mBinaryCode
                                               COMMA_LOCATION_ARGS) {
-  cCollectionElement_codeList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_codeList (in_mAssemblyCode, in_mBinaryCode COMMA_THERE)) ;
+  CollectionElement_codeList * p = nullptr ;
+  macroMyNew (p, CollectionElement_codeList (in_mAssemblyCode, in_mBinaryCode COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }

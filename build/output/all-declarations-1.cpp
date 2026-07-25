@@ -11,49 +11,49 @@
 //Class for element of '@configSettingList' list
 //--------------------------------------------------------------------------------------------------
 
-class cCollectionElement_configSettingList : public cCollectionElement {
+class CollectionElement_configSettingList : public CollectionElement {
   public: GGS_configSettingList_2E_element mObject ;
 
 //--- Class functions
-  public: cCollectionElement_configSettingList (const GGS_lstring & in_mSettingName,
-                                                const GGS_lstring & in_mSettingValue
-                                                COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_configSettingList (const GGS_configSettingList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_configSettingList (const GGS_lstring & in_mSettingName,
+                                               const GGS_lstring & in_mSettingValue
+                                               COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_configSettingList (const GGS_configSettingList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
+  public: virtual CollectionElement * copy (void) ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_configSettingList::cCollectionElement_configSettingList (const GGS_lstring & in_mSettingName,
-                                                                            const GGS_lstring & in_mSettingValue
-                                                                            COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_configSettingList::CollectionElement_configSettingList (const GGS_lstring & in_mSettingName,
+                                                                          const GGS_lstring & in_mSettingValue
+                                                                          COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (in_mSettingName, in_mSettingValue) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_configSettingList::cCollectionElement_configSettingList (const GGS_configSettingList_2E_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_configSettingList::CollectionElement_configSettingList (const GGS_configSettingList_2E_element & inElement COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (inElement.mProperty_mSettingName, inElement.mProperty_mSettingValue) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool cCollectionElement_configSettingList::isValid (void) const {
+bool CollectionElement_configSettingList::isValid (void) const {
   return true ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement * cCollectionElement_configSettingList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_configSettingList (mObject.mProperty_mSettingName, mObject.mProperty_mSettingValue COMMA_HERE)) ;
+CollectionElement * CollectionElement_configSettingList::copy (void) {
+  CollectionElement * result = nullptr ;
+  macroMyNew (result, CollectionElement_configSettingList (mObject.mProperty_mSettingName, mObject.mProperty_mSettingValue COMMA_HERE)) ;
   return result ;
 }
 
@@ -72,8 +72,8 @@ mArray () {
   mArray.setCapacity (std::max (16, int32_t (inArray.count ()))) ;
   for (uint32_t i = 0 ; i < inArray.count () ; i++) {
     const capCollectionElement v = inArray.objectAtIndex (i COMMA_HERE) ;
-    cCollectionElement_configSettingList * p = (cCollectionElement_configSettingList *) v.ptr () ;
-    macroValidSharedObject (p, cCollectionElement_configSettingList) ;
+    CollectionElement_configSettingList * p = (CollectionElement_configSettingList *) v.ptr () ;
+    macroValidSharedObject (p, CollectionElement_configSettingList) ;
     const GGS_configSettingList_2E_element element (p->mObject.mProperty_mSettingName, p->mObject.mProperty_mSettingValue) ;
     mArray.appendObject (element) ;
   }
@@ -85,8 +85,8 @@ void GGS_configSettingList::makeAttributesFromObjects (capCollectionElement & ou
                                                        const GGS_lstring & in_mSettingName,
                                                        const GGS_lstring & in_mSettingValue
                                                        COMMA_LOCATION_ARGS) {
-  cCollectionElement_configSettingList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_configSettingList (in_mSettingName, in_mSettingValue COMMA_THERE)) ;
+  CollectionElement_configSettingList * p = nullptr ;
+  macroMyNew (p, CollectionElement_configSettingList (in_mSettingName, in_mSettingValue COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -618,49 +618,49 @@ GGS_configSettingList GGS_configSettingList::extractObject (const GGS_object & i
 //Class for element of '@configDefinitionList' list
 //--------------------------------------------------------------------------------------------------
 
-class cCollectionElement_configDefinitionList : public cCollectionElement {
+class CollectionElement_configDefinitionList : public CollectionElement {
   public: GGS_configDefinitionList_2E_element mObject ;
 
 //--- Class functions
-  public: cCollectionElement_configDefinitionList (const GGS_location & in_mDefinitionLocation,
-                                                   const GGS_configSettingList & in_mSettingList
-                                                   COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_configDefinitionList (const GGS_configDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_configDefinitionList (const GGS_location & in_mDefinitionLocation,
+                                                  const GGS_configSettingList & in_mSettingList
+                                                  COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_configDefinitionList (const GGS_configDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
+  public: virtual CollectionElement * copy (void) ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_configDefinitionList::cCollectionElement_configDefinitionList (const GGS_location & in_mDefinitionLocation,
-                                                                                  const GGS_configSettingList & in_mSettingList
-                                                                                  COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_configDefinitionList::CollectionElement_configDefinitionList (const GGS_location & in_mDefinitionLocation,
+                                                                                const GGS_configSettingList & in_mSettingList
+                                                                                COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (in_mDefinitionLocation, in_mSettingList) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_configDefinitionList::cCollectionElement_configDefinitionList (const GGS_configDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_configDefinitionList::CollectionElement_configDefinitionList (const GGS_configDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (inElement.mProperty_mDefinitionLocation, inElement.mProperty_mSettingList) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool cCollectionElement_configDefinitionList::isValid (void) const {
+bool CollectionElement_configDefinitionList::isValid (void) const {
   return true ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement * cCollectionElement_configDefinitionList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_configDefinitionList (mObject.mProperty_mDefinitionLocation, mObject.mProperty_mSettingList COMMA_HERE)) ;
+CollectionElement * CollectionElement_configDefinitionList::copy (void) {
+  CollectionElement * result = nullptr ;
+  macroMyNew (result, CollectionElement_configDefinitionList (mObject.mProperty_mDefinitionLocation, mObject.mProperty_mSettingList COMMA_HERE)) ;
   return result ;
 }
 
@@ -679,8 +679,8 @@ mArray () {
   mArray.setCapacity (std::max (16, int32_t (inArray.count ()))) ;
   for (uint32_t i = 0 ; i < inArray.count () ; i++) {
     const capCollectionElement v = inArray.objectAtIndex (i COMMA_HERE) ;
-    cCollectionElement_configDefinitionList * p = (cCollectionElement_configDefinitionList *) v.ptr () ;
-    macroValidSharedObject (p, cCollectionElement_configDefinitionList) ;
+    CollectionElement_configDefinitionList * p = (CollectionElement_configDefinitionList *) v.ptr () ;
+    macroValidSharedObject (p, CollectionElement_configDefinitionList) ;
     const GGS_configDefinitionList_2E_element element (p->mObject.mProperty_mDefinitionLocation, p->mObject.mProperty_mSettingList) ;
     mArray.appendObject (element) ;
   }
@@ -692,8 +692,8 @@ void GGS_configDefinitionList::makeAttributesFromObjects (capCollectionElement &
                                                           const GGS_location & in_mDefinitionLocation,
                                                           const GGS_configSettingList & in_mSettingList
                                                           COMMA_LOCATION_ARGS) {
-  cCollectionElement_configDefinitionList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_configDefinitionList (in_mDefinitionLocation, in_mSettingList COMMA_THERE)) ;
+  CollectionElement_configDefinitionList * p = nullptr ;
+  macroMyNew (p, CollectionElement_configDefinitionList (in_mDefinitionLocation, in_mSettingList COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -1347,49 +1347,49 @@ GGS_immediatExpression_2E_weak GGS_immediatExpression_2E_weak::extractObject (co
 //Class for element of '@immediatExpressionList' list
 //--------------------------------------------------------------------------------------------------
 
-class cCollectionElement_immediatExpressionList : public cCollectionElement {
+class CollectionElement_immediatExpressionList : public CollectionElement {
   public: GGS_immediatExpressionList_2E_element mObject ;
 
 //--- Class functions
-  public: cCollectionElement_immediatExpressionList (const GGS_immediatExpression & in_mExpression,
-                                                     const GGS_location & in_mErrorLocation
-                                                     COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_immediatExpressionList (const GGS_immediatExpressionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_immediatExpressionList (const GGS_immediatExpression & in_mExpression,
+                                                    const GGS_location & in_mErrorLocation
+                                                    COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_immediatExpressionList (const GGS_immediatExpressionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
+  public: virtual CollectionElement * copy (void) ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_immediatExpressionList::cCollectionElement_immediatExpressionList (const GGS_immediatExpression & in_mExpression,
-                                                                                      const GGS_location & in_mErrorLocation
-                                                                                      COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_immediatExpressionList::CollectionElement_immediatExpressionList (const GGS_immediatExpression & in_mExpression,
+                                                                                    const GGS_location & in_mErrorLocation
+                                                                                    COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (in_mExpression, in_mErrorLocation) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_immediatExpressionList::cCollectionElement_immediatExpressionList (const GGS_immediatExpressionList_2E_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_immediatExpressionList::CollectionElement_immediatExpressionList (const GGS_immediatExpressionList_2E_element & inElement COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (inElement.mProperty_mExpression, inElement.mProperty_mErrorLocation) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool cCollectionElement_immediatExpressionList::isValid (void) const {
+bool CollectionElement_immediatExpressionList::isValid (void) const {
   return true ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement * cCollectionElement_immediatExpressionList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_immediatExpressionList (mObject.mProperty_mExpression, mObject.mProperty_mErrorLocation COMMA_HERE)) ;
+CollectionElement * CollectionElement_immediatExpressionList::copy (void) {
+  CollectionElement * result = nullptr ;
+  macroMyNew (result, CollectionElement_immediatExpressionList (mObject.mProperty_mExpression, mObject.mProperty_mErrorLocation COMMA_HERE)) ;
   return result ;
 }
 
@@ -1408,8 +1408,8 @@ mArray () {
   mArray.setCapacity (std::max (16, int32_t (inArray.count ()))) ;
   for (uint32_t i = 0 ; i < inArray.count () ; i++) {
     const capCollectionElement v = inArray.objectAtIndex (i COMMA_HERE) ;
-    cCollectionElement_immediatExpressionList * p = (cCollectionElement_immediatExpressionList *) v.ptr () ;
-    macroValidSharedObject (p, cCollectionElement_immediatExpressionList) ;
+    CollectionElement_immediatExpressionList * p = (CollectionElement_immediatExpressionList *) v.ptr () ;
+    macroValidSharedObject (p, CollectionElement_immediatExpressionList) ;
     const GGS_immediatExpressionList_2E_element element (p->mObject.mProperty_mExpression, p->mObject.mProperty_mErrorLocation) ;
     mArray.appendObject (element) ;
   }
@@ -1421,8 +1421,8 @@ void GGS_immediatExpressionList::makeAttributesFromObjects (capCollectionElement
                                                             const GGS_immediatExpression & in_mExpression,
                                                             const GGS_location & in_mErrorLocation
                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement_immediatExpressionList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_immediatExpressionList (in_mExpression, in_mErrorLocation COMMA_THERE)) ;
+  CollectionElement_immediatExpressionList * p = nullptr ;
+  macroMyNew (p, CollectionElement_immediatExpressionList (in_mExpression, in_mErrorLocation COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -7710,49 +7710,49 @@ GGS_immediatComplement_2E_weak GGS_immediatComplement_2E_weak::extractObject (co
 //Class for element of '@immediatSliceExpressionList' list
 //--------------------------------------------------------------------------------------------------
 
-class cCollectionElement_immediatSliceExpressionList : public cCollectionElement {
+class CollectionElement_immediatSliceExpressionList : public CollectionElement {
   public: GGS_immediatSliceExpressionList_2E_element mObject ;
 
 //--- Class functions
-  public: cCollectionElement_immediatSliceExpressionList (const GGS_lstring & in_mSliceName,
-                                                          const GGS_immediatExpression & in_mExpression
-                                                          COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_immediatSliceExpressionList (const GGS_immediatSliceExpressionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_immediatSliceExpressionList (const GGS_lstring & in_mSliceName,
+                                                         const GGS_immediatExpression & in_mExpression
+                                                         COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_immediatSliceExpressionList (const GGS_immediatSliceExpressionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
+  public: virtual CollectionElement * copy (void) ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_immediatSliceExpressionList::cCollectionElement_immediatSliceExpressionList (const GGS_lstring & in_mSliceName,
-                                                                                                const GGS_immediatExpression & in_mExpression
-                                                                                                COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_immediatSliceExpressionList::CollectionElement_immediatSliceExpressionList (const GGS_lstring & in_mSliceName,
+                                                                                              const GGS_immediatExpression & in_mExpression
+                                                                                              COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (in_mSliceName, in_mExpression) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_immediatSliceExpressionList::cCollectionElement_immediatSliceExpressionList (const GGS_immediatSliceExpressionList_2E_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_immediatSliceExpressionList::CollectionElement_immediatSliceExpressionList (const GGS_immediatSliceExpressionList_2E_element & inElement COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (inElement.mProperty_mSliceName, inElement.mProperty_mExpression) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool cCollectionElement_immediatSliceExpressionList::isValid (void) const {
+bool CollectionElement_immediatSliceExpressionList::isValid (void) const {
   return true ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement * cCollectionElement_immediatSliceExpressionList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_immediatSliceExpressionList (mObject.mProperty_mSliceName, mObject.mProperty_mExpression COMMA_HERE)) ;
+CollectionElement * CollectionElement_immediatSliceExpressionList::copy (void) {
+  CollectionElement * result = nullptr ;
+  macroMyNew (result, CollectionElement_immediatSliceExpressionList (mObject.mProperty_mSliceName, mObject.mProperty_mExpression COMMA_HERE)) ;
   return result ;
 }
 
@@ -7771,8 +7771,8 @@ mArray () {
   mArray.setCapacity (std::max (16, int32_t (inArray.count ()))) ;
   for (uint32_t i = 0 ; i < inArray.count () ; i++) {
     const capCollectionElement v = inArray.objectAtIndex (i COMMA_HERE) ;
-    cCollectionElement_immediatSliceExpressionList * p = (cCollectionElement_immediatSliceExpressionList *) v.ptr () ;
-    macroValidSharedObject (p, cCollectionElement_immediatSliceExpressionList) ;
+    CollectionElement_immediatSliceExpressionList * p = (CollectionElement_immediatSliceExpressionList *) v.ptr () ;
+    macroValidSharedObject (p, CollectionElement_immediatSliceExpressionList) ;
     const GGS_immediatSliceExpressionList_2E_element element (p->mObject.mProperty_mSliceName, p->mObject.mProperty_mExpression) ;
     mArray.appendObject (element) ;
   }
@@ -7784,8 +7784,8 @@ void GGS_immediatSliceExpressionList::makeAttributesFromObjects (capCollectionEl
                                                                  const GGS_lstring & in_mSliceName,
                                                                  const GGS_immediatExpression & in_mExpression
                                                                  COMMA_LOCATION_ARGS) {
-  cCollectionElement_immediatSliceExpressionList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_immediatSliceExpressionList (in_mSliceName, in_mExpression COMMA_THERE)) ;
+  CollectionElement_immediatSliceExpressionList * p = nullptr ;
+  macroMyNew (p, CollectionElement_immediatSliceExpressionList (in_mSliceName, in_mExpression COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
@@ -8439,49 +8439,49 @@ GGS_immediatSlice_2E_weak GGS_immediatSlice_2E_weak::extractObject (const GGS_ob
 //Class for element of '@constantDefinitionList' list
 //--------------------------------------------------------------------------------------------------
 
-class cCollectionElement_constantDefinitionList : public cCollectionElement {
+class CollectionElement_constantDefinitionList : public CollectionElement {
   public: GGS_constantDefinitionList_2E_element mObject ;
 
 //--- Class functions
-  public: cCollectionElement_constantDefinitionList (const GGS_lstring & in_mConstantName,
-                                                     const GGS_immediatExpression & in_mExpression
-                                                     COMMA_LOCATION_ARGS) ;
-  public: cCollectionElement_constantDefinitionList (const GGS_constantDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_constantDefinitionList (const GGS_lstring & in_mConstantName,
+                                                    const GGS_immediatExpression & in_mExpression
+                                                    COMMA_LOCATION_ARGS) ;
+  public: CollectionElement_constantDefinitionList (const GGS_constantDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
 //--- Virtual method that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
 //--- Virtual method that returns a copy of current object
-  public: virtual cCollectionElement * copy (void) ;
+  public: virtual CollectionElement * copy (void) ;
 } ;
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_constantDefinitionList::cCollectionElement_constantDefinitionList (const GGS_lstring & in_mConstantName,
-                                                                                      const GGS_immediatExpression & in_mExpression
-                                                                                      COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_constantDefinitionList::CollectionElement_constantDefinitionList (const GGS_lstring & in_mConstantName,
+                                                                                    const GGS_immediatExpression & in_mExpression
+                                                                                    COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (in_mConstantName, in_mExpression) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement_constantDefinitionList::cCollectionElement_constantDefinitionList (const GGS_constantDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) :
-cCollectionElement (THERE),
+CollectionElement_constantDefinitionList::CollectionElement_constantDefinitionList (const GGS_constantDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) :
+CollectionElement (THERE),
 mObject (inElement.mProperty_mConstantName, inElement.mProperty_mExpression) {
 }
 
 //--------------------------------------------------------------------------------------------------
 
-bool cCollectionElement_constantDefinitionList::isValid (void) const {
+bool CollectionElement_constantDefinitionList::isValid (void) const {
   return true ;
 }
 
 //--------------------------------------------------------------------------------------------------
 
-cCollectionElement * cCollectionElement_constantDefinitionList::copy (void) {
-  cCollectionElement * result = nullptr ;
-  macroMyNew (result, cCollectionElement_constantDefinitionList (mObject.mProperty_mConstantName, mObject.mProperty_mExpression COMMA_HERE)) ;
+CollectionElement * CollectionElement_constantDefinitionList::copy (void) {
+  CollectionElement * result = nullptr ;
+  macroMyNew (result, CollectionElement_constantDefinitionList (mObject.mProperty_mConstantName, mObject.mProperty_mExpression COMMA_HERE)) ;
   return result ;
 }
 
@@ -8500,8 +8500,8 @@ mArray () {
   mArray.setCapacity (std::max (16, int32_t (inArray.count ()))) ;
   for (uint32_t i = 0 ; i < inArray.count () ; i++) {
     const capCollectionElement v = inArray.objectAtIndex (i COMMA_HERE) ;
-    cCollectionElement_constantDefinitionList * p = (cCollectionElement_constantDefinitionList *) v.ptr () ;
-    macroValidSharedObject (p, cCollectionElement_constantDefinitionList) ;
+    CollectionElement_constantDefinitionList * p = (CollectionElement_constantDefinitionList *) v.ptr () ;
+    macroValidSharedObject (p, CollectionElement_constantDefinitionList) ;
     const GGS_constantDefinitionList_2E_element element (p->mObject.mProperty_mConstantName, p->mObject.mProperty_mExpression) ;
     mArray.appendObject (element) ;
   }
@@ -8513,8 +8513,8 @@ void GGS_constantDefinitionList::makeAttributesFromObjects (capCollectionElement
                                                             const GGS_lstring & in_mConstantName,
                                                             const GGS_immediatExpression & in_mExpression
                                                             COMMA_LOCATION_ARGS) {
-  cCollectionElement_constantDefinitionList * p = nullptr ;
-  macroMyNew (p, cCollectionElement_constantDefinitionList (in_mConstantName, in_mExpression COMMA_THERE)) ;
+  CollectionElement_constantDefinitionList * p = nullptr ;
+  macroMyNew (p, CollectionElement_constantDefinitionList (in_mConstantName, in_mExpression COMMA_THERE)) ;
   outAttributes.setPointer (p) ;
   macroDetachSharedObject (p) ;
 }
