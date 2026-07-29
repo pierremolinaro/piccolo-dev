@@ -26,7 +26,7 @@ class GGS_pic_31__38_BccInStructuredCondition_2E_weak : public GGS_pic_31__38_Co
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_BccInStructuredCondition_2E_weak init_nil (void) {
     GGS_pic_31__38_BccInStructuredCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -105,7 +105,7 @@ class GGS_pic_31__38_NegateCondition_2E_weak : public GGS_pic_31__38_ConditionEx
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_NegateCondition_2E_weak init_nil (void) {
     GGS_pic_31__38_NegateCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -184,7 +184,7 @@ class GGS_pic_31__38_AndCondition_2E_weak : public GGS_pic_31__38_ConditionExpre
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_AndCondition_2E_weak init_nil (void) {
     GGS_pic_31__38_AndCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -263,7 +263,7 @@ class GGS_pic_31__38_BitTestInStructuredCondition_2E_weak : public GGS_pic_31__3
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_BitTestInStructuredCondition_2E_weak init_nil (void) {
     GGS_pic_31__38_BitTestInStructuredCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -342,7 +342,7 @@ class GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak : public GGS_pic_31
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_structured_5F_if_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -516,7 +516,7 @@ class GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak : public GGS_pic_31__38_
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_do_5F_while_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -1195,10 +1195,10 @@ class GGS_routineDeclarationList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_routineDeclarationList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_routineDeclarationList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mRoutineName,
                                                  const class GGS_luint & in_mRequiredBank,
                                                  const class GGS_luint & in_mReturnedBank,

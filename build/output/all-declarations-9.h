@@ -308,7 +308,7 @@ class GGS_pic_31__38_SimpleConstantCaseItem_2E_weak : public GGS_pic_31__38_Abst
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_SimpleConstantCaseItem_2E_weak init_nil (void) {
     GGS_pic_31__38_SimpleConstantCaseItem_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -387,7 +387,7 @@ class GGS_pic_31__38_Instruction_5F_switch_2E_weak : public GGS_pic_31__38_Picco
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_switch_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_switch_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 

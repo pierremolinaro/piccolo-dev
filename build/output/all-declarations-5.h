@@ -26,7 +26,7 @@ class GGS_baseline_5F_instruction_5F_MNOP_2E_weak : public GGS_baseline_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_MNOP_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_MNOP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -105,7 +105,7 @@ class GGS_baseline_5F_instruction_5F_FOREVER_2E_weak : public GGS_baseline_5F_in
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_FOREVER_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_FOREVER_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -184,7 +184,7 @@ class GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak : public GGS_basel
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -263,7 +263,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak : public GGS_ba
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -342,7 +342,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak : public GGS_baseline
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_IF_5F_BitTest_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -421,7 +421,7 @@ class GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak : public GGS_baseline_
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_IF_5F_IncDec_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -500,7 +500,7 @@ class GGS_baseline_5F_conditionExpression_2E_weak : public AC_GALGAS_weak_refere
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_conditionExpression_2E_weak init_nil (void) {
     GGS_baseline_5F_conditionExpression_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -579,7 +579,7 @@ class GGS_baseline_5F_incDecRegisterInCondition_2E_weak : public GGS_baseline_5F
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_incDecRegisterInCondition_2E_weak init_nil (void) {
     GGS_baseline_5F_incDecRegisterInCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -658,7 +658,7 @@ class GGS_baseline_5F_negateCondition_2E_weak : public GGS_baseline_5F_condition
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_negateCondition_2E_weak init_nil (void) {
     GGS_baseline_5F_negateCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -737,7 +737,7 @@ class GGS_baseline_5F_andCondition_2E_weak : public GGS_baseline_5F_conditionExp
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_andCondition_2E_weak init_nil (void) {
     GGS_baseline_5F_andCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -816,7 +816,7 @@ class GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak : p
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak init_nil (void) {
     GGS_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -895,7 +895,7 @@ class GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak : public GGS_basel
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_structured_5F_if_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -1069,7 +1069,7 @@ class GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak : public GGS_baseline_5
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_do_5F_while_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2305,7 +2305,7 @@ class GGS_pic_31__38_Instruction_5F_nobanksel_2E_weak : public GGS_pic_31__38_Pi
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_nobanksel_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_nobanksel_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2384,7 +2384,7 @@ class GGS_pic_31__38_Instruction_5F_checknobank_2E_weak : public GGS_pic_31__38_
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_checknobank_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_checknobank_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2463,7 +2463,7 @@ class GGS_pic_31__38_Instruction_5F_checkbank_2E_weak : public GGS_pic_31__38_Pi
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_checkbank_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_checkbank_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2542,7 +2542,7 @@ class GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak : public GGS_pic_31__38_Pi
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak init_nil (void) {
     GGS_pic_31__38_PiccoloSimpleInstruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2621,7 +2621,7 @@ class GGS_pic_31__38_Instruction_5F_banksel_2E_weak : public GGS_pic_31__38_Picc
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_banksel_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_banksel_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2700,7 +2700,7 @@ class GGS_pic_31__38_Instruction_5F_banksel_5F_register_2E_weak : public GGS_pic
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_banksel_5F_register_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_banksel_5F_register_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2779,7 +2779,7 @@ class GGS_pic_31__38_Instruction_5F_savebank_2E_weak : public GGS_pic_31__38_Pic
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_savebank_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_savebank_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2858,7 +2858,7 @@ class GGS_pic_31__38_Instruction_5F_repetitionStatique_2E_weak : public GGS_pic_
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_repetitionStatique_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_repetitionStatique_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2937,7 +2937,7 @@ class GGS_abstractBlockTerminationForBlockInstruction_2E_weak : public AC_GALGAS
 //--------------------------------- nil initializer
   public: inline static GGS_abstractBlockTerminationForBlockInstruction_2E_weak init_nil (void) {
     GGS_abstractBlockTerminationForBlockInstruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3016,7 +3016,7 @@ class GGS_exitBlockTerminationForBlockInstruction_2E_weak : public GGS_abstractB
 //--------------------------------- nil initializer
   public: inline static GGS_exitBlockTerminationForBlockInstruction_2E_weak init_nil (void) {
     GGS_exitBlockTerminationForBlockInstruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3095,7 +3095,7 @@ class GGS_gotoTerminationForBlockInstruction_2E_weak : public GGS_abstractBlockT
 //--------------------------------- nil initializer
   public: inline static GGS_gotoTerminationForBlockInstruction_2E_weak init_nil (void) {
     GGS_gotoTerminationForBlockInstruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3174,7 +3174,7 @@ class GGS_testTerminationForBlockInstruction_2E_weak : public GGS_abstractBlockT
 //--------------------------------- nil initializer
   public: inline static GGS_testTerminationForBlockInstruction_2E_weak init_nil (void) {
     GGS_testTerminationForBlockInstruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3359,7 +3359,7 @@ class GGS_pic_31__38_Instruction_5F_block_2E_weak : public GGS_pic_31__38_Piccol
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_block_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_block_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3438,7 +3438,7 @@ class GGS_pic_31__38_Instruction_5F_FDA_2E_weak : public GGS_pic_31__38_PiccoloS
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_FDA_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_FDA_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3517,7 +3517,7 @@ class GGS_pic_31__38_Instruction_5F_FA_2E_weak : public GGS_pic_31__38_PiccoloSi
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_FA_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_FA_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3596,7 +3596,7 @@ class GGS_pic_31__38_Instruction_5F_MOVFF_2E_weak : public GGS_pic_31__38_Piccol
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_MOVFF_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_MOVFF_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3675,7 +3675,7 @@ class GGS_pic_31__38_Instruction_5F_FBA_2E_weak : public GGS_pic_31__38_PiccoloS
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_FBA_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_FBA_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3754,7 +3754,7 @@ class GGS_pic_31__38_Instruction_5F_JSR_2E_weak : public GGS_pic_31__38_PiccoloS
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_JSR_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_JSR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3833,7 +3833,7 @@ class GGS_pic_31__38_Instruction_5F_macro_2E_weak : public GGS_pic_31__38_Piccol
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_macro_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_macro_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3912,7 +3912,7 @@ class GGS_pic_31__38_Instruction_5F_JUMP_2E_weak : public GGS_pic_31__38_Piccolo
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_JUMP_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_JUMP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3991,7 +3991,7 @@ class GGS_pic_31__38_Instruction_5F_JUMPCC_2E_weak : public GGS_pic_31__38_Picco
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_JUMPCC_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_JUMPCC_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4070,7 +4070,7 @@ class GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak : public GGS_pic_31__3
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_withNoOperand_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4149,7 +4149,7 @@ class GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak : public GGS_pic_31
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_literalOperation_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4228,7 +4228,7 @@ class GGS_pic_31__38_Instruction_5F_fnop_2E_weak : public GGS_pic_31__38_Piccolo
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_fnop_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_fnop_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4307,7 +4307,7 @@ class GGS_pic_31__38_Instruction_5F_LFSR_2E_weak : public GGS_pic_31__38_Piccolo
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_LFSR_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_LFSR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4386,7 +4386,7 @@ class GGS_pic_31__38_Instruction_5F_LTBLPTR_2E_weak : public GGS_pic_31__38_Picc
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_LTBLPTR_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_LTBLPTR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4465,7 +4465,7 @@ class GGS_pic_31__38_Instruction_5F_LDATA_38_PTR_2E_weak : public GGS_pic_31__38
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_LDATA_38_PTR_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_LDATA_38_PTR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4544,7 +4544,7 @@ class GGS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2E_weak : public GGS_pic_31
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_LDATA_31__36_PTR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4623,7 +4623,7 @@ class GGS_pic_31__38_Instruction_5F_TBLRD_2E_weak : public GGS_pic_31__38_Piccol
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_TBLRD_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_TBLRD_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4702,7 +4702,7 @@ class GGS_pic_31__38_Instruction_5F_TBLWT_2E_weak : public GGS_pic_31__38_Piccol
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_TBLWT_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_TBLWT_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4781,7 +4781,7 @@ class GGS_pic_31__38_Instruction_5F_MNOP_2E_weak : public GGS_pic_31__38_Piccolo
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_MNOP_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_MNOP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4860,7 +4860,7 @@ class GGS_pic_31__38_Instruction_5F_NOPBRA_2E_weak : public GGS_pic_31__38_Picco
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_NOPBRA_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_NOPBRA_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4939,7 +4939,7 @@ class GGS_pic_31__38_Instruction_5F_FOREVER_2E_weak : public GGS_pic_31__38_Picc
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_FOREVER_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_FOREVER_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5018,7 +5018,7 @@ class GGS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak : public GGS_pic
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5097,7 +5097,7 @@ class GGS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2E_weak : public G
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5176,7 +5176,7 @@ class GGS_pic_31__38_Instruction_5F_IF_5F_BitTest_2E_weak : public GGS_pic_31__3
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_IF_5F_BitTest_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_IF_5F_BitTest_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5255,7 +5255,7 @@ class GGS_pic_31__38_Instruction_5F_IF_5F_IncDec_2E_weak : public GGS_pic_31__38
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_IF_5F_IncDec_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_IF_5F_IncDec_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5334,7 +5334,7 @@ class GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak : public GGS_pic_3
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_computed_5F_retlw_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5413,7 +5413,7 @@ class GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak : public GGS_pic_31_
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_computed_5F_bra_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5492,7 +5492,7 @@ class GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak : public GGS_pic_31
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_computed_5F_goto_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5571,7 +5571,7 @@ class GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak : public GGS_pic_3
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak init_nil (void) {
     GGS_pic_31__38_Instruction_5F_computed_5F_rcall_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5650,7 +5650,7 @@ class GGS_pic_31__38_ConditionExpression_2E_weak : public AC_GALGAS_weak_referen
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_ConditionExpression_2E_weak init_nil (void) {
     GGS_pic_31__38_ConditionExpression_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5729,7 +5729,7 @@ class GGS_pic_31__38_RegisterTestCondition_2E_weak : public GGS_pic_31__38_Condi
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_RegisterTestCondition_2E_weak init_nil (void) {
     GGS_pic_31__38_RegisterTestCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5808,7 +5808,7 @@ class GGS_pic_31__38_RegisterComparisonCondition_2E_weak : public GGS_pic_31__38
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_RegisterComparisonCondition_2E_weak init_nil (void) {
     GGS_pic_31__38_RegisterComparisonCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5887,7 +5887,7 @@ class GGS_pic_31__38_IncDecRegisterInCondition_2E_weak : public GGS_pic_31__38_C
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_IncDecRegisterInCondition_2E_weak init_nil (void) {
     GGS_pic_31__38_IncDecRegisterInCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 

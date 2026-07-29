@@ -2400,7 +2400,7 @@ GGS_location GGS_registerExpression::readProperty_mEndOfOffsetExpression (void) 
 //--------------------------------------------------------------------------------------------------
 
 cPtr_registerExpression::cPtr_registerExpression (Compiler * inCompiler COMMA_LOCATION_ARGS) :
-acStrongPtr_class (inCompiler COMMA_THERE),
+AbstractStrongPtrClass (inCompiler COMMA_THERE),
 mProperty_mRegisterName (),
 mProperty_mOffset (),
 mProperty_mEndOfOffsetExpression () {
@@ -2413,7 +2413,7 @@ cPtr_registerExpression::cPtr_registerExpression (const GGS_lstring & in_mRegist
                                                   const GGS_location & in_mEndOfOffsetExpression,
                                                   Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) :
-acStrongPtr_class (inCompiler COMMA_THERE),
+AbstractStrongPtrClass (inCompiler COMMA_THERE),
 mProperty_mRegisterName (),
 mProperty_mOffset (),
 mProperty_mEndOfOffsetExpression () {
@@ -2441,8 +2441,8 @@ void cPtr_registerExpression::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_registerExpression::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_registerExpression::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_registerExpression (mProperty_mRegisterName, mProperty_mOffset, mProperty_mEndOfOffsetExpression, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -2452,7 +2452,7 @@ acPtr_class * cPtr_registerExpression::duplicate (Compiler * inCompiler COMMA_LO
 
 #ifndef DO_NOT_GENERATE_CHECKINGS
   void cPtr_registerExpression::printNonNullClassInstanceProperties (void) const {
-    acStrongPtr_class::printNonNullClassInstanceProperties () ;
+    AbstractStrongPtrClass::printNonNullClassInstanceProperties () ;
     mProperty_mRegisterName.printNonNullClassInstanceProperties ("mRegisterName") ;
     mProperty_mOffset.printNonNullClassInstanceProperties ("mOffset") ;
     mProperty_mEndOfOffsetExpression.printNonNullClassInstanceProperties ("mEndOfOffsetExpression") ;
@@ -2620,8 +2620,8 @@ void cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::description (String & ioS
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_pseudo_5F_LABEL (mProperty_mLabel, mProperty_mIsDeletable, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -2946,8 +2946,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::description (String & i
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_FD::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_FD (mProperty_mInstructionLocation, mProperty_mInstruction_5F_FD_5F_base_5F_code, mProperty_mRegisterDescription, mProperty_m_5F_W_5F_isDestination, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -3132,8 +3132,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_F::description (String & io
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_F::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_F::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_F (mProperty_mInstructionLocation, mProperty_mFinstruction, mProperty_mRegisterDescription, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -3338,8 +3338,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::description (String & i
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_FB::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_FB (mProperty_mInstructionLocation, mProperty_mBitOrientedOp, mProperty_mRegisterDescription, mProperty_mBitNumber, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -3545,8 +3545,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::description (S
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip (mProperty_mInstructionLocation, mProperty_mSkipIfSet, mProperty_mRegisterDescription, mProperty_mBitNumber, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -3752,8 +3752,8 @@ void cPtr_midrange_5F_intermediate_5F_JUMP::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_JUMP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_JUMP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_JUMP (mProperty_mInstructionLocation, mProperty_mTargetLabel, mProperty_mBit_31__31_, mProperty_mBit_31__32_, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -3917,8 +3917,8 @@ void cPtr_midrange_5F_intermediate_5F_GOTO::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_GOTO::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_GOTO::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_GOTO (mProperty_mInstructionLocation, mProperty_mTargetLabel, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -4080,8 +4080,8 @@ void cPtr_midrange_5F_intermediate_5F_CALL::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_CALL::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_CALL::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_CALL (mProperty_mInstructionLocation, mProperty_mTargetLabel, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -4285,8 +4285,8 @@ void cPtr_midrange_5F_intermediate_5F_JSR::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_JSR::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_JSR::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_JSR (mProperty_mInstructionLocation, mProperty_mTargetLabel, mProperty_mBit_31__31_, mProperty_mBit_31__32_, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -4429,8 +4429,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::description (String
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRWDT (mProperty_mInstructionLocation, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -4570,8 +4570,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW::description (String &
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_CLRW (mProperty_mInstructionLocation, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -4711,8 +4711,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP::description (String & 
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_NOP (mProperty_mInstructionLocation, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -4852,8 +4852,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::description (String
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN (mProperty_mInstructionLocation, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -4993,8 +4993,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::description (String
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_RETFIE (mProperty_mInstructionLocation, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -5134,8 +5134,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP::description (String 
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_SLEEP (mProperty_mInstructionLocation, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -5317,8 +5317,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::descripti
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation (mProperty_mInstructionLocation, mProperty_mLiteralInstruction, mProperty_mLiteralValue, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -5481,8 +5481,8 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::description (String &
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_instruction_5F_MNOP (mProperty_mInstructionLocation, mProperty_mOccurrenceFactor, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -5728,8 +5728,8 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::description (St
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition (mProperty_mInstructionLocation, mProperty_mRegisterDescription, mProperty_mTargetLabel, mProperty_mIncrement, mProperty_m_5F_W_5F_isDestination, mProperty_mBranchIfZero, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -6526,8 +6526,8 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::description (String 
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE (mProperty_mRoutineName, mProperty_mIsRegular, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -6704,8 +6704,8 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::description (String & 
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE (mProperty_mRoutineName, mProperty_mPage, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -6861,8 +6861,8 @@ void cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::description (String & ioStrin
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL (mProperty_mLabel, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -7066,8 +7066,8 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_FD::description (String & ioStr
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_FD::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_instruction_5F_FD::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_FD (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, mProperty_m_5F_W_5F_isDestination, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -7252,8 +7252,8 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_F::description (String & ioStri
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_F::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_instruction_5F_F::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_F (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -7458,8 +7458,8 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_FB::description (String & ioStr
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_FB::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_instruction_5F_FB::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_FB (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mRegisterDescription, mProperty_mBitNumber, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -7623,8 +7623,8 @@ void cPtr_baseline_5F_assembly_5F_GOTO::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_GOTO::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_GOTO::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_GOTO (mProperty_mInstructionLocation, mProperty_mTargetLabel, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -7786,8 +7786,8 @@ void cPtr_baseline_5F_assembly_5F_CALL::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_CALL::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_CALL::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_CALL (mProperty_mInstructionLocation, mProperty_mTargetLabel, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -7949,8 +7949,8 @@ void cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND (mProperty_mInstructionLocation, mProperty_mInstruction, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -8133,8 +8133,8 @@ void cPtr_baseline_5F_assembly_5F_TRIS::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_TRIS::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_TRIS::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_TRIS (mProperty_mInstructionLocation, mProperty_mOperand, mProperty_mOpcode, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -8318,8 +8318,8 @@ void cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::description (
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation (mProperty_mInstructionLocation, mProperty_mInstruction, mProperty_mLiteralValue, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -8559,8 +8559,8 @@ void cPtr_byteDeclarationInRam::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_byteDeclarationInRam::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_byteDeclarationInRam::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_byteDeclarationInRam (mProperty_mName, mProperty_mSizeExpression, mProperty_mBitSliceTable, mProperty_mBitDefinitionString, mProperty_mProtection, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -8719,8 +8719,8 @@ void cPtr_immediatRegister::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatRegister::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_immediatRegister::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_immediatRegister (mProperty_mRegister, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -8896,8 +8896,8 @@ void cPtr_immediatSlice::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_immediatSlice::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_immediatSlice::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_immediatSlice (mProperty_mRegisterName, mProperty_mSliceExpressionList, inCompiler COMMA_THERE)) ;
   return ptr ;
 }
@@ -9074,8 +9074,8 @@ void cPtr_bitNumberLabelValue::description (String & ioString,
 
 //--------------------------------------------------------------------------------------------------
 
-acPtr_class * cPtr_bitNumberLabelValue::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
-  acPtr_class * ptr = nullptr ;
+AbstractPtrClass * cPtr_bitNumberLabelValue::duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const {
+  AbstractPtrClass * ptr = nullptr ;
   macroMyNew (ptr, cPtr_bitNumberLabelValue (mProperty_mBitNumberLabelValue, mProperty_mBitNumberIndexValue, inCompiler COMMA_THERE)) ;
   return ptr ;
 }

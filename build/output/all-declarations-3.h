@@ -557,7 +557,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_2E_weak : public AC_GALGAS_wea
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_instruction_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_instruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -716,10 +716,10 @@ class GGS_baseline_5F_intermediate_5F_instructionList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_baseline_5F_intermediate_5F_instructionList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_baseline_5F_intermediate_5F_instructionList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_baseline_5F_intermediate_5F_instruction & in_mInstruction
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -996,7 +996,7 @@ class cPtr_baseline_5F_intermediate_5F_NULL : public cPtr_baseline_5F_intermedia
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1026,7 +1026,7 @@ class GGS_baseline_5F_intermediate_5F_NULL_2E_weak : public GGS_baseline_5F_inte
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_NULL_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_NULL_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -1185,7 +1185,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_2E_weak : public GGS_baseline_5F_in
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_pseudo_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_pseudo_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -1345,7 +1345,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_PAGE : public cPtr_baseline_5F_
                                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1375,7 +1375,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak : public GGS_baseli
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_pseudo_5F_PAGE_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -1536,7 +1536,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL : public cPtr_baseline_5F
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1566,7 +1566,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak : public GGS_basel
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -1732,7 +1732,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE : public cPtr_
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1762,7 +1762,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak : publi
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -1927,7 +1927,7 @@ class cPtr_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE : public cPtr_ba
                                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -1957,7 +1957,7 @@ class GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak : public 
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_pseudo_5F_END_5F_ROUTINE_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2127,7 +2127,7 @@ class GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak : public GGS_bas
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_actualInstruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2292,7 +2292,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_FD : public cPtr_baseline_
                                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2322,7 +2322,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak : public GGS_bas
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_instruction_5F_FD_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2481,7 +2481,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_F : public cPtr_baseline_5
                                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2511,7 +2511,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak : public GGS_base
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_instruction_5F_F_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2676,7 +2676,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_FB : public cPtr_baseline_
                                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2706,7 +2706,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak : public GGS_bas
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_instruction_5F_FB_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -2874,7 +2874,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip : public cPtr_
                                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -2904,7 +2904,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak : publi
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_instruction_5F_BitTestSkip_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3072,7 +3072,7 @@ class cPtr_baseline_5F_intermediate_5F_GOTO : public cPtr_baseline_5F_intermedia
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3102,7 +3102,7 @@ class GGS_baseline_5F_intermediate_5F_GOTO_2E_weak : public GGS_baseline_5F_inte
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_GOTO_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_GOTO_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3285,7 +3285,7 @@ class cPtr_baseline_5F_intermediate_5F_JUMP : public cPtr_baseline_5F_intermedia
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3315,7 +3315,7 @@ class GGS_baseline_5F_intermediate_5F_JUMP_2E_weak : public GGS_baseline_5F_inte
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_JUMP_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_JUMP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3480,7 +3480,7 @@ class cPtr_baseline_5F_intermediate_5F_CALL : public cPtr_baseline_5F_intermedia
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3510,7 +3510,7 @@ class GGS_baseline_5F_intermediate_5F_CALL_2E_weak : public GGS_baseline_5F_inte
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_CALL_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_CALL_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3690,7 +3690,7 @@ class cPtr_baseline_5F_intermediate_5F_JSR : public cPtr_baseline_5F_intermediat
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3720,7 +3720,7 @@ class GGS_baseline_5F_intermediate_5F_JSR_2E_weak : public GGS_baseline_5F_inter
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_JSR_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_JSR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -3873,7 +3873,7 @@ class cPtr_baseline_5F_intermediate_5F_WO_5F_OPERAND : public cPtr_baseline_5F_i
                                                           COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3903,7 +3903,7 @@ class GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak : public GGS_baselin
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_WO_5F_OPERAND_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4062,7 +4062,7 @@ class cPtr_baseline_5F_intermediate_5F_TRIS : public cPtr_baseline_5F_intermedia
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4092,7 +4092,7 @@ class GGS_baseline_5F_intermediate_5F_TRIS_2E_weak : public GGS_baseline_5F_inte
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_TRIS_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_TRIS_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4254,7 +4254,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation : public 
                                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4284,7 +4284,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak : 
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4440,7 +4440,7 @@ class cPtr_baseline_5F_intermediate_5F_instruction_5F_MNOP : public cPtr_baselin
                                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4470,7 +4470,7 @@ class GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak : public GGS_b
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_instruction_5F_MNOP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -4662,7 +4662,7 @@ class cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition : public cPtr_b
                                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4692,7 +4692,7 @@ class GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak : public
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak init_nil (void) {
     GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5747,7 +5747,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_instructio
 // Phase 2: pointer class for @midrange_instruction class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_midrange_5F_instruction : public acStrongPtr_class {
+class cPtr_midrange_5F_instruction : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -5821,7 +5821,7 @@ class GGS_midrange_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -5980,10 +5980,10 @@ class GGS_midrange_5F_instructionList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_midrange_5F_instructionList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_midrange_5F_instructionList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_midrange_5F_instruction & in_mInstruction
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -6268,7 +6268,7 @@ class cPtr_midrange_5F_instruction_5F_nobanksel : public cPtr_midrange_5F_instru
                                                      COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6298,7 +6298,7 @@ class GGS_midrange_5F_instruction_5F_nobanksel_2E_weak : public GGS_midrange_5F_
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_nobanksel_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_nobanksel_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -6466,7 +6466,7 @@ class cPtr_midrange_5F_instruction_5F_banksel : public cPtr_midrange_5F_instruct
                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6496,7 +6496,7 @@ class GGS_midrange_5F_instruction_5F_banksel_2E_weak : public GGS_midrange_5F_in
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_banksel_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_banksel_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -6658,7 +6658,7 @@ class cPtr_midrangeInstruction_5F_checkbank : public cPtr_midrange_5F_instructio
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6688,7 +6688,7 @@ class GGS_midrangeInstruction_5F_checkbank_2E_weak : public GGS_midrange_5F_inst
 //--------------------------------- nil initializer
   public: inline static GGS_midrangeInstruction_5F_checkbank_2E_weak init_nil (void) {
     GGS_midrangeInstruction_5F_checkbank_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -6844,7 +6844,7 @@ class cPtr_midrangeInstruction_5F_checknobank : public cPtr_midrange_5F_instruct
                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6874,7 +6874,7 @@ class GGS_midrangeInstruction_5F_checknobank_2E_weak : public GGS_midrange_5F_in
 //--------------------------------- nil initializer
   public: inline static GGS_midrangeInstruction_5F_checknobank_2E_weak init_nil (void) {
     GGS_midrangeInstruction_5F_checknobank_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -7042,7 +7042,7 @@ class cPtr_midrange_5F_instruction_5F_banksel_5F_register : public cPtr_midrange
                                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7072,7 +7072,7 @@ class GGS_midrange_5F_instruction_5F_banksel_5F_register_2E_weak : public GGS_mi
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_banksel_5F_register_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_banksel_5F_register_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -7246,7 +7246,7 @@ class cPtr_midrange_5F_instruction_5F_savebank : public cPtr_midrange_5F_instruc
                                                     COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7276,7 +7276,7 @@ class GGS_midrange_5F_instruction_5F_savebank_2E_weak : public GGS_midrange_5F_i
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_savebank_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_savebank_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -7462,7 +7462,7 @@ class cPtr_midrange_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_midrange_5F
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7492,7 +7492,7 @@ class GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak : public GGS_midra
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_STATIC_5F_REPEAT_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -7676,7 +7676,7 @@ class cPtr_midrange_5F_instruction_5F_FD : public cPtr_midrange_5F_instruction {
                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7706,7 +7706,7 @@ class GGS_midrange_5F_instruction_5F_FD_2E_weak : public GGS_midrange_5F_instruc
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_FD_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_FD_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -7884,7 +7884,7 @@ class cPtr_midrange_5F_instruction_5F_F : public cPtr_midrange_5F_instruction {
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -7914,7 +7914,7 @@ class GGS_midrange_5F_instruction_5F_F_2E_weak : public GGS_midrange_5F_instruct
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_F_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_F_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -8098,7 +8098,7 @@ class cPtr_midrange_5F_instruction_5F_FB : public cPtr_midrange_5F_instruction {
                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8128,7 +8128,7 @@ class GGS_midrange_5F_instruction_5F_FB_2E_weak : public GGS_midrange_5F_instruc
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_FB_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_FB_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -8294,7 +8294,7 @@ class cPtr_midrange_5F_instruction_5F_CALL : public cPtr_midrange_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8324,7 +8324,7 @@ class GGS_midrange_5F_instruction_5F_CALL_2E_weak : public GGS_midrange_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_CALL_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_CALL_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -8490,7 +8490,7 @@ class cPtr_midrange_5F_instruction_5F_JSR : public cPtr_midrange_5F_instruction 
                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8520,7 +8520,7 @@ class GGS_midrange_5F_instruction_5F_JSR_2E_weak : public GGS_midrange_5F_instru
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_JSR_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_JSR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -8686,7 +8686,7 @@ class cPtr_midrange_5F_instruction_5F_JUMP : public cPtr_midrange_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8716,7 +8716,7 @@ class GGS_midrange_5F_instruction_5F_JUMP_2E_weak : public GGS_midrange_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_JUMP_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_JUMP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -8882,7 +8882,7 @@ class cPtr_midrange_5F_instruction_5F_GOTO : public cPtr_midrange_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -8912,7 +8912,7 @@ class GGS_midrange_5F_instruction_5F_GOTO_2E_weak : public GGS_midrange_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_GOTO_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_GOTO_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -9068,7 +9068,7 @@ class cPtr_midrange_5F_instruction_5F_CLRWDT : public cPtr_midrange_5F_instructi
                                                   COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9098,7 +9098,7 @@ class GGS_midrange_5F_instruction_5F_CLRWDT_2E_weak : public GGS_midrange_5F_ins
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_CLRWDT_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_CLRWDT_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -9254,7 +9254,7 @@ class cPtr_midrange_5F_instruction_5F_CLRW : public cPtr_midrange_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9284,7 +9284,7 @@ class GGS_midrange_5F_instruction_5F_CLRW_2E_weak : public GGS_midrange_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_CLRW_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_CLRW_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -9440,7 +9440,7 @@ class cPtr_midrange_5F_instruction_5F_NOP : public cPtr_midrange_5F_instruction 
                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9470,7 +9470,7 @@ class GGS_midrange_5F_instruction_5F_NOP_2E_weak : public GGS_midrange_5F_instru
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_NOP_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_NOP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -9626,7 +9626,7 @@ class cPtr_midrange_5F_instruction_5F_SLEEP : public cPtr_midrange_5F_instructio
                                                  COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9656,7 +9656,7 @@ class GGS_midrange_5F_instruction_5F_SLEEP_2E_weak : public GGS_midrange_5F_inst
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_SLEEP_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_SLEEP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -9834,7 +9834,7 @@ class cPtr_midrange_5F_instruction_5F_literalOperation : public cPtr_midrange_5F
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -9864,7 +9864,7 @@ class GGS_midrange_5F_instruction_5F_literalOperation_2E_weak : public GGS_midra
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_literalOperation_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_literalOperation_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10026,7 +10026,7 @@ class cPtr_midrange_5F_instruction_5F_MNOP : public cPtr_midrange_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10056,7 +10056,7 @@ class GGS_midrange_5F_instruction_5F_MNOP_2E_weak : public GGS_midrange_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_MNOP_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_MNOP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10228,7 +10228,7 @@ class cPtr_midrange_5F_instruction_5F_FOREVER : public cPtr_midrange_5F_instruct
                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10258,7 +10258,7 @@ class GGS_midrange_5F_instruction_5F_FOREVER_2E_weak : public GGS_midrange_5F_in
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_FOREVER_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_FOREVER_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10432,7 +10432,7 @@ class GGS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak : public GGS_mi
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_IF_5F_SEMI_5F_COLON_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10617,7 +10617,7 @@ class cPtr_midrange_5F_instruction_5F_IF_5F_BitTest : public cPtr_midrange_5F_in
                                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10647,7 +10647,7 @@ class GGS_midrange_5F_instruction_5F_IF_5F_BitTest_2E_weak : public GGS_midrange
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_IF_5F_BitTest_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_IF_5F_BitTest_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10824,7 +10824,7 @@ class cPtr_midrange_5F_instruction_5F_IF_5F_IncDec : public cPtr_midrange_5F_ins
                                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -10854,7 +10854,7 @@ class GGS_midrange_5F_instruction_5F_IF_5F_IncDec_2E_weak : public GGS_midrange_
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_IF_5F_IncDec_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_IF_5F_IncDec_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10967,7 +10967,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_conditionE
 // Phase 2: pointer class for @midrange_conditionExpression class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_midrange_5F_conditionExpression : public acStrongPtr_class {
+class cPtr_midrange_5F_conditionExpression : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -11032,7 +11032,7 @@ class GGS_midrange_5F_conditionExpression_2E_weak : public AC_GALGAS_weak_refere
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_conditionExpression_2E_weak init_nil (void) {
     GGS_midrange_5F_conditionExpression_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11209,7 +11209,7 @@ class cPtr_midrange_5F_incDecRegisterInCondition : public cPtr_midrange_5F_condi
                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -11239,7 +11239,7 @@ class GGS_midrange_5F_incDecRegisterInCondition_2E_weak : public GGS_midrange_5F
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_incDecRegisterInCondition_2E_weak init_nil (void) {
     GGS_midrange_5F_incDecRegisterInCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11398,7 +11398,7 @@ class cPtr_midrange_5F_negateCondition : public cPtr_midrange_5F_conditionExpres
                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -11428,7 +11428,7 @@ class GGS_midrange_5F_negateCondition_2E_weak : public GGS_midrange_5F_condition
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_negateCondition_2E_weak init_nil (void) {
     GGS_midrange_5F_negateCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11593,7 +11593,7 @@ class cPtr_midrange_5F_andCondition : public cPtr_midrange_5F_conditionExpressio
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -11623,7 +11623,7 @@ class GGS_midrange_5F_andCondition_2E_weak : public GGS_midrange_5F_conditionExp
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_andCondition_2E_weak init_nil (void) {
     GGS_midrange_5F_andCondition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11788,7 +11788,7 @@ class cPtr_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -11818,7 +11818,7 @@ class GGS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak : p
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak init_nil (void) {
     GGS_midrange_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -12002,7 +12002,7 @@ class cPtr_midrange_5F_instruction_5F_structured_5F_if : public cPtr_midrange_5F
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -12032,7 +12032,7 @@ class GGS_midrange_5F_instruction_5F_structured_5F_if_2E_weak : public GGS_midra
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_structured_5F_if_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_structured_5F_if_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -12195,10 +12195,10 @@ class GGS_midrange_5F_partList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_midrange_5F_partList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_midrange_5F_partList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_midrange_5F_conditionExpression & in_mCondition,
                                                  const class GGS_midrange_5F_instructionList & in_mInstructionList,
                                                  const class GGS_location & in_mEndOfPartLocation
@@ -12561,7 +12561,7 @@ class cPtr_midrange_5F_instruction_5F_do_5F_while : public cPtr_midrange_5F_inst
                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -12591,7 +12591,7 @@ class GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak : public GGS_midrange_5
 //--------------------------------- nil initializer
   public: inline static GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak init_nil (void) {
     GGS_midrange_5F_instruction_5F_do_5F_while_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -12758,10 +12758,10 @@ class GGS_midrange_5F_interruptDefinitionList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_midrange_5F_interruptDefinitionList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_midrange_5F_interruptDefinitionList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_location & in_mInterruptLocation,
                                                  const class GGS_midrange_5F_instructionList & in_mInstructionList,
                                                  const class GGS_lstring & in_mFirstSaveRegister,

@@ -120,10 +120,10 @@ class GGS_midrange_5F_routineDefinitionList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_midrange_5F_routineDefinitionList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_midrange_5F_routineDefinitionList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mRoutineName,
                                                  const class GGS_luint & in_mPage,
                                                  const class GGS_luint & in_mRequiredBank,
@@ -1696,10 +1696,10 @@ class GGS_illegalMaskList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_illegalMaskList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_illegalMaskList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_luint & in_mIllegalValue,
                                                  const class GGS_luint & in_mIllegalMask,
                                                  const class GGS_lstring & in_mDescription
@@ -3488,7 +3488,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_conditionE
 // Phase 2: pointer class for @baseline_conditionExpression class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_baseline_5F_conditionExpression : public acStrongPtr_class {
+class cPtr_baseline_5F_conditionExpression : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -3625,7 +3625,7 @@ class cPtr_baseline_5F_andCondition : public cPtr_baseline_5F_conditionExpressio
                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3734,7 +3734,7 @@ class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
                                                                            COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3855,7 +3855,7 @@ class cPtr_baseline_5F_incDecRegisterInCondition : public cPtr_baseline_5F_condi
                                                       COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -3922,7 +3922,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instructio
 // Phase 2: pointer class for @baseline_instruction class
 //--------------------------------------------------------------------------------------------------
 
-class cPtr_baseline_5F_instruction : public acStrongPtr_class {
+class cPtr_baseline_5F_instruction : public AbstractStrongPtrClass {
 
   #ifndef DO_NOT_GENERATE_CHECKINGS
     public: virtual void printNonNullClassInstanceProperties (void) const override ;
@@ -4085,7 +4085,7 @@ class cPtr_baseline_5F_instruction_5F_CALL : public cPtr_baseline_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4203,7 +4203,7 @@ class cPtr_baseline_5F_instruction_5F_F : public cPtr_baseline_5F_instruction {
                                              COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4327,7 +4327,7 @@ class cPtr_baseline_5F_instruction_5F_FB : public cPtr_baseline_5F_instruction {
                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4451,7 +4451,7 @@ class cPtr_baseline_5F_instruction_5F_FD : public cPtr_baseline_5F_instruction {
                                               COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4616,10 +4616,10 @@ class GGS_baseline_5F_instructionList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_baseline_5F_instructionList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_baseline_5F_instructionList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_baseline_5F_instruction & in_mInstruction
                                                  COMMA_LOCATION_ARGS) ;
 
@@ -4791,7 +4791,7 @@ class cPtr_baseline_5F_instruction_5F_FOREVER : public cPtr_baseline_5F_instruct
                                                    COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -4907,7 +4907,7 @@ class cPtr_baseline_5F_instruction_5F_GOTO : public cPtr_baseline_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5137,7 +5137,7 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest : public cPtr_baseline_5F_in
                                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5264,7 +5264,7 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_IncDec : public cPtr_baseline_5F_ins
                                                         COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5376,7 +5376,7 @@ class cPtr_baseline_5F_instruction_5F_JSR : public cPtr_baseline_5F_instruction 
                                                COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5492,7 +5492,7 @@ class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5604,7 +5604,7 @@ class cPtr_baseline_5F_instruction_5F_MNOP : public cPtr_baseline_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5740,7 +5740,7 @@ class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5852,7 +5852,7 @@ class cPtr_baseline_5F_instruction_5F_TRIS : public cPtr_baseline_5F_instruction
                                                 COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -5964,7 +5964,7 @@ class cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND : public cPtr_baseline_5F_in
                                                          COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6136,10 +6136,10 @@ class GGS_baseline_5F_partList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_baseline_5F_partList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_baseline_5F_partList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_baseline_5F_conditionExpression & in_mCondition,
                                                  const class GGS_baseline_5F_instructionList & in_mInstructionList,
                                                  const class GGS_location & in_mEndOfPartLocation
@@ -6348,7 +6348,7 @@ class cPtr_baseline_5F_instruction_5F_do_5F_while : public cPtr_baseline_5F_inst
                                                        COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6470,7 +6470,7 @@ class cPtr_baseline_5F_instruction_5F_literalOperation : public cPtr_baseline_5F
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6604,7 +6604,7 @@ class cPtr_baseline_5F_instruction_5F_structured_5F_if : public cPtr_baseline_5F
                                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6707,7 +6707,7 @@ class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpres
                                             COMMA_LOCATION_ARGS) ;
 
 //--- Duplication
-  public: virtual acPtr_class * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
+  public: virtual AbstractPtrClass * duplicate (Compiler * inCompiler COMMA_LOCATION_ARGS) const override ;
 
 //--- Attribute accessors
 //--- Description
@@ -6825,10 +6825,10 @@ class GGS_baseline_5F_routineDefinitionList : public AC_GALGAS_root {
 
 
 //--- List constructor for graph
-  public: GGS_baseline_5F_routineDefinitionList (const capCollectionElementArray & inSharedArray) ;
+  public: GGS_baseline_5F_routineDefinitionList (const CollectionElementArray & inSharedArray) ;
 
 //--- Element constructor
-  public: static void makeAttributesFromObjects (capCollectionElement & outAttributes,
+  public: static void makeAttributesFromObjects (CollectionElement & outAttributes,
                                                  const class GGS_lstring & in_mRoutineName,
                                                  const class GGS_luint & in_mPage,
                                                  const class GGS_bool & in_mIsNoReturn,
@@ -10209,7 +10209,7 @@ class GGS_pic_31__38_AbstractCaseItem_2E_weak : public AC_GALGAS_weak_reference 
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_AbstractCaseItem_2E_weak init_nil (void) {
     GGS_pic_31__38_AbstractCaseItem_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10288,7 +10288,7 @@ class GGS_pic_31__38_IntervalCaseItem_2E_weak : public GGS_pic_31__38_AbstractCa
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_IntervalCaseItem_2E_weak init_nil (void) {
     GGS_pic_31__38_IntervalCaseItem_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10535,7 +10535,7 @@ class GGS_pic_31__38_PiccoloInstruction_2E_weak : public AC_GALGAS_weak_referenc
 //--------------------------------- nil initializer
   public: inline static GGS_pic_31__38_PiccoloInstruction_2E_weak init_nil (void) {
     GGS_pic_31__38_PiccoloInstruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -10974,7 +10974,7 @@ class GGS_baseline_5F_instruction_2E_weak : public AC_GALGAS_weak_reference {
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11126,7 +11126,7 @@ class GGS_baseline_5F_instruction_5F_FD_2E_weak : public GGS_baseline_5F_instruc
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_FD_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_FD_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11205,7 +11205,7 @@ class GGS_baseline_5F_instruction_5F_F_2E_weak : public GGS_baseline_5F_instruct
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_F_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_F_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11284,7 +11284,7 @@ class GGS_baseline_5F_instruction_5F_FB_2E_weak : public GGS_baseline_5F_instruc
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_FB_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_FB_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11363,7 +11363,7 @@ class GGS_baseline_5F_instruction_5F_CALL_2E_weak : public GGS_baseline_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_CALL_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_CALL_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11442,7 +11442,7 @@ class GGS_baseline_5F_instruction_5F_JSR_2E_weak : public GGS_baseline_5F_instru
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_JSR_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_JSR_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11521,7 +11521,7 @@ class GGS_baseline_5F_instruction_5F_GOTO_2E_weak : public GGS_baseline_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_GOTO_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_GOTO_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11600,7 +11600,7 @@ class GGS_baseline_5F_instruction_5F_JUMP_2E_weak : public GGS_baseline_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_JUMP_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_JUMP_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11679,7 +11679,7 @@ class GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak : public GGS_baseline
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_WO_5F_OPERAND_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11758,7 +11758,7 @@ class GGS_baseline_5F_instruction_5F_TRIS_2E_weak : public GGS_baseline_5F_instr
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_TRIS_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_TRIS_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
@@ -11837,7 +11837,7 @@ class GGS_baseline_5F_instruction_5F_literalOperation_2E_weak : public GGS_basel
 //--------------------------------- nil initializer
   public: inline static GGS_baseline_5F_instruction_5F_literalOperation_2E_weak init_nil (void) {
     GGS_baseline_5F_instruction_5F_literalOperation_2E_weak result ;
-    macroMyNew (result.mProxyPtr, cPtr_weakReference_proxy (HERE)) ;
+    macroMyNew (result.mProxyPtr, PtrWeakReferenceProxy (HERE)) ;
     return result ;
   }
 
