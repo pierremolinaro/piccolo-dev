@@ -10,326 +10,228 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'enterGoto2block??&'
+//Extension method '@ipic18Block display'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_enterGoto_32_block_3F__3F__26_ (const class GGS_symbolTableForBlockOptimization constinArgument0,
-                                             const class GGS_ipic_31__38_BlockList constinArgument1,
-                                             class GGS_stringset & ioArgument2,
-                                             class Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
+void extensionMethod_display (const class GGS_ipic_31__38_Block inObject,
+                              const class GGS_string constin_inNextBlockLabel,
+                              class GGS_string & io_ioListFileContents,
+                              class Compiler * inCompiler
+                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'enterGoto4block??&'
+//Extension method '@ipic18Block performRelativesResolution'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_enterGoto_34_block_3F__3F__26_ (const class GGS_symbolTableForBlockOptimization constinArgument0,
-                                             const class GGS_ipic_31__38_BlockList constinArgument1,
-                                             class GGS_stringset & ioArgument2,
-                                             class Compiler * inCompiler
-                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'ipic18OptimizeBlocks&&'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_ipic_31__38_OptimizeBlocks_26__26_ (class GGS_string & ioArgument0,
-                                                 class GGS_ipic_31__38_BlockList & ioArgument1,
+void extensionMethod_performRelativesResolution (const class GGS_ipic_31__38_Block inObject,
+                                                 const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                                 const class GGS_string constin_inNextBlockLabel,
+                                                 const class GGS_uint constin_inBlockStartAddress,
+                                                 class GGS_uint & io_ioConversionCount,
+                                                 class GGS_string & io_ioListFileContents,
+                                                 class GGS_ipic_31__38_Block & out_outModifiedBlock,
                                                  class Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'actualBuildConfig??&!'
+//Extension getter '@ipic18Block blockSize' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_actualBuildConfig_3F__3F__26__21_ (const class GGS_configRegisterMap constinArgument0,
-                                                const class GGS_configDefinitionList constinArgument1,
-                                                class GGS_string & ioArgument2,
-                                                class GGS_actualConfigurationMap & outArgument3,
-                                                class Compiler * inCompiler
-                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'buildConfig??&!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_buildConfig_3F__3F__26__21_ (const class GGS_configRegisterMap constinArgument0,
-                                          const class GGS_configDefinitionList constinArgument1,
-                                          class GGS_string & ioArgument2,
-                                          class GGS_actualConfigurationMap & outArgument3,
+class GGS_uint extensionGetter_blockSize (const class GGS_ipic_31__38_Block & inObject,
+                                          const class GGS_string & constinArgument0,
                                           class Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'performRelativesResolution?&&&'
+//Extension method '@ipic18Block relativeBranchOverflow'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_performRelativesResolution_3F__26__26__26_ (const class GGS_symbolTableForRelativesResolution constinArgument0,
-                                                         class GGS_ipic_31__38_BlockList & ioArgument1,
-                                                         class GGS_uint & ioArgument2,
-                                                         class GGS_string & ioArgument3,
-                                                         class Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
+void extensionMethod_relativeBranchOverflow (const class GGS_ipic_31__38_Block inObject,
+                                             const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                             const class GGS_string constin_inNextBlockLabel,
+                                             const class GGS_uint constin_inBlockStartAddress,
+                                             class GGS_branchOverflowMap & io_ioOverflowMap,
+                                             class Compiler * inCompiler
+                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'computeLabelAbsoluteAddressMap??!!'
+//Extension method '@ipic18Block generateCodeForBlock'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_computeLabelAbsoluteAddressMap_3F__3F__21__21_ (const class GGS_ipic_31__38_BlockList constinArgument0,
-                                                             const class GGS_ipic_31__38_BlockList constinArgument1,
-                                                             class GGS_symbolTableForRelativesResolution & outArgument2,
-                                                             class GGS_uint & outArgument3,
-                                                             class Compiler * inCompiler
-                                                             COMMA_LOCATION_ARGS) ;
+void extensionMethod_generateCodeForBlock (const class GGS_ipic_31__38_Block inObject,
+                                           const class GGS_symbolTableForRelativesResolution constin_inSymbolTable,
+                                           const class GGS_pic_31__38__5F_dataAddressMap constin_inDataMap,
+                                           const class GGS_uint constin_inBlockAddress,
+                                           const class GGS_string constin_inNextBlockLabel,
+                                           class GGS_string & io_ioListFileContents,
+                                           class GGS_string & io_ioAssemblyString,
+                                           class GGS_generatedCodeMap & io_ioGeneratedCodeMap,
+                                           class Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'ipic18RelativesResolution&&'
+//Routine 'emitCode?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_ipic_31__38_RelativesResolution_26__26_ (class GGS_string & ioArgument0,
-                                                      class GGS_ipic_31__38_BlockList & ioArgument1,
-                                                      class Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+void routine_emitCode_3F_ (const class GGS_uint constinArgument0,
+                           class Compiler * inCompiler
+                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Function 'pic18_computeUsedRoutines'
+//Routine 'generateLineWithCode?????&'
 //
 //--------------------------------------------------------------------------------------------------
 
-class GGS_stringset function_pic_31__38__5F_computeUsedRoutines (const class GGS_pic_31__38_InterruptDefinitionList & constinArgument0,
-                                                                 const class GGS_pic_31__38_RoutineDefinitionList & constinArgument1,
-                                                                 const class GGS_pic_31__38_MacroMap & constinArgument2,
-                                                                 const class GGS_routineDeclarationList & constinArgument3,
-                                                                 const class GGS_routineDeclarationList & constinArgument4,
-                                                                 class Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const class GGS_uint constinArgument0,
+                                                           const class GGS_codeList constinArgument1,
+                                                           const class GGS_stringlist constinArgument2,
+                                                           const class GGS_uint constinArgument3,
+                                                           const class GGS_uint constinArgument4,
+                                                           class GGS_string & ioArgument5,
+                                                           class Compiler * inCompiler
+                                                           COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'analyze_ram_sections???&&?&&!'
+//Extension method '@ipic18Block enterReferencedLabels'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_analyze_5F_ram_5F_sections_3F__3F__3F__26__26__3F__26__26__21_ (const class GGS_string constinArgument0,
-                                                                             const class GGS_ramDefinitionList constinArgument1,
-                                                                             const class GGS_constantMap constinArgument2,
-                                                                             class GGS_stringset & ioArgument3,
-                                                                             class GGS_ramBankTable & ioArgument4,
-                                                                             const class GGS_registerTable constinArgument5,
-                                                                             class GGS_string & ioArgument6,
-                                                                             class GGS_registerTable & ioArgument7,
-                                                                             class GGS_declaredByteMap & outArgument8,
-                                                                             class Compiler * inCompiler
-                                                                             COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'build_ipic18_block_representation_list?????????????????????????&'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_build_5F_ipic_31__38__5F_block_5F_representation_5F_list_3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__3F__26_ (const class GGS_string constinArgument0,
-                                                                                                                                                                               const class GGS_sint_36__34_ constinArgument1,
-                                                                                                                                                                               const class GGS_pic_31__38_MacroMap constinArgument2,
-                                                                                                                                                                               const class GGS_routineDeclarationList constinArgument3,
-                                                                                                                                                                               const class GGS_routineDeclarationList constinArgument4,
-                                                                                                                                                                               const class GGS_luint constinArgument5,
-                                                                                                                                                                               const class GGS_routineDeclarationList constinArgument6,
-                                                                                                                                                                               const class GGS_routineDeclarationList constinArgument7,
-                                                                                                                                                                               const class GGS_uint constinArgument8,
-                                                                                                                                                                               const class GGS_registerTable constinArgument9,
-                                                                                                                                                                               const class GGS_declaredByteMap constinArgument10,
-                                                                                                                                                                               const class GGS_pic_31__38_RoutineDefinitionList constinArgument11,
-                                                                                                                                                                               const class GGS_programKind constinArgument12,
-                                                                                                                                                                               const class GGS_constantMap constinArgument13,
-                                                                                                                                                                               const class GGS_stringset constinArgument14,
-                                                                                                                                                                               const class GGS_dataList constinArgument15,
-                                                                                                                                                                               const class GGS_pic_31__38_InterruptDefinitionList constinArgument16,
-                                                                                                                                                                               const class GGS_lstringlist constinArgument17,
-                                                                                                                                                                               const class GGS_ramBankTable constinArgument18,
-                                                                                                                                                                               const class GGS_bool constinArgument19,
-                                                                                                                                                                               const class GGS_bool constinArgument20,
-                                                                                                                                                                               const class GGS_string constinArgument21,
-                                                                                                                                                                               const class GGS_registerTable constinArgument22,
-                                                                                                                                                                               const class GGS_actualConfigurationMap constinArgument23,
-                                                                                                                                                                               const class GGS_location constinArgument24,
-                                                                                                                                                                               class GGS_string & ioArgument25,
-                                                                                                                                                                               class Compiler * inCompiler
-                                                                                                                                                                               COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'parseDeviceDefinition?!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_parseDeviceDefinition_3F__21_ (const class GGS_lstring constinArgument0,
-                                            class GGS_piccoloDeviceModel & outArgument1,
+void extensionMethod_enterReferencedLabels (const class GGS_ipic_31__38_Block inObject,
+                                            const class GGS_symbolTableForBlockOptimization constin_inSymbolTable,
+                                            const class GGS_ipic_31__38_BlockList constin_inBlockList,
+                                            class GGS_stringset & io_ioReferencedBlockSet,
                                             class Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'pic18PerformRoutineInline??&&'
+//Extension method '@ipic18Block optimize'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_pic_31__38_PerformRoutineInline_3F__3F__26__26_ (const class GGS_stringset constinArgument0,
-                                                              const class GGS_declaredRoutineMap constinArgument1,
-                                                              class GGS_pic_31__38_InterruptDefinitionList & ioArgument2,
-                                                              class GGS_pic_31__38_RoutineDefinitionList & ioArgument3,
-                                                              class Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
+void extensionMethod_optimize (const class GGS_ipic_31__38_Block inObject,
+                               const class GGS_symbolTableForBlockOptimization constin_inSymbolTable,
+                               const class GGS_optimizeFlagStruct constin_inOptimizeFlagStruct,
+                               const class GGS_ipic_31__38_BlockList constin_inBlockList,
+                               class GGS_bool & io_ioOptimizationDone,
+                               class GGS_string & io_ioListFileContents,
+                               class GGS_ipic_31__38_Block & out_outOptimizedBlock,
+                               class Compiler * inCompiler
+                               COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Function 'pic18_checkBCC'
+//Routine 'instructionListOptimization?????!&!'
 //
 //--------------------------------------------------------------------------------------------------
 
-class GGS_bool function_pic_31__38__5F_checkBCC (const class GGS_symbolTableForRelativesResolution & constinArgument0,
-                                                 const class GGS_lstring & constinArgument1,
-                                                 const class GGS_uint & constinArgument2,
+void routine_instructionListOptimization_3F__3F__3F__3F__3F__21__26__21_ (const class GGS_symbolTableForBlockOptimization constinArgument0,
+                                                                          const class GGS_optimizeFlagStruct constinArgument1,
+                                                                          const class GGS_ipic_31__38_BlockList constinArgument2,
+                                                                          const class GGS_ipic_31__38_SequentialInstructionList constinArgument3,
+                                                                          const class GGS_lstring constinArgument4,
+                                                                          class GGS_bool & outArgument5,
+                                                                          class GGS_string & ioArgument6,
+                                                                          class GGS_ipic_31__38_SequentialInstructionList & outArgument7,
+                                                                          class Compiler * inCompiler
+                                                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'println?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_println_3F_ (const class GGS_string constinArgument0,
+                          class Compiler * inCompiler
+                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'print?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_print_3F_ (const class GGS_string constinArgument0,
+                        class Compiler * inCompiler
+                        COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'ipic18StackComputations&?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_ipic_31__38_StackComputations_26__3F_ (class GGS_string & ioArgument0,
+                                                    const class GGS_ipic_31__38_BlockList constinArgument1,
+                                                    class Compiler * inCompiler
+                                                    COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'ipic18DurationComputations&!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_ipic_31__38_DurationComputations_26__21_ (class GGS_ipic_31__38_BlockList & ioArgument0,
+                                                       class GGS_blockDurationMap & outArgument1,
+                                                       class Compiler * inCompiler
+                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'ipic18PrintDurations&?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_ipic_31__38_PrintDurations_26__3F_ (class GGS_string & ioArgument0,
+                                                 const class GGS_blockDurationMap constinArgument1,
                                                  class Compiler * inCompiler
                                                  COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Function 'pic18_checkBRA_RCALL'
+//Routine 'addMidRangeUsedRoutinesFromInstructionList?&'
 //
 //--------------------------------------------------------------------------------------------------
 
-class GGS_bool function_pic_31__38__5F_checkBRA_5F_RCALL (const class GGS_symbolTableForRelativesResolution & constinArgument0,
-                                                          const class GGS_lstring & constinArgument1,
-                                                          const class GGS_uint & constinArgument2,
-                                                          class Compiler * inCompiler
-                                                          COMMA_LOCATION_ARGS) ;
+void routine_addMidRangeUsedRoutinesFromInstructionList_3F__26_ (const class GGS_midrange_5F_instructionList constinArgument0,
+                                                                 class GGS_stringset & ioArgument1,
+                                                                 class Compiler * inCompiler
+                                                                 COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Function 'pic18_BRA_RCALL_displacement'
+//Function 'midrange_computeUsedRoutines'
 //
 //--------------------------------------------------------------------------------------------------
 
-class GGS_sint function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (const class GGS_symbolTableForRelativesResolution & constinArgument0,
-                                                                     const class GGS_lstring & constinArgument1,
-                                                                     const class GGS_uint & constinArgument2,
-                                                                     class Compiler * inCompiler
-                                                                     COMMA_LOCATION_ARGS) ;
+class GGS_stringset function_midrange_5F_computeUsedRoutines (const class GGS_midrange_5F_interruptDefinitionList & constinArgument0,
+                                                              const class GGS_midrange_5F_routineDefinitionList & constinArgument1,
+                                                              class Compiler * inCompiler
+                                                              COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Function 'pic18_Bcc_instruction_code'
+//Routine 'initCodeGenerator'
 //
 //--------------------------------------------------------------------------------------------------
 
-class GGS_codeList function_pic_31__38__5F_Bcc_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
-                                                                       const class GGS_uint & constinArgument1,
-                                                                       const class GGS_lstring & constinArgument2,
-                                                                       const class GGS_conditional_5F_branch & constinArgument3,
-                                                                       const class GGS_bool & constinArgument4,
-                                                                       class Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Function 'pic18_RCALL_instruction_code'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_codeList function_pic_31__38__5F_RCALL_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
-                                                                         const class GGS_uint & constinArgument1,
-                                                                         const class GGS_lstring & constinArgument2,
-                                                                         class Compiler * inCompiler
-                                                                         COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Function 'pic18_BRA_instruction_code'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_codeList function_pic_31__38__5F_BRA_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
-                                                                       const class GGS_uint & constinArgument1,
-                                                                       const class GGS_lstring & constinArgument2,
-                                                                       class Compiler * inCompiler
-                                                                       COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Function 'pic18_CALL_instruction_code'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_codeList function_pic_31__38__5F_CALL_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
-                                                                        const class GGS_lstring & constinArgument1,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Function 'pic18_GOTO_instruction_code'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_codeList function_pic_31__38__5F_GOTO_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
-                                                                        const class GGS_lstring & constinArgument1,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Function 'pic18_definition_label'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_codeList function_pic_31__38__5F_definition_5F_label (const class GGS_lstring & constinArgument0,
-                                                                class Compiler * inCompiler
-                                                                COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'performInlineFromInstructionList????!'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_performInlineFromInstructionList_3F__3F__3F__3F__21_ (const class GGS_pic_31__38_InstructionList constinArgument0,
-                                                                   const class GGS_stringset constinArgument1,
-                                                                   const class GGS_declaredRoutineMap constinArgument2,
-                                                                   const class GGS_stringset constinArgument3,
-                                                                   class GGS_pic_31__38_InstructionList & outArgument4,
-                                                                   class Compiler * inCompiler
-                                                                   COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'build_baseline_assembly_code????&'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_build_5F_baseline_5F_assembly_5F_code_3F__3F__3F__3F__26_ (const class GGS_baseline_5F_intermediate_5F_instructionList constinArgument0,
-                                                                        const class GGS_actualConfigurationMap constinArgument1,
-                                                                        const class GGS_baseline_5F_intermediate_5F_registerExpression constinArgument2,
-                                                                        const class GGS_bitSliceTable constinArgument3,
-                                                                        class GGS_baseline_5F_assembly_5F_instructionList & ioArgument4,
-                                                                        class Compiler * inCompiler
-                                                                        COMMA_LOCATION_ARGS) ;
+void routine_initCodeGenerator (class Compiler * inCompiler
+                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -340,6 +242,90 @@ void routine_build_5F_baseline_5F_assembly_5F_code_3F__3F__3F__3F__26_ (const cl
 void routine_setEmitAddress_3F_ (const class GGS_uint constinArgument0,
                                  class Compiler * inCompiler
                                  COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'currentEmitAddress!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_currentEmitAddress_21_ (class GGS_uint & outArgument0,
+                                     class Compiler * inCompiler
+                                     COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'emitByte?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_emitByte_3F_ (const class GGS_uint constinArgument0,
+                           class Compiler * inCompiler
+                           COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'getGeneratedContents!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_getGeneratedContents_21_ (class GGS_string & outArgument0,
+                                       class Compiler * inCompiler
+                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'get_C_ArrayImplementation?!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_get_5F_C_5F_ArrayImplementation_3F__21_ (const class GGS_string constinArgument0,
+                                                      class GGS_string & outArgument1,
+                                                      class Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'get_C_ArrayHeader?!'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_get_5F_C_5F_ArrayHeader_3F__21_ (const class GGS_string constinArgument0,
+                                              class GGS_string & outArgument1,
+                                              class Compiler * inCompiler
+                                              COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'checkCurrentEmitAddress?'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_checkCurrentEmitAddress_3F_ (const class GGS_uint constinArgument0,
+                                          class Compiler * inCompiler
+                                          COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'print_constant_definition?&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_print_5F_constant_5F_definition_3F__26_ (const class GGS_constantMap constinArgument0,
+                                                      class GGS_string & ioArgument1,
+                                                      class Compiler * inCompiler
+                                                      COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Routine 'midrange_compute_JSR_JUMP&&'
+//
+//--------------------------------------------------------------------------------------------------
+
+void routine_midrange_5F_compute_5F_JSR_5F_JUMP_26__26_ (class GGS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
+                                                         class GGS_string & ioArgument1,
+                                                         class Compiler * inCompiler
+                                                         COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -450,162 +436,191 @@ void routine_build_5F_midrange_5F_ipic_5F_binary_5F_code_3F__3F__3F__3F__3F__3F_
                                                                                           class Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'checkCurrentEmitAddress?'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_checkCurrentEmitAddress_3F_ (const class GGS_uint constinArgument0,
-                                          class Compiler * inCompiler
-                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'initCodeGenerator'
+//                               Bool options                                                    
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_initCodeGenerator (class Compiler * inCompiler
-                                COMMA_LOCATION_ARGS) ;
+extern BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputBaselineDeviceList ;
+
+extern BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputDeviceList ;
+
+extern BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputMidrangeDeviceList ;
+
+extern BoolCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_outputPic_31__38_DeviceList ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'midrange_compute_JSR_JUMP&&'
+//                               UInt options                                                    
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_midrange_5F_compute_5F_JSR_5F_JUMP_26__26_ (class GGS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
-                                                         class GGS_string & ioArgument1,
-                                                         class Compiler * inCompiler
-                                                         COMMA_LOCATION_ARGS) ;
-
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'ipic18StackComputations&?'
+//                              String options                                                   
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_ipic_31__38_StackComputations_26__3F_ (class GGS_string & ioArgument0,
-                                                    const class GGS_ipic_31__38_BlockList constinArgument1,
-                                                    class Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
+extern StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_exportDeviceFiles ;
+
+extern StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_memoryDescription ;
+
+extern StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_configDescription ;
+
+extern StringCommandLineOption gOption_piccolo_5F_options_5F_not_5F_in_5F_cocoa_registerDescription ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'addMidRangeUsedRoutinesFromInstructionList?&'
+//                              String List options                                              
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_addMidRangeUsedRoutinesFromInstructionList_3F__26_ (const class GGS_midrange_5F_instructionList constinArgument0,
-                                                                 class GGS_stringset & ioArgument1,
-                                                                 class Compiler * inCompiler
-                                                                 COMMA_LOCATION_ARGS) ;
+//--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
 //
-//Function 'midrange_computeUsedRoutines'
+//Routine 'analyzeInstructionList?&??????&&&&&??&'
 //
 //--------------------------------------------------------------------------------------------------
 
-class GGS_stringset function_midrange_5F_computeUsedRoutines (const class GGS_midrange_5F_interruptDefinitionList & constinArgument0,
-                                                              const class GGS_midrange_5F_routineDefinitionList & constinArgument1,
-                                                              class Compiler * inCompiler
-                                                              COMMA_LOCATION_ARGS) ;
+void routine_analyzeInstructionList_3F__26__3F__3F__3F__3F__3F__3F__26__26__26__26__26__3F__3F__26_ (const class GGS_pic_31__38_InstructionList constinArgument0,
+                                                                                                     class GGS_ipic_31__38_BlockList & ioArgument1,
+                                                                                                     const class GGS_uint constinArgument2,
+                                                                                                     const class GGS_routineMap constinArgument3,
+                                                                                                     const class GGS_registerTable constinArgument4,
+                                                                                                     const class GGS_pic_31__38__5F_dataMap constinArgument5,
+                                                                                                     const class GGS_constantMap constinArgument6,
+                                                                                                     const class GGS_pic_31__38_MacroMap constinArgument7,
+                                                                                                     class GGS_uint & ioArgument8,
+                                                                                                     class GGS_ipic_31__38_SequentialInstructionList & ioArgument9,
+                                                                                                     class GGS_lstring & ioArgument10,
+                                                                                                     class GGS_string & ioArgument11,
+                                                                                                     class GGS_uint & ioArgument12,
+                                                                                                     const class GGS_bool constinArgument13,
+                                                                                                     const class GGS_routineKind constinArgument14,
+                                                                                                     class GGS_stringset & ioArgument15,
+                                                                                                     class Compiler * inCompiler
+                                                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'midrange_build_assembly_code?????!'
+//Routine 'addPic18UsedRoutinesFromInstructionList??&'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_midrange_5F_build_5F_assembly_5F_code_3F__3F__3F__3F__3F__21_ (const class GGS_string constinArgument0,
-                                                                            const class GGS_registerTable constinArgument1,
-                                                                            const class GGS_registerTable constinArgument2,
-                                                                            const class GGS_midrange_5F_intermediate_5F_instructionList constinArgument3,
-                                                                            const class GGS_actualConfigurationMap constinArgument4,
-                                                                            class GGS_string & outArgument5,
-                                                                            class Compiler * inCompiler
-                                                                            COMMA_LOCATION_ARGS) ;
+void routine_addPic_31__38_UsedRoutinesFromInstructionList_3F__3F__26_ (const class GGS_pic_31__38_InstructionList constinArgument0,
+                                                                        const class GGS_pic_31__38_MacroMap constinArgument1,
+                                                                        class GGS_stringset & ioArgument2,
+                                                                        class Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'ipic18GenerateCode?????????&?!!'
+//Function 'pic18_checkBRA_RCALL'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_ipic_31__38_GenerateCode_3F__3F__3F__3F__3F__3F__3F__3F__3F__26__3F__21__21_ (const class GGS_string constinArgument0,
-                                                                                           const class GGS_programKind constinArgument1,
-                                                                                           const class GGS_uint constinArgument2,
-                                                                                           const class GGS_uint constinArgument3,
-                                                                                           const class GGS_string constinArgument4,
-                                                                                           const class GGS_registerTable constinArgument5,
-                                                                                           const class GGS_registerTable constinArgument6,
-                                                                                           const class GGS_pic_31__38__5F_dataMap constinArgument7,
-                                                                                           const class GGS_actualConfigurationMap constinArgument8,
-                                                                                           class GGS_string & ioArgument9,
-                                                                                           const class GGS_ipic_31__38_BlockList constinArgument10,
-                                                                                           class GGS_uint & outArgument11,
-                                                                                           class GGS_generatedCodeMap & outArgument12,
-                                                                                           class Compiler * inCompiler
-                                                                                           COMMA_LOCATION_ARGS) ;
+class GGS_bool function_pic_31__38__5F_checkBRA_5F_RCALL (const class GGS_symbolTableForRelativesResolution & constinArgument0,
+                                                          const class GGS_lstring & constinArgument1,
+                                                          const class GGS_uint & constinArgument2,
+                                                          class Compiler * inCompiler
+                                                          COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'emitByte?'
+//Function 'pic18_BRA_RCALL_displacement'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_emitByte_3F_ (const class GGS_uint constinArgument0,
-                           class Compiler * inCompiler
-                           COMMA_LOCATION_ARGS) ;
+class GGS_sint function_pic_31__38__5F_BRA_5F_RCALL_5F_displacement (const class GGS_symbolTableForRelativesResolution & constinArgument0,
+                                                                     const class GGS_lstring & constinArgument1,
+                                                                     const class GGS_uint & constinArgument2,
+                                                                     class Compiler * inCompiler
+                                                                     COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'getGeneratedContents!'
+//Function 'pic18_BRA_instruction_code'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_getGeneratedContents_21_ (class GGS_string & outArgument0,
-                                       class Compiler * inCompiler
-                                       COMMA_LOCATION_ARGS) ;
+class GGS_codeList function_pic_31__38__5F_BRA_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
+                                                                       const class GGS_uint & constinArgument1,
+                                                                       const class GGS_lstring & constinArgument2,
+                                                                       class Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'get_C_ArrayHeader?!'
+//Function 'pic18_GOTO_instruction_code'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_get_5F_C_5F_ArrayHeader_3F__21_ (const class GGS_string constinArgument0,
-                                              class GGS_string & outArgument1,
-                                              class Compiler * inCompiler
-                                              COMMA_LOCATION_ARGS) ;
+class GGS_codeList function_pic_31__38__5F_GOTO_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
+                                                                        const class GGS_lstring & constinArgument1,
+                                                                        class Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'get_C_ArrayImplementation?!'
+//Function 'pic18_CALL_instruction_code'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_get_5F_C_5F_ArrayImplementation_3F__21_ (const class GGS_string constinArgument0,
-                                                      class GGS_string & outArgument1,
-                                                      class Compiler * inCompiler
-                                                      COMMA_LOCATION_ARGS) ;
+class GGS_codeList function_pic_31__38__5F_CALL_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
+                                                                        const class GGS_lstring & constinArgument1,
+                                                                        class Compiler * inCompiler
+                                                                        COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'pic18GenerateAssemblyFile??????'
+//Function 'pic18_RCALL_instruction_code'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_pic_31__38_GenerateAssemblyFile_3F__3F__3F__3F__3F__3F_ (const class GGS_string constinArgument0,
-                                                                      const class GGS_string constinArgument1,
-                                                                      const class GGS_registerTable constinArgument2,
-                                                                      const class GGS_registerTable constinArgument3,
-                                                                      const class GGS_actualConfigurationMap constinArgument4,
-                                                                      const class GGS_string constinArgument5,
-                                                                      class Compiler * inCompiler
-                                                                      COMMA_LOCATION_ARGS) ;
+class GGS_codeList function_pic_31__38__5F_RCALL_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
+                                                                         const class GGS_uint & constinArgument1,
+                                                                         const class GGS_lstring & constinArgument2,
+                                                                         class Compiler * inCompiler
+                                                                         COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Function 'pic18_checkBCC'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_bool function_pic_31__38__5F_checkBCC (const class GGS_symbolTableForRelativesResolution & constinArgument0,
+                                                 const class GGS_lstring & constinArgument1,
+                                                 const class GGS_uint & constinArgument2,
+                                                 class Compiler * inCompiler
+                                                 COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Function 'pic18_Bcc_instruction_code'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_codeList function_pic_31__38__5F_Bcc_5F_instruction_5F_code (const class GGS_uint & constinArgument0,
+                                                                       const class GGS_uint & constinArgument1,
+                                                                       const class GGS_lstring & constinArgument2,
+                                                                       const class GGS_conditional_5F_branch & constinArgument3,
+                                                                       const class GGS_bool & constinArgument4,
+                                                                       class Compiler * inCompiler
+                                                                       COMMA_LOCATION_ARGS) ;
+
+//--------------------------------------------------------------------------------------------------
+//
+//Function 'pic18_definition_label'
+//
+//--------------------------------------------------------------------------------------------------
+
+class GGS_codeList function_pic_31__38__5F_definition_5F_label (const class GGS_lstring & constinArgument0,
+                                                                class Compiler * inCompiler
+                                                                COMMA_LOCATION_ARGS) ;
 
 //--------------------------------------------------------------------------------------------------
 //
@@ -620,42 +635,13 @@ void routine_perform_5F_baseline_5F_optimizations_26__26_ (class GGS_baseline_5F
 
 //--------------------------------------------------------------------------------------------------
 //
-//Routine 'perform_midrange_optimizations&&'
+//Routine 'displayBlockList?&?'
 //
 //--------------------------------------------------------------------------------------------------
 
-void routine_perform_5F_midrange_5F_optimizations_26__26_ (class GGS_midrange_5F_intermediate_5F_instructionList & ioArgument0,
-                                                           class GGS_string & ioArgument1,
-                                                           class Compiler * inCompiler
-                                                           COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Routine 'handleBaselineInstructionList?????&&&!??&'
-//
-//--------------------------------------------------------------------------------------------------
-
-void routine_handleBaselineInstructionList_3F__3F__3F__3F__3F__26__26__26__21__3F__3F__26_ (const class GGS_uint constinArgument0,
-                                                                                            const class GGS_baseline_5F_instructionList constinArgument1,
-                                                                                            const class GGS_baselineRoutineMap constinArgument2,
-                                                                                            const class GGS_registerTable constinArgument3,
-                                                                                            const class GGS_constantMap constinArgument4,
-                                                                                            class GGS_uint & ioArgument5,
-                                                                                            class GGS_baseline_5F_intermediate_5F_instructionList & ioArgument6,
-                                                                                            class GGS_string & ioArgument7,
-                                                                                            class GGS_bool & outArgument8,
-                                                                                            const class GGS_routineKind constinArgument9,
-                                                                                            const class GGS_bool constinArgument10,
-                                                                                            class GGS_stringset & ioArgument11,
-                                                                                            class Compiler * inCompiler
-                                                                                            COMMA_LOCATION_ARGS) ;
-
-//--------------------------------------------------------------------------------------------------
-//
-//Function 'acceptableTRISoperand'
-//
-//--------------------------------------------------------------------------------------------------
-
-class GGS_stringset function_acceptableTRISoperand (class Compiler * inCompiler
-                                                    COMMA_LOCATION_ARGS) ;
+void routine_displayBlockList_3F__26__3F_ (const class GGS_string constinArgument0,
+                                           class GGS_string & ioArgument1,
+                                           const class GGS_ipic_31__38_BlockList constinArgument2,
+                                           class Compiler * inCompiler
+                                           COMMA_LOCATION_ARGS) ;
 

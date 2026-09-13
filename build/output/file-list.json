@@ -13,6 +13,7 @@
                        "../build/libpm/utilities",
                        "../sources/tool-sources"],
     "SOURCES"  :  [
+        "all-declarations-15.cpp",
         "all-declarations-14.cpp",
         "all-declarations-13.cpp",
         "all-declarations-12.cpp",
