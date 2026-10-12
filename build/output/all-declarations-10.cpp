@@ -10181,7 +10181,7 @@ void callExtensionMethod_addUsedRoutines (cPtr_midrange_5F_instruction * inObjec
 //--------------------------------------------------------------------------------------------------
 
 static const int32_t gProductions_piccoloDevice_grammar [] = {
-// At index 0 : <start_symbol>, in file 'piccoloDevice_syntax.ggs', line 10
+// At index 0 : <start_symbol>, in file 'piccoloDevice_syntax.galgas', line 10
   TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_controller) // $controller$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__7B_) // ${$
@@ -10202,33 +10202,33 @@ static const int32_t gProductions_piccoloDevice_grammar [] = {
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__7D_) // $}$
 , TOP_DOWN_END_PRODUCTION ()
 //---- Added productions from 'select' and 'repeat' instructions
-// At index 19 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
+// At index 19 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.galgas', line 34
 , TOP_DOWN_END_PRODUCTION ()
-// At index 20 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
+// At index 20 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.galgas', line 34
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_eepromsize) // $eepromsize$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
 , TOP_DOWN_END_PRODUCTION ()
-// At index 26 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
+// At index 26 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.galgas', line 49
 , TOP_DOWN_END_PRODUCTION ()
-// At index 27 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
+// At index 27 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.galgas', line 49
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_unusedregister) // $unusedregister$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_NONTERMINAL (3) // <select_piccoloDevice_5F_syntax_2>
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
 , TOP_DOWN_NONTERMINAL (2) // <select_piccoloDevice_5F_syntax_1>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 33 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
+// At index 33 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.galgas', line 53
 , TOP_DOWN_END_PRODUCTION ()
-// At index 34 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
+// At index 34 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.galgas', line 53
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_to) // $to$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_END_PRODUCTION ()
-// At index 37 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
+// At index 37 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.galgas', line 61
 , TOP_DOWN_END_PRODUCTION ()
-// At index 38 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
+// At index 38 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.galgas', line 61
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_ram) // $ram$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3A_) // $:$
@@ -10239,23 +10239,23 @@ static const int32_t gProductions_piccoloDevice_grammar [] = {
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
 , TOP_DOWN_NONTERMINAL (4) // <select_piccoloDevice_5F_syntax_3>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 48 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
+// At index 48 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.galgas', line 70
 , TOP_DOWN_END_PRODUCTION ()
-// At index 49 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
+// At index 49 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.galgas', line 70
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_mirrorat) // $mirrorat$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_NONTERMINAL (6) // <select_piccoloDevice_5F_syntax_5>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 53 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
+// At index 53 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.galgas', line 73
 , TOP_DOWN_END_PRODUCTION ()
-// At index 54 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
+// At index 54 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.galgas', line 73
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_NONTERMINAL (6) // <select_piccoloDevice_5F_syntax_5>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 58 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
+// At index 58 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.galgas', line 90
 , TOP_DOWN_END_PRODUCTION ()
-// At index 59 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
+// At index 59 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.galgas', line 90
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_register) // $register$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
@@ -10268,46 +10268,46 @@ static const int32_t gProductions_piccoloDevice_grammar [] = {
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__3B_) // $;$
 , TOP_DOWN_NONTERMINAL (7) // <select_piccoloDevice_5F_syntax_6>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 71 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
+// At index 71 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.galgas', line 96
 , TOP_DOWN_END_PRODUCTION ()
-// At index 72 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
+// At index 72 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.galgas', line 96
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_NONTERMINAL (8) // <select_piccoloDevice_5F_syntax_7>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 76 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
+// At index 76 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.galgas', line 106
 , TOP_DOWN_END_PRODUCTION ()
-// At index 77 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
+// At index 77 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.galgas', line 106
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2C_) // $,$
 , TOP_DOWN_NONTERMINAL (10) // <select_piccoloDevice_5F_syntax_9>
 , TOP_DOWN_NONTERMINAL (9) // <select_piccoloDevice_5F_syntax_8>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 81 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
+// At index 81 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.galgas', line 107
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TOP_DOWN_NONTERMINAL (12) // <select_piccoloDevice_5F_syntax_11>
 , TOP_DOWN_NONTERMINAL (11) // <select_piccoloDevice_5F_syntax_10>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 85 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
+// At index 85 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.galgas', line 107
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2D_) // $-$
 , TOP_DOWN_END_PRODUCTION ()
-// At index 87 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
+// At index 87 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.galgas', line 109
 , TOP_DOWN_END_PRODUCTION ()
-// At index 88 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
+// At index 88 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.galgas', line 109
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__2F_) // $/$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TOP_DOWN_NONTERMINAL (12) // <select_piccoloDevice_5F_syntax_11>
 , TOP_DOWN_NONTERMINAL (11) // <select_piccoloDevice_5F_syntax_10>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 93 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
+// At index 93 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.galgas', line 112
 , TOP_DOWN_END_PRODUCTION ()
-// At index 94 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
+// At index 94 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.galgas', line 112
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__5B_) // $[$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__5D_) // $]$
 , TOP_DOWN_END_PRODUCTION ()
-// At index 98 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
+// At index 98 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.galgas', line 153
 , TOP_DOWN_END_PRODUCTION ()
-// At index 99 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
+// At index 99 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.galgas', line 153
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_configuration) // $configuration$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_at) // $at$
@@ -10320,9 +10320,9 @@ static const int32_t gProductions_piccoloDevice_grammar [] = {
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken__7D_) // $}$
 , TOP_DOWN_NONTERMINAL (13) // <select_piccoloDevice_5F_syntax_12>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 111 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
+// At index 111 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.galgas', line 162
 , TOP_DOWN_END_PRODUCTION ()
-// At index 112 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
+// At index 112 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.galgas', line 162
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_illegal) // $illegal$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
@@ -10331,9 +10331,9 @@ static const int32_t gProductions_piccoloDevice_grammar [] = {
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
 , TOP_DOWN_NONTERMINAL (14) // <select_piccoloDevice_5F_syntax_13>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 120 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
+// At index 120 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.galgas', line 175
 , TOP_DOWN_END_PRODUCTION ()
-// At index 121 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
+// At index 121 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.galgas', line 175
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_identifier) // $identifier$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
@@ -10348,9 +10348,9 @@ static const int32_t gProductions_piccoloDevice_grammar [] = {
 , TOP_DOWN_NONTERMINAL (16) // <select_piccoloDevice_5F_syntax_15>
 , TOP_DOWN_NONTERMINAL (15) // <select_piccoloDevice_5F_syntax_14>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 135 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
+// At index 135 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.galgas', line 187
 , TOP_DOWN_END_PRODUCTION ()
-// At index 136 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
+// At index 136 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.galgas', line 187
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_setting) // $setting$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_integer) // $integer$
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_mask) // $mask$
@@ -10359,7 +10359,7 @@ static const int32_t gProductions_piccoloDevice_grammar [] = {
 , TOP_DOWN_TERMINAL (Lexique_piccoloDevice_5F_lexique::kToken_string) // $string$
 , TOP_DOWN_NONTERMINAL (16) // <select_piccoloDevice_5F_syntax_15>
 , TOP_DOWN_END_PRODUCTION ()
-// At index 144 : <>, in file '.ggs', line 0
+// At index 144 : <>, in file '.galgas', line 0
 , TOP_DOWN_NONTERMINAL (0) // <start_symbol>
 , TOP_DOWN_END_PRODUCTION ()
 } ;
@@ -10414,40 +10414,40 @@ static const ProductionNameDescriptor gProductionNames_piccoloDevice_grammar [34
 //--------------------------------------------------------------------------------------------------
 
 static const int32_t gProductionIndexes_piccoloDevice_grammar [34] = {
-0, // index 0 : <start_symbol>, in file 'piccoloDevice_syntax.ggs', line 10
-19, // index 1 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
-20, // index 2 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.ggs', line 34
-26, // index 3 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
-27, // index 4 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.ggs', line 49
-33, // index 5 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
-34, // index 6 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.ggs', line 53
-37, // index 7 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
-38, // index 8 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.ggs', line 61
-48, // index 9 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
-49, // index 10 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.ggs', line 70
-53, // index 11 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
-54, // index 12 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.ggs', line 73
-58, // index 13 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
-59, // index 14 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.ggs', line 90
-71, // index 15 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
-72, // index 16 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.ggs', line 96
-76, // index 17 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
-77, // index 18 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.ggs', line 106
-81, // index 19 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
-85, // index 20 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.ggs', line 107
-87, // index 21 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
-88, // index 22 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.ggs', line 109
-93, // index 23 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
-94, // index 24 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.ggs', line 112
-98, // index 25 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
-99, // index 26 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.ggs', line 153
-111, // index 27 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
-112, // index 28 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.ggs', line 162
-120, // index 29 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
-121, // index 30 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.ggs', line 175
-135, // index 31 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
-136, // index 32 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.ggs', line 187
-144 // index 33 : <>, in file '.ggs', line 0
+0, // index 0 : <start_symbol>, in file 'piccoloDevice_syntax.galgas', line 10
+19, // index 1 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.galgas', line 34
+20, // index 2 : <select_piccoloDevice_5F_syntax_0>, in file 'piccoloDevice_syntax.galgas', line 34
+26, // index 3 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.galgas', line 49
+27, // index 4 : <select_piccoloDevice_5F_syntax_1>, in file 'piccoloDevice_syntax.galgas', line 49
+33, // index 5 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.galgas', line 53
+34, // index 6 : <select_piccoloDevice_5F_syntax_2>, in file 'piccoloDevice_syntax.galgas', line 53
+37, // index 7 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.galgas', line 61
+38, // index 8 : <select_piccoloDevice_5F_syntax_3>, in file 'piccoloDevice_syntax.galgas', line 61
+48, // index 9 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.galgas', line 70
+49, // index 10 : <select_piccoloDevice_5F_syntax_4>, in file 'piccoloDevice_syntax.galgas', line 70
+53, // index 11 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.galgas', line 73
+54, // index 12 : <select_piccoloDevice_5F_syntax_5>, in file 'piccoloDevice_syntax.galgas', line 73
+58, // index 13 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.galgas', line 90
+59, // index 14 : <select_piccoloDevice_5F_syntax_6>, in file 'piccoloDevice_syntax.galgas', line 90
+71, // index 15 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.galgas', line 96
+72, // index 16 : <select_piccoloDevice_5F_syntax_7>, in file 'piccoloDevice_syntax.galgas', line 96
+76, // index 17 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.galgas', line 106
+77, // index 18 : <select_piccoloDevice_5F_syntax_8>, in file 'piccoloDevice_syntax.galgas', line 106
+81, // index 19 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.galgas', line 107
+85, // index 20 : <select_piccoloDevice_5F_syntax_9>, in file 'piccoloDevice_syntax.galgas', line 107
+87, // index 21 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.galgas', line 109
+88, // index 22 : <select_piccoloDevice_5F_syntax_10>, in file 'piccoloDevice_syntax.galgas', line 109
+93, // index 23 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.galgas', line 112
+94, // index 24 : <select_piccoloDevice_5F_syntax_11>, in file 'piccoloDevice_syntax.galgas', line 112
+98, // index 25 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.galgas', line 153
+99, // index 26 : <select_piccoloDevice_5F_syntax_12>, in file 'piccoloDevice_syntax.galgas', line 153
+111, // index 27 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.galgas', line 162
+112, // index 28 : <select_piccoloDevice_5F_syntax_13>, in file 'piccoloDevice_syntax.galgas', line 162
+120, // index 29 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.galgas', line 175
+121, // index 30 : <select_piccoloDevice_5F_syntax_14>, in file 'piccoloDevice_syntax.galgas', line 175
+135, // index 31 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.galgas', line 187
+136, // index 32 : <select_piccoloDevice_5F_syntax_15>, in file 'piccoloDevice_syntax.galgas', line 187
+144 // index 33 : <>, in file '.galgas', line 0
 } ;
 
 //--------------------------------------------------------------------------------------------------
