@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations'
+//Abstract extension proc '@ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -23,7 +23,7 @@ void callExtensionMethod_exploreAccessibleBlocksForStackComputations (class cPtr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'
+//Extension proc '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -34,7 +34,7 @@ void callExtensionMethod_buildCalledRoutineSetForStackComputations (class cPtr_i
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18SingleInstructionTerminator duration'
+//Abstract extension proc '@ipic18SingleInstructionTerminator duration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -48,7 +48,7 @@ void callExtensionMethod_duration (class cPtr_ipic_31__38_SingleInstructionTermi
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18Block computeDuration'
+//Extension proc '@ipic18Block computeDuration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -62,7 +62,7 @@ void extensionMethod_computeDuration (const class GGS_ipic_31__38_Block inObject
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_instruction addUsedRoutines'
+//Abstract extension proc '@midrange_instruction addUsedRoutines'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -147,7 +147,7 @@ class cGrammar_piccoloDevice_5F_grammar : public cParser_piccoloDevice_5F_syntax
 //--------------------------------------------------------------------------------------------------
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@baseline_intermediate_GOTO optimizeGOTO'
+//Extension proc '@baseline_intermediate_GOTO optimizeGOTO'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -187,7 +187,7 @@ void routine_findBaselineFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (con
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@baseline_intermediate_JUMP optimizeJUMP'
+//Extension proc '@baseline_intermediate_JUMP optimizeJUMP'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -202,7 +202,7 @@ void callExtensionMethod_optimizeJUMP (class cPtr_baseline_5F_intermediate_5F_JU
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@baseline_intermediate_CALL optimizeCALL'
+//Extension proc '@baseline_intermediate_CALL optimizeCALL'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -217,7 +217,7 @@ void callExtensionMethod_optimizeCALL (class cPtr_baseline_5F_intermediate_5F_CA
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@baseline_intermediate_JSR optimizeJSR'
+//Extension proc '@baseline_intermediate_JSR optimizeJSR'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -232,7 +232,7 @@ void callExtensionMethod_optimizeJSR (class cPtr_baseline_5F_intermediate_5F_JSR
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE'
+//Extension proc '@baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -246,7 +246,7 @@ void callExtensionMethod_optimizeBEGIN_5F_ROUTINE (class cPtr_baseline_5F_interm
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'
+//Extension proc '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'
 //
 //--------------------------------------------------------------------------------------------------
 

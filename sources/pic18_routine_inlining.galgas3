@@ -12,7 +12,7 @@ map @declaredRoutineMap {
 
 //---------------------------------------------------------------------------*
 
-method @pic18PiccoloInstruction performInlining
+proc @pic18PiccoloInstruction performInlining
   ?let @stringset unused inInlinedRoutineSet
   ?let @declaredRoutineMap unused inDeclaredRoutineMap
   ?let @stringset unused inCurrentlyInlinedRoutineSet
@@ -22,7 +22,7 @@ method @pic18PiccoloInstruction performInlining
 
 //---------------------------------------------------------------------------*
 
-override method @pic18Instruction_block performInlining
+override proc @pic18Instruction_block performInlining
   ?let @stringset inInlinedRoutineSet
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?let @stringset inCurrentlyInlinedRoutineSet
@@ -37,7 +37,7 @@ override method @pic18Instruction_block performInlining
       !inCurrentlyInlinedRoutineSet
       ?let @pic18InstructionList instructionList
     )
-    inlinedBlockList += 
+    inlinedBlockList +=
       !mBlockName
       !instructionList
       !mBlockTerminaisonForBlockInstruction
@@ -53,7 +53,7 @@ override method @pic18Instruction_block performInlining
 
 //---------------------------------------------------------------------------*
 
-override method @pic18Instruction_FOREVER performInlining
+override proc @pic18Instruction_FOREVER performInlining
   ?let @stringset inInlinedRoutineSet
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?let @stringset inCurrentlyInlinedRoutineSet
@@ -74,7 +74,7 @@ override method @pic18Instruction_FOREVER performInlining
 
 //---------------------------------------------------------------------------*
 
-override method @pic18Instruction_do_while performInlining
+override proc @pic18Instruction_do_while performInlining
   ?let @stringset inInlinedRoutineSet
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?let @stringset inCurrentlyInlinedRoutineSet
@@ -106,7 +106,7 @@ override method @pic18Instruction_do_while performInlining
 
 //---------------------------------------------------------------------------*
 
-override method @pic18Instruction_savebank performInlining
+override proc @pic18Instruction_savebank performInlining
   ?let @stringset inInlinedRoutineSet
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?let @stringset inCurrentlyInlinedRoutineSet
@@ -127,7 +127,7 @@ override method @pic18Instruction_savebank performInlining
 
 //---------------------------------------------------------------------------*
 
-override method @pic18Instruction_structured_if performInlining
+override proc @pic18Instruction_structured_if performInlining
   ?let @stringset inInlinedRoutineSet
   ?let @declaredRoutineMap inDeclaredRoutineMap
   ?let @stringset inCurrentlyInlinedRoutineSet
@@ -156,7 +156,7 @@ override method @pic18Instruction_structured_if performInlining
 
 //---------------------------------------------------------------------------*
 
-override method @pic18Instruction_JSR performInlining
+override proc @pic18Instruction_JSR performInlining
                       ?let @stringset inInlinedRoutineSet
                       ?let @declaredRoutineMap inDeclaredRoutineMap
                       ?let @stringset inCurrentlyInlinedRoutineSet
@@ -192,7 +192,7 @@ override method @pic18Instruction_JSR performInlining
       end
       inlineDone = true
     end
-  else 
+  else
     inlineDone = false
   end
   if not inlineDone then

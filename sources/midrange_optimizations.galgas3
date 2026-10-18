@@ -4,19 +4,19 @@
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-getter @midrange_intermediate_instruction isLABELorORG -> @bool outIsLABELorORG {
+func @midrange_intermediate_instruction isLABELorORG -> @bool outIsLABELorORG {
   outIsLABELorORG = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @midrange_intermediate_pseudo_ORG isLABELorORG -> @bool outIsLABELorORG {
+override func @midrange_intermediate_pseudo_ORG isLABELorORG -> @bool outIsLABELorORG {
   outIsLABELorORG = true
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @midrange_intermediate_pseudo_LABEL isLABELorORG -> @bool outIsLABELorORG {
+override func @midrange_intermediate_pseudo_LABEL isLABELorORG -> @bool outIsLABELorORG {
   outIsLABELorORG = true
 }
 
@@ -26,13 +26,13 @@ override getter @midrange_intermediate_pseudo_LABEL isLABELorORG -> @bool outIsL
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-getter @midrange_intermediate_instruction isNULL -> @bool outIsNULL {
+func @midrange_intermediate_instruction isNULL -> @bool outIsNULL {
   outIsNULL = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @midrange_intermediate_NULL isNULL -> @bool outIsNULL {
+override func @midrange_intermediate_NULL isNULL -> @bool outIsNULL {
   outIsNULL = true
 }
 
@@ -42,36 +42,36 @@ override getter @midrange_intermediate_NULL isNULL -> @bool outIsNULL {
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-method @midrange_intermediate_instruction enterReferencedLabel ?!@stringset unused ioReferencedLabelSet {
+proc @midrange_intermediate_instruction enterReferencedLabel ?!@stringset unused ioReferencedLabelSet {
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_JUMP enterReferencedLabel ?!@stringset ioReferencedLabelSet {
+override proc @midrange_intermediate_JUMP enterReferencedLabel ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_GOTO enterReferencedLabel ?!@stringset ioReferencedLabelSet {
+override proc @midrange_intermediate_GOTO enterReferencedLabel ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_CALL enterReferencedLabel ?!@stringset ioReferencedLabelSet {
+override proc @midrange_intermediate_CALL enterReferencedLabel ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_JSR enterReferencedLabel ?!@stringset ioReferencedLabelSet {
+override proc @midrange_intermediate_JSR enterReferencedLabel ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_incDecRegisterInCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet {
+override proc @midrange_intermediate_incDecRegisterInCondition enterReferencedLabel ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel
 }
 
@@ -81,14 +81,14 @@ override method @midrange_intermediate_incDecRegisterInCondition enterReferenced
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-getter @midrange_intermediate_instruction isSkippingInstruction -> @bool outIsSkipping {
+func @midrange_intermediate_instruction isSkippingInstruction -> @bool outIsSkipping {
   outIsSkipping = false
 }
 
 //----------------------------------------------------------------------------*
 
 override
-getter @midrange_intermediate_instruction_BitTestSkip isSkippingInstruction -> @bool outIsSkipping {
+func @midrange_intermediate_instruction_BitTestSkip isSkippingInstruction -> @bool outIsSkipping {
   outIsSkipping = true
 }
 
@@ -99,37 +99,37 @@ getter @midrange_intermediate_instruction_BitTestSkip isSkippingInstruction -> @
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-getter @midrange_intermediate_instruction nextInstructionIsReachable -> @bool outIsReachable {
+func @midrange_intermediate_instruction nextInstructionIsReachable -> @bool outIsReachable {
   outIsReachable = true
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @midrange_intermediate_JUMP nextInstructionIsReachable -> @bool outIsReachable {
+override func @midrange_intermediate_JUMP nextInstructionIsReachable -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @midrange_intermediate_GOTO nextInstructionIsReachable -> @bool outIsReachable {
+override func @midrange_intermediate_GOTO nextInstructionIsReachable -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @midrange_intermediate_instruction_RETURN nextInstructionIsReachable -> @bool outIsReachable {
+override func @midrange_intermediate_instruction_RETURN nextInstructionIsReachable -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @midrange_intermediate_instruction_RETFIE nextInstructionIsReachable -> @bool outIsReachable {
+override func @midrange_intermediate_instruction_RETFIE nextInstructionIsReachable -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @midrange_intermediate_instruction_literalOperation nextInstructionIsReachable -> @bool outIsReachable {
+override func @midrange_intermediate_instruction_literalOperation nextInstructionIsReachable -> @bool outIsReachable {
   outIsReachable = self.mLiteralInstruction != @midrange_literal_instruction_opcode. RETLW
 }
 
@@ -139,7 +139,7 @@ override getter @midrange_intermediate_instruction_literalOperation nextInstruct
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-method @midrange_intermediate_instruction defineLabel
+proc @midrange_intermediate_instruction defineLabel
   ?!@symbolTableForOptimizations unused ioRoutineSymbolTable
   ?let @uint unused inLineIndex {
 }
@@ -147,7 +147,7 @@ method @midrange_intermediate_instruction defineLabel
 //----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_pseudo_LABEL defineLabel
+proc @midrange_intermediate_pseudo_LABEL defineLabel
   ?!@symbolTableForOptimizations ioRoutineSymbolTable
   ?let @uint inLineIndex {
   [!?ioRoutineSymbolTable insertKey !self.mLabel !inLineIndex !self.mIsDeletable]
@@ -221,7 +221,7 @@ proc findMidRangeFirstInstructionOrLabelFromAddress
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-method @midrange_intermediate_JUMP optimizeJUMP
+proc @midrange_intermediate_JUMP optimizeJUMP
   ?let @symbolTableForOptimizations inSymbolTable
   ?let @uint inLineIndex
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
@@ -275,7 +275,7 @@ method @midrange_intermediate_JUMP optimizeJUMP
 
 //----------------------------------------------------------------------------*
 
-method @midrange_intermediate_GOTO optimizeGOTO
+proc @midrange_intermediate_GOTO optimizeGOTO
   ?let @symbolTableForOptimizations inSymbolTable
   ?let @uint inLineIndex
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
@@ -341,7 +341,7 @@ method @midrange_intermediate_GOTO optimizeGOTO
 
 //----------------------------------------------------------------------------*
 
-method @midrange_intermediate_instruction_literalOperation optimizeMOVLW
+proc @midrange_intermediate_instruction_literalOperation optimizeMOVLW
   ?let @uint inLineIndex
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -366,7 +366,7 @@ method @midrange_intermediate_instruction_literalOperation optimizeMOVLW
 
 //----------------------------------------------------------------------------*
 
-method @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
+proc @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
   ?let @symbolTableForOptimizations inSymbolTable
   ?let @uint inLineIndex
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
@@ -446,7 +446,7 @@ method @midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc
 
 //----------------------------------------------------------------------------*
 
-method @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
+proc @midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip
   ?let @uint inLineIndex
   ?!@midrange_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents

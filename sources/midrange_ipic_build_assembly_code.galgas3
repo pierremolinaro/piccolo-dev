@@ -4,20 +4,20 @@
 //                BUILD ASSEMBLY CODE                 *
 //----------------------------------------------------*
 
-abstract method @midrange_intermediate_instruction buildAssemblyCode
-  ?!@string unused ioString 
+abstract proc @midrange_intermediate_instruction buildAssemblyCode
+  ?!@string unused ioString
   ?!@uint unused ioLocalLabelIndex
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_NULL buildAssemblyCode
-  ?!@string unused ioString 
+override proc @midrange_intermediate_NULL buildAssemblyCode
+  ?!@string unused ioString
   ?!@uint unused ioLocalLabelIndex {
 }
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_pseudo_ORG buildAssemblyCode
+override proc @midrange_intermediate_pseudo_ORG buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  ORG " + self.mOrigin.hexString + "\n"
@@ -25,7 +25,7 @@ override method @midrange_intermediate_pseudo_ORG buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_pseudo_LABEL buildAssemblyCode
+override proc @midrange_intermediate_pseudo_LABEL buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += self.mLabel.string + ":\n"
@@ -33,7 +33,7 @@ override method @midrange_intermediate_pseudo_LABEL buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_FD buildAssemblyCode
+override proc @midrange_intermediate_instruction_FD buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  " + self.mInstruction_FD_base_code.mnemonic + " " + self.mRegisterDescription.mAssemblyString
@@ -47,7 +47,7 @@ override method @midrange_intermediate_instruction_FD buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_FB buildAssemblyCode
+override proc @midrange_intermediate_instruction_FB buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  " + self.mBitOrientedOp.mnemonic
@@ -58,7 +58,7 @@ override method @midrange_intermediate_instruction_FB buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
+override proc @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  "
@@ -74,7 +74,7 @@ override method @midrange_intermediate_instruction_BitTestSkip buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_F buildAssemblyCode
+override proc @midrange_intermediate_instruction_F buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  " + self.mFinstruction.mnemonic + " " + self.mRegisterDescription.mAssemblyString
@@ -83,7 +83,7 @@ override method @midrange_intermediate_instruction_F buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCode
+override proc @midrange_intermediate_incDecRegisterInCondition buildAssemblyCode
   ?!@string ioString
   ?!@uint ioLocalLabelIndex {
   if self.mIncrement then
@@ -110,15 +110,15 @@ override method @midrange_intermediate_incDecRegisterInCondition buildAssemblyCo
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_JUMP buildAssemblyCode
+override proc @midrange_intermediate_JUMP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  switch self.mBit11 
+  switch self.mBit11
   case set   : ioString += "  BSF PCLATH, 3\n"
   case clear : ioString += "  BCF PCLATH, 3\n"
   case noChange :
   end
-  switch self.mBit12 
+  switch self.mBit12
   case set   : ioString += "  BSF PCLATH, 4\n"
   case clear : ioString += "  BCF PCLATH, 4\n"
   case noChange :
@@ -128,7 +128,7 @@ override method @midrange_intermediate_JUMP buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_GOTO buildAssemblyCode
+override proc @midrange_intermediate_GOTO buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  GOTO   " + self.mTargetLabel.string + "\n"
@@ -136,26 +136,26 @@ override method @midrange_intermediate_GOTO buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_JSR buildAssemblyCode
+override proc @midrange_intermediate_JSR buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
-  switch self.mBit11 
+  switch self.mBit11
   case set   : ioString += "  BSF PCLATH, 3\n"
   case clear : ioString += "  BCF PCLATH, 3\n"
   case noChange :
   end
-  switch self.mBit12 
+  switch self.mBit12
   case set   : ioString += "  BSF PCLATH, 4\n"
   case clear : ioString += "  BCF PCLATH, 4\n"
   case noChange :
   end
   ioString += "  CALL  " + self.mTargetLabel.string + "\n"
-  switch self.mBit11 
+  switch self.mBit11
   case set   : ioString += "  BCF PCLATH, 3\n"
   case clear : ioString += "  BSF PCLATH, 3\n"
   case noChange :
   end
-  switch self.mBit12 
+  switch self.mBit12
   case set   : ioString += "  BCF PCLATH, 4\n"
   case clear : ioString += "  BSF PCLATH, 4\n"
   case noChange :
@@ -164,7 +164,7 @@ override method @midrange_intermediate_JSR buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_CALL buildAssemblyCode
+override proc @midrange_intermediate_CALL buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  CALL  " + self.mTargetLabel.string + "\n"
@@ -172,7 +172,7 @@ override method @midrange_intermediate_CALL buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_CLRWDT buildAssemblyCode
+override proc @midrange_intermediate_instruction_CLRWDT buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  CLRWDT\n"
@@ -180,7 +180,7 @@ override method @midrange_intermediate_instruction_CLRWDT buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_CLRW buildAssemblyCode
+override proc @midrange_intermediate_instruction_CLRW buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  CLRW\n"
@@ -188,7 +188,7 @@ override method @midrange_intermediate_instruction_CLRW buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_NOP buildAssemblyCode
+override proc @midrange_intermediate_instruction_NOP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  NOP\n"
@@ -196,7 +196,7 @@ override method @midrange_intermediate_instruction_NOP buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
+override proc @midrange_intermediate_instruction_RETURN buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  RETURN\n"
@@ -204,7 +204,7 @@ override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
 
 //----------------------------------------------------*
 
- override method @midrange_intermediate_instruction_RETFIE buildAssemblyCode
+ override proc @midrange_intermediate_instruction_RETFIE buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  RETFIE\n"
@@ -212,7 +212,7 @@ override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
 
 //----------------------------------------------------*
 
- override method @midrange_intermediate_instruction_SLEEP buildAssemblyCode
+ override proc @midrange_intermediate_instruction_SLEEP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  SLEEP\n"
@@ -220,7 +220,7 @@ override method @midrange_intermediate_instruction_RETURN buildAssemblyCode
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_literalOperation buildAssemblyCode
+override proc @midrange_intermediate_instruction_literalOperation buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   ioString += "  " + self.mLiteralInstruction.mnemonic + " " + self.mLiteralValue.hexString + "\n"
@@ -228,7 +228,7 @@ override method @midrange_intermediate_instruction_literalOperation buildAssembl
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_instruction_MNOP buildAssemblyCode
+override proc @midrange_intermediate_instruction_MNOP buildAssemblyCode
   ?!@string ioString
   ?!@uint unused ioLocalLabelIndex {
   if self.mOccurrenceFactor.uint == 0 then
@@ -252,8 +252,8 @@ proc midrange_build_assembly_code
   ?let @midrange_intermediate_instructionList inInstructionList
   ?let @actualConfigurationMap inActualConfigurationMap
   !@string outAssemblyCode {
-  outAssemblyCode = "  errorlevel -302 ; No Warning on registers not in bank 0\n" 
-  outAssemblyCode += "  errorlevel -306 ; No Warning on crossing page boundary\n\n" 
+  outAssemblyCode = "  errorlevel -302 ; No Warning on registers not in bank 0\n"
+  outAssemblyCode += "  errorlevel -306 ; No Warning on crossing page boundary\n\n"
   outAssemblyCode += "  PROCESSOR " + inProcessorName + "\n\n"
 //--- Code
   outAssemblyCode += ";--- Code\n"

@@ -41,7 +41,7 @@ class @pic18Instruction_switch : @pic18PiccoloInstruction {
 //! ANALYZE
 //———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override method @pic18Instruction_switch analyze
+override proc @pic18Instruction_switch analyze
   ?let @uint inAccessBankSplitOffset
   ?!@ipic18BlockList ioGeneratedBlockList
   ?let @routineMap inRoutineMap
@@ -60,7 +60,7 @@ override method @pic18Instruction_switch analyze
 {
   var caseConstantMap =@caseConstantMap ()
 //--- Labels
-  let exitLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation} 
+  let exitLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation}
   ioLocalLabelIndex += 1
 //--- Comparison value
   var @sint64 lastComparisonValue = 0
@@ -73,7 +73,7 @@ override method @pic18Instruction_switch analyze
 //---
   for (mStartOfCase mCaseExpressionList mInstructionList) in  self.mCaseList do
   //--- Label
-    let conditionTrueLabel = @lstring { !".L.accepted." + ioLocalLabelIndex.string !self.mInstructionLocation} 
+    let conditionTrueLabel = @lstring { !".L.accepted." + ioLocalLabelIndex.string !self.mInstructionLocation}
   //--- Generate test blocks
     for (mCaseItem) in mCaseExpressionList do
       let conditionLabel = ioLocalLabelIndex.string
@@ -196,7 +196,7 @@ map @caseConstantMap {
 
 //·······················································································································
 
-abstract method @pic18AbstractCaseItem analyzeCaseItem
+abstract proc @pic18AbstractCaseItem analyzeCaseItem
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?let @lstring inConditionTrueLabel
@@ -210,7 +210,7 @@ abstract method @pic18AbstractCaseItem analyzeCaseItem
 
 //·······················································································································
 
-override method @pic18SimpleConstantCaseItem analyzeCaseItem
+override proc @pic18SimpleConstantCaseItem analyzeCaseItem
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?let @lstring inConditionTrueLabel
@@ -234,7 +234,7 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
   else
     [!?ioCaseConstantMap insertKey ! @{ !result.string !self.mCaseExpressionLocation}]
   end
-//--- Generate addlw instruction  
+//--- Generate addlw instruction
   ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation {
     !self.mCaseExpressionLocation
     !.ADDLW
@@ -245,7 +245,7 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
 //--- Update comparison value
   ioLastComparisonValue = result
 //--- Condition false label
-  let conditionFalseLabel = @lstring { !".L.value.rejected." + inIndexForLabels !self.mCaseExpressionLocation} 
+  let conditionFalseLabel = @lstring { !".L.value.rejected." + inIndexForLabels !self.mCaseExpressionLocation}
 //--- Terminate current block with a BZ instruction
   let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator {
     !self.mCaseExpressionLocation
@@ -269,7 +269,7 @@ override method @pic18SimpleConstantCaseItem analyzeCaseItem
 
 //·······················································································································
 
-override method @pic18IntervalCaseItem analyzeCaseItem
+override proc @pic18IntervalCaseItem analyzeCaseItem
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?let @lstring inConditionTrueLabel
@@ -311,10 +311,10 @@ override method @pic18IntervalCaseItem analyzeCaseItem
       end
     end
   //--- Labels
-    let firstConditionAcceptedLabel = @lstring { !".L.first.accepted." + inIndexForLabels !self.mCaseExpressionLocation} 
-    let firstConditionRejectedLabel = @lstring { !".L.first.rejected." + inIndexForLabels !self.mCaseExpressionLocation} 
-    let intervalRejectedLabel = @lstring { !".L.interval.rejected." + inIndexForLabels !self.mCaseExpressionLocation} 
-  //--- Second sublw instruction  
+    let firstConditionAcceptedLabel = @lstring { !".L.first.accepted." + inIndexForLabels !self.mCaseExpressionLocation}
+    let firstConditionRejectedLabel = @lstring { !".L.first.rejected." + inIndexForLabels !self.mCaseExpressionLocation}
+    let intervalRejectedLabel = @lstring { !".L.interval.rejected." + inIndexForLabels !self.mCaseExpressionLocation}
+  //--- Second sublw instruction
     let @ipic18SequentialInstruction secondTestInstruction = @ipic18_intermediate_instruction_literalOperation {
       !self.mCaseExpressionLocation
       !.ADDLW
@@ -383,7 +383,7 @@ override method @pic18IntervalCaseItem analyzeCaseItem
 
 //·······················································································································
 
-override method @pic18Instruction_switch addUsedRoutines
+override proc @pic18Instruction_switch addUsedRoutines
   ?let @pic18MacroMap inMacroMap
   ?!@stringset ioUsedRoutines
 {

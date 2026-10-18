@@ -8,7 +8,7 @@
 #include "all-declarations-8.h"
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@registerExpression resolveBaselineAccess'
+//Extension proc '@registerExpression resolveBaselineAccess'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_registerExpression::method_resolveBaselineAccess (const GGS_registerTable constinArgument_inRegisterTable,
@@ -18,49 +18,49 @@ void cPtr_registerExpression::method_resolveBaselineAccess (const GGS_registerTa
                                                             GGS_stringset & ioArgument_ioUsedRegisters,
                                                             Compiler * inCompiler
                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_sint_36__34_ var_offset_773 ;
+  GGS_sint_36__34_ var_offset_771 ;
   const GGS_registerExpression temp_0 = this ;
-  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mOffset ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_offset_773, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 19)) ;
+  callExtensionMethod_eval ((cPtr_immediatExpression *) temp_0.readProperty_mOffset ().ptr (), constinArgument_inRegisterTable, constinArgument_inConstantMap, var_offset_771, ioArgument_ioUsedRegisters, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 19)) ;
   const GGS_registerExpression temp_1 = this ;
   ioArgument_ioUsedRegisters.plusPlusAssignOperation (temp_1.readProperty_mRegisterName ().readProperty_string ()  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 20)) ;
   const GGS_registerExpression temp_2 = this ;
-  GGS_string var_assemblyString_889 = temp_2.readProperty_mRegisterName ().readProperty_string () ;
+  GGS_string var_assemblyString_887 = temp_2.readProperty_mRegisterName ().readProperty_string () ;
   GalgasBool test_3 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_3) {
-    test_3 = GGS_bool (ComparisonKind::greaterThan, var_offset_773.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))).boolEnum () ;
+    test_3 = GGS_bool (ComparisonKind::greaterThan, var_offset_771.objectCompare (GGS_sint_36__34_ (int64_t (0LL)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_3) {
-      var_assemblyString_889.plusAssignOperation(GGS_string (" + ").add_operation (var_offset_773.getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 24)).getter_hexString (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 24)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 24)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 24)) ;
+      var_assemblyString_887.plusAssignOperation(GGS_string (" + ").add_operation (var_offset_771.getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 24)).getter_hexString (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 24)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 24)), inCompiler  COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 24)) ;
     }
   }
-  GGS_uintlist var_registerAddressList_1103 ;
-  GGS_registerProtection var_protection_1168 ;
+  GGS_uintlist var_registerAddressList_1101 ;
+  GGS_registerProtection var_protection_1166 ;
   const GGS_registerExpression temp_4 = this ;
-  GGS_uint joker_1127 ; // Joker input parameter
-  GGS_string joker_1156 ; // Joker input parameter
-  constinArgument_inRegisterTable.method_searchKey (temp_4.readProperty_mRegisterName (), var_registerAddressList_1103, joker_1127, outArgument_outBitSliceTable, joker_1156, var_protection_1168, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 27)) ;
+  GGS_uint joker_1125 ; // Joker input parameter
+  GGS_string joker_1154 ; // Joker input parameter
+  constinArgument_inRegisterTable.method_searchKey (temp_4.readProperty_mRegisterName (), var_registerAddressList_1101, joker_1125, outArgument_outBitSliceTable, joker_1154, var_protection_1166, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 27)) ;
   const GGS_registerExpression temp_5 = this ;
-  extensionMethod_checkPrivateAccess (constinArgument_inRegisterTable, temp_5.readProperty_mRegisterName (), GGS_bool (true), var_protection_1168, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 35)) ;
-  GGS_uint var_registerAddress_1317 = GGS_uint (uint32_t (0U)) ;
+  extensionMethod_checkPrivateAccess (constinArgument_inRegisterTable, temp_5.readProperty_mRegisterName (), GGS_bool (true), var_protection_1166, inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 35)) ;
+  GGS_uint var_registerAddress_1315 = GGS_uint (uint32_t (0U)) ;
   GalgasBool test_6 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_6) {
-    test_6 = GGS_bool (ComparisonKind::greaterThan, var_registerAddressList_1103.getter_count (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 38)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
+    test_6 = GGS_bool (ComparisonKind::greaterThan, var_registerAddressList_1101.getter_count (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 38)).objectCompare (GGS_uint (uint32_t (0U)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_6) {
-      GGS_bool var_found_1391 = GGS_bool (false) ;
-      UpEnumerator_uintlist enumerator_1414 (var_registerAddressList_1103) ;
-      bool bool_7 = var_found_1391.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 40)).isValidAndTrue () ;
-      if (enumerator_1414.hasCurrentObject () && bool_7) {
-        while (enumerator_1414.hasCurrentObject () && bool_7) {
-          var_registerAddress_1317 = enumerator_1414.current_mValue (HERE) ;
-          var_found_1391 = GGS_bool (ComparisonKind::lowerOrEqual, enumerator_1414.current_mValue (HERE).objectCompare (GGS_uint (uint32_t (31U)))) ;
-          enumerator_1414.gotoNextObject () ;
-          if (enumerator_1414.hasCurrentObject ()) {
-            bool_7 = var_found_1391.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 40)).isValidAndTrue () ;
+      GGS_bool var_found_1389 = GGS_bool (false) ;
+      UpEnumerator_uintlist enumerator_1412 (var_registerAddressList_1101) ;
+      bool bool_7 = var_found_1389.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 40)).isValidAndTrue () ;
+      if (enumerator_1412.hasCurrentObject () && bool_7) {
+        while (enumerator_1412.hasCurrentObject () && bool_7) {
+          var_registerAddress_1315 = enumerator_1412.current_mValue (HERE) ;
+          var_found_1389 = GGS_bool (ComparisonKind::lowerOrEqual, enumerator_1412.current_mValue (HERE).objectCompare (GGS_uint (uint32_t (31U)))) ;
+          enumerator_1412.gotoNextObject () ;
+          if (enumerator_1412.hasCurrentObject ()) {
+            bool_7 = var_found_1389.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 40)).isValidAndTrue () ;
           }
         }
       }
       GalgasBool test_8 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_8) {
-        test_8 = var_found_1391.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 44)).boolEnum () ;
+        test_8 = var_found_1389.operator_not (SOURCE_FILE ("baseline_semantic_analysis.galgas3", 44)).boolEnum () ;
         if (GalgasBool::boolTrue == test_8) {
           const GGS_registerExpression temp_9 = this ;
           GenericArray <FixItDescription> fixItArray10 ;
@@ -69,7 +69,7 @@ void cPtr_registerExpression::method_resolveBaselineAccess (const GGS_registerTa
       }
     }
   }
-  outArgument_outIntermediateRegisterDescription = GGS_baseline_5F_intermediate_5F_registerExpression::init_21__21_ (var_assemblyString_889, var_registerAddress_1317.add_operation (var_offset_773.getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 51)), inCompiler COMMA_HERE) ;
+  outArgument_outIntermediateRegisterDescription = GGS_baseline_5F_intermediate_5F_registerExpression::init_21__21_ (var_assemblyString_887, var_registerAddress_1315.add_operation (var_offset_771.getter_uint (inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 51)), inCompiler COMMA_SOURCE_FILE ("baseline_semantic_analysis.galgas3", 51)), inCompiler COMMA_HERE) ;
 }
 
 //--------------------------------------------------------------------------------------------------

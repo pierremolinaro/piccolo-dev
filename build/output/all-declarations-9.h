@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@pic18RegisterComparison mnemonic' (as function)
+//Extension func '@pic18RegisterComparison mnemonic' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -20,7 +20,7 @@ class GGS_string extensionGetter_mnemonic (const class GGS_pic_31__38_RegisterCo
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@FA_instruction_base_code mnemonic' (as function)
+//Extension func '@FA_instruction_base_code mnemonic' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -30,7 +30,7 @@ class GGS_string extensionGetter_mnemonic (const class GGS_FA_5F_instruction_5F_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@registerExpression resolveMidrangeAccess'
+//Extension proc '@registerExpression resolveMidrangeAccess'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -47,7 +47,7 @@ void callExtensionMethod_resolveMidrangeAccess (class cPtr_registerExpression * 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@registerExpression analyzeRegisterExpression'
+//Extension proc '@registerExpression analyzeRegisterExpression'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -65,7 +65,7 @@ void callExtensionMethod_analyzeRegisterExpression (class cPtr_registerExpressio
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@registerExpression analyzeRegisterExpressionWithoutCheckingBank'
+//Extension proc '@registerExpression analyzeRegisterExpressionWithoutCheckingBank'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -80,7 +80,7 @@ void callExtensionMethod_analyzeRegisterExpressionWithoutCheckingBank (class cPt
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@registerExpression getRegisterAddress'
+//Extension proc '@registerExpression getRegisterAddress'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -95,7 +95,7 @@ void callExtensionMethod_getRegisterAddress (class cPtr_registerExpression * inO
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@pic18PiccoloSimpleInstruction analyzeSimpleInstruction'
+//Abstract extension proc '@pic18PiccoloSimpleInstruction analyzeSimpleInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -114,7 +114,7 @@ void callExtensionMethod_analyzeSimpleInstruction (class cPtr_pic_31__38_Piccolo
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@pic18ConditionExpression analyzeCondition'
+//Abstract extension proc '@pic18ConditionExpression analyzeCondition'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -134,7 +134,7 @@ void callExtensionMethod_analyzeCondition (class cPtr_pic_31__38_ConditionExpres
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator optimizeTerminator'
+//Abstract extension proc '@ipic18AbstractBlockTerminator optimizeTerminator'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -151,7 +151,7 @@ void callExtensionMethod_optimizeTerminator (class cPtr_ipic_31__38_AbstractBloc
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18AbstractConditionTerminator getOptimizedTerminators'
+//Extension proc '@ipic18AbstractConditionTerminator getOptimizedTerminators'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -170,7 +170,7 @@ void callExtensionMethod_getOptimizedTerminators (class cPtr_ipic_31__38_Abstrac
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator enterTerminatorReferencedLabels'
+//Abstract extension proc '@ipic18AbstractBlockTerminator enterTerminatorReferencedLabels'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -183,7 +183,7 @@ void callExtensionMethod_enterTerminatorReferencedLabels (class cPtr_ipic_31__38
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18SequentialInstruction optimizeInstruction'
+//Extension proc '@ipic18SequentialInstruction optimizeInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -201,7 +201,7 @@ void callExtensionMethod_optimizeInstruction (class cPtr_ipic_31__38_SequentialI
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@midrange_instruction_IF_BitTest getBaseCode'
+//Extension proc '@midrange_instruction_IF_BitTest getBaseCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -212,7 +212,7 @@ void callExtensionMethod_getBaseCode (class cPtr_midrange_5F_instruction_5F_IF_5
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@midrange_instruction_IF_BitTest getMnemonic'
+//Extension proc '@midrange_instruction_IF_BitTest getMnemonic'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -223,7 +223,7 @@ void callExtensionMethod_getMnemonic (class cPtr_midrange_5F_instruction_5F_IF_5
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@midrange_intermediate_JUMP optimizeJUMP'
+//Extension proc '@midrange_intermediate_JUMP optimizeJUMP'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -238,7 +238,7 @@ void callExtensionMethod_optimizeJUMP (class cPtr_midrange_5F_intermediate_5F_JU
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@midrange_intermediate_GOTO optimizeGOTO'
+//Extension proc '@midrange_intermediate_GOTO optimizeGOTO'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -253,7 +253,7 @@ void callExtensionMethod_optimizeGOTO (class cPtr_midrange_5F_intermediate_5F_GO
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@ipic18SequentialInstruction instructionSize'
+//Extension func '@ipic18SequentialInstruction instructionSize'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -263,7 +263,7 @@ class GGS_uint callExtensionGetter_instructionSize (const cPtr_ipic_31__38_Seque
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18SequentialInstruction performInstructionRelativeBranchResolution'
+//Extension proc '@ipic18SequentialInstruction performInstructionRelativeBranchResolution'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -279,7 +279,7 @@ void callExtensionMethod_performInstructionRelativeBranchResolution (class cPtr_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@ipic18SequentialInstruction instructionDisplay'
+//Abstract extension func '@ipic18SequentialInstruction instructionDisplay'
 //
 //--------------------------------------------------------------------------------------------------
 

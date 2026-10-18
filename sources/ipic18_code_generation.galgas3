@@ -9,7 +9,7 @@ map @generatedCodeMap { // Key is code address (decimal representation)
 
 //----------------------------------------------------------------------------*
 
-getter @uint x4string ->@string outResult {
+func @uint x4string ->@string outResult {
   outResult  = (self / 0x10_00 & 0xF).xString
   outResult += (self / 0x10_0 & 0xF).xString
   outResult += (self / 0x10_ & 0xF).xString
@@ -18,7 +18,7 @@ getter @uint x4string ->@string outResult {
 
 //----------------------------------------------------------------------------*
 
-getter @uint x6string -> @string outResult {
+func @uint x6string -> @string outResult {
   outResult  = (self / 0x10_000 & 0xF).xString
   outResult += (self / 0x10_00 & 0xF).xString
   outResult += (self / 0x10_0 & 0xF).xString
@@ -86,7 +86,7 @@ proc generateLineWithCode
 
 //----------------------------------------------------------------------------*
 
-method @ipic18Block generateCodeForBlock
+proc @ipic18Block generateCodeForBlock
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @pic18_dataAddressMap inDataMap
   ?let @uint inBlockAddress

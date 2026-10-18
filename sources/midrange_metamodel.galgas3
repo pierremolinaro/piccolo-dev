@@ -64,7 +64,7 @@ enum @midrange_instruction_FD_base_code %equatable {
   case ADDWF  case ANDWF  case COMF  case DECF  case DECFSZ  case INCF  case INCFSZ  case IORWF  case MOVF  case RLF  case RRF  case SUBWF  case SWAPF  case XORWF
 }
 
-getter @midrange_instruction_FD_base_code mnemonic -> @string outResult {
+func @midrange_instruction_FD_base_code mnemonic -> @string outResult {
   switch self
     case ADDWF : outResult = "ADDWF"
     case ANDWF : outResult = "ANDWF"
@@ -97,7 +97,7 @@ enum @midrange_F_instruction_base_code {
   case CLRF  case MOVWF
 }
 
-getter @midrange_F_instruction_base_code mnemonic -> @string outResult {
+func @midrange_F_instruction_base_code mnemonic -> @string outResult {
   switch self
     case CLRF   : outResult = "CLRF"
     case MOVWF  : outResult = "MOVWF"
@@ -117,7 +117,7 @@ enum @midrange_bit_oriented_op {
   case BCF  case BSF
 }
 
-getter @midrange_bit_oriented_op mnemonic -> @string outResult {
+func @midrange_bit_oriented_op mnemonic -> @string outResult {
   switch self
     case BCF : outResult = "BCF"
     case BSF : outResult = "BSF"
@@ -182,7 +182,7 @@ enum @midrange_literal_instruction_opcode %equatable {
   case ADDLW  case ANDLW  case IORLW  case MOVLW  case RETLW  case SUBLW  case XORLW
 }
 
-getter @midrange_literal_instruction_opcode mnemonic -> @string outResult {
+func @midrange_literal_instruction_opcode mnemonic -> @string outResult {
   switch self
     case ADDLW : outResult = "ADDLW"
     case ANDLW : outResult = "ANDLW"
@@ -228,21 +228,21 @@ class @midrange_instruction_IF_BitTest : @midrange_instruction_IF_SEMI_COLON {
   public let @bitNumberExpression mBitNumber
 }
 
-method @midrange_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
+proc @midrange_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
   if self.mSkipIfSet then
     outBaseCode = 0x1C00 // BTFSS
   else
     outBaseCode = 0x1800 // BTFSC
   end
-} 
+}
 
-method @midrange_instruction_IF_BitTest getMnemonic !@string outMnemonic {
+proc @midrange_instruction_IF_BitTest getMnemonic !@string outMnemonic {
   if self.mSkipIfSet then
     outMnemonic = "BTFSS"
   else
     outMnemonic = "BTFSC"
   end
-} 
+}
 
 
 //----------------------------------------------------*

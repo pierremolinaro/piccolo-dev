@@ -9,7 +9,7 @@ map @baselineRoutineMap {
 
 //---------------------------------------------------------------------------------------------------
 
-method @registerExpression resolveBaselineAccess
+proc @registerExpression resolveBaselineAccess
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@baseline_intermediate_registerExpression outIntermediateRegisterDescription
@@ -91,7 +91,7 @@ proc handleBaselineInstructionList
 
 //---------------------------------------------------------------------------------------------------
 
-abstract method @baseline_instruction build_baseline_intermediate_instructionList
+abstract proc @baseline_instruction build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
@@ -106,7 +106,7 @@ abstract method @baseline_instruction build_baseline_intermediate_instructionLis
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_WO_OPERAND build_baseline_intermediate_instructionList
+override proc @baseline_instruction_WO_OPERAND build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
@@ -138,7 +138,7 @@ func %once acceptableTRISoperand -> @stringset set {
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_TRIS build_baseline_intermediate_instructionList
+override proc @baseline_instruction_TRIS build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
@@ -158,7 +158,7 @@ override method @baseline_instruction_TRIS build_baseline_intermediate_instructi
     var @string s = ""
     for (key) in  acceptableTRISoperand ()
     do s += key
-    between s += ", "    
+    between s += ", "
     end
     error (self.mInstructionLocation : "invalid TRIS operand; accepted operand are: " + s)
   end
@@ -172,7 +172,7 @@ override method @baseline_instruction_TRIS build_baseline_intermediate_instructi
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_MNOP build_baseline_intermediate_instructionList
+override proc @baseline_instruction_MNOP build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
@@ -192,7 +192,7 @@ override method @baseline_instruction_MNOP build_baseline_intermediate_instructi
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_literalOperation build_baseline_intermediate_instructionList
+override proc @baseline_instruction_literalOperation build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
@@ -212,7 +212,7 @@ override method @baseline_instruction_literalOperation build_baseline_intermedia
    if (immediatValue > 255) | (immediatValue < -128) then
      error (self.mInstructionLocation:"immediate value is evaluated as " + immediatValue + " (should be betwween -128 and 255)")
    end
-//---  
+//---
   if inLastInstructionShouldReturn then
     ioGeneratedInstructionList += !@baseline_intermediate_instruction_literalOperation {
       !self.mInstructionLocation
@@ -229,7 +229,7 @@ override method @baseline_instruction_literalOperation build_baseline_intermedia
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_FD build_baseline_intermediate_instructionList
+override proc @baseline_instruction_FD build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
@@ -260,7 +260,7 @@ override method @baseline_instruction_FD build_baseline_intermediate_instruction
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_CALL build_baseline_intermediate_instructionList
+override proc @baseline_instruction_CALL build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable unused inRegisterTable
@@ -294,7 +294,7 @@ override method @baseline_instruction_CALL build_baseline_intermediate_instructi
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_JSR build_baseline_intermediate_instructionList
+override proc @baseline_instruction_JSR build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable unused inRegisterTable
@@ -329,7 +329,7 @@ override method @baseline_instruction_JSR build_baseline_intermediate_instructio
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_F build_baseline_intermediate_instructionList
+override proc @baseline_instruction_F build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
@@ -359,7 +359,7 @@ override method @baseline_instruction_F build_baseline_intermediate_instructionL
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_FB build_baseline_intermediate_instructionList
+override proc @baseline_instruction_FB build_baseline_intermediate_instructionList
   ?let @uint unused inCurrentPage
   ?let @baselineRoutineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
@@ -398,7 +398,7 @@ override method @baseline_instruction_FB build_baseline_intermediate_instruction
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_GOTO build_baseline_intermediate_instructionList
+override proc @baseline_instruction_GOTO build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable unused inRegisterTable
@@ -429,7 +429,7 @@ override method @baseline_instruction_GOTO build_baseline_intermediate_instructi
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_JUMP build_baseline_intermediate_instructionList
+override proc @baseline_instruction_JUMP build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable unused inRegisterTable
@@ -459,7 +459,7 @@ override method @baseline_instruction_JUMP build_baseline_intermediate_instructi
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_IF_BitTest build_baseline_intermediate_instructionList
+override proc @baseline_instruction_IF_BitTest build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable inRegisterTable
@@ -509,7 +509,7 @@ override method @baseline_instruction_IF_BitTest build_baseline_intermediate_ins
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_IF_IncDec build_baseline_intermediate_instructionList
+override proc @baseline_instruction_IF_IncDec build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable inRegisterTable
@@ -561,7 +561,7 @@ override method @baseline_instruction_IF_IncDec build_baseline_intermediate_inst
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_FOREVER build_baseline_intermediate_instructionList
+override proc @baseline_instruction_FOREVER build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable inRegisterTable
@@ -581,12 +581,12 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
     error (self.mInstructionLocation:"an interrupt routine does not accept the \"forever\" instruction")
   end
 //--- Check instruction list does not change bank
-  let @string label0 = ".L" + ioLocalLabelIndex.string 
+  let @string label0 = ".L" + ioLocalLabelIndex.string
   ioLocalLabelIndex += 1
   ioGeneratedInstructionList += !@baseline_intermediate_pseudo_LABEL { !@lstring { !label0 !self.mInstructionLocation}}
   handleBaselineInstructionList (
     !inCurrentPage
-    !self.mInstructionList 
+    !self.mInstructionList
     !inRoutineMap
     !inRegisterTable
     !inConstantMap
@@ -608,7 +608,7 @@ override method @baseline_instruction_FOREVER build_baseline_intermediate_instru
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_instructionList
+override proc @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable inRegisterTable
@@ -635,7 +635,7 @@ override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_
   [!?tempConstantMap insertKey !self.mConstantName !lowerBound]
   handleBaselineInstructionList (
     !inCurrentPage
-    !self.mInstructionList 
+    !self.mInstructionList
     !inRoutineMap
     !inRegisterTable
     !tempConstantMap
@@ -657,7 +657,7 @@ override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_
     [!?constantMap insertKey !self.mConstantName !idx]
     handleBaselineInstructionList (
       !inCurrentPage
-      !self.mInstructionList 
+      !self.mInstructionList
       !inRoutineMap
       !inRegisterTable
       !constantMap
@@ -675,7 +675,7 @@ override method @baseline_instruction_STATIC_REPEAT build_baseline_intermediate_
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_do_while build_baseline_intermediate_instructionList
+override proc @baseline_instruction_do_while build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable inRegisterTable
@@ -757,7 +757,7 @@ override method @baseline_instruction_do_while build_baseline_intermediate_instr
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_instruction_structured_if build_baseline_intermediate_instructionList
+override proc @baseline_instruction_structured_if build_baseline_intermediate_instructionList
   ?let @uint inCurrentPage
   ?let @baselineRoutineMap inRoutineMap
   ?let @registerTable inRegisterTable
@@ -828,12 +828,12 @@ override method @baseline_instruction_structured_if build_baseline_intermediate_
 }
 
 //---------------------------------------------------------------------------------------------------
-//                                                                               
-//   B U I L D    I P I C    C O N D I T I O N    I N S T R U C T I O N S        
-//                                                                               
+//
+//   B U I L D    I P I C    C O N D I T I O N    I N S T R U C T I O N S
+//
 //---------------------------------------------------------------------------------------------------
 
-abstract method @baseline_conditionExpression build_intermediate_condition_instructions
+abstract proc @baseline_conditionExpression build_intermediate_condition_instructions
   ?let @uint inCurrentPage
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -846,7 +846,7 @@ abstract method @baseline_conditionExpression build_intermediate_condition_instr
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_incDecRegisterInCondition build_intermediate_condition_instructions
+override proc @baseline_incDecRegisterInCondition build_intermediate_condition_instructions
   ?let @uint unused inCurrentPage
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -875,7 +875,7 @@ override method @baseline_incDecRegisterInCondition build_intermediate_condition
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_negateCondition build_intermediate_condition_instructions
+override proc @baseline_negateCondition build_intermediate_condition_instructions
   ?let @uint inCurrentPage
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -900,7 +900,7 @@ override method @baseline_negateCondition build_intermediate_condition_instructi
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_andCondition build_intermediate_condition_instructions
+override proc @baseline_andCondition build_intermediate_condition_instructions
   ?let @uint inCurrentPage
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -963,7 +963,7 @@ override method @baseline_andCondition build_intermediate_condition_instructions
 
 //---------------------------------------------------------------------------------------------------
 
-override method @baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions
+override proc @baseline_bitTest_in_structured_if_condition build_intermediate_condition_instructions
   ?let @uint unused inCurrentPage
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap

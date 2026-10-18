@@ -157,7 +157,7 @@ class GGS_piccoloDeviceModel : public AC_GALGAS_root {
                                                        Compiler * inCompiler
                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -182,7 +182,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_piccoloDeviceModel ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@baseline_assembly_instruction length'
+//Abstract extension func '@baseline_assembly_instruction length'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -192,7 +192,7 @@ class GGS_uint callExtensionGetter_length (const class cPtr_baseline_5F_assembly
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@midrange_intermediate_instruction setCurrentAddress'
+//Extension proc '@midrange_intermediate_instruction setCurrentAddress'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -203,7 +203,7 @@ void callExtensionMethod_setCurrentAddress (class cPtr_midrange_5F_intermediate_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator terminatorMinMaxDuration'
+//Abstract extension proc '@ipic18AbstractBlockTerminator terminatorMinMaxDuration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -217,7 +217,7 @@ void callExtensionMethod_terminatorMinMaxDuration (class cPtr_ipic_31__38_Abstra
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18SequentialInstruction minMaxDuration'
+//Extension proc '@ipic18SequentialInstruction minMaxDuration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -230,7 +230,7 @@ void callExtensionMethod_minMaxDuration (class cPtr_ipic_31__38_SequentialInstru
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@immediatExpression eval'
+//Abstract extension proc '@immediatExpression eval'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -244,7 +244,7 @@ void callExtensionMethod_eval (class cPtr_immediatExpression * inObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@bitNumberExpression getBitNumber'
+//Abstract extension proc '@bitNumberExpression getBitNumber'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -322,7 +322,7 @@ class cParser_piccoloDevice_5F_syntax {
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@midrange_instruction_FD_base_code basecode' (as function)
+//Extension func '@midrange_instruction_FD_base_code basecode' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -332,7 +332,7 @@ class GGS_uint extensionGetter_basecode (const class GGS_midrange_5F_instruction
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@midrange_F_instruction_base_code baseCode' (as function)
+//Extension func '@midrange_F_instruction_base_code baseCode' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -342,7 +342,7 @@ class GGS_uint extensionGetter_baseCode (const class GGS_midrange_5F_F_5F_instru
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@midrange_bit_oriented_op baseCode' (as function)
+//Extension func '@midrange_bit_oriented_op baseCode' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -352,7 +352,7 @@ class GGS_uint extensionGetter_baseCode (const class GGS_midrange_5F_bit_5F_orie
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@midrange_literal_instruction_opcode baseCode' (as function)
+//Extension func '@midrange_literal_instruction_opcode baseCode' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -430,7 +430,7 @@ class cPtr_pic_31__38_SimpleConstantCaseItem : public cPtr_pic_31__38_AbstractCa
                                                                Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCaseItem
+//--- Extension proc analyzeCaseItem
   public: virtual void method_analyzeCaseItem (const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
            const class GGS_lstring arg_inConditionTrueLabel,
@@ -625,12 +625,12 @@ class cPtr_pic_31__38_Instruction_5F_switch : public cPtr_pic_31__38_PiccoloInst
                                                                       Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -759,7 +759,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_pic_31__38_Instruction
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@ipic18AbstractBlockTerminator terminatorDisplay'
+//Abstract extension func '@ipic18AbstractBlockTerminator terminatorDisplay'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -770,7 +770,7 @@ class GGS_string callExtensionGetter_terminatorDisplay (const class cPtr_ipic_31
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@ipic18AbstractBlockTerminator terminatorSize'
+//Abstract extension func '@ipic18AbstractBlockTerminator terminatorSize'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -781,7 +781,7 @@ class GGS_uint callExtensionGetter_terminatorSize (const class cPtr_ipic_31__38_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@baseline_intermediate_instruction setCurrentAddress'
+//Extension proc '@baseline_intermediate_instruction setCurrentAddress'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -2295,7 +2295,7 @@ class GGS_pic_31__38_AST : public AC_GALGAS_root {
                                                    Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -2817,7 +2817,7 @@ class GGS_midrange_5F_model : public AC_GALGAS_root {
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 

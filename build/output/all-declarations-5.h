@@ -80,12 +80,12 @@ class cPtr_pic_31__38_Instruction_5F_MOVFF : public cPtr_pic_31__38_PiccoloSimpl
                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyzeSimpleInstruction
+//--- Extension proc analyzeSimpleInstruction
   public: virtual void method_analyzeSimpleInstruction (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_routineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -280,12 +280,12 @@ class cPtr_pic_31__38_Instruction_5F_FBA : public cPtr_pic_31__38_PiccoloSimpleI
                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyzeSimpleInstruction
+//--- Extension proc analyzeSimpleInstruction
   public: virtual void method_analyzeSimpleInstruction (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_routineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -478,12 +478,12 @@ class cPtr_pic_31__38_Instruction_5F_JSR : public cPtr_pic_31__38_PiccoloSimpleI
                                                                Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyzeSimpleInstruction
+//--- Extension proc analyzeSimpleInstruction
   public: virtual void method_analyzeSimpleInstruction (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_routineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -495,7 +495,7 @@ class cPtr_pic_31__38_Instruction_5F_JSR : public cPtr_pic_31__38_PiccoloSimpleI
            class GGS_ipic_31__38_SequentialInstruction & arg_outInstruction,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performInlining
+//--- Extension proc performInlining
   public: virtual void method_performInlining (const class GGS_stringset arg_inInlinedRoutineSet,
            const class GGS_declaredRoutineMap arg_inDeclaredRoutineMap,
            const class GGS_stringset arg_inCurrentlyInlinedRoutineSet,
@@ -681,12 +681,12 @@ class cPtr_pic_31__38_Instruction_5F_macro : public cPtr_pic_31__38_PiccoloInstr
                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -883,12 +883,12 @@ class cPtr_pic_31__38_Instruction_5F_JUMP : public cPtr_pic_31__38_PiccoloInstru
                                                                 Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -1089,12 +1089,12 @@ class cPtr_pic_31__38_Instruction_5F_JUMPCC : public cPtr_pic_31__38_PiccoloInst
                                                                       Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -1289,12 +1289,12 @@ class cPtr_pic_31__38_Instruction_5F_withNoOperand : public cPtr_pic_31__38_Picc
                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyzeSimpleInstruction
+//--- Extension proc analyzeSimpleInstruction
   public: virtual void method_analyzeSimpleInstruction (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_routineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -1483,12 +1483,12 @@ class cPtr_pic_31__38_Instruction_5F_literalOperation : public cPtr_pic_31__38_P
                                                                             Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyzeSimpleInstruction
+//--- Extension proc analyzeSimpleInstruction
   public: virtual void method_analyzeSimpleInstruction (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_routineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -1675,12 +1675,12 @@ class cPtr_pic_31__38_Instruction_5F_fnop : public cPtr_pic_31__38_PiccoloSimple
                                                             Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyzeSimpleInstruction
+//--- Extension proc analyzeSimpleInstruction
   public: virtual void method_analyzeSimpleInstruction (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_routineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -1869,12 +1869,12 @@ class cPtr_pic_31__38_Instruction_5F_LFSR : public cPtr_pic_31__38_PiccoloSimple
                                                                 Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyzeSimpleInstruction
+//--- Extension proc analyzeSimpleInstruction
   public: virtual void method_analyzeSimpleInstruction (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_routineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -2061,12 +2061,12 @@ class cPtr_pic_31__38_Instruction_5F_LTBLPTR : public cPtr_pic_31__38_PiccoloIns
                                                                Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -2261,12 +2261,12 @@ class cPtr_pic_31__38_Instruction_5F_LDATA_38_PTR : public cPtr_pic_31__38_Picco
                                                                         Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -2463,12 +2463,12 @@ class cPtr_pic_31__38_Instruction_5F_LDATA_31__36_PTR : public cPtr_pic_31__38_P
                                                                             Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -2661,12 +2661,12 @@ class cPtr_pic_31__38_Instruction_5F_TBLRD : public cPtr_pic_31__38_PiccoloSimpl
                                                              Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyzeSimpleInstruction
+//--- Extension proc analyzeSimpleInstruction
   public: virtual void method_analyzeSimpleInstruction (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_routineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -2851,12 +2851,12 @@ class cPtr_pic_31__38_Instruction_5F_TBLWT : public cPtr_pic_31__38_PiccoloSimpl
                                                              Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyzeSimpleInstruction
+//--- Extension proc analyzeSimpleInstruction
   public: virtual void method_analyzeSimpleInstruction (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_routineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -3041,12 +3041,12 @@ class cPtr_pic_31__38_Instruction_5F_MNOP : public cPtr_pic_31__38_PiccoloInstru
                                                             Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -3237,12 +3237,12 @@ class cPtr_pic_31__38_Instruction_5F_NOPBRA : public cPtr_pic_31__38_PiccoloInst
                                                               Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -3437,12 +3437,12 @@ class cPtr_pic_31__38_Instruction_5F_FOREVER : public cPtr_pic_31__38_PiccoloIns
                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -3460,7 +3460,7 @@ class cPtr_pic_31__38_Instruction_5F_FOREVER : public cPtr_pic_31__38_PiccoloIns
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performInlining
+//--- Extension proc performInlining
   public: virtual void method_performInlining (const class GGS_stringset arg_inInlinedRoutineSet,
            const class GGS_declaredRoutineMap arg_inDeclaredRoutineMap,
            const class GGS_stringset arg_inCurrentlyInlinedRoutineSet,
@@ -3630,7 +3630,7 @@ class GGS_if_5F_semi_5F_colon_5F_op : public AC_GALGAS_root {
 
   public: static class GGS_if_5F_semi_5F_colon_5F_op class_func_TSTFSZ (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -3905,12 +3905,12 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_FA_5F_SEMI_5F_COLON : public cPtr_pic
                                                                                          Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -4114,12 +4114,12 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_BitTest : public cPtr_pic_31__38_Inst
                                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -4329,12 +4329,12 @@ class cPtr_pic_31__38_Instruction_5F_IF_5F_IncDec : public cPtr_pic_31__38_Instr
                                                                                     Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -4540,12 +4540,12 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_retlw : public cPtr_pic_31__38_
                                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -4748,12 +4748,12 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_bra : public cPtr_pic_31__38_Pi
                                                                                Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -4956,12 +4956,12 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_goto : public cPtr_pic_31__38_P
                                                                                 Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -5164,12 +5164,12 @@ class cPtr_pic_31__38_Instruction_5F_computed_5F_rcall : public cPtr_pic_31__38_
                                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -5445,7 +5445,7 @@ class cPtr_pic_31__38_RegisterTestCondition : public cPtr_pic_31__38_ConditionEx
                                                               Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCondition
+//--- Extension proc analyzeCondition
   public: virtual void method_analyzeCondition (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_uint arg_inCurrentBank,
            const class GGS_registerTable arg_inRegisterTable,
@@ -5634,7 +5634,7 @@ class cPtr_pic_31__38_RegisterComparisonCondition : public cPtr_pic_31__38_Condi
                                                                     Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCondition
+//--- Extension proc analyzeCondition
   public: virtual void method_analyzeCondition (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_uint arg_inCurrentBank,
            const class GGS_registerTable arg_inRegisterTable,
@@ -5831,7 +5831,7 @@ class cPtr_pic_31__38_IncDecRegisterInCondition : public cPtr_pic_31__38_Conditi
                                                                           Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCondition
+//--- Extension proc analyzeCondition
   public: virtual void method_analyzeCondition (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_uint arg_inCurrentBank,
            const class GGS_registerTable arg_inRegisterTable,
@@ -6024,7 +6024,7 @@ class cPtr_pic_31__38_BccInStructuredCondition : public cPtr_pic_31__38_Conditio
                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCondition
+//--- Extension proc analyzeCondition
   public: virtual void method_analyzeCondition (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_uint arg_inCurrentBank,
            const class GGS_registerTable arg_inRegisterTable,
@@ -6209,7 +6209,7 @@ class cPtr_pic_31__38_NegateCondition : public cPtr_pic_31__38_ConditionExpressi
                                                     Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCondition
+//--- Extension proc analyzeCondition
   public: virtual void method_analyzeCondition (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_uint arg_inCurrentBank,
            const class GGS_registerTable arg_inRegisterTable,
@@ -6396,7 +6396,7 @@ class cPtr_pic_31__38_AndCondition : public cPtr_pic_31__38_ConditionExpression 
                                                      Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCondition
+//--- Extension proc analyzeCondition
   public: virtual void method_analyzeCondition (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_uint arg_inCurrentBank,
            const class GGS_registerTable arg_inRegisterTable,
@@ -6585,7 +6585,7 @@ class cPtr_pic_31__38_BitTestInStructuredCondition : public cPtr_pic_31__38_Cond
                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCondition
+//--- Extension proc analyzeCondition
   public: virtual void method_analyzeCondition (const class GGS_uint arg_inAccessBankSplitOffset,
            const class GGS_uint arg_inCurrentBank,
            const class GGS_registerTable arg_inRegisterTable,
@@ -6784,12 +6784,12 @@ class cPtr_pic_31__38_Instruction_5F_structured_5F_if : public cPtr_pic_31__38_P
                                                                                     Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -6807,7 +6807,7 @@ class cPtr_pic_31__38_Instruction_5F_structured_5F_if : public cPtr_pic_31__38_P
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performInlining
+//--- Extension proc performInlining
   public: virtual void method_performInlining (const class GGS_stringset arg_inInlinedRoutineSet,
            const class GGS_declaredRoutineMap arg_inDeclaredRoutineMap,
            const class GGS_stringset arg_inCurrentlyInlinedRoutineSet,
@@ -7257,7 +7257,7 @@ class GGS_pic_31__38_DoWhilePartList_2E_element : public AC_GALGAS_root {
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -7356,12 +7356,12 @@ class cPtr_pic_31__38_Instruction_5F_do_5F_while : public cPtr_pic_31__38_Piccol
                                                                            Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (const class GGS_pic_31__38_MacroMap arg_inMacroMap,
            class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method analyze
+//--- Extension proc analyze
   public: virtual void method_analyze (const class GGS_uint arg_inAccessBankSplitOffset,
            class GGS_ipic_31__38_BlockList & arg_ioGeneratedBlockList,
            const class GGS_routineMap arg_inRoutineMap,
@@ -7379,7 +7379,7 @@ class cPtr_pic_31__38_Instruction_5F_do_5F_while : public cPtr_pic_31__38_Piccol
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performInlining
+//--- Extension proc performInlining
   public: virtual void method_performInlining (const class GGS_stringset arg_inInlinedRoutineSet,
            const class GGS_declaredRoutineMap arg_inDeclaredRoutineMap,
            const class GGS_stringset arg_inCurrentlyInlinedRoutineSet,
@@ -7859,7 +7859,7 @@ class GGS_pic_31__38_InterruptDefinitionList_2E_element : public AC_GALGAS_root 
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8342,7 +8342,7 @@ class GGS_pic_31__38_RoutineDefinitionList_2E_element : public AC_GALGAS_root {
                                                                                 Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8697,7 +8697,7 @@ class GGS_pic_31__38_MacroDefinitionList_2E_element : public AC_GALGAS_root {
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8792,7 +8792,7 @@ class GGS_pic_31__38_MacroMap_2E_element : public AC_GALGAS_root {
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -9288,7 +9288,7 @@ class GGS_routineDeclarationList_2E_element : public AC_GALGAS_root {
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -9364,7 +9364,7 @@ class GGS_programKind : public AC_GALGAS_root {
 
   public: static class GGS_programKind class_func_userProgram (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -9727,7 +9727,7 @@ class GGS_dataList_2E_element : public AC_GALGAS_root {
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -10050,7 +10050,7 @@ class GGS_checkpicList_2E_element : public AC_GALGAS_root {
                                                             Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -10075,7 +10075,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_checkpicList_2E_elemen
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@baseline_assembly_instruction print'
+//Abstract extension proc '@baseline_assembly_instruction print'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10086,7 +10086,7 @@ void callExtensionMethod_print (class cPtr_baseline_5F_assembly_5F_instruction *
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@pic18InstructionWithNoOperandKind mnemonic' (as function)
+//Extension func '@pic18InstructionWithNoOperandKind mnemonic' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10096,7 +10096,7 @@ class GGS_string extensionGetter_mnemonic (const class GGS_pic_31__38_Instructio
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@baseline_instruction addUsedRoutines'
+//Abstract extension proc '@baseline_instruction addUsedRoutines'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10107,7 +10107,7 @@ void callExtensionMethod_addUsedRoutines (class cPtr_baseline_5F_instruction * i
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@declarationInRam handleDeclaration'
+//Abstract extension proc '@declarationInRam handleDeclaration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10479,7 +10479,7 @@ class GGS_declaredRoutineMap_2E_element : public AC_GALGAS_root {
                                                                   Compiler * inCompiler
                                                                   COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -10581,7 +10581,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_declaredRoutineMap_2E_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@pic18PiccoloInstruction performInlining'
+//Extension proc '@pic18PiccoloInstruction performInlining'
 //
 //--------------------------------------------------------------------------------------------------
 

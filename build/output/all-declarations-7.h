@@ -218,7 +218,7 @@ class GGS_baseline_5F_model : public AC_GALGAS_root {
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -436,7 +436,7 @@ void extensionSetter_insertKey (class GGS_branchOverflowMap & ioObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18SequentialInstruction instructionRelativeBranchOverflow'
+//Extension proc '@ipic18SequentialInstruction instructionRelativeBranchOverflow'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -450,7 +450,7 @@ void callExtensionMethod_instructionRelativeBranchOverflow (class cPtr_ipic_31__
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow'
+//Extension proc '@ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -465,7 +465,7 @@ void callExtensionMethod_terminatorRelativeBranchOverflow (class cPtr_ipic_31__3
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution'
+//Extension proc '@ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -482,7 +482,7 @@ void callExtensionMethod_performTerminatorRelativeBranchResolution (class cPtr_i
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18SequentialInstruction generateCode'
+//Abstract extension proc '@ipic18SequentialInstruction generateCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -496,7 +496,7 @@ void callExtensionMethod_generateCode (class cPtr_ipic_31__38_SequentialInstruct
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator generateTerminatorCode'
+//Abstract extension proc '@ipic18AbstractBlockTerminator generateTerminatorCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -510,7 +510,7 @@ void callExtensionMethod_generateTerminatorCode (class cPtr_ipic_31__38_Abstract
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@ipic18AbstractBlockTerminator isEqualToTerminator'
+//Abstract extension func '@ipic18AbstractBlockTerminator isEqualToTerminator'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -521,7 +521,7 @@ class GGS_bool callExtensionGetter_isEqualToTerminator (const class cPtr_ipic_31
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@baseline_instruction_IF_BitTest getBaseCode'
+//Extension proc '@baseline_instruction_IF_BitTest getBaseCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -532,7 +532,7 @@ void callExtensionMethod_getBaseCode (class cPtr_baseline_5F_instruction_5F_IF_5
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@baseline_instruction_IF_BitTest getMnemonic'
+//Extension proc '@baseline_instruction_IF_BitTest getMnemonic'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -543,7 +543,7 @@ void callExtensionMethod_getMnemonic (class cPtr_baseline_5F_instruction_5F_IF_5
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@midrange_instruction instructionUsesGOTOorCALL'
+//Extension proc '@midrange_instruction instructionUsesGOTOorCALL'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -554,7 +554,7 @@ void callExtensionMethod_instructionUsesGOTOorCALL (class cPtr_midrange_5F_instr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_instruction build_midrange_ipic_instructionList'
+//Abstract extension proc '@midrange_instruction build_midrange_ipic_instructionList'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -576,7 +576,7 @@ void callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (class cPt
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_conditionExpression buildIPICinstructionForCondition'
+//Abstract extension proc '@midrange_conditionExpression buildIPICinstructionForCondition'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -597,7 +597,7 @@ void callExtensionMethod_buildIPICinstructionForCondition (class cPtr_midrange_5
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18SequentialInstruction buildInstructionInvocationGraph'
+//Extension proc '@ipic18SequentialInstruction buildInstructionInvocationGraph'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -609,7 +609,7 @@ void callExtensionMethod_buildInstructionInvocationGraph (class cPtr_ipic_31__38
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator buildTerminatorInvocationGraph'
+//Abstract extension proc '@ipic18AbstractBlockTerminator buildTerminatorInvocationGraph'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -622,7 +622,7 @@ void callExtensionMethod_buildTerminatorInvocationGraph (class cPtr_ipic_31__38_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@ipic18AbstractBlockTerminator needToInsertJumpInstruction'
+//Abstract extension func '@ipic18AbstractBlockTerminator needToInsertJumpInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -633,7 +633,7 @@ class GGS_bool callExtensionGetter_needToInsertJumpInstruction (const class cPtr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18AbstractBlockTerminator buildTerminatorOrderedGraph'
+//Extension proc '@ipic18AbstractBlockTerminator buildTerminatorOrderedGraph'
 //
 //--------------------------------------------------------------------------------------------------
 

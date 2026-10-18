@@ -2240,10 +2240,10 @@ class CollectionElementPtr_midrange_5F_partList : public CollectionElementPtr {
                                                      COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_midrange_5F_partList (const GGS_midrange_5F_partList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -2701,7 +2701,7 @@ void GGS_midrange_5F_partList::setter_setMConditionAtIndex (GGS_midrange_5F_cond
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_midrange_5F_conditionExpression GGS_midrange_5F_partList::getter_mConditionAtIndex (const GGS_uint & inIndex,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const {
@@ -2740,7 +2740,7 @@ void GGS_midrange_5F_partList::setter_setMInstructionListAtIndex (GGS_midrange_5
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_midrange_5F_instructionList GGS_midrange_5F_partList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                           Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) const {
@@ -2779,7 +2779,7 @@ void GGS_midrange_5F_partList::setter_setMEndOfPartLocationAtIndex (GGS_location
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_midrange_5F_partList::getter_mEndOfPartLocationAtIndex (const GGS_uint & inIndex,
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) const {
@@ -3048,10 +3048,10 @@ class CollectionElementPtr_midrange_5F_interruptDefinitionList : public Collecti
                                                                     COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_midrange_5F_interruptDefinitionList (const GGS_midrange_5F_interruptDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -3559,7 +3559,7 @@ void GGS_midrange_5F_interruptDefinitionList::setter_setMInterruptLocationAtInde
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_midrange_5F_interruptDefinitionList::getter_mInterruptLocationAtIndex (const GGS_uint & inIndex,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const {
@@ -3598,7 +3598,7 @@ void GGS_midrange_5F_interruptDefinitionList::setter_setMInstructionListAtIndex 
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_midrange_5F_instructionList GGS_midrange_5F_interruptDefinitionList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                                          Compiler * inCompiler
                                                                                                          COMMA_LOCATION_ARGS) const {
@@ -3637,7 +3637,7 @@ void GGS_midrange_5F_interruptDefinitionList::setter_setMFirstSaveRegisterAtInde
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_midrange_5F_interruptDefinitionList::getter_mFirstSaveRegisterAtIndex (const GGS_uint & inIndex,
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) const {
@@ -3676,7 +3676,7 @@ void GGS_midrange_5F_interruptDefinitionList::setter_setMSecondSaveRegisterAtInd
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_midrange_5F_interruptDefinitionList::getter_mSecondSaveRegisterAtIndex (const GGS_uint & inIndex,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const {
@@ -3715,7 +3715,7 @@ void GGS_midrange_5F_interruptDefinitionList::setter_setMEndOfInterruptLocationA
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_midrange_5F_interruptDefinitionList::getter_mEndOfInterruptLocationAtIndex (const GGS_uint & inIndex,
                                                                                              Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const {
@@ -3889,10 +3889,10 @@ class CollectionElementPtr_midrange_5F_routineDefinitionList : public Collection
                                                                   COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_midrange_5F_routineDefinitionList (const GGS_midrange_5F_routineDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -4475,7 +4475,7 @@ void GGS_midrange_5F_routineDefinitionList::setter_setMRoutineNameAtIndex (GGS_l
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_midrange_5F_routineDefinitionList::getter_mRoutineNameAtIndex (const GGS_uint & inIndex,
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) const {
@@ -4514,7 +4514,7 @@ void GGS_midrange_5F_routineDefinitionList::setter_setMPageAtIndex (GGS_luint in
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_midrange_5F_routineDefinitionList::getter_mPageAtIndex (const GGS_uint & inIndex,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const {
@@ -4553,7 +4553,7 @@ void GGS_midrange_5F_routineDefinitionList::setter_setMRequiredBankAtIndex (GGS_
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_midrange_5F_routineDefinitionList::getter_mRequiredBankAtIndex (const GGS_uint & inIndex,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
@@ -4592,7 +4592,7 @@ void GGS_midrange_5F_routineDefinitionList::setter_setMReturnedBankAtIndex (GGS_
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_midrange_5F_routineDefinitionList::getter_mReturnedBankAtIndex (const GGS_uint & inIndex,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
@@ -4631,7 +4631,7 @@ void GGS_midrange_5F_routineDefinitionList::setter_setMPreservesBankAtIndex (GGS
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_midrange_5F_routineDefinitionList::getter_mPreservesBankAtIndex (const GGS_uint & inIndex,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
@@ -4670,7 +4670,7 @@ void GGS_midrange_5F_routineDefinitionList::setter_setMIsNoReturnAtIndex (GGS_bo
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_midrange_5F_routineDefinitionList::getter_mIsNoReturnAtIndex (const GGS_uint & inIndex,
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const {
@@ -4709,7 +4709,7 @@ void GGS_midrange_5F_routineDefinitionList::setter_setMInstructionListAtIndex (G
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_midrange_5F_instructionList GGS_midrange_5F_routineDefinitionList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                                        Compiler * inCompiler
                                                                                                        COMMA_LOCATION_ARGS) const {
@@ -4748,7 +4748,7 @@ void GGS_midrange_5F_routineDefinitionList::setter_setMEndOfRoutineLocationAtInd
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_midrange_5F_routineDefinitionList::getter_mEndOfRoutineLocationAtIndex (const GGS_uint & inIndex,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const {
@@ -4941,7 +4941,7 @@ GGS_midrange_5F_routineDefinitionList GGS_midrange_5F_routineDefinitionList::ext
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@midrange_intermediate_instruction isLABELorORG'
+//Extension func '@midrange_intermediate_instruction isLABELorORG'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -4969,7 +4969,7 @@ GGS_bool callExtensionGetter_isLABELorORG (const cPtr_midrange_5F_intermediate_5
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@midrange_intermediate_instruction isNULL'
+//Extension func '@midrange_intermediate_instruction isNULL'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -4996,7 +4996,7 @@ GGS_bool callExtensionGetter_isNULL (const cPtr_midrange_5F_intermediate_5F_inst
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@midrange_intermediate_instruction enterReferencedLabel'
+//Extension proc '@midrange_intermediate_instruction enterReferencedLabel'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction::method_enterReferencedLabel (GGS_stringset & /* ioArgument_ioReferencedLabelSet */,
@@ -5018,7 +5018,7 @@ void callExtensionMethod_enterReferencedLabel (cPtr_midrange_5F_intermediate_5F_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@midrange_intermediate_instruction isSkippingInstruction'
+//Extension func '@midrange_intermediate_instruction isSkippingInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5046,7 +5046,7 @@ GGS_bool callExtensionGetter_isSkippingInstruction (const cPtr_midrange_5F_inter
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@midrange_intermediate_instruction nextInstructionIsReachable'
+//Extension func '@midrange_intermediate_instruction nextInstructionIsReachable'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5073,7 +5073,7 @@ GGS_bool callExtensionGetter_nextInstructionIsReachable (const cPtr_midrange_5F_
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@midrange_intermediate_instruction defineLabel'
+//Extension proc '@midrange_intermediate_instruction defineLabel'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction::method_defineLabel (GGS_symbolTableForOptimizations & /* ioArgument_ioRoutineSymbolTable */,
@@ -5096,7 +5096,7 @@ void callExtensionMethod_defineLabel (cPtr_midrange_5F_intermediate_5F_instructi
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@midrange_intermediate_instruction_literalOperation optimizeMOVLW'
+//Extension proc '@midrange_intermediate_instruction_literalOperation optimizeMOVLW'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::method_optimizeMOVLW (const GGS_uint constinArgument_inLineIndex,
@@ -5110,14 +5110,14 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_literalOperation::method_op
     const GGS_midrange_5F_intermediate_5F_instruction_5F_literalOperation temp_1 = this ;
     test_0 = GGS_bool (ComparisonKind::equal, temp_1.readProperty_mLiteralInstruction ().objectCompare (GGS_midrange_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("midrange_optimizations.galgas3", 349)))).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      GGS_midrange_5F_intermediate_5F_instruction var_firstInstruction_16122 ;
+      GGS_midrange_5F_intermediate_5F_instruction var_firstInstruction_16074 ;
       {
-      routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 351)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_16122, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 351)) ;
+      routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 351)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_16074, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 351)) ;
       }
       GalgasBool test_2 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_2) {
-        GGS_midrange_5F_intermediate_5F_instruction_5F_RETURN var__16202 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN *> (var_firstInstruction_16122.ptr ())) ;
-        if (nullptr == var__16202.ptr ()) {
+        GGS_midrange_5F_intermediate_5F_instruction_5F_RETURN var__16154 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_instruction_5F_RETURN *> (var_firstInstruction_16074.ptr ())) ;
+        if (nullptr == var__16154.ptr ()) {
           test_2 = GalgasBool::boolFalse ;
         }
         if (GalgasBool::boolTrue == test_2) {
@@ -5150,7 +5150,7 @@ void callExtensionMethod_optimizeMOVLW (cPtr_midrange_5F_intermediate_5F_instruc
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc'
+//Extension proc '@midrange_intermediate_incDecRegisterInCondition optimizeTestDecInc'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_optimizeTestDecInc (const GGS_symbolTableForOptimizations constinArgument_inSymbolTable,
@@ -5160,18 +5160,18 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
                                                                                             GGS_bool & ioArgument_ioOptimizationsDone,
                                                                                             Compiler * inCompiler
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_uint var_line_17333 ;
+  GGS_uint var_line_17283 ;
   const GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_0 = this ;
-  GGS_bool joker_17338 ; // Joker input parameter
-  constinArgument_inSymbolTable.method_searchKey (GGS_lstring::init_21__21_ (temp_0.readProperty_mTargetLabel (), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 377)), inCompiler COMMA_HERE), var_line_17333, joker_17338, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 377)) ;
-  GGS_midrange_5F_intermediate_5F_instruction var_firstInstruction_17469 ;
+  GGS_bool joker_17288 ; // Joker input parameter
+  constinArgument_inSymbolTable.method_searchKey (GGS_lstring::init_21__21_ (temp_0.readProperty_mTargetLabel (), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 377)), inCompiler COMMA_HERE), var_line_17283, joker_17288, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 377)) ;
+  GGS_midrange_5F_intermediate_5F_instruction var_firstInstruction_17419 ;
   {
-  routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (var_line_17333.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 379)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_17469, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 379)) ;
+  routine_findMidRangeFirstInstructionFromAddress_3F__3F__21_ (var_line_17283.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 379)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_17419, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 379)) ;
   }
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    GGS_midrange_5F_intermediate_5F_JUMP var_jump_17572 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_JUMP *> (var_firstInstruction_17469.ptr ())) ;
-    if (nullptr == var_jump_17572.ptr ()) {
+    GGS_midrange_5F_intermediate_5F_JUMP var_jump_17522 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_JUMP *> (var_firstInstruction_17419.ptr ())) ;
+    if (nullptr == var_jump_17522.ptr ()) {
       test_1 = GalgasBool::boolFalse ;
     }
     if (GalgasBool::boolTrue == test_1) {
@@ -5181,7 +5181,7 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
       const GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_4 = this ;
       const GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_5 = this ;
       const GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_6 = this ;
-      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_jump_17572.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 385)) ;
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_jump_17522.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 385)) ;
       }
       ioArgument_ioOptimizationsDone = GGS_bool (true) ;
       ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas3", 396)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 396)).add_operation (GGS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 396)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 396)) ;
@@ -5224,8 +5224,8 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
   if (GalgasBool::boolFalse == test_1) {
     GalgasBool test_14 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_14) {
-      GGS_midrange_5F_intermediate_5F_GOTO var_goto_18641 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_GOTO *> (var_firstInstruction_17469.ptr ())) ;
-      if (nullptr == var_goto_18641.ptr ()) {
+      GGS_midrange_5F_intermediate_5F_GOTO var_goto_18591 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_GOTO *> (var_firstInstruction_17419.ptr ())) ;
+      if (nullptr == var_goto_18591.ptr ()) {
         test_14 = GalgasBool::boolFalse ;
       }
       if (GalgasBool::boolTrue == test_14) {
@@ -5235,7 +5235,7 @@ void cPtr_midrange_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
         const GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_17 = this ;
         const GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_18 = this ;
         const GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition temp_19 = this ;
-        ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_15.readProperty_mInstructionLocation (), temp_16.readProperty_mRegisterDescription (), var_goto_18641.readProperty_mTargetLabel ().readProperty_string (), temp_17.readProperty_mIncrement (), temp_18.readProperty_m_5F_W_5F_isDestination (), temp_19.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 415)) ;
+        ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_15.readProperty_mInstructionLocation (), temp_16.readProperty_mRegisterDescription (), var_goto_18591.readProperty_mTargetLabel ().readProperty_string (), temp_17.readProperty_mIncrement (), temp_18.readProperty_m_5F_W_5F_isDestination (), temp_19.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 415)) ;
         }
         ioArgument_ioOptimizationsDone = GGS_bool (true) ;
         ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("midrange_optimizations.galgas3", 426)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 426)).add_operation (GGS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 426)), inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 426)) ;
@@ -5295,7 +5295,7 @@ void callExtensionMethod_optimizeTestDecInc (cPtr_midrange_5F_intermediate_5F_in
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip'
+//Extension proc '@midrange_intermediate_instruction_BitTestSkip optimizeBitTestSkip'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_optimizeBitTestSkip (const GGS_uint constinArgument_inLineIndex,
@@ -5304,53 +5304,53 @@ void cPtr_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip::method_optimiz
                                                                                               GGS_bool & ioArgument_ioOptimizationsDone,
                                                                                               Compiler * inCompiler
                                                                                               COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_string var_jumpLabel_20056 = GGS_string::makeEmptyString () ;
-  GGS_bool var_ok_20094 = GGS_bool (false) ;
+  GGS_string var_jumpLabel_20004 = GGS_string::makeEmptyString () ;
+  GGS_bool var_ok_20042 = GGS_bool (false) ;
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
-    GGS_midrange_5F_intermediate_5F_JUMP var_jump_20114 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_JUMP *> (ioArgument_ioGeneratedInstructionList.getter_mInstructionAtIndex (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 458)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 458)).ptr ())) ;
-    if (nullptr == var_jump_20114.ptr ()) {
+    GGS_midrange_5F_intermediate_5F_JUMP var_jump_20062 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_JUMP *> (ioArgument_ioGeneratedInstructionList.getter_mInstructionAtIndex (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 458)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 458)).ptr ())) ;
+    if (nullptr == var_jump_20062.ptr ()) {
       test_0 = GalgasBool::boolFalse ;
     }
     if (GalgasBool::boolTrue == test_0) {
-      var_jumpLabel_20056 = var_jump_20114.readProperty_mTargetLabel ().readProperty_string () ;
-      var_ok_20094 = GGS_bool (true) ;
+      var_jumpLabel_20004 = var_jump_20062.readProperty_mTargetLabel ().readProperty_string () ;
+      var_ok_20042 = GGS_bool (true) ;
     }
   }
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    test_1 = var_ok_20094.boolEnum () ;
+    test_1 = var_ok_20042.boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
       GalgasBool test_2 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_2) {
-        GGS_midrange_5F_intermediate_5F_actualInstruction var_instruction_20478 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_actualInstruction *> (ioArgument_ioGeneratedInstructionList.getter_mInstructionAtIndex (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 467)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 467)).ptr ())) ;
-        if (nullptr == var_instruction_20478.ptr ()) {
+        GGS_midrange_5F_intermediate_5F_actualInstruction var_instruction_20426 (dynamic_cast <const cPtr_midrange_5F_intermediate_5F_actualInstruction *> (ioArgument_ioGeneratedInstructionList.getter_mInstructionAtIndex (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (2U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 467)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 467)).ptr ())) ;
+        if (nullptr == var_instruction_20426.ptr ()) {
           test_2 = GalgasBool::boolFalse ;
         }
         if (GalgasBool::boolTrue == test_2) {
-          var_ok_20094 = GGS_bool (ComparisonKind::equal, callExtensionGetter_instructionLength ((const cPtr_midrange_5F_intermediate_5F_actualInstruction *) var_instruction_20478.ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 470)).objectCompare (GGS_uint (uint32_t (1U)))) ;
+          var_ok_20042 = GGS_bool (ComparisonKind::equal, callExtensionGetter_instructionLength ((const cPtr_midrange_5F_intermediate_5F_actualInstruction *) var_instruction_20426.ptr (), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 470)).objectCompare (GGS_uint (uint32_t (1U)))) ;
         }
       }
       if (GalgasBool::boolFalse == test_2) {
-        var_ok_20094 = GGS_bool (false) ;
+        var_ok_20042 = GGS_bool (false) ;
       }
     }
   }
   GalgasBool test_3 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_3) {
-    test_3 = var_ok_20094.boolEnum () ;
+    test_3 = var_ok_20042.boolEnum () ;
     if (GalgasBool::boolTrue == test_3) {
-      GGS_stringset var_reachedLabelSet_21092 ;
+      GGS_stringset var_reachedLabelSet_21040 ;
       {
-      GGS_midrange_5F_intermediate_5F_instruction joker_21084 ; // Joker input parameter
-      routine_findMidRangeFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (3U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 478)), ioArgument_ioGeneratedInstructionList, joker_21084, var_reachedLabelSet_21092, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 478)) ;
+      GGS_midrange_5F_intermediate_5F_instruction joker_21032 ; // Joker input parameter
+      routine_findMidRangeFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (3U)), inCompiler COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 478)), ioArgument_ioGeneratedInstructionList, joker_21032, var_reachedLabelSet_21040, inCompiler  COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 478)) ;
       }
-      var_ok_20094 = var_reachedLabelSet_21092.getter_hasKey (var_jumpLabel_20056 COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 479)) ;
+      var_ok_20042 = var_reachedLabelSet_21040.getter_hasKey (var_jumpLabel_20004 COMMA_SOURCE_FILE ("midrange_optimizations.galgas3", 479)) ;
     }
   }
   GalgasBool test_4 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_4) {
-    test_4 = var_ok_20094.boolEnum () ;
+    test_4 = var_ok_20042.boolEnum () ;
     if (GalgasBool::boolTrue == test_4) {
       {
       const GGS_midrange_5F_intermediate_5F_instruction_5F_BitTestSkip temp_5 = this ;
@@ -5396,10 +5396,10 @@ class CollectionElementPtr_clusterList : public CollectionElementPtr {
                                             COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_clusterList (const GGS_clusterList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -5807,7 +5807,7 @@ void GGS_clusterList::setter_setMBlockListAtIndex (GGS_ipic_31__38_BlockList inO
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_ipic_31__38_BlockList GGS_clusterList::getter_mBlockListAtIndex (const GGS_uint & inIndex,
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) const {
@@ -6403,7 +6403,7 @@ GGS_neededConversionForClusterOrder GGS_neededConversionForClusterOrder::extract
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@baseline_intermediate_instruction generateAssemblyCode'
+//Abstract extension proc '@baseline_intermediate_instruction generateAssemblyCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -6414,7 +6414,7 @@ void callExtensionMethod_generateAssemblyCode (cPtr_baseline_5F_intermediate_5F_
                                                Compiler * inCompiler
                                                COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
     inObject->method_generateAssemblyCode (constin_inSTATUSregister, constin_inStatusRegisterBitSliceTable, io_ioAssemblyInstructionList, inCompiler COMMA_THERE) ;
@@ -6847,7 +6847,7 @@ GGS_baseline_5F_declaredRoutineMap GGS_baseline_5F_declaredRoutineMap::extractOb
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_instruction shouldTerminateWithMOVLW'
+//Extension proc '@baseline_instruction shouldTerminateWithMOVLW'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_instruction::method_shouldTerminateWithMOVLW (const GGS_string constinArgument_inErrorMessage,
@@ -6871,7 +6871,7 @@ void callExtensionMethod_shouldTerminateWithMOVLW (cPtr_baseline_5F_instruction 
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_instruction shouldNotContinueInSequence'
+//Extension proc '@baseline_instruction shouldNotContinueInSequence'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_instruction::method_shouldNotContinueInSequence (const GGS_string constinArgument_inErrorMessage,
@@ -7028,10 +7028,10 @@ class CollectionElementPtr_baseline_5F_intermediate_5F_instructionList : public 
                                                                             COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_baseline_5F_intermediate_5F_instructionList (const GGS_baseline_5F_intermediate_5F_instructionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -7439,7 +7439,7 @@ void GGS_baseline_5F_intermediate_5F_instructionList::setter_setMInstructionAtIn
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_baseline_5F_intermediate_5F_instruction GGS_baseline_5F_intermediate_5F_instructionList::getter_mInstructionAtIndex (const GGS_uint & inIndex,
                                                                                                                          Compiler * inCompiler
                                                                                                                          COMMA_LOCATION_ARGS) const {
@@ -14434,10 +14434,10 @@ class CollectionElementPtr_pic_31__38_BlockInstructionBlockList : public Collect
                                                                      COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_pic_31__38_BlockInstructionBlockList (const GGS_pic_31__38_BlockInstructionBlockList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -14920,7 +14920,7 @@ void GGS_pic_31__38_BlockInstructionBlockList::setter_setMBlockNameAtIndex (GGS_
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_pic_31__38_BlockInstructionBlockList::getter_mBlockNameAtIndex (const GGS_uint & inIndex,
                                                                                 Compiler * inCompiler
                                                                                 COMMA_LOCATION_ARGS) const {
@@ -14959,7 +14959,7 @@ void GGS_pic_31__38_BlockInstructionBlockList::setter_setMInstructionListAtIndex
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_pic_31__38_InstructionList GGS_pic_31__38_BlockInstructionBlockList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                                          Compiler * inCompiler
                                                                                                          COMMA_LOCATION_ARGS) const {
@@ -14998,7 +14998,7 @@ void GGS_pic_31__38_BlockInstructionBlockList::setter_setMBlockTerminaisonForBlo
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_abstractBlockTerminationForBlockInstruction GGS_pic_31__38_BlockInstructionBlockList::getter_mBlockTerminaisonForBlockInstructionAtIndex (const GGS_uint & inIndex,
                                                                                                                                               Compiler * inCompiler
                                                                                                                                               COMMA_LOCATION_ARGS) const {
@@ -15037,7 +15037,7 @@ void GGS_pic_31__38_BlockInstructionBlockList::setter_setMEndOfBlockAtIndex (GGS
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_pic_31__38_BlockInstructionBlockList::getter_mEndOfBlockAtIndex (const GGS_uint & inIndex,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {

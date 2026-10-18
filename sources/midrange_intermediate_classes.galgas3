@@ -7,7 +7,7 @@ struct @midrange_intermediate_registerExpression {
 
 //----------------------------------------------------*
 
-method @registerExpression resolveMidrangeAccess
+proc @registerExpression resolveMidrangeAccess
   ?let @uint inTotalBankCount
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
@@ -23,7 +23,7 @@ method @registerExpression resolveMidrangeAccess
   if offset > 0 then
     assemblyString += " + " + offset.uint.hexString
   end
-//--- 
+//---
   [inRegisterTable searchKey
     !self.mRegisterName
     ?let @uintlist registerAddressList

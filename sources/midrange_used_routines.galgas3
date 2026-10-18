@@ -1,133 +1,133 @@
 //---------------------------------------------------------------------------*
 
-abstract method @midrange_instruction addUsedRoutines
+abstract proc @midrange_instruction addUsedRoutines
   ?!@stringset ioUsedRoutines
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_IF_BitTest addUsedRoutines
+override proc @midrange_instruction_IF_BitTest addUsedRoutines
   ?!@stringset ioUsedRoutines {
   [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_IF_SEMI_COLON addUsedRoutines
+override proc @midrange_instruction_IF_SEMI_COLON addUsedRoutines
   ?!@stringset ioUsedRoutines {
   [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_IF_IncDec addUsedRoutines
+override proc @midrange_instruction_IF_IncDec addUsedRoutines
   ?!@stringset ioUsedRoutines {
   [self.mInstruction addUsedRoutines !?ioUsedRoutines]
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_JUMP addUsedRoutines
+override proc @midrange_instruction_JUMP addUsedRoutines
   ?!@stringset ioUsedRoutines {
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_GOTO addUsedRoutines
+override proc @midrange_instruction_GOTO addUsedRoutines
   ?!@stringset ioUsedRoutines {
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_CALL addUsedRoutines
+override proc @midrange_instruction_CALL addUsedRoutines
   ?!@stringset ioUsedRoutines {
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_FOREVER addUsedRoutines
+override proc @midrange_instruction_FOREVER addUsedRoutines
   ?!@stringset ioUsedRoutines {
   addMidRangeUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_STATIC_REPEAT addUsedRoutines
+override proc @midrange_instruction_STATIC_REPEAT addUsedRoutines
   ?!@stringset ioUsedRoutines {
   addMidRangeUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_MNOP addUsedRoutines
+override proc @midrange_instruction_MNOP addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_F addUsedRoutines
+override proc @midrange_instruction_F addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_CLRW addUsedRoutines
+override proc @midrange_instruction_CLRW addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_CLRWDT addUsedRoutines
+override proc @midrange_instruction_CLRWDT addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_SLEEP addUsedRoutines
+override proc @midrange_instruction_SLEEP addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_FB addUsedRoutines
+override proc @midrange_instruction_FB addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_NOP addUsedRoutines
+override proc @midrange_instruction_NOP addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_banksel addUsedRoutines
+override proc @midrange_instruction_banksel addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrangeInstruction_checkbank addUsedRoutines
+override proc @midrangeInstruction_checkbank addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrangeInstruction_checknobank addUsedRoutines
+override proc @midrangeInstruction_checknobank addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_banksel_register addUsedRoutines
+override proc @midrange_instruction_banksel_register addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_do_while addUsedRoutines
+override proc @midrange_instruction_do_while addUsedRoutines
   ?!@stringset ioUsedRoutines {
   addMidRangeUsedRoutinesFromInstructionList ( !self.mRepeatedInstructionList !?ioUsedRoutines )
   for (* mInstructionList *) in  self.mWhilePartList do
@@ -137,20 +137,20 @@ override method @midrange_instruction_do_while addUsedRoutines
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_nobanksel addUsedRoutines
+override proc @midrange_instruction_nobanksel addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_savebank addUsedRoutines
+override proc @midrange_instruction_savebank addUsedRoutines
   ?!@stringset ioUsedRoutines {
   addMidRangeUsedRoutinesFromInstructionList ( !self.mInstructionList !?ioUsedRoutines )
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_structured_if addUsedRoutines
+override proc @midrange_instruction_structured_if addUsedRoutines
   ?!@stringset ioUsedRoutines {
   addMidRangeUsedRoutinesFromInstructionList ( !self.mThenInstructionList !?ioUsedRoutines )
   addMidRangeUsedRoutinesFromInstructionList ( !self.mElseInstructionList !?ioUsedRoutines )
@@ -158,20 +158,20 @@ override method @midrange_instruction_structured_if addUsedRoutines
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_FD addUsedRoutines
+override proc @midrange_instruction_FD addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_JSR addUsedRoutines
+override proc @midrange_instruction_JSR addUsedRoutines
   ?!@stringset ioUsedRoutines {
   ioUsedRoutines ++= self.mTargetLabel.string
 }
 
 //---------------------------------------------------------------------------*
 
-override method @midrange_instruction_literalOperation addUsedRoutines
+override proc @midrange_instruction_literalOperation addUsedRoutines
   ?!@stringset unused ioUsedRoutines {
 }
 
@@ -198,7 +198,7 @@ func midrange_computeUsedRoutines
     addMidRangeUsedRoutinesFromInstructionList (
       !mInstructionList
       !?outUsedRoutineSet
-    )  
+    )
   end
 //--- Loop for accumulating used routines
   var s =@stringset ()

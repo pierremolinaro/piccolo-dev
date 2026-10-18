@@ -9,7 +9,7 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@baseline_intermediate_instruction print'
+//Abstract extension proc '@baseline_intermediate_instruction print'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -18,7 +18,7 @@ void callExtensionMethod_print (cPtr_baseline_5F_intermediate_5F_instruction * i
                                 Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_intermediate_5F_instruction) ;
     inObject->method_print (io_ioListFileContents, inCompiler COMMA_THERE) ;
@@ -1170,7 +1170,7 @@ GGS_baselineRoutineMap GGS_baselineRoutineMap::extractObject (const GGS_object &
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@baseline_instruction build_baseline_intermediate_instructionList'
+//Abstract extension proc '@baseline_instruction build_baseline_intermediate_instructionList'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1189,7 +1189,7 @@ void callExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList (c
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_instruction) ;
     inObject->method_build_5F_baseline_5F_intermediate_5F_instructionList (constin_inCurrentPage, constin_inRoutineMap, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioContinuesInSequence, constin_inRoutineKind, constin_inLastInstructionShouldReturn, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
@@ -1197,7 +1197,7 @@ void callExtensionMethod_build_5F_baseline_5F_intermediate_5F_instructionList (c
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@baseline_conditionExpression build_intermediate_condition_instructions'
+//Abstract extension proc '@baseline_conditionExpression build_intermediate_condition_instructions'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1214,7 +1214,7 @@ void callExtensionMethod_build_5F_intermediate_5F_condition_5F_instructions (cPt
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_conditionExpression) ;
     inObject->method_build_5F_intermediate_5F_condition_5F_instructions (constin_inCurrentPage, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, constin_inComplementaryBranch, constin_inInstructionLocation, constin_inTargetLabel, io_ioGeneratedInstructionList, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
@@ -2586,10 +2586,10 @@ class CollectionElementPtr_midrange_5F_intermediate_5F_instructionList : public 
                                                                             COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_midrange_5F_intermediate_5F_instructionList (const GGS_midrange_5F_intermediate_5F_instructionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -2997,7 +2997,7 @@ void GGS_midrange_5F_intermediate_5F_instructionList::setter_setMInstructionAtIn
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_midrange_5F_intermediate_5F_instruction GGS_midrange_5F_intermediate_5F_instructionList::getter_mInstructionAtIndex (const GGS_uint & inIndex,
                                                                                                                          Compiler * inCompiler
                                                                                                                          COMMA_LOCATION_ARGS) const {
@@ -8294,7 +8294,7 @@ GGS_midrange_5F_intermediate_5F_incDecRegisterInCondition_2E_weak GGS_midrange_5
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_intermediate_instruction print'
+//Abstract extension proc '@midrange_intermediate_instruction print'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -8303,7 +8303,7 @@ void callExtensionMethod_print (cPtr_midrange_5F_intermediate_5F_instruction * i
                                 Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_midrange_5F_intermediate_5F_instruction) ;
     inObject->method_print (io_ioListFileContents, inCompiler COMMA_THERE) ;
@@ -8311,7 +8311,7 @@ void callExtensionMethod_print (cPtr_midrange_5F_intermediate_5F_instruction * i
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@baseline_intermediate_instruction length'
+//Abstract extension func '@baseline_intermediate_instruction length'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -8432,7 +8432,7 @@ GGS_pic_31__38_PiccoloSimpleInstruction GGS_pic_31__38_PiccoloSimpleInstruction:
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@pic18PiccoloInstruction analyze'
+//Abstract extension proc '@pic18PiccoloInstruction analyze'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -8455,7 +8455,7 @@ void callExtensionMethod_analyze (cPtr_pic_31__38_PiccoloInstruction * inObject,
                                   Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_pic_31__38_PiccoloInstruction) ;
     inObject->method_analyze (constin_inAccessBankSplitOffset, io_ioGeneratedBlockList, constin_inRoutineMap, constin_inRegisterTable, constin_inDataMap, constin_inConstantMap, constin_inMacroMap, io_ioLocalLabelIndex, io_ioGeneratedInstructionList, io_ioBlockLabel, io_ioListFileContents, io_ioCurrentBank, constin_inShouldPreserveBSR, constin_inRoutineKind, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
@@ -9718,7 +9718,7 @@ GGS_blockInitialBankSelectionMap GGS_blockInitialBankSelectionMap::extractObject
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractBlockTerminationForBlockInstruction addVisitedBlocks'
+//Abstract extension proc '@abstractBlockTerminationForBlockInstruction addVisitedBlocks'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9733,7 +9733,7 @@ void callExtensionMethod_addVisitedBlocks (cPtr_abstractBlockTerminationForBlock
                                            Compiler * inCompiler
                                            COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractBlockTerminationForBlockInstruction) ;
     inObject->method_addVisitedBlocks (io_ioVisitedBlockSet, constin_inBlockMap, constin_inCurrentBlockName, constin_inInitialBlockSetting, io_ioBlockInitialBankSelectionMap, io_ioContinuesInSequence, io_ioContinueAccessibilityExploration, inCompiler COMMA_THERE) ;
@@ -9741,7 +9741,7 @@ void callExtensionMethod_addVisitedBlocks (cPtr_abstractBlockTerminationForBlock
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@abstractBlockTerminationForBlockInstruction generateBlock'
+//Abstract extension proc '@abstractBlockTerminationForBlockInstruction generateBlock'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9759,7 +9759,7 @@ void callExtensionMethod_generateBlock (cPtr_abstractBlockTerminationForBlockIns
                                         COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
   out_outTerminator.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_abstractBlockTerminationForBlockInstruction) ;
     inObject->method_generateBlock (constin_inAccessBankSplitOffset, constin_inCurrentBank, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, io_ioGeneratedBlockList, io_ioUsedRegisters, constin_inLabelForBlock, out_outTerminator, inCompiler COMMA_THERE) ;
@@ -9865,7 +9865,7 @@ GGS_pic_31__38_ConditionExpression GGS_pic_31__38_ConditionExpression::extractOb
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_intermediate_instruction buildAssemblyCode'
+//Abstract extension proc '@midrange_intermediate_instruction buildAssemblyCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9875,7 +9875,7 @@ void callExtensionMethod_buildAssemblyCode (cPtr_midrange_5F_intermediate_5F_ins
                                             Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_midrange_5F_intermediate_5F_instruction) ;
     inObject->method_buildAssemblyCode (io_ioString, io_ioLocalLabelIndex, inCompiler COMMA_THERE) ;
@@ -9883,7 +9883,7 @@ void callExtensionMethod_buildAssemblyCode (cPtr_midrange_5F_intermediate_5F_ins
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18SequentialInstructionList enterInstructionReferencedLabels'
+//Extension proc '@ipic18SequentialInstructionList enterInstructionReferencedLabels'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9894,10 +9894,10 @@ void extensionMethod_enterInstructionReferencedLabels (const GGS_ipic_31__38_Seq
                                                        Compiler * inCompiler
                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_ipic_31__38_SequentialInstructionList temp_0 = inObject ;
-  UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_35933 (temp_0) ;
-  while (enumerator_35933.hasCurrentObject ()) {
-    callExtensionMethod_enterInstructionReferencedLabels ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_35933.current_mInstruction (HERE).ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas3", 941)) ;
-    enumerator_35933.gotoNextObject () ;
+  UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_35867 (temp_0) ;
+  while (enumerator_35867.hasCurrentObject ()) {
+    callExtensionMethod_enterInstructionReferencedLabels ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_35867.current_mInstruction (HERE).ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas3", 941)) ;
+    enumerator_35867.gotoNextObject () ;
   }
 }
 
@@ -10580,7 +10580,7 @@ GGS_baseline_5F_symbolTable GGS_baseline_5F_symbolTable::extractObject (const GG
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_assembly_instruction enterLabelAtAddress'
+//Extension proc '@baseline_assembly_instruction enterLabelAtAddress'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_assembly_5F_instruction::method_enterLabelAtAddress (GGS_baseline_5F_symbolTable & /* ioArgument_ioRoutineSymbolTable */,
@@ -10604,7 +10604,7 @@ void callExtensionMethod_enterLabelAtAddress (cPtr_baseline_5F_assembly_5F_instr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@baseline_assembly_instruction generateBinaryCodeAtAddress'
+//Abstract extension proc '@baseline_assembly_instruction generateBinaryCodeAtAddress'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10615,7 +10615,7 @@ void callExtensionMethod_generateBinaryCodeAtAddress (cPtr_baseline_5F_assembly_
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_assembly_5F_instruction) ;
     inObject->method_generateBinaryCodeAtAddress (constin_inRoutineSymbolTable, io_ioListFileContents, io_ioWordAddress, inCompiler COMMA_THERE) ;
@@ -14267,10 +14267,10 @@ class CollectionElementPtr_midrange_5F_instructionList : public CollectionElemen
                                                             COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_midrange_5F_instructionList (const GGS_midrange_5F_instructionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -14678,7 +14678,7 @@ void GGS_midrange_5F_instructionList::setter_setMInstructionAtIndex (GGS_midrang
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_midrange_5F_instruction GGS_midrange_5F_instructionList::getter_mInstructionAtIndex (const GGS_uint & inIndex,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const {

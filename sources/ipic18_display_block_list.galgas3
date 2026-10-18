@@ -4,7 +4,7 @@
 
 //----------------------------------------------------------------------------*
 
-method @ipic18Block display
+proc @ipic18Block display
   ?let @string inNextBlockLabel
   ?!@string ioListFileContents {
   ioListFileContents += "LABEL " + self.mLabel

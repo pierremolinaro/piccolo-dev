@@ -13,14 +13,14 @@ map @baselineSymbolTableForOptimizations {
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-method @baseline_intermediate_instruction setCurrentAddress
+proc @baseline_intermediate_instruction setCurrentAddress
   ?!@uint ioCurrentWordAdress {
   ioCurrentWordAdress = ioCurrentWordAdress + self.length
 }
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_PAGE setCurrentAddress
+override proc @baseline_intermediate_pseudo_PAGE setCurrentAddress
   ?!@uint ioCurrentWordAdress {
   ioCurrentWordAdress = self.mPage * 512
 }
@@ -31,25 +31,25 @@ override method @baseline_intermediate_pseudo_PAGE setCurrentAddress
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-getter @baseline_intermediate_instruction isLABEL -> @bool outIsLABEL {
+func @baseline_intermediate_instruction isLABEL -> @bool outIsLABEL {
   outIsLABEL = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @baseline_intermediate_pseudo_LABEL isLABEL -> @bool outIsLABEL {
+override func @baseline_intermediate_pseudo_LABEL isLABEL -> @bool outIsLABEL {
   outIsLABEL = true
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @baseline_intermediate_pseudo_PAGE isLABEL -> @bool outIsLABEL {
+override func @baseline_intermediate_pseudo_PAGE isLABEL -> @bool outIsLABEL {
   outIsLABEL = true
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @baseline_intermediate_pseudo_END_ROUTINE isLABEL -> @bool outIsLABEL {
+override func @baseline_intermediate_pseudo_END_ROUTINE isLABEL -> @bool outIsLABEL {
   outIsLABEL = true
 }
 
@@ -59,13 +59,13 @@ override getter @baseline_intermediate_pseudo_END_ROUTINE isLABEL -> @bool outIs
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-getter @baseline_intermediate_instruction isNULL -> @bool outIsNULL {
+func @baseline_intermediate_instruction isNULL -> @bool outIsNULL {
   outIsNULL = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @baseline_intermediate_NULL isNULL -> @bool outIsNULL {
+override func @baseline_intermediate_NULL isNULL -> @bool outIsNULL {
   outIsNULL = true
 }
 
@@ -75,13 +75,13 @@ override getter @baseline_intermediate_NULL isNULL -> @bool outIsNULL {
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-getter @baseline_intermediate_instruction isSkippingInstruction -> @bool outIsSkipping {
+func @baseline_intermediate_instruction isSkippingInstruction -> @bool outIsSkipping {
   outIsSkipping = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @baseline_intermediate_instruction_BitTestSkip isSkippingInstruction -> @bool outIsSkipping {
+override func @baseline_intermediate_instruction_BitTestSkip isSkippingInstruction -> @bool outIsSkipping {
   outIsSkipping = true
 }
 
@@ -91,35 +91,35 @@ override getter @baseline_intermediate_instruction_BitTestSkip isSkippingInstruc
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-getter @baseline_intermediate_instruction nextInstructionIsReachable
+func @baseline_intermediate_instruction nextInstructionIsReachable
   -> @bool outIsReachable {
   outIsReachable = true
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @baseline_intermediate_GOTO nextInstructionIsReachable
+override func @baseline_intermediate_GOTO nextInstructionIsReachable
   -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @baseline_intermediate_JUMP nextInstructionIsReachable
+override func @baseline_intermediate_JUMP nextInstructionIsReachable
   -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @baseline_intermediate_pseudo_END_ROUTINE nextInstructionIsReachable
+override func @baseline_intermediate_pseudo_END_ROUTINE nextInstructionIsReachable
   -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @baseline_intermediate_instruction_literalOperation nextInstructionIsReachable
+override func @baseline_intermediate_instruction_literalOperation nextInstructionIsReachable
   -> @bool outIsReachable {
   outIsReachable = self.mInstruction != @baseline_literal_instruction_opcode. RETLW
 }
@@ -130,41 +130,41 @@ override getter @baseline_intermediate_instruction_literalOperation nextInstruct
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-method @baseline_intermediate_instruction enterReferencedLabel
+proc @baseline_intermediate_instruction enterReferencedLabel
   ?!@stringset unused ioReferencedLabelSet {
 }
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_GOTO enterReferencedLabel
+override proc @baseline_intermediate_GOTO enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_JUMP enterReferencedLabel
+override proc @baseline_intermediate_JUMP enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_CALL enterReferencedLabel
+override proc @baseline_intermediate_CALL enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_JSR enterReferencedLabel
+override proc @baseline_intermediate_JSR enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_incDecRegisterInCondition enterReferencedLabel
+override proc @baseline_intermediate_incDecRegisterInCondition enterReferencedLabel
   ?!@stringset ioReferencedLabelSet {
   ioReferencedLabelSet ++= self.mTargetLabel
 }
@@ -175,7 +175,7 @@ override method @baseline_intermediate_incDecRegisterInCondition enterReferenced
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-method @baseline_intermediate_instruction defineLabel
+proc @baseline_intermediate_instruction defineLabel
   ?!@baselineSymbolTableForOptimizations unused ioRoutineSymbolTable
   ?let @uint unused inLineIndex {
 }
@@ -183,7 +183,7 @@ method @baseline_intermediate_instruction defineLabel
 //----------------------------------------------------------------------------*
 
 override
-method @baseline_intermediate_pseudo_LABEL defineLabel
+proc @baseline_intermediate_pseudo_LABEL defineLabel
   ?!@baselineSymbolTableForOptimizations ioRoutineSymbolTable
   ?let @uint inLineIndex {
   [!?ioRoutineSymbolTable insertKey !self.mLabel !inLineIndex]
@@ -253,7 +253,7 @@ proc findBaselineFirstInstructionOrLabelFromAddress
 
 //----------------------------------------------------------------------------*
 
-method @baseline_intermediate_GOTO optimizeGOTO
+proc @baseline_intermediate_GOTO optimizeGOTO
   ?let @baselineSymbolTableForOptimizations inSymbolTable
   ?let @uint inLineIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
@@ -300,7 +300,7 @@ method @baseline_intermediate_GOTO optimizeGOTO
 
 //----------------------------------------------------------------------------*
 
-method @baseline_intermediate_JUMP optimizeJUMP
+proc @baseline_intermediate_JUMP optimizeJUMP
   ?let @baselineSymbolTableForOptimizations inSymbolTable
   ?let @uint inLineIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
@@ -364,7 +364,7 @@ method @baseline_intermediate_JUMP optimizeJUMP
 
 //----------------------------------------------------------------------------*
 
-method @baseline_intermediate_CALL optimizeCALL
+proc @baseline_intermediate_CALL optimizeCALL
   ?let @baselineSymbolTableForOptimizations inSymbolTable
   ?let @uint inLineIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
@@ -401,7 +401,7 @@ method @baseline_intermediate_CALL optimizeCALL
 
 //----------------------------------------------------------------------------*
 
-method @baseline_intermediate_JSR optimizeJSR
+proc @baseline_intermediate_JSR optimizeJSR
   ?let @baselineSymbolTableForOptimizations inSymbolTable
   ?let @uint inLineIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
@@ -438,7 +438,7 @@ method @baseline_intermediate_JSR optimizeJSR
 
 //----------------------------------------------------------------------------*
 
-method @baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE
+proc @baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE
   ?let @uint inLineIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
   ?!@string ioListFileContents
@@ -468,7 +468,7 @@ method @baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE
 
 //----------------------------------------------------------------------------*
 
-method @baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc
+proc @baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc
   ?let @baselineSymbolTableForOptimizations inSymbolTable
   ?let @uint inLineIndex
   ?!@baseline_intermediate_instructionList ioGeneratedInstructionList

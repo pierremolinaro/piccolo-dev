@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18Block display'
+//Extension proc '@ipic18Block display'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -22,7 +22,7 @@ void extensionMethod_display (const class GGS_ipic_31__38_Block inObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18Block performRelativesResolution'
+//Extension proc '@ipic18Block performRelativesResolution'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -38,7 +38,7 @@ void extensionMethod_performRelativesResolution (const class GGS_ipic_31__38_Blo
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@ipic18Block blockSize' (as function)
+//Extension func '@ipic18Block blockSize' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -49,7 +49,7 @@ class GGS_uint extensionGetter_blockSize (const class GGS_ipic_31__38_Block & in
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18Block relativeBranchOverflow'
+//Extension proc '@ipic18Block relativeBranchOverflow'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -63,7 +63,7 @@ void extensionMethod_relativeBranchOverflow (const class GGS_ipic_31__38_Block i
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18Block generateCodeForBlock'
+//Extension proc '@ipic18Block generateCodeForBlock'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -105,7 +105,7 @@ void routine_generateLineWithCode_3F__3F__3F__3F__3F__26_ (const class GGS_uint 
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18Block enterReferencedLabels'
+//Extension proc '@ipic18Block enterReferencedLabels'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -118,7 +118,7 @@ void extensionMethod_enterReferencedLabels (const class GGS_ipic_31__38_Block in
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18Block optimize'
+//Extension proc '@ipic18Block optimize'
 //
 //--------------------------------------------------------------------------------------------------
 

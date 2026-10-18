@@ -7602,10 +7602,10 @@ class CollectionElementPtr_codeList : public CollectionElementPtr {
                                          COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_codeList (const GGS_codeList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -8038,7 +8038,7 @@ void GGS_codeList::setter_setMAssemblyCodeAtIndex (GGS_string inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_string GGS_codeList::getter_mAssemblyCodeAtIndex (const GGS_uint & inIndex,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) const {
@@ -8077,7 +8077,7 @@ void GGS_codeList::setter_setMBinaryCodeAtIndex (GGS_uintlist inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_uintlist GGS_codeList::getter_mBinaryCodeAtIndex (const GGS_uint & inIndex,
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) const {
@@ -8937,10 +8937,10 @@ class CollectionElementPtr_baseline_5F_instructionList : public CollectionElemen
                                                             COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_baseline_5F_instructionList (const GGS_baseline_5F_instructionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -9348,7 +9348,7 @@ void GGS_baseline_5F_instructionList::setter_setMInstructionAtIndex (GGS_baselin
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_baseline_5F_instruction GGS_baseline_5F_instructionList::getter_mInstructionAtIndex (const GGS_uint & inIndex,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const {
@@ -13471,10 +13471,10 @@ class CollectionElementPtr_baseline_5F_partList : public CollectionElementPtr {
                                                      COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_baseline_5F_partList (const GGS_baseline_5F_partList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -13932,7 +13932,7 @@ void GGS_baseline_5F_partList::setter_setMConditionAtIndex (GGS_baseline_5F_cond
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_baseline_5F_conditionExpression GGS_baseline_5F_partList::getter_mConditionAtIndex (const GGS_uint & inIndex,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const {
@@ -13971,7 +13971,7 @@ void GGS_baseline_5F_partList::setter_setMInstructionListAtIndex (GGS_baseline_5
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_baseline_5F_instructionList GGS_baseline_5F_partList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                           Compiler * inCompiler
                                                                                           COMMA_LOCATION_ARGS) const {
@@ -14010,7 +14010,7 @@ void GGS_baseline_5F_partList::setter_setMEndOfPartLocationAtIndex (GGS_location
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_baseline_5F_partList::getter_mEndOfPartLocationAtIndex (const GGS_uint & inIndex,
                                                                          Compiler * inCompiler
                                                                          COMMA_LOCATION_ARGS) const {
@@ -14486,10 +14486,10 @@ class CollectionElementPtr_baseline_5F_routineDefinitionList : public Collection
                                                                   COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_baseline_5F_routineDefinitionList (const GGS_baseline_5F_routineDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -14997,7 +14997,7 @@ void GGS_baseline_5F_routineDefinitionList::setter_setMRoutineNameAtIndex (GGS_l
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_baseline_5F_routineDefinitionList::getter_mRoutineNameAtIndex (const GGS_uint & inIndex,
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) const {
@@ -15036,7 +15036,7 @@ void GGS_baseline_5F_routineDefinitionList::setter_setMPageAtIndex (GGS_luint in
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_baseline_5F_routineDefinitionList::getter_mPageAtIndex (const GGS_uint & inIndex,
                                                                       Compiler * inCompiler
                                                                       COMMA_LOCATION_ARGS) const {
@@ -15075,7 +15075,7 @@ void GGS_baseline_5F_routineDefinitionList::setter_setMIsNoReturnAtIndex (GGS_bo
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_baseline_5F_routineDefinitionList::getter_mIsNoReturnAtIndex (const GGS_uint & inIndex,
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) const {
@@ -15114,7 +15114,7 @@ void GGS_baseline_5F_routineDefinitionList::setter_setMInstructionListAtIndex (G
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_baseline_5F_instructionList GGS_baseline_5F_routineDefinitionList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                                        Compiler * inCompiler
                                                                                                        COMMA_LOCATION_ARGS) const {
@@ -15153,7 +15153,7 @@ void GGS_baseline_5F_routineDefinitionList::setter_setMEndOfRoutineLocationAtInd
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_baseline_5F_routineDefinitionList::getter_mEndOfRoutineLocationAtIndex (const GGS_uint & inIndex,
                                                                                          Compiler * inCompiler
                                                                                          COMMA_LOCATION_ARGS) const {
@@ -15310,7 +15310,7 @@ GGS_baseline_5F_routineDefinitionList GGS_baseline_5F_routineDefinitionList::ext
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@midrange_intermediate_instruction instructionLength'
+//Abstract extension func '@midrange_intermediate_instruction instructionLength'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -16094,7 +16094,7 @@ GGS_midrange_5F_conditionExpression GGS_midrange_5F_conditionExpression::extract
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_conditionExpression computeInstructionCountForCondition'
+//Abstract extension proc '@midrange_conditionExpression computeInstructionCountForCondition'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -16105,7 +16105,7 @@ void callExtensionMethod_computeInstructionCountForCondition (cPtr_midrange_5F_c
                                                               COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
   out_outInstructionCount.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_midrange_5F_conditionExpression) ;
     inObject->method_computeInstructionCountForCondition (constin_inComplementaryBranch, out_outInstructionCount, inCompiler COMMA_THERE) ;
@@ -16113,7 +16113,7 @@ void callExtensionMethod_computeInstructionCountForCondition (cPtr_midrange_5F_c
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@pic18PiccoloInstruction addUsedRoutines'
+//Abstract extension proc '@pic18PiccoloInstruction addUsedRoutines'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -16123,7 +16123,7 @@ void callExtensionMethod_addUsedRoutines (cPtr_pic_31__38_PiccoloInstruction * i
                                           Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_pic_31__38_PiccoloInstruction) ;
     inObject->method_addUsedRoutines (constin_inMacroMap, io_ioUsedRoutines, inCompiler COMMA_THERE) ;

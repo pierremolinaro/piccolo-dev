@@ -53,14 +53,14 @@ map @midrange_symbolTable {
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-method @midrange_intermediate_instruction enterLabelAtAddress
+proc @midrange_intermediate_instruction enterLabelAtAddress
   ?!@midrange_symbolTable unused ioRoutineSymbolTable
   ?!@uint unused ioAddress {
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_pseudo_LABEL enterLabelAtAddress
+override proc @midrange_intermediate_pseudo_LABEL enterLabelAtAddress
   ?!@midrange_symbolTable ioRoutineSymbolTable
   ?!@uint ioAddress {
   [!?ioRoutineSymbolTable insertKey !self.mLabel !ioAddress]
@@ -69,7 +69,7 @@ override method @midrange_intermediate_pseudo_LABEL enterLabelAtAddress
 //----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_pseudo_ORG enterLabelAtAddress
+proc @midrange_intermediate_pseudo_ORG enterLabelAtAddress
   ?!@midrange_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress {
   ioAddress = self.mOrigin
@@ -78,7 +78,7 @@ method @midrange_intermediate_pseudo_ORG enterLabelAtAddress
 //----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_actualInstruction enterLabelAtAddress
+proc @midrange_intermediate_actualInstruction enterLabelAtAddress
   ?!@midrange_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioAddress {
   ioAddress = ioAddress  + self.instructionLength
@@ -90,7 +90,7 @@ method @midrange_intermediate_actualInstruction enterLabelAtAddress
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-abstract method @midrange_intermediate_instruction generateBinaryCodeAtAddress
+abstract proc @midrange_intermediate_instruction generateBinaryCodeAtAddress
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?let @uint inTotalBankCount
@@ -100,7 +100,7 @@ abstract method @midrange_intermediate_instruction generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_NULL generateBinaryCodeAtAddress
+override proc @midrange_intermediate_NULL generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -112,7 +112,7 @@ override method @midrange_intermediate_NULL generateBinaryCodeAtAddress
 //----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_pseudo_ORG generateBinaryCodeAtAddress
+proc @midrange_intermediate_pseudo_ORG generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -126,7 +126,7 @@ method @midrange_intermediate_pseudo_ORG generateBinaryCodeAtAddress
 
 //----------------------------------------------------*
 
-getter @midrange_instruction_FD_base_code basecode -> @uint outBaseCode {
+func @midrange_instruction_FD_base_code basecode -> @uint outBaseCode {
   switch self
   case ADDWF : outBaseCode = 0x0700
   case ANDWF : outBaseCode = 0x0500
@@ -147,7 +147,7 @@ getter @midrange_instruction_FD_base_code basecode -> @uint outBaseCode {
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_FD generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_FD generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -165,7 +165,7 @@ override method @midrange_intermediate_instruction_FD generateBinaryCodeAtAddres
 
 //----------------------------------------------------*
 
-getter @midrange_F_instruction_base_code baseCode -> @uint outBaseCode {
+func @midrange_F_instruction_base_code baseCode -> @uint outBaseCode {
   switch self
   case CLRF   : outBaseCode = 0x0180
   case MOVWF  : outBaseCode = 0x0080
@@ -174,7 +174,7 @@ getter @midrange_F_instruction_base_code baseCode -> @uint outBaseCode {
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_F generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_F generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -189,7 +189,7 @@ override method @midrange_intermediate_instruction_F generateBinaryCodeAtAddress
 
 //----------------------------------------------------*
 
-getter @midrange_bit_oriented_op baseCode -> @uint outBaseCode {
+func @midrange_bit_oriented_op baseCode -> @uint outBaseCode {
   switch self
   case BCF : outBaseCode = 0x1000
   case BSF : outBaseCode = 0x1400
@@ -199,7 +199,7 @@ getter @midrange_bit_oriented_op baseCode -> @uint outBaseCode {
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_FB generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_FB generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -215,7 +215,7 @@ override method @midrange_intermediate_instruction_FB generateBinaryCodeAtAddres
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_BitTestSkip generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_BitTestSkip generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -286,7 +286,7 @@ proc emit_midrange_CALLinstruction
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
+override proc @midrange_intermediate_JUMP generateBinaryCodeAtAddress
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?let @uint inTotalBankCount
@@ -352,7 +352,7 @@ override method @midrange_intermediate_JUMP generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_GOTO generateBinaryCodeAtAddress
+override proc @midrange_intermediate_GOTO generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -367,7 +367,7 @@ override method @midrange_intermediate_GOTO generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
+override proc @midrange_intermediate_JSR generateBinaryCodeAtAddress
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?let @uint inTotalBankCount
@@ -466,7 +466,7 @@ override method @midrange_intermediate_JSR generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_CALL generateBinaryCodeAtAddress
+override proc @midrange_intermediate_CALL generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -481,7 +481,7 @@ override method @midrange_intermediate_CALL generateBinaryCodeAtAddress
 
 //----------------------------------------------------*
 
-override method @midrange_intermediate_incDecRegisterInCondition generateBinaryCodeAtAddress
+override proc @midrange_intermediate_incDecRegisterInCondition generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -512,7 +512,7 @@ override method @midrange_intermediate_incDecRegisterInCondition generateBinaryC
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_CLRWDT generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_CLRWDT generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -524,7 +524,7 @@ override method @midrange_intermediate_instruction_CLRWDT generateBinaryCodeAtAd
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_CLRW generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_CLRW generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -536,7 +536,7 @@ override method @midrange_intermediate_instruction_CLRW generateBinaryCodeAtAddr
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_NOP generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_NOP generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -548,7 +548,7 @@ override method @midrange_intermediate_instruction_NOP generateBinaryCodeAtAddre
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_RETURN generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_RETURN generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -560,7 +560,7 @@ override method @midrange_intermediate_instruction_RETURN generateBinaryCodeAtAd
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_RETFIE generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_RETFIE generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -572,7 +572,7 @@ override method @midrange_intermediate_instruction_RETFIE generateBinaryCodeAtAd
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_SLEEP generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_SLEEP generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -584,7 +584,7 @@ override method @midrange_intermediate_instruction_SLEEP generateBinaryCodeAtAdd
 
 //----------------------------------------------------*
 
-getter @midrange_literal_instruction_opcode baseCode -> @uint outBaseCode {
+func @midrange_literal_instruction_opcode baseCode -> @uint outBaseCode {
   switch self
   case ADDLW : outBaseCode = 0x3E00
   case ANDLW : outBaseCode = 0x3900
@@ -598,7 +598,7 @@ getter @midrange_literal_instruction_opcode baseCode -> @uint outBaseCode {
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_literalOperation generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_literalOperation generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -613,7 +613,7 @@ override method @midrange_intermediate_instruction_literalOperation generateBina
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
+override proc @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount
@@ -631,7 +631,7 @@ override method @midrange_intermediate_pseudo_LABEL generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_instruction_MNOP generateBinaryCodeAtAddress
+override proc @midrange_intermediate_instruction_MNOP generateBinaryCodeAtAddress
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?let @uint unused inTotalBankCount

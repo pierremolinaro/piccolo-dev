@@ -10,7 +10,7 @@
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@registerExpression resolveBaselineAccess'
+//Extension proc '@registerExpression resolveBaselineAccess'
 //
 //--------------------------------------------------------------------------------------------------
 

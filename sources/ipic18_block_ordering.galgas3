@@ -12,14 +12,14 @@ graph @blockInvocationGraph (@stringlist) {
 
 //----------------------------------------------------------------------------*
 
-method @ipic18SequentialInstruction buildInstructionInvocationGraph
+proc @ipic18SequentialInstruction buildInstructionInvocationGraph
   ?let @lstring unused inBlockLabel
   ?!@string unused ioGraphVizString {
 }
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_JSR buildInstructionInvocationGraph
+override proc @ipic18_intermediate_JSR buildInstructionInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString {
   ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"" + self.mTargetLabel + "\" [color=red] ;\n"
@@ -27,7 +27,7 @@ override method @ipic18_intermediate_JSR buildInstructionInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_computed_rcall buildInstructionInvocationGraph
+override proc @ipic18_intermediate_instruction_computed_rcall buildInstructionInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString {
   ioGraphVizString += "  \"" + inBlockLabel + "\" -> \"_computed_goto_4\" [color=red] ;\n"
@@ -41,7 +41,7 @@ override method @ipic18_intermediate_instruction_computed_rcall buildInstruction
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18_condition_skip_instruction buildInstructionInvocationGraph
+override proc @ipic18_condition_skip_instruction buildInstructionInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString {
   [self.mEmbeddedInstruction buildInstructionInvocationGraph
@@ -56,14 +56,14 @@ override method @ipic18_condition_skip_instruction buildInstructionInvocationGra
 
 //----------------------------------------------------------------------------*
 
-abstract method @ipic18AbstractBlockTerminator buildTerminatorInvocationGraph
+abstract proc @ipic18AbstractBlockTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool inDottedArrow
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ReturnTerminator buildTerminatorInvocationGraph
+override proc @ipic18ReturnTerminator buildTerminatorInvocationGraph
   ?let @lstring unused inBlockLabel
   ?!@string unused ioGraphVizString
   ?let @bool unused inDottedArrow {
@@ -71,7 +71,7 @@ override method @ipic18ReturnTerminator buildTerminatorInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18RetlwTerminator buildTerminatorInvocationGraph
+override proc @ipic18RetlwTerminator buildTerminatorInvocationGraph
   ?let @lstring unused inBlockLabel
   ?!@string unused ioGraphVizString
   ?let @bool unused inDottedArrow {
@@ -79,7 +79,7 @@ override method @ipic18RetlwTerminator buildTerminatorInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18RetfieTerminator buildTerminatorInvocationGraph
+override proc @ipic18RetfieTerminator buildTerminatorInvocationGraph
   ?let @lstring unused inBlockLabel
   ?!@string unused ioGraphVizString
   ?let @bool unused inDottedArrow {
@@ -87,7 +87,7 @@ override method @ipic18RetfieTerminator buildTerminatorInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedGotoTerminator buildTerminatorInvocationGraph
+override proc @ipic18ComputedGotoTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool unused inDottedArrow {
@@ -96,7 +96,7 @@ override method @ipic18ComputedGotoTerminator buildTerminatorInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedRETLWTerminator buildTerminatorInvocationGraph
+override proc @ipic18ComputedRETLWTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool unused inDottedArrow {
@@ -105,7 +105,7 @@ override method @ipic18ComputedRETLWTerminator buildTerminatorInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedBraTerminator buildTerminatorInvocationGraph
+override proc @ipic18ComputedBraTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool unused inDottedArrow {
@@ -114,7 +114,7 @@ override method @ipic18ComputedBraTerminator buildTerminatorInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18AbstractConditionTerminator buildTerminatorInvocationGraph
+override proc @ipic18AbstractConditionTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool unused inDottedArrow {
@@ -124,7 +124,7 @@ override method @ipic18AbstractConditionTerminator buildTerminatorInvocationGrap
 
 //----------------------------------------------------------------------------*
 
-override method @pic18RegisterComparisonTerminator buildTerminatorInvocationGraph
+override proc @pic18RegisterComparisonTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool unused inDottedArrow {
@@ -134,7 +134,7 @@ override method @pic18RegisterComparisonTerminator buildTerminatorInvocationGrap
 
 //----------------------------------------------------------------------------*
 
-override method @pic18TestRegisterTerminator buildTerminatorInvocationGraph
+override proc @pic18TestRegisterTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool unused inDottedArrow {
@@ -144,7 +144,7 @@ override method @pic18TestRegisterTerminator buildTerminatorInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator buildTerminatorInvocationGraph
+override proc @ipic18JumpTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool inDottedArrow {
@@ -157,7 +157,7 @@ override method @ipic18JumpTerminator buildTerminatorInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
+override proc @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
   ?let @lstring inBlockLabel
   ?!@string ioGraphVizString
   ?let @bool inDottedArrow {
@@ -179,13 +179,13 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorInvocationGraph
 
 //----------------------------------------------------------------------------*
 
-abstract getter @ipic18AbstractBlockTerminator needToInsertJumpInstruction
+abstract func @ipic18AbstractBlockTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ReturnTerminator needToInsertJumpInstruction
+override func @ipic18ReturnTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
   ->@bool outResult {
   outResult = false
@@ -193,7 +193,7 @@ override getter @ipic18ReturnTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18RetlwTerminator needToInsertJumpInstruction
+override func @ipic18RetlwTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
   ->@bool outResult {
   outResult = false
@@ -201,7 +201,7 @@ override getter @ipic18RetlwTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18RetfieTerminator needToInsertJumpInstruction
+override func @ipic18RetfieTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
   ->@bool outResult {
   outResult = false
@@ -209,7 +209,7 @@ override getter @ipic18RetfieTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18JumpTerminator needToInsertJumpInstruction
+override func @ipic18JumpTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool outResult {
   outResult = self.mLabel.string != inNextBlockLabel
@@ -217,7 +217,7 @@ override getter @ipic18JumpTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedGotoTerminator needToInsertJumpInstruction
+override func @ipic18ComputedGotoTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
   ->@bool outResult {
   outResult = false
@@ -225,7 +225,7 @@ override getter @ipic18ComputedGotoTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedRETLWTerminator needToInsertJumpInstruction
+override func @ipic18ComputedRETLWTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
   ->@bool outResult {
   outResult = false
@@ -233,7 +233,7 @@ override getter @ipic18ComputedRETLWTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ConditionalJumpTerminator needToInsertJumpInstruction
+override func @ipic18ConditionalJumpTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
   ->@bool outResult {
   outResult = false
@@ -241,7 +241,7 @@ override getter @ipic18ConditionalJumpTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedBraTerminator needToInsertJumpInstruction
+override func @ipic18ComputedBraTerminator needToInsertJumpInstruction
   ?let @string unused inNextBlockLabel
   ->@bool outResult {
   outResult = false
@@ -249,7 +249,7 @@ override getter @ipic18ComputedBraTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18AbstractConditionTerminator needToInsertJumpInstruction
+override func @ipic18AbstractConditionTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool outResult {
   outResult =
@@ -260,7 +260,7 @@ override getter @ipic18AbstractConditionTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18RegisterComparisonTerminator needToInsertJumpInstruction
+override func @pic18RegisterComparisonTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool outResult {
   outResult =
@@ -269,7 +269,7 @@ override getter @pic18RegisterComparisonTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18TestRegisterTerminator needToInsertJumpInstruction
+override func @pic18TestRegisterTerminator needToInsertJumpInstruction
   ?let @string inNextBlockLabel
   ->@bool outResult {
   outResult =
@@ -282,14 +282,14 @@ override getter @pic18TestRegisterTerminator needToInsertJumpInstruction
 
 //----------------------------------------------------------------------------*
 
-method @ipic18AbstractBlockTerminator buildTerminatorOrderedGraph
+proc @ipic18AbstractBlockTerminator buildTerminatorOrderedGraph
   ?let @lstring unused inBlockLabel
   ?!@blockInvocationGraph unused ioGraph {
 }
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator buildTerminatorOrderedGraph
+override proc @ipic18JumpTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
   [!?ioGraph addEdge !from: inBlockLabel !to: self.mLabel]
@@ -297,7 +297,7 @@ override method @ipic18JumpTerminator buildTerminatorOrderedGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
+override proc @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
   [!?ioGraph addEdge !from: inBlockLabel !to: self.mTargetLabelWhenTrue]
@@ -306,7 +306,7 @@ override method @ipic18ConditionalJumpTerminator buildTerminatorOrderedGraph
 
 //----------------------------------------------------------------------------*
 
-override method @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
+override proc @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
   [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
@@ -317,7 +317,7 @@ override method @pic18RegisterComparisonTerminator buildTerminatorOrderedGraph
 
 //----------------------------------------------------------------------------*
 
-override method @pic18TestRegisterTerminator buildTerminatorOrderedGraph
+override proc @pic18TestRegisterTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
   [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
@@ -328,7 +328,7 @@ override method @pic18TestRegisterTerminator buildTerminatorOrderedGraph
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
+override proc @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
   [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph
@@ -343,7 +343,7 @@ override method @ipic18IncDecRegisterTerminator buildTerminatorOrderedGraph
 
 //----------------------------------------------------------------------------*
 
-override method @pic18BitTestTerminator buildTerminatorOrderedGraph
+override proc @pic18BitTestTerminator buildTerminatorOrderedGraph
   ?let @lstring inBlockLabel
   ?!@blockInvocationGraph ioGraph {
   [self.mSingleInstructionTerminatorIfConditionTrue buildTerminatorOrderedGraph

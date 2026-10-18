@@ -4,14 +4,14 @@
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-abstract method @baseline_intermediate_instruction generateAssemblyCode
+abstract proc @baseline_intermediate_instruction generateAssemblyCode
   ?let @baseline_intermediate_registerExpression inSTATUSregister
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_NULL generateAssemblyCode
+override proc @baseline_intermediate_NULL generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList unused ioAssemblyInstructionList {
@@ -19,7 +19,7 @@ override method @baseline_intermediate_NULL generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_PAGE generateAssemblyCode
+override proc @baseline_intermediate_pseudo_PAGE generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -28,7 +28,7 @@ override method @baseline_intermediate_pseudo_PAGE generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_BEGIN_ROUTINE generateAssemblyCode
+override proc @baseline_intermediate_pseudo_BEGIN_ROUTINE generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -37,7 +37,7 @@ override method @baseline_intermediate_pseudo_BEGIN_ROUTINE generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_END_ROUTINE generateAssemblyCode
+override proc @baseline_intermediate_pseudo_END_ROUTINE generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -46,7 +46,7 @@ override method @baseline_intermediate_pseudo_END_ROUTINE generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_instruction_FD generateAssemblyCode
+override proc @baseline_intermediate_instruction_FD generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -59,7 +59,7 @@ override method @baseline_intermediate_instruction_FD generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_instruction_F generateAssemblyCode
+override proc @baseline_intermediate_instruction_F generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -71,7 +71,7 @@ override method @baseline_intermediate_instruction_F generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_instruction_FB generateAssemblyCode
+override proc @baseline_intermediate_instruction_FB generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -84,7 +84,7 @@ override method @baseline_intermediate_instruction_FB generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_instruction_BitTestSkip generateAssemblyCode
+override proc @baseline_intermediate_instruction_BitTestSkip generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -97,7 +97,7 @@ override method @baseline_intermediate_instruction_BitTestSkip generateAssemblyC
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_WO_OPERAND generateAssemblyCode
+override proc @baseline_intermediate_WO_OPERAND generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -108,7 +108,7 @@ override method @baseline_intermediate_WO_OPERAND generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_TRIS generateAssemblyCode
+override proc @baseline_intermediate_TRIS generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -120,7 +120,7 @@ override method @baseline_intermediate_TRIS generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_instruction_literalOperation generateAssemblyCode
+override proc @baseline_intermediate_instruction_literalOperation generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -132,7 +132,7 @@ override method @baseline_intermediate_instruction_literalOperation generateAsse
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_pseudo_LABEL generateAssemblyCode
+override proc @baseline_intermediate_pseudo_LABEL generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -142,7 +142,7 @@ override method @baseline_intermediate_pseudo_LABEL generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_instruction_MNOP generateAssemblyCode
+override proc @baseline_intermediate_instruction_MNOP generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -162,7 +162,7 @@ override method @baseline_intermediate_instruction_MNOP generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_GOTO generateAssemblyCode
+override proc @baseline_intermediate_GOTO generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -173,7 +173,7 @@ override method @baseline_intermediate_GOTO generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_JUMP generateAssemblyCode
+override proc @baseline_intermediate_JUMP generateAssemblyCode
   ?let @baseline_intermediate_registerExpression inSTATUSregister
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -185,7 +185,7 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
     if (pageChangeFlags & 1) != 0 then
       let @uint bitIndex
       if [inStatusRegisterBitSliceTable hasKey !"PA"] then
-        [inStatusRegisterBitSliceTable searchKey 
+        [inStatusRegisterBitSliceTable searchKey
           !@lstring { !"PA" !self.mInstructionLocation}
           ?let @uint sliceIndex
           ?let @uint sliceSize
@@ -195,7 +195,7 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
         end
         bitIndex = sliceIndex + idx
       elsif [inStatusRegisterBitSliceTable hasKey !"PA"+ idx] then
-        [inStatusRegisterBitSliceTable searchKey 
+        [inStatusRegisterBitSliceTable searchKey
           !@lstring { !"PA"+ idx !self.mInstructionLocation}
           ?let @uint sliceIndex
           ?let @uint sliceSize
@@ -224,7 +224,7 @@ override method @baseline_intermediate_JUMP generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_CALL generateAssemblyCode
+override proc @baseline_intermediate_CALL generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -235,7 +235,7 @@ override method @baseline_intermediate_CALL generateAssemblyCode
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_intermediate_JSR generateAssemblyCode
+override proc @baseline_intermediate_JSR generateAssemblyCode
   ?let @baseline_intermediate_registerExpression inSTATUSregister
   ?let @bitSliceTable inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {
@@ -248,7 +248,7 @@ override method @baseline_intermediate_JSR generateAssemblyCode
     if (pageChangeFlags & 1) != 0 then
       let @uint bitIndex
       if [inStatusRegisterBitSliceTable hasKey !"PA"] then
-        [inStatusRegisterBitSliceTable searchKey 
+        [inStatusRegisterBitSliceTable searchKey
           !@lstring { !"PA" !self.mInstructionLocation}
           ?let @uint sliceIndex
           ?let @uint sliceSize
@@ -258,7 +258,7 @@ override method @baseline_intermediate_JSR generateAssemblyCode
         end
         bitIndex = sliceIndex + idx
       elsif [inStatusRegisterBitSliceTable hasKey !"PA"+ idx] then
-        [inStatusRegisterBitSliceTable searchKey 
+        [inStatusRegisterBitSliceTable searchKey
           !@lstring { !"PA"+ idx !self.mInstructionLocation}
           ?let @uint sliceIndex
           ?let @uint sliceSize
@@ -295,7 +295,7 @@ override method @baseline_intermediate_JSR generateAssemblyCode
 
 //----------------------------------------------------*
 
-override method @baseline_intermediate_incDecRegisterInCondition generateAssemblyCode
+override proc @baseline_intermediate_incDecRegisterInCondition generateAssemblyCode
   ?let @baseline_intermediate_registerExpression unused inSTATUSregister
   ?let @bitSliceTable unused inStatusRegisterBitSliceTable
   ?!@baseline_assembly_instructionList ioAssemblyInstructionList {

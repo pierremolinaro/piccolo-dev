@@ -2,48 +2,48 @@
 //           INSTRUCTIONS USES GOTO OR CALL                                   *
 //----------------------------------------------------------------------------*
 
-method @midrange_instruction instructionUsesGOTOorCALL
+proc @midrange_instruction instructionUsesGOTOorCALL
   ?!@bool unused ioUsesGOTOorCALL {
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_FOREVER instructionUsesGOTOorCALL
+override proc @midrange_instruction_FOREVER instructionUsesGOTOorCALL
   ?!@bool ioUsesGOTOorCALL {
   ioUsesGOTOorCALL = true
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_structured_if instructionUsesGOTOorCALL
+override proc @midrange_instruction_structured_if instructionUsesGOTOorCALL
   ?!@bool ioUsesGOTOorCALL {
   ioUsesGOTOorCALL = true
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_CALL instructionUsesGOTOorCALL
+override proc @midrange_instruction_CALL instructionUsesGOTOorCALL
   ?!@bool ioUsesGOTOorCALL {
   ioUsesGOTOorCALL = true
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_JSR instructionUsesGOTOorCALL
+override proc @midrange_instruction_JSR instructionUsesGOTOorCALL
   ?!@bool ioUsesGOTOorCALL {
   ioUsesGOTOorCALL = true
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_GOTO instructionUsesGOTOorCALL
+override proc @midrange_instruction_GOTO instructionUsesGOTOorCALL
   ?!@bool ioUsesGOTOorCALL {
   ioUsesGOTOorCALL = true
 }
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_JUMP instructionUsesGOTOorCALL
+override proc @midrange_instruction_JUMP instructionUsesGOTOorCALL
   ?!@bool ioUsesGOTOorCALL {
   ioUsesGOTOorCALL = true
 }
@@ -52,7 +52,7 @@ override method @midrange_instruction_JUMP instructionUsesGOTOorCALL
 //           DECOMPOSE STRUCTURED INSTRUCTIONS        *
 //----------------------------------------------------------------------------*
 
-abstract method @midrange_instruction build_midrange_ipic_instructionList
+abstract proc @midrange_instruction build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -107,7 +107,7 @@ proc handleMidrangeInstructionList
 
 ///----------------------------------------------------------------------------*
 
-override method @midrange_instruction_nobanksel build_midrange_ipic_instructionList
+override proc @midrange_instruction_nobanksel build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -129,7 +129,7 @@ override method @midrange_instruction_nobanksel build_midrange_ipic_instructionL
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_savebank build_midrange_ipic_instructionList
+override proc @midrange_instruction_savebank build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -215,7 +215,7 @@ override method @midrange_instruction_savebank build_midrange_ipic_instructionLi
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_banksel build_midrange_ipic_instructionList
+override proc @midrange_instruction_banksel build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -312,7 +312,7 @@ override method @midrange_instruction_banksel build_midrange_ipic_instructionLis
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_banksel_register build_midrange_ipic_instructionList
+override proc @midrange_instruction_banksel_register build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -425,7 +425,7 @@ override method @midrange_instruction_banksel_register build_midrange_ipic_instr
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_FD build_midrange_ipic_instructionList
+override proc @midrange_instruction_FD build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -457,7 +457,7 @@ override method @midrange_instruction_FD build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_F build_midrange_ipic_instructionList
+override proc @midrange_instruction_F build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -489,7 +489,7 @@ override method @midrange_instruction_F build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_FB build_midrange_ipic_instructionList
+override proc @midrange_instruction_FB build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -529,7 +529,7 @@ override method @midrange_instruction_FB build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_JSR build_midrange_ipic_instructionList
+override proc @midrange_instruction_JSR build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -570,7 +570,7 @@ override method @midrange_instruction_JSR build_midrange_ipic_instructionList
 
 //----------------------------------------------------*
 
-override method @midrangeInstruction_checkbank build_midrange_ipic_instructionList
+override proc @midrangeInstruction_checkbank build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -596,7 +596,7 @@ override method @midrangeInstruction_checkbank build_midrange_ipic_instructionLi
 
 //----------------------------------------------------*
 
-override method @midrangeInstruction_checknobank build_midrange_ipic_instructionList
+override proc @midrangeInstruction_checknobank build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -618,7 +618,7 @@ override method @midrangeInstruction_checknobank build_midrange_ipic_instruction
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_CALL build_midrange_ipic_instructionList
+override proc @midrange_instruction_CALL build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -657,7 +657,7 @@ override method @midrange_instruction_CALL build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_JUMP build_midrange_ipic_instructionList
+override proc @midrange_instruction_JUMP build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -696,7 +696,7 @@ override method @midrange_instruction_JUMP build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_GOTO build_midrange_ipic_instructionList
+override proc @midrange_instruction_GOTO build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -733,7 +733,7 @@ override method @midrange_instruction_GOTO build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_CLRWDT build_midrange_ipic_instructionList
+override proc @midrange_instruction_CLRWDT build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -752,7 +752,7 @@ override method @midrange_instruction_CLRWDT build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_CLRW build_midrange_ipic_instructionList
+override proc @midrange_instruction_CLRW build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -771,7 +771,7 @@ override method @midrange_instruction_CLRW build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_NOP build_midrange_ipic_instructionList
+override proc @midrange_instruction_NOP build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -790,7 +790,7 @@ override method @midrange_instruction_NOP build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_SLEEP build_midrange_ipic_instructionList
+override proc @midrange_instruction_SLEEP build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -809,7 +809,7 @@ override method @midrange_instruction_SLEEP build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_literalOperation build_midrange_ipic_instructionList
+override proc @midrange_instruction_literalOperation build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -836,7 +836,7 @@ override method @midrange_instruction_literalOperation build_midrange_ipic_instr
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_MNOP build_midrange_ipic_instructionList
+override proc @midrange_instruction_MNOP build_midrange_ipic_instructionList
   ?let @routineMap unused inRoutineMap
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
@@ -861,7 +861,7 @@ override method @midrange_instruction_MNOP build_midrange_ipic_instructionList
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_FOREVER build_midrange_ipic_instructionList
+override proc @midrange_instruction_FOREVER build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -914,7 +914,7 @@ override method @midrange_instruction_FOREVER build_midrange_ipic_instructionLis
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instructionList
+override proc @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -987,7 +987,7 @@ override method @midrange_instruction_STATIC_REPEAT build_midrange_ipic_instruct
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_IF_BitTest build_midrange_ipic_instructionList
+override proc @midrange_instruction_IF_BitTest build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -1042,7 +1042,7 @@ override method @midrange_instruction_IF_BitTest build_midrange_ipic_instruction
 
 //----------------------------------------------------------------------------*
 
-abstract method @midrange_conditionExpression buildIPICinstructionForCondition
+abstract proc @midrange_conditionExpression buildIPICinstructionForCondition
   ?let @uint inTotalBankCount
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
@@ -1057,13 +1057,13 @@ abstract method @midrange_conditionExpression buildIPICinstructionForCondition
 
 //----------------------------------------------------------------------------*
 
-abstract method @midrange_conditionExpression computeInstructionCountForCondition
+abstract proc @midrange_conditionExpression computeInstructionCountForCondition
   ?let @bool inComplementaryBranch
   !@uint outInstructionCount
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_incDecRegisterInCondition buildIPICinstructionForCondition
+override proc @midrange_incDecRegisterInCondition buildIPICinstructionForCondition
   ?let @uint inTotalBankCount
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
@@ -1097,7 +1097,7 @@ override method @midrange_incDecRegisterInCondition buildIPICinstructionForCondi
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_incDecRegisterInCondition computeInstructionCountForCondition
+override proc @midrange_incDecRegisterInCondition computeInstructionCountForCondition
   ?let @bool inComplementaryBranch
   !@uint outInstructionCount {
   if self.mBranchIfZero ^ inComplementaryBranch then
@@ -1109,7 +1109,7 @@ override method @midrange_incDecRegisterInCondition computeInstructionCountForCo
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_negateCondition buildIPICinstructionForCondition
+override proc @midrange_negateCondition buildIPICinstructionForCondition
   ?let @uint inTotalBankCount
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
@@ -1138,7 +1138,7 @@ override method @midrange_negateCondition buildIPICinstructionForCondition
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_negateCondition computeInstructionCountForCondition
+override proc @midrange_negateCondition computeInstructionCountForCondition
   ?let @bool inComplementaryBranch
   !@uint outInstructionCount {
   [self.mCondition computeInstructionCountForCondition
@@ -1149,7 +1149,7 @@ override method @midrange_negateCondition computeInstructionCountForCondition
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_andCondition buildIPICinstructionForCondition
+override proc @midrange_andCondition buildIPICinstructionForCondition
   ?let @uint inTotalBankCount
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
@@ -1222,7 +1222,7 @@ override method @midrange_andCondition buildIPICinstructionForCondition
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_andCondition computeInstructionCountForCondition
+override proc @midrange_andCondition computeInstructionCountForCondition
   ?let @bool inComplementaryBranch
   !@uint outInstructionCount {
   [self.mLeftExpression computeInstructionCountForCondition
@@ -1238,7 +1238,7 @@ override method @midrange_andCondition computeInstructionCountForCondition
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_bitTest_in_structured_if_condition buildIPICinstructionForCondition
+override proc @midrange_bitTest_in_structured_if_condition buildIPICinstructionForCondition
   ?let @uint inTotalBankCount
   ?let @uint inCurrentBank
   ?let @registerTable inRegisterTable
@@ -1282,7 +1282,7 @@ override method @midrange_bitTest_in_structured_if_condition buildIPICinstructio
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_bitTest_in_structured_if_condition computeInstructionCountForCondition
+override proc @midrange_bitTest_in_structured_if_condition computeInstructionCountForCondition
   ?let @bool unused inComplementaryBranch
   !@uint outInstructionCount {
   outInstructionCount = 2
@@ -1290,7 +1290,7 @@ override method @midrange_bitTest_in_structured_if_condition computeInstructionC
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_structured_if build_midrange_ipic_instructionList
+override proc @midrange_instruction_structured_if build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -1455,7 +1455,7 @@ override method @midrange_instruction_structured_if build_midrange_ipic_instruct
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_do_while build_midrange_ipic_instructionList
+override proc @midrange_instruction_do_while build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
@@ -1550,7 +1550,7 @@ override method @midrange_instruction_do_while build_midrange_ipic_instructionLi
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_instruction_IF_IncDec build_midrange_ipic_instructionList
+override proc @midrange_instruction_IF_IncDec build_midrange_ipic_instructionList
   ?let @routineMap inRoutineMap
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap

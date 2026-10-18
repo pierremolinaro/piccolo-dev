@@ -22,7 +22,7 @@ extern proc get_C_ArrayHeader ?let @string inSourceName !@string outContents
 
 //----------------------------------------------------------------------------*
 
-getter @uint x4String ->@string outResult {
+func @uint x4String ->@string outResult {
   if self > 0xFFFF then
     outResult = "****"
   else
@@ -78,7 +78,7 @@ enum @routineKind %equatable {
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-abstract method @immediatExpression eval
+abstract proc @immediatExpression eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -86,7 +86,7 @@ abstract method @immediatExpression eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatInteger eval
+override proc @immediatInteger eval
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   !@sint64 outResult
@@ -97,7 +97,7 @@ override method @immediatInteger eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatRegister eval
+override proc @immediatRegister eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -131,7 +131,7 @@ override method @immediatRegister eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatAdd eval
+override proc @immediatAdd eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -143,7 +143,7 @@ override method @immediatAdd eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatSub eval
+override proc @immediatSub eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -155,7 +155,7 @@ override method @immediatSub eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatMul eval
+override proc @immediatMul eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -167,7 +167,7 @@ override method @immediatMul eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatDiv eval
+override proc @immediatDiv eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -179,7 +179,7 @@ override method @immediatDiv eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatMod eval
+override proc @immediatMod eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -191,7 +191,7 @@ override method @immediatMod eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatAnd eval
+override proc @immediatAnd eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -203,7 +203,7 @@ override method @immediatAnd eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatOr eval
+override proc @immediatOr eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -215,7 +215,7 @@ override method @immediatOr eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatXor eval
+override proc @immediatXor eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -227,7 +227,7 @@ override method @immediatXor eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatLeftShift eval
+override proc @immediatLeftShift eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -239,7 +239,7 @@ override method @immediatLeftShift eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatRightShift eval
+override proc @immediatRightShift eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -251,7 +251,7 @@ override method @immediatRightShift eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatEqualTest eval
+override proc @immediatEqualTest eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -267,7 +267,7 @@ override method @immediatEqualTest eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatNotEqualTest eval
+override proc @immediatNotEqualTest eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -283,7 +283,7 @@ override method @immediatNotEqualTest eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatGreaterOrEqualTest eval
+override proc @immediatGreaterOrEqualTest eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -299,7 +299,7 @@ override method @immediatGreaterOrEqualTest eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatLowerOrEqualTest eval
+override proc @immediatLowerOrEqualTest eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -315,7 +315,7 @@ override method @immediatLowerOrEqualTest eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatGreaterTest eval
+override proc @immediatGreaterTest eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -331,7 +331,7 @@ override method @immediatGreaterTest eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatLowerTest eval
+override proc @immediatLowerTest eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -347,7 +347,7 @@ override method @immediatLowerTest eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatNegate eval
+override proc @immediatNegate eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -358,7 +358,7 @@ override method @immediatNegate eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatComplement eval
+override proc @immediatComplement eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -369,7 +369,7 @@ override method @immediatComplement eval
 
 //----------------------------------------------------------------------------*
 
-override method @immediatSlice eval
+override proc @immediatSlice eval
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   !@sint64 outResult
@@ -403,7 +403,7 @@ override method @immediatSlice eval
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-abstract method @bitNumberExpression getBitNumber
+abstract proc @bitNumberExpression getBitNumber
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?!@stringset ioUsedRegisters
@@ -412,7 +412,7 @@ abstract method @bitNumberExpression getBitNumber
 
 //----------------------------------------------------------------------------*
 
-override method @bitNumberLiteralValue getBitNumber
+override proc @bitNumberLiteralValue getBitNumber
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?!@stringset unused ioUsedRegisters
@@ -427,7 +427,7 @@ override method @bitNumberLiteralValue getBitNumber
 
 //----------------------------------------------------------------------------*
 
-override method @bitNumberLabelValue getBitNumber
+override proc @bitNumberLabelValue getBitNumber
   ?let @registerTable unused inRegisterTable
   ?let @constantMap unused inConstantMap
   ?!@stringset unused ioUsedRegisters
@@ -444,7 +444,7 @@ override method @bitNumberLabelValue getBitNumber
 
 //----------------------------------------------------------------------------*
 
-override method @bitNumberLiteralExpression getBitNumber
+override proc @bitNumberLiteralExpression getBitNumber
   ?let @registerTable inRegisterTable
   ?let @constantMap inConstantMap
   ?!@stringset ioUsedRegisters

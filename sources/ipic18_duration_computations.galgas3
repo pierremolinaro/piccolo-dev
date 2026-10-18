@@ -10,7 +10,7 @@ map @blockDurationMap {
 //! terminatorMinMaxDuration
 //----------------------------------------------------------------------------------------------------------------------*
 
-abstract method @ipic18AbstractBlockTerminator terminatorMinMaxDuration
+abstract proc @ipic18AbstractBlockTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string inNextLabel
   !@uint outMin
@@ -18,7 +18,7 @@ abstract method @ipic18AbstractBlockTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18ReturnTerminator terminatorMinMaxDuration
+override proc @ipic18ReturnTerminator terminatorMinMaxDuration
   ?let @blockDurationMap unused inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
@@ -30,7 +30,7 @@ override method @ipic18ReturnTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18RetlwTerminator terminatorMinMaxDuration
+override proc @ipic18RetlwTerminator terminatorMinMaxDuration
   ?let @blockDurationMap unused inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
@@ -42,7 +42,7 @@ override method @ipic18RetlwTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18RetfieTerminator terminatorMinMaxDuration
+override proc @ipic18RetfieTerminator terminatorMinMaxDuration
   ?let @blockDurationMap unused inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
@@ -54,7 +54,7 @@ override method @ipic18RetfieTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator terminatorMinMaxDuration
+override proc @ipic18JumpTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string inNextLabel
   !@uint outMin
@@ -77,7 +77,7 @@ override method @ipic18JumpTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @pic18TestRegisterTerminator terminatorMinMaxDuration
+override proc @pic18TestRegisterTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string inNextLabel
   !@uint outMin
@@ -109,7 +109,7 @@ override method @pic18TestRegisterTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @pic18RegisterComparisonTerminator terminatorMinMaxDuration
+override proc @pic18RegisterComparisonTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string inNextLabel
   !@uint outMin
@@ -141,7 +141,7 @@ override method @pic18RegisterComparisonTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @pic18BitTestTerminator terminatorMinMaxDuration
+override proc @pic18BitTestTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string inNextLabel
   !@uint outMin
@@ -180,7 +180,7 @@ override method @pic18BitTestTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18ConditionalJumpTerminator terminatorMinMaxDuration
+override proc @ipic18ConditionalJumpTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string inNextLabel
   !@uint outMin
@@ -219,7 +219,7 @@ override method @ipic18ConditionalJumpTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18IncDecRegisterTerminator terminatorMinMaxDuration
+override proc @ipic18IncDecRegisterTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string inNextLabel
   !@uint outMin
@@ -258,7 +258,7 @@ override method @ipic18IncDecRegisterTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18ComputedGotoTerminator terminatorMinMaxDuration
+override proc @ipic18ComputedGotoTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
@@ -290,7 +290,7 @@ override method @ipic18ComputedGotoTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18ComputedRETLWTerminator terminatorMinMaxDuration
+override proc @ipic18ComputedRETLWTerminator terminatorMinMaxDuration
   ?let @blockDurationMap unused inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
@@ -305,7 +305,7 @@ override method @ipic18ComputedRETLWTerminator terminatorMinMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18ComputedBraTerminator terminatorMinMaxDuration
+override proc @ipic18ComputedBraTerminator terminatorMinMaxDuration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
@@ -339,7 +339,7 @@ override method @ipic18ComputedBraTerminator terminatorMinMaxDuration
 //! @ipic18SingleInstructionTerminator duration
 //----------------------------------------------------------------------------------------------------------------------*
 
-abstract method @ipic18SingleInstructionTerminator duration
+abstract proc @ipic18SingleInstructionTerminator duration
   ?let @blockDurationMap unused inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
@@ -347,19 +347,7 @@ abstract method @ipic18SingleInstructionTerminator duration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18ReturnTerminator duration
-  ?let @blockDurationMap unused inExploredBlockMap
-  ?let @string unused inNextLabel
-  !@uint outMin
-  !@uint outMax
-{
-  outMin = 2
-  outMax = 2
-}
-
-//----------------------------------------------------------------------------------------------------------------------*
-
-override method @ipic18RetlwTerminator duration
+override proc @ipic18ReturnTerminator duration
   ?let @blockDurationMap unused inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
@@ -371,7 +359,7 @@ override method @ipic18RetlwTerminator duration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18RetfieTerminator duration
+override proc @ipic18RetlwTerminator duration
   ?let @blockDurationMap unused inExploredBlockMap
   ?let @string unused inNextLabel
   !@uint outMin
@@ -383,7 +371,19 @@ override method @ipic18RetfieTerminator duration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator duration
+override proc @ipic18RetfieTerminator duration
+  ?let @blockDurationMap unused inExploredBlockMap
+  ?let @string unused inNextLabel
+  !@uint outMin
+  !@uint outMax
+{
+  outMin = 2
+  outMax = 2
+}
+
+//----------------------------------------------------------------------------------------------------------------------*
+
+override proc @ipic18JumpTerminator duration
   ?let @blockDurationMap inExploredBlockMap
   ?let @string inNextLabel
   !@uint outMin
@@ -407,7 +407,7 @@ override method @ipic18JumpTerminator duration
 //! minMaxDuration
 //----------------------------------------------------------------------------------------------------------------------*
 
-method @ipic18SequentialInstruction minMaxDuration
+proc @ipic18SequentialInstruction minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -418,7 +418,7 @@ method @ipic18SequentialInstruction minMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_TBLRD minMaxDuration
+override proc @ipic18_intermediate_instruction_TBLRD minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -429,7 +429,7 @@ override method @ipic18_intermediate_instruction_TBLRD minMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_TBLWT minMaxDuration
+override proc @ipic18_intermediate_instruction_TBLWT minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -440,7 +440,7 @@ override method @ipic18_intermediate_instruction_TBLWT minMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_MNOP minMaxDuration
+override proc @ipic18_intermediate_instruction_MNOP minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -451,7 +451,7 @@ override method @ipic18_intermediate_instruction_MNOP minMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_NOPBRA minMaxDuration
+override proc @ipic18_intermediate_instruction_NOPBRA minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -462,7 +462,7 @@ override method @ipic18_intermediate_instruction_NOPBRA minMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_LFSR minMaxDuration
+override proc @ipic18_intermediate_instruction_LFSR minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -473,7 +473,7 @@ override method @ipic18_intermediate_instruction_LFSR minMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_MOVFF minMaxDuration
+override proc @ipic18_intermediate_instruction_MOVFF minMaxDuration
   ?@blockDurationMap unused inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -484,7 +484,7 @@ override method @ipic18_intermediate_instruction_MOVFF minMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_JSR minMaxDuration
+override proc @ipic18_intermediate_JSR minMaxDuration
   ?@blockDurationMap inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -501,7 +501,7 @@ override method @ipic18_intermediate_JSR minMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18_condition_skip_instruction minMaxDuration
+override proc @ipic18_condition_skip_instruction minMaxDuration
   ?@blockDurationMap inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -515,7 +515,7 @@ override method @ipic18_condition_skip_instruction minMaxDuration
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_computed_rcall minMaxDuration
+override proc @ipic18_intermediate_instruction_computed_rcall minMaxDuration
   ?@blockDurationMap inExploredBlockMap
   !@uint outMin
   !@uint outMax
@@ -581,7 +581,7 @@ proc ipic18DurationComputations
 
 //----------------------------------------------------------------------------------------------------------------------*
 
-method @ipic18Block computeDuration
+proc @ipic18Block computeDuration
   ?!@blockDurationMap ioExploredBlockMap
   ?@string inNextLabel
   !@ipic18Block outNewBlock

@@ -80,48 +80,48 @@ class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_Abstrac
                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension getter isEqualToTerminator
+//--- Extension func isEqualToTerminator
   public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter needToInsertJumpInstruction
+//--- Extension func needToInsertJumpInstruction
   public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorDisplay
+//--- Extension func terminatorDisplay
   public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorSize
+//--- Extension func terminatorSize
   public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildTerminatorInvocationGraph
+//--- Extension proc buildTerminatorInvocationGraph
   public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_string & arg_ioGraphVizString,
            const class GGS_bool arg_inDottedArrow,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method enterTerminatorReferencedLabels
+//--- Extension proc enterTerminatorReferencedLabels
   public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
            class GGS_stringset & arg_ioReferencedBlockSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method exploreAccessibleBlocksForStackComputations
+//--- Extension proc exploreAccessibleBlocksForStackComputations
   public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
            class GGS_stringset & arg_ioExploredBlockSet,
            class GGS_uint & arg_outStackNeeds,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateTerminatorCode
+//--- Extension proc generateTerminatorCode
   public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_string arg_inNextBlockLabel,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeTerminator
+//--- Extension proc optimizeTerminator
   public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -131,7 +131,7 @@ class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_Abstrac
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performTerminatorRelativeBranchResolution
+//--- Extension proc performTerminatorRelativeBranchResolution
   public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -141,14 +141,14 @@ class cPtr_ipic_31__38_ComputedRETLWTerminator : public cPtr_ipic_31__38_Abstrac
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorMinMaxDuration
+//--- Extension proc terminatorMinMaxDuration
   public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            const class GGS_string arg_inNextLabel,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorRelativeBranchOverflow
+//--- Extension proc terminatorRelativeBranchOverflow
   public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -316,7 +316,7 @@ class GGS_conditionalBranchMode : public AC_GALGAS_root {
 
   public: static class GGS_conditionalBranchMode class_func_native (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -415,7 +415,7 @@ class GGS_conditional_5F_branch : public AC_GALGAS_root {
 
   public: static class GGS_conditional_5F_branch class_func_bz (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -540,53 +540,53 @@ class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_Abstr
                                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension getter isEqualToTerminator
+//--- Extension func isEqualToTerminator
   public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter needToInsertJumpInstruction
+//--- Extension func needToInsertJumpInstruction
   public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorDisplay
+//--- Extension func terminatorDisplay
   public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorSize
+//--- Extension func terminatorSize
   public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildTerminatorInvocationGraph
+//--- Extension proc buildTerminatorInvocationGraph
   public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_string & arg_ioGraphVizString,
            const class GGS_bool arg_inDottedArrow,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method buildTerminatorOrderedGraph
+//--- Extension proc buildTerminatorOrderedGraph
   public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_blockInvocationGraph & arg_ioGraph,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method enterTerminatorReferencedLabels
+//--- Extension proc enterTerminatorReferencedLabels
   public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
            class GGS_stringset & arg_ioReferencedBlockSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method exploreAccessibleBlocksForStackComputations
+//--- Extension proc exploreAccessibleBlocksForStackComputations
   public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
            class GGS_stringset & arg_ioExploredBlockSet,
            class GGS_uint & arg_outStackNeeds,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateTerminatorCode
+//--- Extension proc generateTerminatorCode
   public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_string arg_inNextBlockLabel,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeTerminator
+//--- Extension proc optimizeTerminator
   public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -596,7 +596,7 @@ class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_Abstr
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performTerminatorRelativeBranchResolution
+//--- Extension proc performTerminatorRelativeBranchResolution
   public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -606,14 +606,14 @@ class cPtr_ipic_31__38_ConditionalJumpTerminator : public cPtr_ipic_31__38_Abstr
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorMinMaxDuration
+//--- Extension proc terminatorMinMaxDuration
   public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            const class GGS_string arg_inNextLabel,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorRelativeBranchOverflow
+//--- Extension proc terminatorRelativeBranchOverflow
   public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -806,48 +806,48 @@ class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractB
                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension getter isEqualToTerminator
+//--- Extension func isEqualToTerminator
   public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter needToInsertJumpInstruction
+//--- Extension func needToInsertJumpInstruction
   public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorDisplay
+//--- Extension func terminatorDisplay
   public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorSize
+//--- Extension func terminatorSize
   public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildTerminatorInvocationGraph
+//--- Extension proc buildTerminatorInvocationGraph
   public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_string & arg_ioGraphVizString,
            const class GGS_bool arg_inDottedArrow,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method enterTerminatorReferencedLabels
+//--- Extension proc enterTerminatorReferencedLabels
   public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
            class GGS_stringset & arg_ioReferencedBlockSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method exploreAccessibleBlocksForStackComputations
+//--- Extension proc exploreAccessibleBlocksForStackComputations
   public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
            class GGS_stringset & arg_ioExploredBlockSet,
            class GGS_uint & arg_outStackNeeds,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateTerminatorCode
+//--- Extension proc generateTerminatorCode
   public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_string arg_inNextBlockLabel,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeTerminator
+//--- Extension proc optimizeTerminator
   public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -857,7 +857,7 @@ class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractB
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performTerminatorRelativeBranchResolution
+//--- Extension proc performTerminatorRelativeBranchResolution
   public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -867,14 +867,14 @@ class cPtr_ipic_31__38_ComputedBraTerminator : public cPtr_ipic_31__38_AbstractB
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorMinMaxDuration
+//--- Extension proc terminatorMinMaxDuration
   public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            const class GGS_string arg_inNextLabel,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorRelativeBranchOverflow
+//--- Extension proc terminatorRelativeBranchOverflow
   public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -1042,7 +1042,7 @@ class GGS_ipic_31__38_RegisterComparison : public AC_GALGAS_root {
 
   public: static class GGS_ipic_31__38_RegisterComparison class_func_registerLowerThanW (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -1145,33 +1145,33 @@ class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_Abs
                                                                          Compiler * inCompiler) ;
 
 
-//--- Extension getter needToInsertJumpInstruction
+//--- Extension func needToInsertJumpInstruction
   public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorSize
+//--- Extension func terminatorSize
   public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildTerminatorInvocationGraph
+//--- Extension proc buildTerminatorInvocationGraph
   public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_string & arg_ioGraphVizString,
            const class GGS_bool arg_inDottedArrow,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method enterTerminatorReferencedLabels
+//--- Extension proc enterTerminatorReferencedLabels
   public: virtual void method_enterTerminatorReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
            class GGS_stringset & arg_ioReferencedBlockSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method exploreAccessibleBlocksForStackComputations
+//--- Extension proc exploreAccessibleBlocksForStackComputations
   public: virtual void method_exploreAccessibleBlocksForStackComputations (class GGS_stringset & arg_ioBlockToExploreSet,
            class GGS_stringset & arg_ioExploredBlockSet,
            class GGS_uint & arg_outStackNeeds,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method getOptimizedTerminators
+//--- Extension proc getOptimizedTerminators
   public: virtual void method_getOptimizedTerminators (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -1183,7 +1183,7 @@ class cPtr_ipic_31__38_AbstractConditionTerminator : public cPtr_ipic_31__38_Abs
            class GGS_bool & arg_outIdenticalTerminators,
            Compiler * COMMA_LOCATION_ARGS) ;
 
-//--- Extension method terminatorRelativeBranchOverflow
+//--- Extension proc terminatorRelativeBranchOverflow
   public: virtual void method_terminatorRelativeBranchOverflow (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -1367,7 +1367,7 @@ class GGS_ipic_31__38__5F_intermediate_5F_registerExpression : public AC_GALGAS_
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -1466,41 +1466,41 @@ class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_Abs
                                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension getter isEqualToTerminator
+//--- Extension func isEqualToTerminator
   public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter needToInsertJumpInstruction
+//--- Extension func needToInsertJumpInstruction
   public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorDisplay
+//--- Extension func terminatorDisplay
   public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorSize
+//--- Extension func terminatorSize
   public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildTerminatorInvocationGraph
+//--- Extension proc buildTerminatorInvocationGraph
   public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_string & arg_ioGraphVizString,
            const class GGS_bool arg_inDottedArrow,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method buildTerminatorOrderedGraph
+//--- Extension proc buildTerminatorOrderedGraph
   public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_blockInvocationGraph & arg_ioGraph,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateTerminatorCode
+//--- Extension proc generateTerminatorCode
   public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_string arg_inNextBlockLabel,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeTerminator
+//--- Extension proc optimizeTerminator
   public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -1510,7 +1510,7 @@ class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_Abs
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performTerminatorRelativeBranchResolution
+//--- Extension proc performTerminatorRelativeBranchResolution
   public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -1520,7 +1520,7 @@ class cPtr_pic_31__38_RegisterComparisonTerminator : public cPtr_ipic_31__38_Abs
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorMinMaxDuration
+//--- Extension proc terminatorMinMaxDuration
   public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            const class GGS_string arg_inNextLabel,
            class GGS_uint & arg_outMin,
@@ -1716,27 +1716,27 @@ class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_Abstra
                                                                                   Compiler * inCompiler) ;
 
 
-//--- Extension getter isEqualToTerminator
+//--- Extension func isEqualToTerminator
   public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorDisplay
+//--- Extension func terminatorDisplay
   public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildTerminatorOrderedGraph
+//--- Extension proc buildTerminatorOrderedGraph
   public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_blockInvocationGraph & arg_ioGraph,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateTerminatorCode
+//--- Extension proc generateTerminatorCode
   public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_string arg_inNextBlockLabel,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeTerminator
+//--- Extension proc optimizeTerminator
   public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -1746,7 +1746,7 @@ class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_Abstra
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performTerminatorRelativeBranchResolution
+//--- Extension proc performTerminatorRelativeBranchResolution
   public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -1756,7 +1756,7 @@ class cPtr_ipic_31__38_IncDecRegisterTerminator : public cPtr_ipic_31__38_Abstra
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorMinMaxDuration
+//--- Extension proc terminatorMinMaxDuration
   public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            const class GGS_string arg_inNextLabel,
            class GGS_uint & arg_outMin,
@@ -1946,41 +1946,41 @@ class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractC
                                                                        Compiler * inCompiler) ;
 
 
-//--- Extension getter isEqualToTerminator
+//--- Extension func isEqualToTerminator
   public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter needToInsertJumpInstruction
+//--- Extension func needToInsertJumpInstruction
   public: virtual class GGS_bool getter_needToInsertJumpInstruction (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorDisplay
+//--- Extension func terminatorDisplay
   public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorSize
+//--- Extension func terminatorSize
   public: virtual class GGS_uint getter_terminatorSize (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildTerminatorInvocationGraph
+//--- Extension proc buildTerminatorInvocationGraph
   public: virtual void method_buildTerminatorInvocationGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_string & arg_ioGraphVizString,
            const class GGS_bool arg_inDottedArrow,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method buildTerminatorOrderedGraph
+//--- Extension proc buildTerminatorOrderedGraph
   public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_blockInvocationGraph & arg_ioGraph,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateTerminatorCode
+//--- Extension proc generateTerminatorCode
   public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_string arg_inNextBlockLabel,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeTerminator
+//--- Extension proc optimizeTerminator
   public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -1990,7 +1990,7 @@ class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractC
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performTerminatorRelativeBranchResolution
+//--- Extension proc performTerminatorRelativeBranchResolution
   public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -2000,7 +2000,7 @@ class cPtr_pic_31__38_TestRegisterTerminator : public cPtr_ipic_31__38_AbstractC
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorMinMaxDuration
+//--- Extension proc terminatorMinMaxDuration
   public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            const class GGS_string arg_inNextLabel,
            class GGS_uint & arg_outMin,
@@ -2190,27 +2190,27 @@ class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractCondit
                                                                       Compiler * inCompiler) ;
 
 
-//--- Extension getter isEqualToTerminator
+//--- Extension func isEqualToTerminator
   public: virtual class GGS_bool getter_isEqualToTerminator (const class GGS_ipic_31__38_AbstractBlockTerminator inTerminator,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter terminatorDisplay
+//--- Extension func terminatorDisplay
   public: virtual class GGS_string getter_terminatorDisplay (const class GGS_string inNextBlockLabel,
            Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildTerminatorOrderedGraph
+//--- Extension proc buildTerminatorOrderedGraph
   public: virtual void method_buildTerminatorOrderedGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_blockInvocationGraph & arg_ioGraph,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateTerminatorCode
+//--- Extension proc generateTerminatorCode
   public: virtual void method_generateTerminatorCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_string arg_inNextBlockLabel,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeTerminator
+//--- Extension proc optimizeTerminator
   public: virtual void method_optimizeTerminator (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -2220,7 +2220,7 @@ class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractCondit
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outOptimizedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performTerminatorRelativeBranchResolution
+//--- Extension proc performTerminatorRelativeBranchResolution
   public: virtual void method_performTerminatorRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -2230,7 +2230,7 @@ class cPtr_pic_31__38_BitTestTerminator : public cPtr_ipic_31__38_AbstractCondit
            class GGS_ipic_31__38_AbstractBlockTerminator & arg_outModifiedTerminator,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method terminatorMinMaxDuration
+//--- Extension proc terminatorMinMaxDuration
   public: virtual void method_terminatorMinMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            const class GGS_string arg_inNextLabel,
            class GGS_uint & arg_outMin,
@@ -2411,7 +2411,7 @@ class GGS_pic_31__38_InstructionWithNoOperandKind : public AC_GALGAS_root {
 
   public: static class GGS_pic_31__38_InstructionWithNoOperandKind class_func_SLEEP (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -2516,10 +2516,10 @@ class cPtr_ipic_31__38_InstructionWithNoOperand : public cPtr_ipic_31__38_Sequen
                                                                   Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
@@ -2633,7 +2633,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_ipic_31__38_Instructio
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@ipic18_intermediate_registerExpression isEqualToRegister' (as function)
+//Extension func '@ipic18_intermediate_registerExpression isEqualToRegister' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -2737,7 +2737,7 @@ class GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST : public AC_GALGA
 
   public: static class GGS_pic_31__38_Instruction_5F_FDA_5F_base_5F_code_5F_AST class_func_XORWF (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -2872,10 +2872,10 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FDA : public cPtr_ipic
                                                                                         Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
@@ -3050,7 +3050,7 @@ class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code : public AC_GALGAS_roo
 
   public: static class GGS_FA_5F_sequential_5F_instruction_5F_base_5F_code class_func_SETF (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -3155,10 +3155,10 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FA : public cPtr_ipic_
                                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
@@ -3333,7 +3333,7 @@ class GGS_ipic_31__38__5F_intermediate_5F_registerExpressionWithoutBSRIndication
                                                                                                            Compiler * inCompiler
                                                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -3428,20 +3428,20 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVFF : public cPtr_ip
                                                                                       Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter instructionSize
+//--- Extension func instructionSize
   public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method minMaxDuration
+//--- Extension proc minMaxDuration
   public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
@@ -3619,7 +3619,7 @@ class GGS_literal_5F_instruction_5F_opcode : public AC_GALGAS_root {
 
   public: static class GGS_literal_5F_instruction_5F_opcode class_func_XORLW (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -3730,10 +3730,10 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_literalOperation : pub
                                                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
@@ -3919,20 +3919,20 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_LFSR : public cPtr_ipi
                                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter instructionSize
+//--- Extension func instructionSize
   public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method minMaxDuration
+//--- Extension proc minMaxDuration
   public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
@@ -4098,7 +4098,7 @@ class GGS_bit_5F_oriented_5F_op : public AC_GALGAS_root {
 
   public: static class GGS_bit_5F_oriented_5F_op class_func_BTG (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -4203,10 +4203,10 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FBA : public cPtr_ipic
                                                                                         Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
@@ -4394,48 +4394,48 @@ class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_Sequent
                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter instructionSize
+//--- Extension func instructionSize
   public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildCalledRoutineSetForStackComputations
+//--- Extension proc buildCalledRoutineSetForStackComputations
   public: virtual void method_buildCalledRoutineSetForStackComputations (class GGS_stringset & arg_ioRoutineCalledSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method buildInstructionInvocationGraph
+//--- Extension proc buildInstructionInvocationGraph
   public: virtual void method_buildInstructionInvocationGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_string & arg_ioGraphVizString,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method enterInstructionReferencedLabels
+//--- Extension proc enterInstructionReferencedLabels
   public: virtual void method_enterInstructionReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
            class GGS_stringset & arg_ioReferencedBlockSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method instructionRelativeBranchOverflow
+//--- Extension proc instructionRelativeBranchOverflow
   public: virtual void method_instructionRelativeBranchOverflow (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            class GGS_branchOverflowMap & arg_ioOverflowMap,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method minMaxDuration
+//--- Extension proc minMaxDuration
   public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeInstruction
+//--- Extension proc optimizeInstruction
   public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -4446,7 +4446,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_JSR : public cPtr_ipic_31__38_Sequent
            class GGS_bool & arg_outNOPsubstitution,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performInstructionRelativeBranchResolution
+//--- Extension proc performInstructionRelativeBranchResolution
   public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -4630,10 +4630,10 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MOVLB : public cPtr_ip
                                                                                   Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
@@ -4813,10 +4813,10 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_FNOP : public cPtr_ipi
                                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
@@ -4996,10 +4996,10 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_BLANK : public cPtr_ip
                                                                                   Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
@@ -5167,7 +5167,7 @@ class GGS_tableAccessOption : public AC_GALGAS_root {
 
   public: static class GGS_tableAccessOption class_func_simpleAccess (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -5266,17 +5266,17 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLRD : public cPtr_ip
                                                                                   Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method minMaxDuration
+//--- Extension proc minMaxDuration
   public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
@@ -5455,17 +5455,17 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_TBLWT : public cPtr_ip
                                                                                   Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method minMaxDuration
+//--- Extension proc minMaxDuration
   public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
@@ -5644,20 +5644,20 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_MNOP : public cPtr_ipi
                                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter instructionSize
+//--- Extension func instructionSize
   public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method minMaxDuration
+//--- Extension proc minMaxDuration
   public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
@@ -5836,20 +5836,20 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_NOPBRA : public cPtr_i
                                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter instructionSize
+//--- Extension func instructionSize
   public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method minMaxDuration
+//--- Extension proc minMaxDuration
   public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
@@ -6036,10 +6036,10 @@ class cPtr_ipic_31__38__5F_intermediate_5F_MOV_5F_LABEL_5F_W : public cPtr_ipic_
                                                                                        Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
@@ -6227,48 +6227,48 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : pu
                                                                                                   Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension getter instructionSize
+//--- Extension func instructionSize
   public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildCalledRoutineSetForStackComputations
+//--- Extension proc buildCalledRoutineSetForStackComputations
   public: virtual void method_buildCalledRoutineSetForStackComputations (class GGS_stringset & arg_ioRoutineCalledSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method buildInstructionInvocationGraph
+//--- Extension proc buildInstructionInvocationGraph
   public: virtual void method_buildInstructionInvocationGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_string & arg_ioGraphVizString,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method enterInstructionReferencedLabels
+//--- Extension proc enterInstructionReferencedLabels
   public: virtual void method_enterInstructionReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
            class GGS_stringset & arg_ioReferencedBlockSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method instructionRelativeBranchOverflow
+//--- Extension proc instructionRelativeBranchOverflow
   public: virtual void method_instructionRelativeBranchOverflow (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            class GGS_branchOverflowMap & arg_ioOverflowMap,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method minMaxDuration
+//--- Extension proc minMaxDuration
   public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeInstruction
+//--- Extension proc optimizeInstruction
   public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -6279,7 +6279,7 @@ class cPtr_ipic_31__38__5F_intermediate_5F_instruction_5F_computed_5F_rcall : pu
            class GGS_bool & arg_outNOPsubstitution,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performInstructionRelativeBranchResolution
+//--- Extension proc performInstructionRelativeBranchResolution
   public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -6463,32 +6463,32 @@ class cPtr_ipic_31__38__5F_condition_5F_skip_5F_instruction : public cPtr_ipic_3
                                                                               Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionSize
+//--- Extension func instructionSize
   public: virtual class GGS_uint getter_instructionSize (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method buildCalledRoutineSetForStackComputations
+//--- Extension proc buildCalledRoutineSetForStackComputations
   public: virtual void method_buildCalledRoutineSetForStackComputations (class GGS_stringset & arg_ioRoutineCalledSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method buildInstructionInvocationGraph
+//--- Extension proc buildInstructionInvocationGraph
   public: virtual void method_buildInstructionInvocationGraph (const class GGS_lstring arg_inBlockLabel,
            class GGS_string & arg_ioGraphVizString,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method enterInstructionReferencedLabels
+//--- Extension proc enterInstructionReferencedLabels
   public: virtual void method_enterInstructionReferencedLabels (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
            class GGS_stringset & arg_ioReferencedBlockSet,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method instructionRelativeBranchOverflow
+//--- Extension proc instructionRelativeBranchOverflow
   public: virtual void method_instructionRelativeBranchOverflow (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            class GGS_branchOverflowMap & arg_ioOverflowMap,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method minMaxDuration
+//--- Extension proc minMaxDuration
   public: virtual void method_minMaxDuration (const class GGS_blockDurationMap arg_inExploredBlockMap,
            class GGS_uint & arg_outMin,
            class GGS_uint & arg_outMax,
@@ -6674,17 +6674,17 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic
                                                                                             Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeInstruction
+//--- Extension proc optimizeInstruction
   public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -6695,7 +6695,7 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_BitTestSkip : public cPtr_ipic
            class GGS_bool & arg_outNOPsubstitution,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performInstructionRelativeBranchResolution
+//--- Extension proc performInstructionRelativeBranchResolution
   public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -6870,7 +6870,7 @@ class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code : p
 
   public: static class GGS_ipic_31__38__5F_compare_5F_register_5F_instruction_5F_base_5F_code class_func_TSTFSZ (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -6975,17 +6975,17 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public c
                                                                                                 Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeInstruction
+//--- Extension proc optimizeInstruction
   public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -6996,7 +6996,7 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_compare_5F_register : public c
            class GGS_bool & arg_outNOPsubstitution,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performInstructionRelativeBranchResolution
+//--- Extension proc performInstructionRelativeBranchResolution
   public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -7169,7 +7169,7 @@ class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code : public AC_GALGAS_root {
 
   public: static class GGS_skip_5F_instruction_5F_FDA_5F_base_5F_code class_func_INFSNZ (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -7278,17 +7278,17 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public cPtr_ipic_31__38_
                                                                                     Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionDisplay
+//--- Extension func instructionDisplay
   public: virtual class GGS_stringlist getter_instructionDisplay (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateCode
+//--- Extension proc generateCode
   public: virtual void method_generateCode (const class GGS_uint arg_inAddress,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
            const class GGS_pic_31__38__5F_dataAddressMap arg_inDataMap,
            class GGS_codeList & arg_outCode,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method optimizeInstruction
+//--- Extension proc optimizeInstruction
   public: virtual void method_optimizeInstruction (const class GGS_symbolTableForBlockOptimization arg_inSymbolTable,
            const class GGS_optimizeFlagStruct arg_inOptimizeFlagStruct,
            const class GGS_ipic_31__38_BlockList arg_inBlockList,
@@ -7299,7 +7299,7 @@ class cPtr_ipic_31__38__5F_skip_5F_instruction_5F_FDA : public cPtr_ipic_31__38_
            class GGS_bool & arg_outNOPsubstitution,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method performInstructionRelativeBranchResolution
+//--- Extension proc performInstructionRelativeBranchResolution
   public: virtual void method_performInstructionRelativeBranchResolution (const class GGS_uint arg_inAddress,
            const class GGS_string arg_inBlockLabel,
            const class GGS_symbolTableForRelativesResolution arg_inSymbolTable,
@@ -7676,7 +7676,7 @@ class GGS_symbolTableForBlockOptimization_2E_element : public AC_GALGAS_root {
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8034,7 +8034,7 @@ class GGS_symbolTableForClusterOrdering_2E_element : public AC_GALGAS_root {
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8195,7 +8195,7 @@ class GGS_branchOverflowMapDictionary_2E_element : public AC_GALGAS_root {
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8494,7 +8494,7 @@ class GGS_branchOverflowMap : public AC_GALGAS_root {
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8519,7 +8519,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_branchOverflowMap ;
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@branchOverflowMap listForKey' (as function)
+//Extension func '@branchOverflowMap listForKey' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -8786,7 +8786,7 @@ class GGS_symbolTableForRelativesResolution_2E_element : public AC_GALGAS_root {
                                                                                  Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -9186,7 +9186,7 @@ class GGS_codeList_2E_element : public AC_GALGAS_root {
                                                         Compiler * inCompiler
                                                         COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -9467,7 +9467,7 @@ class GGS_pic_31__38__5F_dataAddressMap_2E_element : public AC_GALGAS_root {
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -9633,11 +9633,11 @@ class cPtr_baseline_5F_instruction : public AbstractStrongPtrClass {
                                                  Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -9651,11 +9651,11 @@ class cPtr_baseline_5F_instruction : public AbstractStrongPtrClass {
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
-//--- Extension method shouldNotContinueInSequence
+//--- Extension proc shouldNotContinueInSequence
   public: virtual void method_shouldNotContinueInSequence (const class GGS_string arg_inErrorMessage,
            Compiler * COMMA_LOCATION_ARGS) ;
 
-//--- Extension method shouldTerminateWithMOVLW
+//--- Extension proc shouldTerminateWithMOVLW
   public: virtual void method_shouldTerminateWithMOVLW (const class GGS_string arg_inErrorMessage,
            Compiler * COMMA_LOCATION_ARGS) ;
 
@@ -10028,7 +10028,7 @@ class GGS_baseline_5F_instructionList_2E_element : public AC_GALGAS_root {
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -10127,11 +10127,11 @@ class cPtr_baseline_5F_instruction_5F_FD : public cPtr_baseline_5F_instruction {
                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -10326,11 +10326,11 @@ class cPtr_baseline_5F_instruction_5F_F : public cPtr_baseline_5F_instruction {
                                                               Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -10527,11 +10527,11 @@ class cPtr_baseline_5F_instruction_5F_FB : public cPtr_baseline_5F_instruction {
                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -10722,11 +10722,11 @@ class cPtr_baseline_5F_instruction_5F_CALL : public cPtr_baseline_5F_instruction
                                                              Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -10740,7 +10740,7 @@ class cPtr_baseline_5F_instruction_5F_CALL : public cPtr_baseline_5F_instruction
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method shouldTerminateWithMOVLW
+//--- Extension proc shouldTerminateWithMOVLW
   public: virtual void method_shouldTerminateWithMOVLW (const class GGS_string arg_inErrorMessage,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -10917,11 +10917,11 @@ class cPtr_baseline_5F_instruction_5F_JSR : public cPtr_baseline_5F_instruction 
                                                             Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -11108,11 +11108,11 @@ class cPtr_baseline_5F_instruction_5F_GOTO : public cPtr_baseline_5F_instruction
                                                              Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -11126,7 +11126,7 @@ class cPtr_baseline_5F_instruction_5F_GOTO : public cPtr_baseline_5F_instruction
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method shouldNotContinueInSequence
+//--- Extension proc shouldNotContinueInSequence
   public: virtual void method_shouldNotContinueInSequence (const class GGS_string arg_inErrorMessage,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -11303,11 +11303,11 @@ class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction
                                                              Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -11321,7 +11321,7 @@ class cPtr_baseline_5F_instruction_5F_JUMP : public cPtr_baseline_5F_instruction
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method shouldNotContinueInSequence
+//--- Extension proc shouldNotContinueInSequence
   public: virtual void method_shouldNotContinueInSequence (const class GGS_string arg_inErrorMessage,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -11498,11 +11498,11 @@ class cPtr_baseline_5F_instruction_5F_WO_5F_OPERAND : public cPtr_baseline_5F_in
                                                                       Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -11689,11 +11689,11 @@ class cPtr_baseline_5F_instruction_5F_TRIS : public cPtr_baseline_5F_instruction
                                                              Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -11884,11 +11884,11 @@ class cPtr_baseline_5F_instruction_5F_literalOperation : public cPtr_baseline_5F
                                                                              Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -11902,7 +11902,7 @@ class cPtr_baseline_5F_instruction_5F_literalOperation : public cPtr_baseline_5F
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method shouldTerminateWithMOVLW
+//--- Extension proc shouldTerminateWithMOVLW
   public: virtual void method_shouldTerminateWithMOVLW (const class GGS_string arg_inErrorMessage,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -12081,11 +12081,11 @@ class cPtr_baseline_5F_instruction_5F_MNOP : public cPtr_baseline_5F_instruction
                                                              Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -12276,11 +12276,11 @@ class cPtr_baseline_5F_instruction_5F_FOREVER : public cPtr_baseline_5F_instruct
                                                                     Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -12294,7 +12294,7 @@ class cPtr_baseline_5F_instruction_5F_FOREVER : public cPtr_baseline_5F_instruct
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method shouldNotContinueInSequence
+//--- Extension proc shouldNotContinueInSequence
   public: virtual void method_shouldNotContinueInSequence (const class GGS_string arg_inErrorMessage,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -12489,11 +12489,11 @@ class cPtr_baseline_5F_instruction_5F_STATIC_5F_REPEAT : public cPtr_baseline_5F
                                                                                          Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -12688,7 +12688,7 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_SEMI_5F_COLON : public cPtr_baseline
                                                                             Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -12872,11 +12872,11 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest : public cPtr_baseline_5F_in
                                                                                   Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -12890,11 +12890,11 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_BitTest : public cPtr_baseline_5F_in
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method getBaseCode
+//--- Extension proc getBaseCode
   public: virtual void method_getBaseCode (class GGS_uint & arg_outBaseCode,
            Compiler * COMMA_LOCATION_ARGS) ;
 
-//--- Extension method getMnemonic
+//--- Extension proc getMnemonic
   public: virtual void method_getMnemonic (class GGS_string & arg_outMnemonic,
            Compiler * COMMA_LOCATION_ARGS) ;
 
@@ -13086,11 +13086,11 @@ class cPtr_baseline_5F_instruction_5F_IF_5F_IncDec : public cPtr_baseline_5F_ins
                                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -13276,7 +13276,7 @@ class cPtr_baseline_5F_conditionExpression : public AbstractStrongPtrClass {
   public: void baseline_5F_conditionExpression_init (Compiler * inCompiler) ;
 
 
-//--- Extension method build_intermediate_condition_instructions
+//--- Extension proc build_intermediate_condition_instructions
   public: virtual void method_build_5F_intermediate_5F_condition_5F_instructions (const class GGS_uint arg_inCurrentPage,
            const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
@@ -13463,7 +13463,7 @@ class cPtr_baseline_5F_incDecRegisterInCondition : public cPtr_baseline_5F_condi
                                                                            Compiler * inCompiler) ;
 
 
-//--- Extension method build_intermediate_condition_instructions
+//--- Extension proc build_intermediate_condition_instructions
   public: virtual void method_build_5F_intermediate_5F_condition_5F_instructions (const class GGS_uint arg_inCurrentPage,
            const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
@@ -13651,7 +13651,7 @@ class cPtr_baseline_5F_negateCondition : public cPtr_baseline_5F_conditionExpres
                                                      Compiler * inCompiler) ;
 
 
-//--- Extension method build_intermediate_condition_instructions
+//--- Extension proc build_intermediate_condition_instructions
   public: virtual void method_build_5F_intermediate_5F_condition_5F_instructions (const class GGS_uint arg_inCurrentPage,
            const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
@@ -13837,7 +13837,7 @@ class cPtr_baseline_5F_andCondition : public cPtr_baseline_5F_conditionExpressio
                                                       Compiler * inCompiler) ;
 
 
-//--- Extension method build_intermediate_condition_instructions
+//--- Extension proc build_intermediate_condition_instructions
   public: virtual void method_build_5F_intermediate_5F_condition_5F_instructions (const class GGS_uint arg_inCurrentPage,
            const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
@@ -14025,7 +14025,7 @@ class cPtr_baseline_5F_bitTest_5F_in_5F_structured_5F_if_5F_condition : public c
                                                                                         Compiler * inCompiler) ;
 
 
-//--- Extension method build_intermediate_condition_instructions
+//--- Extension proc build_intermediate_condition_instructions
   public: virtual void method_build_5F_intermediate_5F_condition_5F_instructions (const class GGS_uint arg_inCurrentPage,
            const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
@@ -14223,11 +14223,11 @@ class cPtr_baseline_5F_instruction_5F_structured_5F_if : public cPtr_baseline_5F
                                                                                      Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -14241,7 +14241,7 @@ class cPtr_baseline_5F_instruction_5F_structured_5F_if : public cPtr_baseline_5F
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method shouldTerminateWithMOVLW
+//--- Extension proc shouldTerminateWithMOVLW
   public: virtual void method_shouldTerminateWithMOVLW (const class GGS_string arg_inErrorMessage,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -14688,7 +14688,7 @@ class GGS_baseline_5F_partList_2E_element : public AC_GALGAS_root {
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -14787,11 +14787,11 @@ class cPtr_baseline_5F_instruction_5F_do_5F_while : public cPtr_baseline_5F_inst
                                                                             Compiler * inCompiler) ;
 
 
-//--- Extension method addUsedRoutines
+//--- Extension proc addUsedRoutines
   public: virtual void method_addUsedRoutines (class GGS_stringset & arg_ioUsedRoutines,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method build_baseline_intermediate_instructionList
+//--- Extension proc build_baseline_intermediate_instructionList
   public: virtual void method_build_5F_baseline_5F_intermediate_5F_instructionList (const class GGS_uint arg_inCurrentPage,
            const class GGS_baselineRoutineMap arg_inRoutineMap,
            const class GGS_registerTable arg_inRegisterTable,
@@ -15310,7 +15310,7 @@ class GGS_baseline_5F_routineDefinitionList_2E_element : public AC_GALGAS_root {
                                                                                  Compiler * inCompiler
                                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -15335,7 +15335,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_routineDef
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@midrange_intermediate_instruction instructionLength'
+//Abstract extension func '@midrange_intermediate_instruction instructionLength'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -15676,7 +15676,7 @@ class GGS_configFieldMap_2E_element : public AC_GALGAS_root {
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -15838,7 +15838,7 @@ class cPtr_midrange_5F_conditionExpression : public AbstractStrongPtrClass {
   public: void midrange_5F_conditionExpression_init (Compiler * inCompiler) ;
 
 
-//--- Extension method buildIPICinstructionForCondition
+//--- Extension proc buildIPICinstructionForCondition
   public: virtual void method_buildIPICinstructionForCondition (const class GGS_uint arg_inTotalBankCount,
            const class GGS_uint arg_inCurrentBank,
            const class GGS_registerTable arg_inRegisterTable,
@@ -15852,7 +15852,7 @@ class cPtr_midrange_5F_conditionExpression : public AbstractStrongPtrClass {
            class GGS_stringset & arg_ioUsedRegisters,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
-//--- Extension method computeInstructionCountForCondition
+//--- Extension proc computeInstructionCountForCondition
   public: virtual void method_computeInstructionCountForCondition (const class GGS_bool arg_inComplementaryBranch,
            class GGS_uint & arg_outInstructionCount,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
@@ -15877,7 +15877,7 @@ class cPtr_midrange_5F_conditionExpression : public AbstractStrongPtrClass {
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_conditionExpression computeInstructionCountForCondition'
+//Abstract extension proc '@midrange_conditionExpression computeInstructionCountForCondition'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -15889,7 +15889,7 @@ void callExtensionMethod_computeInstructionCountForCondition (class cPtr_midrang
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@pic18PiccoloInstruction addUsedRoutines'
+//Abstract extension proc '@pic18PiccoloInstruction addUsedRoutines'
 //
 //--------------------------------------------------------------------------------------------------
 

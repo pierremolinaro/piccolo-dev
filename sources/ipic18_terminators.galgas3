@@ -4,13 +4,13 @@
 
 //----------------------------------------------------------------------------*
 
-abstract getter @ipic18AbstractBlockTerminator terminatorDisplay
+abstract func @ipic18AbstractBlockTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string
 
 //----------------------------------------------------------------------------*
 
-abstract getter @ipic18AbstractBlockTerminator terminatorSize
+abstract func @ipic18AbstractBlockTerminator terminatorSize
   ?let @string inNextBlockLabel
   -> @uint
 
@@ -20,7 +20,7 @@ abstract getter @ipic18AbstractBlockTerminator terminatorSize
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ReturnTerminator terminatorDisplay
+override func @ipic18ReturnTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
   ->@string outResult {
   outResult = "RETURN"
@@ -28,7 +28,7 @@ override getter @ipic18ReturnTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ReturnTerminator terminatorSize
+override func @ipic18ReturnTerminator terminatorSize
   ?let @string unused inNextBlockLabel
   -> @uint outSize {
   outSize = 2
@@ -36,7 +36,7 @@ override getter @ipic18ReturnTerminator terminatorSize
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ReturnTerminator generateTerminatorCode
+override proc @ipic18ReturnTerminator generateTerminatorCode
   ?let @uint unused inAddress
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @string unused inNextBlockLabel
@@ -48,7 +48,7 @@ override method @ipic18ReturnTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ReturnTerminator isEqualToTerminator
+override func @ipic18ReturnTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @ipic18ReturnTerminator)
@@ -60,7 +60,7 @@ override getter @ipic18ReturnTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18RetfieTerminator terminatorDisplay
+override func @ipic18RetfieTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
   ->@string outResult {
   outResult = "RETFIE"
@@ -71,7 +71,7 @@ override getter @ipic18RetfieTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18RetfieTerminator terminatorSize
+override func @ipic18RetfieTerminator terminatorSize
   ?let @string unused inNextBlockLabel
   -> @uint outSize {
   outSize = 2
@@ -79,7 +79,7 @@ override getter @ipic18RetfieTerminator terminatorSize
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18RetfieTerminator generateTerminatorCode
+override proc @ipic18RetfieTerminator generateTerminatorCode
   ?let @uint unused inAddress
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @string inNextBlockLabel
@@ -91,7 +91,7 @@ override method @ipic18RetfieTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18RetfieTerminator isEqualToTerminator
+override func @ipic18RetfieTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @ipic18RetfieTerminator)
@@ -103,7 +103,7 @@ override getter @ipic18RetfieTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18RetlwTerminator terminatorDisplay
+override func @ipic18RetlwTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
   ->@string outResult {
   outResult = "RETLW " + self.mLiteralValue.hexString
@@ -111,7 +111,7 @@ override getter @ipic18RetlwTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18RetlwTerminator terminatorSize
+override func @ipic18RetlwTerminator terminatorSize
   ?let @string unused inNextBlockLabel
   -> @uint outSize {
   outSize = 2
@@ -119,7 +119,7 @@ override getter @ipic18RetlwTerminator terminatorSize
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18RetlwTerminator generateTerminatorCode
+override proc @ipic18RetlwTerminator generateTerminatorCode
   ?let @uint unused inAddress
   ?let @symbolTableForRelativesResolution unused inSymbolTable
   ?let @string inNextBlockLabel
@@ -131,7 +131,7 @@ override method @ipic18RetlwTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18RetlwTerminator isEqualToTerminator
+override func @ipic18RetlwTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
 //  outResult = (inTerminator is == @ipic18RetlwTerminator)
@@ -153,7 +153,7 @@ override getter @ipic18RetlwTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18JumpTerminator terminatorSize
+override func @ipic18JumpTerminator terminatorSize
   ?let @string inNextBlockLabel
   -> @uint outSize {
   if self.mLabel.string == inNextBlockLabel then
@@ -164,13 +164,13 @@ override getter @ipic18JumpTerminator terminatorSize
       outSize = 2
     case absolute :
       outSize = 4
-    end  
+    end
   end
 }
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator terminatorRelativeBranchOverflow
+override proc @ipic18JumpTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -184,13 +184,13 @@ override method @ipic18JumpTerminator terminatorRelativeBranchOverflow
         [!?ioOverflowMap insertKey !inBlockLabel !self.mLabel.string]
       end
     case absolute :
-    end  
+    end
   end
 }
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator performTerminatorRelativeBranchResolution
+override proc @ipic18JumpTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -220,7 +220,7 @@ override method @ipic18JumpTerminator performTerminatorRelativeBranchResolution
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18JumpTerminator terminatorDisplay
+override func @ipic18JumpTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string outResult {
   let @string name
@@ -238,7 +238,7 @@ override getter @ipic18JumpTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator generateTerminatorCode
+override proc @ipic18JumpTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
@@ -252,13 +252,13 @@ override method @ipic18JumpTerminator generateTerminatorCode
       outCode = pic18_BRA_instruction_code (!inAddress !targetAddress !self.mLabel)
     case absolute :
       outCode = pic18_GOTO_instruction_code (!targetAddress !self.mLabel)
-    end  
+    end
   end
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18JumpTerminator isEqualToTerminator
+override func @ipic18JumpTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   if let t = inTerminator as @ipic18JumpTerminator then
@@ -274,17 +274,17 @@ override getter @ipic18JumpTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18AbstractConditionTerminator terminatorSize
+override func @ipic18AbstractConditionTerminator terminatorSize
   ?let @string inNextBlockLabel
   -> @uint outSize {
   outSize = 2
     + [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel]
-    + [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextBlockLabel]    
+    + [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !inNextBlockLabel]
 }
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18AbstractConditionTerminator terminatorRelativeBranchOverflow
+override proc @ipic18AbstractConditionTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -312,17 +312,17 @@ override method @ipic18AbstractConditionTerminator terminatorRelativeBranchOverf
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18RegisterComparisonTerminator terminatorSize
+override func @pic18RegisterComparisonTerminator terminatorSize
   ?let @string inNextBlockLabel
   -> @uint outSize {
   outSize = 2
     + [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel]
-    + [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !""]    
+    + [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !""]
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18RegisterComparisonTerminator terminatorDisplay
+override func @pic18RegisterComparisonTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string outResult {
   outResult = self.mRegisterDescription.mAssemblyString + " "
@@ -342,7 +342,7 @@ override getter @pic18RegisterComparisonTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override method @pic18RegisterComparisonTerminator performTerminatorRelativeBranchResolution
+override proc @pic18RegisterComparisonTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -383,7 +383,7 @@ override method @pic18RegisterComparisonTerminator performTerminatorRelativeBran
 
 //----------------------------------------------------------------------------*
 
-override method @pic18RegisterComparisonTerminator generateTerminatorCode
+override proc @pic18RegisterComparisonTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
@@ -430,7 +430,7 @@ override method @pic18RegisterComparisonTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18RegisterComparisonTerminator isEqualToTerminator
+override func @pic18RegisterComparisonTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @pic18RegisterComparisonTerminator)
@@ -455,17 +455,17 @@ override getter @pic18RegisterComparisonTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18TestRegisterTerminator terminatorSize
+override func @pic18TestRegisterTerminator terminatorSize
   ?let @string inNextBlockLabel
   -> @uint outSize {
   outSize = 2
     + [self.mSingleInstructionTerminatorIfConditionTrue terminatorSize !inNextBlockLabel]
-    + [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !""]    
+    + [self.mSingleInstructionTerminatorIfConditionFalse terminatorSize !""]
 }
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18TestRegisterTerminator terminatorDisplay
+override func @pic18TestRegisterTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string outResult {
   outResult = self.mRegisterDescription.mAssemblyString
@@ -477,7 +477,7 @@ override getter @pic18TestRegisterTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override method @pic18TestRegisterTerminator performTerminatorRelativeBranchResolution
+override proc @pic18TestRegisterTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -517,7 +517,7 @@ override method @pic18TestRegisterTerminator performTerminatorRelativeBranchReso
 
 //----------------------------------------------------------------------------*
 
-override method @pic18TestRegisterTerminator generateTerminatorCode
+override proc @pic18TestRegisterTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
@@ -551,7 +551,7 @@ override method @pic18TestRegisterTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18TestRegisterTerminator isEqualToTerminator
+override func @pic18TestRegisterTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @pic18TestRegisterTerminator)
@@ -573,7 +573,7 @@ override getter @pic18TestRegisterTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18BitTestTerminator terminatorDisplay
+override func @pic18BitTestTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string outResult {
   outResult = self.mRegisterDescription.mAssemblyString + "." + self.mBitNumber.string + " ? "
@@ -584,7 +584,7 @@ override getter @pic18BitTestTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override method @pic18BitTestTerminator performTerminatorRelativeBranchResolution
+override proc @pic18BitTestTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -625,7 +625,7 @@ override method @pic18BitTestTerminator performTerminatorRelativeBranchResolutio
 
 //----------------------------------------------------------------------------*
 
-override method @pic18BitTestTerminator generateTerminatorCode
+override proc @pic18BitTestTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
@@ -683,7 +683,7 @@ override method @pic18BitTestTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @pic18BitTestTerminator isEqualToTerminator
+override func @pic18BitTestTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @pic18BitTestTerminator)
@@ -708,7 +708,7 @@ override getter @pic18BitTestTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18IncDecRegisterTerminator terminatorDisplay
+override func @ipic18IncDecRegisterTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string outResult {
   if self.mIncrement then
@@ -730,7 +730,7 @@ override getter @ipic18IncDecRegisterTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchResolution
+override proc @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -772,7 +772,7 @@ override method @ipic18IncDecRegisterTerminator performTerminatorRelativeBranchR
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18IncDecRegisterTerminator generateTerminatorCode
+override proc @ipic18IncDecRegisterTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
@@ -841,7 +841,7 @@ override method @ipic18IncDecRegisterTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18IncDecRegisterTerminator isEqualToTerminator
+override func @ipic18IncDecRegisterTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @ipic18IncDecRegisterTerminator)
@@ -869,7 +869,7 @@ override getter @ipic18IncDecRegisterTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedRETLWTerminator terminatorSize
+override func @ipic18ComputedRETLWTerminator terminatorSize
   ?let @string unused inNextBlockLabel
   -> @uint outSize {
   if self.mUsesRCALL then
@@ -882,7 +882,7 @@ override getter @ipic18ComputedRETLWTerminator terminatorSize
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedRETLWTerminator terminatorDisplay
+override func @ipic18ComputedRETLWTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
   ->@string outResult {
   outResult = "COMPUTED RETLW"
@@ -893,7 +893,7 @@ override getter @ipic18ComputedRETLWTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedRETLWTerminator performTerminatorRelativeBranchResolution
+override proc @ipic18ComputedRETLWTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -913,13 +913,13 @@ override method @ipic18ComputedRETLWTerminator performTerminatorRelativeBranchRe
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedRETLWTerminator terminatorRelativeBranchOverflow
+override proc @ipic18ComputedRETLWTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string unused inNextBlockLabel
   ?!@branchOverflowMap ioOverflowMap {
-  if self.mUsesRCALL then  
+  if self.mUsesRCALL then
     if not pic18_checkBRA_RCALL (!inSymbolTable !"_computed_goto_2".nowhere !inAddress) then
       [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_2"]
     end
@@ -928,7 +928,7 @@ override method @ipic18ComputedRETLWTerminator terminatorRelativeBranchOverflow
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedRETLWTerminator generateTerminatorCode
+override proc @ipic18ComputedRETLWTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string unused inNextBlockLabel
@@ -949,7 +949,7 @@ override method @ipic18ComputedRETLWTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedRETLWTerminator isEqualToTerminator
+override func @ipic18ComputedRETLWTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @ipic18ComputedRETLWTerminator)
@@ -968,7 +968,7 @@ override getter @ipic18ComputedRETLWTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedGotoTerminator terminatorDisplay
+override func @ipic18ComputedGotoTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
   ->@string outResult {
   outResult = "COMPUTED GOTO "
@@ -984,7 +984,7 @@ override getter @ipic18ComputedGotoTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedGotoTerminator terminatorSize
+override func @ipic18ComputedGotoTerminator terminatorSize
   ?let @string unused inNextBlockLabel
   -> @uint outSize {
   if self.mUsesRCALL then
@@ -997,7 +997,7 @@ override getter @ipic18ComputedGotoTerminator terminatorSize
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedGotoTerminator performTerminatorRelativeBranchResolution
+override proc @ipic18ComputedGotoTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -1017,13 +1017,13 @@ override method @ipic18ComputedGotoTerminator performTerminatorRelativeBranchRes
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedGotoTerminator terminatorRelativeBranchOverflow
+override proc @ipic18ComputedGotoTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string unused inNextBlockLabel
   ?!@branchOverflowMap ioOverflowMap {
-  if self.mUsesRCALL then  
+  if self.mUsesRCALL then
     if not pic18_checkBRA_RCALL (!inSymbolTable !"_computed_goto_4".nowhere !inAddress) then
       [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_4"]
     end
@@ -1032,7 +1032,7 @@ override method @ipic18ComputedGotoTerminator terminatorRelativeBranchOverflow
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedGotoTerminator generateTerminatorCode
+override proc @ipic18ComputedGotoTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string unused inNextBlockLabel
@@ -1052,7 +1052,7 @@ override method @ipic18ComputedGotoTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedGotoTerminator isEqualToTerminator
+override func @ipic18ComputedGotoTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @ipic18ComputedGotoTerminator)
@@ -1071,7 +1071,7 @@ override getter @ipic18ComputedGotoTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedBraTerminator terminatorSize
+override func @ipic18ComputedBraTerminator terminatorSize
   ?let @string unused inNextBlockLabel
   -> @uint outSize {
   if self.mUsesRCALL then
@@ -1084,7 +1084,7 @@ override getter @ipic18ComputedBraTerminator terminatorSize
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedBraTerminator terminatorDisplay
+override func @ipic18ComputedBraTerminator terminatorDisplay
   ?let @string unused inNextBlockLabel
   ->@string outResult {
   outResult = "COMPUTED BRA"
@@ -1095,7 +1095,7 @@ override getter @ipic18ComputedBraTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedBraTerminator performTerminatorRelativeBranchResolution
+override proc @ipic18ComputedBraTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -1122,14 +1122,14 @@ override method @ipic18ComputedBraTerminator performTerminatorRelativeBranchReso
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedBraTerminator terminatorRelativeBranchOverflow
+override proc @ipic18ComputedBraTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string unused inNextBlockLabel
   ?!@branchOverflowMap ioOverflowMap {
   var @uint address
-  if self.mUsesRCALL then  
+  if self.mUsesRCALL then
     if not pic18_checkBRA_RCALL (!inSymbolTable !"_computed_goto_2".nowhere !inAddress) then
       [!?ioOverflowMap insertKey !inBlockLabel !"_computed_goto_2"]
     end
@@ -1147,7 +1147,7 @@ override method @ipic18ComputedBraTerminator terminatorRelativeBranchOverflow
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedBraTerminator generateTerminatorCode
+override proc @ipic18ComputedBraTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string unused inNextBlockLabel
@@ -1171,7 +1171,7 @@ override method @ipic18ComputedBraTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ComputedBraTerminator isEqualToTerminator
+override func @ipic18ComputedBraTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @ipic18ComputedBraTerminator)
@@ -1195,7 +1195,7 @@ override getter @ipic18ComputedBraTerminator isEqualToTerminator
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ConditionalJumpTerminator terminatorDisplay
+override func @ipic18ConditionalJumpTerminator terminatorDisplay
   ?let @string inNextBlockLabel
   ->@string outResult {
   switch self.mConditionalBranch
@@ -1224,7 +1224,7 @@ override getter @ipic18ConditionalJumpTerminator terminatorDisplay
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranchResolution
+override proc @ipic18ConditionalJumpTerminator performTerminatorRelativeBranchResolution
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -1335,7 +1335,7 @@ override method @ipic18ConditionalJumpTerminator performTerminatorRelativeBranch
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflow
+override proc @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflow
   ?let @uint inAddress
   ?let @string inBlockLabel
   ?let @symbolTableForRelativesResolution inSymbolTable
@@ -1419,7 +1419,7 @@ override method @ipic18ConditionalJumpTerminator terminatorRelativeBranchOverflo
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ConditionalJumpTerminator terminatorSize
+override func @ipic18ConditionalJumpTerminator terminatorSize
   ?let @string inNextBlockLabel
   -> @uint outSize {
   if self.mTargetLabelWhenTrue.string == inNextBlockLabel then
@@ -1459,7 +1459,7 @@ override getter @ipic18ConditionalJumpTerminator terminatorSize
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ConditionalJumpTerminator generateTerminatorCode
+override proc @ipic18ConditionalJumpTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
@@ -1542,7 +1542,7 @@ override method @ipic18ConditionalJumpTerminator generateTerminatorCode
 
 //----------------------------------------------------------------------------*
 
-override getter @ipic18ConditionalJumpTerminator isEqualToTerminator
+override func @ipic18ConditionalJumpTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool outResult {
   outResult = (inTerminator is == @ipic18ConditionalJumpTerminator)

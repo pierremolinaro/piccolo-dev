@@ -2,7 +2,7 @@
 
 //----------------------------------------------------------------------------*
 
-method @ipic18Block performRelativesResolution
+proc @ipic18Block performRelativesResolution
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
   ?let @uint inBlockStartAddress
@@ -86,7 +86,7 @@ proc performRelativesResolution
 
 //----------------------------------------------------------------------------*
 
-getter @ipic18Block blockSize
+func @ipic18Block blockSize
   ?let @string inNextBlockLabel
   ->@uint outResult {
   outResult = [self.mTerminator terminatorSize !inNextBlockLabel]
@@ -190,7 +190,7 @@ proc ipic18RelativesResolution
 
 //----------------------------------------------------------------------------*
 
-method @ipic18Block relativeBranchOverflow
+proc @ipic18Block relativeBranchOverflow
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
   ?let @uint inBlockStartAddress

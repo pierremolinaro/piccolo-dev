@@ -7694,7 +7694,7 @@ GGS_ipic_31__38__5F_skip_5F_instruction_5F_FDA GGS_ipic_31__38__5F_skip_5F_instr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@branchOverflowMap insertKey'
+//Extension proc '@branchOverflowMap insertKey'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7708,13 +7708,13 @@ void extensionSetter_insertKey (GGS_branchOverflowMap & ioObject,
     const GGS_branchOverflowMap temp_1 = ioObject ;
     test_0 = temp_1.readProperty_dictionary ().getter_hasKey (constinArgument_inKey COMMA_SOURCE_FILE ("ipic18_block_representation.galgas3", 398)).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
-      GGS_stringlist var_aList_14757 ;
+      GGS_stringlist var_aList_14751 ;
       const GGS_branchOverflowMap temp_2 = ioObject ;
-      temp_2.readProperty_dictionary ().method_searchKey (constinArgument_inKey, var_aList_14757, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas3", 399)) ;
+      temp_2.readProperty_dictionary ().method_searchKey (constinArgument_inKey, var_aList_14751, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas3", 399)) ;
       {
-      var_aList_14757.setter_append (constinArgument_inValue, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas3", 400)) ;
+      var_aList_14751.setter_append (constinArgument_inValue, inCompiler COMMA_SOURCE_FILE ("ipic18_block_representation.galgas3", 400)) ;
       }
-      ioObject.mProperty_dictionary.addAssignOperation (constinArgument_inKey, var_aList_14757, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas3", 401)) ;
+      ioObject.mProperty_dictionary.addAssignOperation (constinArgument_inKey, var_aList_14751, inCompiler  COMMA_SOURCE_FILE ("ipic18_block_representation.galgas3", 401)) ;
     }
   }
   if (GalgasBool::boolFalse == test_0) {
@@ -7726,7 +7726,7 @@ void extensionSetter_insertKey (GGS_branchOverflowMap & ioObject,
 
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@ipic18SequentialInstruction instructionRelativeBranchOverflow'
+//Extension proc '@ipic18SequentialInstruction instructionRelativeBranchOverflow'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_instructionRelativeBranchOverflow (const GGS_uint /* constinArgument_inAddress */,
@@ -7753,7 +7753,7 @@ void callExtensionMethod_instructionRelativeBranchOverflow (cPtr_ipic_31__38_Seq
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow'
+//Extension proc '@ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_AbstractBlockTerminator::method_terminatorRelativeBranchOverflow (const GGS_uint /* constinArgument_inAddress */,
@@ -7782,7 +7782,7 @@ void callExtensionMethod_terminatorRelativeBranchOverflow (cPtr_ipic_31__38_Abst
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution'
+//Extension proc '@ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_AbstractBlockTerminator::method_performTerminatorRelativeBranchResolution (const GGS_uint /* constinArgument_inAddress */,
@@ -7819,7 +7819,7 @@ void callExtensionMethod_performTerminatorRelativeBranchResolution (cPtr_ipic_31
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18SequentialInstruction generateCode'
+//Abstract extension proc '@ipic18SequentialInstruction generateCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7832,7 +7832,7 @@ void callExtensionMethod_generateCode (cPtr_ipic_31__38_SequentialInstruction * 
                                        COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
   out_outCode.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SequentialInstruction) ;
     inObject->method_generateCode (constin_inAddress, constin_inSymbolTable, constin_inDataMap, out_outCode, inCompiler COMMA_THERE) ;
@@ -7840,7 +7840,7 @@ void callExtensionMethod_generateCode (cPtr_ipic_31__38_SequentialInstruction * 
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator generateTerminatorCode'
+//Abstract extension proc '@ipic18AbstractBlockTerminator generateTerminatorCode'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7853,7 +7853,7 @@ void callExtensionMethod_generateTerminatorCode (cPtr_ipic_31__38_AbstractBlockT
                                                  COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
   out_outCode.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
     inObject->method_generateTerminatorCode (constin_inAddress, constin_inSymbolTable, constin_inNextBlockLabel, out_outCode, inCompiler COMMA_THERE) ;
@@ -7861,7 +7861,7 @@ void callExtensionMethod_generateTerminatorCode (cPtr_ipic_31__38_AbstractBlockT
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@ipic18AbstractBlockTerminator isEqualToTerminator'
+//Abstract extension func '@ipic18AbstractBlockTerminator isEqualToTerminator'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -9919,7 +9919,7 @@ GGS_baseline_5F_instruction_5F_IF_5F_BitTest GGS_baseline_5F_instruction_5F_IF_5
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_instruction_IF_BitTest getBaseCode'
+//Extension proc '@baseline_instruction_IF_BitTest getBaseCode'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_instruction_5F_IF_5F_BitTest::method_getBaseCode (GGS_uint & outArgument_outBaseCode,
@@ -9952,7 +9952,7 @@ void callExtensionMethod_getBaseCode (cPtr_baseline_5F_instruction_5F_IF_5F_BitT
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_instruction_IF_BitTest getMnemonic'
+//Extension proc '@baseline_instruction_IF_BitTest getMnemonic'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_instruction_5F_IF_5F_BitTest::method_getMnemonic (GGS_string & outArgument_outMnemonic,
@@ -10785,7 +10785,7 @@ GGS_baseline_5F_model GGS_baseline_5F_model::extractObject (const GGS_object & i
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@midrange_instruction instructionUsesGOTOorCALL'
+//Extension proc '@midrange_instruction instructionUsesGOTOorCALL'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_instruction::method_instructionUsesGOTOorCALL (GGS_bool & /* ioArgument_ioUsesGOTOorCALL */,
@@ -10807,7 +10807,7 @@ void callExtensionMethod_instructionUsesGOTOorCALL (cPtr_midrange_5F_instruction
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_instruction build_midrange_ipic_instructionList'
+//Abstract extension proc '@midrange_instruction build_midrange_ipic_instructionList'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10827,7 +10827,7 @@ void callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (cPtr_midr
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_midrange_5F_instruction) ;
     inObject->method_build_5F_midrange_5F_ipic_5F_instructionList (constin_inRoutineMap, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, io_ioGeneratedInstructionList, io_ioListFileContents, constin_inTotalBankCount, io_ioCurrentBank, constin_inShouldPreserveBank, io_ioContinuesInSequence, constin_inRoutineKind, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
@@ -10835,7 +10835,7 @@ void callExtensionMethod_build_5F_midrange_5F_ipic_5F_instructionList (cPtr_midr
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_conditionExpression buildIPICinstructionForCondition'
+//Abstract extension proc '@midrange_conditionExpression buildIPICinstructionForCondition'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10854,14 +10854,14 @@ void callExtensionMethod_buildIPICinstructionForCondition (cPtr_midrange_5F_cond
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_midrange_5F_conditionExpression) ;
     inObject->method_buildIPICinstructionForCondition (constin_inTotalBankCount, constin_inCurrentBank, constin_inRegisterTable, constin_inConstantMap, io_ioLocalLabelIndex, constin_inComplementaryBranch, constin_inInstructionLocation, constin_inTargetLabel, io_ioGeneratedInstructionList, io_ioListFileContents, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
   }
 }
 //--------------------------------------------------------------------------------------------------
-//Extension method '@ipic18SequentialInstruction buildInstructionInvocationGraph'
+//Extension proc '@ipic18SequentialInstruction buildInstructionInvocationGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_buildInstructionInvocationGraph (const GGS_lstring /* constinArgument_inBlockLabel */,
@@ -10885,7 +10885,7 @@ void callExtensionMethod_buildInstructionInvocationGraph (cPtr_ipic_31__38_Seque
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator buildTerminatorInvocationGraph'
+//Abstract extension proc '@ipic18AbstractBlockTerminator buildTerminatorInvocationGraph'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10896,7 +10896,7 @@ void callExtensionMethod_buildTerminatorInvocationGraph (cPtr_ipic_31__38_Abstra
                                                          Compiler * inCompiler
                                                          COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
     inObject->method_buildTerminatorInvocationGraph (constin_inBlockLabel, io_ioGraphVizString, constin_inDottedArrow, inCompiler COMMA_THERE) ;
@@ -10904,7 +10904,7 @@ void callExtensionMethod_buildTerminatorInvocationGraph (cPtr_ipic_31__38_Abstra
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@ipic18AbstractBlockTerminator needToInsertJumpInstruction'
+//Abstract extension func '@ipic18AbstractBlockTerminator needToInsertJumpInstruction'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10920,7 +10920,7 @@ GGS_bool callExtensionGetter_needToInsertJumpInstruction (const cPtr_ipic_31__38
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@ipic18AbstractBlockTerminator buildTerminatorOrderedGraph'
+//Extension proc '@ipic18AbstractBlockTerminator buildTerminatorOrderedGraph'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_AbstractBlockTerminator::method_buildTerminatorOrderedGraph (const GGS_lstring /* constinArgument_inBlockLabel */,

@@ -12,7 +12,7 @@ map @midrange_symbolTableForConvertingRelatives {
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-method @midrange_intermediate_instruction defineLabelAtAddress
+proc @midrange_intermediate_instruction defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint unused ioAddress {
 }
@@ -20,7 +20,7 @@ method @midrange_intermediate_instruction defineLabelAtAddress
 //----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_pseudo_LABEL defineLabelAtAddress
+proc @midrange_intermediate_pseudo_LABEL defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives ioRoutineSymbolTable
   ?!@uint ioAddress {
   [!?ioRoutineSymbolTable insertKey !self.mLabel !ioAddress]
@@ -29,7 +29,7 @@ method @midrange_intermediate_pseudo_LABEL defineLabelAtAddress
 //----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_pseudo_ORG defineLabelAtAddress
+proc @midrange_intermediate_pseudo_ORG defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress {
   if (ioAddress > self.mOrigin) then
@@ -42,7 +42,7 @@ method @midrange_intermediate_pseudo_ORG defineLabelAtAddress
 //----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_actualInstruction defineLabelAtAddress
+proc @midrange_intermediate_actualInstruction defineLabelAtAddress
   ?!@midrange_symbolTableForConvertingRelatives unused ioRoutineSymbolTable
   ?!@uint ioAddress {
   let @uint nextAddress = ioAddress  + self.instructionLength
@@ -58,7 +58,7 @@ method @midrange_intermediate_actualInstruction defineLabelAtAddress
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-abstract method @midrange_intermediate_instruction compute
+abstract proc @midrange_intermediate_instruction compute
   ?let @midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
@@ -68,7 +68,7 @@ abstract method @midrange_intermediate_instruction compute
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_NULL compute
+override proc @midrange_intermediate_NULL compute
   ?let @midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
@@ -79,7 +79,7 @@ override method @midrange_intermediate_NULL compute
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_actualInstruction compute
+override proc @midrange_intermediate_actualInstruction compute
   ?let @midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint unused ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
@@ -91,7 +91,7 @@ override method @midrange_intermediate_actualInstruction compute
 //----------------------------------------------------------------------------*
 
 override
-method @midrange_intermediate_pseudo_ORG compute
+proc @midrange_intermediate_pseudo_ORG compute
   ?let @midrange_symbolTableForConvertingRelatives unused inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed
@@ -103,7 +103,7 @@ method @midrange_intermediate_pseudo_ORG compute
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_JUMP compute
+override proc @midrange_intermediate_JUMP compute
   ?let @midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioJUMP_or_JSR_fixed
@@ -146,7 +146,7 @@ override method @midrange_intermediate_JUMP compute
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_JSR compute
+override proc @midrange_intermediate_JSR compute
   ?let @midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool ioJUMP_or_JSR_fixed
@@ -189,7 +189,7 @@ override method @midrange_intermediate_JSR compute
 
 //----------------------------------------------------------------------------*
 
-override method @midrange_intermediate_pseudo_LABEL compute
+override proc @midrange_intermediate_pseudo_LABEL compute
   ?let @midrange_symbolTableForConvertingRelatives inRoutineSymbolTable
   ?!@uint ioAddress
   ?!@bool unused ioJUMP_or_JSR_fixed

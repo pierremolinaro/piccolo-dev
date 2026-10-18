@@ -7302,10 +7302,10 @@ class CollectionElementPtr_pic_31__38_DoWhilePartList : public CollectionElement
                                                            COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_pic_31__38_DoWhilePartList (const GGS_pic_31__38_DoWhilePartList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -7763,7 +7763,7 @@ void GGS_pic_31__38_DoWhilePartList::setter_setMConditionAtIndex (GGS_pic_31__38
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_pic_31__38_ConditionExpression GGS_pic_31__38_DoWhilePartList::getter_mConditionAtIndex (const GGS_uint & inIndex,
                                                                                              Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) const {
@@ -7802,7 +7802,7 @@ void GGS_pic_31__38_DoWhilePartList::setter_setMInstructionListAtIndex (GGS_pic_
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_pic_31__38_InstructionList GGS_pic_31__38_DoWhilePartList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                                Compiler * inCompiler
                                                                                                COMMA_LOCATION_ARGS) const {
@@ -7841,7 +7841,7 @@ void GGS_pic_31__38_DoWhilePartList::setter_setMEndOfPartLocationAtIndex (GGS_lo
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_pic_31__38_DoWhilePartList::getter_mEndOfPartLocationAtIndex (const GGS_uint & inIndex,
                                                                                Compiler * inCompiler
                                                                                COMMA_LOCATION_ARGS) const {
@@ -8316,10 +8316,10 @@ class CollectionElementPtr_pic_31__38_InterruptDefinitionList : public Collectio
                                                                    COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_pic_31__38_InterruptDefinitionList (const GGS_pic_31__38_InterruptDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -8802,7 +8802,7 @@ void GGS_pic_31__38_InterruptDefinitionList::setter_setMInterruptNameAtIndex (GG
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_pic_31__38_InterruptDefinitionList::getter_mInterruptNameAtIndex (const GGS_uint & inIndex,
                                                                                   Compiler * inCompiler
                                                                                   COMMA_LOCATION_ARGS) const {
@@ -8841,7 +8841,7 @@ void GGS_pic_31__38_InterruptDefinitionList::setter_setMFastReturnAtIndex (GGS_b
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_pic_31__38_InterruptDefinitionList::getter_mFastReturnAtIndex (const GGS_uint & inIndex,
                                                                             Compiler * inCompiler
                                                                             COMMA_LOCATION_ARGS) const {
@@ -8880,7 +8880,7 @@ void GGS_pic_31__38_InterruptDefinitionList::setter_setMInstructionListAtIndex (
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_pic_31__38_InstructionList GGS_pic_31__38_InterruptDefinitionList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                                        Compiler * inCompiler
                                                                                                        COMMA_LOCATION_ARGS) const {
@@ -8919,7 +8919,7 @@ void GGS_pic_31__38_InterruptDefinitionList::setter_setMEndOfInterruptLocationAt
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_pic_31__38_InterruptDefinitionList::getter_mEndOfInterruptLocationAtIndex (const GGS_uint & inIndex,
                                                                                             Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) const {
@@ -9080,10 +9080,10 @@ class CollectionElementPtr_pic_31__38_RoutineDefinitionList : public CollectionE
                                                                  COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_pic_31__38_RoutineDefinitionList (const GGS_pic_31__38_RoutineDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -9641,7 +9641,7 @@ void GGS_pic_31__38_RoutineDefinitionList::setter_setMRoutineNameAtIndex (GGS_ls
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_pic_31__38_RoutineDefinitionList::getter_mRoutineNameAtIndex (const GGS_uint & inIndex,
                                                                               Compiler * inCompiler
                                                                               COMMA_LOCATION_ARGS) const {
@@ -9680,7 +9680,7 @@ void GGS_pic_31__38_RoutineDefinitionList::setter_setMRequiredBankAtIndex (GGS_l
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_pic_31__38_RoutineDefinitionList::getter_mRequiredBankAtIndex (const GGS_uint & inIndex,
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) const {
@@ -9719,7 +9719,7 @@ void GGS_pic_31__38_RoutineDefinitionList::setter_setMReturnedBankAtIndex (GGS_l
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_pic_31__38_RoutineDefinitionList::getter_mReturnedBankAtIndex (const GGS_uint & inIndex,
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) const {
@@ -9758,7 +9758,7 @@ void GGS_pic_31__38_RoutineDefinitionList::setter_setMPreservesBankAtIndex (GGS_
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_pic_31__38_RoutineDefinitionList::getter_mPreservesBankAtIndex (const GGS_uint & inIndex,
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) const {
@@ -9797,7 +9797,7 @@ void GGS_pic_31__38_RoutineDefinitionList::setter_setMIsNoReturnAtIndex (GGS_boo
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_pic_31__38_RoutineDefinitionList::getter_mIsNoReturnAtIndex (const GGS_uint & inIndex,
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) const {
@@ -9836,7 +9836,7 @@ void GGS_pic_31__38_RoutineDefinitionList::setter_setMInstructionListAtIndex (GG
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_pic_31__38_InstructionList GGS_pic_31__38_RoutineDefinitionList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                                      Compiler * inCompiler
                                                                                                      COMMA_LOCATION_ARGS) const {
@@ -9875,7 +9875,7 @@ void GGS_pic_31__38_RoutineDefinitionList::setter_setMEndOfRoutineLocationAtInde
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_pic_31__38_RoutineDefinitionList::getter_mEndOfRoutineLocationAtIndex (const GGS_uint & inIndex,
                                                                                         Compiler * inCompiler
                                                                                         COMMA_LOCATION_ARGS) const {
@@ -10068,10 +10068,10 @@ class CollectionElementPtr_pic_31__38_MacroDefinitionList : public CollectionEle
                                                                COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_pic_31__38_MacroDefinitionList (const GGS_pic_31__38_MacroDefinitionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -10529,7 +10529,7 @@ void GGS_pic_31__38_MacroDefinitionList::setter_setMMacroNameAtIndex (GGS_lstrin
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_pic_31__38_MacroDefinitionList::getter_mMacroNameAtIndex (const GGS_uint & inIndex,
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) const {
@@ -10568,7 +10568,7 @@ void GGS_pic_31__38_MacroDefinitionList::setter_setMConstantNameListAtIndex (GGS
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstringlist GGS_pic_31__38_MacroDefinitionList::getter_mConstantNameListAtIndex (const GGS_uint & inIndex,
                                                                                      Compiler * inCompiler
                                                                                      COMMA_LOCATION_ARGS) const {
@@ -10607,7 +10607,7 @@ void GGS_pic_31__38_MacroDefinitionList::setter_setMInstructionListAtIndex (GGS_
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_pic_31__38_InstructionList GGS_pic_31__38_MacroDefinitionList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                                    Compiler * inCompiler
                                                                                                    COMMA_LOCATION_ARGS) const {
@@ -11302,10 +11302,10 @@ class CollectionElementPtr_routineDeclarationList : public CollectionElementPtr 
                                                        COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_routineDeclarationList (const GGS_routineDeclarationList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -11813,7 +11813,7 @@ void GGS_routineDeclarationList::setter_setMRoutineNameAtIndex (GGS_lstring inOp
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_routineDeclarationList::getter_mRoutineNameAtIndex (const GGS_uint & inIndex,
                                                                     Compiler * inCompiler
                                                                     COMMA_LOCATION_ARGS) const {
@@ -11852,7 +11852,7 @@ void GGS_routineDeclarationList::setter_setMRequiredBankAtIndex (GGS_luint inOpe
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_routineDeclarationList::getter_mRequiredBankAtIndex (const GGS_uint & inIndex,
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) const {
@@ -11891,7 +11891,7 @@ void GGS_routineDeclarationList::setter_setMReturnedBankAtIndex (GGS_luint inOpe
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_routineDeclarationList::getter_mReturnedBankAtIndex (const GGS_uint & inIndex,
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) const {
@@ -11930,7 +11930,7 @@ void GGS_routineDeclarationList::setter_setMPreservesBankAtIndex (GGS_bool inOpe
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_routineDeclarationList::getter_mPreservesBankAtIndex (const GGS_uint & inIndex,
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) const {
@@ -11969,7 +11969,7 @@ void GGS_routineDeclarationList::setter_setMIsNoReturnAtIndex (GGS_bool inOperan
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_routineDeclarationList::getter_mIsNoReturnAtIndex (const GGS_uint & inIndex,
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) const {
@@ -12269,10 +12269,10 @@ class CollectionElementPtr_dataList : public CollectionElementPtr {
                                          COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_dataList (const GGS_dataList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -12730,7 +12730,7 @@ void GGS_dataList::setter_setMDataNameAtIndex (GGS_lstring inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_dataList::getter_mDataNameAtIndex (const GGS_uint & inIndex,
                                                    Compiler * inCompiler
                                                    COMMA_LOCATION_ARGS) const {
@@ -12769,7 +12769,7 @@ void GGS_dataList::setter_setMValueListAtIndex (GGS_immediatExpressionList inOpe
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_immediatExpressionList GGS_dataList::getter_mValueListAtIndex (const GGS_uint & inIndex,
                                                                    Compiler * inCompiler
                                                                    COMMA_LOCATION_ARGS) const {
@@ -12808,7 +12808,7 @@ void GGS_dataList::setter_setMIsByteListAtIndex (GGS_bool inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_bool GGS_dataList::getter_mIsByteListAtIndex (const GGS_uint & inIndex,
                                                   Compiler * inCompiler
                                                   COMMA_LOCATION_ARGS) const {
@@ -12952,10 +12952,10 @@ class CollectionElementPtr_checkpicList : public CollectionElementPtr {
                                              COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_checkpicList (const GGS_checkpicList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -13388,7 +13388,7 @@ void GGS_checkpicList::setter_setMErrorLocationAtIndex (GGS_location inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_checkpicList::getter_mErrorLocationAtIndex (const GGS_uint & inIndex,
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) const {
@@ -13427,7 +13427,7 @@ void GGS_checkpicList::setter_setMValueListAtIndex (GGS_lstringlist inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstringlist GGS_checkpicList::getter_mValueListAtIndex (const GGS_uint & inIndex,
                                                             Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) const {
@@ -13548,7 +13548,7 @@ GGS_checkpicList GGS_checkpicList::extractObject (const GGS_object & inObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@baseline_assembly_instruction print'
+//Abstract extension proc '@baseline_assembly_instruction print'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13557,7 +13557,7 @@ void callExtensionMethod_print (cPtr_baseline_5F_assembly_5F_instruction * inObj
                                 Compiler * inCompiler
                                 COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_assembly_5F_instruction) ;
     inObject->method_print (io_ioListFileContents, inCompiler COMMA_THERE) ;
@@ -13620,7 +13620,7 @@ GGS_string extensionGetter_mnemonic (const GGS_pic_31__38_InstructionWithNoOpera
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@baseline_instruction addUsedRoutines'
+//Abstract extension proc '@baseline_instruction addUsedRoutines'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13629,7 +13629,7 @@ void callExtensionMethod_addUsedRoutines (cPtr_baseline_5F_instruction * inObjec
                                           Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_baseline_5F_instruction) ;
     inObject->method_addUsedRoutines (io_ioUsedRoutines, inCompiler COMMA_THERE) ;
@@ -13637,7 +13637,7 @@ void callExtensionMethod_addUsedRoutines (cPtr_baseline_5F_instruction * inObjec
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@declarationInRam handleDeclaration'
+//Abstract extension proc '@declarationInRam handleDeclaration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -13651,7 +13651,7 @@ void callExtensionMethod_handleDeclaration (cPtr_declarationInRam * inObject,
                                             Compiler * inCompiler
                                             COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_declarationInRam) ;
     inObject->method_handleDeclaration (constin_inConstantMap, io_ioUsedRegisters, io_ioRamBank, io_ioRegisterTable, constin_inCurrentRamBank, io_ioDeclaredByteMap, inCompiler COMMA_THERE) ;
@@ -14389,7 +14389,7 @@ GGS_declaredRoutineMap GGS_declaredRoutineMap::extractObject (const GGS_object &
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@pic18PiccoloInstruction performInlining'
+//Extension proc '@pic18PiccoloInstruction performInlining'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_pic_31__38_PiccoloInstruction::method_performInlining (const GGS_stringset /* constinArgument_inInlinedRoutineSet */,

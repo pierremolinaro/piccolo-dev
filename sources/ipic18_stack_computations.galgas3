@@ -26,14 +26,14 @@ map @routineStackRequirementMap {
 
 //----------------------------------------------------------------------------*
 
-abstract method @ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations
+abstract proc @ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
   ?!@stringset unused ioExploredBlockSet
   !@uint outStackNeeds
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18AbstractConditionTerminator exploreAccessibleBlocksForStackComputations
+override proc @ipic18AbstractConditionTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
@@ -53,7 +53,7 @@ override method @ipic18AbstractConditionTerminator exploreAccessibleBlocksForSta
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComputations
+override proc @ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
@@ -68,7 +68,7 @@ override method @ipic18ComputedBraTerminator exploreAccessibleBlocksForStackComp
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackComputations
+override proc @ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
@@ -83,7 +83,7 @@ override method @ipic18ComputedGotoTerminator exploreAccessibleBlocksForStackCom
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18JumpTerminator exploreAccessibleBlocksForStackComputations
+override proc @ipic18JumpTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
@@ -96,7 +96,7 @@ override method @ipic18JumpTerminator exploreAccessibleBlocksForStackComputation
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ConditionalJumpTerminator exploreAccessibleBlocksForStackComputations
+override proc @ipic18ConditionalJumpTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset ioBlockToExploreSet
   ?!@stringset ioExploredBlockSet
   !@uint outStackNeeds
@@ -112,7 +112,7 @@ override method @ipic18ConditionalJumpTerminator exploreAccessibleBlocksForStack
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ComputedRETLWTerminator exploreAccessibleBlocksForStackComputations
+override proc @ipic18ComputedRETLWTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
   ?!@stringset unused ioExploredBlockSet
   !@uint outStackNeeds
@@ -122,7 +122,7 @@ override method @ipic18ComputedRETLWTerminator exploreAccessibleBlocksForStackCo
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18ReturnTerminator exploreAccessibleBlocksForStackComputations
+override proc @ipic18ReturnTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
   ?!@stringset unused ioExploredBlockSet
   !@uint outStackNeeds
@@ -132,7 +132,7 @@ override method @ipic18ReturnTerminator exploreAccessibleBlocksForStackComputati
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18RetlwTerminator exploreAccessibleBlocksForStackComputations
+override proc @ipic18RetlwTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
   ?!@stringset unused ioExploredBlockSet
   !@uint outStackNeeds
@@ -142,7 +142,7 @@ override method @ipic18RetlwTerminator exploreAccessibleBlocksForStackComputatio
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18RetfieTerminator exploreAccessibleBlocksForStackComputations
+override proc @ipic18RetfieTerminator exploreAccessibleBlocksForStackComputations
   ?!@stringset unused ioBlockToExploreSet
   ?!@stringset unused ioExploredBlockSet
   !@uint outStackNeeds
@@ -156,21 +156,21 @@ override method @ipic18RetfieTerminator exploreAccessibleBlocksForStackComputati
 
 //----------------------------------------------------------------------------*
 
-method @ipic18SequentialInstruction buildCalledRoutineSetForStackComputations
+proc @ipic18SequentialInstruction buildCalledRoutineSetForStackComputations
   ?!@stringset unused ioRoutineCalledSet
 {
 }
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_JSR buildCalledRoutineSetForStackComputations
+override proc @ipic18_intermediate_JSR buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
   ioRoutineCalledSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18_intermediate_instruction_computed_rcall buildCalledRoutineSetForStackComputations
+override proc @ipic18_intermediate_instruction_computed_rcall buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
   for (mInstruction * *) in  self.mTargetInstructions do
     [mInstruction buildCalledRoutineSetForStackComputations !?ioRoutineCalledSet]
@@ -179,7 +179,7 @@ override method @ipic18_intermediate_instruction_computed_rcall buildCalledRouti
 
 //----------------------------------------------------------------------------*
 
-override method @ipic18_condition_skip_instruction buildCalledRoutineSetForStackComputations
+override proc @ipic18_condition_skip_instruction buildCalledRoutineSetForStackComputations
   ?!@stringset ioRoutineCalledSet {
   [self.mEmbeddedInstruction buildCalledRoutineSetForStackComputations !?ioRoutineCalledSet]
 }

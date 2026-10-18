@@ -553,7 +553,7 @@ GGS_piccoloDeviceModel GGS_piccoloDeviceModel::extractObject (const GGS_object &
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@baseline_assembly_instruction length'
+//Abstract extension func '@baseline_assembly_instruction length'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -568,7 +568,7 @@ GGS_uint callExtensionGetter_length (const cPtr_baseline_5F_assembly_5F_instruct
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@midrange_intermediate_instruction setCurrentAddress'
+//Extension proc '@midrange_intermediate_instruction setCurrentAddress'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction::method_setCurrentAddress (GGS_uint & ioArgument_ioCurrentAddress,
@@ -832,7 +832,7 @@ GGS_ipic_31__38_SequentialInstruction GGS_ipic_31__38_SequentialInstruction::ext
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator terminatorMinMaxDuration'
+//Abstract extension proc '@ipic18AbstractBlockTerminator terminatorMinMaxDuration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -846,7 +846,7 @@ void callExtensionMethod_terminatorMinMaxDuration (cPtr_ipic_31__38_AbstractBloc
 //--- Drop output arguments
   out_outMin.drop () ;
   out_outMax.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
     inObject->method_terminatorMinMaxDuration (constin_inExploredBlockMap, constin_inNextLabel, out_outMin, out_outMax, inCompiler COMMA_THERE) ;
@@ -958,7 +958,7 @@ GGS_ipic_31__38_SingleInstructionTerminator GGS_ipic_31__38_SingleInstructionTer
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@ipic18SequentialInstruction minMaxDuration'
+//Extension proc '@ipic18SequentialInstruction minMaxDuration'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_minMaxDuration (const GGS_blockDurationMap /* constinArgument_inExploredBlockMap */,
@@ -1108,7 +1108,7 @@ GGS_midrange_5F_instruction GGS_midrange_5F_instruction::extractObject (const GG
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@immediatExpression eval'
+//Abstract extension proc '@immediatExpression eval'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1121,7 +1121,7 @@ void callExtensionMethod_eval (cPtr_immediatExpression * inObject,
                                COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
   out_outResult.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_immediatExpression) ;
     inObject->method_eval (constin_inRegisterTable, constin_inConstantMap, out_outResult, io_ioUsedRegisters, inCompiler COMMA_THERE) ;
@@ -1129,7 +1129,7 @@ void callExtensionMethod_eval (cPtr_immediatExpression * inObject,
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@bitNumberExpression getBitNumber'
+//Abstract extension proc '@bitNumberExpression getBitNumber'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1143,7 +1143,7 @@ void callExtensionMethod_getBitNumber (cPtr_bitNumberExpression * inObject,
                                        COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
   out_outBitNumber.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_bitNumberExpression) ;
     inObject->method_getBitNumber (constin_inRegisterTable, constin_inConstantMap, io_ioUsedRegisters, constin_inBitSliceTable, out_outBitNumber, inCompiler COMMA_THERE) ;
@@ -5236,7 +5236,7 @@ GGS_pic_31__38_Instruction_5F_switch_2E_weak GGS_pic_31__38_Instruction_5F_switc
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@ipic18AbstractBlockTerminator terminatorDisplay'
+//Abstract extension func '@ipic18AbstractBlockTerminator terminatorDisplay'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5253,7 +5253,7 @@ GGS_string callExtensionGetter_terminatorDisplay (const cPtr_ipic_31__38_Abstrac
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension getter '@ipic18AbstractBlockTerminator terminatorSize'
+//Abstract extension func '@ipic18AbstractBlockTerminator terminatorSize'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -5269,7 +5269,7 @@ GGS_uint callExtensionGetter_terminatorSize (const cPtr_ipic_31__38_AbstractBloc
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_intermediate_instruction setCurrentAddress'
+//Extension proc '@baseline_intermediate_instruction setCurrentAddress'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_instruction::method_setCurrentAddress (GGS_uint & ioArgument_ioCurrentWordAdress,

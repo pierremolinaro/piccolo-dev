@@ -20,10 +20,10 @@ class CollectionElementPtr__32_lstringlist : public CollectionElementPtr {
                                                 COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr__32_lstringlist (const GGS__32_lstringlist_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -456,7 +456,7 @@ void GGS__32_lstringlist::setter_setMValue_30_AtIndex (GGS_lstring inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS__32_lstringlist::getter_mValue_30_AtIndex (const GGS_uint & inIndex,
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
@@ -495,7 +495,7 @@ void GGS__32_lstringlist::setter_setMValue_31_AtIndex (GGS_lstring inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS__32_lstringlist::getter_mValue_31_AtIndex (const GGS_uint & inIndex,
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
@@ -2437,7 +2437,7 @@ GGS_registerProtection GGS_registerProtection::extractObject (const GGS_object &
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@registerTable checkPrivateAccess'
+//Extension proc '@registerTable checkPrivateAccess'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -2464,10 +2464,10 @@ void extensionMethod_checkPrivateAccess (const GGS_registerTable inObject,
         test_0 = test_1.boolEnum () ;
         if (GalgasBool::boolTrue == test_0) {
           const GGS_registerTable temp_3 = inObject ;
-          GGS_location var_declarationLocation_1020 = temp_3.getter_locationForKey (constinArgument_inKey.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 31)) ;
+          GGS_location var_declarationLocation_1018 = temp_3.getter_locationForKey (constinArgument_inKey.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 31)) ;
           GalgasBool test_4 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_4) {
-            test_4 = GGS_bool (ComparisonKind::notEqual, var_declarationLocation_1020.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 32)).objectCompare (constinArgument_inKey.readProperty_location ().getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 32)))).boolEnum () ;
+            test_4 = GGS_bool (ComparisonKind::notEqual, var_declarationLocation_1018.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 32)).objectCompare (constinArgument_inKey.readProperty_location ().getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 32)))).boolEnum () ;
             if (GalgasBool::boolTrue == test_4) {
               GenericArray <FixItDescription> fixItArray5 ;
               inCompiler->emitSemanticError (constinArgument_inKey.readProperty_location (), GGS_string ("register is protected, write is reserved to instructions in declaration file"), fixItArray5  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 33)) ;
@@ -2485,10 +2485,10 @@ void extensionMethod_checkPrivateAccess (const GGS_registerTable inObject,
         test_6 = temp_7.getter_hasKey (constinArgument_inKey.readProperty_string () COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 37)).boolEnum () ;
         if (GalgasBool::boolTrue == test_6) {
           const GGS_registerTable temp_8 = inObject ;
-          GGS_location var_declarationLocation_1322 = temp_8.getter_locationForKey (constinArgument_inKey.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 38)) ;
+          GGS_location var_declarationLocation_1320 = temp_8.getter_locationForKey (constinArgument_inKey.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 38)) ;
           GalgasBool test_9 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_9) {
-            test_9 = GGS_bool (ComparisonKind::notEqual, var_declarationLocation_1322.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 39)).objectCompare (constinArgument_inKey.readProperty_location ().getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 39)))).boolEnum () ;
+            test_9 = GGS_bool (ComparisonKind::notEqual, var_declarationLocation_1320.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 39)).objectCompare (constinArgument_inKey.readProperty_location ().getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 39)))).boolEnum () ;
             if (GalgasBool::boolTrue == test_9) {
               GenericArray <FixItDescription> fixItArray10 ;
               inCompiler->emitSemanticError (constinArgument_inKey.readProperty_location (), GGS_string ("register is private to declaration file"), fixItArray10  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 40)) ;
@@ -3319,10 +3319,10 @@ class CollectionElementPtr_illegalMaskList : public CollectionElementPtr {
                                                 COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_illegalMaskList (const GGS_illegalMaskList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -3780,7 +3780,7 @@ void GGS_illegalMaskList::setter_setMIllegalValueAtIndex (GGS_luint inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_illegalMaskList::getter_mIllegalValueAtIndex (const GGS_uint & inIndex,
                                                             Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) const {
@@ -3819,7 +3819,7 @@ void GGS_illegalMaskList::setter_setMIllegalMaskAtIndex (GGS_luint inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_luint GGS_illegalMaskList::getter_mIllegalMaskAtIndex (const GGS_uint & inIndex,
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) const {
@@ -3858,7 +3858,7 @@ void GGS_illegalMaskList::setter_setMDescriptionAtIndex (GGS_lstring inOperand,
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_lstring GGS_illegalMaskList::getter_mDescriptionAtIndex (const GGS_uint & inIndex,
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) const {
@@ -11707,7 +11707,7 @@ GGS_midrange_5F_symbolTableForConvertingRelatives GGS_midrange_5F_symbolTableFor
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@midrange_intermediate_instruction defineLabelAtAddress'
+//Extension proc '@midrange_intermediate_instruction defineLabelAtAddress'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction::method_defineLabelAtAddress (GGS_midrange_5F_symbolTableForConvertingRelatives & /* ioArgument_ioRoutineSymbolTable */,
@@ -11731,7 +11731,7 @@ void callExtensionMethod_defineLabelAtAddress (cPtr_midrange_5F_intermediate_5F_
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_intermediate_instruction compute'
+//Abstract extension proc '@midrange_intermediate_instruction compute'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -11745,7 +11745,7 @@ void callExtensionMethod_compute (cPtr_midrange_5F_intermediate_5F_instruction *
                                   Compiler * inCompiler
                                   COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_midrange_5F_intermediate_5F_instruction) ;
     inObject->method_compute (constin_inRoutineSymbolTable, io_ioAddress, io_ioJUMP_5F_or_5F_JSR_5F_fixed, io_ioGeneratedInstructionList, constin_inIndex, io_ioListFileContents, inCompiler COMMA_THERE) ;
@@ -11885,10 +11885,10 @@ class CollectionElementPtr_baseline_5F_assembly_5F_instructionList : public Coll
                                                                         COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_baseline_5F_assembly_5F_instructionList (const GGS_baseline_5F_assembly_5F_instructionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -12296,7 +12296,7 @@ void GGS_baseline_5F_assembly_5F_instructionList::setter_setMInstructionAtIndex 
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_baseline_5F_assembly_5F_instruction GGS_baseline_5F_assembly_5F_instructionList::getter_mInstructionAtIndex (const GGS_uint & inIndex,
                                                                                                                  Compiler * inCompiler
                                                                                                                  COMMA_LOCATION_ARGS) const {
@@ -15115,7 +15115,7 @@ GGS_midrange_5F_symbolTable GGS_midrange_5F_symbolTable::extractObject (const GG
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@midrange_intermediate_instruction enterLabelAtAddress'
+//Extension proc '@midrange_intermediate_instruction enterLabelAtAddress'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_midrange_5F_intermediate_5F_instruction::method_enterLabelAtAddress (GGS_midrange_5F_symbolTable & /* ioArgument_ioRoutineSymbolTable */,
@@ -15139,7 +15139,7 @@ void callExtensionMethod_enterLabelAtAddress (cPtr_midrange_5F_intermediate_5F_i
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_intermediate_instruction generateBinaryCodeAtAddress'
+//Abstract extension proc '@midrange_intermediate_instruction generateBinaryCodeAtAddress'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -15153,7 +15153,7 @@ void callExtensionMethod_generateBinaryCodeAtAddress (cPtr_midrange_5F_intermedi
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_midrange_5F_intermediate_5F_instruction) ;
     inObject->method_generateBinaryCodeAtAddress (constin_inRegisterTable, constin_inConstantMap, constin_inTotalBankCount, constin_inRoutineSymbolTable, io_ioListFileContents, io_ioAddress, inCompiler COMMA_THERE) ;
@@ -16428,10 +16428,10 @@ class CollectionElementPtr_pic_31__38_CaseExpressionList : public CollectionElem
                                                               COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_pic_31__38_CaseExpressionList (const GGS_pic_31__38_CaseExpressionList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -16839,7 +16839,7 @@ void GGS_pic_31__38_CaseExpressionList::setter_setMCaseItemAtIndex (GGS_pic_31__
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_pic_31__38_AbstractCaseItem GGS_pic_31__38_CaseExpressionList::getter_mCaseItemAtIndex (const GGS_uint & inIndex,
                                                                                             Compiler * inCompiler
                                                                                             COMMA_LOCATION_ARGS) const {
@@ -16960,10 +16960,10 @@ class CollectionElementPtr_pic_31__38_SwitchInstructionCaseList : public Collect
                                                                      COMMA_LOCATION_ARGS) ;
   public: CollectionElementPtr_pic_31__38_SwitchInstructionCaseList (const GGS_pic_31__38_SwitchInstructionCaseList_2E_element & inElement COMMA_LOCATION_ARGS) ;
 
-//--- Virtual method that checks that all attributes are valid
+//--- Virtual proc that checks that all attributes are valid
   public: virtual bool isValid (void) const ;
 
-//--- Virtual method that returns a copy of current object
+//--- Virtual proc that returns a copy of current object
   public: virtual CollectionElementPtr * copy (void) ;
 } ;
 
@@ -17421,7 +17421,7 @@ void GGS_pic_31__38_SwitchInstructionCaseList::setter_setMStartOfCaseAtIndex (GG
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_location GGS_pic_31__38_SwitchInstructionCaseList::getter_mStartOfCaseAtIndex (const GGS_uint & inIndex,
                                                                                    Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) const {
@@ -17460,7 +17460,7 @@ void GGS_pic_31__38_SwitchInstructionCaseList::setter_setMCaseExpressionListAtIn
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_pic_31__38_CaseExpressionList GGS_pic_31__38_SwitchInstructionCaseList::getter_mCaseExpressionListAtIndex (const GGS_uint & inIndex,
                                                                                                                Compiler * inCompiler
                                                                                                                COMMA_LOCATION_ARGS) const {
@@ -17499,7 +17499,7 @@ void GGS_pic_31__38_SwitchInstructionCaseList::setter_setMInstructionListAtIndex
   }
 }
 //--------------------------------------------------------------------------------------------------
-  
+
 GGS_pic_31__38_InstructionList GGS_pic_31__38_SwitchInstructionCaseList::getter_mInstructionListAtIndex (const GGS_uint & inIndex,
                                                                                                          Compiler * inCompiler
                                                                                                          COMMA_LOCATION_ARGS) const {

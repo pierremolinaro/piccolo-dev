@@ -39,14 +39,14 @@ map @baseline_symbolTable {
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-method @baseline_assembly_instruction enterLabelAtAddress
+proc @baseline_assembly_instruction enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
   ?!@uint unused ioWordAddress {
 }
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_pseudo_LABEL enterLabelAtAddress
+override proc @baseline_assembly_pseudo_LABEL enterLabelAtAddress
   ?!@baseline_symbolTable ioRoutineSymbolTable
   ?!@uint ioWordAddress {
   [!?ioRoutineSymbolTable insertKey !self.mLabel !ioWordAddress]
@@ -54,7 +54,7 @@ override method @baseline_assembly_pseudo_LABEL enterLabelAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_pseudo_ORG enterLabelAtAddress
+override proc @baseline_assembly_pseudo_ORG enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioWordAddress {
   ioWordAddress = self.mOrigin
@@ -62,7 +62,7 @@ override method @baseline_assembly_pseudo_ORG enterLabelAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_actualInstruction enterLabelAtAddress
+override proc @baseline_assembly_actualInstruction enterLabelAtAddress
   ?!@baseline_symbolTable unused ioRoutineSymbolTable
   ?!@uint ioWordAddress {
   ioWordAddress = ioWordAddress  + self.length
@@ -74,14 +74,14 @@ override method @baseline_assembly_actualInstruction enterLabelAtAddress
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-abstract method @baseline_assembly_instruction generateBinaryCodeAtAddress
+abstract proc @baseline_assembly_instruction generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAddress
+override proc @baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -93,7 +93,7 @@ override method @baseline_assembly_pseudo_BEGINOFROUTINE generateBinaryCodeAtAdd
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddress
+override proc @baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -105,7 +105,7 @@ override method @baseline_assembly_pseudo_ENDOFROUTINE generateBinaryCodeAtAddre
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress
+override proc @baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -116,7 +116,7 @@ override method @baseline_assembly_pseudo_ORG generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
+override proc @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -147,7 +147,7 @@ override method @baseline_assembly_instruction_FD generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_instruction_F generateBinaryCodeAtAddress
+override proc @baseline_assembly_instruction_F generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -162,7 +162,7 @@ override method @baseline_assembly_instruction_F generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_instruction_FB generateBinaryCodeAtAddress
+override proc @baseline_assembly_instruction_FB generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -178,7 +178,7 @@ override method @baseline_assembly_instruction_FB generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtAddress
+override proc @baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -196,7 +196,7 @@ override method @baseline_assembly_instruction_BitTestSkip generateBinaryCodeAtA
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_GOTO generateBinaryCodeAtAddress
+override proc @baseline_assembly_GOTO generateBinaryCodeAtAddress
   ?let @baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -208,7 +208,7 @@ override method @baseline_assembly_GOTO generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_SKIP generateBinaryCodeAtAddress
+override proc @baseline_assembly_SKIP generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -217,7 +217,7 @@ override method @baseline_assembly_SKIP generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_CALL generateBinaryCodeAtAddress
+override proc @baseline_assembly_CALL generateBinaryCodeAtAddress
   ?let @baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -229,7 +229,7 @@ override method @baseline_assembly_CALL generateBinaryCodeAtAddress
 
 //----------------------------------------------------*
 
-override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeAtAddress
+override proc @baseline_assembly_incDecRegisterInCondition generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -248,7 +248,7 @@ override method @baseline_assembly_incDecRegisterInCondition generateBinaryCodeA
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
+override proc @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -265,7 +265,7 @@ override method @baseline_assembly_WO_OPERAND generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_TRIS generateBinaryCodeAtAddress
+override proc @baseline_assembly_TRIS generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -274,7 +274,7 @@ override method @baseline_assembly_TRIS generateBinaryCodeAtAddress
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_instruction_literalOperation generateBinaryCodeAtAddress
+override proc @baseline_assembly_instruction_literalOperation generateBinaryCodeAtAddress
   ?let @baseline_symbolTable unused inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {
@@ -292,7 +292,7 @@ override method @baseline_assembly_instruction_literalOperation generateBinaryCo
 
 //----------------------------------------------------------------------------*
 
-override method @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
+override proc @baseline_assembly_pseudo_LABEL generateBinaryCodeAtAddress
   ?let @baseline_symbolTable inRoutineSymbolTable
   ?!@string ioListFileContents
   ?!@uint ioWordAddress {

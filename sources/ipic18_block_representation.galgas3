@@ -119,8 +119,8 @@ class @ipic18ComputedBraTerminator : @ipic18AbstractBlockTerminator {
 //----------------------------------------------------*
 
 enum @ipic18RegisterComparison %equatable {
-  case registerEqualsToW 
-  case registerGreaterThanW 
+  case registerEqualsToW
+  case registerGreaterThanW
   case registerLowerThanW
 }
 
@@ -179,7 +179,7 @@ struct @ipic18_intermediate_registerExpression {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-getter @ipic18_intermediate_registerExpression isEqualToRegister
+func @ipic18_intermediate_registerExpression isEqualToRegister
   ?let @ipic18_intermediate_registerExpression inRegister
   -> @bool outResult {
   outResult = self.mAssemblyString == inRegister.mAssemblyString
@@ -238,7 +238,7 @@ class @ipic18_intermediate_instruction_literalOperation : @ipic18SequentialInstr
 class @ipic18_intermediate_instruction_LFSR : @ipic18SequentialInstruction {
   public let @luint mFSRindex
   public let @uint mValue
-}  
+}
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -406,7 +406,7 @@ struct @branchOverflowMap {
 
   //·····························································································
 
-  getter listForKey ?let @string inKey -> @stringlist {
+  func listForKey ?let @string inKey -> @stringlist {
     if [self.dictionary hasKey !inKey] then
       [self.dictionary searchKey !inKey ?result]
    else
@@ -420,7 +420,7 @@ struct @branchOverflowMap {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-method @ipic18SequentialInstruction instructionRelativeBranchOverflow
+proc @ipic18SequentialInstruction instructionRelativeBranchOverflow
   ?let @uint unused inAddress
   ?let @string unused inBlockLabel
   ?let @symbolTableForRelativesResolution unused inSymbolTable
@@ -429,7 +429,7 @@ method @ipic18SequentialInstruction instructionRelativeBranchOverflow
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-method @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
+proc @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
   ?let @uint unused inAddress
   ?let @string unused inBlockLabel
   ?let @symbolTableForRelativesResolution unused inSymbolTable
@@ -443,7 +443,7 @@ method @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-method @ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution
+proc @ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution
   ?let @uint unused inAddress
   ?let @string unused inBlockLabel
   ?let @symbolTableForRelativesResolution unused inSymbolTable
@@ -468,7 +468,7 @@ list @codeList {
   public let @string mAssemblyCode
   public let @uintlist mBinaryCode
 }
-  
+
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 map @pic18_dataAddressMap {
@@ -479,7 +479,7 @@ map @pic18_dataAddressMap {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract method @ipic18SequentialInstruction generateCode
+abstract proc @ipic18SequentialInstruction generateCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @pic18_dataAddressMap inDataMap
@@ -487,7 +487,7 @@ abstract method @ipic18SequentialInstruction generateCode
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract method @ipic18AbstractBlockTerminator generateTerminatorCode
+abstract proc @ipic18AbstractBlockTerminator generateTerminatorCode
   ?let @uint inAddress
   ?let @symbolTableForRelativesResolution inSymbolTable
   ?let @string inNextBlockLabel
@@ -495,7 +495,7 @@ abstract method @ipic18AbstractBlockTerminator generateTerminatorCode
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-abstract getter @ipic18AbstractBlockTerminator isEqualToTerminator
+abstract func @ipic18AbstractBlockTerminator isEqualToTerminator
   ?let @ipic18AbstractBlockTerminator inTerminator
   -> @bool
 
@@ -522,7 +522,7 @@ func pic18_checkBRA_RCALL
   ?let @lstring inTargetLabel
   ?let @uint inCurrentAddress
   ->@bool outDisplacementOK {
-//--- The target label is not defined if 
+//--- The target label is not defined if
   [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
   let @sint displacement = (targetAddress.sint - 2 - inCurrentAddress.sint) >> 1
   outDisplacementOK =  (displacement <= 1023) & (displacement >= - 1024)
@@ -551,7 +551,7 @@ func pic18_Bcc_instruction_code
   ?let @lstring inTargetLabel
   ?let @conditional_branch inConditionalBranch
   ?let @bool inComplemented
-  ->@codeList outCode {  
+  ->@codeList outCode {
   let @sint displacement = (inTargetAddress.sint - 2 - inConditionalBranchInstructionAddress.sint) >> 1
   if (displacement > 127) | (displacement < - 128) then
     error (inTargetLabel: "** INTERNAL ERROR ** displacement too large for conditional branch instruction")
@@ -572,7 +572,7 @@ func pic18_Bcc_instruction_code
   else
     conditionalBranch = inConditionalBranch
   end
-  
+
   let @uint baseCode
   let @string mnemonic
   switch conditionalBranch

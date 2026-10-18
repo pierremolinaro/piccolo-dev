@@ -307,7 +307,7 @@ class GGS__32_lstringlist_2E_element : public AC_GALGAS_root {
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -563,7 +563,7 @@ class GGS_declaredByteMap_2E_element : public AC_GALGAS_root {
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -969,7 +969,7 @@ class GGS_registerProtection : public AC_GALGAS_root {
 
   public: static class GGS_registerProtection class_func_publicRegister (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -1314,7 +1314,7 @@ class GGS_registerTable_2E_element : public AC_GALGAS_root {
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -1486,7 +1486,7 @@ class GGS_bitSliceTable_2E_element : public AC_GALGAS_root {
                                                              Compiler * inCompiler
                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -1588,7 +1588,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_bitSliceTable_2E_eleme
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@registerTable checkPrivateAccess'
+//Extension proc '@registerTable checkPrivateAccess'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -1932,7 +1932,7 @@ class GGS_ramBankTable_2E_element : public AC_GALGAS_root {
                                                             Compiler * inCompiler
                                                             COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -2088,7 +2088,7 @@ class GGS_processorType : public AC_GALGAS_root {
 
   public: static class GGS_processorType class_func_pic_31__38__5F__38__30_ (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -2451,7 +2451,7 @@ class GGS_illegalMaskList_2E_element : public AC_GALGAS_root {
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -2757,7 +2757,7 @@ class GGS_fieldSettingMap_2E_element : public AC_GALGAS_root {
                                                                Compiler * inCompiler
                                                                COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -3165,7 +3165,7 @@ class GGS_configRegisterMaskMap_2E_element : public AC_GALGAS_root {
                                                                      Compiler * inCompiler
                                                                      COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -3598,7 +3598,7 @@ class GGS_configRegisterMap_2E_element : public AC_GALGAS_root {
                                                                  Compiler * inCompiler
                                                                  COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -3760,21 +3760,21 @@ class cPtr_baseline_5F_assembly_5F_instruction : public AbstractStrongPtrClass {
   public: void baseline_5F_assembly_5F_instruction_init (Compiler * inCompiler) ;
 
 
-//--- Extension getter length
+//--- Extension func length
   public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 
-//--- Extension method enterLabelAtAddress
+//--- Extension proc enterLabelAtAddress
   public: virtual void method_enterLabelAtAddress (class GGS_baseline_5F_symbolTable & arg_ioRoutineSymbolTable,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) ;
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
@@ -3858,27 +3858,27 @@ class cPtr_midrange_5F_intermediate_5F_instruction : public AbstractStrongPtrCla
   public: void midrange_5F_intermediate_5F_instruction_init (Compiler * inCompiler) ;
 
 
-//--- Extension getter instructionLength
+//--- Extension func instructionLength
   public: virtual class GGS_uint getter_instructionLength (Compiler * COMMA_LOCATION_ARGS) const = 0 ;
 
-//--- Extension getter isLABELorORG
+//--- Extension func isLABELorORG
   public: virtual class GGS_bool getter_isLABELorORG (Compiler * COMMA_LOCATION_ARGS) const ;
 
-//--- Extension getter isNULL
+//--- Extension func isNULL
   public: virtual class GGS_bool getter_isNULL (Compiler * COMMA_LOCATION_ARGS) const ;
 
-//--- Extension getter isSkippingInstruction
+//--- Extension func isSkippingInstruction
   public: virtual class GGS_bool getter_isSkippingInstruction (Compiler * COMMA_LOCATION_ARGS) const ;
 
-//--- Extension getter nextInstructionIsReachable
+//--- Extension func nextInstructionIsReachable
   public: virtual class GGS_bool getter_nextInstructionIsReachable (Compiler * COMMA_LOCATION_ARGS) const ;
 
-//--- Extension method buildAssemblyCode
+//--- Extension proc buildAssemblyCode
   public: virtual void method_buildAssemblyCode (class GGS_string & arg_ioString,
            class GGS_uint & arg_ioLocalLabelIndex,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
-//--- Extension method compute
+//--- Extension proc compute
   public: virtual void method_compute (const class GGS_midrange_5F_symbolTableForConvertingRelatives arg_inRoutineSymbolTable,
            class GGS_uint & arg_ioAddress,
            class GGS_bool & arg_ioJUMP_or_JSR_fixed,
@@ -3887,26 +3887,26 @@ class cPtr_midrange_5F_intermediate_5F_instruction : public AbstractStrongPtrCla
            class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
-//--- Extension method defineLabel
+//--- Extension proc defineLabel
   public: virtual void method_defineLabel (class GGS_symbolTableForOptimizations & arg_ioRoutineSymbolTable,
            const class GGS_uint arg_inLineIndex,
            Compiler * COMMA_LOCATION_ARGS) ;
 
-//--- Extension method defineLabelAtAddress
+//--- Extension proc defineLabelAtAddress
   public: virtual void method_defineLabelAtAddress (class GGS_midrange_5F_symbolTableForConvertingRelatives & arg_ioRoutineSymbolTable,
            class GGS_uint & arg_ioAddress,
            Compiler * COMMA_LOCATION_ARGS) ;
 
-//--- Extension method enterLabelAtAddress
+//--- Extension proc enterLabelAtAddress
   public: virtual void method_enterLabelAtAddress (class GGS_midrange_5F_symbolTable & arg_ioRoutineSymbolTable,
            class GGS_uint & arg_ioAddress,
            Compiler * COMMA_LOCATION_ARGS) ;
 
-//--- Extension method enterReferencedLabel
+//--- Extension proc enterReferencedLabel
   public: virtual void method_enterReferencedLabel (class GGS_stringset & arg_ioReferencedLabelSet,
            Compiler * COMMA_LOCATION_ARGS) ;
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
            const class GGS_uint arg_inTotalBankCount,
@@ -3915,11 +3915,11 @@ class cPtr_midrange_5F_intermediate_5F_instruction : public AbstractStrongPtrCla
            class GGS_uint & arg_ioAddress,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) = 0 ;
 
-//--- Extension method setCurrentAddress
+//--- Extension proc setCurrentAddress
   public: virtual void method_setCurrentAddress (class GGS_uint & arg_ioCurrentAddress,
            Compiler * COMMA_LOCATION_ARGS) ;
 
@@ -4554,7 +4554,7 @@ class GGS_ipic_31__38_Block : public AC_GALGAS_root {
                                                       Compiler * inCompiler
                                                       COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -4638,7 +4638,7 @@ class GGS_blockMapForStackComputation_2E_element : public AC_GALGAS_root {
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -5015,7 +5015,7 @@ class GGS_routineCallMap_2E_element : public AC_GALGAS_root {
                                                               Compiler * inCompiler
                                                               COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -5373,7 +5373,7 @@ class GGS_routineStackRequirementMap_2E_element : public AC_GALGAS_root {
                                                                           Compiler * inCompiler
                                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -5756,7 +5756,7 @@ class GGS_blockDurationMap_2E_element : public AC_GALGAS_root {
                                                                 Compiler * inCompiler
                                                                 COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -5858,7 +5858,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_blockDurationMap_2E_el
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@uint x4String' (as function)
+//Extension func '@uint x4String' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -6124,7 +6124,7 @@ class GGS_constantMap_2E_element : public AC_GALGAS_root {
                                                            Compiler * inCompiler
                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -6557,7 +6557,7 @@ class GGS_routineMap_2E_element : public AC_GALGAS_root {
                                                           Compiler * inCompiler
                                                           COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -6710,7 +6710,7 @@ class GGS_routineKind : public AC_GALGAS_root {
 
   public: static class GGS_routineKind class_func_regularRoutine (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -6803,7 +6803,7 @@ class cPtr_immediatExpression : public AbstractStrongPtrClass {
   public: void immediatExpression_init (Compiler * inCompiler) ;
 
 
-//--- Extension method eval
+//--- Extension proc eval
   public: virtual void method_eval (const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
            class GGS_sint_36__34_ & arg_outResult,
@@ -6890,7 +6890,7 @@ class cPtr_bitNumberExpression : public AbstractStrongPtrClass {
   public: void bitNumberExpression_init (Compiler * inCompiler) ;
 
 
-//--- Extension method getBitNumber
+//--- Extension proc getBitNumber
   public: virtual void method_getBitNumber (const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
            class GGS_stringset & arg_ioUsedRegisters,
@@ -7205,7 +7205,7 @@ class GGS_symbolTableForOptimizations_2E_element : public AC_GALGAS_root {
                                                                            Compiler * inCompiler
                                                                            COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -7391,7 +7391,7 @@ class GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code : public AC_GALGAS_root 
 
   public: static class GGS_baseline_5F_instruction_5F_FD_5F_base_5F_code class_func_XORWF (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -7446,7 +7446,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_instructio
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@baseline_instruction_FD_base_code mnemonic' (as function)
+//Extension func '@baseline_instruction_FD_base_code mnemonic' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7504,7 +7504,7 @@ class GGS_baseline_5F_F_5F_instruction_5F_base_5F_code : public AC_GALGAS_root {
 
   public: static class GGS_baseline_5F_F_5F_instruction_5F_base_5F_code class_func_MOVWF (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -7533,7 +7533,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_F_5F_instr
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@baseline_F_instruction_base_code mnemonic' (as function)
+//Extension func '@baseline_F_instruction_base_code mnemonic' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7591,7 +7591,7 @@ class GGS_baseline_5F_bit_5F_oriented_5F_op : public AC_GALGAS_root {
 
   public: static class GGS_baseline_5F_bit_5F_oriented_5F_op class_func_BSF (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -7620,7 +7620,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_bit_5F_ori
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@baseline_bit_oriented_op mnemonic' (as function)
+//Extension func '@baseline_bit_oriented_op mnemonic' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7687,7 +7687,7 @@ class GGS_baseline_5F_literal_5F_instruction_5F_opcode : public AC_GALGAS_root {
 
   public: static class GGS_baseline_5F_literal_5F_instruction_5F_opcode class_func_XORLW (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -7724,7 +7724,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_literal_5F
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@baseline_literal_instruction_opcode mnemonic' (as function)
+//Extension func '@baseline_literal_instruction_opcode mnemonic' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -7791,7 +7791,7 @@ class GGS_baseline_5F_WO_5F_OPERAND_5F_group : public AC_GALGAS_root {
 
   public: static class GGS_baseline_5F_WO_5F_OPERAND_5F_group class_func_SLEEP (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -7826,7 +7826,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_baseline_5F_WO_5F_OPER
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension getter '@baseline_WO_OPERAND_group mnemonic' (as function)
+//Extension func '@baseline_WO_OPERAND_group mnemonic' (as function)
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -8092,7 +8092,7 @@ class GGS_midrange_5F_symbolTableForConvertingRelatives_2E_element : public AC_G
                                                                                              Compiler * inCompiler
                                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8194,7 +8194,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_symbolTabl
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@midrange_intermediate_instruction defineLabelAtAddress'
+//Extension proc '@midrange_intermediate_instruction defineLabelAtAddress'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -8206,7 +8206,7 @@ void callExtensionMethod_defineLabelAtAddress (class cPtr_midrange_5F_intermedia
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_intermediate_instruction compute'
+//Abstract extension proc '@midrange_intermediate_instruction compute'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -8785,7 +8785,7 @@ class GGS_baseline_5F_assembly_5F_instructionList_2E_element : public AC_GALGAS_
                                                                                        Compiler * inCompiler
                                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -8874,21 +8874,21 @@ class cPtr_baseline_5F_assembly_5F_pseudo_5F_ORG : public cPtr_baseline_5F_assem
                                                                Compiler * inCompiler) ;
 
 
-//--- Extension getter length
+//--- Extension func length
   public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method enterLabelAtAddress
+//--- Extension proc enterLabelAtAddress
   public: virtual void method_enterLabelAtAddress (class GGS_baseline_5F_symbolTable & arg_ioRoutineSymbolTable,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -9066,16 +9066,16 @@ class cPtr_baseline_5F_assembly_5F_pseudo_5F_BEGINOFROUTINE : public cPtr_baseli
                                                                               Compiler * inCompiler) ;
 
 
-//--- Extension getter length
+//--- Extension func length
   public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -9255,16 +9255,16 @@ class cPtr_baseline_5F_assembly_5F_pseudo_5F_ENDOFROUTINE : public cPtr_baseline
                                                                             Compiler * inCompiler) ;
 
 
-//--- Extension getter length
+//--- Extension func length
   public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -9440,21 +9440,21 @@ class cPtr_baseline_5F_assembly_5F_pseudo_5F_LABEL : public cPtr_baseline_5F_ass
                                                                  Compiler * inCompiler) ;
 
 
-//--- Extension getter length
+//--- Extension func length
   public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method enterLabelAtAddress
+//--- Extension proc enterLabelAtAddress
   public: virtual void method_enterLabelAtAddress (class GGS_baseline_5F_symbolTable & arg_ioRoutineSymbolTable,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -9628,10 +9628,10 @@ class cPtr_baseline_5F_assembly_5F_actualInstruction : public cPtr_baseline_5F_a
                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension getter length
+//--- Extension func length
   public: virtual class GGS_uint getter_length (Compiler * COMMA_LOCATION_ARGS) const override ;
 
-//--- Extension method enterLabelAtAddress
+//--- Extension proc enterLabelAtAddress
   public: virtual void method_enterLabelAtAddress (class GGS_baseline_5F_symbolTable & arg_ioRoutineSymbolTable,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
@@ -9798,7 +9798,7 @@ class GGS_baseline_5F_intermediate_5F_registerExpression : public AC_GALGAS_root
                                                                                    Compiler * inCompiler
                                                                                    COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -9897,13 +9897,13 @@ class cPtr_baseline_5F_assembly_5F_instruction_5F_FD : public cPtr_baseline_5F_a
                                                                                Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -10088,13 +10088,13 @@ class cPtr_baseline_5F_assembly_5F_instruction_5F_F : public cPtr_baseline_5F_as
                                                                           Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -10281,13 +10281,13 @@ class cPtr_baseline_5F_assembly_5F_instruction_5F_FB : public cPtr_baseline_5F_a
                                                                                Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -10476,13 +10476,13 @@ class cPtr_baseline_5F_assembly_5F_instruction_5F_BitTestSkip : public cPtr_base
                                                                                         Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -10663,13 +10663,13 @@ class cPtr_baseline_5F_assembly_5F_GOTO : public cPtr_baseline_5F_assembly_5F_ac
                                                           Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -10842,13 +10842,13 @@ class cPtr_baseline_5F_assembly_5F_SKIP : public cPtr_baseline_5F_assembly_5F_ac
                                                       Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -11023,13 +11023,13 @@ class cPtr_baseline_5F_assembly_5F_CALL : public cPtr_baseline_5F_assembly_5F_ac
                                                           Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -11206,13 +11206,13 @@ class cPtr_baseline_5F_assembly_5F_WO_5F_OPERAND : public cPtr_baseline_5F_assem
                                                                    Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -11393,13 +11393,13 @@ class cPtr_baseline_5F_assembly_5F_TRIS : public cPtr_baseline_5F_assembly_5F_ac
                                                               Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -11582,13 +11582,13 @@ class cPtr_baseline_5F_assembly_5F_instruction_5F_literalOperation : public cPtr
                                                                                          Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -11775,13 +11775,13 @@ class cPtr_baseline_5F_assembly_5F_incDecRegisterInCondition : public cPtr_basel
                                                                                        Compiler * inCompiler) ;
 
 
-//--- Extension method generateBinaryCodeAtAddress
+//--- Extension proc generateBinaryCodeAtAddress
   public: virtual void method_generateBinaryCodeAtAddress (const class GGS_baseline_5F_symbolTable arg_inRoutineSymbolTable,
            class GGS_string & arg_ioListFileContents,
            class GGS_uint & arg_ioWordAddress,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
-//--- Extension method print
+//--- Extension proc print
   public: virtual void method_print (class GGS_string & arg_ioListFileContents,
            Compiler * COMMA_LOCATION_ARGS) override ;
 
@@ -12152,7 +12152,7 @@ class GGS_midrange_5F_symbolTable_2E_element : public AC_GALGAS_root {
                                                                        Compiler * inCompiler
                                                                        COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -12254,7 +12254,7 @@ extern const GALGAS_TypeDescriptor kTypeDescriptor_GALGAS_midrange_5F_symbolTabl
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@midrange_intermediate_instruction enterLabelAtAddress'
+//Extension proc '@midrange_intermediate_instruction enterLabelAtAddress'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -12266,7 +12266,7 @@ void callExtensionMethod_enterLabelAtAddress (class cPtr_midrange_5F_intermediat
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_intermediate_instruction generateBinaryCodeAtAddress'
+//Abstract extension proc '@midrange_intermediate_instruction generateBinaryCodeAtAddress'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -12366,7 +12366,7 @@ class GGS_midrange_5F_instruction_5F_FD_5F_base_5F_code : public AC_GALGAS_root 
 
   public: static class GGS_midrange_5F_instruction_5F_FD_5F_base_5F_code class_func_XORWF (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -12469,7 +12469,7 @@ class GGS_midrange_5F_F_5F_instruction_5F_base_5F_code : public AC_GALGAS_root {
 
   public: static class GGS_midrange_5F_F_5F_instruction_5F_base_5F_code class_func_MOVWF (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -12546,7 +12546,7 @@ class GGS_midrange_5F_bit_5F_oriented_5F_op : public AC_GALGAS_root {
 
   public: static class GGS_midrange_5F_bit_5F_oriented_5F_op class_func_BSF (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -12638,7 +12638,7 @@ class GGS_midrange_5F_literal_5F_instruction_5F_opcode : public AC_GALGAS_root {
 
   public: static class GGS_midrange_5F_literal_5F_instruction_5F_opcode class_func_XORLW (LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 //--------------------------------- Comparison
@@ -12739,7 +12739,7 @@ class cPtr_pic_31__38_AbstractCaseItem : public AbstractStrongPtrClass {
   public: void pic_31__38_AbstractCaseItem_init (Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCaseItem
+//--- Extension proc analyzeCaseItem
   public: virtual void method_analyzeCaseItem (const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
            const class GGS_lstring arg_inConditionTrueLabel,
@@ -12923,7 +12923,7 @@ class cPtr_pic_31__38_IntervalCaseItem : public cPtr_pic_31__38_AbstractCaseItem
                                                              Compiler * inCompiler) ;
 
 
-//--- Extension method analyzeCaseItem
+//--- Extension proc analyzeCaseItem
   public: virtual void method_analyzeCaseItem (const class GGS_registerTable arg_inRegisterTable,
            const class GGS_constantMap arg_inConstantMap,
            const class GGS_lstring arg_inConditionTrueLabel,
@@ -13312,7 +13312,7 @@ class GGS_pic_31__38_CaseExpressionList_2E_element : public AC_GALGAS_root {
                                                                              Compiler * inCompiler
                                                                              COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 
@@ -13885,7 +13885,7 @@ class GGS_pic_31__38_SwitchInstructionCaseList_2E_element : public AC_GALGAS_roo
                                                                                     Compiler * inCompiler
                                                                                     COMMA_LOCATION_ARGS) ;
 
-//--------------------------------- Implementation of getter 'description'
+//--------------------------------- Implementation of func 'description'
   public: void description (String & ioString,
                             const int32_t inIndentation) const override ;
 

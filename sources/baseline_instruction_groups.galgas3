@@ -5,7 +5,7 @@ enum @baseline_instruction_FD_base_code %equatable {
   case ADDWF  case ANDWF  case COMF  case DECF  case DECFSZ  case INCF  case INCFSZ  case IORWF  case MOVF  case RLF  case RRF  case SUBWF  case SWAPF  case XORWF
 }
 
-getter @baseline_instruction_FD_base_code mnemonic -> @string outResult {
+func @baseline_instruction_FD_base_code mnemonic -> @string outResult {
   switch self
     case ADDWF : outResult = "ADDWF"
     case ANDWF : outResult = "ANDWF"
@@ -30,7 +30,7 @@ enum @baseline_F_instruction_base_code {
   case CLRF  case MOVWF
 }
 
-getter @baseline_F_instruction_base_code mnemonic -> @string outResult {
+func @baseline_F_instruction_base_code mnemonic -> @string outResult {
   switch self
     case CLRF   : outResult = "CLRF"
     case MOVWF  : outResult = "MOVWF"
@@ -45,7 +45,7 @@ enum @baseline_bit_oriented_op {
 
 //----------------------------------------------------*
 
-getter @baseline_bit_oriented_op mnemonic -> @string outResult {
+func @baseline_bit_oriented_op mnemonic -> @string outResult {
   switch self
     case BCF : outResult = "BCF"
     case BSF : outResult = "BSF"
@@ -60,7 +60,7 @@ enum @baseline_literal_instruction_opcode %equatable {
 
 //----------------------------------------------------*
 
-getter @baseline_literal_instruction_opcode mnemonic -> @string outResult {
+func @baseline_literal_instruction_opcode mnemonic -> @string outResult {
   switch self
     case ANDLW : outResult = "ANDLW"
     case IORLW : outResult = "IORLW"
@@ -78,7 +78,7 @@ enum @baseline_WO_OPERAND_group {
 
 //----------------------------------------------------*
 
-getter @baseline_WO_OPERAND_group mnemonic -> @string outResult {
+func @baseline_WO_OPERAND_group mnemonic -> @string outResult {
   switch self
   case NOP     : outResult = "NOP"
   case CLRW    : outResult = "CLRW"
@@ -86,7 +86,7 @@ getter @baseline_WO_OPERAND_group mnemonic -> @string outResult {
   case OPTION_ : outResult = "OPTION"
   case SLEEP   : outResult = "SLEEP"
   end
-} 
+}
 
 //----------------------------------------------------*
 

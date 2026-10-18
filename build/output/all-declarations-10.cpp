@@ -10001,7 +10001,7 @@ GGS_ipic_31__38_Block GGS_ipic_31__38_Block::extractObject (const GGS_object & i
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations'
+//Abstract extension proc '@ipic18AbstractBlockTerminator exploreAccessibleBlocksForStackComputations'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10013,14 +10013,14 @@ void callExtensionMethod_exploreAccessibleBlocksForStackComputations (cPtr_ipic_
                                                                       COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
   out_outStackNeeds.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_AbstractBlockTerminator) ;
     inObject->method_exploreAccessibleBlocksForStackComputations (io_ioBlockToExploreSet, io_ioExploredBlockSet, out_outStackNeeds, inCompiler COMMA_THERE) ;
   }
 }
 //--------------------------------------------------------------------------------------------------
-//Extension method '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'
+//Extension proc '@ipic18SequentialInstruction buildCalledRoutineSetForStackComputations'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_ipic_31__38_SequentialInstruction::method_buildCalledRoutineSetForStackComputations (GGS_stringset & /* ioArgument_ioRoutineCalledSet */,
@@ -10042,7 +10042,7 @@ void callExtensionMethod_buildCalledRoutineSetForStackComputations (cPtr_ipic_31
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@ipic18SingleInstructionTerminator duration'
+//Abstract extension proc '@ipic18SingleInstructionTerminator duration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10056,7 +10056,7 @@ void callExtensionMethod_duration (cPtr_ipic_31__38_SingleInstructionTerminator 
 //--- Drop output arguments
   out_outMin.drop () ;
   out_outMax.drop () ;
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_ipic_31__38_SingleInstructionTerminator) ;
     inObject->method_duration (constin_inExploredBlockMap, constin_inNextLabel, out_outMin, out_outMax, inCompiler COMMA_THERE) ;
@@ -10064,7 +10064,7 @@ void callExtensionMethod_duration (cPtr_ipic_31__38_SingleInstructionTerminator 
 }
 //--------------------------------------------------------------------------------------------------
 //
-//Extension method '@ipic18Block computeDuration'
+//Extension proc '@ipic18Block computeDuration'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10087,55 +10087,55 @@ void extensionMethod_computeDuration (const GGS_ipic_31__38_Block inObject,
     }
   }
   if (GalgasBool::boolFalse == test_0) {
-    GGS_uint var_terminatorMin_22434 ;
-    GGS_uint var_terminatorMax_22453 ;
+    GGS_uint var_terminatorMin_22376 ;
+    GGS_uint var_terminatorMax_22395 ;
     const GGS_ipic_31__38_Block temp_4 = inObject ;
-    callExtensionMethod_terminatorMinMaxDuration ((cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.readProperty_mTerminator ().ptr (), ioArgument_ioExploredBlockMap, constinArgument_inNextLabel, var_terminatorMin_22434, var_terminatorMax_22453, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 593)) ;
-    GGS_uint var_min_22476 = var_terminatorMin_22434 ;
-    GGS_uint var_max_22504 = var_terminatorMax_22453 ;
-    GGS_ipic_31__38_SequentialInstructionList var_computedInstructionList_22565 = GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE) ;
-    GGS_bool var_ok_22603 = GGS_bool (ComparisonKind::lowerOrEqual, var_min_22476.objectCompare (var_max_22504)) ;
+    callExtensionMethod_terminatorMinMaxDuration ((cPtr_ipic_31__38_AbstractBlockTerminator *) temp_4.readProperty_mTerminator ().ptr (), ioArgument_ioExploredBlockMap, constinArgument_inNextLabel, var_terminatorMin_22376, var_terminatorMax_22395, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 593)) ;
+    GGS_uint var_min_22418 = var_terminatorMin_22376 ;
+    GGS_uint var_max_22446 = var_terminatorMax_22395 ;
+    GGS_ipic_31__38_SequentialInstructionList var_computedInstructionList_22507 = GGS_ipic_31__38_SequentialInstructionList::init (inCompiler COMMA_HERE) ;
+    GGS_bool var_ok_22545 = GGS_bool (ComparisonKind::lowerOrEqual, var_min_22418.objectCompare (var_max_22446)) ;
     const GGS_ipic_31__38_Block temp_5 = inObject ;
-    DownEnumerator_ipic_31__38_SequentialInstructionList enumerator_22638 (temp_5.readProperty_mInstructionList ()) ;
-    while (enumerator_22638.hasCurrentObject ()) {
-      GGS_uint var_instructionMin_22745 ;
-      GGS_uint var_instructionMax_22779 ;
-      callExtensionMethod_minMaxDuration ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_22638.current_mInstruction (HERE).ptr (), ioArgument_ioExploredBlockMap, var_instructionMin_22745, var_instructionMax_22779, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 599)) ;
+    DownEnumerator_ipic_31__38_SequentialInstructionList enumerator_22580 (temp_5.readProperty_mInstructionList ()) ;
+    while (enumerator_22580.hasCurrentObject ()) {
+      GGS_uint var_instructionMin_22687 ;
+      GGS_uint var_instructionMax_22721 ;
+      callExtensionMethod_minMaxDuration ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_22580.current_mInstruction (HERE).ptr (), ioArgument_ioExploredBlockMap, var_instructionMin_22687, var_instructionMax_22721, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 599)) ;
       GalgasBool test_6 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_6) {
-        GGS_bool test_7 = var_ok_22603 ;
+        GGS_bool test_7 = var_ok_22545 ;
         if (GalgasBool::boolTrue == test_7.boolEnum ()) {
-          test_7 = GGS_bool (ComparisonKind::lowerOrEqual, var_instructionMin_22745.objectCompare (var_instructionMax_22779)) ;
+          test_7 = GGS_bool (ComparisonKind::lowerOrEqual, var_instructionMin_22687.objectCompare (var_instructionMax_22721)) ;
         }
         test_6 = test_7.boolEnum () ;
         if (GalgasBool::boolTrue == test_6) {
-          var_min_22476 = var_min_22476.add_operation (var_instructionMin_22745, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 605)) ;
-          var_max_22504 = var_max_22504.add_operation (var_instructionMax_22779, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 606)) ;
+          var_min_22418 = var_min_22418.add_operation (var_instructionMin_22687, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 605)) ;
+          var_max_22446 = var_max_22446.add_operation (var_instructionMax_22721, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 606)) ;
           {
-          var_computedInstructionList_22565.setter_insertAtIndex (enumerator_22638.current_mInstruction (HERE), var_min_22476, var_max_22504, GGS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 607)) ;
+          var_computedInstructionList_22507.setter_insertAtIndex (enumerator_22580.current_mInstruction (HERE), var_min_22418, var_max_22446, GGS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 607)) ;
           }
         }
       }
       if (GalgasBool::boolFalse == test_6) {
-        var_ok_22603 = GGS_bool (false) ;
+        var_ok_22545 = GGS_bool (false) ;
         {
-        var_computedInstructionList_22565.setter_insertAtIndex (enumerator_22638.current_mInstruction (HERE), GGS_uint::class_func_max (SOURCE_FILE ("ipic18_duration_computations.galgas3", 610)), GGS_uint (uint32_t (0U)), GGS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 610)) ;
+        var_computedInstructionList_22507.setter_insertAtIndex (enumerator_22580.current_mInstruction (HERE), GGS_uint::class_func_max (SOURCE_FILE ("ipic18_duration_computations.galgas3", 610)), GGS_uint (uint32_t (0U)), GGS_uint (uint32_t (0U)), inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 610)) ;
         }
       }
-      enumerator_22638.gotoNextObject () ;
+      enumerator_22580.gotoNextObject () ;
     }
     GalgasBool test_8 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_8) {
-      test_8 = var_ok_22603.boolEnum () ;
+      test_8 = var_ok_22545.boolEnum () ;
       if (GalgasBool::boolTrue == test_8) {
         const GGS_ipic_31__38_Block temp_9 = inObject ;
         const GGS_ipic_31__38_Block temp_10 = inObject ;
         const GGS_ipic_31__38_Block temp_11 = inObject ;
-        outArgument_outNewBlock = GGS_ipic_31__38_Block::init_21__21__21__21__21__21_ (temp_9.readProperty_mAddress (), temp_10.readProperty_mLabel (), var_computedInstructionList_22565, temp_11.readProperty_mTerminator (), var_terminatorMin_22434, var_terminatorMax_22453, inCompiler COMMA_HERE) ;
+        outArgument_outNewBlock = GGS_ipic_31__38_Block::init_21__21__21__21__21__21_ (temp_9.readProperty_mAddress (), temp_10.readProperty_mLabel (), var_computedInstructionList_22507, temp_11.readProperty_mTerminator (), var_terminatorMin_22376, var_terminatorMax_22395, inCompiler COMMA_HERE) ;
         ioArgument_ioContinue = GGS_bool (true) ;
         {
         const GGS_ipic_31__38_Block temp_12 = inObject ;
-        ioArgument_ioExploredBlockMap.setter_insertKey (temp_12.readProperty_mLabel (), var_min_22476, var_max_22504, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 623)) ;
+        ioArgument_ioExploredBlockMap.setter_insertKey (temp_12.readProperty_mLabel (), var_min_22418, var_max_22446, inCompiler COMMA_SOURCE_FILE ("ipic18_duration_computations.galgas3", 623)) ;
         }
       }
     }
@@ -10149,7 +10149,7 @@ void extensionMethod_computeDuration (const GGS_ipic_31__38_Block inObject,
 
 //--------------------------------------------------------------------------------------------------
 //
-//Abstract extension method '@midrange_instruction addUsedRoutines'
+//Abstract extension proc '@midrange_instruction addUsedRoutines'
 //
 //--------------------------------------------------------------------------------------------------
 
@@ -10158,7 +10158,7 @@ void callExtensionMethod_addUsedRoutines (cPtr_midrange_5F_instruction * inObjec
                                           Compiler * inCompiler
                                           COMMA_LOCATION_ARGS) {
 //--- Drop output arguments
-//--- Find method
+//--- Find proc
   if (nullptr != inObject) {
     macroValidSharedObject (inObject, cPtr_midrange_5F_instruction) ;
     inObject->method_addUsedRoutines (io_ioUsedRoutines, inCompiler COMMA_THERE) ;
@@ -10866,7 +10866,7 @@ int32_t cGrammar_piccoloDevice_5F_grammar::select_piccoloDevice_5F_syntax_15 (Le
 //--------------------------------------------------------------------------------------------------
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_intermediate_GOTO optimizeGOTO'
+//Extension proc '@baseline_intermediate_GOTO optimizeGOTO'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GGS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -10876,15 +10876,15 @@ void cPtr_baseline_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GGS_basel
                                                                  GGS_bool & ioArgument_ioOptimizationsDone,
                                                                  Compiler * inCompiler
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_stringset var_reachedLabelSet_10674 ;
+  GGS_stringset var_reachedLabelSet_10626 ;
   {
-  GGS_baseline_5F_intermediate_5F_instruction joker_10666 ; // Joker input parameter
-  routine_findBaselineFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 263)), ioArgument_ioGeneratedInstructionList, joker_10666, var_reachedLabelSet_10674, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 263)) ;
+  GGS_baseline_5F_intermediate_5F_instruction joker_10618 ; // Joker input parameter
+  routine_findBaselineFirstInstructionOrLabelFromAddress_3F__3F__21__21_ (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 263)), ioArgument_ioGeneratedInstructionList, joker_10618, var_reachedLabelSet_10626, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 263)) ;
   }
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
     const GGS_baseline_5F_intermediate_5F_GOTO temp_1 = this ;
-    test_0 = var_reachedLabelSet_10674.getter_hasKey (temp_1.readProperty_mTargetLabel ().readProperty_string () COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 264)).boolEnum () ;
+    test_0 = var_reachedLabelSet_10626.getter_hasKey (temp_1.readProperty_mTargetLabel ().readProperty_string () COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 264)).boolEnum () ;
     if (GalgasBool::boolTrue == test_0) {
       {
       ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_NULL::init (inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 265)) ;
@@ -10893,26 +10893,26 @@ void cPtr_baseline_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GGS_basel
     }
   }
   if (GalgasBool::boolFalse == test_0) {
-    GGS_uint var_line_11077 ;
+    GGS_uint var_line_11029 ;
     const GGS_baseline_5F_intermediate_5F_GOTO temp_2 = this ;
-    constinArgument_inSymbolTable.method_searchKey (temp_2.readProperty_mTargetLabel (), var_line_11077, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 269)) ;
-    GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_11214 ;
+    constinArgument_inSymbolTable.method_searchKey (temp_2.readProperty_mTargetLabel (), var_line_11029, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 269)) ;
+    GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_11166 ;
     {
-    routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_11077.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 271)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_11214, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 271)) ;
+    routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_11029.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 271)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_11166, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 271)) ;
     }
     GalgasBool test_3 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_3) {
-      GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_11294 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_11214.ptr ())) ;
-      if (nullptr == var_literalOp_11294.ptr ()) {
+      GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_11246 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_11166.ptr ())) ;
+      if (nullptr == var_literalOp_11246.ptr ()) {
         test_3 = GalgasBool::boolFalse ;
       }
       if (GalgasBool::boolTrue == test_3) {
         GalgasBool test_4 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_4) {
-          test_4 = GGS_bool (ComparisonKind::equal, var_literalOp_11294.readProperty_mInstruction ().objectCompare (GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (SOURCE_FILE ("baseline_optimizations.galgas3", 276)))).boolEnum () ;
+          test_4 = GGS_bool (ComparisonKind::equal, var_literalOp_11246.readProperty_mInstruction ().objectCompare (GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (SOURCE_FILE ("baseline_optimizations.galgas3", 276)))).boolEnum () ;
           if (GalgasBool::boolTrue == test_4) {
             {
-            ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_literalOp_11294, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 277)) ;
+            ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_literalOp_11246, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 277)) ;
             }
             ioArgument_ioOptimizationsDone = GGS_bool (true) ;
             ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 282)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 282)).add_operation (GGS_string (": GOTO branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 282)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 282)) ;
@@ -10923,23 +10923,23 @@ void cPtr_baseline_5F_intermediate_5F_GOTO::method_optimizeGOTO (const GGS_basel
     if (GalgasBool::boolFalse == test_3) {
       GalgasBool test_5 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_5) {
-        GGS_baseline_5F_intermediate_5F_GOTO var_goto_11858 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_11214.ptr ())) ;
-        if (nullptr == var_goto_11858.ptr ()) {
+        GGS_baseline_5F_intermediate_5F_GOTO var_goto_11810 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_11166.ptr ())) ;
+        if (nullptr == var_goto_11810.ptr ()) {
           test_5 = GalgasBool::boolFalse ;
         }
         if (GalgasBool::boolTrue == test_5) {
           GalgasBool test_6 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_6) {
             const GGS_baseline_5F_intermediate_5F_GOTO temp_7 = this ;
-            test_6 = GGS_bool (ComparisonKind::notEqual, temp_7.readProperty_mTargetLabel ().objectCompare (var_goto_11858.readProperty_mTargetLabel ())).boolEnum () ;
+            test_6 = GGS_bool (ComparisonKind::notEqual, temp_7.readProperty_mTargetLabel ().objectCompare (var_goto_11810.readProperty_mTargetLabel ())).boolEnum () ;
             if (GalgasBool::boolTrue == test_6) {
               {
               const GGS_baseline_5F_intermediate_5F_GOTO temp_8 = this ;
-              ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_GOTO::init_21__21_ (temp_8.readProperty_mInstructionLocation (), var_goto_11858.readProperty_mTargetLabel (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 287)) ;
+              ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_GOTO::init_21__21_ (temp_8.readProperty_mInstructionLocation (), var_goto_11810.readProperty_mTargetLabel (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 287)) ;
               }
               ioArgument_ioOptimizationsDone = GGS_bool (true) ;
               const GGS_baseline_5F_intermediate_5F_GOTO temp_9 = this ;
-              ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 294)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (GGS_string (": GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (temp_9.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (GGS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (var_goto_11858.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (GGS_string (" replaced by GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (var_goto_11858.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)) ;
+              ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 294)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (GGS_string (": GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (temp_9.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (GGS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (var_goto_11810.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (GGS_string (" replaced by GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (var_goto_11810.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 294)) ;
             }
           }
         }
@@ -10965,7 +10965,7 @@ void callExtensionMethod_optimizeGOTO (cPtr_baseline_5F_intermediate_5F_GOTO * i
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_intermediate_JUMP optimizeJUMP'
+//Extension proc '@baseline_intermediate_JUMP optimizeJUMP'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GGS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -10975,26 +10975,26 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GGS_basel
                                                                  GGS_bool & ioArgument_ioOptimizationsDone,
                                                                  Compiler * inCompiler
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_uint var_line_12945 ;
+  GGS_uint var_line_12895 ;
   const GGS_baseline_5F_intermediate_5F_JUMP temp_0 = this ;
-  constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_line_12945, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 310)) ;
-  GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_13125 ;
+  constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_line_12895, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 310)) ;
+  GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_13075 ;
   {
-  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_12945.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 313)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_13125, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 312)) ;
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_12895.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 313)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_13075, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 312)) ;
   }
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_13203 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_13125.ptr ())) ;
-    if (nullptr == var_literalOp_13203.ptr ()) {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_13153 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_13075.ptr ())) ;
+    if (nullptr == var_literalOp_13153.ptr ()) {
       test_1 = GalgasBool::boolFalse ;
     }
     if (GalgasBool::boolTrue == test_1) {
       GalgasBool test_2 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_2) {
-        test_2 = GGS_bool (ComparisonKind::equal, var_literalOp_13203.readProperty_mInstruction ().objectCompare (GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (SOURCE_FILE ("baseline_optimizations.galgas3", 321)))).boolEnum () ;
+        test_2 = GGS_bool (ComparisonKind::equal, var_literalOp_13153.readProperty_mInstruction ().objectCompare (GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (SOURCE_FILE ("baseline_optimizations.galgas3", 321)))).boolEnum () ;
         if (GalgasBool::boolTrue == test_2) {
           {
-          ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_literalOp_13203, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 322)) ;
+          ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (var_literalOp_13153, constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 322)) ;
           }
           ioArgument_ioOptimizationsDone = GGS_bool (true) ;
           ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 327)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 327)).add_operation (GGS_string (": JUMP branching to RETLW replaced by RETLW\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 327)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 327)) ;
@@ -11005,25 +11005,25 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GGS_basel
   if (GalgasBool::boolFalse == test_1) {
     GalgasBool test_3 = GalgasBool::boolTrue ;
     if (GalgasBool::boolTrue == test_3) {
-      GGS_baseline_5F_intermediate_5F_GOTO var_goto_13745 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_13125.ptr ())) ;
-      if (nullptr == var_goto_13745.ptr ()) {
+      GGS_baseline_5F_intermediate_5F_GOTO var_goto_13695 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_13075.ptr ())) ;
+      if (nullptr == var_goto_13695.ptr ()) {
         test_3 = GalgasBool::boolFalse ;
       }
       if (GalgasBool::boolTrue == test_3) {
         GalgasBool test_4 = GalgasBool::boolTrue ;
         if (GalgasBool::boolTrue == test_4) {
           const GGS_baseline_5F_intermediate_5F_JUMP temp_5 = this ;
-          test_4 = GGS_bool (ComparisonKind::notEqual, temp_5.readProperty_mTargetLabel ().objectCompare (var_goto_13745.readProperty_mTargetLabel ())).boolEnum () ;
+          test_4 = GGS_bool (ComparisonKind::notEqual, temp_5.readProperty_mTargetLabel ().objectCompare (var_goto_13695.readProperty_mTargetLabel ())).boolEnum () ;
           if (GalgasBool::boolTrue == test_4) {
             {
             const GGS_baseline_5F_intermediate_5F_JUMP temp_6 = this ;
             const GGS_baseline_5F_intermediate_5F_JUMP temp_7 = this ;
             const GGS_baseline_5F_intermediate_5F_JUMP temp_8 = this ;
-            ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_JUMP::init_21__21__21__21_ (temp_6.readProperty_mInstructionLocation (), var_goto_13745.readProperty_mTargetLabel (), temp_7.readProperty_mCurrentPage (), temp_8.readProperty_mTargetPage (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 332)) ;
+            ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_JUMP::init_21__21__21__21_ (temp_6.readProperty_mInstructionLocation (), var_goto_13695.readProperty_mTargetLabel (), temp_7.readProperty_mCurrentPage (), temp_8.readProperty_mTargetPage (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 332)) ;
             }
             ioArgument_ioOptimizationsDone = GGS_bool (true) ;
             const GGS_baseline_5F_intermediate_5F_JUMP temp_9 = this ;
-            ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 341)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)).add_operation (GGS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)).add_operation (temp_9.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)).add_operation (GGS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)).add_operation (var_goto_13745.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 342)).add_operation (GGS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 342)).add_operation (var_goto_13745.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 343)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 343)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)) ;
+            ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 341)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)).add_operation (GGS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)).add_operation (temp_9.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)).add_operation (GGS_string (" branching to GOTO "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)).add_operation (var_goto_13695.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 342)).add_operation (GGS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 342)).add_operation (var_goto_13695.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 343)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 343)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 341)) ;
           }
         }
       }
@@ -11031,24 +11031,24 @@ void cPtr_baseline_5F_intermediate_5F_JUMP::method_optimizeJUMP (const GGS_basel
     if (GalgasBool::boolFalse == test_3) {
       GalgasBool test_10 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_10) {
-        GGS_baseline_5F_intermediate_5F_JUMP var_jump_14401 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_JUMP *> (var_firstInstruction_13125.ptr ())) ;
-        if (nullptr == var_jump_14401.ptr ()) {
+        GGS_baseline_5F_intermediate_5F_JUMP var_jump_14351 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_JUMP *> (var_firstInstruction_13075.ptr ())) ;
+        if (nullptr == var_jump_14351.ptr ()) {
           test_10 = GalgasBool::boolFalse ;
         }
         if (GalgasBool::boolTrue == test_10) {
           GalgasBool test_11 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_11) {
             const GGS_baseline_5F_intermediate_5F_JUMP temp_12 = this ;
-            test_11 = GGS_bool (ComparisonKind::notEqual, temp_12.readProperty_mTargetLabel ().objectCompare (var_jump_14401.readProperty_mTargetLabel ())).boolEnum () ;
+            test_11 = GGS_bool (ComparisonKind::notEqual, temp_12.readProperty_mTargetLabel ().objectCompare (var_jump_14351.readProperty_mTargetLabel ())).boolEnum () ;
             if (GalgasBool::boolTrue == test_11) {
               {
               const GGS_baseline_5F_intermediate_5F_JUMP temp_13 = this ;
               const GGS_baseline_5F_intermediate_5F_JUMP temp_14 = this ;
-              ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_JUMP::init_21__21__21__21_ (temp_13.readProperty_mInstructionLocation (), var_jump_14401.readProperty_mTargetLabel (), temp_14.readProperty_mCurrentPage (), var_jump_14401.readProperty_mTargetPage (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 348)) ;
+              ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_JUMP::init_21__21__21__21_ (temp_13.readProperty_mInstructionLocation (), var_jump_14351.readProperty_mTargetLabel (), temp_14.readProperty_mCurrentPage (), var_jump_14351.readProperty_mTargetPage (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 348)) ;
               }
               ioArgument_ioOptimizationsDone = GGS_bool (true) ;
               const GGS_baseline_5F_intermediate_5F_JUMP temp_15 = this ;
-              ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 357)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)).add_operation (GGS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)).add_operation (temp_15.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)).add_operation (GGS_string (" branching to JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)).add_operation (var_jump_14401.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 358)).add_operation (GGS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 358)).add_operation (var_jump_14401.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 359)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 359)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)) ;
+              ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 357)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)).add_operation (GGS_string (": JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)).add_operation (temp_15.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)).add_operation (GGS_string (" branching to JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)).add_operation (var_jump_14351.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 358)).add_operation (GGS_string (" replaced by JUMP "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 358)).add_operation (var_jump_14351.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 359)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 359)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 357)) ;
             }
           }
         }
@@ -11074,7 +11074,7 @@ void callExtensionMethod_optimizeJUMP (cPtr_baseline_5F_intermediate_5F_JUMP * i
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_intermediate_CALL optimizeCALL'
+//Extension proc '@baseline_intermediate_CALL optimizeCALL'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_CALL::method_optimizeCALL (const GGS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -11084,31 +11084,31 @@ void cPtr_baseline_5F_intermediate_5F_CALL::method_optimizeCALL (const GGS_basel
                                                                  GGS_bool & ioArgument_ioOptimizationsDone,
                                                                  Compiler * inCompiler
                                                                  COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_uint var_line_15529 ;
+  GGS_uint var_line_15477 ;
   const GGS_baseline_5F_intermediate_5F_CALL temp_0 = this ;
-  constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_line_15529, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 374)) ;
-  GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_15709 ;
+  constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_line_15477, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 374)) ;
+  GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_15657 ;
   {
-  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_15529.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 377)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_15709, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 376)) ;
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_15477.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 377)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_15657, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 376)) ;
   }
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_15787 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_15709.ptr ())) ;
-    if (nullptr == var_literalOp_15787.ptr ()) {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_15735 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_15657.ptr ())) ;
+    if (nullptr == var_literalOp_15735.ptr ()) {
       test_1 = GalgasBool::boolFalse ;
     }
     if (GalgasBool::boolTrue == test_1) {
       GalgasBool test_2 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_2) {
-        test_2 = GGS_bool (ComparisonKind::equal, var_literalOp_15787.readProperty_mInstruction ().objectCompare (GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (SOURCE_FILE ("baseline_optimizations.galgas3", 385)))).boolEnum () ;
+        test_2 = GGS_bool (ComparisonKind::equal, var_literalOp_15735.readProperty_mInstruction ().objectCompare (GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (SOURCE_FILE ("baseline_optimizations.galgas3", 385)))).boolEnum () ;
         if (GalgasBool::boolTrue == test_2) {
           {
           const GGS_baseline_5F_intermediate_5F_CALL temp_3 = this ;
-          ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::init_21__21__21_ (temp_3.readProperty_mInstructionLocation (), GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("baseline_optimizations.galgas3", 389)), var_literalOp_15787.readProperty_mLiteralValue (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 386)) ;
+          ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::init_21__21__21_ (temp_3.readProperty_mInstructionLocation (), GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("baseline_optimizations.galgas3", 389)), var_literalOp_15735.readProperty_mLiteralValue (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 386)) ;
           }
           ioArgument_ioOptimizationsDone = GGS_bool (true) ;
           const GGS_baseline_5F_intermediate_5F_CALL temp_4 = this ;
-          ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 394)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)).add_operation (GGS_string (": CALL "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)).add_operation (temp_4.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)).add_operation (GGS_string (" to RETLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)).add_operation (var_literalOp_15787.readProperty_mLiteralValue ().getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 395)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 395)).add_operation (GGS_string (" replaced by MOVLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 395)).add_operation (var_literalOp_15787.readProperty_mLiteralValue ().getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 396)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 396)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 396)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)) ;
+          ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 394)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)).add_operation (GGS_string (": CALL "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)).add_operation (temp_4.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)).add_operation (GGS_string (" to RETLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)).add_operation (var_literalOp_15735.readProperty_mLiteralValue ().getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 395)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 395)).add_operation (GGS_string (" replaced by MOVLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 395)).add_operation (var_literalOp_15735.readProperty_mLiteralValue ().getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 396)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 396)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 396)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 394)) ;
         }
       }
     }
@@ -11132,7 +11132,7 @@ void callExtensionMethod_optimizeCALL (cPtr_baseline_5F_intermediate_5F_CALL * i
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_intermediate_JSR optimizeJSR'
+//Extension proc '@baseline_intermediate_JSR optimizeJSR'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_JSR::method_optimizeJSR (const GGS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -11142,31 +11142,31 @@ void cPtr_baseline_5F_intermediate_5F_JSR::method_optimizeJSR (const GGS_baselin
                                                                GGS_bool & ioArgument_ioOptimizationsDone,
                                                                Compiler * inCompiler
                                                                COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_uint var_line_17039 ;
+  GGS_uint var_line_16985 ;
   const GGS_baseline_5F_intermediate_5F_JSR temp_0 = this ;
-  constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_line_17039, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 411)) ;
-  GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_17219 ;
+  constinArgument_inSymbolTable.method_searchKey (temp_0.readProperty_mTargetLabel (), var_line_16985, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 411)) ;
+  GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_17165 ;
   {
-  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_17039.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 414)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_17219, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 413)) ;
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_16985.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 414)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_17165, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 413)) ;
   }
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_17297 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_17219.ptr ())) ;
-    if (nullptr == var_literalOp_17297.ptr ()) {
+    GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation var_literalOp_17243 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_instruction_5F_literalOperation *> (var_firstInstruction_17165.ptr ())) ;
+    if (nullptr == var_literalOp_17243.ptr ()) {
       test_1 = GalgasBool::boolFalse ;
     }
     if (GalgasBool::boolTrue == test_1) {
       GalgasBool test_2 = GalgasBool::boolTrue ;
       if (GalgasBool::boolTrue == test_2) {
-        test_2 = GGS_bool (ComparisonKind::equal, var_literalOp_17297.readProperty_mInstruction ().objectCompare (GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (SOURCE_FILE ("baseline_optimizations.galgas3", 422)))).boolEnum () ;
+        test_2 = GGS_bool (ComparisonKind::equal, var_literalOp_17243.readProperty_mInstruction ().objectCompare (GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_RETLW (SOURCE_FILE ("baseline_optimizations.galgas3", 422)))).boolEnum () ;
         if (GalgasBool::boolTrue == test_2) {
           {
           const GGS_baseline_5F_intermediate_5F_JSR temp_3 = this ;
-          ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::init_21__21__21_ (temp_3.readProperty_mInstructionLocation (), GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("baseline_optimizations.galgas3", 426)), var_literalOp_17297.readProperty_mLiteralValue (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 423)) ;
+          ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_instruction_5F_literalOperation::init_21__21__21_ (temp_3.readProperty_mInstructionLocation (), GGS_baseline_5F_literal_5F_instruction_5F_opcode::class_func_MOVLW (SOURCE_FILE ("baseline_optimizations.galgas3", 426)), var_literalOp_17243.readProperty_mLiteralValue (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 423)) ;
           }
           ioArgument_ioOptimizationsDone = GGS_bool (true) ;
           const GGS_baseline_5F_intermediate_5F_JSR temp_4 = this ;
-          ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 431)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)).add_operation (GGS_string (": JSR "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)).add_operation (temp_4.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)).add_operation (GGS_string (" to RETLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)).add_operation (var_literalOp_17297.readProperty_mLiteralValue ().getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 432)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 432)).add_operation (GGS_string (" replaced by MOVLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 432)).add_operation (var_literalOp_17297.readProperty_mLiteralValue ().getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 433)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 433)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 433)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)) ;
+          ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 431)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)).add_operation (GGS_string (": JSR "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)).add_operation (temp_4.readProperty_mTargetLabel ().readProperty_string (), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)).add_operation (GGS_string (" to RETLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)).add_operation (var_literalOp_17243.readProperty_mLiteralValue ().getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 432)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 432)).add_operation (GGS_string (" replaced by MOVLW "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 432)).add_operation (var_literalOp_17243.readProperty_mLiteralValue ().getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 433)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 433)).add_operation (GGS_string ("\n"), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 433)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 431)) ;
         }
       }
     }
@@ -11190,7 +11190,7 @@ void callExtensionMethod_optimizeJSR (cPtr_baseline_5F_intermediate_5F_JSR * inO
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE'
+//Extension proc '@baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::method_optimizeBEGIN_5F_ROUTINE (const GGS_uint constinArgument_inLineIndex,
@@ -11199,21 +11199,21 @@ void cPtr_baseline_5F_intermediate_5F_pseudo_5F_BEGIN_5F_ROUTINE::method_optimiz
                                                                                                    GGS_bool & ioArgument_ioOptimizationsDone,
                                                                                                    Compiler * inCompiler
                                                                                                    COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_baseline_5F_intermediate_5F_instruction var_nextInstruction_18613 = ioArgument_ioGeneratedInstructionList.getter_mInstructionAtIndex (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 449)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 449)) ;
-  GGS_bool var_reachable_18745 = GGS_bool (false) ;
+  GGS_baseline_5F_intermediate_5F_instruction var_nextInstruction_18557 = ioArgument_ioGeneratedInstructionList.getter_mInstructionAtIndex (constinArgument_inLineIndex.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 449)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 449)) ;
+  GGS_bool var_reachable_18689 = GGS_bool (false) ;
   GalgasBool test_0 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_0) {
-    GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL var__18772 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *> (var_nextInstruction_18613.ptr ())) ;
-    if (nullptr == var__18772.ptr ()) {
+    GGS_baseline_5F_intermediate_5F_pseudo_5F_LABEL var__18716 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_pseudo_5F_LABEL *> (var_nextInstruction_18557.ptr ())) ;
+    if (nullptr == var__18716.ptr ()) {
       test_0 = GalgasBool::boolFalse ;
     }
     if (GalgasBool::boolTrue == test_0) {
-      var_reachable_18745 = GGS_bool (true) ;
+      var_reachable_18689 = GGS_bool (true) ;
     }
   }
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    test_1 = var_reachable_18745.operator_not (SOURCE_FILE ("baseline_optimizations.galgas3", 459)).boolEnum () ;
+    test_1 = var_reachable_18689.operator_not (SOURCE_FILE ("baseline_optimizations.galgas3", 459)).boolEnum () ;
     if (GalgasBool::boolTrue == test_1) {
       {
       ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_NULL::init (inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 460)) ;
@@ -11240,7 +11240,7 @@ void callExtensionMethod_optimizeBEGIN_5F_ROUTINE (cPtr_baseline_5F_intermediate
 }
 
 //--------------------------------------------------------------------------------------------------
-//Extension method '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'
+//Extension proc '@baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc'
 //--------------------------------------------------------------------------------------------------
 
 void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimizeTestDecInc (const GGS_baselineSymbolTableForOptimizations constinArgument_inSymbolTable,
@@ -11250,17 +11250,17 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
                                                                                             GGS_bool & ioArgument_ioOptimizationsDone,
                                                                                             Compiler * inCompiler
                                                                                             COMMA_UNUSED_LOCATION_ARGS) {
-  GGS_uint var_line_19728 ;
+  GGS_uint var_line_19670 ;
   const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_0 = this ;
-  constinArgument_inSymbolTable.method_searchKey (GGS_lstring::init_21__21_ (temp_0.readProperty_mTargetLabel (), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 478)), inCompiler COMMA_HERE), var_line_19728, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 478)) ;
-  GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_19908 ;
+  constinArgument_inSymbolTable.method_searchKey (GGS_lstring::init_21__21_ (temp_0.readProperty_mTargetLabel (), GGS_location::class_func_here (inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 478)), inCompiler COMMA_HERE), var_line_19670, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 478)) ;
+  GGS_baseline_5F_intermediate_5F_instruction var_firstInstruction_19850 ;
   {
-  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_19728.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 481)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_19908, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 480)) ;
+  routine_findBaselineFirstInstructionFromAddress_3F__3F__21_ (var_line_19670.add_operation (GGS_uint (uint32_t (1U)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 481)), ioArgument_ioGeneratedInstructionList, var_firstInstruction_19850, inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 480)) ;
   }
   GalgasBool test_1 = GalgasBool::boolTrue ;
   if (GalgasBool::boolTrue == test_1) {
-    GGS_baseline_5F_intermediate_5F_GOTO var_goto_19986 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_19908.ptr ())) ;
-    if (nullptr == var_goto_19986.ptr ()) {
+    GGS_baseline_5F_intermediate_5F_GOTO var_goto_19928 (dynamic_cast <const cPtr_baseline_5F_intermediate_5F_GOTO *> (var_firstInstruction_19850.ptr ())) ;
+    if (nullptr == var_goto_19928.ptr ()) {
       test_1 = GalgasBool::boolFalse ;
     }
     if (GalgasBool::boolTrue == test_1) {
@@ -11270,7 +11270,7 @@ void cPtr_baseline_5F_intermediate_5F_incDecRegisterInCondition::method_optimize
       const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_4 = this ;
       const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_5 = this ;
       const GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition temp_6 = this ;
-      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_goto_19986.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 489)) ;
+      ioArgument_ioGeneratedInstructionList.setter_setMInstructionAtIndex (GGS_baseline_5F_intermediate_5F_incDecRegisterInCondition::init_21__21__21__21__21__21_ (temp_2.readProperty_mInstructionLocation (), temp_3.readProperty_mRegisterDescription (), var_goto_19928.readProperty_mTargetLabel ().readProperty_string (), temp_4.readProperty_mIncrement (), temp_5.readProperty_m_5F_W_5F_isDestination (), temp_6.readProperty_mBranchIfZero (), inCompiler COMMA_HERE), constinArgument_inLineIndex, inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 489)) ;
       }
       ioArgument_ioOptimizationsDone = GGS_bool (true) ;
       ioArgument_ioListFileContents.plusAssignOperation(GGS_string ("  line ").add_operation (constinArgument_inLineIndex.getter_string (SOURCE_FILE ("baseline_optimizations.galgas3", 500)), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 500)).add_operation (GGS_string (": label of "), inCompiler COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 500)), inCompiler  COMMA_SOURCE_FILE ("baseline_optimizations.galgas3", 500)) ;
