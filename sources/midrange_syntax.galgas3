@@ -3,35 +3,35 @@ syntax midrange_syntax (piccolo_lexique) {
 //----------------------------------------------------*
 
 rule <configuration_definition>
-  ?!@configDefinitionList ioConfigDefinitionList
+  (?!@configDefinitionList ioConfigDefinitionList
 
-rule <declaration_in_ram>
-  !@declarationInRam outDeclaration
+)rule <declaration_in_ram>
+  (!@declarationInRam outDeclaration
 
-rule <ram_definition>
-  ?!@ramDefinitionList ioRamDefinitionList
+)rule <ram_definition>
+  (?!@ramDefinitionList ioRamDefinitionList
 
-rule <constant_definition>
-  ?!@constantDefinitionList ioConstantDefinitionList
+)rule <constant_definition>
+  (?!@constantDefinitionList ioConstantDefinitionList
 
-rule <register_parsing>
-  !@registerExpression outRegisterExpression
+)rule <register_parsing>
+  (!@registerExpression outRegisterExpression
 
-rule <optional_w_as_dest>
-  !@bool out_W_isDestination
+)rule <optional_w_as_dest>
+  (!@bool out_W_isDestination
 
-rule <bit_number_parsing>
-  !@bitNumberExpression outBitNumber
+)rule <bit_number_parsing>
+  (!@bitNumberExpression outBitNumber
 
-rule <immediate_expression>
-  !@immediatExpression outExpression
+)rule <immediate_expression>
+  (!@immediatExpression outExpression
 
 //----------------------------------------------------*
 
-rule <start_symbol> {
+)rule <start_symbol> () {
   $midrange$
-  $identifier$ ?let @lstring programName
-  $literal_string$ ?let @lstring deviceName
+  $identifier$ (?let @lstring programName)
+  $literal_string$ (?let @lstring deviceName)
   $:$
   var interruptDefinitionList =@midrange_interruptDefinitionList ()
   var routineDefinitionList =@midrange_routineDefinitionList ()
@@ -47,7 +47,7 @@ rule <start_symbol> {
     $unused$
     $byte$
     repeat
-      $identifier$ ?let @lstring unusedRegister
+      $identifier$ (?let @lstring unusedRegister)
       unusedRegisterList += !unusedRegister
     while
       $,$
@@ -56,82 +56,82 @@ rule <start_symbol> {
     $unused$
     $routine$
     repeat
-      $identifier$ ?let @lstring unusedRoutine
+      $identifier$ (?let @lstring unusedRoutine)
       unusedRoutineList += !unusedRoutine
     while
       $,$
     end
   while
-    <configuration_definition> !?configDefinitionList
+    <configuration_definition> (!?configDefinitionList)
   while
-    <ram_definition> !?ramDefinitionList
+    <ram_definition> (!?ramDefinitionList)
   while
-    <constant_definition> !?constantDefinitionList
+    <constant_definition> (!?constantDefinitionList)
   while
-    <midrange_interrupt_definition>
-      !?interruptDefinitionList
-      !?needsComputedGoto2
-      !?needsComputedGoto4
+    <midrange_interrupt_definition>(
+      !?interruptDefinitionList,
+      !?needsComputedGoto2,
+      !?needsComputedGoto4)
   while
-    <midrange_routine_definition>
-      !?routineDefinitionList
-      !?needsComputedGoto2
-      !?needsComputedGoto4
+    <midrange_routine_definition>(
+      !?routineDefinitionList,
+      !?needsComputedGoto2,
+      !?needsComputedGoto4)
   end
   $end$
 //--- Semantic analysis
   if @uint. errorCount == 0 then
-    let piccoloModel = @midrange_model {
-      !programName
-      !deviceName
-      !configDefinitionList
-      !ramDefinitionList
-      !unusedRegisterList
-      !interruptDefinitionList
-      !constantDefinitionList
-      !routineDefinitionList
-      !unusedRoutineList
-      !needsComputedGoto2
-      !needsComputedGoto4
-      !@location.here
-    }
-    midrange_analyze ( !piccoloModel !@string. stringWithSourceFilePath )
+    let piccoloModel = @midrange_model (
+      !programName,
+      deviceName,
+      configDefinitionList,
+      ramDefinitionList,
+      unusedRegisterList,
+      interruptDefinitionList,
+      constantDefinitionList,
+      routineDefinitionList,
+      unusedRoutineList,
+      needsComputedGoto2,
+      needsComputedGoto4,
+      @location.here
+    )
+    midrange_analyze ( !piccoloModel, !@string. stringWithSourceFilePath )
   else
     let @string hexDestinationFile = @string.stringWithSourceFilePath.deletingPathExtension + ".hex"
     if hexDestinationFile.fileExists then
-      [@string deleteFile !hexDestinationFile]
+      @string.deleteFile (!hexDestinationFile)
     end
     let @string asmDestinationFile = @string.stringWithSourceFilePath.deletingPathExtension + ".asm"
     if asmDestinationFile.fileExists then
-      [@string deleteFile !asmDestinationFile]
+      @string.deleteFile (!asmDestinationFile)
     end
   end
 }
 label importBootloaderSpecification
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@string outDeviceName
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@luint outBootloaderReservedROMsize {
+  (!@piccoloDeviceModel outPiccoloDeviceModel,
+  !@string outDeviceName,
+  !@uint outAccessBankSplitOffset,
+  !@ramBankTable outRamBank,
+  !@registerTable outRegisterTable,
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap,
+  !@routineDeclarationList outBootloaderRoutineDeclarationList,
+  !@routineDeclarationList outUserRoutineDeclarationList,
+  !@luint outBootloaderReservedROMsize ) {
   $midrange$
-  $identifier$ ?let @lstring programName
+  $identifier$ (?let @lstring programName)
   error (programName: "this file does not define a bootloader specification"
    spoil outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
       outUserRoutineDeclarationList, outDeviceName,
       outBootloaderReservedROMsize)
-  $literal_string$ ? *
+  $literal_string$ (? *)
   $:$
   repeat
   while
     $unused$
     $byte$
     repeat
-      $identifier$ ?*
+      $identifier$ (?*)
     while
       $,$
     end
@@ -139,25 +139,25 @@ label importBootloaderSpecification
     $unused$
     $routine$
     repeat
-      $identifier$ ?*
+      $identifier$ (?*)
     while
       $,$
     end
   while
   //   parse<configuration_definition>
-    <configuration_definition> !?%from @()
+    <configuration_definition> (!?%from @())
   while
    //  parse<ram_definition>
-   <ram_definition> !?%from @()
+   <ram_definition> (!?%from @())
   while
    //  parse<constant_definition>
-   <constant_definition> !?%from @()
+   <constant_definition> (!?%from @())
   while
    //  parse<midrange_interrupt_definition>
-   <midrange_interrupt_definition> !?%from @() !?%from false !?%from false
+   <midrange_interrupt_definition> (!?%from @(), !?%from false, !?%from false)
   while
 //     parse<midrange_routine_definition>
-   <midrange_routine_definition> !?%from @() !?%from false !?%from false
+   <midrange_routine_definition> (!?%from @(), !?%from false, !?%from false)
   end
   $end$
 }
@@ -165,22 +165,22 @@ label importBootloaderSpecification
 //----------------------------------------------------*
 
 rule <midrange_instruction_list>
-  !@midrange_instructionList outInstructionList
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4
+  (!@midrange_instructionList outInstructionList,
+  ?!@bool ioNeedsComputedGoto2,
+  ?!@bool ioNeedsComputedGoto4,
   ?!@labelMap ioLabelMap
-  {
+  ) {
   outInstructionList = @midrange_instructionList ()
   repeat
   while
-    <midrange_simple_instruction> ?let instruction
+    <midrange_simple_instruction> (?let instruction)
     outInstructionList += !instruction
   while
-    <midrange_structured_instruction>
-      ?let instruction
-      !?ioNeedsComputedGoto2
-      !?ioNeedsComputedGoto4
-      !?ioLabelMap
+    <midrange_structured_instruction>(
+      ?let instruction,
+      !?ioNeedsComputedGoto2,
+      !?ioNeedsComputedGoto4,
+      !?ioLabelMap)
     outInstructionList += !instruction
   end
 }
@@ -188,22 +188,22 @@ rule <midrange_instruction_list>
 //----------------------------------------------------*
 
 rule <midrange_interrupt_definition>
-  ?!@midrange_interruptDefinitionList ioInterruptDefinitionList
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4 {
+  (?!@midrange_interruptDefinitionList ioInterruptDefinitionList,
+  ?!@bool ioNeedsComputedGoto2,
+  ?!@bool ioNeedsComputedGoto4 ) {
   $interrupt$
   let @location interruptionLocation = @location.here
   $contextsave$
-  $identifier$ ?let @lstring firstSaveRegister
+  $identifier$ (?let @lstring firstSaveRegister)
   $,$
-  $identifier$ ?let @lstring secondSaveRegister
+  $identifier$ (?let @lstring secondSaveRegister)
   ${$
   var @labelMap labelMap = @()
-  <midrange_instruction_list>
-    ?let instructionList
-    !?ioNeedsComputedGoto2
-    !?ioNeedsComputedGoto4
-    !?labelMap
+  <midrange_instruction_list>(
+    ?let instructionList,
+    !?ioNeedsComputedGoto2,
+    !?ioNeedsComputedGoto4,
+    !?labelMap)
   $}$
   ioInterruptDefinitionList +=
    !interruptionLocation
@@ -216,10 +216,10 @@ rule <midrange_interrupt_definition>
 //----------------------------------------------------*
 
 rule <midrange_routine_definition>
-  ?!@midrange_routineDefinitionList ioRoutineDefinitionList
-  ?!@bool ioNeedsComputedGoto2
+  (?!@midrange_routineDefinitionList ioRoutineDefinitionList,
+  ?!@bool ioNeedsComputedGoto2,
   ?!@bool ioNeedsComputedGoto4
-{
+) {
   let @bool noreturn
   select
     noreturn = false
@@ -228,22 +228,22 @@ rule <midrange_routine_definition>
     noreturn = true
   end
   $routine$
-  $identifier$ ?let @lstring routineName indexing routineDefinition
+  $identifier$ (?let @lstring routineName )indexing (routineDefinition)
 //--- Page
   let @luint page
   select
-    page = @luint { !0 !@location.here}
+    page = @luint ( !0, @location.here)
   or
     $page$
-    $integer$ ? page
+    $integer$ (? page)
   end
 //--- Bank
   let @luint requiredBank
   let @luint returnedBank
   let @bool preservesBank
   select
-    requiredBank = @luint { !@uint. max !@location.here}
-    returnedBank = @luint { !@uint. max !@location.here}
+    requiredBank = @luint ( !@uint. max, @location.here)
+    returnedBank = @luint ( !@uint. max, @location.here)
     preservesBank = false
   or
     $bank$
@@ -254,38 +254,38 @@ rule <midrange_routine_definition>
         error (@location.here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting")
       end
       preservesBank = true
-      requiredBank = @luint { !@uint. max !@location.here}
-      returnedBank = @luint { !@uint. max !@location.here}
+      requiredBank = @luint ( !@uint. max, @location.here)
+      returnedBank = @luint ( !@uint. max, @location.here)
     or
       $requires$
-      $integer$ ? requiredBank
+      $integer$ (? requiredBank)
       preservesBank = false
       select
-        returnedBank = @luint { !@uint. max !@location.here}
+        returnedBank = @luint ( !@uint. max, @location.here)
       or
         $ensures$
-        $integer$ ? returnedBank
+        $integer$ (? returnedBank)
         if noreturn then
           error (@location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting")
         end
       end
     or
       $ensures$
-      $integer$ ? returnedBank
+      $integer$ (? returnedBank)
       if noreturn then
         error (@location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting")
       end
       preservesBank = false
-      requiredBank = @luint { !@uint. max !@location.here}
+      requiredBank = @luint ( !@uint. max, @location.here)
     end
   end
   ${$
   var @labelMap labelMap = @()
-  <midrange_instruction_list>
-    ?let instructionList
-    !?ioNeedsComputedGoto2
-    !?ioNeedsComputedGoto4
-    !?labelMap
+  <midrange_instruction_list>(
+    ?let instructionList,
+    !?ioNeedsComputedGoto2,
+    !?ioNeedsComputedGoto4,
+    !?labelMap)
   $}$
   ioRoutineDefinitionList +=
     !routineName
@@ -301,46 +301,46 @@ rule <midrange_routine_definition>
 //----------------------------------------------------*
 
 rule <midrange_structured_instruction>
-  !@midrange_instruction outInstruction
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4
+  (!@midrange_instruction outInstruction,
+  ?!@bool ioNeedsComputedGoto2,
+  ?!@bool ioNeedsComputedGoto4,
   ?!@labelMap ioLabelMap
- {
+ ) {
   select
     $do$
     let @lstring doLabel
     select
-      doLabel = @{!"" !.here}
+      doLabel = @(!"", .here)
     or
-      $label$ ?doLabel
-      [!?ioLabelMap insertKey !doLabel]
+      $label$ (?doLabel)
+      !?ioLabelMap.insertKey (!doLabel)
     end
     let instructionLocation = @location.here
     $($
-    $identifier$ ?let constantName
+    $identifier$ (?let constantName)
     $:$
-    <immediate_expression> ?let @immediatExpression lowBoundExpression
+    <immediate_expression> (?let @immediatExpression lowBoundExpression)
     $...$
-    <immediate_expression> ?let @immediatExpression highBoundExpression
+    <immediate_expression> (?let @immediatExpression highBoundExpression)
     $)$
-    <midrange_instruction_list>
-      ?let @midrange_instructionList instructionList
-      !?ioNeedsComputedGoto2
-      !?ioNeedsComputedGoto4
-      !?ioLabelMap
-    outInstruction = @midrange_instruction_STATIC_REPEAT {
-      !instructionLocation
-      !constantName
-      !lowBoundExpression
-      !highBoundExpression
-      !instructionList
-      !@location.here}
+    <midrange_instruction_list>(
+      ?let @midrange_instructionList instructionList,
+      !?ioNeedsComputedGoto2,
+      !?ioNeedsComputedGoto4,
+      !?ioLabelMap)
+    outInstruction = @midrange_instruction_STATIC_REPEAT (
+      !instructionLocation,
+      constantName,
+      lowBoundExpression,
+      highBoundExpression,
+      instructionList,
+      @location.here)
     $end$
     let @lstring endDoLabel
     select
-      endDoLabel = @{!"" !.here}
+      endDoLabel = @(!"", .here)
     or
-      $label$ ?endDoLabel
+      $label$ (?endDoLabel)
     end
     if doLabel.string != endDoLabel.string then
       error (endDoLabel : "'end' label does not match 'do' label, it should be "
@@ -348,15 +348,15 @@ rule <midrange_structured_instruction>
     end
   or
     $checkbank$
-    $integer$ ?let @luint bankIndex
-    outInstruction = @midrangeInstruction_checkbank { !bankIndex.location !bankIndex.uint}
+    $integer$ (?let @luint bankIndex)
+    outInstruction = @midrangeInstruction_checkbank ( !bankIndex.location, bankIndex.uint)
   or
     $checknobank$
-    outInstruction = @midrangeInstruction_checknobank { !@location.here}
+    outInstruction = @midrangeInstruction_checknobank ( !@location.here)
   or
     $banksel$
     let @location instructionLocation = @location.here
-    <register_parsing> ?let @registerExpression register
+    <register_parsing> (?let @registerExpression register)
     let @bool warningOnUselessBanksel
     select
       warningOnUselessBanksel = true
@@ -365,11 +365,11 @@ rule <midrange_structured_instruction>
       $*$
       warningOnUselessBanksel = false
     end
-    outInstruction = @midrange_instruction_banksel_register { !instructionLocation !register !warningOnUselessBanksel}
+    outInstruction = @midrange_instruction_banksel_register ( !instructionLocation, register, warningOnUselessBanksel)
   or
     $banksel$
     let @location instructionLocation = @location.here
-    $integer$ ?let @luint bank
+    $integer$ (?let @luint bank)
     let @bool warningOnUselessBanksel
     select
       warningOnUselessBanksel = true
@@ -378,55 +378,55 @@ rule <midrange_structured_instruction>
       $*$
       warningOnUselessBanksel = false
     end
-    outInstruction = @midrange_instruction_banksel { !instructionLocation !bank !warningOnUselessBanksel}
+    outInstruction = @midrange_instruction_banksel ( !instructionLocation, bank, warningOnUselessBanksel)
   or
     $banksave$
     let @location instructionLocation = @location.here
-    <register_parsing> ?let @registerExpression register
-    <midrange_instruction_list>
-      ?let instructionList
-      !?ioNeedsComputedGoto2
-      !?ioNeedsComputedGoto4
-      !?ioLabelMap
+    <register_parsing> (?let @registerExpression register)
+    <midrange_instruction_list>(
+      ?let instructionList,
+      !?ioNeedsComputedGoto2,
+      !?ioNeedsComputedGoto4,
+      !?ioLabelMap)
     $end$
-    outInstruction = @midrange_instruction_savebank {
-      !instructionLocation
-      !register
-      !instructionList
-      !@location.here}
+    outInstruction = @midrange_instruction_savebank (
+      !instructionLocation,
+      register,
+      instructionList,
+      @location.here)
   or
     $nobank$
-    outInstruction = @midrange_instruction_nobanksel { !@location.here}
+    outInstruction = @midrange_instruction_nobanksel ( !@location.here)
   or
     $forever$
     let @lstring foreverLabel
     select
-      foreverLabel = @{!"" !.here}
+      foreverLabel = @(!"", .here)
     or
-      $label$ ?foreverLabel
-      [!?ioLabelMap insertKey !foreverLabel]
+      $label$ (?foreverLabel)
+      !?ioLabelMap.insertKey (!foreverLabel)
     end
     let @location instructionLocation = @location.here
-    <midrange_instruction_list>
-      ?let instructionList
-      !?ioNeedsComputedGoto2
-      !?ioNeedsComputedGoto4
-      !?ioLabelMap
+    <midrange_instruction_list>(
+      ?let instructionList,
+      !?ioNeedsComputedGoto2,
+      !?ioNeedsComputedGoto4,
+      !?ioLabelMap)
     $end$
     let @lstring endForeverLabel
     select
-      endForeverLabel = @{!"" !.here}
+      endForeverLabel = @(!"", .here)
     or
-      $label$ ?endForeverLabel
+      $label$ (?endForeverLabel)
     end
     if foreverLabel.string != endForeverLabel.string then
       error (endForeverLabel : "'end' label does not match 'fovever' label, it should be "
          + (if foreverLabel.string != "" then foreverLabel.string else "empty" end))
     end
-    outInstruction = @midrange_instruction_FOREVER {
-      !instructionLocation
-      !instructionList
-      !@location.here}
+    outInstruction = @midrange_instruction_FOREVER (
+      !instructionLocation,
+      instructionList,
+      @location.here)
   or
     $if$
     let @location instructionLocation = @location.here
@@ -435,24 +435,24 @@ rule <midrange_structured_instruction>
     let @bool skipIfSet
     select
       $!$
-      <register_parsing> ? registerExpression
+      <register_parsing> (? registerExpression)
       $.$
-      <bit_number_parsing> ? bitNumberExpression
+      <bit_number_parsing> (? bitNumberExpression)
       skipIfSet = true
     or
-      <register_parsing> ? registerExpression
+      <register_parsing> (? registerExpression)
       $.$
-      <bit_number_parsing> ? bitNumberExpression
+      <bit_number_parsing> (? bitNumberExpression)
       skipIfSet = false
     end
     $:$
-    <midrange_simple_instruction> ?let instruction
-    outInstruction = @midrange_instruction_IF_BitTest {
-      !instructionLocation
-      !instruction
-      !skipIfSet
-      !registerExpression
-      !bitNumberExpression}
+    <midrange_simple_instruction> (?let instruction)
+    outInstruction = @midrange_instruction_IF_BitTest (
+      !instructionLocation,
+      instruction,
+      skipIfSet,
+      registerExpression,
+      bitNumberExpression)
   or
     $if$
     let @location instructionLocation = @location.here
@@ -462,48 +462,48 @@ rule <midrange_structured_instruction>
     or
       $incf$ ; increment = true
     end
-    <register_parsing> ?let registerExpression
+    <register_parsing> (?let registerExpression)
     let @bool w_isTarget
     select
       w_isTarget = false
     or
       $,$ ; $w$ ; w_isTarget = true
     end
-    $identifier$ ?let @lstring conditionString
+    $identifier$ (?let @lstring conditionString)
     let @string condition = conditionString.string.uppercased
     if condition != "NZ" then
       error (conditionString:"invalid '" + condition + "' condition; it should be 'nz'")
     end
     $:$
-    <midrange_simple_instruction> ?let instruction
-    outInstruction = @midrange_instruction_IF_IncDec {
-      !instructionLocation
-      !instruction
-      !increment
-      !registerExpression
-      !w_isTarget
-    }
+    <midrange_simple_instruction> (?let instruction)
+    outInstruction = @midrange_instruction_IF_IncDec (
+      !instructionLocation,
+      instruction,
+      increment,
+      registerExpression,
+      w_isTarget
+    )
   or
     $if$
     let @lstring ifLabel
     select
-      ifLabel = @{!"" !.here}
+      ifLabel = @(!"", .here)
     or
-      $label$ ?ifLabel
-      [!?ioLabelMap insertKey !ifLabel]
+      $label$ (?ifLabel)
+      !?ioLabelMap.insertKey (!ifLabel)
     end
-    <midrange_structured_if_instruction>
-      !ifLabel
-      ?outInstruction
-      !?ioNeedsComputedGoto2
-      !?ioNeedsComputedGoto4
-      !?ioLabelMap
+    <midrange_structured_if_instruction>(
+      !ifLabel,
+      ?outInstruction,
+      !?ioNeedsComputedGoto2,
+      !?ioNeedsComputedGoto4,
+      !?ioLabelMap)
     $end$
     let @lstring endIfLabel
     select
-      endIfLabel = @{!"" !.here}
+      endIfLabel = @(!"", .here)
     or
-      $label$ ?endIfLabel
+      $label$ (?endIfLabel)
     end
     if ifLabel.string != endIfLabel.string then
       error (endIfLabel : "'end' label does not match 'if' label, it should be "
@@ -513,95 +513,95 @@ rule <midrange_structured_instruction>
     $do$
     let @lstring doLabel
     select
-      doLabel = @{!"" !.here}
+      doLabel = @(!"", .here)
     or
-      $label$ ?doLabel
-      [!?ioLabelMap insertKey !doLabel]
+      $label$ (?doLabel)
+      !?ioLabelMap.insertKey (!doLabel)
     end
     let @location instructionLocation = @location.here
-    <midrange_instruction_list>
-      ?let repeatedInstructionList
-      !?ioNeedsComputedGoto2
-      !?ioNeedsComputedGoto4
-      !?ioLabelMap
+    <midrange_instruction_list>(
+      ?let repeatedInstructionList,
+      !?ioNeedsComputedGoto2,
+      !?ioNeedsComputedGoto4,
+      !?ioLabelMap)
     let @location endOfRepeatedInstructionList = @location.here
     var whilePartList =@midrange_partList ()
     repeat
       $while$
       let @lstring whileLabel
       select
-        whileLabel = @{!"" !.here}
+        whileLabel = @(!"", .here)
       or
-        $label$ ?whileLabel
+        $label$ (?whileLabel)
       end
       if doLabel.string != whileLabel.string then
         error (whileLabel : "'while' label does not match 'do' label, it should be "
            + (if doLabel.string != "" then doLabel.string else "empty" end))
       end
-      <midrange_condition_expression> ?let whileCondition
-      <midrange_instruction_list>
-        ?let instructionList
-        !?ioNeedsComputedGoto2
-        !?ioNeedsComputedGoto4
-      !?ioLabelMap
+      <midrange_condition_expression> (?let whileCondition)
+      <midrange_instruction_list>(
+        ?let instructionList,
+        !?ioNeedsComputedGoto2,
+        !?ioNeedsComputedGoto4,
+      !?ioLabelMap)
       whilePartList += !whileCondition !instructionList !@location.here
     while
     end
     $end$
     let @lstring endDoLabel
     select
-      endDoLabel = @{!"" !.here}
+      endDoLabel = @(!"", .here)
     or
-      $label$ ?endDoLabel
+      $label$ (?endDoLabel)
     end
     if doLabel.string != endDoLabel.string then
       error (endDoLabel : "'end' label does not match 'do' label, it should be "
          + (if doLabel.string != "" then doLabel.string else "empty" end))
     end
-    outInstruction = @midrange_instruction_do_while {
-      !instructionLocation
-      !repeatedInstructionList
-      !endOfRepeatedInstructionList
-      !whilePartList}
+    outInstruction = @midrange_instruction_do_while (
+      !instructionLocation,
+      repeatedInstructionList,
+      endOfRepeatedInstructionList,
+      whilePartList)
   or
     $mnop$
     let @location instructionLocation = @location.here
-    $integer$ ?let @luint occurrenceFactor
-    outInstruction = @midrange_instruction_MNOP { !instructionLocation !occurrenceFactor}
+    $integer$ (?let @luint occurrenceFactor)
+    outInstruction = @midrange_instruction_MNOP ( !instructionLocation, occurrenceFactor)
   or
     $jsr$
     let @location instructionLocation = @location.here
-    $identifier$ ?let @lstring targetLabelName
-    outInstruction = @midrange_instruction_JSR {
-      !instructionLocation
-      !targetLabelName}
+    $identifier$ (?let @lstring targetLabelName)
+    outInstruction = @midrange_instruction_JSR (
+      !instructionLocation,
+      targetLabelName)
   or
     $jump$
     let @location instructionLocation = @location.here
-    $identifier$ ?let @lstring targetLabelName
-    outInstruction = @midrange_instruction_JUMP {
-      !instructionLocation
-      !targetLabelName}
+    $identifier$ (?let @lstring targetLabelName)
+    outInstruction = @midrange_instruction_JUMP (
+      !instructionLocation,
+      targetLabelName)
   end
 }
 
 //----------------------------------------------------*
 
 rule <midrange_structured_if_instruction>
-  ?let @lstring ifLabel
-  !@midrange_instruction outInstruction
-  ?!@bool ioNeedsComputedGoto2
-  ?!@bool ioNeedsComputedGoto4
+  (?let @lstring ifLabel,
+  !@midrange_instruction outInstruction,
+  ?!@bool ioNeedsComputedGoto2,
+  ?!@bool ioNeedsComputedGoto4,
   ?!@labelMap ioLabelMap
 
-{
+) {
   let @location instructionLocation = @location.here
-  <midrange_condition_expression> ?let structured_if_condition
-  <midrange_instruction_list>
-    ?let thenInstructionList
-    !?ioNeedsComputedGoto2
-    !?ioNeedsComputedGoto4
-    !?ioLabelMap
+  <midrange_condition_expression> (?let structured_if_condition)
+  <midrange_instruction_list>(
+    ?let thenInstructionList,
+    !?ioNeedsComputedGoto2,
+    !?ioNeedsComputedGoto4,
+    !?ioLabelMap)
   var @midrange_instructionList elseInstructionList
   select
     elseInstructionList = @midrange_instructionList ()
@@ -609,52 +609,52 @@ rule <midrange_structured_if_instruction>
     $elsif$
     let @lstring elsifIfLabel
     select
-      elsifIfLabel = @{!"" !.here}
+      elsifIfLabel = @(!"", .here)
     or
-      $label$ ?elsifIfLabel
+      $label$ (?elsifIfLabel)
     end
     if ifLabel.string != elsifIfLabel.string then
       error (elsifIfLabel : "'elsif' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end))
     end
-    <midrange_structured_if_instruction>
-      !ifLabel
-      ?let elsifPartInstruction
-      !?ioNeedsComputedGoto2
-      !?ioNeedsComputedGoto4
-      !?ioLabelMap
+    <midrange_structured_if_instruction>(
+      !ifLabel,
+      ?let elsifPartInstruction,
+      !?ioNeedsComputedGoto2,
+      !?ioNeedsComputedGoto4,
+      !?ioLabelMap)
     elseInstructionList = @midrange_instructionList ()
     elseInstructionList += !elsifPartInstruction
   or
     $else$
     let @lstring elseLabel
     select
-      elseLabel = @{!"" !.here}
+      elseLabel = @(!"", .here)
     or
-      $label$ ?elseLabel
+      $label$ (?elseLabel)
     end
     if ifLabel.string != elseLabel.string then
       error (elseLabel : "'else' label does not match 'if' label, it should be "
          + (if ifLabel.string != "" then ifLabel.string else "empty" end))
     end
-    <midrange_instruction_list>
-      ?elseInstructionList
-      !?ioNeedsComputedGoto2
-      !?ioNeedsComputedGoto4
-      !?ioLabelMap
+    <midrange_instruction_list>(
+      ?elseInstructionList,
+      !?ioNeedsComputedGoto2,
+      !?ioNeedsComputedGoto4,
+      !?ioLabelMap)
   end
   let @location endOfElsePartLocation = @location.here
-  outInstruction = @midrange_instruction_structured_if {
-    !instructionLocation
-    !structured_if_condition
-    !thenInstructionList
-    !elseInstructionList
-    !endOfElsePartLocation}
+  outInstruction = @midrange_instruction_structured_if (
+    !instructionLocation,
+    structured_if_condition,
+    thenInstructionList,
+    elseInstructionList,
+    endOfElsePartLocation)
 }
 
 //----------------------------------------------------*
 
-rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
+rule <midrange_simple_instruction> (!@midrange_instruction outInstruction ) {
   select
     let @midrange_instruction_FD_base_code baseCode
     select
@@ -695,14 +695,14 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
       baseCode = .XORWF
     end
     let instructionLocation = @location.here
-    <register_parsing> ?let registerExpression
-    <optional_w_as_dest> ?let W_isDestination
-    outInstruction = @midrange_instruction_FD {
-      !instructionLocation
-      !baseCode
-      !registerExpression
-      !W_isDestination
-    }
+    <register_parsing> (?let registerExpression)
+    <optional_w_as_dest> (?let W_isDestination)
+    outInstruction = @midrange_instruction_FD (
+      !instructionLocation,
+      baseCode,
+      registerExpression,
+      W_isDestination
+    )
   //--- Emit a warning if instruction is "movf" and W is not destination
     if (baseCode == .MOVF) && not W_isDestination then
       warning instructionLocation :  "This instruction does not move data, it only sets flags. "
@@ -713,13 +713,13 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
     let @location instructionLocation = .here
     $*$
     $,$
-    <register_parsing> ?let registerName
-    outInstruction = @midrange_instruction_FD {
-      !instructionLocation
-      !.MOVF
-      !registerName
-      !false // W is not destination
-    }
+    <register_parsing> (?let registerName)
+    outInstruction = @midrange_instruction_FD (
+      !instructionLocation,
+      .MOVF,
+      registerName,
+      false // W is not destination
+    )
   or
     let @midrange_F_instruction_base_code FAinstruction
     select
@@ -730,11 +730,11 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
       FAinstruction = @midrange_F_instruction_base_code. MOVWF
     end
     let @location instructionLocation = @location.here
-    <register_parsing> ?let registerExpression
-    outInstruction = @midrange_instruction_F {
-      !instructionLocation
-      !FAinstruction
-      !registerExpression}
+    <register_parsing> (?let registerExpression)
+    outInstruction = @midrange_instruction_F (
+      !instructionLocation,
+      FAinstruction,
+      registerExpression)
   or
     let @midrange_bit_oriented_op bitOrientedOp
     select
@@ -743,40 +743,40 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
       $bsf$ ; bitOrientedOp = @midrange_bit_oriented_op. BSF
     end
     let @location instructionLocation = @location.here
-    <register_parsing> ?let registerExpression
+    <register_parsing> (?let registerExpression)
     $.$
-    <bit_number_parsing> ?let bitNumberExpression
-    outInstruction = @midrange_instruction_FB {
-      !instructionLocation
-      !bitOrientedOp
-      !registerExpression
-      !bitNumberExpression}
+    <bit_number_parsing> (?let bitNumberExpression)
+    outInstruction = @midrange_instruction_FB (
+      !instructionLocation,
+      bitOrientedOp,
+      registerExpression,
+      bitNumberExpression)
   or
     $goto$
     let @location instructionLocation = @location.here
-    $identifier$ ?let @lstring targetLabelName indexing routineCall
-    outInstruction = @midrange_instruction_GOTO {
-      !instructionLocation
-      !targetLabelName}
+    $identifier$ (?let @lstring targetLabelName )indexing (routineCall)
+    outInstruction = @midrange_instruction_GOTO (
+      !instructionLocation,
+      targetLabelName)
   or
     $call$
     let @location instructionLocation = @location.here
-    $identifier$ ?let @lstring targetLabelName indexing routineCall
-    outInstruction = @midrange_instruction_CALL {
-      !instructionLocation
-      !targetLabelName}
+    $identifier$ (?let @lstring targetLabelName )indexing (routineCall)
+    outInstruction = @midrange_instruction_CALL (
+      !instructionLocation,
+      targetLabelName)
   or
     $clrw$
-    outInstruction = @midrange_instruction_CLRW { !@location.here}
+    outInstruction = @midrange_instruction_CLRW ( !@location.here)
   or
     $clrwdt$
-    outInstruction = @midrange_instruction_CLRWDT { !@location.here}
+    outInstruction = @midrange_instruction_CLRWDT ( !@location.here)
   or
     $nop$
-    outInstruction = @midrange_instruction_NOP { !@location.here}
+    outInstruction = @midrange_instruction_NOP ( !@location.here)
   or
     $sleep$
-    outInstruction = @midrange_instruction_SLEEP { !@location.here}
+    outInstruction = @midrange_instruction_SLEEP ( !@location.here)
   or
     let @midrange_literal_instruction_opcode literalInstruction
     select
@@ -793,34 +793,34 @@ rule <midrange_simple_instruction> !@midrange_instruction outInstruction {
       $xorlw$ ; literalInstruction = @midrange_literal_instruction_opcode. XORLW
     end
     let @location instructionLocation = @location.here
-    <immediate_expression> ?let expression
-    outInstruction = @midrange_instruction_literalOperation {
-      !instructionLocation
-      !literalInstruction
-      !expression}
+    <immediate_expression> (?let expression)
+    outInstruction = @midrange_instruction_literalOperation (
+      !instructionLocation,
+      literalInstruction,
+      expression)
   end
 }
 
 //----------------------------------------------------*
 
 rule <midrange_condition_factor>
-  !@midrange_conditionExpression outCondition {
+  (!@midrange_conditionExpression outCondition ) {
   $!$
-  <midrange_condition_factor> ?let condition
-  outCondition = @midrange_negateCondition { !condition}
+  <midrange_condition_factor> (?let condition)
+  outCondition = @midrange_negateCondition ( !condition)
 }
 
 //----------------------------------------------------*
 
 rule <midrange_condition_factor>
-  !@midrange_conditionExpression outCondition {
-  <midrange_condition_expression> ? outCondition
+  (!@midrange_conditionExpression outCondition ) {
+  <midrange_condition_expression> (? outCondition)
 }
 
 //----------------------------------------------------*
 
 rule <midrange_condition_factor>
-  !@midrange_conditionExpression outCondition {
+  (!@midrange_conditionExpression outCondition ) {
   select
     let @bool isIncrement
     select
@@ -828,14 +828,14 @@ rule <midrange_condition_factor>
     or
       $decf$ ; isIncrement = false
     end
-    <register_parsing> ?let registerExpression
+    <register_parsing> (?let registerExpression)
     let @bool W_isDestination
     select
       W_isDestination = false
     or
       $,$ ; $w$ ; W_isDestination = true
     end
-    $identifier$ ?let @lstring conditionString
+    $identifier$ (?let @lstring conditionString)
     let @string condition = conditionString.string.uppercased
     let @bool branchIfZero
     if condition == "Z" then
@@ -847,35 +847,35 @@ rule <midrange_condition_factor>
       + "' condition; valid ones are: 'z' and 'nz'"
       spoil branchIfZero)
     end
-    outCondition = @midrange_incDecRegisterInCondition {
-      !registerExpression
-      !isIncrement
-      !W_isDestination
-      !branchIfZero}
+    outCondition = @midrange_incDecRegisterInCondition (
+      !registerExpression,
+      isIncrement,
+      W_isDestination,
+      branchIfZero)
   or
-    <register_parsing> ?let registerExpression
+    <register_parsing> (?let registerExpression)
     $.$
-    <bit_number_parsing> ?let bitNumberExpression
-    outCondition = @midrange_bitTest_in_structured_if_condition {
-      !registerExpression
-      !bitNumberExpression
-    }
+    <bit_number_parsing> (?let bitNumberExpression)
+    outCondition = @midrange_bitTest_in_structured_if_condition (
+      !registerExpression,
+      bitNumberExpression
+    )
   end
 }
 
 //----------------------------------------------------*
 
 rule <midrange_condition_expression>
-  !@midrange_conditionExpression outCondition {
+  (!@midrange_conditionExpression outCondition ) {
   $($
-  <midrange_condition_term> ? outCondition
+  <midrange_condition_term> (? outCondition)
   repeat
   while
     $|$
-    <midrange_condition_term> ?let c
-    let @midrange_conditionExpression rc = @midrange_negateCondition { !c}
-    let @midrange_conditionExpression lc = @midrange_negateCondition { !outCondition}
-    outCondition = @midrange_negateCondition { !@midrange_andCondition { !lc !rc}}
+    <midrange_condition_term> (?let c)
+    let @midrange_conditionExpression rc = @midrange_negateCondition ( !c)
+    let @midrange_conditionExpression lc = @midrange_negateCondition ( !outCondition)
+    outCondition = @midrange_negateCondition ( !@midrange_andCondition ( !lc, rc))
   end
   $)$
 }
@@ -883,13 +883,13 @@ rule <midrange_condition_expression>
 //----------------------------------------------------*
 
 rule <midrange_condition_term>
-  !@midrange_conditionExpression outCondition {
-  <midrange_condition_factor> ? outCondition
+  (!@midrange_conditionExpression outCondition ) {
+  <midrange_condition_factor> (? outCondition)
   repeat
   while
     $&$
-    <midrange_condition_factor> ?let c
-    outCondition = @midrange_andCondition { !outCondition !c}
+    <midrange_condition_factor> (?let c)
+    outCondition = @midrange_andCondition ( !outCondition, c)
   end
 }
 

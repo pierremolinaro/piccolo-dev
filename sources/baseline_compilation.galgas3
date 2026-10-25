@@ -12,14 +12,14 @@ map @baseline_declaredRoutineMap {
 //----------------------------------------------------------------------------*
 
 proc @baseline_instruction shouldTerminateWithMOVLW
-  ?let @string inErrorMessage {
+  (?let @string inErrorMessage ) {
   error (self.mInstructionLocation : inErrorMessage)
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_instruction_literalOperation shouldTerminateWithMOVLW
-  ?let @string inErrorMessage {
+override proc @baseline_instruction_literalOperation.shouldTerminateWithMOVLW
+  (?let @string inErrorMessage ) {
   if self.mLiteralInstruction != @baseline_literal_instruction_opcode. MOVLW then
     error (self.mInstructionLocation : inErrorMessage)
   end
@@ -27,27 +27,27 @@ override proc @baseline_instruction_literalOperation shouldTerminateWithMOVLW
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_instruction_CALL shouldTerminateWithMOVLW
-  ?let @string unused inErrorMessage {
+override proc @baseline_instruction_CALL.shouldTerminateWithMOVLW
+  (?let @string unused inErrorMessage ) {
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_instruction_structured_if shouldTerminateWithMOVLW
-  ?let @string unused inErrorMessage {
+override proc @baseline_instruction_structured_if.shouldTerminateWithMOVLW
+  (?let @string unused inErrorMessage ) {
 //--- THEN branch
   if self.mThenInstructionList.count == 0 then
     error (self.mInstructionLocation : "the 'then' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction")
   else
-   [self.mThenInstructionList last ?let @baseline_instruction lastInstruction]
-   [lastInstruction shouldTerminateWithMOVLW !"the 'then' branch of this 'if' instruction must terminate with a MOVLW instruction"]
+   self.mThenInstructionList.last (?let @baseline_instruction lastInstruction)
+   lastInstruction.shouldTerminateWithMOVLW (!"the 'then' branch of this 'if' instruction must terminate with a MOVLW instruction")
   end
 //--- ELSE branch
   if self.mElseInstructionList.count == 0 then
     error (self.mInstructionLocation : "the 'else' branch of this 'if' instruction does not have any instruction; it must terminate with a MOVLW instruction")
   else
-   [self.mElseInstructionList last ?let @baseline_instruction lastInstruction]
-   [lastInstruction shouldTerminateWithMOVLW !"the 'else' branch of this 'if' instruction must terminate with a MOVLW instruction"]
+   self.mElseInstructionList.last (?let @baseline_instruction lastInstruction)
+   lastInstruction.shouldTerminateWithMOVLW (!"the 'else' branch of this 'if' instruction must terminate with a MOVLW instruction")
   end
 
 }
@@ -58,26 +58,26 @@ override proc @baseline_instruction_structured_if shouldTerminateWithMOVLW
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-proc @baseline_instruction shouldNotContinueInSequence ?let @string inErrorMessage {
+proc @baseline_instruction shouldNotContinueInSequence (?let @string inErrorMessage ) {
   error (self.mInstructionLocation : inErrorMessage)
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_instruction_GOTO shouldNotContinueInSequence
-  ?let @string unused inErrorMessage {
+override proc @baseline_instruction_GOTO.shouldNotContinueInSequence
+  (?let @string unused inErrorMessage ) {
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_instruction_JUMP shouldNotContinueInSequence
-  ?let @string unused inErrorMessage {
+override proc @baseline_instruction_JUMP.shouldNotContinueInSequence
+  (?let @string unused inErrorMessage ) {
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_instruction_FOREVER shouldNotContinueInSequence
-  ?let @string unused inErrorMessage {
+override proc @baseline_instruction_FOREVER.shouldNotContinueInSequence
+  (?let @string unused inErrorMessage ) {
 }
 
 //----------------------------------------------------------------------------*
@@ -87,8 +87,8 @@ override proc @baseline_instruction_FOREVER shouldNotContinueInSequence
 //----------------------------------------------------------------------------*
 
 proc baseline_analysis
-  ?let @baseline_model inPiccoloModel
-  ?let @string inSourceFileName {
+  (?let @baseline_model inPiccoloModel,
+  ?let @string inSourceFileName ) {
   let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
     error (inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
@@ -96,7 +96,7 @@ proc baseline_analysis
   end
   var @string listFileContents = ""
 //-------------------------------- Analyze Device
-  parseDeviceDefinition ( !inPiccoloModel.mDeviceName ?let piccoloDeviceModel )
+  parseDeviceDefinition ( !inPiccoloModel.mDeviceName, ?let piccoloDeviceModel )
   switch piccoloDeviceModel.mProcessorType
     case baseline :
     case pic18_60, pic18_80 : error (inPiccoloModel.mDeviceName: "a pic18 device is not accepted here : only a baseline device")
@@ -104,9 +104,9 @@ proc baseline_analysis
   end
 //-------------------------------- Config definition
   buildConfig (
-    !piccoloDeviceModel.mConfigRegisterMap
-    !inPiccoloModel.mConfigDefinitionList
-    !?listFileContents
+    !piccoloDeviceModel.mConfigRegisterMap,
+    !inPiccoloModel.mConfigDefinitionList,
+    !?listFileContents,
     ?let actualConfigurationMap
   )
 //-------------------------------- Build constant map
@@ -115,41 +115,41 @@ proc baseline_analysis
 //--- Add declared constants
   var @stringset usedRegisters = @()
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
-    [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
+    mExpression.eval (!registerTable, !constantMap, ?let @sint64 result, !?usedRegisters)
     if [registerTable hasKey !mConstantName.string] then
       error (mConstantName: "'" + mConstantName + "' is already declared as ram register or special register")
     else
-      [!?constantMap insertKey !mConstantName !result]
+      !?constantMap.insertKey (!mConstantName, !result)
     end
   end
 //-------------------------------- Ram definition
   var @ramBankTable ramBank = piccoloDeviceModel.mRamBankTable
   analyze_ram_sections (
-    !"DECLARED VARIABLES"
-    !inPiccoloModel.mRamDefinitionList
-    !constantMap
-    !?usedRegisters
-    !?ramBank
-    !piccoloDeviceModel.mRegisterTable
-    !?listFileContents
-    !?registerTable
+    !"DECLARED VARIABLES",
+    !inPiccoloModel.mRamDefinitionList,
+    !constantMap,
+    !?usedRegisters,
+    !?ramBank,
+    !piccoloDeviceModel.mRegisterTable,
+    !?listFileContents,
+    !?registerTable,
     ?let @declaredByteMap declaredByteMap
   )
 //-------------------------------- Build routine map
   var routineMap =@baselineRoutineMap ()
   for (mRoutineName mPage mIsNoReturn * *) in  inPiccoloModel.mRoutineDefinitionList do
-    [!?routineMap insertKey !mRoutineName !mIsNoReturn !mPage]
+    !?routineMap.insertKey (!mRoutineName, !mIsNoReturn, !mPage)
   end
 //-------------------------------- Print constant map
   if [option piccoloOptions.ouputListingFile value] then
     print_constant_definition (
-      !constantMap
+      !constantMap,
       !?listFileContents
     )
   end
 //-------------------------------- Check the "main" routine is declared
   if [routineMap hasKey !"main"] then
-    [routineMap searchKey !@lstring { !"main" !@location.here} ?let @bool isNoReturn ?let @luint page]
+    routineMap.searchKey (!@lstring ( !"main", @location.here), ?let @bool isNoReturn, ?let @luint page)
     if not isNoReturn then
       error ([routineMap locationForKey !"main"] :"the \"main\" should be declared with \"noreturn\" qualifier: \"noreturn main page 0\"")
     end
@@ -174,14 +174,14 @@ proc baseline_analysis
   var sortedRoutineDefinitionList =@baseline_routineDefinitionList ()
   for (mRoutineName mPage mIsNoReturn mInstructionList mEndOfRoutineLocation) in  inPiccoloModel.mRoutineDefinitionList do
     if mRoutineName.string == "main" then
-      [!?sortedRoutineDefinitionList insertAtIndex
-        !mRoutineName
-        !mPage
-        !mIsNoReturn
-        !mInstructionList
-        !mEndOfRoutineLocation
+      !?sortedRoutineDefinitionList.insertAtIndex
+        (!mRoutineName,
+        !mPage,
+        !mIsNoReturn,
+        !mInstructionList,
+        !mEndOfRoutineLocation,
         !0
-      ]
+      )
     else
       sortedRoutineDefinitionList +=
         !mRoutineName
@@ -203,7 +203,7 @@ proc baseline_analysis
         //---
           if not pseudo_PAGE_generated then
             pseudo_PAGE_generated = true
-            intermediateInstructionList += !@baseline_intermediate_pseudo_PAGE { !currentPage}
+            intermediateInstructionList += !@baseline_intermediate_pseudo_PAGE ( !currentPage)
           end
         //---
           let @routineKind routineKind
@@ -213,8 +213,8 @@ proc baseline_analysis
             if mInstructionList.count == 0 then
               error (mRoutineName : "a noreturn routine should terminate by a GOTO or a FOREVER loop")
             else
-             [mInstructionList last ?let @baseline_instruction lastInstruction]
-             [lastInstruction shouldNotContinueInSequence !"a noreturn routine should terminate by a GOTO or a FOREVER loop"]
+             mInstructionList.last (?let @baseline_instruction lastInstruction)
+             lastInstruction.shouldNotContinueInSequence (!"a noreturn routine should terminate by a GOTO or a FOREVER loop")
             end
           else
             routineKind = @routineKind. regularRoutine
@@ -222,30 +222,30 @@ proc baseline_analysis
             if mInstructionList.count == 0 then
               error (mRoutineName : "a baseline routine must end with a MOVLW instruction")
             else
-             [mInstructionList last ?let @baseline_instruction lastInstruction]
-             [lastInstruction shouldTerminateWithMOVLW !"the last routine instruction should be MOVLW"]
+             mInstructionList.last (?let @baseline_instruction lastInstruction)
+             lastInstruction.shouldTerminateWithMOVLW (!"the last routine instruction should be MOVLW")
             end
           end
         //--- Check and translate instructions
           if mRoutineName.string != "main" then
-            intermediateInstructionList += !@baseline_intermediate_pseudo_BEGIN_ROUTINE { !mRoutineName !not mIsNoReturn}
-            intermediateInstructionList += !@baseline_intermediate_pseudo_LABEL { !mRoutineName}
+            intermediateInstructionList += !@baseline_intermediate_pseudo_BEGIN_ROUTINE ( !mRoutineName, not mIsNoReturn)
+            intermediateInstructionList += !@baseline_intermediate_pseudo_LABEL ( !mRoutineName)
           end
           handleBaselineInstructionList (
-            !currentPage
-            !mInstructionList
-            !routineMap
-            !registerTable
-            !constantMap
-            !?localLabelIndex
-            !?intermediateInstructionList
-            !?listFileContents
-            ?let @bool continuesInSequence
-            !routineKind
-            !not mIsNoReturn // Last instruction should be RETLW ?
+            !currentPage,
+            !mInstructionList,
+            !routineMap,
+            !registerTable,
+            !constantMap,
+            !?localLabelIndex,
+            !?intermediateInstructionList,
+            !?listFileContents,
+            ?let @bool continuesInSequence,
+            !routineKind,
+            !not mIsNoReturn, // Last instruction should be RETLW ?
             !?usedRegisters
           )
-          intermediateInstructionList += !@baseline_intermediate_pseudo_END_ROUTINE { !mRoutineName !currentPage}
+          intermediateInstructionList += !@baseline_intermediate_pseudo_END_ROUTINE ( !mRoutineName, currentPage)
           if mIsNoReturn & continuesInSequence then
             error (mRoutineName:"execution should not reach the end of a \"noreturn\" routine")
           end
@@ -260,7 +260,7 @@ proc baseline_analysis
   )
   var declaredRoutineMap =@baseline_declaredRoutineMap ()
   for (mRoutineName * * * *) in  inPiccoloModel.mRoutineDefinitionList do
-    [!?declaredRoutineMap insertKey !mRoutineName]
+    !?declaredRoutineMap.insertKey (!mRoutineName)
   end
 //-------------------------------- Check used routines
   var unusedRoutineDeclarationUnicity =@stringset ()
@@ -307,38 +307,38 @@ proc baseline_analysis
     for (mInstruction) in  intermediateInstructionList do(idx)
       listFileContents += [idx.string leftPadding !5 !' '] + " "
       listFileContents += [mInstruction.length.string leftPadding !6 !' '] + " "
-      [mInstruction print !?listFileContents]
+      mInstruction.print (!?listFileContents)
       listFileContents += "\n"
-      [mInstruction setCurrentAddress !?currentAddress]
+      mInstruction.setCurrentAddress (!?currentAddress)
     end
     listFileContents += "\n"
     listFileContents += "Code size without optimization: " + currentAddress.string + " words.\n\n"
   end
 //-------------------------------- Perform Code Optimization
   if (@uint. errorCount == 0) & [option piccoloOptions.performOptimizations value] then
-    perform_baseline_optimizations ( !?intermediateInstructionList !?listFileContents )
+    perform_baseline_optimizations ( !?intermediateInstructionList, !?listFileContents )
   end
 //-------------------------------- Build assembly instruction list
   initCodeGenerator ()
-  let sr = @registerExpression {
-    ! @{!"STATUS" !.here}
-    !@immediatInteger {! @{!0 !.here}}
-    !.here
-  }
-  [sr resolveBaselineAccess
-    !registerTable
-    !constantMap
-    ?let @baseline_intermediate_registerExpression statusRegister
-    ?let @bitSliceTable statusRegisterBitSliceTable
+  let sr = @registerExpression (
+    ! @(!"STATUS", .here),
+    @immediatInteger (! @(!0, .here)),
+    .here
+  )
+  sr.resolveBaselineAccess
+    (!registerTable,
+    !constantMap,
+    ?let @baseline_intermediate_registerExpression statusRegister,
+    ?let @bitSliceTable statusRegisterBitSliceTable,
     !?usedRegisters
-  ]
+  )
   var assemblyInstructionList =@baseline_assembly_instructionList ()
   if @uint.errorCount == 0 then
     build_baseline_assembly_code (
-      !intermediateInstructionList
-      !actualConfigurationMap
-      !statusRegister
-      !statusRegisterBitSliceTable
+      !intermediateInstructionList,
+      !actualConfigurationMap,
+      !statusRegister,
+      !statusRegisterBitSliceTable,
       !?assemblyInstructionList
     )
   end
@@ -349,42 +349,42 @@ proc baseline_analysis
     listFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
     listFileContents += "Address Code Mnemonic\n"
     build_baseline_binary_code (
-      !assemblyInstructionList
-      !piccoloDeviceModel.mRomSize.uint
-      !?listFileContents
+      !assemblyInstructionList,
+      !piccoloDeviceModel.mRomSize.uint,
+      !?listFileContents,
       ?let @uint unused usedROMsize
     )
   end
 //-------------------------------- Listing file
   if [option piccoloOptions.ouputListingFile value] then
     let @string listFile = inSourceFileName.deletingPathExtension + ".list"
-    [listFileContents writeToFileWhenDifferentContents !listFile ?*]
+    listFileContents.writeToFileWhenDifferentContents (!listFile, ?*)
   end
 //-------------------------------- Code generation
 //--- If no error, generate object file(s)
   if @uint. errorCount == 0 then
     getGeneratedContents (?var @string contents)
     var @string destinationFile = inSourceFileName.deletingPathExtension + ".hex"
-    [contents writeToFileWhenDifferentContents !destinationFile ?*]
+    contents.writeToFileWhenDifferentContents (!destinationFile, ?*)
     if [option piccoloOptions.output_C_Array value] then
       let @string baseName = inSourceFileName.lastPathComponent.deletingPathExtension
-      get_C_ArrayImplementation ( !baseName ?contents )
+      get_C_ArrayImplementation ( !baseName, ?contents )
       destinationFile = inSourceFileName.deletingPathExtension + ".c"
-      [contents writeToFileWhenDifferentContents !destinationFile ?*]
-      get_C_ArrayHeader ( !baseName ?contents )
+      contents.writeToFileWhenDifferentContents (!destinationFile, ?*)
+      get_C_ArrayHeader ( !baseName, ?contents )
       destinationFile = inSourceFileName.deletingPathExtension + ".h"
-      [contents writeToFileWhenDifferentContents !destinationFile ?*]
+      contents.writeToFileWhenDifferentContents (!destinationFile, ?*)
     end
   //--- Generate asm file, if corresponding option enabled
     if [option piccoloOptions.generateAssembly value] then
       var @string assemblyCode = "  processor " + inPiccoloModel.mDeviceName + "\n\n"
       for (mInstruction) in  assemblyInstructionList do
-        [mInstruction print !?assemblyCode]
+        mInstruction.print (!?assemblyCode)
         assemblyCode += "\n"
       end
       assemblyCode += "\n;--- Registers\n"
       for (lkey mRegisterAddressList * * * *) in  registerTable do
-        [mRegisterAddressList first ?let @uint address]
+        mRegisterAddressList.first (?let @uint address)
         assemblyCode += lkey.string + " EQU " + address.hexString + "\n"
       end
       assemblyCode += "W EQU 0\n\n"
@@ -394,16 +394,16 @@ proc baseline_analysis
       end
       assemblyCode += "\n  END\n"
       let @string asmDestinationFile = inSourceFileName.deletingPathExtension + ".asm"
-      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*]
+      assemblyCode.writeToFileWhenDifferentContents (!asmDestinationFile, ?*)
     end
   else // There are errors : delete hex and asm files
     let @string hexDestinationFile = inSourceFileName.deletingPathExtension + ".hex"
     if hexDestinationFile.fileExists then
-      [@string deleteFile !hexDestinationFile]
+      @string.deleteFile (!hexDestinationFile)
     end
     let @string asmDestinationFile = inSourceFileName.deletingPathExtension + ".asm"
     if asmDestinationFile.fileExists then
-      [@string deleteFile !asmDestinationFile]
+      @string.deleteFile (!asmDestinationFile)
     end
   end
 }

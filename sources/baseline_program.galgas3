@@ -3,19 +3,19 @@ syntax baseline_program (piccolo_lexique) {
 //----------------------------------------------------*
 
 rule <section_list>
-  ?!@baseline_routineDefinitionList ioRoutineDefinitionList
-  ?!@lstringlist ioUnusedRoutineList
-  ?!@ramDefinitionList ioRamDefinitionList
-  ?!@lstringlist unusedRegisterList
-  ?!@configDefinitionList ioConfigDefinitionList
-  ?!@constantDefinitionList ioConstantDefinitionList
+  (?!@baseline_routineDefinitionList ioRoutineDefinitionList,
+  ?!@lstringlist ioUnusedRoutineList,
+  ?!@ramDefinitionList ioRamDefinitionList,
+  ?!@lstringlist unusedRegisterList,
+  ?!@configDefinitionList ioConfigDefinitionList,
+  ?!@constantDefinitionList ioConstantDefinitionList)
 
 //----------------------------------------------------*
 
-rule <start_symbol> {
+rule <start_symbol> () {
   $baseline$
-  $identifier$ ?let @lstring programName
-  $literal_string$ ?let @lstring deviceName
+  $identifier$ (?let @lstring programName)
+  $literal_string$ (?let @lstring deviceName)
   $:$
   var routineDefinitionList =@baseline_routineDefinitionList ()
   var ramDefinitionList =@ramDefinitionList ()
@@ -23,60 +23,60 @@ rule <start_symbol> {
   var unusedRoutineList =@lstringlist ()
   var configDefinitionList =@configDefinitionList ()
   var constantDefinitionList =@constantDefinitionList ()
-  <section_list>
-    !?routineDefinitionList
-    !?unusedRoutineList
-    !?ramDefinitionList
-    !?unusedRegisterList
-    !?configDefinitionList
-    !?constantDefinitionList
+  <section_list>(
+    !?routineDefinitionList,
+    !?unusedRoutineList,
+    !?ramDefinitionList,
+    !?unusedRegisterList,
+    !?configDefinitionList,
+    !?constantDefinitionList)
   $end$
 //--- Semantic analysis
   if @uint. errorCount == 0 then
-    let piccoloModel = @baseline_model {
-      !programName
-      !deviceName
-      !configDefinitionList
-      !ramDefinitionList
-      !unusedRegisterList
-      !constantDefinitionList
-      !routineDefinitionList
-      !unusedRoutineList
-      !@location.here
-    }
-    baseline_analysis ( !piccoloModel !@string. stringWithSourceFilePath )
+    let piccoloModel = @baseline_model (
+      !programName,
+      deviceName,
+      configDefinitionList,
+      ramDefinitionList,
+      unusedRegisterList,
+      constantDefinitionList,
+      routineDefinitionList,
+      unusedRoutineList,
+      @location.here
+    )
+    baseline_analysis ( !piccoloModel, !@string. stringWithSourceFilePath )
   else
     let @string hexDestinationFile = @string.stringWithSourceFilePath.deletingPathExtension + ".hex"
     if hexDestinationFile.fileExists then
-      [@string deleteFile !hexDestinationFile]
+      @string.deleteFile (!hexDestinationFile)
     end
     let @string asmDestinationFile = @string.stringWithSourceFilePath.deletingPathExtension + ".asm"
     if asmDestinationFile.fileExists then
-      [@string deleteFile !asmDestinationFile]
+      @string.deleteFile (!asmDestinationFile)
     end
   end
 }
 label importBootloaderSpecification
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@string outDeviceName
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@luint outBootloaderReservedROMsize {
+  (!@piccoloDeviceModel outPiccoloDeviceModel,
+  !@string outDeviceName,
+  !@uint outAccessBankSplitOffset,
+  !@ramBankTable outRamBank,
+  !@registerTable outRegisterTable,
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap,
+  !@routineDeclarationList outBootloaderRoutineDeclarationList,
+  !@routineDeclarationList outUserRoutineDeclarationList,
+  !@luint outBootloaderReservedROMsize ) {
   $baseline$
-  $identifier$ ?let @lstring programName
+  $identifier$ (?let @lstring programName)
   error (programName: "this file does not define a bootloader specification"
    spoil outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outBootloaderRoutineDeclarationList,
       outUserRoutineDeclarationList, outDeviceName,
       outBootloaderReservedROMsize)
-  $literal_string$ ? *
+  $literal_string$ (? *)
   $:$
 //   parse<section_list>
-   <section_list> !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @()
+   <section_list> (!?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from @())
   $end$
 }
 

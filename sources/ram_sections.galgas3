@@ -5,28 +5,28 @@
 //----------------------------------------------------------------------------*
 
 abstract proc @declarationInRam handleDeclaration
-  ?let @constantMap inConstantMap
-  ?!@stringset ioUsedRegisters
-  ?!@ramBankTable ioRamBank
-  ?!@registerTable ioRegisterTable
-  ?let @lstring inCurrentRamBank
-  ?!@declaredByteMap ioDeclaredByteMap
+  (?let @constantMap inConstantMap,
+  ?!@stringset ioUsedRegisters,
+  ?!@ramBankTable ioRamBank,
+  ?!@registerTable ioRegisterTable,
+  ?let @lstring inCurrentRamBank,
+  ?!@declaredByteMap ioDeclaredByteMap)
 
 //----------------------------------------------------------------------------*
 
-override proc @byteDeclarationInRam handleDeclaration
-  ?let @constantMap inConstantMap
-  ?!@stringset ioUsedRegisters
-  ?!@ramBankTable ioRamBank
-  ?!@registerTable ioRegisterTable
-  ?let @lstring inCurrentRamBank
+override proc @byteDeclarationInRam.handleDeclaration
+  (?let @constantMap inConstantMap,
+  ?!@stringset ioUsedRegisters,
+  ?!@ramBankTable ioRamBank,
+  ?!@registerTable ioRegisterTable,
+  ?let @lstring inCurrentRamBank,
   ?!@declaredByteMap ioDeclaredByteMap
-{
+) {
   let @uint lastAddressPlusOne
   var @uint firstFreeAddress
   let @uintlist mirrorOffsetList
-  [ioRamBank searchKey !inCurrentRamBank ?* ?firstFreeAddress ?lastAddressPlusOne ?mirrorOffsetList]
-  [self.mSizeExpression eval !ioRegisterTable !inConstantMap ?let @sint64 size !?ioUsedRegisters]
+  ioRamBank.searchKey (!inCurrentRamBank, ?*, ?firstFreeAddress, ?lastAddressPlusOne, ?mirrorOffsetList)
+  self.mSizeExpression.eval (!ioRegisterTable, !inConstantMap, ?let @sint64 size, !?ioUsedRegisters)
   if size <= 0 then
     error (self.mName: "size expression should be > 0")
   elsif size > 4096 then
@@ -37,21 +37,21 @@ override proc @byteDeclarationInRam handleDeclaration
       addressList += !firstFreeAddress + mValue
     end
     if not [ioDeclaredByteMap hasKey !self.mName.string] then
-      [!?ioDeclaredByteMap insertKey !self.mName]
+      !?ioDeclaredByteMap.insertKey (!self.mName)
     end
-    [!?ioRegisterTable insertKey
-      !self.mName
-      !addressList
-      !size.uint
-      !self.mBitSliceTable
-      !self.mBitDefinitionString
+    !?ioRegisterTable.insertKey
+      (!self.mName,
+      !addressList,
+      !size.uint,
+      !self.mBitSliceTable,
+      !self.mBitDefinitionString,
       !self.mProtection
-    ]
+    )
     if [inConstantMap hasKey !self.mName] then
       error (self.mName : "this symbol is already declared as a constant")
     end
     firstFreeAddress = firstFreeAddress + size.uint
-    [!?ioRamBank setMFirstFreeAddressForKey !firstFreeAddress !inCurrentRamBank.string]
+    !?ioRamBank.setMFirstFreeAddressForKey (!firstFreeAddress, !inCurrentRamBank.string)
     if firstFreeAddress > lastAddressPlusOne then
       error (self.mName: "overflow in '" + inCurrentRamBank + "' ram bank for '" + self.mName + "' declaration")
     end
@@ -65,27 +65,27 @@ override proc @byteDeclarationInRam handleDeclaration
 //----------------------------------------------------------------------------*
 
 proc analyze_ram_sections
-  ?let @string inListingTitle
-  ?let @ramDefinitionList inRamDefinitionList
-  ?let @constantMap inConstantMap
-  ?!@stringset ioUsedRegisters
-  ?!@ramBankTable ioRamBankTable
-  ?let @registerTable inSpecialRegisterTable
-  ?!@string ioListFileContents
-  ?!@registerTable ioAllRegisters
+  (?let @string inListingTitle,
+  ?let @ramDefinitionList inRamDefinitionList,
+  ?let @constantMap inConstantMap,
+  ?!@stringset ioUsedRegisters,
+  ?!@ramBankTable ioRamBankTable,
+  ?let @registerTable inSpecialRegisterTable,
+  ?!@string ioListFileContents,
+  ?!@registerTable ioAllRegisters,
   !@declaredByteMap outDeclaredByteMap
-{
+) {
   outDeclaredByteMap = @()
   for (mBankName mDeclaration) in  inRamDefinitionList do
     for (mDeclarationInRAM) in  mDeclaration do
-      [mDeclarationInRAM handleDeclaration
-        !inConstantMap
-        !?ioUsedRegisters
-        !?ioRamBankTable
-        !?ioAllRegisters
-        !mBankName
+      mDeclarationInRAM.handleDeclaration
+        (!inConstantMap,
+        !?ioUsedRegisters,
+        !?ioRamBankTable,
+        !?ioAllRegisters,
+        !mBankName,
         !?outDeclaredByteMap
-      ]
+      )
     end
   end
   if [option piccoloOptions.ouputListingFile value] then

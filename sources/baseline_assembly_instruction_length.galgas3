@@ -1,34 +1,34 @@
 //---------------------------------------------------------------------------------------------------
 
-abstract func @baseline_assembly_instruction length -> @uint
+abstract func @baseline_assembly_instruction length () -> @uint
 
 //---------------------------------------------------------------------------------------------------
 
-override func @baseline_assembly_pseudo_ORG length -> @uint outLength {
+override func @baseline_assembly_pseudo_ORG.length () -> @uint outLength {
   outLength = 0
 }
 
 //---------------------------------------------------------------------------------------------------
 
-override func @baseline_assembly_pseudo_BEGINOFROUTINE length -> @uint outLength {
+override func @baseline_assembly_pseudo_BEGINOFROUTINE.length () -> @uint outLength {
   outLength = 0
 }
 
 //---------------------------------------------------------------------------------------------------
 
-override func @baseline_assembly_pseudo_ENDOFROUTINE length -> @uint outLength {
+override func @baseline_assembly_pseudo_ENDOFROUTINE.length () -> @uint outLength {
   outLength = 0
 }
 
 //---------------------------------------------------------------------------------------------------
 
-override func @baseline_assembly_pseudo_LABEL length -> @uint outLength {
+override func @baseline_assembly_pseudo_LABEL.length () -> @uint outLength {
   outLength = 0
 }
 
 //---------------------------------------------------------------------------------------------------
 
-override func @baseline_assembly_actualInstruction length -> @uint outLength {
+override func @baseline_assembly_actualInstruction.length () -> @uint outLength {
   outLength = 1
 }
 

@@ -3,53 +3,53 @@ syntax pic18_bootloader_syntax (piccolo_lexique) {
 //----------------------------------------------------*
 
 rule <ram_definition>
-  ?!@ramDefinitionList ioRamDefinitionList
+  (?!@ramDefinitionList ioRamDefinitionList)
 
-rule <start_symbol>
+rule <start_symbol> ()
 label importBootloaderSpecification
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@string outDeviceName
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@luint outBootloaderReservedROMsize
+  (!@piccoloDeviceModel outPiccoloDeviceModel,
+  !@string outDeviceName,
+  !@uint outAccessBankSplitOffset,
+  !@ramBankTable outRamBank,
+  !@registerTable outRegisterTable,
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap,
+  !@routineDeclarationList outBootloaderRoutineDeclarationList,
+  !@routineDeclarationList outUserRoutineDeclarationList,
+  !@luint outBootloaderReservedROMsize)
 
-rule <routine_declaration> ?!@routineDeclarationList ioRoutineDefinitionList
+rule <routine_declaration> (?!@routineDeclarationList ioRoutineDefinitionList
 
 //----------------------------------------------------*
 
-rule <parse_bootloader>
-  !@lstring outBootloaderName
-  !@lstring outDeviceName
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@luint outReservedRomSize
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@ramDefinitionList outSharedRamDefinitionList
-  !@string outListFileContents
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable {
+)rule <parse_bootloader>
+  (!@lstring outBootloaderName,
+  !@lstring outDeviceName,
+  !@routineDeclarationList outBootloaderRoutineDeclarationList,
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap,
+  !@luint outReservedRomSize,
+  !@routineDeclarationList outUserRoutineDeclarationList,
+  !@ramDefinitionList outSharedRamDefinitionList,
+  !@string outListFileContents,
+  !@piccoloDeviceModel outPiccoloDeviceModel,
+  !@uint outAccessBankSplitOffset,
+  !@ramBankTable outRamBank,
+  !@registerTable outRegisterTable ) {
   $pic18$
   $bootloader$
-  $identifier$ ? outBootloaderName
-  $literal_string$ ? outDeviceName
+  $identifier$ (? outBootloaderName)
+  $literal_string$ (? outDeviceName)
 //--- First part
   ${$
   outBootloaderRoutineDeclarationList = @routineDeclarationList ()
   outBootloaderReservedRAMmap = @bootloaderReservedRAMmap ()
-  outReservedRomSize = @luint { !0 !@location.here}
+  outReservedRomSize = @luint ( !0, @location.here)
   repeat
   while
-    <routine_declaration> !?outBootloaderRoutineDeclarationList
+    <routine_declaration> (!?outBootloaderRoutineDeclarationList)
   while
     $rom$
     $=$
-    $integer$ ?let @luint rs
+    $integer$ (?let @luint rs)
     if outReservedRomSize.uint != 0 then
       error (rs : "ROM size already defined")
     elsif rs.uint == 0 then
@@ -61,15 +61,15 @@ rule <parse_bootloader>
     end
   while
     $ram$
-    $identifier$ ?let @lstring bankName
+    $identifier$ (?let @lstring bankName)
     $=$
-    $integer$ ?let @luint rs
+    $integer$ (?let @luint rs)
     if [outBootloaderReservedRAMmap hasKey !bankName.string] then
       error (rs : "RAM size already defined for '" + bankName + "' bank")
     elsif rs.uint == 0 then
       error (rs: "RAM size should be > 0")
     else
-      [!?outBootloaderReservedRAMmap  insertKey !bankName !rs]
+      !?outBootloaderReservedRAMmap.insertKey (!bankName, !rs)
     end
   end
   $}$
@@ -78,7 +78,7 @@ rule <parse_bootloader>
   outUserRoutineDeclarationList = @routineDeclarationList ()
   repeat
   while
-    <routine_declaration> !? outUserRoutineDeclarationList
+    <routine_declaration> (!? outUserRoutineDeclarationList)
   end
   $}$
 //--- Third part
@@ -86,82 +86,82 @@ rule <parse_bootloader>
   ${$
   repeat
   while
-    <ram_definition> !?outSharedRamDefinitionList
+    <ram_definition> (!?outSharedRamDefinitionList)
   end
   $}$
 //--- Semantic analysis
   pic18BootloaderSpecificationAnalysis (
-    !@string. stringWithSourceFilePath
-    !outBootloaderName
-    !outDeviceName
-    !outBootloaderRoutineDeclarationList
-    !outBootloaderReservedRAMmap
-    !outReservedRomSize
-    !outUserRoutineDeclarationList
-    !outSharedRamDefinitionList
-    ?outListFileContents
-    ?outPiccoloDeviceModel
-    ?outAccessBankSplitOffset
-    ?outRamBank
+    !@string. stringWithSourceFilePath,
+    !outBootloaderName,
+    !outDeviceName,
+    !outBootloaderRoutineDeclarationList,
+    !outBootloaderReservedRAMmap,
+    !outReservedRomSize,
+    !outUserRoutineDeclarationList,
+    !outSharedRamDefinitionList,
+    ?outListFileContents,
+    ?outPiccoloDeviceModel,
+    ?outAccessBankSplitOffset,
+    ?outRamBank,
     ?outRegisterTable
   )
 }
 
 //----------------------------------------------------*
 
-rule <start_symbol> {
-  <parse_bootloader>
-    ?let unused bootloaderName
-    ?let unused deviceName
-    ?let unused bootloaderRoutineDeclarationList
-    ?let unused bootloaderReservedRAMmap
-    ?let unused reservedRomSize
-    ?let unused userRoutineDeclarationList
-    ?let unused sharedRamDefinitionList
-    ?let listFileContents
-    ?let unused piccoloDeviceModel
-    ?let unused accessBankSplitOffset
-    ?let unused ramBank
-    ?let unused registerTable
+rule <start_symbol> () {
+  <parse_bootloader>(
+    ?let unused bootloaderName,
+    ?let unused deviceName,
+    ?let unused bootloaderRoutineDeclarationList,
+    ?let unused bootloaderReservedRAMmap,
+    ?let unused reservedRomSize,
+    ?let unused userRoutineDeclarationList,
+    ?let unused sharedRamDefinitionList,
+    ?let listFileContents,
+    ?let unused piccoloDeviceModel,
+    ?let unused accessBankSplitOffset,
+    ?let unused ramBank,
+    ?let unused registerTable)
 //--- Semantic analysis
   let @string listingFile = @string.stringWithSourceFilePath.deletingPathExtension + ".list"
   if (@uint. errorCount == 0) & [option piccoloOptions.ouputListingFile value] then
-    [listFileContents writeToFileWhenDifferentContents !listingFile ?*]
+    listFileContents.writeToFileWhenDifferentContents (!listingFile, ?*)
   end
   if @uint. errorCount > 0 then
-    [@string deleteFileIfExists !listingFile]
+    @string.deleteFileIfExists (!listingFile)
   end
 }
 label importBootloaderSpecification
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@string outDeviceName
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@luint outBootloaderReservedROMsize {
-  <parse_bootloader>
-    ?let unused bootloaderName
-    ?let @lstring deviceName
-    ?outBootloaderRoutineDeclarationList
-    ?outBootloaderReservedRAMmap
-    ?outBootloaderReservedROMsize
-    ?outUserRoutineDeclarationList
-    ?let unused sharedRamDefinitionList
-    ?let unused listFileContents
-    ?outPiccoloDeviceModel
-    ?outAccessBankSplitOffset
-    ?outRamBank
-    ?outRegisterTable
+  (!@piccoloDeviceModel outPiccoloDeviceModel,
+  !@string outDeviceName,
+  !@uint outAccessBankSplitOffset,
+  !@ramBankTable outRamBank,
+  !@registerTable outRegisterTable,
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap,
+  !@routineDeclarationList outBootloaderRoutineDeclarationList,
+  !@routineDeclarationList outUserRoutineDeclarationList,
+  !@luint outBootloaderReservedROMsize ) {
+  <parse_bootloader>(
+    ?let unused bootloaderName,
+    ?let @lstring deviceName,
+    ?outBootloaderRoutineDeclarationList,
+    ?outBootloaderReservedRAMmap,
+    ?outBootloaderReservedROMsize,
+    ?outUserRoutineDeclarationList,
+    ?let unused sharedRamDefinitionList,
+    ?let unused listFileContents,
+    ?outPiccoloDeviceModel,
+    ?outAccessBankSplitOffset,
+    ?outRamBank,
+    ?outRegisterTable)
   outDeviceName = deviceName.string
 }
 
 //----------------------------------------------------*
 
 rule <routine_declaration>
-  ?!@routineDeclarationList ioRoutineDefinitionList {
+  (?!@routineDeclarationList ioRoutineDefinitionList ) {
   let @bool noreturn
   select
     noreturn = false
@@ -170,13 +170,13 @@ rule <routine_declaration>
     noreturn = true
   end
   $routine$
-  $identifier$ ?let @lstring routineName
+  $identifier$ (?let @lstring routineName)
   let @luint requiredBank
   let @luint returnedBank
   let @bool preservesBank
   select
-    requiredBank = @luint { !@uint. max !@location.here}
-    returnedBank = @luint { !@uint. max !@location.here}
+    requiredBank = @luint ( !@uint. max, @location.here)
+    returnedBank = @luint ( !@uint. max, @location.here)
     preservesBank = false
   or
     $bank$
@@ -187,29 +187,29 @@ rule <routine_declaration>
         error (@location.here: "a \"noreturn\" routine cannot accept \"bank:preserved\" setting")
       end
       preservesBank = true
-      requiredBank = @luint { !@uint. max !@location.here}
-      returnedBank = @luint { !@uint. max !@location.here}
+      requiredBank = @luint ( !@uint. max, @location.here)
+      returnedBank = @luint ( !@uint. max, @location.here)
     or
       $requires$
-      $integer$ ? requiredBank
+      $integer$ (? requiredBank)
       preservesBank = false
       select
-        returnedBank = @luint { !@uint. max !@location.here}
+        returnedBank = @luint ( !@uint. max, @location.here)
       or
         $ensures$
-        $integer$ ? returnedBank
+        $integer$ (? returnedBank)
         if noreturn then
           error (@location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting")
         end
       end
     or
       $ensures$
-      $integer$ ? returnedBank
+      $integer$ (? returnedBank)
       if noreturn then
         error (@location.here: "a \"noreturn\" routine cannot accept \"bank:returned\" setting")
       end
       preservesBank = false
-      requiredBank = @luint { !@uint. max !@location.here}
+      requiredBank = @luint ( !@uint. max, @location.here)
     end
   end
 //---

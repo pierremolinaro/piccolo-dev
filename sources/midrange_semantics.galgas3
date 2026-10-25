@@ -11,7 +11,7 @@ map @midrange_declaredRoutineMap {
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceFileName {
+proc midrange_analyze (?let @midrange_model inPiccoloModel ,?let @string inSourceFileName ) {
   let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
     error (inPiccoloModel.mProgramName: "the program name ('" + inPiccoloModel.mProgramName
@@ -19,7 +19,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
   end
   var @string listFileContents = ""
 //-------------------------------- Analyze Device
-  parseDeviceDefinition (!inPiccoloModel.mDeviceName ?let piccoloDeviceModel)
+  parseDeviceDefinition (!inPiccoloModel.mDeviceName, ?let piccoloDeviceModel)
   switch piccoloDeviceModel.mProcessorType
     case midrange :
     case pic18_60, pic18_80 : error (inPiccoloModel.mDeviceName: "a pic18 device is not accepted here : only a mid-range device")
@@ -35,9 +35,9 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
   end
 //-------------------------------- Config definition
   buildConfig (
-    !piccoloDeviceModel.mConfigRegisterMap
-    !inPiccoloModel.mConfigDefinitionList
-    !?listFileContents
+    !piccoloDeviceModel.mConfigRegisterMap,
+    !inPiccoloModel.mConfigDefinitionList,
+    !?listFileContents,
     ?let actualConfigurationMap
   )
 //-------------------------------- Build constant map
@@ -45,41 +45,41 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
   var @stringset usedRegisters = @()
   var @registerTable registerTable = piccoloDeviceModel.mRegisterTable
 //--- Add "ROM_SIZE" constant
-  let romSizeString = @lstring {!"ROM_SIZE" !.here}
-  [!?constantMap insertKey !romSizeString !piccoloDeviceModel.mRomSize.uint.sint64]
+  let romSizeString = @lstring (!"ROM_SIZE", .here)
+  !?constantMap.insertKey (!romSizeString, !piccoloDeviceModel.mRomSize.uint.sint64)
 //--- Add declared constants
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
-    [mExpression eval !registerTable !constantMap ?let @sint64 result !?usedRegisters]
+    mExpression.eval (!registerTable, !constantMap, ?let @sint64 result, !?usedRegisters)
     if [registerTable hasKey !mConstantName.string] then
       error (mConstantName: "'" + mConstantName + "' is already declared as ram register or special register")
     else
-      [!?constantMap insertKey !mConstantName !result]
+      !?constantMap.insertKey (!mConstantName, !result)
     end
   end
 //-------------------------------- Ram definition
   var @ramBankTable ramBank = piccoloDeviceModel.mRamBankTable
   analyze_ram_sections (
-    !"DECLARED VARIABLES"
-    !inPiccoloModel.mRamDefinitionList
-    !constantMap
-    !?usedRegisters
-    !?ramBank
-    !piccoloDeviceModel.mRegisterTable
-    !?listFileContents
-    !?registerTable
+    !"DECLARED VARIABLES",
+    !inPiccoloModel.mRamDefinitionList,
+    !constantMap,
+    !?usedRegisters,
+    !?ramBank,
+    !piccoloDeviceModel.mRegisterTable,
+    !?listFileContents,
+    !?registerTable,
     ?let @declaredByteMap declaredByteMap
   )
 //-------------------------------- Build IPIC Assembly Instruction List
   build_midrange_assembly_instruction_list (
-    !(piccoloDeviceModel.mRomSize.uint + 2047) / 2048
-    !piccoloDeviceModel.mBankCount.uint
-    !constantMap
-    !piccoloDeviceModel.mSharedBankName
-    !registerTable
-    !inPiccoloModel
-    !hasInterrupt
-    ?var @midrange_intermediate_instructionList generatedInstructionList
-    !?listFileContents
+    !(piccoloDeviceModel.mRomSize.uint + 2047) / 2048,
+    !piccoloDeviceModel.mBankCount.uint,
+    !constantMap,
+    !piccoloDeviceModel.mSharedBankName,
+    !registerTable,
+    !inPiccoloModel,
+    !hasInterrupt,
+    ?var @midrange_intermediate_instructionList generatedInstructionList,
+    !?listFileContents,
     !?usedRegisters
   )
 //-------------------------------- Compute used routine set
@@ -89,7 +89,7 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
   )
   var declaredRoutineMap =@midrange_declaredRoutineMap ()
   for (mRoutineName * * * * * * *) in  inPiccoloModel.mRoutineDefinitionList do
-    [!?declaredRoutineMap insertKey !mRoutineName]
+    !?declaredRoutineMap.insertKey (!mRoutineName)
   end
 //-------------------------------- Check used routines
   var unusedRoutineDeclarationUnicity =@stringset ()
@@ -127,38 +127,38 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
   end
 //-------------------------------- Perform Code Optimization
   if (@uint. errorCount == 0) & [option piccoloOptions.performOptimizations value] then
-    perform_midrange_optimizations ( !?generatedInstructionList !?listFileContents )
+    perform_midrange_optimizations ( !?generatedInstructionList, !?listFileContents )
   end
 //-------------------------------- Compute inter-pages JUMP and JSR
   if @uint. errorCount == 0 then
-    midrange_compute_JSR_JUMP ( !?generatedInstructionList !?listFileContents )
+    midrange_compute_JSR_JUMP ( !?generatedInstructionList, !?listFileContents )
   end
 //-------------------------------- Code generation
 //--- If no error, generate object file(s)
   if @uint. errorCount == 0 then
   //--- Generate hex file
     build_midrange_ipic_binary_code (
-      !registerTable
-      !@()
-      !piccoloDeviceModel.mBankCount.uint
-      !generatedInstructionList
-      !piccoloDeviceModel.mRomSize.uint
-      !actualConfigurationMap
-      !?listFileContents
+      !registerTable,
+      !@(),
+      !piccoloDeviceModel.mBankCount.uint,
+      !generatedInstructionList,
+      !piccoloDeviceModel.mRomSize.uint,
+      !actualConfigurationMap,
+      !?listFileContents,
       ?let usedROMsize
     )
     var @string contents
     getGeneratedContents ( ?contents )
     var @string destinationFile = inSourceFileName.deletingPathExtension + ".hex"
-    [contents writeToFileWhenDifferentContents !destinationFile ?*]
+    contents.writeToFileWhenDifferentContents (!destinationFile, ?*)
     if [option piccoloOptions.output_C_Array value] then
       let @string baseName = inSourceFileName.lastPathComponent.deletingPathExtension
-      get_C_ArrayImplementation ( !baseName ?contents )
+      get_C_ArrayImplementation ( !baseName, ?contents )
       destinationFile = inSourceFileName.deletingPathExtension + ".c"
-      [contents writeToFileWhenDifferentContents !destinationFile ?*]
-      get_C_ArrayHeader ( !baseName ?contents )
+      contents.writeToFileWhenDifferentContents (!destinationFile, ?*)
+      get_C_ArrayHeader ( !baseName, ?contents )
       destinationFile = inSourceFileName.deletingPathExtension + ".h"
-      [contents writeToFileWhenDifferentContents !destinationFile ?*]
+      contents.writeToFileWhenDifferentContents (!destinationFile, ?*)
     end
   //--- Write infos (if verbose mode)
     if @application.verboseOutput then
@@ -179,30 +179,30 @@ proc midrange_analyze ?let @midrange_model inPiccoloModel ?let @string inSourceF
     if [option piccoloOptions.generateAssembly value] then
       let @string assemblyCode
       midrange_build_assembly_code (
-        !piccoloDeviceModel.mDeviceName.string
-        !piccoloDeviceModel.mRegisterTable
-        !registerTable
-        !generatedInstructionList
-        !actualConfigurationMap
+        !piccoloDeviceModel.mDeviceName.string,
+        !piccoloDeviceModel.mRegisterTable,
+        !registerTable,
+        !generatedInstructionList,
+        !actualConfigurationMap,
         ?assemblyCode
       )
       let @string asmDestinationFile = inSourceFileName.deletingPathExtension + ".asm"
-      [assemblyCode writeToFileWhenDifferentContents !asmDestinationFile ?*]
+      assemblyCode.writeToFileWhenDifferentContents (!asmDestinationFile, ?*)
     end
   else // There are errors : delete hex and asm files
     let @string hexDestinationFile = inSourceFileName.deletingPathExtension + ".hex"
     if hexDestinationFile.fileExists then
-      [@string deleteFile !hexDestinationFile]
+      @string.deleteFile (!hexDestinationFile)
     end
     let @string asmDestinationFile = inSourceFileName.deletingPathExtension + ".asm"
     if asmDestinationFile.fileExists then
-      [@string deleteFile !asmDestinationFile]
+      @string.deleteFile (!asmDestinationFile)
     end
   end
 //-------------------------------- Listing file
   if [option piccoloOptions.ouputListingFile value] then
     let @string listFile = inSourceFileName.deletingPathExtension + ".list"
-    [listFileContents writeToFileWhenDifferentContents !listFile ?*]
+    listFileContents.writeToFileWhenDifferentContents (!listFile, ?*)
   end
 }
 

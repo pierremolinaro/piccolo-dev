@@ -424,7 +424,7 @@ void routine_pic_31__38_BootloaderSpecificationAnalysis_3F__3F__3F__3F__3F__3F__
 
 //--------------------------------------------------------------------------------------------------
 //
-//Extension setter '@branchOverflowMap insertKey'
+//Extension mutating proc '@branchOverflowMap insertKey'
 //
 //--------------------------------------------------------------------------------------------------
 

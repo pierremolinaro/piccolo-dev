@@ -179,9 +179,9 @@ struct @ipic18_intermediate_registerExpression {
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
-func @ipic18_intermediate_registerExpression isEqualToRegister
-  ?let @ipic18_intermediate_registerExpression inRegister
-  -> @bool outResult {
+func @ipic18_intermediate_registerExpression.isEqualToRegister
+  (?let @ipic18_intermediate_registerExpression inRegister
+  ) -> @bool outResult {
   outResult = self.mAssemblyString == inRegister.mAssemblyString
   if outResult then
     outResult = self.mRegisterAddress == inRegister.mRegisterAddress
@@ -393,11 +393,11 @@ struct @branchOverflowMap {
 
   //·····························································································
 
-  setter insertKey  ?let @string inKey
-                    ?let @string inValue {
+  mutating proc insertKey  (?let @string inKey,
+                    ?let @string inValue ) {
     if [self.dictionary hasKey !inKey] then
-      [self.dictionary searchKey !inKey ?var aList]
-      [!?aList append !inValue]
+      self.dictionary.searchKey (!inKey, ?var aList)
+      !?aList.append (!inValue)
       self.dictionary += !inKey !aList
     else
       self.dictionary += !inKey !@[@(inValue)]
@@ -406,9 +406,9 @@ struct @branchOverflowMap {
 
   //·····························································································
 
-  func listForKey ?let @string inKey -> @stringlist {
+  func listForKey (?let @string inKey ) -> @stringlist {
     if [self.dictionary hasKey !inKey] then
-      [self.dictionary searchKey !inKey ?result]
+      self.dictionary.searchKey (!inKey, ?result)
    else
       result = @()
     end
@@ -421,20 +421,20 @@ struct @branchOverflowMap {
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 proc @ipic18SequentialInstruction instructionRelativeBranchOverflow
-  ?let @uint unused inAddress
-  ?let @string unused inBlockLabel
-  ?let @symbolTableForRelativesResolution unused inSymbolTable
-  ?!@branchOverflowMap unused ioOverflowMap {
+  (?let @uint unused inAddress,
+  ?let @string unused inBlockLabel,
+  ?let @symbolTableForRelativesResolution unused inSymbolTable,
+  ?!@branchOverflowMap unused ioOverflowMap ) {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 proc @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
-  ?let @uint unused inAddress
-  ?let @string unused inBlockLabel
-  ?let @symbolTableForRelativesResolution unused inSymbolTable
-  ?let @string unused inNextBlockLabel
-  ?!@branchOverflowMap unused ioOverflowMap {
+  (?let @uint unused inAddress,
+  ?let @string unused inBlockLabel,
+  ?let @symbolTableForRelativesResolution unused inSymbolTable,
+  ?let @string unused inNextBlockLabel,
+  ?!@branchOverflowMap unused ioOverflowMap ) {
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
@@ -444,13 +444,13 @@ proc @ipic18AbstractBlockTerminator terminatorRelativeBranchOverflow
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 proc @ipic18AbstractBlockTerminator performTerminatorRelativeBranchResolution
-  ?let @uint unused inAddress
-  ?let @string unused inBlockLabel
-  ?let @symbolTableForRelativesResolution unused inSymbolTable
-  ?let @string unused inNextBlockLabel
-  ?!@uint unused ioConversionCount
-  ?!@string unused ioListFileContents
-  !@ipic18AbstractBlockTerminator outModifiedTerminator {
+  (?let @uint unused inAddress,
+  ?let @string unused inBlockLabel,
+  ?let @symbolTableForRelativesResolution unused inSymbolTable,
+  ?let @string unused inNextBlockLabel,
+  ?!@uint unused ioConversionCount,
+  ?!@string unused ioListFileContents,
+  !@ipic18AbstractBlockTerminator outModifiedTerminator ) {
   outModifiedTerminator = self
 }
 
@@ -480,24 +480,23 @@ map @pic18_dataAddressMap {
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract proc @ipic18SequentialInstruction generateCode
-  ?let @uint inAddress
-  ?let @symbolTableForRelativesResolution inSymbolTable
-  ?let @pic18_dataAddressMap inDataMap
-  !@codeList outCode
+  (?let @uint inAddress,
+  ?let @symbolTableForRelativesResolution inSymbolTable,
+  ?let @pic18_dataAddressMap inDataMap,
+  !@codeList outCode)
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract proc @ipic18AbstractBlockTerminator generateTerminatorCode
-  ?let @uint inAddress
-  ?let @symbolTableForRelativesResolution inSymbolTable
-  ?let @string inNextBlockLabel
-  !@codeList outCode
+  (?let @uint inAddress,
+  ?let @symbolTableForRelativesResolution inSymbolTable,
+  ?let @string inNextBlockLabel,
+  !@codeList outCode)
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 abstract func @ipic18AbstractBlockTerminator isEqualToTerminator
-  ?let @ipic18AbstractBlockTerminator inTerminator
-  -> @bool
+  (?let @ipic18AbstractBlockTerminator inTerminator) -> @bool
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
@@ -506,37 +505,37 @@ abstract func @ipic18AbstractBlockTerminator isEqualToTerminator
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_checkBCC
-  ?let @symbolTableForRelativesResolution inSymbolTable
-  ?let @lstring inTargetLabel
+  (?let @symbolTableForRelativesResolution inSymbolTable,
+  ?let @lstring inTargetLabel,
   ?let @uint inCurrentAddress
-  ->@bool outDisplacementOK {
-  [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
+  ) ->@bool {
+  inSymbolTable.searchKey (!inTargetLabel, ?let @uint targetAddress)
   let @sint displacement = (targetAddress.sint - 2 - inCurrentAddress.sint) >> 1
-  outDisplacementOK =  (displacement <= 127) & (displacement >= - 128)
+  result =  (displacement <= 127) & (displacement >= - 128)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_checkBRA_RCALL
-  ?let @symbolTableForRelativesResolution inSymbolTable
-  ?let @lstring inTargetLabel
+  (?let @symbolTableForRelativesResolution inSymbolTable,
+  ?let @lstring inTargetLabel,
   ?let @uint inCurrentAddress
-  ->@bool outDisplacementOK {
+  ) ->@bool {
 //--- The target label is not defined if
-  [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
+  inSymbolTable.searchKey (!inTargetLabel, ?let @uint targetAddress)
   let @sint displacement = (targetAddress.sint - 2 - inCurrentAddress.sint) >> 1
-  outDisplacementOK =  (displacement <= 1023) & (displacement >= - 1024)
+  result =  (displacement <= 1023) & (displacement >= - 1024)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_BRA_RCALL_displacement
-  ?let @symbolTableForRelativesResolution inSymbolTable
-  ?let @lstring inTargetLabel
+  (?let @symbolTableForRelativesResolution inSymbolTable,
+  ?let @lstring inTargetLabel,
   ?let @uint inCurrentAddress
-  ->@sint outDisplacement {
-  [inSymbolTable searchKey !inTargetLabel ?let @uint targetAddress]
-  outDisplacement = (targetAddress.sint - 2 - inCurrentAddress.sint) >> 1
+  ) ->@sint {
+  inSymbolTable.searchKey (!inTargetLabel, ?let @uint targetAddress)
+  result = (targetAddress.sint - 2 - inCurrentAddress.sint) >> 1
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
@@ -546,12 +545,12 @@ func pic18_BRA_RCALL_displacement
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_Bcc_instruction_code
-  ?let @uint inConditionalBranchInstructionAddress
-  ?let @uint inTargetAddress
-  ?let @lstring inTargetLabel
-  ?let @conditional_branch inConditionalBranch
+  (?let @uint inConditionalBranchInstructionAddress,
+  ?let @uint inTargetAddress,
+  ?let @lstring inTargetLabel,
+  ?let @conditional_branch inConditionalBranch,
   ?let @bool inComplemented
-  ->@codeList outCode {
+  ) ->@codeList {
   let @sint displacement = (inTargetAddress.sint - 2 - inConditionalBranchInstructionAddress.sint) >> 1
   if (displacement > 127) | (displacement < - 128) then
     error (inTargetLabel: "** INTERNAL ERROR ** displacement too large for conditional branch instruction")
@@ -585,81 +584,81 @@ func pic18_Bcc_instruction_code
   case bov  : baseCode = 0xE400 ; mnemonic = "BOV"
   case bnov : baseCode = 0xE500 ; mnemonic = "BNOV"
   end
-  outCode = @codeList. listWithValue {
-    !"    " + mnemonic + " " + inTargetLabel
-    !@uintlist. listWithValue { !baseCode | (displacement & 0x0FF).uint}}
+  result = @codeList. listWithValue (
+    !"    " + mnemonic + " " + inTargetLabel,
+    @uintlist. listWithValue ( !baseCode | (displacement & 0x0FF).uint))
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_RCALL_instruction_code
-  ?let @uint inRCALLinstructionAddress
-  ?let @uint inTargetAddress
+  (?let @uint inRCALLinstructionAddress,
+  ?let @uint inTargetAddress,
   ?let @lstring inTargetLabel
-  ->@codeList outCode {
+  ) ->@codeList {
   let @sint displacement = (inTargetAddress.sint - 2 - inRCALLinstructionAddress.sint) >> 1
   if (displacement > 1023) | (displacement < - 1024) then
     error (inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ displacement.string
     + ") for RCALL instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)")
   end
-  outCode = @codeList. listWithValue {
-    !"    RCALL " + inTargetLabel
-    !@uintlist. listWithValue { !0xD800 | (displacement & 0x07FF).uint}}
+  result = @codeList. listWithValue (
+    !"    RCALL " + inTargetLabel,
+    @uintlist. listWithValue ( !0xD800 | (displacement & 0x07FF).uint))
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_BRA_instruction_code
-  ?let @uint inRCALLinstructionAddress
-  ?let @uint inTargetAddress
+  (?let @uint inRCALLinstructionAddress,
+  ?let @uint inTargetAddress,
   ?let @lstring inTargetLabel
-  ->@codeList outCode {
+  ) ->@codeList {
   let @sint displacement = (inTargetAddress.sint - 2 - inRCALLinstructionAddress.sint) >> 1
   if (displacement > 1023) | (displacement < - 1024) then
     error (inTargetLabel: "** INTERNAL ERROR ** displacement too large ("+ displacement.string
     + ") for BRA instruction to '" + inTargetLabel + "' (should be between -1024 and 1023)")
   end
-  outCode = @codeList. listWithValue {
-    !"    BRA " + inTargetLabel
-    !@uintlist. listWithValue { !0xD000 | (displacement & 0x07FF).uint}}
+  result = @codeList. listWithValue (
+    !"    BRA " + inTargetLabel,
+    @uintlist. listWithValue ( !0xD000 | (displacement & 0x07FF).uint))
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_CALL_instruction_code
-  ?let @uint inTargetAddress
+  (?let @uint inTargetAddress,
   ?let @lstring inTargetLabel
-  ->@codeList outCode {
+  ) ->@codeList {
   var binaryCode =@uintlist ()
   binaryCode += !0xEC00 | ((inTargetAddress >> 1) & 255)
   binaryCode += !0xF000 | (inTargetAddress >> 9)
-  outCode = @codeList. listWithValue {
-    !"    CALL " + inTargetLabel
-    !binaryCode}
+  result = @codeList. listWithValue (
+    !"    CALL " + inTargetLabel,
+    binaryCode)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_GOTO_instruction_code
-  ?let @uint inTargetAddress
+  (?let @uint inTargetAddress,
   ?let @lstring inTargetLabel
-  ->@codeList outCode {
+  ) ->@codeList {
   var binaryCode =@uintlist ()
   binaryCode += !0xEF00 | ((inTargetAddress >> 1) & 255)
   binaryCode += !0xF000 | (inTargetAddress >> 9)
-  outCode = @codeList. listWithValue {
-    !"    GOTO " + inTargetLabel
-    !binaryCode}
+  result = @codeList. listWithValue (
+    !"    GOTO " + inTargetLabel,
+    binaryCode)
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————
 
 func pic18_definition_label
-  ?let @lstring inTargetLabel
-  ->@codeList outCode {
-  outCode = @codeList. listWithValue {
-    !inTargetLabel.string + ":"
-    !@uintlist ()}
+  (?let @lstring inTargetLabel
+  ) ->@codeList {
+  result = @codeList. listWithValue (
+    !inTargetLabel.string + ":",
+    @uintlist ())
 }
 
 //——————————————————————————————————————————————————————————————————————————————————————————————

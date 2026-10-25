@@ -11,8 +11,8 @@ filewrapper embeddedDevices in "../deviceDefinitions" {
 //----------------------------------------------------*
 
 proc parseDeviceDefinition
-  ?let @lstring inDeviceName
-  !@piccoloDeviceModel outPiccoloDeviceModel {
+  (?let @lstring inDeviceName,
+  !@piccoloDeviceModel outPiccoloDeviceModel ) {
   let @filewrapper fw = [filewrapper embeddedDevices]
   let @string deviceFullName = inDeviceName.string + ".piccoloDevice"
   if [fw fileExistsAtPath !deviceFullName] then

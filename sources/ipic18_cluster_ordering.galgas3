@@ -14,22 +14,22 @@ map @neededConversionForClusterOrder {
 
 //----------------------------------------------------------------------------*
 
-func sortKey ?let @clusterList inClusterList -> @string outKey {
-  outKey = ""
+func sortKey (?let @clusterList inClusterList ) -> @string {
+  result = ""
   for (mBlockList) in  inClusterList
   do
-    outKey += [mBlockList mBlockAtIndex !0].mLabel.string
+    result += [mBlockList mBlockAtIndex !0].mLabel.string
   between
-    outKey += "."
+    result += "."
   end
 }
 
 //----------------------------------------------------------------------------*
 
 proc perform_cluster_ordering
-  ?let @clusterList inInitialClusterList
-  ?!@ipic18BlockList ioBlockList
-  ?!@string ioListFileContents {
+  (?let @clusterList inInitialClusterList,
+  ?!@ipic18BlockList ioBlockList,
+  ?!@string ioListFileContents ) {
   let @bool optimize = [option piccoloOptions.performOptimizations value]
     & ([option piccoloOptions.performOptimizations value] | [[option piccoloOptions.optimizationFlags value] containsCharacter !'B'])
     & not [option piccoloOptions.doNotReorderCluster value]
@@ -61,7 +61,7 @@ proc perform_cluster_ordering
       for (mBlockList) in  clusterList do(clusterIndex)
         workingBlockList += mBlockList
         for (mBlock) in  mBlockList do
-          [!?symbolTable insertKey !mBlock.mLabel !clusterIndex]
+          !?symbolTable.insertKey (!mBlock.mLabel, !clusterIndex)
         end
       end
     //--- Add symbols from last relocatable blocks
@@ -69,29 +69,29 @@ proc perform_cluster_ordering
       for > (mBlock) in  ioBlockList while continue do
         continue = mBlock.mAddress != @uint. max
         if continue then
-          [!?symbolTable insertKey !mBlock.mLabel !@uint. max]
-          [!?workingBlockList insertAtIndex !mBlock !insertionIdx]
+          !?symbolTable.insertKey (!mBlock.mLabel, !@uint. max)
+          !?workingBlockList.insertAtIndex (!mBlock, !insertionIdx)
         end
       end
     //--- Check for overflows
       ipic18RelativeBranchOverflow (
-        !workingBlockList
-        !ioBlockList // For entering absolute labels
+        !workingBlockList,
+        !ioBlockList, // For entering absolute labels
         ?let @branchOverflowMap overflowMap
       )
       var @uint overflowCount = 0
       for (key mList) in overflowMap.dictionary do
         for (mValue) in  mList do
           overflowCount += 1
-          [symbolTable searchKey !key.nowhere ?let @uint sourceCluster]
-          [symbolTable searchKey !mValue.nowhere ?let @uint targetCluster]
+          symbolTable.searchKey (!key.nowhere, ?let @uint sourceCluster)
+          symbolTable.searchKey (!mValue.nowhere, ?let @uint targetCluster)
           ioListFileContents += "  " + key + " (cluster #" + sourceCluster + ") --> " + mValue + " (cluster #" + targetCluster + ")\n"
         end
       end
-      [!?neededConversionForClusterOrder insertKey
-        !sortKey (!clusterList).nowhere
+      !?neededConversionForClusterOrder.insertKey
+        (!sortKey (!clusterList).nowhere,
         !overflowCount
-      ]
+      )
       if @application.verboseOutput then
         var @string s = "  Pass " + pass + ": "
         if overflowCount == 0 then
@@ -107,15 +107,15 @@ proc perform_cluster_ordering
       var @bool correctionLoop = true
       for (key mList) in overflowMap.dictionary while correctionLoop do
         for (mValue) in  mList while correctionLoop do
-          [symbolTable searchKey !mValue.nowhere ?let @uint targetCluster]
+          symbolTable.searchKey (!mValue.nowhere, ?let @uint targetCluster)
           if targetCluster != @uint. max then
-            [symbolTable searchKey !key.nowhere ?let @uint sourceCluster]
+            symbolTable.searchKey (!key.nowhere, ?let @uint sourceCluster)
             if (sourceCluster + 1) == targetCluster then
               correctionLoop = false
               continue = true
-              [!?clusterList removeAtIndex ?let @ipic18BlockList last !targetCluster ]
-              [!?clusterList removeAtIndex ?let @ipic18BlockList first !sourceCluster ]
-              [!?clusterList insertAtIndex !first + last !sourceCluster]
+              !?clusterList.removeAtIndex (?let @ipic18BlockList last, !targetCluster )
+              !?clusterList.removeAtIndex (?let @ipic18BlockList first, !sourceCluster )
+              !?clusterList.insertAtIndex (!first + last, !sourceCluster)
               let @string m = "merge #" + targetCluster + " into #" + sourceCluster + "]"
               ioListFileContents += "  --> " + m + "\n"
               if @application.verboseOutput then
@@ -124,9 +124,9 @@ proc perform_cluster_ordering
             elsif sourceCluster == (targetCluster + 1) then
               correctionLoop = false
               continue = true
-              [!?clusterList removeAtIndex ?let @ipic18BlockList last !sourceCluster ]
-              [!?clusterList removeAtIndex ?let @ipic18BlockList first !targetCluster ]
-              [!?clusterList insertAtIndex !first + last !targetCluster]
+              !?clusterList.removeAtIndex (?let @ipic18BlockList last, !sourceCluster )
+              !?clusterList.removeAtIndex (?let @ipic18BlockList first, !targetCluster )
+              !?clusterList.insertAtIndex (!first + last, !targetCluster)
               let @string m = "merge #" + sourceCluster + " into #" + targetCluster + "]"
               ioListFileContents += "  --> " + m + "\n"
               if @application.verboseOutput then
@@ -134,8 +134,8 @@ proc perform_cluster_ordering
               end
             elsif sourceCluster < targetCluster then
               var @clusterList candidate = clusterList
-              [!?candidate removeAtIndex ?let @ipic18BlockList b !targetCluster ]
-              [!?candidate insertAtIndex !b !(targetCluster + sourceCluster) / 2 ]
+              !?candidate.removeAtIndex (?let @ipic18BlockList b, !targetCluster )
+              !?candidate.insertAtIndex (!b, !(targetCluster + sourceCluster) / 2 )
               if not [neededConversionForClusterOrder hasKey !sortKey (!candidate)] then
                 clusterList = candidate
                 correctionLoop = false
@@ -148,8 +148,8 @@ proc perform_cluster_ordering
               end
             elsif sourceCluster > targetCluster then
               var @clusterList candidate = clusterList
-              [!?candidate removeAtIndex ?let @ipic18BlockList b !sourceCluster ]
-              [!?candidate insertAtIndex !b !(targetCluster + sourceCluster) / 2 ]
+              !?candidate.removeAtIndex (?let @ipic18BlockList b, !sourceCluster )
+              !?candidate.insertAtIndex (!b, !(targetCluster + sourceCluster) / 2 )
               if not [neededConversionForClusterOrder hasKey !sortKey (!candidate)] then
                 clusterList = candidate
                 correctionLoop = false
@@ -192,7 +192,7 @@ proc perform_cluster_ordering
     for > (mBlock) in  ioBlockList while continue do
       continue = mBlock.mAddress != @uint. max
       if continue then
-        [!?newBlockList insertAtIndex !mBlock !insertionIndex]
+        !?newBlockList.insertAtIndex (!mBlock, !insertionIndex)
       end
     end
   //--- Set result

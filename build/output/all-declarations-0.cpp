@@ -2464,10 +2464,10 @@ void extensionMethod_checkPrivateAccess (const GGS_registerTable inObject,
         test_0 = test_1.boolEnum () ;
         if (GalgasBool::boolTrue == test_0) {
           const GGS_registerTable temp_3 = inObject ;
-          GGS_location var_declarationLocation_1018 = temp_3.getter_locationForKey (constinArgument_inKey.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 31)) ;
+          GGS_location var_declarationLocation_1023 = temp_3.getter_locationForKey (constinArgument_inKey.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 31)) ;
           GalgasBool test_4 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_4) {
-            test_4 = GGS_bool (ComparisonKind::notEqual, var_declarationLocation_1018.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 32)).objectCompare (constinArgument_inKey.readProperty_location ().getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 32)))).boolEnum () ;
+            test_4 = GGS_bool (ComparisonKind::notEqual, var_declarationLocation_1023.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 32)).objectCompare (constinArgument_inKey.readProperty_location ().getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 32)))).boolEnum () ;
             if (GalgasBool::boolTrue == test_4) {
               GenericArray <FixItDescription> fixItArray5 ;
               inCompiler->emitSemanticError (constinArgument_inKey.readProperty_location (), GGS_string ("register is protected, write is reserved to instructions in declaration file"), fixItArray5  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 33)) ;
@@ -2485,10 +2485,10 @@ void extensionMethod_checkPrivateAccess (const GGS_registerTable inObject,
         test_6 = temp_7.getter_hasKey (constinArgument_inKey.readProperty_string () COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 37)).boolEnum () ;
         if (GalgasBool::boolTrue == test_6) {
           const GGS_registerTable temp_8 = inObject ;
-          GGS_location var_declarationLocation_1320 = temp_8.getter_locationForKey (constinArgument_inKey.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 38)) ;
+          GGS_location var_declarationLocation_1325 = temp_8.getter_locationForKey (constinArgument_inKey.readProperty_string (), inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 38)) ;
           GalgasBool test_9 = GalgasBool::boolTrue ;
           if (GalgasBool::boolTrue == test_9) {
-            test_9 = GGS_bool (ComparisonKind::notEqual, var_declarationLocation_1320.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 39)).objectCompare (constinArgument_inKey.readProperty_location ().getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 39)))).boolEnum () ;
+            test_9 = GGS_bool (ComparisonKind::notEqual, var_declarationLocation_1325.getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 39)).objectCompare (constinArgument_inKey.readProperty_location ().getter_file (inCompiler COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 39)))).boolEnum () ;
             if (GalgasBool::boolTrue == test_9) {
               GenericArray <FixItDescription> fixItArray10 ;
               inCompiler->emitSemanticError (constinArgument_inKey.readProperty_location (), GGS_string ("register is private to declaration file"), fixItArray10  COMMA_SOURCE_FILE ("piccoloDevice_semantics.galgas3", 40)) ;

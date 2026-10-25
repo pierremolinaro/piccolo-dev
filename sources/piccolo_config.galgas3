@@ -12,10 +12,10 @@ map @configFieldMap {
 //----------------------------------------------------*
 
 proc actualBuildConfig
- ?let @configRegisterMap inConfigRegisterMap
- ?let @configDefinitionList inConfigDefinitionList
- ?!@string ioListFileContents
- !@actualConfigurationMap outActualConfigurationMap {
+ (?let @configRegisterMap inConfigRegisterMap,
+ ?let @configDefinitionList inConfigDefinitionList,
+ ?!@string ioListFileContents,
+ !@actualConfigurationMap outActualConfigurationMap ) {
 //--- From config description of device, build dictionary of all settings
 // This should succeed, since absence of potentiel setting name conflict has been
 // checked when parsing device definition string.
@@ -23,10 +23,10 @@ proc actualBuildConfig
   var configFieldMap =@configFieldMap ()
   for (lkey mRegisterAddress mRegisterWidth mConfigRegisterMaskMap *) in  inConfigRegisterMap do
     let @uint defaultValue = (1 << mRegisterWidth.uint) - 1
-    [!? outActualConfigurationMap insertKey !lkey !mRegisterAddress.uint !defaultValue]
+    !? outActualConfigurationMap.insertKey (!lkey, !mRegisterAddress.uint, !defaultValue)
     let @lstring registerName = lkey
     for (other_lkey other_mMaskValue other_mDescription other_mFieldSettingMap) in  mConfigRegisterMaskMap do
-      [!?configFieldMap insertKey !other_lkey !registerName !other_mMaskValue !other_mDescription !other_mFieldSettingMap]
+      !?configFieldMap.insertKey (!other_lkey, !registerName, !other_mMaskValue, !other_mDescription, !other_mFieldSettingMap)
     end
   end
 //--- Analyze config parts
@@ -37,13 +37,13 @@ proc actualBuildConfig
         error (mSettingName: "the '" + mSettingName + "' setting is already defined")
       end
       actualSettingNameSet ++= mSettingName.string
-      [configFieldMap searchKey !mSettingName ?let registerName ?2* ?let fieldSettingMap]
+      configFieldMap.searchKey (!mSettingName, ?let registerName, ?2*, ?let fieldSettingMap)
       if [fieldSettingMap hasKey !mSettingValue.string] then
-        [fieldSettingMap searchKey !mSettingValue ?let settingValue ?let settingMask]
+        fieldSettingMap.searchKey (!mSettingValue, ?let settingValue, ?let settingMask)
         var @uint registerValue
-        [outActualConfigurationMap searchKey !registerName ?* ?registerValue]
+        outActualConfigurationMap.searchKey (!registerName, ?*, ?registerValue)
         registerValue = (registerValue & ~ settingMask) | settingValue
-        [!?outActualConfigurationMap setMRegisterValueForKey !registerValue !registerName.string]
+        !?outActualConfigurationMap.setMRegisterValueForKey (!registerValue, !registerName.string)
       elsif fieldSettingMap.count > 0 then
         let errorMessage = "the '" + mSettingValue + "' value is not defined for configuration setting '"
         + mSettingName + "'"
@@ -67,7 +67,7 @@ proc actualBuildConfig
 //--- Display conguration information in log file
   for (lkey mRegisterAddress mRegisterValue) in  outActualConfigurationMap do
     ioListFileContents += "Register '" + lkey + "' at " + mRegisterAddress.hexString + " set to " + mRegisterValue.hexString + "\n"
-    [inConfigRegisterMap searchKey !lkey ?* ?* ?let configRegisterMaskMap ?*]
+    inConfigRegisterMap.searchKey (!lkey, ?*, ?*, ?let configRegisterMaskMap, ?*)
     for (others_lkey others_mMaskValue * others_mFieldSettingMap) in  configRegisterMaskMap do
       let @lstring settingName = others_lkey
       for (second_lkey second_mValue *) in  others_mFieldSettingMap do
@@ -80,7 +80,7 @@ proc actualBuildConfig
   end
 //--- Detect illegal configurations
   for (lkey * mRegisterValue) in  outActualConfigurationMap do
-    [inConfigRegisterMap searchKey !lkey ?* ?* ?* ?let illegalMaskList]
+    inConfigRegisterMap.searchKey (!lkey, ?*, ?*, ?*, ?let illegalMaskList)
      for (mIllegalValue mIllegalMask mDescription) in  illegalMaskList do
       if (mRegisterValue & mIllegalMask.uint) == mIllegalValue.uint then
         error (@location.here:"illegal setting for '" + lkey + "' register: " + mDescription)
@@ -94,10 +94,10 @@ proc actualBuildConfig
 //----------------------------------------------------*
 
 proc buildConfig
- ?let @configRegisterMap inConfigRegisterMap
- ?let @configDefinitionList inConfigDefinitionList
- ?!@string ioListFileContents
- !@actualConfigurationMap outActualConfigurationMap {
+ (?let @configRegisterMap inConfigRegisterMap,
+ ?let @configDefinitionList inConfigDefinitionList,
+ ?!@string ioListFileContents,
+ !@actualConfigurationMap outActualConfigurationMap ) {
 //--- Log
   ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
   ioListFileContents += "*" + ["MICROCONTROLLER CONFIGURATION" leftAndRightPadding !117 !' '] + "*\n"
@@ -105,9 +105,9 @@ proc buildConfig
 //---
   if inConfigDefinitionList.count > 0 then
     actualBuildConfig (
-      !inConfigRegisterMap
-      !inConfigDefinitionList
-      !?ioListFileContents
+      !inConfigRegisterMap,
+      !inConfigDefinitionList,
+      !?ioListFileContents,
       ?outActualConfigurationMap
     )
   else

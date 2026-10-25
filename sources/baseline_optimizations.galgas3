@@ -14,14 +14,14 @@ map @baselineSymbolTableForOptimizations {
 //----------------------------------------------------------------------------*
 
 proc @baseline_intermediate_instruction setCurrentAddress
-  ?!@uint ioCurrentWordAdress {
+  (?!@uint ioCurrentWordAdress ) {
   ioCurrentWordAdress = ioCurrentWordAdress + self.length
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_intermediate_pseudo_PAGE setCurrentAddress
-  ?!@uint ioCurrentWordAdress {
+override proc @baseline_intermediate_pseudo_PAGE.setCurrentAddress
+  (?!@uint ioCurrentWordAdress ) {
   ioCurrentWordAdress = self.mPage * 512
 }
 
@@ -31,25 +31,25 @@ override proc @baseline_intermediate_pseudo_PAGE setCurrentAddress
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-func @baseline_intermediate_instruction isLABEL -> @bool outIsLABEL {
+func @baseline_intermediate_instruction.isLABEL () -> @bool outIsLABEL {
   outIsLABEL = false
 }
 
 //----------------------------------------------------------------------------*
 
-override func @baseline_intermediate_pseudo_LABEL isLABEL -> @bool outIsLABEL {
+override func @baseline_intermediate_pseudo_LABEL.isLABEL () -> @bool outIsLABEL {
   outIsLABEL = true
 }
 
 //----------------------------------------------------------------------------*
 
-override func @baseline_intermediate_pseudo_PAGE isLABEL -> @bool outIsLABEL {
+override func @baseline_intermediate_pseudo_PAGE.isLABEL () -> @bool outIsLABEL {
   outIsLABEL = true
 }
 
 //----------------------------------------------------------------------------*
 
-override func @baseline_intermediate_pseudo_END_ROUTINE isLABEL -> @bool outIsLABEL {
+override func @baseline_intermediate_pseudo_END_ROUTINE.isLABEL () -> @bool outIsLABEL {
   outIsLABEL = true
 }
 
@@ -59,13 +59,13 @@ override func @baseline_intermediate_pseudo_END_ROUTINE isLABEL -> @bool outIsLA
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-func @baseline_intermediate_instruction isNULL -> @bool outIsNULL {
+func @baseline_intermediate_instruction.isNULL () -> @bool outIsNULL {
   outIsNULL = false
 }
 
 //----------------------------------------------------------------------------*
 
-override func @baseline_intermediate_NULL isNULL -> @bool outIsNULL {
+override func @baseline_intermediate_NULL.isNULL () -> @bool outIsNULL {
   outIsNULL = true
 }
 
@@ -75,13 +75,13 @@ override func @baseline_intermediate_NULL isNULL -> @bool outIsNULL {
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-func @baseline_intermediate_instruction isSkippingInstruction -> @bool outIsSkipping {
+func @baseline_intermediate_instruction.isSkippingInstruction () -> @bool outIsSkipping {
   outIsSkipping = false
 }
 
 //----------------------------------------------------------------------------*
 
-override func @baseline_intermediate_instruction_BitTestSkip isSkippingInstruction -> @bool outIsSkipping {
+override func @baseline_intermediate_instruction_BitTestSkip.isSkippingInstruction () -> @bool outIsSkipping {
   outIsSkipping = true
 }
 
@@ -91,36 +91,36 @@ override func @baseline_intermediate_instruction_BitTestSkip isSkippingInstructi
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-func @baseline_intermediate_instruction nextInstructionIsReachable
-  -> @bool outIsReachable {
+func @baseline_intermediate_instruction.nextInstructionIsReachable
+  () -> @bool outIsReachable {
   outIsReachable = true
 }
 
 //----------------------------------------------------------------------------*
 
-override func @baseline_intermediate_GOTO nextInstructionIsReachable
-  -> @bool outIsReachable {
+override func @baseline_intermediate_GOTO.nextInstructionIsReachable
+  () -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override func @baseline_intermediate_JUMP nextInstructionIsReachable
-  -> @bool outIsReachable {
+override func @baseline_intermediate_JUMP.nextInstructionIsReachable
+  () -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override func @baseline_intermediate_pseudo_END_ROUTINE nextInstructionIsReachable
-  -> @bool outIsReachable {
+override func @baseline_intermediate_pseudo_END_ROUTINE.nextInstructionIsReachable
+  () -> @bool outIsReachable {
   outIsReachable = false
 }
 
 //----------------------------------------------------------------------------*
 
-override func @baseline_intermediate_instruction_literalOperation nextInstructionIsReachable
-  -> @bool outIsReachable {
+override func @baseline_intermediate_instruction_literalOperation.nextInstructionIsReachable
+  () -> @bool outIsReachable {
   outIsReachable = self.mInstruction != @baseline_literal_instruction_opcode. RETLW
 }
 
@@ -131,41 +131,41 @@ override func @baseline_intermediate_instruction_literalOperation nextInstructio
 //----------------------------------------------------------------------------*
 
 proc @baseline_intermediate_instruction enterReferencedLabel
-  ?!@stringset unused ioReferencedLabelSet {
+  (?!@stringset unused ioReferencedLabelSet ) {
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_intermediate_GOTO enterReferencedLabel
-  ?!@stringset ioReferencedLabelSet {
+override proc @baseline_intermediate_GOTO.enterReferencedLabel
+  (?!@stringset ioReferencedLabelSet ) {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_intermediate_JUMP enterReferencedLabel
-  ?!@stringset ioReferencedLabelSet {
+override proc @baseline_intermediate_JUMP.enterReferencedLabel
+  (?!@stringset ioReferencedLabelSet ) {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_intermediate_CALL enterReferencedLabel
-  ?!@stringset ioReferencedLabelSet {
+override proc @baseline_intermediate_CALL.enterReferencedLabel
+  (?!@stringset ioReferencedLabelSet ) {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_intermediate_JSR enterReferencedLabel
-  ?!@stringset ioReferencedLabelSet {
+override proc @baseline_intermediate_JSR.enterReferencedLabel
+  (?!@stringset ioReferencedLabelSet ) {
   ioReferencedLabelSet ++= self.mTargetLabel.string
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @baseline_intermediate_incDecRegisterInCondition enterReferencedLabel
-  ?!@stringset ioReferencedLabelSet {
+override proc @baseline_intermediate_incDecRegisterInCondition.enterReferencedLabel
+  (?!@stringset ioReferencedLabelSet ) {
   ioReferencedLabelSet ++= self.mTargetLabel
 }
 
@@ -176,25 +176,25 @@ override proc @baseline_intermediate_incDecRegisterInCondition enterReferencedLa
 //----------------------------------------------------------------------------*
 
 proc @baseline_intermediate_instruction defineLabel
-  ?!@baselineSymbolTableForOptimizations unused ioRoutineSymbolTable
-  ?let @uint unused inLineIndex {
+  (?!@baselineSymbolTableForOptimizations unused ioRoutineSymbolTable,
+  ?let @uint unused inLineIndex ) {
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @baseline_intermediate_pseudo_LABEL defineLabel
-  ?!@baselineSymbolTableForOptimizations ioRoutineSymbolTable
-  ?let @uint inLineIndex {
-  [!?ioRoutineSymbolTable insertKey !self.mLabel !inLineIndex]
+proc @baseline_intermediate_pseudo_LABEL.defineLabel
+  (?!@baselineSymbolTableForOptimizations ioRoutineSymbolTable,
+  ?let @uint inLineIndex ) {
+  !?ioRoutineSymbolTable.insertKey (!self.mLabel, !inLineIndex)
 }
 
 //----------------------------------------------------------------------------*
 
 proc findBaselineFirstInstructionFromAddress
-  ?let @uint inLineIndex
-  ?let @baseline_intermediate_instructionList inGeneratedInstructionList
-  !@baseline_intermediate_instruction outFirstInstruction {
+  (?let @uint inLineIndex,
+  ?let @baseline_intermediate_instructionList inGeneratedInstructionList,
+  !@baseline_intermediate_instruction outFirstInstruction ) {
 //--- Line Index
   var @uint currentAddress = inLineIndex
 //--- Find first executable instruction
@@ -217,10 +217,10 @@ proc findBaselineFirstInstructionFromAddress
 //----------------------------------------------------------------------------*
 
 proc findBaselineFirstInstructionOrLabelFromAddress
-  ?let @uint inLineIndex
-  ?let @baseline_intermediate_instructionList inGeneratedInstructionList
-  !@baseline_intermediate_instruction outFirstInstruction
-  !@stringset outReachedLabelSet {
+  (?let @uint inLineIndex,
+  ?let @baseline_intermediate_instructionList inGeneratedInstructionList,
+  !@baseline_intermediate_instruction outFirstInstruction,
+  !@stringset outReachedLabelSet ) {
   outReachedLabelSet = @stringset. emptySet
 //--- Line Index
   var @uint currentAddress = inLineIndex
@@ -254,42 +254,42 @@ proc findBaselineFirstInstructionOrLabelFromAddress
 //----------------------------------------------------------------------------*
 
 proc @baseline_intermediate_GOTO optimizeGOTO
-  ?let @baselineSymbolTableForOptimizations inSymbolTable
-  ?let @uint inLineIndex
-  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents
-  ?!@bool ioOptimizationsDone {
+  (?let @baselineSymbolTableForOptimizations inSymbolTable,
+  ?let @uint inLineIndex,
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList,
+  ?!@string ioListFileContents,
+  ?!@bool ioOptimizationsDone ) {
 //--- The GOTO goes to the next instruction ?
-  findBaselineFirstInstructionOrLabelFromAddress ( !inLineIndex+1 !ioGeneratedInstructionList ?* ?let reachedLabelSet )
+  findBaselineFirstInstructionOrLabelFromAddress ( !inLineIndex+1, !ioGeneratedInstructionList, ?*, ?let reachedLabelSet )
   if [reachedLabelSet hasKey !self.mTargetLabel.string] then
-    [!?ioGeneratedInstructionList setMInstructionAtIndex !@baseline_intermediate_NULL () !inLineIndex]
+    !?ioGeneratedInstructionList.setMInstructionAtIndex (!@baseline_intermediate_NULL (), !inLineIndex)
     ioListFileContents += "  line " + inLineIndex.string + ": GOTO branching to next instruction deleted\n"
   else
   //--- Find destination label definition line
-    [inSymbolTable searchKey !self.mTargetLabel ?let @uint line]
+    inSymbolTable.searchKey (!self.mTargetLabel, ?let @uint line)
   //--- Find first executable instruction
-    findBaselineFirstInstructionFromAddress ( !line + 1 !ioGeneratedInstructionList ?let firstInstruction )
+    findBaselineFirstInstructionFromAddress ( !line + 1, !ioGeneratedInstructionList, ?let firstInstruction )
   //--- Optimization from found first instruction
     if let literalOp = firstInstruction as @baseline_intermediate_instruction_literalOperation then
 //    cast firstInstruction
 //    case == @baseline_intermediate_instruction_literalOperation literalOp :
       if literalOp.mInstruction == @baseline_literal_instruction_opcode. RETLW then
-        [!?ioGeneratedInstructionList setMInstructionAtIndex
-          !literalOp
+        !?ioGeneratedInstructionList.setMInstructionAtIndex
+          (!literalOp,
           !inLineIndex
-        ]
+        )
         ioOptimizationsDone = true
         ioListFileContents += "  line " + inLineIndex.string + ": GOTO branching to RETLW replaced by RETLW\n"
       end
     elsif let goto = firstInstruction as @baseline_intermediate_GOTO then
 //    case == @baseline_intermediate_GOTO goto :
       if self.mTargetLabel != goto.mTargetLabel then
-        [!?ioGeneratedInstructionList setMInstructionAtIndex
-          !@baseline_intermediate_GOTO {
-            !self.mInstructionLocation
-            !goto.mTargetLabel}
+        !?ioGeneratedInstructionList.setMInstructionAtIndex
+          (!@baseline_intermediate_GOTO (
+            !self.mInstructionLocation,
+            goto.mTargetLabel),
           !inLineIndex
-        ]
+        )
         ioOptimizationsDone = true
         ioListFileContents += "  line " + inLineIndex + ": GOTO " + self.mTargetLabel + " branching to GOTO " + goto.mTargetLabel + " replaced by GOTO " + goto.mTargetLabel + "\n"
       end
@@ -301,17 +301,17 @@ proc @baseline_intermediate_GOTO optimizeGOTO
 //----------------------------------------------------------------------------*
 
 proc @baseline_intermediate_JUMP optimizeJUMP
-  ?let @baselineSymbolTableForOptimizations inSymbolTable
-  ?let @uint inLineIndex
-  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents
-  ?!@bool ioOptimizationsDone {
+  (?let @baselineSymbolTableForOptimizations inSymbolTable,
+  ?let @uint inLineIndex,
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList,
+  ?!@string ioListFileContents,
+  ?!@bool ioOptimizationsDone ) {
 //--- Find destination label definition line
-  [inSymbolTable searchKey !self.mTargetLabel ?let @uint line]
+  inSymbolTable.searchKey (!self.mTargetLabel, ?let @uint line)
 //--- Find first executable instruction
   findBaselineFirstInstructionFromAddress (
-    !line + 1
-    !ioGeneratedInstructionList
+    !line + 1,
+    !ioGeneratedInstructionList,
     ?let @baseline_intermediate_instruction firstInstruction
   )
 //--- Optimization from found first instruction
@@ -319,24 +319,24 @@ proc @baseline_intermediate_JUMP optimizeJUMP
 //  cast firstInstruction
 //  case == @baseline_intermediate_instruction_literalOperation literalOp :
     if literalOp.mInstruction == @baseline_literal_instruction_opcode. RETLW then
-      [!?ioGeneratedInstructionList setMInstructionAtIndex
-        !literalOp
+      !?ioGeneratedInstructionList.setMInstructionAtIndex
+        (!literalOp,
         !inLineIndex
-      ]
+      )
       ioOptimizationsDone = true
       ioListFileContents += "  line " + inLineIndex.string + ": JUMP branching to RETLW replaced by RETLW\n"
     end
   elsif let goto = firstInstruction as @baseline_intermediate_GOTO then
 //  case == @baseline_intermediate_GOTO goto :
     if self.mTargetLabel != goto.mTargetLabel then
-      [!?ioGeneratedInstructionList setMInstructionAtIndex
-        !@baseline_intermediate_JUMP {
-          !self.mInstructionLocation
-          !goto.mTargetLabel
-          !self.mCurrentPage
-          !self.mTargetPage}
+      !?ioGeneratedInstructionList.setMInstructionAtIndex
+        (!@baseline_intermediate_JUMP (
+          !self.mInstructionLocation,
+          goto.mTargetLabel,
+          self.mCurrentPage,
+          self.mTargetPage),
         !inLineIndex
-      ]
+      )
       ioOptimizationsDone = true
       ioListFileContents += "  line " + inLineIndex + ": JUMP " + self.mTargetLabel
         + " branching to GOTO " + goto.mTargetLabel
@@ -345,14 +345,14 @@ proc @baseline_intermediate_JUMP optimizeJUMP
   elsif let jump = firstInstruction as @baseline_intermediate_JUMP then
 //  case == @baseline_intermediate_JUMP jump :
     if self.mTargetLabel != jump.mTargetLabel then
-      [!?ioGeneratedInstructionList setMInstructionAtIndex
-        !@baseline_intermediate_JUMP {
-          !self.mInstructionLocation
-          !jump.mTargetLabel
-          !self.mCurrentPage
-          !jump.mTargetPage}
+      !?ioGeneratedInstructionList.setMInstructionAtIndex
+        (!@baseline_intermediate_JUMP (
+          !self.mInstructionLocation,
+          jump.mTargetLabel,
+          self.mCurrentPage,
+          jump.mTargetPage),
         !inLineIndex
-      ]
+      )
       ioOptimizationsDone = true
       ioListFileContents += "  line " + inLineIndex + ": JUMP " + self.mTargetLabel
         + " branching to JUMP " + jump.mTargetLabel
@@ -365,17 +365,17 @@ proc @baseline_intermediate_JUMP optimizeJUMP
 //----------------------------------------------------------------------------*
 
 proc @baseline_intermediate_CALL optimizeCALL
-  ?let @baselineSymbolTableForOptimizations inSymbolTable
-  ?let @uint inLineIndex
-  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents
-  ?!@bool ioOptimizationsDone {
+  (?let @baselineSymbolTableForOptimizations inSymbolTable,
+  ?let @uint inLineIndex,
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList,
+  ?!@string ioListFileContents,
+  ?!@bool ioOptimizationsDone ) {
 //--- Find destination label definition line
-  [inSymbolTable searchKey !self.mTargetLabel ?let @uint line]
+  inSymbolTable.searchKey (!self.mTargetLabel, ?let @uint line)
 //--- Find first executable instruction
   findBaselineFirstInstructionFromAddress (
-    !line + 1
-    !ioGeneratedInstructionList
+    !line + 1,
+    !ioGeneratedInstructionList,
     ?let @baseline_intermediate_instruction firstInstruction
   )
 //--- Optimization from found first instruction
@@ -383,13 +383,13 @@ proc @baseline_intermediate_CALL optimizeCALL
 //  cast firstInstruction
 //  case == @baseline_intermediate_instruction_literalOperation literalOp :
     if literalOp.mInstruction == @baseline_literal_instruction_opcode. RETLW then
-      [!?ioGeneratedInstructionList setMInstructionAtIndex
-        !@baseline_intermediate_instruction_literalOperation {
-          !self.mInstructionLocation
-          !@baseline_literal_instruction_opcode. MOVLW
-          !literalOp.mLiteralValue}
+      !?ioGeneratedInstructionList.setMInstructionAtIndex
+        (!@baseline_intermediate_instruction_literalOperation (
+          !self.mInstructionLocation,
+          @baseline_literal_instruction_opcode. MOVLW,
+          literalOp.mLiteralValue),
         !inLineIndex
-      ]
+      )
       ioOptimizationsDone = true
       ioListFileContents += "  line " + inLineIndex + ": CALL " + self.mTargetLabel
        + " to RETLW " + literalOp.mLiteralValue
@@ -402,17 +402,17 @@ proc @baseline_intermediate_CALL optimizeCALL
 //----------------------------------------------------------------------------*
 
 proc @baseline_intermediate_JSR optimizeJSR
-  ?let @baselineSymbolTableForOptimizations inSymbolTable
-  ?let @uint inLineIndex
-  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents
-  ?!@bool ioOptimizationsDone {
+  (?let @baselineSymbolTableForOptimizations inSymbolTable,
+  ?let @uint inLineIndex,
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList,
+  ?!@string ioListFileContents,
+  ?!@bool ioOptimizationsDone ) {
 //--- Find destination label definition line
-  [inSymbolTable searchKey !self.mTargetLabel ?let @uint line]
+  inSymbolTable.searchKey (!self.mTargetLabel, ?let @uint line)
 //--- Find first executable instruction
   findBaselineFirstInstructionFromAddress (
-    !line + 1
-    !ioGeneratedInstructionList
+    !line + 1,
+    !ioGeneratedInstructionList,
     ?let @baseline_intermediate_instruction firstInstruction
   )
 //--- Optimization from found first instruction
@@ -420,13 +420,13 @@ proc @baseline_intermediate_JSR optimizeJSR
 //  cast firstInstruction
 //  case == @baseline_intermediate_instruction_literalOperation literalOp :
     if literalOp.mInstruction == @baseline_literal_instruction_opcode. RETLW then
-      [!?ioGeneratedInstructionList setMInstructionAtIndex
-        !@baseline_intermediate_instruction_literalOperation {
-          !self.mInstructionLocation
-          !@baseline_literal_instruction_opcode. MOVLW
-          !literalOp.mLiteralValue}
+      !?ioGeneratedInstructionList.setMInstructionAtIndex
+        (!@baseline_intermediate_instruction_literalOperation (
+          !self.mInstructionLocation,
+          @baseline_literal_instruction_opcode. MOVLW,
+          literalOp.mLiteralValue),
         !inLineIndex
-      ]
+      )
       ioOptimizationsDone = true
       ioListFileContents += "  line " + inLineIndex + ": JSR " + self.mTargetLabel
        + " to RETLW " + literalOp.mLiteralValue
@@ -439,10 +439,10 @@ proc @baseline_intermediate_JSR optimizeJSR
 //----------------------------------------------------------------------------*
 
 proc @baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE
-  ?let @uint inLineIndex
-  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents
-  ?!@bool ioOptimizationsDone {
+  (?let @uint inLineIndex,
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList,
+  ?!@string ioListFileContents,
+  ?!@bool ioOptimizationsDone ) {
 //--- If next instruction is not a label definition,
 //    the routine is not reachable and should be deleted (until END_ROUTINE)
 //--- Get next instruction
@@ -457,10 +457,10 @@ proc @baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE
   end
 //--- delete ?
   if not reachable then
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      !@baseline_intermediate_NULL ()
+    !?ioGeneratedInstructionList.setMInstructionAtIndex
+      (!@baseline_intermediate_NULL (),
       !inLineIndex
-    ]
+    )
     ioOptimizationsDone = true
     ioListFileContents += "  line " + inLineIndex + ": dead code is deleted\n"
   end
@@ -469,33 +469,33 @@ proc @baseline_intermediate_pseudo_BEGIN_ROUTINE optimizeBEGIN_ROUTINE
 //----------------------------------------------------------------------------*
 
 proc @baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc
-  ?let @baselineSymbolTableForOptimizations inSymbolTable
-  ?let @uint inLineIndex
-  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents
-  ?!@bool ioOptimizationsDone {
+  (?let @baselineSymbolTableForOptimizations inSymbolTable,
+  ?let @uint inLineIndex,
+  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList,
+  ?!@string ioListFileContents,
+  ?!@bool ioOptimizationsDone ) {
 //--- Find destination label definition line
-  [inSymbolTable searchKey !@lstring { !self.mTargetLabel !@location.here} ?let @uint line]
+  inSymbolTable.searchKey (!@lstring ( !self.mTargetLabel, @location.here), ?let @uint line)
 //--- Find first executable instruction
   findBaselineFirstInstructionFromAddress (
-    !line + 1
-    !ioGeneratedInstructionList
+    !line + 1,
+    !ioGeneratedInstructionList,
     ?let @baseline_intermediate_instruction firstInstruction
   )
 //--- Optimization from found first instruction
   if let goto = firstInstruction as @baseline_intermediate_GOTO then
 //  cast firstInstruction
 //  case == @baseline_intermediate_GOTO goto :
-    [!?ioGeneratedInstructionList setMInstructionAtIndex
-      !@baseline_intermediate_incDecRegisterInCondition {
-        !self.mInstructionLocation
-        !self.mRegisterDescription
-        !goto.mTargetLabel.string
-        !self.mIncrement
-        !self.m_W_isDestination
-        !self.mBranchIfZero}
+    !?ioGeneratedInstructionList.setMInstructionAtIndex
+      (!@baseline_intermediate_incDecRegisterInCondition (
+        !self.mInstructionLocation,
+        self.mRegisterDescription,
+        goto.mTargetLabel.string,
+        self.mIncrement,
+        self.m_W_isDestination,
+        self.mBranchIfZero),
       !inLineIndex
-    ]
+    )
     ioOptimizationsDone = true
     ioListFileContents += "  line " + inLineIndex.string + ": label of "
     ioListFileContents += "GOTO "
@@ -525,8 +525,8 @@ proc @baseline_intermediate_incDecRegisterInCondition optimizeTestDecInc
 //----------------------------------------------------------------------------*
 
 proc perform_baseline_optimizations
-  ?!@baseline_intermediate_instructionList ioGeneratedInstructionList
-  ?!@string ioListFileContents {
+  (?!@baseline_intermediate_instructionList ioGeneratedInstructionList,
+  ?!@string ioListFileContents ) {
 //-------------------------------- List file
   ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
   ioListFileContents += "*" + ["CODE OPTIMIZATION" leftAndRightPadding !117 !' '] + "*\n"
@@ -534,7 +534,7 @@ proc perform_baseline_optimizations
 //-------------------------------- Build label map
   var symbolTable =@baselineSymbolTableForOptimizations ()
   for (mInstruction) in  ioGeneratedInstructionList do(lineIndex)
-    [mInstruction defineLabel !?symbolTable !lineIndex]
+    mInstruction.defineLabel (!?symbolTable, !lineIndex)
   end
 //-------------------------------- Iterative optimizations
   var @bool optimizationsDone = true
@@ -550,36 +550,36 @@ proc perform_baseline_optimizations
       if let inst = instruction as @baseline_intermediate_pseudo_BEGIN_ROUTINE then
 //      cast instruction
 //      case == @baseline_intermediate_pseudo_BEGIN_ROUTINE inst :
-        [inst optimizeBEGIN_ROUTINE !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
+        inst.optimizeBEGIN_ROUTINE (!idx, !?ioGeneratedInstructionList, !?ioListFileContents, !?optimizationsDone)
       elsif let inst = instruction as @baseline_intermediate_GOTO then
 //      case == @baseline_intermediate_GOTO inst :
-        [inst optimizeGOTO !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
+        inst.optimizeGOTO (!symbolTable, !idx, !?ioGeneratedInstructionList, !?ioListFileContents, !?optimizationsDone)
       elsif let inst = instruction as @baseline_intermediate_JUMP then
 //      case == @baseline_intermediate_JUMP inst :
-        [inst optimizeJUMP !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
+        inst.optimizeJUMP (!symbolTable, !idx, !?ioGeneratedInstructionList, !?ioListFileContents, !?optimizationsDone)
       elsif let inst = instruction as @baseline_intermediate_CALL then
 //      case == @baseline_intermediate_CALL inst :
-        [inst optimizeCALL !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
+        inst.optimizeCALL (!symbolTable, !idx, !?ioGeneratedInstructionList, !?ioListFileContents, !?optimizationsDone)
       elsif let inst = instruction as @baseline_intermediate_JSR then
 //      case == @baseline_intermediate_JSR inst :
-        [inst optimizeJSR !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
+        inst.optimizeJSR (!symbolTable, !idx, !?ioGeneratedInstructionList, !?ioListFileContents, !?optimizationsDone)
       elsif let inst = instruction as @baseline_intermediate_incDecRegisterInCondition then
 //      case == @baseline_intermediate_incDecRegisterInCondition inst :
-        [inst optimizeTestDecInc !symbolTable !idx !?ioGeneratedInstructionList !?ioListFileContents !?optimizationsDone]
+        inst.optimizeTestDecInc (!symbolTable, !idx, !?ioGeneratedInstructionList, !?ioListFileContents, !?optimizationsDone)
 //      else
       end
     end
   //--- Delete non referenced labels
     var referencedLabels =@stringset ()
     for (mInstruction) in  ioGeneratedInstructionList do
-      [mInstruction enterReferencedLabel !?referencedLabels]
+      mInstruction.enterReferencedLabel (!?referencedLabels)
     end
     for (lkey *) in  symbolTable do
       if not [referencedLabels hasKey !lkey.string] then
-        [symbolTable searchKey !lkey ?let @uint definitionLine]
+        symbolTable.searchKey (!lkey, ?let @uint definitionLine)
         ioListFileContents += "  line " + definitionLine.string + ": unreferenced label '" + lkey + "' is deleted\n"
-        [!?ioGeneratedInstructionList setMInstructionAtIndex !@baseline_intermediate_NULL () !definitionLine]
-        [!?symbolTable removeKey !lkey ?*]
+        !?ioGeneratedInstructionList.setMInstructionAtIndex (!@baseline_intermediate_NULL (), !definitionLine)
+        !?symbolTable.removeKey (!lkey, ?*)
       end
     end
   //--- Dead code elimination
@@ -595,7 +595,7 @@ proc perform_baseline_optimizations
          let @bool isLABEL = mInstruction.isLABEL
          if (not isLABEL) & (not mInstruction.isNULL) then
            ioListFileContents += "  line " + idx + ": dead code is deleted\n"
-           [!?ioGeneratedInstructionList setMInstructionAtIndex !@baseline_intermediate_NULL () !idx]
+           !?ioGeneratedInstructionList.setMInstructionAtIndex (!@baseline_intermediate_NULL (), !idx)
          elsif isLABEL then
            reachable = mInstruction.nextInstructionIsReachable
            previousWasSkippingInstruction = false
@@ -608,7 +608,7 @@ proc perform_baseline_optimizations
     //--- Compute code size
       var @uint currentAddress = 0
       for (mInstruction) in  ioGeneratedInstructionList do
-        [mInstruction setCurrentAddress !?currentAddress]
+        mInstruction.setCurrentAddress (!?currentAddress)
       end
       ioListFileContents += "Minimum code size: " + currentAddress.string + " words\n\n"
     end

@@ -113,7 +113,7 @@ class @baseline_instruction_IF_BitTest : @baseline_instruction_IF_SEMI_COLON {
   public let @bitNumberExpression mBitNumber
 }
 
-proc @baseline_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
+proc @baseline_instruction_IF_BitTest getBaseCode (!@uint outBaseCode ) {
   if self.mSkipIfSet then
     outBaseCode = 0x1C00 // BTFSS
   else
@@ -121,7 +121,7 @@ proc @baseline_instruction_IF_BitTest getBaseCode !@uint outBaseCode {
   end
 }
 
-proc @baseline_instruction_IF_BitTest getMnemonic !@string outMnemonic {
+proc @baseline_instruction_IF_BitTest getMnemonic (!@string outMnemonic ) {
   if self.mSkipIfSet then
     outMnemonic = "BTFSS"
   else

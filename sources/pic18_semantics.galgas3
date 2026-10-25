@@ -5,9 +5,9 @@
 //----------------------------------------------------------------------------*
 
 proc pic18_analyze
-  ?let @pic18AST inPiccoloModel
+  (?let @pic18AST inPiccoloModel,
   ?let @string inSourceFileName
-{
+) {
 //-------------------------------- Check source file name
   let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inPiccoloModel.mProgramName.string then
@@ -30,7 +30,7 @@ proc pic18_analyze
   switch inPiccoloModel.mProgramKind
   case regularProgram :
     piccoloDeviceName = inPiccoloModel.mDeviceNameOrBootLoaderReference.string
-    parseDeviceDefinition ( !inPiccoloModel.mDeviceNameOrBootLoaderReference ?piccoloDeviceModel )
+    parseDeviceDefinition ( !inPiccoloModel.mDeviceNameOrBootLoaderReference, ?piccoloDeviceModel )
     switch piccoloDeviceModel.mProcessorType
       case pic18_60 : accessBankSplitOffset = 0x60
       case pic18_80 : accessBankSplitOffset = 0x80
@@ -44,34 +44,34 @@ proc pic18_analyze
     userRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList ()
     bootloaderRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList ()
     userRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList ()
-    bootloaderReservedROMsize = @luint { !0 !@location.here}
+    bootloaderReservedROMsize = @luint ( !0, @location.here)
   case bootloaderProgram :
     bootloaderRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList ()
     userRoutineDeclarationListForUserProgramImplementation = @routineDeclarationList ()
     grammar pic18_grammar label importBootloaderSpecification (
-      ?piccoloDeviceModel
-      ?piccoloDeviceName
-      ?accessBankSplitOffset
-      ?ramBank
-      ?registerTable
-      ?bootloaderReservedRAMmap
-      ?bootloaderRoutineDeclarationListForBootloaderImplementation
-      ?userRoutineDeclarationListForBootloaderImplementation
+      ?piccoloDeviceModel,
+      ?piccoloDeviceName,
+      ?accessBankSplitOffset,
+      ?ramBank,
+      ?registerTable,
+      ?bootloaderReservedRAMmap,
+      ?bootloaderRoutineDeclarationListForBootloaderImplementation,
+      ?userRoutineDeclarationListForBootloaderImplementation,
       ?bootloaderReservedROMsize
     ) in inPiccoloModel.mDeviceNameOrBootLoaderReference
     for (lkey mFirstAddress * * *) in  ramBank do //--- Reset first free addresses for all banks
-      [!?ramBank setMFirstFreeAddressForKey !mFirstAddress !lkey.string]
+      !?ramBank.setMFirstFreeAddressForKey (!mFirstAddress, !lkey.string)
     end
   case userProgram :
     grammar pic18_grammar label importBootloaderSpecification (
-      ?piccoloDeviceModel
-      ?piccoloDeviceName
-      ?accessBankSplitOffset
-      ?ramBank
-      ?registerTable
-      ?bootloaderReservedRAMmap
-      ?bootloaderRoutineDeclarationListForUserProgramImplementation
-      ?userRoutineDeclarationListForUserProgramImplementation
+      ?piccoloDeviceModel,
+      ?piccoloDeviceName,
+      ?accessBankSplitOffset,
+      ?ramBank,
+      ?registerTable,
+      ?bootloaderReservedRAMmap,
+      ?bootloaderRoutineDeclarationListForUserProgramImplementation,
+      ?userRoutineDeclarationListForUserProgramImplementation,
       ?bootloaderReservedROMsize
     ) in inPiccoloModel.mDeviceNameOrBootLoaderReference
     bootloaderRoutineDeclarationListForBootloaderImplementation = @routineDeclarationList ()
@@ -80,7 +80,7 @@ proc pic18_analyze
 //-------------------------------- Build macro map
   var @pic18MacroMap macroMap = @()
   for (mMacroName mConstantNameList mInstructionList) in inPiccoloModel.mMacroDefinitionList do
-    [!?macroMap insertKey !mMacroName !mConstantNameList !mInstructionList]
+    !?macroMap.insertKey (!mMacroName, !mConstantNameList, !mInstructionList)
   end
 //-------------------------------- Compute used routine set
   let @stringset usedRoutineSet = pic18_computeUsedRoutines (
@@ -92,14 +92,14 @@ proc pic18_analyze
   )
   var declaredRoutineMap =@declaredRoutineMap ()
   for (mRoutineName mRequiredBank mReturnedBank mPreservesBank mIsNoReturn mInstructionList *) in  inPiccoloModel.mRoutineDefinitionList do
-    [!?declaredRoutineMap insertKey
-      !mRoutineName
-      !mRequiredBank
-      !mReturnedBank
-      !mPreservesBank
-      !mIsNoReturn
+    !?declaredRoutineMap.insertKey
+      (!mRoutineName,
+      !mRequiredBank,
+      !mReturnedBank,
+      !mPreservesBank,
+      !mIsNoReturn,
       !mInstructionList
-    ]
+    )
   end
 //-------------------------------- Check used routines
   var unusedDeclarationUnicity =@stringset ()
@@ -132,9 +132,9 @@ proc pic18_analyze
   var @pic18InterruptDefinitionList interruptDefinitionList = inPiccoloModel.mInterruptDefinitionList
   var @pic18RoutineDefinitionList routineDefinitionList = inPiccoloModel.mRoutineDefinitionList
   pic18PerformRoutineInline (
-    !inlinedRoutineSet
-    !declaredRoutineMap
-    !?interruptDefinitionList
+    !inlinedRoutineSet,
+    !declaredRoutineMap,
+    !?interruptDefinitionList,
     !?routineDefinitionList
   )
 //-------------------------------- Check 'checkpic' instructions
@@ -184,9 +184,9 @@ proc pic18_analyze
     actualConfigurationMap = @actualConfigurationMap ()
   else
     buildConfig (
-      !piccoloDeviceModel.mConfigRegisterMap
-      !inPiccoloModel.mConfigDefinitionList
-      !?listFileContents
+      !piccoloDeviceModel.mConfigRegisterMap,
+      !inPiccoloModel.mConfigDefinitionList,
+      !?listFileContents,
       ?actualConfigurationMap
     )
   end
@@ -200,33 +200,33 @@ proc pic18_analyze
 //-------------------------------- Build constant map
   var @constantMap constantMap = @()
 //--- Add "ROM_SIZE" and "RAM_SIZE" constants
-  [!?constantMap insertKey !@lstring { !"ROM_SIZE" !@location.here} !piccoloDeviceModel.mRomSize.uint.sint64]
-  [!?constantMap insertKey !@lstring { !"RAM_SIZE" !@location.here} !RAMsize.sint64]
+  !?constantMap.insertKey (!@lstring ( !"ROM_SIZE", @location.here), !piccoloDeviceModel.mRomSize.uint.sint64)
+  !?constantMap.insertKey (!@lstring ( !"RAM_SIZE", @location.here), !RAMsize.sint64)
 //--- Add "BOOTLOADER_RESERVED_SIZE" constant
   if inPiccoloModel.mProgramKind != @programKind. regularProgram then
-    let bootloaderSizeString = @lstring { !"BOOTLOADER_RESERVED_SIZE" !@location.here}
-    [!?constantMap insertKey !bootloaderSizeString !bootloaderReservedROMsize.uint.sint64]
+    let bootloaderSizeString = @lstring ( !"BOOTLOADER_RESERVED_SIZE", @location.here)
+    !?constantMap.insertKey (!bootloaderSizeString, !bootloaderReservedROMsize.uint.sint64)
   end
 //--- Add declared constants
   var usedRegisters = @stringset ()
   for (mConstantName mExpression) in  inPiccoloModel.mConstantDefinitionList do
-    [mExpression eval !piccoloDeviceModel.mRegisterTable !constantMap ?let @sint64 result !?usedRegisters]
+    mExpression.eval (!piccoloDeviceModel.mRegisterTable, !constantMap, ?let @sint64 result, !?usedRegisters)
     if [piccoloDeviceModel.mRegisterTable hasKey !mConstantName.string] then
       error (mConstantName: "'" + mConstantName + "' is already declared as ram register or special register")
     else
-      [!?constantMap insertKey !mConstantName !result]
+      !?constantMap.insertKey (!mConstantName, !result)
     end
   end
 //-------------------------------- Ram definition
   analyze_ram_sections (
-    !"DECLARED VARIABLES"
-    !inPiccoloModel.mRamDefinitionList
-    !constantMap
-    !?usedRegisters
-    !?ramBank
-    !piccoloDeviceModel.mRegisterTable
-    !?listFileContents
-    !?registerTable
+    !"DECLARED VARIABLES",
+    !inPiccoloModel.mRamDefinitionList,
+    !constantMap,
+    !?usedRegisters,
+    !?ramBank,
+    !piccoloDeviceModel.mRegisterTable,
+    !?listFileContents,
+    !?registerTable,
     ?let @declaredByteMap declaredByteMap
   )
 //--- For bootloader implementation, check declared var footprint does not span beyond values declared in specification
@@ -234,7 +234,7 @@ proc pic18_analyze
     for (lkey mFirstAddress mFirstFreeAddress * *) in ramBank do
       if [bootloaderReservedRAMmap hasKey !lkey.string] then
         let @luint bootloaderReservedSize
-        [bootloaderReservedRAMmap searchKey !lkey ?bootloaderReservedSize]
+        bootloaderReservedRAMmap.searchKey (!lkey, ?bootloaderReservedSize)
         if (mFirstFreeAddress - mFirstAddress) > bootloaderReservedSize.uint then
           error (@location.here: "for '" + lkey + "' RAM bank, the bootloader implementation declares "
           + (mFirstFreeAddress - mFirstAddress).string
@@ -251,38 +251,38 @@ proc pic18_analyze
   end
 //-------------------------------- Build block representation
   build_ipic18_block_representation_list (
-    !inSourceFileName
-    !piccoloDeviceModel.mRomSize.uint.sint64
-    !macroMap
-    !bootloaderRoutineDeclarationListForBootloaderImplementation // Empty for regular program
-    !userRoutineDeclarationListForBootloaderImplementation // Empty for regular program
-    !bootloaderReservedROMsize
-    !bootloaderRoutineDeclarationListForUserProgramImplementation
-    !userRoutineDeclarationListForUserProgramImplementation
-    !accessBankSplitOffset
-    !registerTable
-    !declaredByteMap
-    !routineDefinitionList
-    !inPiccoloModel.mProgramKind
-    !constantMap
-    !usedRegisters
-    !inPiccoloModel.mDataList
-    !interruptDefinitionList
-    !inPiccoloModel.mUnusedRegisterList
-    !ramBank
-    !hasHighInterrupt
-    !hasLowInterrupt
-    !piccoloDeviceModel.mDeviceName.string
-    !piccoloDeviceModel.mRegisterTable
-    !actualConfigurationMap
-    !inPiccoloModel.mEndOfProgram
+    !inSourceFileName,
+    !piccoloDeviceModel.mRomSize.uint.sint64,
+    !macroMap,
+    !bootloaderRoutineDeclarationListForBootloaderImplementation, // Empty for regular program
+    !userRoutineDeclarationListForBootloaderImplementation, // Empty for regular program
+    !bootloaderReservedROMsize,
+    !bootloaderRoutineDeclarationListForUserProgramImplementation,
+    !userRoutineDeclarationListForUserProgramImplementation,
+    !accessBankSplitOffset,
+    !registerTable,
+    !declaredByteMap,
+    !routineDefinitionList,
+    !inPiccoloModel.mProgramKind,
+    !constantMap,
+    !usedRegisters,
+    !inPiccoloModel.mDataList,
+    !interruptDefinitionList,
+    !inPiccoloModel.mUnusedRegisterList,
+    !ramBank,
+    !hasHighInterrupt,
+    !hasLowInterrupt,
+    !piccoloDeviceModel.mDeviceName.string,
+    !piccoloDeviceModel.mRegisterTable,
+    !actualConfigurationMap,
+    !inPiccoloModel.mEndOfProgram,
     !?listFileContents
   )
 //-------------------------------- Write listing file
   if [option piccoloOptions.ouputListingFile value] then
     listFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"
     let @string listFile = inSourceFileName.deletingPathExtension + ".list"
-    [listFileContents writeToFileWhenDifferentContents !listFile ?*]
+    listFileContents.writeToFileWhenDifferentContents (!listFile, ?*)
   end
 }
 

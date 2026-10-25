@@ -2,33 +2,33 @@
 
 //----------------------------------------------------------------------------*
 
-abstract proc @midrange_intermediate_instruction print ?!@string ioListFileContents
+abstract proc @midrange_intermediate_instruction print (?!@string ioListFileContents)
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_NULL print ?!@string ioListFileContents {
+proc @midrange_intermediate_NULL.print (?!@string ioListFileContents ) {
   ioListFileContents += "-"
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_pseudo_ORG print ?!@string ioListFileContents {
+proc @midrange_intermediate_pseudo_ORG.print (?!@string ioListFileContents ) {
   ioListFileContents += "ORG " + self.mOrigin.hexString
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_pseudo_LABEL print ?!@string ioListFileContents {
+proc @midrange_intermediate_pseudo_LABEL.print (?!@string ioListFileContents ) {
   ioListFileContents += self.mLabel.string + ":"
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_FD print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_FD.print (?!@string ioListFileContents ) {
   ioListFileContents += self.mInstruction_FD_base_code.mnemonic + " " + self.mRegisterDescription.mAssemblyString
   if self.m_W_isDestination then
     ioListFileContents += ", W"
@@ -38,21 +38,21 @@ proc @midrange_intermediate_instruction_FD print ?!@string ioListFileContents {
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_F print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_F.print (?!@string ioListFileContents ) {
   ioListFileContents += self.mFinstruction.mnemonic + " " + self.mRegisterDescription.mAssemblyString
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_FB print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_FB.print (?!@string ioListFileContents ) {
   ioListFileContents += self.mBitOrientedOp.mnemonic + " " + self.mRegisterDescription.mAssemblyString + ", " + self.mBitNumber.string
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_BitTestSkip print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_BitTestSkip.print (?!@string ioListFileContents ) {
   if self.mSkipIfSet then
     ioListFileContents += "BTFSS"
   else
@@ -64,42 +64,42 @@ proc @midrange_intermediate_instruction_BitTestSkip print ?!@string ioListFileCo
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_JUMP print ?!@string ioListFileContents {
+proc @midrange_intermediate_JUMP.print (?!@string ioListFileContents ) {
   ioListFileContents += "JUMP " + self.mTargetLabel
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_GOTO print ?!@string ioListFileContents {
+proc @midrange_intermediate_GOTO.print (?!@string ioListFileContents ) {
   ioListFileContents += "GOTO " + self.mTargetLabel
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_CALL print ?!@string ioListFileContents {
+proc @midrange_intermediate_CALL.print (?!@string ioListFileContents ) {
   ioListFileContents += "CALL " + self.mTargetLabel
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_JSR print ?!@string ioListFileContents {
+proc @midrange_intermediate_JSR.print (?!@string ioListFileContents ) {
   ioListFileContents += "JSR " + self.mTargetLabel
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_CLRWDT print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_CLRWDT.print (?!@string ioListFileContents ) {
   ioListFileContents += "CLRWDT"
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_CLRW print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_CLRW.print (?!@string ioListFileContents ) {
   ioListFileContents += "CLRW"
 }
 
@@ -107,49 +107,49 @@ proc @midrange_intermediate_instruction_CLRW print ?!@string ioListFileContents 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_NOP print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_NOP.print (?!@string ioListFileContents ) {
   ioListFileContents += "NOP"
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_RETURN print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_RETURN.print (?!@string ioListFileContents ) {
   ioListFileContents += "RETURN"
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_RETFIE print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_RETFIE.print (?!@string ioListFileContents ) {
   ioListFileContents += "RETFIE"
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_SLEEP print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_SLEEP.print (?!@string ioListFileContents ) {
   ioListFileContents += "SLEEP"
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_literalOperation print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_literalOperation.print (?!@string ioListFileContents ) {
   ioListFileContents += self.mLiteralInstruction.mnemonic + " " + self.mLiteralValue.hexString
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_instruction_MNOP print ?!@string ioListFileContents {
+proc @midrange_intermediate_instruction_MNOP.print (?!@string ioListFileContents ) {
   ioListFileContents += "MNOP " + self.mOccurrenceFactor.uint.string
 }
 
 //----------------------------------------------------------------------------*
 
 override
-proc @midrange_intermediate_incDecRegisterInCondition print ?!@string ioListFileContents {
+proc @midrange_intermediate_incDecRegisterInCondition.print (?!@string ioListFileContents ) {
   ioListFileContents += "JUMP "
   if self.mIncrement then
     ioListFileContents += "INCF "

@@ -3,17 +3,17 @@ syntax piccoloDevice_syntax (piccoloDevice_lexique) {
 //----------------------------------------------------*
 
 rule <start_symbol>
-  !@piccoloDeviceModel outPiccoloModel
+  (!@piccoloDeviceModel outPiccoloModel
 
 //----------------------------------------------------*
 
-rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
+)rule <start_symbol> (!@piccoloDeviceModel outPiccoloDeviceModel ) {
   $controller$
-  $identifier$ ?let @lstring deviceName
+  $identifier$ (?let @lstring deviceName)
   ${$
   $processor$
   let @processorType processorType
-  $string$ ?let @lstring processorName
+  $string$ (?let @lstring processorName)
   if processorName.string == "pic18_60" then
     processorType = @processorType. pic18_60
   elsif processorName.string == "pic18_80" then
@@ -27,7 +27,7 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   end
   $;$
   $romsize$
-  $integer$ ?let @luint romSize
+  $integer$ (?let @luint romSize)
   $;$
   let @uint eepromSize
   let @uint eepromAddress
@@ -36,24 +36,24 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     eepromAddress = 0
   or
     $eepromsize$
-    $integer$ ?let @luint l_eepromSize
+    $integer$ (?let @luint l_eepromSize)
     eepromSize = l_eepromSize.uint
     $at$
-    $integer$ ?let @luint l_eepromAddress
+    $integer$ (?let @luint l_eepromAddress)
     eepromAddress = l_eepromAddress.uint
     $;$
   end
   $bank$
-  $integer$ ?let @luint bankCount
+  $integer$ (?let @luint bankCount)
   $;$
   repeat
   while
     $unusedregister$
-    $integer$ ?* // let @luint unusedRegisterStart
+    $integer$ (?*) // let @luint unusedRegisterStart
     select
     or
      $to$
-     $integer$ ?* // let @luint unusedRegisterEnd
+     $integer$ (?*) // let @luint unusedRegisterEnd
     end
     $;$
   end
@@ -61,40 +61,40 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
   repeat
   while
     $ram$
-    $identifier$ ?let @lstring ramName
+    $identifier$ (?let @lstring ramName)
     $:$
-    $integer$ ?let @luint ramStart
+    $integer$ (?let @luint ramStart)
     $to$
-    $integer$ ?let @luint ramEnd
+    $integer$ (?let @luint ramEnd)
     var mirrorOffsetList =@uintlist ()
     select
     or
       $mirrorat$
       repeat
-        $integer$ ?let @luint mirrorStartAddress
+        $integer$ (?let @luint mirrorStartAddress)
         mirrorOffsetList += !mirrorStartAddress.uint - ramStart.uint
       while
         $,$
       end
     end
     $;$
-    [!?ramBankTable insertKey
-      !ramName
-      !ramStart.uint // Start
-      !ramStart.uint // First free address (mutable)
-      !ramEnd.uint + 1
+    !?ramBankTable.insertKey
+      (!ramName,
+      !ramStart.uint, // Start
+      !ramStart.uint, // First free address (mutable)
+      !ramEnd.uint + 1,
       !mirrorOffsetList
-    ]
+    )
   end
   var registerTable =@registerTable ()
   repeat
   while
     $register$
-    $identifier$ ?let @lstring registerName
+    $identifier$ (?let @lstring registerName)
     $at$
     var registerAddressList =@uintlist ()
     repeat
-      $integer$ ?let @luint registerAddress
+      $integer$ (?let @luint registerAddress)
       registerAddressList += !registerAddress.uint
     while
       $,$
@@ -108,25 +108,25 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
         var @uint sliceWidth = 0 // Means undefined
         repeat
           var @uint sliceBase = sliceIndex
-          $identifier$ ?let @lstring sliceName
+          $identifier$ (?let @lstring sliceName)
           select
             if (sliceWidth != 0) & (sliceWidth != 1) then
               error (sliceName:"a slice of 1 bit is expected for '" + sliceName + "'")
             end
             sliceWidth = 1
-            bitDefinitionString += sliceName.string 
+            bitDefinitionString += sliceName.string
           or
             $[$
-            $integer$ ?let @luint sliceSize
+            $integer$ (?let @luint sliceSize)
             if (sliceWidth != 0) & (sliceWidth != sliceSize.uint) then
               error (sliceName:"a slice of " + sliceWidth.string + " bits is expected for '" + sliceName + "'")
             end
             sliceWidth = sliceSize.uint
             sliceBase = sliceBase + 1 - sliceSize.uint
             $]$
-            bitDefinitionString += sliceName.string + "[" + sliceSize.uint.string + "]" 
+            bitDefinitionString += sliceName.string + "[" + sliceSize.uint.string + "]"
           end
-          [!?bitSliceTable insertKey !sliceName !sliceIndex-sliceWidth !sliceWidth]
+          !?bitSliceTable.insertKey (!sliceName, !sliceIndex-sliceWidth, !sliceWidth)
         while
           $/$
           bitDefinitionString += "/"
@@ -139,34 +139,34 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
       end
     while
       $,$
-      bitDefinitionString += ", " 
+      bitDefinitionString += ", "
     end
     if sliceIndex != 0 then
       error (registerName:"Incorrect bit definition for register '" + registerName + "'")
     end
     bitDefinitionString += ">"
     $>$
-    [!?registerTable insertKey !registerName !registerAddressList !1 !bitSliceTable !bitDefinitionString !.publicRegister]
+    !?registerTable.insertKey (!registerName, !registerAddressList, !1, !bitSliceTable, !bitDefinitionString, !.publicRegister)
     $;$
   end
   var configRegisterMap =@configRegisterMap ()
   repeat
   while
     $configuration$
-    $identifier$ ?let @lstring configRegisterName
+    $identifier$ (?let @lstring configRegisterName)
     $at$
-    $integer$ ?let @luint configRegisterAddress
+    $integer$ (?let @luint configRegisterAddress)
     $width$
-    $integer$ ?let @luint configRegisterWidth
+    $integer$ (?let @luint configRegisterWidth)
     var illegalMaskList =@illegalMaskList ()
     repeat
     while
       $illegal$
-      $integer$ ?let @luint illegalValue
+      $integer$ (?let @luint illegalValue)
       $mask$
-      $integer$ ?let @luint illegalMask
+      $integer$ (?let @luint illegalMask)
       $message$
-      $string$ ?let @lstring illegalDescriptionString
+      $string$ (?let @lstring illegalDescriptionString)
       illegalMaskList += !illegalValue !illegalMask !illegalDescriptionString
     end
     ${$
@@ -174,44 +174,44 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     var settingNameSet =@stringset ()
     repeat
     while
-      $identifier$ ?let @lstring maskName
+      $identifier$ (?let @lstring maskName)
       if [settingNameSet hasKey !maskName.string] then
         error (maskName:"The '" + maskName + "' setting is already defined")
       end
       settingNameSet ++= maskName.string
       $mask$
-      $integer$ ?let @luint maskValue
+      $integer$ (?let @luint maskValue)
       $description$
-      $string$ ?let @lstring maskDescriptionString
+      $string$ (?let @lstring maskDescriptionString)
       var fieldSettingMap =@fieldSettingMap ()
       repeat
         $setting$
-        $integer$ ?let @luint value
+        $integer$ (?let @luint value)
         $mask$
-        $integer$ ?let @luint mask
+        $integer$ (?let @luint mask)
         $description$
-        $string$ ?let @lstring descriptionString
-        [!?fieldSettingMap insertKey !descriptionString !value.uint !mask.uint]
+        $string$ (?let @lstring descriptionString)
+        !?fieldSettingMap.insertKey (!descriptionString, !value.uint, !mask.uint)
       while
       end
-      [!?configRegisterMaskMap insertKey !maskName !maskValue !maskDescriptionString !fieldSettingMap]
+      !?configRegisterMaskMap.insertKey (!maskName, !maskValue, !maskDescriptionString, !fieldSettingMap)
     end
     $}$
-    [!?configRegisterMap insertKey
-      !configRegisterName
-      !configRegisterAddress
-      !configRegisterWidth
-      !configRegisterMaskMap
+    !?configRegisterMap.insertKey
+      (!configRegisterName,
+      !configRegisterAddress,
+      !configRegisterWidth,
+      !configRegisterMaskMap,
       !illegalMaskList
-    ]
+    )
   end
   $}$
 //--- Check some registers are actual defined
   if (processorName.string == "pic18_60") | (processorName.string == "pic18_80") then
-    [registerTable searchKey !@lstring { !"BSR" !@location.here} ?5*]
-    [registerTable searchKey !@lstring { !"TOSL" !@location.here} ?5*]
-    [registerTable searchKey !@lstring { !"TOSH" !@location.here} ?5*]
-    [registerTable searchKey !@lstring { !"TOSU" !@location.here} ?5*]
+    registerTable.searchKey (!@lstring ( !"BSR", @location.here), ?5*)
+    registerTable.searchKey (!@lstring ( !"TOSL", @location.here), ?5*)
+    registerTable.searchKey (!@lstring ( !"TOSH", @location.here), ?5*)
+    registerTable.searchKey (!@lstring ( !"TOSU", @location.here), ?5*)
   end
 //--- Check if controller has a shared bank
   var @string sharedBankName = "" // No shared bank by default
@@ -227,17 +227,18 @@ rule <start_symbol> !@piccoloDeviceModel outPiccoloDeviceModel {
     end
   end
 //---
-  outPiccoloDeviceModel = @piccoloDeviceModel {
-    !deviceName
-    !processorType
-    !romSize
-    !bankCount
-    !registerTable
-    !ramBankTable
-    !eepromSize
-    !eepromAddress
-    !configRegisterMap
-    !sharedBankName}
+  outPiccoloDeviceModel = @piccoloDeviceModel (
+    !deviceName,
+    processorType,
+    romSize,
+    bankCount,
+    registerTable,
+    ramBankTable,
+    eepromSize,
+    eepromAddress,
+    configRegisterMap,
+    sharedBankName
+  )
 }
 
 //----------------------------------------------------*

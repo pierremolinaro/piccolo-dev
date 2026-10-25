@@ -9894,10 +9894,10 @@ void extensionMethod_enterInstructionReferencedLabels (const GGS_ipic_31__38_Seq
                                                        Compiler * inCompiler
                                                        COMMA_UNUSED_LOCATION_ARGS) {
   const GGS_ipic_31__38_SequentialInstructionList temp_0 = inObject ;
-  UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_35867 (temp_0) ;
-  while (enumerator_35867.hasCurrentObject ()) {
-    callExtensionMethod_enterInstructionReferencedLabels ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_35867.current_mInstruction (HERE).ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas3", 941)) ;
-    enumerator_35867.gotoNextObject () ;
+  UpEnumerator_ipic_31__38_SequentialInstructionList enumerator_36254 (temp_0) ;
+  while (enumerator_36254.hasCurrentObject ()) {
+    callExtensionMethod_enterInstructionReferencedLabels ((cPtr_ipic_31__38_SequentialInstruction *) enumerator_36254.current_mInstruction (HERE).ptr (), constinArgument_inSymbolTable, constinArgument_inBlockList, ioArgument_ioReferencedBlockSet, inCompiler COMMA_SOURCE_FILE ("ipic18_optimize_block.galgas3", 941)) ;
+    enumerator_36254.gotoNextObject () ;
   }
 }
 

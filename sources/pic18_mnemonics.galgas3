@@ -2,7 +2,7 @@
 
 //----------------------------------------------------*
 
-func @pic18RegisterComparison mnemonic -> @string outResult {
+func @pic18RegisterComparison.mnemonic () -> @string outResult {
   switch self
     case notEqual : outResult = "!="
     case equal    : outResult = "=="
@@ -15,7 +15,7 @@ func @pic18RegisterComparison mnemonic -> @string outResult {
 
 //----------------------------------------------------*
 
-func @conditional_branch condition -> @string outResult {
+func @conditional_branch.condition () -> @string outResult {
   switch self
     case bz   : outResult = "Z"
     case bnz  : outResult = "NZ"
@@ -30,8 +30,8 @@ func @conditional_branch condition -> @string outResult {
 
 //----------------------------------------------------*
 
-func @pic18InstructionWithNoOperandKind assemblyCode
-  -> @string outResult {
+func @pic18InstructionWithNoOperandKind.assemblyCode
+  () -> @string outResult {
   switch self
   case CLRWDT : outResult = "CLRWDT"
   case DAW : outResult = "DAW"
@@ -45,7 +45,7 @@ func @pic18InstructionWithNoOperandKind assemblyCode
 
 //----------------------------------------------------*
 
-func @FA_instruction_base_code mnemonic -> @string outResult {
+func @FA_instruction_base_code.mnemonic () -> @string outResult {
   switch self
     case CLRF    : outResult = "CLRF"
     case CPFSEQ : outResult = "CPFSEQ"
@@ -61,7 +61,7 @@ func @FA_instruction_base_code mnemonic -> @string outResult {
 
 //----------------------------------------------------*
 
-func @bit_oriented_op mnemonic  -> @string outResult {
+func @bit_oriented_op.mnemonic  () -> @string outResult {
   switch self
     case BCF : outResult = "BCF"
     case BSF : outResult = "BSF"
@@ -71,7 +71,7 @@ func @bit_oriented_op mnemonic  -> @string outResult {
 
 //----------------------------------------------------*
 
-func @conditional_branch mnemonic  -> @string outResult {
+func @conditional_branch.mnemonic  () -> @string outResult {
   switch self
     case bz   : outResult = "BZ"
     case bnz  : outResult = "BNZ"
@@ -86,7 +86,7 @@ func @conditional_branch mnemonic  -> @string outResult {
 
 //----------------------------------------------------*
 
-func @literal_instruction_opcode mnemonic -> @string outResult {
+func @literal_instruction_opcode.mnemonic () -> @string outResult {
   switch self
     case ADDLW : outResult = "ADDLW"
     case ANDLW : outResult = "ANDLW"
@@ -100,7 +100,7 @@ func @literal_instruction_opcode mnemonic -> @string outResult {
 
 //----------------------------------------------------*
 
-func @tableAccessOption mnemonic  -> @string outResult {
+func @tableAccessOption.mnemonic  () -> @string outResult {
   switch self
     case simpleAccess  : outResult = "*"
     case postIncrement : outResult = "*+"

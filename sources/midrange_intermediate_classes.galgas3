@@ -8,15 +8,15 @@ struct @midrange_intermediate_registerExpression {
 //----------------------------------------------------*
 
 proc @registerExpression resolveMidrangeAccess
-  ?let @uint inTotalBankCount
-  ?let @uint inCurrentBank
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@midrange_intermediate_registerExpression outIPICregisterDescription
-  !@bitSliceTable outBitSliceTable
+  (?let @uint inTotalBankCount,
+  ?let @uint inCurrentBank,
+  ?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@midrange_intermediate_registerExpression outIPICregisterDescription,
+  !@bitSliceTable outBitSliceTable,
   ?!@stringset ioUsedRegisters
-{
-  [self.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+) {
+  self.mOffset.eval (!inRegisterTable, !inConstantMap, ?let @sint64 offset, !?ioUsedRegisters)
   ioUsedRegisters ++= self.mRegisterName.string
 //--- Build assembly string
   var @string assemblyString = self.mRegisterName.string
@@ -24,15 +24,15 @@ proc @registerExpression resolveMidrangeAccess
     assemblyString += " + " + offset.uint.hexString
   end
 //---
-  [inRegisterTable searchKey
-    !self.mRegisterName
-    ?let @uintlist registerAddressList
-    ?let @uint size
-    ?outBitSliceTable
-    ?*
+  inRegisterTable.searchKey
+    (!self.mRegisterName,
+    ?let @uintlist registerAddressList,
+    ?let @uint size,
+    ?outBitSliceTable,
+    ?*,
     ?let protection
-  ]
-  [inRegisterTable checkPrivateAccess !self.mRegisterName !write:true !protection]
+  )
+  inRegisterTable.checkPrivateAccess (!self.mRegisterName, !write:true, !protection)
 //---
   if offset.uint >= size then
     error (self.mEndOfOffsetExpression: "maximum index value is " + (size - 1))
@@ -44,7 +44,7 @@ proc @registerExpression resolveMidrangeAccess
   end
 //---
   var @uint registerAddress = 0
-  if inCurrentBank == @uint. max then
+  if inCurrentBank == @uint.max then
   //--- No selected bank, register should be mirrored in all banks
     var @uint bank = 0
     var @bool ok = true
@@ -80,9 +80,9 @@ proc @registerExpression resolveMidrangeAccess
     end
   end
 //---
-  outIPICregisterDescription = @midrange_intermediate_registerExpression {
-    !assemblyString
-    !registerAddress + offset.uint}
+  outIPICregisterDescription = @midrange_intermediate_registerExpression (
+    !assemblyString,
+    registerAddress + offset.uint)
 }
 
 //----------------------------------------------------*

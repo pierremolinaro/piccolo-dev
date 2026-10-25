@@ -1,19 +1,19 @@
 //----------------------------------------------------------------------------*
 
 proc pic18BootloaderSpecificationAnalysis
-  ?let @string inSourceFileName
-  ?let @lstring inBootloaderName
-  ?let @lstring inDeviceName
-  ?let @routineDeclarationList inBootloaderRoutineDeclarationList
-  ?let @bootloaderReservedRAMmap inBootloaderReservedRAMmap
-  ?let @luint inReservedRomSize
-  ?let @routineDeclarationList inUserRoutineDeclarationList
-  ?let @ramDefinitionList inSharedRamDefinitionList
-  !@string outListFileContents
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable {
+  (?let @string inSourceFileName,
+  ?let @lstring inBootloaderName,
+  ?let @lstring inDeviceName,
+  ?let @routineDeclarationList inBootloaderRoutineDeclarationList,
+  ?let @bootloaderReservedRAMmap inBootloaderReservedRAMmap,
+  ?let @luint inReservedRomSize,
+  ?let @routineDeclarationList inUserRoutineDeclarationList,
+  ?let @ramDefinitionList inSharedRamDefinitionList,
+  !@string outListFileContents,
+  !@piccoloDeviceModel outPiccoloDeviceModel,
+  !@uint outAccessBankSplitOffset,
+  !@ramBankTable outRamBank,
+  !@registerTable outRegisterTable ) {
 //-------------------------------- Check source file name
   let @string sourceFileBaseName = inSourceFileName.lastPathComponent.deletingPathExtension
   if sourceFileBaseName != inBootloaderName.string then
@@ -22,7 +22,7 @@ proc pic18BootloaderSpecificationAnalysis
   end
   outListFileContents = ""
 //-------------------------------- Analyze Device
-  parseDeviceDefinition ( !inDeviceName ? outPiccoloDeviceModel )
+  parseDeviceDefinition ( !inDeviceName, ? outPiccoloDeviceModel )
   switch outPiccoloDeviceModel.mProcessorType
     case pic18_60 : outAccessBankSplitOffset = 0x60
     case pic18_80 : outAccessBankSplitOffset = 0x80
@@ -43,13 +43,13 @@ proc pic18BootloaderSpecificationAnalysis
 //-------------------------------- Check reserved RAM size <= microcontroller RAM size (in every bank)
   outRamBank = outPiccoloDeviceModel.mRamBankTable
   for (lkey mReservedSize) in  inBootloaderReservedRAMmap do
-    [outRamBank searchKey !lkey ?let firstAddress ?var firstFreeAddress ?let lastAddressPlusOne ?let unused mirrorOffsetList]
+    outRamBank.searchKey (!lkey, ?let firstAddress, ?var firstFreeAddress, ?let lastAddressPlusOne, ?let unused mirrorOffsetList)
     firstFreeAddress = firstFreeAddress + mReservedSize.uint
     if (firstFreeAddress > lastAddressPlusOne) then
       error (mReservedSize: "reserved size is greater than size of '" + lkey + "' bank ("
       + (lastAddressPlusOne - firstAddress).string + " bytes)")
     else
-      [!?outRamBank setMFirstFreeAddressForKey !firstFreeAddress !lkey.string]
+      !?outRamBank.setMFirstFreeAddressForKey (!firstFreeAddress, !lkey.string)
       outListFileContents += "'" + lkey + "' RAM size : " + mReservedSize.uint.string + " bytes (from "
       + firstAddress.hexString + " to " + (firstFreeAddress - 1).hexString + ").\n\n"
     end
@@ -93,14 +93,14 @@ proc pic18BootloaderSpecificationAnalysis
 //-------------------------------- Check shared RAM
   outRegisterTable = outPiccoloDeviceModel.mRegisterTable
   analyze_ram_sections (
-    !"SHARED VARIABLES"
-    !inSharedRamDefinitionList
-    !@()
-    !? %from @()
-    !?outRamBank
-    !outPiccoloDeviceModel.mRegisterTable
-    !?outListFileContents
-    !?outRegisterTable
+    !"SHARED VARIABLES",
+    !inSharedRamDefinitionList,
+    !@(),
+    !? %from @(),
+    !?outRamBank,
+    !outPiccoloDeviceModel.mRegisterTable,
+    !?outListFileContents,
+    !?outRegisterTable,
     ?*
   )
   outListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n\n"

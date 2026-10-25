@@ -4,25 +4,25 @@
 //                                                                            *
 //----------------------------------------------------------------------------*
 
-extern proc initCodeGenerator
+extern proc initCodeGenerator ()
 
-extern proc setEmitAddress ?let @uint inAddress
+extern proc setEmitAddress (?let @uint inAddress)
 
-extern proc currentEmitAddress !@uint outAddress
+extern proc currentEmitAddress (!@uint outAddress)
 
-extern proc emitCode ?let @uint inCode
+extern proc emitCode (?let @uint inCode)
 
-extern proc emitByte ?let @uint inCode
+extern proc emitByte (?let @uint inCode)
 
-extern proc getGeneratedContents !@string outContents
+extern proc getGeneratedContents (!@string outContents)
 
-extern proc get_C_ArrayImplementation ?let @string inSourceName !@string outContents
+extern proc get_C_ArrayImplementation (?let @string inSourceName ,!@string outContents)
 
-extern proc get_C_ArrayHeader ?let @string inSourceName !@string outContents
+extern proc get_C_ArrayHeader (?let @string inSourceName ,!@string outContents)
 
 //----------------------------------------------------------------------------*
 
-func @uint x4String ->@string outResult {
+func @uint.x4String () ->@string outResult {
   if self > 0xFFFF then
     outResult = "****"
   else
@@ -35,7 +35,7 @@ func @uint x4String ->@string outResult {
 
 //----------------------------------------------------------------------------*
 
-proc checkCurrentEmitAddress ?let @uint inCurrentAddress {
+proc checkCurrentEmitAddress (?let @uint inCurrentAddress ) {
   currentEmitAddress (?let addr)
   if (@uint. errorCount == 0) & (addr != inCurrentAddress) then
     error (@location.here:"internal error: current emit address is " + addr.hexString
@@ -79,36 +79,36 @@ enum @routineKind %equatable {
 //----------------------------------------------------------------------------*
 
 abstract proc @immediatExpression eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters)
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatInteger eval
-  ?let @registerTable unused inRegisterTable
-  ?let @constantMap unused inConstantMap
-  !@sint64 outResult
+override proc @immediatInteger.eval
+  (?let @registerTable unused inRegisterTable,
+  ?let @constantMap unused inConstantMap,
+  !@sint64 outResult,
   ?!@stringset unused ioUsedRegisters
-{
+) {
   outResult = self.mValue.uint.sint64
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatRegister eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
+override proc @immediatRegister.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
   ?!@stringset ioUsedRegisters
-{
+) {
   if [inRegisterTable hasKey !self.mRegister.mRegisterName.string] then
     ioUsedRegisters ++= self.mRegister.mRegisterName.string
-    [inRegisterTable searchKey !self.mRegister.mRegisterName ?let registerAddressList ?let size ?2* ?let protection]
-    [inRegisterTable checkPrivateAccess !self.mRegister.mRegisterName !write:false !protection]
-    [registerAddressList first ?let @uint registerAddress]
-    [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+    inRegisterTable.searchKey (!self.mRegister.mRegisterName, ?let registerAddressList, ?let size, ?2*, ?let protection)
+    inRegisterTable.checkPrivateAccess (!self.mRegister.mRegisterName, !write:false, !protection)
+    registerAddressList.first (?let @uint registerAddress)
+    self.mRegister.mOffset.eval (!inRegisterTable, !inConstantMap, ?let @sint64 offset, !?ioUsedRegisters)
     if offset < 0 then
       error (self.mRegister.mEndOfOffsetExpression
       :"index (" + offset + ") should be >= 0")
@@ -118,8 +118,8 @@ override proc @immediatRegister eval
     end
     outResult = registerAddress.sint64 + offset
   elsif [inConstantMap hasKey !self.mRegister.mRegisterName.string] then
-    [inConstantMap searchKey !self.mRegister.mRegisterName ?outResult]
-    [self.mRegister.mOffset eval !inRegisterTable !inConstantMap ?let @sint64 offset !?ioUsedRegisters]
+    inConstantMap.searchKey (!self.mRegister.mRegisterName, ?outResult)
+    self.mRegister.mOffset.eval (!inRegisterTable, !inConstantMap, ?let @sint64 offset, !?ioUsedRegisters)
     if 0 != offset then
       error (self.mRegister.mEndOfOffsetExpression:
       "index notation (" + offset + ") cannot be used with a constant")
@@ -131,133 +131,133 @@ override proc @immediatRegister eval
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatAdd eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatAdd.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult + rightResult
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatSub eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatSub.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult - rightResult
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatMul eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatMul.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult * rightResult
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatDiv eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatDiv.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult / rightResult
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatMod eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatMod.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult mod rightResult
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatAnd eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatAnd.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult & rightResult
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatOr eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatOr.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult | rightResult
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatXor eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatXor.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult ^ rightResult
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatLeftShift eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatLeftShift.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult << rightResult.uint
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatRightShift eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatRightShift.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   outResult = leftResult >> rightResult.uint
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatEqualTest eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatEqualTest.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   if leftResult == rightResult then
     outResult = 1
   else
@@ -267,13 +267,13 @@ override proc @immediatEqualTest eval
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatNotEqualTest eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatNotEqualTest.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   if leftResult != rightResult then
     outResult = 1
   else
@@ -283,13 +283,13 @@ override proc @immediatNotEqualTest eval
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatGreaterOrEqualTest eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatGreaterOrEqualTest.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   if leftResult >= rightResult then
     outResult = 1
   else
@@ -299,13 +299,13 @@ override proc @immediatGreaterOrEqualTest eval
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatLowerOrEqualTest eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatLowerOrEqualTest.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   if leftResult <= rightResult then
     outResult = 1
   else
@@ -315,13 +315,13 @@ override proc @immediatLowerOrEqualTest eval
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatGreaterTest eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatGreaterTest.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   if leftResult > rightResult then
     outResult = 1
   else
@@ -331,13 +331,13 @@ override proc @immediatGreaterTest eval
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatLowerTest eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mLeftExpression eval !inRegisterTable !inConstantMap ?let @sint64 leftResult !?ioUsedRegisters]
-  [self.mRightExpression eval !inRegisterTable !inConstantMap ?let @sint64 rightResult !?ioUsedRegisters]
+override proc @immediatLowerTest.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mLeftExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 leftResult, !?ioUsedRegisters)
+  self.mRightExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 rightResult, !?ioUsedRegisters)
   if leftResult < rightResult then
     outResult = 1
   else
@@ -347,47 +347,47 @@ override proc @immediatLowerTest eval
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatNegate eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+override proc @immediatNegate.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 result, !?ioUsedRegisters)
   outResult = - result
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatComplement eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
-  ?!@stringset ioUsedRegisters {
-  [self.mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+override proc @immediatComplement.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
+  ?!@stringset ioUsedRegisters ) {
+  self.mExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 result, !?ioUsedRegisters)
   outResult = ~ result
 }
 
 //----------------------------------------------------------------------------*
 
-override proc @immediatSlice eval
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  !@sint64 outResult
+override proc @immediatSlice.eval
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  !@sint64 outResult,
   ?!@stringset ioUsedRegisters
-{
+) {
   let @bitSliceTable bitSliceTable
   outResult = 0
   ioUsedRegisters ++= self.mRegisterName.string
-  [inRegisterTable searchKey !self.mRegisterName ?* ?* ? bitSliceTable ?* ?let protection]
-  [inRegisterTable checkPrivateAccess !self.mRegisterName !write:false !protection]
+  inRegisterTable.searchKey (!self.mRegisterName, ?*, ?*, ? bitSliceTable, ?*, ?let protection)
+  inRegisterTable.checkPrivateAccess (!self.mRegisterName, !write:false, !protection)
   var sliceNameSet = @stringset ()
   for (mSliceName mExpression) in  self.mSliceExpressionList do
     if [sliceNameSet hasKey !mSliceName.string] then
       error (mSliceName:"the '" + mSliceName + "' bit field has been already defined")
     else
       sliceNameSet ++= mSliceName.string
-      [bitSliceTable searchKey !mSliceName ?let sliceIndex ?let sliceSize]
-      [mExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+      bitSliceTable.searchKey (!mSliceName, ?let sliceIndex, ?let sliceSize)
+      mExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 result, !?ioUsedRegisters)
       if (result < 0) | (result > ((1 << sliceSize) - 1)) then
         error (mSliceName:"invalid immediat value associated to the '" + mSliceName + "' bit field, evaluated as " + result.string
         + " (should be between 0 and " + ((1 << sliceSize) - 1).string + ")")
@@ -404,21 +404,21 @@ override proc @immediatSlice eval
 //----------------------------------------------------------------------------*
 
 abstract proc @bitNumberExpression getBitNumber
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  ?!@stringset ioUsedRegisters
-  ?let @bitSliceTable inBitSliceTable
-  !@uint outBitNumber
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  ?!@stringset ioUsedRegisters,
+  ?let @bitSliceTable inBitSliceTable,
+  !@uint outBitNumber)
 
 //----------------------------------------------------------------------------*
 
-override proc @bitNumberLiteralValue getBitNumber
-  ?let @registerTable unused inRegisterTable
-  ?let @constantMap unused inConstantMap
-  ?!@stringset unused ioUsedRegisters
-  ?let @bitSliceTable unused inBitSliceTable
+override proc @bitNumberLiteralValue.getBitNumber
+  (?let @registerTable unused inRegisterTable,
+  ?let @constantMap unused inConstantMap,
+  ?!@stringset unused ioUsedRegisters,
+  ?let @bitSliceTable unused inBitSliceTable,
   !@uint outBitNumber
-{
+) {
   if self.mBitNumberLiteralValue.uint > 7 then
     error (self.mBitNumberLiteralValue:"The bit number is " + self.mBitNumberLiteralValue.uint.string + " (should be <= 7)")
   end
@@ -427,14 +427,14 @@ override proc @bitNumberLiteralValue getBitNumber
 
 //----------------------------------------------------------------------------*
 
-override proc @bitNumberLabelValue getBitNumber
-  ?let @registerTable unused inRegisterTable
-  ?let @constantMap unused inConstantMap
-  ?!@stringset unused ioUsedRegisters
-  ?let @bitSliceTable inBitSliceTable
+override proc @bitNumberLabelValue.getBitNumber
+  (?let @registerTable unused inRegisterTable,
+  ?let @constantMap unused inConstantMap,
+  ?!@stringset unused ioUsedRegisters,
+  ?let @bitSliceTable inBitSliceTable,
   !@uint outBitNumber
-{
-  [inBitSliceTable searchKey !self.mBitNumberLabelValue ?let sliceIndex ?let sliceSize]
+) {
+  inBitSliceTable.searchKey (!self.mBitNumberLabelValue, ?let sliceIndex, ?let sliceSize)
   if self.mBitNumberIndexValue.uint > sliceSize then
     error (self.mBitNumberIndexValue: "The " + self.mBitNumberIndexValue.uint.string
     + " index is too large (should be < " + sliceSize.string + ")")
@@ -444,14 +444,14 @@ override proc @bitNumberLabelValue getBitNumber
 
 //----------------------------------------------------------------------------*
 
-override proc @bitNumberLiteralExpression getBitNumber
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  ?!@stringset ioUsedRegisters
-  ?let @bitSliceTable unused inBitSliceTable
+override proc @bitNumberLiteralExpression.getBitNumber
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  ?!@stringset ioUsedRegisters,
+  ?let @bitSliceTable unused inBitSliceTable,
   !@uint outBitNumber
-{
-  [self.mBitNumberLiteralExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+) {
+  self.mBitNumberLiteralExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 result, !?ioUsedRegisters)
   if result < 0 then
     error (self.mEndOfExpression : "bit index is " + result + ", but should be >= 0" spoil outBitNumber)
   elsif result > 7 then
@@ -478,8 +478,8 @@ map @symbolTableForOptimizations {
 //----------------------------------------------------------------------------*
 
 proc print_constant_definition
-  ?let @constantMap inConstantMap
-  ?!@string ioListFileContents {
+  (?let @constantMap inConstantMap,
+  ?!@string ioListFileContents ) {
   if inConstantMap.count > 0 then
     ioListFileContents += ["" leftAndRightPadding !119 !'*'] + "\n"
     ioListFileContents += "*" + ["CONSTANTS" leftAndRightPadding !117 !' '] + "*\n"

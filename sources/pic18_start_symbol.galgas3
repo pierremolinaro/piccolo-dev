@@ -3,25 +3,25 @@ syntax pic18_start_symbol (piccolo_lexique) {
 //----------------------------------------------------*
 
 rule <body>
-  ?!@pic18InterruptDefinitionList interruptDefinitionList
-  ?!@pic18RoutineDefinitionList routineDefinitionList
-  ?!@pic18MacroDefinitionList ioMacroDefinitionList
-  ?!@lstringlist unusedRoutineList
-  ?!@lstringlist inlinedRoutineList
-  ?!@ramDefinitionList ramDefinitionList
-  ?!@lstringlist unusedRegisterList
-  ?!@configDefinitionList configDefinitionList
-  ?!@constantDefinitionList constantDefinitionList
-  ?!@checkpicList ioCheckpicList
-  ?!@dataList dataList
-  ?!@bool needsComputedGoto2
+  (?!@pic18InterruptDefinitionList interruptDefinitionList,
+  ?!@pic18RoutineDefinitionList routineDefinitionList,
+  ?!@pic18MacroDefinitionList ioMacroDefinitionList,
+  ?!@lstringlist unusedRoutineList,
+  ?!@lstringlist inlinedRoutineList,
+  ?!@ramDefinitionList ramDefinitionList,
+  ?!@lstringlist unusedRegisterList,
+  ?!@configDefinitionList configDefinitionList,
+  ?!@constantDefinitionList constantDefinitionList,
+  ?!@checkpicList ioCheckpicList,
+  ?!@dataList dataList,
+  ?!@bool needsComputedGoto2,
   ?!@bool needsComputedGoto4
 
 //----------------------------------------------------*
 
-rule <start_symbol> {
+)rule <start_symbol> () {
   $pic18$
-  $identifier$ ?let @lstring programName
+  $identifier$ (?let @lstring programName)
   let @lstring deviceNameOrBootloaderReference
   let @programKind programKind
   select
@@ -35,7 +35,7 @@ rule <start_symbol> {
     $bootloader$
     programKind = @programKind. userProgram
   end
-  $literal_string$ ? deviceNameOrBootloaderReference
+  $literal_string$ (? deviceNameOrBootloaderReference)
   $:$
   var interruptDefinitionList =@pic18InterruptDefinitionList ()
   var routineDefinitionList =@pic18RoutineDefinitionList ()
@@ -50,66 +50,66 @@ rule <start_symbol> {
   var inlinedRoutineList =@lstringlist ()
   var @bool needsComputedGoto2 = false
   var @bool needsComputedGoto4 = false
-  <body>
-    !?interruptDefinitionList
-    !?routineDefinitionList
-    !?macroDefinitionList
-    !?unusedRoutineList
-    !?inlinedRoutineList
-    !?ramDefinitionList
-    !?unusedRegisterList
-    !?configDefinitionList
-    !?constantDefinitionList
-    !?checkpicList
-    !?dataList
-    !?needsComputedGoto2
-    !?needsComputedGoto4
+  <body>(
+    !?interruptDefinitionList,
+    !?routineDefinitionList,
+    !?macroDefinitionList,
+    !?unusedRoutineList,
+    !?inlinedRoutineList,
+    !?ramDefinitionList,
+    !?unusedRegisterList,
+    !?configDefinitionList,
+    !?constantDefinitionList,
+    !?checkpicList,
+    !?dataList,
+    !?needsComputedGoto2,
+    !?needsComputedGoto4)
   $end$
 //--- Semantic analysis
   if @uint. errorCount == 0 then
-    let piccoloModel = @pic18AST {
-      !programName
-      !programKind
-      !deviceNameOrBootloaderReference
-      !configDefinitionList
-      !ramDefinitionList
-      !unusedRegisterList
-      !checkpicList
-      !dataList
-      !interruptDefinitionList
-      !constantDefinitionList
-      !routineDefinitionList
-      !macroDefinitionList
-      !unusedRoutineList
-      !inlinedRoutineList
-      !needsComputedGoto2
-      !needsComputedGoto4
-      !@location.here
-    }
-    pic18_analyze (!piccoloModel !@string.stringWithSourceFilePath)
+    let piccoloModel = @pic18AST (
+      !programName,
+      programKind,
+      deviceNameOrBootloaderReference,
+      configDefinitionList,
+      ramDefinitionList,
+      unusedRegisterList,
+      checkpicList,
+      dataList,
+      interruptDefinitionList,
+      constantDefinitionList,
+      routineDefinitionList,
+      macroDefinitionList,
+      unusedRoutineList,
+      inlinedRoutineList,
+      needsComputedGoto2,
+      needsComputedGoto4,
+      @location.here
+    )
+    pic18_analyze (!piccoloModel, !@string.stringWithSourceFilePath)
   else
     let @string hexDestinationFile = @string.stringWithSourceFilePath.deletingPathExtension + ".hex"
     if hexDestinationFile.fileExists then
-      [@string deleteFile !hexDestinationFile]
+      @string.deleteFile (!hexDestinationFile)
     end
     let @string asmDestinationFile = @string.stringWithSourceFilePath.deletingPathExtension + ".asm"
     if asmDestinationFile.fileExists then
-      [@string deleteFile !asmDestinationFile]
+      @string.deleteFile (!asmDestinationFile)
     end
   end
 }
 label importBootloaderSpecification
-  !@piccoloDeviceModel outPiccoloDeviceModel
-  !@string outDeviceName
-  !@uint outAccessBankSplitOffset
-  !@ramBankTable outRamBank
-  !@registerTable outRegisterTable
-  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap
-  !@routineDeclarationList outBootloaderRoutineDeclarationList
-  !@routineDeclarationList outUserRoutineDeclarationList
-  !@luint outBootloaderReservedROMsize {
+  (!@piccoloDeviceModel outPiccoloDeviceModel,
+  !@string outDeviceName,
+  !@uint outAccessBankSplitOffset,
+  !@ramBankTable outRamBank,
+  !@registerTable outRegisterTable,
+  !@bootloaderReservedRAMmap outBootloaderReservedRAMmap,
+  !@routineDeclarationList outBootloaderRoutineDeclarationList,
+  !@routineDeclarationList outUserRoutineDeclarationList,
+  !@luint outBootloaderReservedROMsize ) {
   $pic18$
-  $identifier$ ?let @lstring programName
+  $identifier$ (?let @lstring programName)
   error (programName: "this file does not define a bootloader specification"
    spoil outPiccoloDeviceModel, outAccessBankSplitOffset, outRamBank, outRegisterTable,
       outBootloaderReservedRAMmap, outDeviceName,
@@ -124,10 +124,10 @@ label importBootloaderSpecification
     $uses$
     $bootloader$
   end
-  $literal_string$ ? *
+  $literal_string$ (? *)
   $:$
 //   parse<body>
-   <body> !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from @() !?%from false !?%from false
+   <body> (!?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from @(), !?%from false, !?%from false)
   $end$
 }
 

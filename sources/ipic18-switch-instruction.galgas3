@@ -41,26 +41,26 @@ class @pic18Instruction_switch : @pic18PiccoloInstruction {
 //! ANALYZE
 //———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————
 
-override proc @pic18Instruction_switch analyze
-  ?let @uint inAccessBankSplitOffset
-  ?!@ipic18BlockList ioGeneratedBlockList
-  ?let @routineMap inRoutineMap
-  ?let @registerTable inRegisterTable
-  ?let @pic18_dataMap inDataMap
-  ?let @constantMap inConstantMap
-  ?let @pic18MacroMap inMacroMap
-  ?!@uint ioLocalLabelIndex
-  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
-  ?!@lstring ioBlockLabel
-  ?!@string ioListFileContents
-  ?!@uint ioCurrentBank
-  ?let @bool inShouldPreserveBSR
-  ?let @routineKind inRoutineKind
+override proc @pic18Instruction_switch.analyze
+  (?let @uint inAccessBankSplitOffset,
+  ?!@ipic18BlockList ioGeneratedBlockList,
+  ?let @routineMap inRoutineMap,
+  ?let @registerTable inRegisterTable,
+  ?let @pic18_dataMap inDataMap,
+  ?let @constantMap inConstantMap,
+  ?let @pic18MacroMap inMacroMap,
+  ?!@uint ioLocalLabelIndex,
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList,
+  ?!@lstring ioBlockLabel,
+  ?!@string ioListFileContents,
+  ?!@uint ioCurrentBank,
+  ?let @bool inShouldPreserveBSR,
+  ?let @routineKind inRoutineKind,
   ?!@stringset ioUsedRegisters
-{
+) {
   var caseConstantMap =@caseConstantMap ()
 //--- Labels
-  let exitLabel = @lstring { !".L" + ioLocalLabelIndex.string !self.mInstructionLocation}
+  let exitLabel = @lstring ( !".L" + ioLocalLabelIndex.string, self.mInstructionLocation)
   ioLocalLabelIndex += 1
 //--- Comparison value
   var @sint64 lastComparisonValue = 0
@@ -73,56 +73,56 @@ override proc @pic18Instruction_switch analyze
 //---
   for (mStartOfCase mCaseExpressionList mInstructionList) in  self.mCaseList do
   //--- Label
-    let conditionTrueLabel = @lstring { !".L.accepted." + ioLocalLabelIndex.string !self.mInstructionLocation}
+    let conditionTrueLabel = @lstring ( !".L.accepted." + ioLocalLabelIndex.string, self.mInstructionLocation)
   //--- Generate test blocks
     for (mCaseItem) in mCaseExpressionList do
       let conditionLabel = ioLocalLabelIndex.string
       ioLocalLabelIndex += 1
-      [mCaseItem analyzeCaseItem
-        !inRegisterTable
-        !inConstantMap
-        !conditionTrueLabel
-        !conditionLabel
-        !?ioUsedRegisters
-        !?caseConstantMap
-        !?ioGeneratedInstructionList
-        !?ioGeneratedBlockList
-        !?ioBlockLabel
+      mCaseItem.analyzeCaseItem
+        (!inRegisterTable,
+        !inConstantMap,
+        !conditionTrueLabel,
+        !conditionLabel,
+        !?ioUsedRegisters,
+        !?caseConstantMap,
+        !?ioGeneratedInstructionList,
+        !?ioGeneratedBlockList,
+        !?ioBlockLabel,
         !?lastComparisonValue
-      ]
+      )
     end
   //--- Analyze instruction list
     let @lstring conditionFalseLabel = ioBlockLabel
     ioBlockLabel = conditionTrueLabel
     var @uint branchFinalBank = initialBankSetting
     analyzeInstructionList (
-      !mInstructionList
-      !?ioGeneratedBlockList
-      !inAccessBankSplitOffset
-      !inRoutineMap
-      !inRegisterTable
-      !inDataMap
-      !inConstantMap
-      !inMacroMap
-      !?ioLocalLabelIndex
-      !?ioGeneratedInstructionList
-      !?ioBlockLabel
-      !?ioListFileContents
-      !?branchFinalBank
-      !inShouldPreserveBSR
-      !inRoutineKind
+      !mInstructionList,
+      !?ioGeneratedBlockList,
+      !inAccessBankSplitOffset,
+      !inRoutineMap,
+      !inRegisterTable,
+      !inDataMap,
+      !inConstantMap,
+      !inMacroMap,
+      !?ioLocalLabelIndex,
+      !?ioGeneratedInstructionList,
+      !?ioBlockLabel,
+      !?ioListFileContents,
+      !?branchFinalBank,
+      !inShouldPreserveBSR,
+      !inRoutineKind,
       !?ioUsedRegisters
     )
     if ioBlockLabel.string != "" then
       continuesInSequence = true
-      ioGeneratedBlockList += !@ipic18Block {
-        !@uint. max // relocatable
-        !ioBlockLabel
-        !ioGeneratedInstructionList
-        !@ipic18JumpTerminator { !self.mInstructionLocation !exitLabel !@jumpInstructionKind. ipicRelative}
-        !@uint.max
-        !0
-      }
+      ioGeneratedBlockList += !@ipic18Block (
+        !@uint.max, // relocatable
+        ioBlockLabel,
+        ioGeneratedInstructionList,
+        @ipic18JumpTerminator ( !self.mInstructionLocation, exitLabel, @jumpInstructionKind. ipicRelative),
+        @uint.max,
+        0
+      )
     end
     if finalBankSettingDefined then
       if finalBankSetting != branchFinalBank then
@@ -142,33 +142,33 @@ override proc @pic18Instruction_switch analyze
 //--- "else" instruction list
   var @uint branchFinalBank = initialBankSetting
   analyzeInstructionList (
-    !self.mElseInstructionList
-    !?ioGeneratedBlockList
-    !inAccessBankSplitOffset
-    !inRoutineMap
-    !inRegisterTable
-    !inDataMap
-    !inConstantMap
-    !inMacroMap
-    !?ioLocalLabelIndex
-    !?ioGeneratedInstructionList
-    !?ioBlockLabel
-    !?ioListFileContents
-    !?branchFinalBank
-    !inShouldPreserveBSR
-    !inRoutineKind
+    !self.mElseInstructionList,
+    !?ioGeneratedBlockList,
+    !inAccessBankSplitOffset,
+    !inRoutineMap,
+    !inRegisterTable,
+    !inDataMap,
+    !inConstantMap,
+    !inMacroMap,
+    !?ioLocalLabelIndex,
+    !?ioGeneratedInstructionList,
+    !?ioBlockLabel,
+    !?ioListFileContents,
+    !?branchFinalBank,
+    !inShouldPreserveBSR,
+    !inRoutineKind,
     !?ioUsedRegisters
   )
   let @bool thenContinuesInSequence = ioBlockLabel.string != ""
   if thenContinuesInSequence then
-    ioGeneratedBlockList += !@ipic18Block {
-      !@uint. max // relocatable
-      !ioBlockLabel
-      !ioGeneratedInstructionList
-      !@ipic18JumpTerminator { !self.mInstructionLocation !exitLabel !.ipicRelative}
-      !@uint.max
-      !0
-    }
+    ioGeneratedBlockList += !@ipic18Block (
+      !@uint.max, // relocatable
+      ioBlockLabel,
+      ioGeneratedInstructionList,
+      @ipic18JumpTerminator ( !self.mInstructionLocation, exitLabel, .ipicRelative),
+      @uint.max,
+      0
+    )
   end
   ioGeneratedInstructionList = @()
 //--- Bank setting
@@ -197,32 +197,32 @@ map @caseConstantMap {
 //·······················································································································
 
 abstract proc @pic18AbstractCaseItem analyzeCaseItem
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  ?let @lstring inConditionTrueLabel
-  ?let @string inIndexForLabels
-  ?!@stringset ioUsedRegisters
-  ?!@caseConstantMap ioCaseConstantMap
-  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
-  ?!@ipic18BlockList ioGeneratedBlockList
-  ?!@lstring ioBlockLabel
-  ?!@sint64 ioLastComparisonValue
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  ?let @lstring inConditionTrueLabel,
+  ?let @string inIndexForLabels,
+  ?!@stringset ioUsedRegisters,
+  ?!@caseConstantMap ioCaseConstantMap,
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList,
+  ?!@ipic18BlockList ioGeneratedBlockList,
+  ?!@lstring ioBlockLabel,
+  ?!@sint64 ioLastComparisonValue)
 
 //·······················································································································
 
-override proc @pic18SimpleConstantCaseItem analyzeCaseItem
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  ?let @lstring inConditionTrueLabel
-  ?let @string inIndexForLabels
-  ?!@stringset ioUsedRegisters
-  ?!@caseConstantMap ioCaseConstantMap
-  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
-  ?!@ipic18BlockList ioGeneratedBlockList
-  ?!@lstring ioBlockLabel
+override proc @pic18SimpleConstantCaseItem.analyzeCaseItem
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  ?let @lstring inConditionTrueLabel,
+  ?let @string inIndexForLabels,
+  ?!@stringset ioUsedRegisters,
+  ?!@caseConstantMap ioCaseConstantMap,
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList,
+  ?!@ipic18BlockList ioGeneratedBlockList,
+  ?!@lstring ioBlockLabel,
   ?!@sint64 ioLastComparisonValue
-{
-  [self.mCaseExpression eval !inRegisterTable !inConstantMap ?let @sint64 result !?ioUsedRegisters]
+) {
+  self.mCaseExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 result, !?ioUsedRegisters)
 //---
   if (result > 255) | (result < 0) then
     error (self.mCaseExpressionLocation:"case value is evaluated as " + result + " (should be between 0 and 255)")
@@ -232,57 +232,57 @@ override proc @pic18SimpleConstantCaseItem analyzeCaseItem
     error (self.mCaseExpressionLocation : "the '" + result + "' constant is already used in switch instruction")
     error ([ioCaseConstantMap locationForKey !result.string] : "the '" + result + "' constant is used here")
   else
-    [!?ioCaseConstantMap insertKey ! @{ !result.string !self.mCaseExpressionLocation}]
+    !?ioCaseConstantMap.insertKey (! @( !result.string, self.mCaseExpressionLocation))
   end
 //--- Generate addlw instruction
-  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation {
-    !self.mCaseExpressionLocation
-    !.ADDLW
-    !((ioLastComparisonValue - result) & 0xFF).uint
-  }
+  ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation (
+    !self.mCaseExpressionLocation,
+    .ADDLW,
+    ((ioLastComparisonValue - result) & 0xFF).uint
+  )
   !@uint.max
   !0
 //--- Update comparison value
   ioLastComparisonValue = result
 //--- Condition false label
-  let conditionFalseLabel = @lstring { !".L.value.rejected." + inIndexForLabels !self.mCaseExpressionLocation}
+  let conditionFalseLabel = @lstring ( !".L.value.rejected." + inIndexForLabels, self.mCaseExpressionLocation)
 //--- Terminate current block with a BZ instruction
-  let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator {
-    !self.mCaseExpressionLocation
-    !.bz
-    !inConditionTrueLabel
-    !.native
-    !conditionFalseLabel
-    !.native}
+  let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator (
+    !self.mCaseExpressionLocation,
+    .bz,
+    inConditionTrueLabel,
+    .native,
+    conditionFalseLabel,
+    .native)
 //--- Save current block block
-  ioGeneratedBlockList += !@ipic18Block {
-    !@uint. max // relocatable
-    !ioBlockLabel
-    !ioGeneratedInstructionList
-    !t
-    !@uint.max
-    !0
-  }
+  ioGeneratedBlockList += !@ipic18Block (
+    !@uint.max, // relocatable
+    !ioBlockLabel,
+    ioGeneratedInstructionList,
+    t,
+    @uint.max,
+    0
+  )
   ioGeneratedInstructionList = @ipic18SequentialInstructionList ()
   ioBlockLabel = conditionFalseLabel
 }
 
 //·······················································································································
 
-override proc @pic18IntervalCaseItem analyzeCaseItem
-  ?let @registerTable inRegisterTable
-  ?let @constantMap inConstantMap
-  ?let @lstring inConditionTrueLabel
-  ?let @string inIndexForLabels
-  ?!@stringset ioUsedRegisters
-  ?!@caseConstantMap ioCaseConstantMap
-  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList
-  ?!@ipic18BlockList ioGeneratedBlockList
-  ?!@lstring ioBlockLabel
+override proc @pic18IntervalCaseItem.analyzeCaseItem
+  (?let @registerTable inRegisterTable,
+  ?let @constantMap inConstantMap,
+  ?let @lstring inConditionTrueLabel,
+  ?let @string inIndexForLabels,
+  ?!@stringset ioUsedRegisters,
+  ?!@caseConstantMap ioCaseConstantMap,
+  ?!@ipic18SequentialInstructionList ioGeneratedInstructionList,
+  ?!@ipic18BlockList ioGeneratedBlockList,
+  ?!@lstring ioBlockLabel,
   ?!@sint64 ioLastComparisonValue
-{
-  [self.mMinExpression eval !inRegisterTable !inConstantMap ?let @sint64 minBound !?ioUsedRegisters]
-  [self.mMaxExpression eval !inRegisterTable !inConstantMap ?let @sint64 maxBound !?ioUsedRegisters]
+) {
+  self.mMinExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 minBound, !?ioUsedRegisters)
+  self.mMaxExpression.eval (!inRegisterTable, !inConstantMap, ?let @sint64 maxBound, !?ioUsedRegisters)
 //---
   var ok = true
   if (minBound > 255) | (minBound < 0) then
@@ -302,77 +302,77 @@ override proc @pic18IntervalCaseItem analyzeCaseItem
   end
   if ok then
   //--- Check constant is unique
-    for n in @range {!minBound.uint !(maxBound - minBound + 1).uint} do
+    for n in @range (!minBound.uint, (maxBound - minBound + 1).uint) do
       if [ioCaseConstantMap hasKey !n.string] then
         error (self.mCaseExpressionLocation : "the '" + n + "' constant is already used in switch instruction")
         error ([ioCaseConstantMap locationForKey !n.string] : "the '" + n + "' constant is used here")
       else
-        [!?ioCaseConstantMap insertKey !@lstring { !n.string !self.mCaseExpressionLocation}]
+        !?ioCaseConstantMap.insertKey (!@lstring ( !n.string, self.mCaseExpressionLocation))
       end
     end
   //--- Labels
-    let firstConditionAcceptedLabel = @lstring { !".L.first.accepted." + inIndexForLabels !self.mCaseExpressionLocation}
-    let firstConditionRejectedLabel = @lstring { !".L.first.rejected." + inIndexForLabels !self.mCaseExpressionLocation}
-    let intervalRejectedLabel = @lstring { !".L.interval.rejected." + inIndexForLabels !self.mCaseExpressionLocation}
+    let firstConditionAcceptedLabel = @lstring ( !".L.first.accepted." + inIndexForLabels, self.mCaseExpressionLocation)
+    let firstConditionRejectedLabel = @lstring ( !".L.first.rejected." + inIndexForLabels, self.mCaseExpressionLocation)
+    let intervalRejectedLabel = @lstring ( !".L.interval.rejected." + inIndexForLabels, self.mCaseExpressionLocation)
   //--- Second sublw instruction
-    let @ipic18SequentialInstruction secondTestInstruction = @ipic18_intermediate_instruction_literalOperation {
-      !self.mCaseExpressionLocation
-      !.ADDLW
-      !(maxBound - minBound + 1).uint
-    }
+    let @ipic18SequentialInstruction secondTestInstruction = @ipic18_intermediate_instruction_literalOperation (
+      !self.mCaseExpressionLocation,
+      .ADDLW,
+      (maxBound - minBound + 1).uint
+    )
   //---------------------- First test
-    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation {
-        !self.mCaseExpressionLocation
-        !.ADDLW
-        !((ioLastComparisonValue + 255 - maxBound) & 0xFF).uint
-      }
+    ioGeneratedInstructionList += !@ipic18_intermediate_instruction_literalOperation (
+        !self.mCaseExpressionLocation,
+        .ADDLW,
+        ((ioLastComparisonValue + 255 - maxBound) & 0xFF).uint
+      )
       !.max
       !0
   //--- Terminate current block with a BC instruction
-    let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator {
-      !self.mCaseExpressionLocation
-      !.bnc
-      !firstConditionAcceptedLabel
-      !.native
-      !firstConditionRejectedLabel
-      !.native
-    }
+    let @ipic18AbstractBlockTerminator t = @ipic18ConditionalJumpTerminator (
+      !self.mCaseExpressionLocation,
+      .bnc,
+      firstConditionAcceptedLabel,
+      .native,
+      firstConditionRejectedLabel,
+      .native
+    )
   //--- Save current block
-    ioGeneratedBlockList += !@ipic18Block {
-      !.max // relocatable
-      !ioBlockLabel
-      !ioGeneratedInstructionList
-      !t
-      !@uint.max
-      !0
-    }
+    ioGeneratedBlockList += !@ipic18Block (
+      !.max, // relocatable
+      ioBlockLabel,
+      ioGeneratedInstructionList,
+      t,
+      @uint.max,
+      0
+    )
   //---------------------- First test reject
-    ioGeneratedBlockList += !@ipic18Block {
-      !.max // relocatable
-      !firstConditionRejectedLabel
-      !@[@(secondTestInstruction, .max, 0)]
-      !@ipic18JumpTerminator {!self.mCaseExpressionLocation !intervalRejectedLabel !.relative}
-      !.max
-      !0
-    }
+    ioGeneratedBlockList += !@ipic18Block (
+      !.max, // relocatable
+      !firstConditionRejectedLabel,
+      @[@(secondTestInstruction, .max, 0)],
+      @ipic18JumpTerminator (!self.mCaseExpressionLocation, intervalRejectedLabel, .relative),
+      .max,
+      0
+    )
   //---------------------- First test accepted
-    let @ipic18AbstractBlockTerminator t2 = @ipic18ConditionalJumpTerminator {
-      !self.mCaseExpressionLocation
-      !.bc
-      !inConditionTrueLabel
-      !.native
-      !intervalRejectedLabel
-      !.native
-    }
+    let @ipic18AbstractBlockTerminator t2 = @ipic18ConditionalJumpTerminator (
+      !self.mCaseExpressionLocation,
+      .bc,
+      inConditionTrueLabel,
+      .native,
+      intervalRejectedLabel,
+      .native
+    )
   //--- Save current block
-    ioGeneratedBlockList += !@ipic18Block {
-      !.max // relocatable
-      !firstConditionAcceptedLabel
-      !@[@(secondTestInstruction, .max, 0)]
-      !t2
-      !.max
-      !0
-    }
+    ioGeneratedBlockList += !@ipic18Block (
+      !.max, // relocatable
+      !firstConditionAcceptedLabel,
+      @[@(secondTestInstruction, .max, 0)],
+      t2,
+      .max,
+      0
+    )
   //----------------------
     ioGeneratedInstructionList = @()
     ioBlockLabel = intervalRejectedLabel
@@ -383,14 +383,14 @@ override proc @pic18IntervalCaseItem analyzeCaseItem
 
 //·······················································································································
 
-override proc @pic18Instruction_switch addUsedRoutines
-  ?let @pic18MacroMap inMacroMap
+override proc @pic18Instruction_switch.addUsedRoutines
+  (?let @pic18MacroMap inMacroMap,
   ?!@stringset ioUsedRoutines
-{
+) {
   for (* * mInstructionList) in  self.mCaseList do
-    addPic18UsedRoutinesFromInstructionList (!mInstructionList !inMacroMap !?ioUsedRoutines )
+    addPic18UsedRoutinesFromInstructionList (!mInstructionList, !inMacroMap, !?ioUsedRoutines )
   end
-  addPic18UsedRoutinesFromInstructionList (!self.mElseInstructionList !inMacroMap !?ioUsedRoutines )
+  addPic18UsedRoutinesFromInstructionList (!self.mElseInstructionList, !inMacroMap, !?ioUsedRoutines )
 }
 
 //———————————————————————————————————————————————————————————————————————————————————————————————————————————————————————

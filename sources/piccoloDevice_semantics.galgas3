@@ -20,10 +20,10 @@ map @registerTable {
 //----------------------------------------------------*
 
 proc @registerTable checkPrivateAccess
-  ?let @lstring inKey
-  ?write:let @bool inWriteAccess
+  (?let @lstring inKey,
+  ?write:let @bool inWriteAccess,
   ?let @registerProtection inRegisterProtection
- {
+ ) {
   switch inRegisterProtection
   case publicRegister :
   case protectedRegister :
